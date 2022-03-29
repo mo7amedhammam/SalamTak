@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         Text("Hello, world Mosrsy!")
             .padding()
@@ -16,6 +18,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().navigationBarHidden(true)
     }
 }

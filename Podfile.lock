@@ -1,3 +1,36 @@
-PODFILE CHECKSUM: ec584c3ae1f9b06e8b305e2958c118869af11a11
+PODS:
+  - Alamofire (5.3.0)
+  - FlagKit (2.2)
+  - GoogleMaps (6.0.1):
+    - GoogleMaps/Maps (= 6.0.1)
+  - GoogleMaps/Base (6.0.1)
+  - GoogleMaps/Maps (6.0.1):
+    - GoogleMaps/Base
+  - Kingfisher (7.0.0)
+  - SwiftLint (0.46.5)
+
+DEPENDENCIES:
+  - Alamofire (= 5.3)
+  - FlagKit
+  - GoogleMaps (= 6.0.1)
+  - Kingfisher (= 7.0)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FlagKit
+    - GoogleMaps
+    - Kingfisher
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  FlagKit: eca7dc89064b0c986302ba9acefad1bf80a435b1
+  GoogleMaps: c213fc2334b7374144cede914da779b99be0ab74
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
+  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+
+PODFILE CHECKSUM: bd476591c993c417f02afa6ca8020059ebe96010
 
 COCOAPODS: 1.11.2

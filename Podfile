@@ -6,6 +6,13 @@ target 'SalamTech' do
   use_frameworks!
 
   # Pods for SalamTech
+  pod 'Alamofire', '5.3'
+  pod 'Kingfisher', '7.0'
+ # pod 'ImageSlideshow', '1.9.0'
+  #pod 'IQKeyboardManagerSwift', '6.3.0'
+  pod 'GoogleMaps', '6.0.1'
+  pod 'FlagKit'
+  pod 'SwiftLint'
 
   target 'SalamTechTests' do
     inherit! :search_paths

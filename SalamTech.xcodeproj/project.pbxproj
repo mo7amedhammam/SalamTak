@@ -14,6 +14,13 @@
 		00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4527F3101100571078 /* SalamTechTests.swift */; };
 		00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4F27F3101100571078 /* SalamTechUITests.swift */; };
 		00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */; };
+		00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6027F3182B00571078 /* ApiServices.swift */; };
+		00C8BF6327F319B100571078 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6227F319B100571078 /* Config.swift */; };
+		00C8BF6527F319BC00571078 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6427F319BC00571078 /* Helper.swift */; };
+		00C8BF6727F31AE500571078 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6627F31AE500571078 /* Language.swift */; };
+		00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6827F31AF200571078 /* LocalizationService.swift */; };
+		00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6A27F31AFB00571078 /* Strings.swift */; };
+		00C8BF6E27F31DFC00571078 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF7027F31DFC00571078 /* Localizable.strings */; };
 		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
@@ -47,6 +54,14 @@
 		00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C8BF4F27F3101100571078 /* SalamTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITests.swift; sourceTree = "<group>"; };
 		00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		00C8BF6027F3182B00571078 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
+		00C8BF6227F319B100571078 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		00C8BF6427F319BC00571078 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		00C8BF6627F31AE500571078 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		00C8BF6827F31AF200571078 /* LocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
+		00C8BF6A27F31AFB00571078 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		00C8BF6F27F31DFC00571078 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		00C8BF7127F31E1100571078 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
 		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,10 +126,13 @@
 		00C8BF3327F3100F00571078 /* SalamTech */ = {
 			isa = PBXGroup;
 			children = (
+				00C8BF5F27F3180A00571078 /* Localization */,
+				00C8BF5E27F317FF00571078 /* Services */,
 				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
 				00C8BF3627F3100F00571078 /* ContentView.swift */,
 				00C8BF3827F3101100571078 /* Assets.xcassets */,
 				00C8BF3A27F3101100571078 /* Preview Content */,
+				00C8BF7027F31DFC00571078 /* Localizable.strings */,
 			);
 			path = SalamTech;
 			sourceTree = "<group>";
@@ -144,6 +162,26 @@
 			path = SalamTechUITests;
 			sourceTree = "<group>";
 		};
+		00C8BF5E27F317FF00571078 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF6027F3182B00571078 /* ApiServices.swift */,
+				00C8BF6227F319B100571078 /* Config.swift */,
+				00C8BF6427F319BC00571078 /* Helper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		00C8BF5F27F3180A00571078 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF6627F31AE500571078 /* Language.swift */,
+				00C8BF6827F31AF200571078 /* LocalizationService.swift */,
+				00C8BF6A27F31AFB00571078 /* Strings.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +202,6 @@
 				E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */,
 				57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -179,6 +216,8 @@
 				00C8BF2D27F3100F00571078 /* Sources */,
 				00C8BF2E27F3100F00571078 /* Frameworks */,
 				00C8BF2F27F3100F00571078 /* Resources */,
+				CF7ED32AD2367364915B3A30 /* [CP] Embed Pods Frameworks */,
+				A90B5335934F87244541740E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -216,6 +255,8 @@
 				00C8BF4727F3101100571078 /* Sources */,
 				00C8BF4827F3101100571078 /* Frameworks */,
 				00C8BF4927F3101100571078 /* Resources */,
+				B6C54AA9556A81DB2B9A3F2C /* [CP] Embed Pods Frameworks */,
+				C3E364A011E6D697DDD2D344 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,6 +298,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 00C8BF2827F3100F00571078;
 			productRefGroup = 00C8BF3227F3100F00571078 /* Products */;
@@ -276,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */,
+				00C8BF6E27F31DFC00571078 /* Localizable.strings in Resources */,
 				00C8BF3927F3101100571078 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +360,74 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A90B5335934F87244541740E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6C54AA9556A81DB2B9A3F2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3E364A011E6D697DDD2D344 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF7ED32AD2367364915B3A30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E452BD0978B423F66B93F762 /* [CP] Check Pods Manifest.lock */ = {
@@ -370,6 +481,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
+				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
+				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
+				00C8BF6327F319B100571078 /* Config.swift in Sources */,
+				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
+				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
 			);
@@ -407,11 +524,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		00C8BF7027F31DFC00571078 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00C8BF6F27F31DFC00571078 /* en */,
+				00C8BF7127F31E1100571078 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		00C8BF5327F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -473,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
