@@ -14,6 +14,9 @@
 		00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4527F3101100571078 /* SalamTechTests.swift */; };
 		00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4F27F3101100571078 /* SalamTechUITests.swift */; };
 		00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */; };
+		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
+		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
+		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,15 @@
 		00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C8BF4F27F3101100571078 /* SalamTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITests.swift; sourceTree = "<group>"; };
 		00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
+		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.release.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.release.xcconfig"; sourceTree = "<group>"; };
+		65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.release.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +93,8 @@
 				00C8BF4427F3101100571078 /* SalamTechTests */,
 				00C8BF4E27F3101100571078 /* SalamTechUITests */,
 				00C8BF3227F3100F00571078 /* Products */,
+				D7F4A9B52D71670893547C28 /* Pods */,
+				CD569FB038916C84D66F14AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +144,30 @@
 			path = SalamTechUITests;
 			sourceTree = "<group>";
 		};
+		CD569FB038916C84D66F14AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */,
+				32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */,
+				CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7F4A9B52D71670893547C28 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */,
+				F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */,
+				24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */,
+				C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */,
+				E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */,
+				57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +175,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTech" */;
 			buildPhases = (
+				FD12AF66A6CE3938A4650227 /* [CP] Check Pods Manifest.lock */,
 				00C8BF2D27F3100F00571078 /* Sources */,
 				00C8BF2E27F3100F00571078 /* Frameworks */,
 				00C8BF2F27F3100F00571078 /* Resources */,
@@ -151,6 +193,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechTests" */;
 			buildPhases = (
+				E452BD0978B423F66B93F762 /* [CP] Check Pods Manifest.lock */,
 				00C8BF3D27F3101100571078 /* Sources */,
 				00C8BF3E27F3101100571078 /* Frameworks */,
 				00C8BF3F27F3101100571078 /* Resources */,
@@ -169,6 +212,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechUITests" */;
 			buildPhases = (
+				71ED5EAAAF13C9B89445C6BE /* [CP] Check Pods Manifest.lock */,
 				00C8BF4727F3101100571078 /* Sources */,
 				00C8BF4827F3101100571078 /* Frameworks */,
 				00C8BF4927F3101100571078 /* Resources */,
@@ -251,6 +295,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71ED5EAAAF13C9B89445C6BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalamTech-SalamTechUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E452BD0978B423F66B93F762 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalamTechTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD12AF66A6CE3938A4650227 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalamTech-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00C8BF2D27F3100F00571078 /* Sources */ = {
@@ -413,6 +526,7 @@
 		};
 		00C8BF5627F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -442,6 +556,7 @@
 		};
 		00C8BF5727F3101100571078 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -471,6 +586,7 @@
 		};
 		00C8BF5927F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +607,7 @@
 		};
 		00C8BF5A27F3101100571078 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -511,6 +628,7 @@
 		};
 		00C8BF5C27F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -529,6 +647,7 @@
 		};
 		00C8BF5D27F3101100571078 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

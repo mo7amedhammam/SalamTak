@@ -1,0 +1,6 @@
+framework module Pods_SalamTech_SalamTechUITests {
+  umbrella header "Pods-SalamTech-SalamTechUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
