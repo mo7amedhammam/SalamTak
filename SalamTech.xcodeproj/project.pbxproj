@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF3427F3100F00571078 /* SalamTechApp.swift */; };
+		00C8BF3727F3100F00571078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF3627F3100F00571078 /* ContentView.swift */; };
+		00C8BF3927F3101100571078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF3827F3101100571078 /* Assets.xcassets */; };
+		00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF3B27F3101100571078 /* Preview Assets.xcassets */; };
+		00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4527F3101100571078 /* SalamTechTests.swift */; };
+		00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4F27F3101100571078 /* SalamTechUITests.swift */; };
+		00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00C8BF4227F3101100571078 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C8BF2927F3100F00571078 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00C8BF3027F3100F00571078;
+			remoteInfo = SalamTech;
+		};
+		00C8BF4C27F3101100571078 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C8BF2927F3100F00571078 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00C8BF3027F3100F00571078;
+			remoteInfo = SalamTech;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00C8BF3127F3100F00571078 /* SalamTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalamTech.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C8BF3427F3100F00571078 /* SalamTechApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechApp.swift; sourceTree = "<group>"; };
+		00C8BF3627F3100F00571078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00C8BF3827F3101100571078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00C8BF3B27F3101100571078 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00C8BF4127F3101100571078 /* SalamTechTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTechTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C8BF4527F3101100571078 /* SalamTechTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechTests.swift; sourceTree = "<group>"; };
+		00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C8BF4F27F3101100571078 /* SalamTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITests.swift; sourceTree = "<group>"; };
+		00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00C8BF2E27F3100F00571078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C8BF3E27F3101100571078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C8BF4827F3101100571078 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00C8BF2827F3100F00571078 = {
+			isa = PBXGroup;
+			children = (
+				00C8BF3327F3100F00571078 /* SalamTech */,
+				00C8BF4427F3101100571078 /* SalamTechTests */,
+				00C8BF4E27F3101100571078 /* SalamTechUITests */,
+				00C8BF3227F3100F00571078 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00C8BF3227F3100F00571078 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF3127F3100F00571078 /* SalamTech.app */,
+				00C8BF4127F3101100571078 /* SalamTechTests.xctest */,
+				00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00C8BF3327F3100F00571078 /* SalamTech */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
+				00C8BF3627F3100F00571078 /* ContentView.swift */,
+				00C8BF3827F3101100571078 /* Assets.xcassets */,
+				00C8BF3A27F3101100571078 /* Preview Content */,
+			);
+			path = SalamTech;
+			sourceTree = "<group>";
+		};
+		00C8BF3A27F3101100571078 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF3B27F3101100571078 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		00C8BF4427F3101100571078 /* SalamTechTests */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF4527F3101100571078 /* SalamTechTests.swift */,
+			);
+			path = SalamTechTests;
+			sourceTree = "<group>";
+		};
+		00C8BF4E27F3101100571078 /* SalamTechUITests */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF4F27F3101100571078 /* SalamTechUITests.swift */,
+				00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */,
+			);
+			path = SalamTechUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00C8BF3027F3100F00571078 /* SalamTech */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTech" */;
+			buildPhases = (
+				00C8BF2D27F3100F00571078 /* Sources */,
+				00C8BF2E27F3100F00571078 /* Frameworks */,
+				00C8BF2F27F3100F00571078 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SalamTech;
+			productName = SalamTech;
+			productReference = 00C8BF3127F3100F00571078 /* SalamTech.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00C8BF4027F3101100571078 /* SalamTechTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechTests" */;
+			buildPhases = (
+				00C8BF3D27F3101100571078 /* Sources */,
+				00C8BF3E27F3101100571078 /* Frameworks */,
+				00C8BF3F27F3101100571078 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00C8BF4327F3101100571078 /* PBXTargetDependency */,
+			);
+			name = SalamTechTests;
+			productName = SalamTechTests;
+			productReference = 00C8BF4127F3101100571078 /* SalamTechTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00C8BF4A27F3101100571078 /* SalamTechUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechUITests" */;
+			buildPhases = (
+				00C8BF4727F3101100571078 /* Sources */,
+				00C8BF4827F3101100571078 /* Frameworks */,
+				00C8BF4927F3101100571078 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00C8BF4D27F3101100571078 /* PBXTargetDependency */,
+			);
+			name = SalamTechUITests;
+			productName = SalamTechUITests;
+			productReference = 00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00C8BF2927F3100F00571078 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					00C8BF3027F3100F00571078 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					00C8BF4027F3101100571078 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 00C8BF3027F3100F00571078;
+					};
+					00C8BF4A27F3101100571078 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 00C8BF3027F3100F00571078;
+					};
+				};
+			};
+			buildConfigurationList = 00C8BF2C27F3100F00571078 /* Build configuration list for PBXProject "SalamTech" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00C8BF2827F3100F00571078;
+			productRefGroup = 00C8BF3227F3100F00571078 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00C8BF3027F3100F00571078 /* SalamTech */,
+				00C8BF4027F3101100571078 /* SalamTechTests */,
+				00C8BF4A27F3101100571078 /* SalamTechUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00C8BF2F27F3100F00571078 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */,
+				00C8BF3927F3101100571078 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C8BF3F27F3101100571078 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C8BF4927F3101100571078 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00C8BF2D27F3100F00571078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
+				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C8BF3D27F3101100571078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00C8BF4727F3101100571078 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */,
+				00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00C8BF4327F3101100571078 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00C8BF3027F3100F00571078 /* SalamTech */;
+			targetProxy = 00C8BF4227F3101100571078 /* PBXContainerItemProxy */;
+		};
+		00C8BF4D27F3101100571078 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00C8BF3027F3100F00571078 /* SalamTech */;
+			targetProxy = 00C8BF4C27F3101100571078 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00C8BF5327F3101100571078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00C8BF5427F3101100571078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00C8BF5627F3101100571078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
+				DEVELOPMENT_TEAM = 6M5F747CRF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTech;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00C8BF5727F3101100571078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
+				DEVELOPMENT_TEAM = 6M5F747CRF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTech;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		00C8BF5927F3101100571078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M5F747CRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalamTech.app/SalamTech";
+			};
+			name = Debug;
+		};
+		00C8BF5A27F3101100571078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M5F747CRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTechTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalamTech.app/SalamTech";
+			};
+			name = Release;
+		};
+		00C8BF5C27F3101100571078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M5F747CRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTechUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SalamTech;
+			};
+			name = Debug;
+		};
+		00C8BF5D27F3101100571078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6M5F747CRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTechUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SalamTech;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00C8BF2C27F3100F00571078 /* Build configuration list for PBXProject "SalamTech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C8BF5327F3101100571078 /* Debug */,
+				00C8BF5427F3101100571078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C8BF5627F3101100571078 /* Debug */,
+				00C8BF5727F3101100571078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C8BF5927F3101100571078 /* Debug */,
+				00C8BF5A27F3101100571078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C8BF5C27F3101100571078 /* Debug */,
+				00C8BF5D27F3101100571078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00C8BF2927F3100F00571078 /* Project object */;
+}
