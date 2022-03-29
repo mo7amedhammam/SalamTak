@@ -11,8 +11,23 @@ struct ContentView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
-        Text("Hello, world Mosrsy!")
-            .padding()
+        ZStack{
+            OnBoardingView()
+            
+        }
+        .onChange(of: scenePhase, perform: { newPhase in
+
+                if newPhase == .active {
+                    print("Active")
+                } else if newPhase == .inactive {
+                    print("InActive")
+                } else if newPhase == .background {
+                    print("BackGround")
+                }
+        })
+        
+        .ignoresSafeArea()
+        .preferredColorScheme(.light)
     }
 }
 

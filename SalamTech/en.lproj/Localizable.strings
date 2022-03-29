@@ -5,3 +5,234 @@
   Created by wecancity agency on 3/29/22.
   
 */
+
+
+"settings_language" = "Language";
+"OnBoarding_Screen1_title" = "Salamtech Booking";
+"OnBoarding_Screen1_subtitle" = "Salamtech Booking provides an easy way for the patient to book an appointment with his favourite doctor with the possobility of following up on the latest offers of doctors in all specialities";
+"OnBoarding_Screen2_title" = "Home Visit";
+"OnBoarding_Screen2_subtitle" = "Salamtech Home Visit provides a radical solution to the problem of booking a home visit to the doctor so that it does not conflict with his clinic reservations";
+"OnBoarding_Screen3_title" = "Live Chat";
+"OnBoarding_Screen3_subtitle" = "Save your time and effort as Salamtech live chat allows you to provide the first and third visits for both the patient and the doctor";
+"onBoarding_Skip_Button" = "Skip";
+"onBoarding_Next_Button" = "Next";
+"onBoarding_GetStarted_Button" = "Get Started";
+"welcome_screen_title" = "Welcome";
+"Welcome_Screen_subtitle" = "Here we can help you save your time while asking for a medical help";
+"SignIn_Button" = "Sign In";
+"SignUp_Button" = "Sign Up";
+"SignIn_Screen_title" = "Sign In";
+"SignIn_Screen_phoneNumber" = "Enter your phone number";
+"birthdate" = "Choose Your Date of Birth";
+"SignIn_Screen_password" = "Enter your password";
+"SignIn_Screen_forgetPassword" = "Forgot Password?";
+"SignIn_Screen_dont_haveAccount" = "Dont have an account?";
+"Reset_Screen_title" = "Reset Password";
+"Reset_Screen_email" = "Enter your email";
+"Reset_Screen_confirmEmail_Button" = "Confirm Email";
+"ChangePass_Screen_enter_pass" = "Enter your new password";
+"ChangePass_Screen_confirm_pass" = "confirm your password";
+"ChangePass_Screen_confirm_pass_button" = "Confirm Password";
+"SignUp_Screen_title" = "Sign Up";
+"SignUp_Screen_enterfullName" = "Enter Your Full Name";
+"SignUp_Screen_enterEmail" = "Enter Your Email";
+"SignUp_Screen_enterPhone" = "Enter Your Phone Number";
+"SignUp_Screen_enterPassword" = "Enter Your Password";
+"SignUp_Screen_enterconfirmPassword" = "Confirm Your Password";
+"SignUp_Screen_haveAccount" = "Already Have Account?";
+"PhoneVerfication_Screen_title" = "Phone Verification";
+"PhoneVerfication_Screen_subtitle" = "Please enter the Verification Code\nwe sent to your mobile\nor use:()";
+"PhoneVerfication_Screen_codeMessage" = "Time Out or Incorrect code. Please try again!";
+"Nationality"="Nationality";
+"PhoneVerfication_Screen_resendCode" = "Resend Code";
+"PhoneVerfication_Screen_sendCode_Button" = "Send Code";
+"CompeleteProfile_Screen_title" = "Complete Profile";
+"CompeleteProfile_Screen_subtitle" = "Doctor Info";
+"CompeleteProfile_Screen_secondSubTitle" = "Certificates";
+"CompeleteProfile_Screen_firstName" = "First Name (*)";
+"CompeleteProfile_Screen_middleName" = "Middle Name (*)";
+"CompeleteProfile_Screen_lastName" = "Last Name (*)";
+"CompeleteProfile_Screen_firstNameAr" = "الاسم الاخير(*)";
+"CompeleteProfile_Screen_middleNameAr" = "الاسم الأوسط(*)";
+"CompeleteProfile_Screen_lastNameAr" = "الاسم الأول(*)";
+"CompeleteProfile_Screen_Nationality" = "Nationality";
+"CompeleteProfile_Screen_Birthdate" = "Birth Date";
+"CompeleteProfile_Screen_male" = "Male";
+"CompeleteProfile_Screen_female" = "Female";
+"CompeleteProfile_Screen_Speciality" = "Speciality";
+"CompeleteProfile_Screen_SubSpeciality" = "SubSpeciality";
+"CompeleteProfile_Screen_Seniority" = "Seniority";
+"CompeleteProfile_Screen_enterWebSite" = "Enter your website";
+"CompeleteProfile_Screen_bioEn" = "Biography in English";
+"CompeleteProfile_Screen_bioAr" = "نبذة عنك باللغة العربية";
+"CompeleteProfile_Screen_ConfirmButton" = "Confirm";
+"CompeleteProfile_Screen_Next_Button" = "Next";
+"CompeleteProfile_Screen_Previos_Button" = "Previous";
+"Certificates_Screen_title" = "Complete Profile";
+"Certificates_Screen_subtitle" = "Doctor Certificates";
+"Certificates_Screen_secondSubtitle" = "Legal document";
+"Certificates_Screen_addNewCert_Button" = "Add new certificate";
+"Certificates_Screen_addNewCert_title1" = "Your title will be here...";
+"Certificates_Screen_addNewCert_title2" = "Title of certificate(*)";
+"Certificates_Screen_addNewCert_Cancel" = "cancel";
+"Certificates_Screen_addNewCert_titleAr" = "(*)عنوان الشهادة بالعربية";
+"Certificates_Screen_addNewCert_year" = "Year of certificate(*)";
+"Certificates_Screen_addNewCert_description" = "Description (120) characters max(*)";
+"Certificates_Screen_addNewCert_descriptionAr" = "(*)وصف الشهادة بالعربية(حد اقصى ١٢٠ حرف)";
+"Certificates_Screen_addNewCert_uploadFile" = "Upload the file(*)";
+"Certificates_Screen_addNewCert_submit_button" = "Submit";
+"Certificates_Screen_addNewCert_update_button" = "Update Certificate";
+"Document_Screen_title" = "Complete Profile";
+"Document_Screen_subtitle" = "Legal document";
+"Document_Screen_secondSubtitle" = "Add Clinic";
+"Document_National_title" ="National Id";
+"Document_National_subtitle" ="Front Image (Required) & Back Image";
+"Document_Profession_title" = "practicing the profession";
+"Document_Profession_subtitle" = "Front Image (Required) & Back Image";
+"PopUp_title" = "Awsome!";
+"PopUp_subtitle" = "We are done with your \n  profile, Now to the clinic’s";
+"PopUp_lets_go" = "Let’s go";
+"Clinic_Screen_title" = "New Clinic";
+"Clinic_Screen_subtitle" = "Clinic Info";
+"Clinic_Screen_secondSubTitle" = "Clinic Schedual";
+"Clinic_Screen_NameEn" = "Clinc Name In English (Required) ";
+"Clinic_Screen_NameAr" = "اسم العيادة بالعربية";
+"Clinic_Screen_email" = "Email ";
+"Clinic_Screen_phone1" = "Phone Number (Required) ";
+"Clinic_Screen_phone2" = "Phone Number 2 (Not Rquired)";
+"Clinic_Screen_phone3" = "Phone Number 3 (Not Rquired)";
+"Clinic_Screen_services" = "Services";
+"Clinic_Screen_country" = "Country";
+"Clinic_Screen_city" = "City";
+"Clinic_Screen_area" = "Area";
+"Clinic_Screen_street" = "Street name (Required) ";
+"Clinic_Screen_building" = "Building Number";
+"Clinic_Screen_floor" = "floor Number";
+"Clinic_Screen_fee" = "fixed fees (Required)";
+"WorkingTimes_Screen_title" = "New Clinic ";
+"WorkingTimes_Screen_subtitle" = "Working Times";
+"WorkingTimes_Screen_secondSubTitle" = "Clinic Gallery";
+"WorkingTimes_Screen_timeper_slot" = "Time Slot Per Patient Minutes";
+"WorkingTimes_Screen_periods" = " Periods";
+"WorkingTimes_Screen_period" = " Period";
+"WorkingTimes_Screen_newperiods" = "New Period";
+"WorkingTimes_Screen_add_new_period_button" = "Add New Period";
+"WorkingTimes_Screen_add_period_button" = "Add Period";
+"WorkingTimes_Screen_reset_button" = "Reset";
+"WorkingTimes_Screen_Cancel" = "Cancel";
+
+"Gallery_Screen_title" = "New Clinic ";
+"Gallery_Screen_subtitle" = "Clinic Gallery";
+"Gallery_Screen_secondSubTitle" = "Home";
+
+
+
+"Services_Screen_title" = "Services";
+"Services_Screen_timeper_slot" = "Time Slot Per Patient";
+
+
+"Minutes" = "Minutes";
+"Edit" = "Edit";
+"Visit Fee" = "Visit Fee";
+"Time / Patient" = "Time / Patient";
+"operating hours" = "operating hours";
+"From" = "From";
+"To" = "To";
+"Update period" = "Update period";
+
+"Services_Screen_periods" = "Periods";
+"Services_Screen_add_new_period_button" = "Add New Period";
+"Dashboard_Screen_statistics" = "Statistics";
+"Dashboard_Screen_see_all" = "See All";
+"TabBar_home" = "Home";
+"TabBar_appointments" = "Appointments";
+"TabBar_clinics" = "Clinics";
+"TabBar_services" = "Services";
+"TabBar_more" = "More";
+
+"Home_Hello_Dr" = "Hello, Dr";
+"Home_UpComing_cases" = "UpComing\n cases";
+"Home_Total_cases" = "Total cases";
+"Home_Today_cases" = "Today\n cases";
+"Home_Statistics" = "Statistics";
+"Home_See_All" = "See All";
+
+"Appointment_Screen_title" = "Appointments";
+"Appointment_Screen_current" = "Current";
+"Appointment_Screen_history" = "History";
+"Appointment_Screen_postReport" = "Post Report";
+"Appointment_Screen_cancel" = "Cancel";
+
+"Appointment_Screen_cancel" = "Cancel";
+"Appointment_Screen_canceled" = "Cancelled";
+"Appointment_Screen_completed" = "Completed";
+
+"No_Result_Found" = "No ِAppointments Found";
+"Appointment_Filter" = "Filter";
+"Appointment_Filter_Consultation_Type" = "Consultation Type";
+"Appointment_Filter_Dates" = "Dates";
+"Start_Date" = "Start Date";
+"End_Date" = "End Date";
+"From" = "From";
+"To" = "To";
+"Appointment_Filter_Clinic" = "Clinic";
+"Confirm" = "Confirm";
+"Create" = "Create";
+"Cancel" = "Cancel";
+"Popup_Cencel_Appointment" = "Cencel \n Appointment";
+"Popup_Cencel_Appointment_msg" = "Are you sure you want to cancel \n this appointment?";
+"Popup_Cencel_Appointment_reason" = "Cancel Reason";
+"Popup_Cencel_Appointment_Close" = "Close";
+"Popup_Cencel_Appointment_Confirm" = "Confirm";
+
+"Patient_Screen_title" = "Patient Details";
+"Patient_Screen_EmrProfile_add_Description" = "New description";
+
+"Patient_Screen_profile" = "Patient Profile";
+"Patient_Screen_emr" = "EMR Profile";
+"Patient_Screen_patientName" = "Patient Name";
+"Patient_Screen_age" = "Patient Age";
+"Patient_Screen_number" = "Patient Number";
+"Patient_Screen_address" = "Patient Address";
+"Patient_Screen_complain" = "Patient Complain";
+"Patient_Screen_EmrProfile_addNewDescription" = "Add Description";
+"Patient_Screen_EmrProfile_RxTitle" = "RX Title";
+"Patient_Screen_EmrProfile_RxDescription" = "RX Description";
+"Patient_Screen_EmrProfile_RxDocument" = "Rx Document";
+"EMR" = "EMR";
+"Patient_Screen_EmrProfile_add_details" = "Add Details";
+"Patient_Screen_EmrProfile_instructions" = "Instructions";
+"Patient_Screen_EmrProfile_add_instructions" = "Add Instructions";
+"Patient_Screen_EmrProfile_attached_files" = "Attached Files";
+"Patient_Screen_EmrProfile_add_document" = "Add Document";
+"More_Screen_updateProfile" = "Update Profile";
+"More_Screen_myprofile" = "My Profile";
+"More_Screen_resetPassword" = "Reset Password";
+"More_Screen_aboutApp" = "About App";
+"More_Screen_callUs" = "Call Us";
+"More_Screen_termsAndCondition" = "Terms And Condition";
+"More_Screen_Language" = "Language";
+"More_Screen_SignOut" = "Sign Out";
+"Today" = "Today";
+
+"Change Password" = "Change Password";
+"Confirm Password" = "Confirm Password";
+"Update" = "Update";
+"Gender" = "Gender";
+
+"Back_Home_Document" = "Back To Home";
+"Doctor_Profile" = "Doctor Profile";
+"Certificate" = "Certificates";
+"Documents" = "Documents";
+"Profile" = "Profile";
+
+"Add_new_Clinic" = "Add New Clinic";
+"emptyClinic_title" = "There are no added clinic yet";
+"emptyClinic_subtitle" = "Manage your all Clinics by add \nThem throw one press";
+
+"Back_Home_Clinic" = "Back To Main";
+"Edit_Clinic" = "Edit Clinic";
+"Info" = "Info";
+"Schedule" = "Schedule";
+"Gallery" = "Gallery";
+"upload_gallery" = "Upload Clinic Gallery";

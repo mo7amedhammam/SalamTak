@@ -5,3 +5,240 @@
   Created by wecancity agency on 3/29/22.
   
 */
+
+"settings_language" = "اللغة";
+"OnBoarding_Screen1_title" = "الحجوزات";
+"OnBoarding_Screen1_subtitle" = "Salamtech Booking يوفر آلية تنفيذ الحجوزات بسلاسة شديدة وما يتبع الحجز من خطوات سواء لتأكيد الحجز وكذلك توصيح كافة البيانات ذات الاهمية سوا للطبيب او المريض وتوضيح الخدمات المقدمة من العيادة للمريض";
+"OnBoarding_Screen2_title" = "الزيارة المنزلية";
+"OnBoarding_Screen2_subtitle" = "Salamtech Home  يمكن الطبيب من تنسيق مواعيد وحجوزات العيادة بالمرونة التي تتيح له ايضا تخصيص الوقت اللازم لحجوزات الزيارات المنزلية";
+"OnBoarding_Screen3_title" = "التواصل من الطبيب";
+"OnBoarding_Screen3_subtitle" = "خدمة سلامتك كونكت تسمح بالتواصل بين الطبيب والمريض لتبادل المعلومات اللي تتيح بنسبة كبيرة جدا الغاء كل من الزيارة الأولي والثالثة";
+"onBoarding_Skip_Button" = "تخطي";
+"onBoarding_Next_Button" = "التالي";
+"onBoarding_GetStarted_Button" = "ابدأ التطبيق";
+"welcome_screen_title" = "مرحبا";
+"Welcome_Screen_subtitle" = "هنا يمكننا مساعدتك في توفير وقتك أثناء طلب المساعدة الطبية";
+"SignIn_Button" = "الدخول";
+"SignUp_Button" = "التسجيل";
+"SignIn_Screen_title" = "الدخول";
+"SignIn_Screen_phoneNumber" = "ادخل رقم الموبايل";
+"SignIn_Screen_password" = "ادخل كلمة المرور";
+"birthdate" = "اختار تاريخ ميلادك";
+"SignIn_Screen_forgetPassword" = "هل نسيت كلمة المرور؟";
+"SignIn_Screen_dont_haveAccount" = "ليس لديك حساب؟";
+"Reset_Screen_title" = "إعادة تعيين كلمة المرور";
+"Reset_Screen_email" = "أدخل بريدك الإلكتروني";
+"Reset_Screen_confirmEmail_Button" = "تأكيد عنوان البريد الإلكتروني";
+"ChangePass_Screen_title" = "تغيير كلمة المرور";
+"ChangePass_Screen_enter_pass" = "أدخل كلمة المرور الجديدة";
+"ChangePass_Screen_confirm_pass" = "نأكيد كلمة المرور";
+"ChangePass_Screen_confirm_pass_button" = "تأكيد";
+"SignUp_Screen_title" = "تسجيل";
+"SignUp_Screen_enterfullName" = "ادخل الأسم بالكامل";
+"SignUp_Screen_enterEmail" = "ادخل البريد الالكتروني";
+"SignUp_Screen_enterPhone" = "ادخل رقم الموبايل";
+"SignUp_Screen_enterPassword" = "ادخل كلمة المرور";
+"SignUp_Screen_enterconfirmPassword" = "تأكيد كلمة المرور";
+"SignUp_Screen_haveAccount" = "لديك حساب بالفعل؟";
+"PhoneVerfication_Screen_title" = "التحقق من الهاتف";
+"PhoneVerfication_Screen_subtitle" = "الرجاء إدخال رمز التحقق الذي أرسلناه إلى هاتفك المحمول أو استخدم";
+"PhoneVerfication_Screen_codeMessage" = "الكود غير صحيح برجاء المحاولة مرة اخرى";
+"Nationality"="الجنسية";
+"PhoneVerfication_Screen_resendCode" = "اعادة ارسال الكود";
+"PhoneVerfication_Screen_sendCode_Button" = "ارسال الكود";
+"CompeleteProfile_Screen_title" = "انهاء الملف الشخصي";
+"CompeleteProfile_Screen_subtitle" = "معلومات عن الطبيب";
+"CompeleteProfile_Screen_secondSubTitle" = "الشهادات";
+"CompeleteProfile_Screen_firstName" = "الاسم الأول";
+"CompeleteProfile_Screen_middleName" = "الاسم الثاني";
+"CompeleteProfile_Screen_lastName" = "الاسم الأخير";
+"CompeleteProfile_Screen_firstNameAr" = "الاسم الاخير(*)";
+"CompeleteProfile_Screen_middleNameAr" = "الاسم الثاني(*)";
+"CompeleteProfile_Screen_lastNameAr" = "الاسم الأول(*)";
+"CompeleteProfile_Screen_Nationality" = "الجنسية";
+"CompeleteProfile_Screen_Birthdate" = "تاريخ الميلاد";
+"CompeleteProfile_Screen_male" = "ذكر";
+"CompeleteProfile_Screen_female" = "انثى";
+
+"CompeleteProfile_Screen_Speciality" = "التخصص";
+"CompeleteProfile_Screen_SubSpeciality" = "التخصصات الفرعية";
+"CompeleteProfile_Screen_Seniority" = "الكادر";
+"CompeleteProfile_Screen_enterWebSite" = "الموقع الالكتروني";
+"CompeleteProfile_Screen_bioEn" = "Biography in English";
+"CompeleteProfile_Screen_bioAr" = "نبذة عنك باللغة العربية";
+"CompeleteProfile_Screen_ConfirmButton" = "تأكيد";
+"CompeleteProfile_Screen_Next_Button" = "التالي";
+"CompeleteProfile_Screen_Previos_Button" = "السابق";
+"Certificates_Screen_title" = "الملف الشخصي الكامل";
+"Certificates_Screen_subtitle" = "شهادات الطبيب";
+"Certificates_Screen_secondSubtitle" = "ملفات الطبيب";
+"Certificates_Screen_addNewCert_Button" = "اضافة شهادة جديدة";
+"Certificates_Screen_addNewCert_Cancel" = "الغاء";
+"Certificates_Screen_addNewCert_title1" = "اضافة العنوان ";
+"Certificates_Screen_addNewCert_title2" = "عنوان الشهادة";
+"Certificates_Screen_addNewCert_titleAr" = "عنوان الشهادة بالعربية";
+"Certificates_Screen_addNewCert_year" = "تاريخ الشهادات";
+"Certificates_Screen_addNewCert_description" = "Description (120) characters max";
+"Certificates_Screen_addNewCert_descriptionAr" = "وصف الشهادة بالعربية(حد اقصى ١٢٠ حرف)";
+"Certificates_Screen_addNewCert_uploadFile" = "تحميل الملف";
+"Certificates_Screen_addNewCert_submit_button" = "ارسال";
+"Certificates_Screen_addNewCert_update_button" = "تحديث";
+"Document_Screen_title" = "الملف الشخصي الكامل";
+"Document_Screen_subtitle" = "ملفات الطبيب";
+"Document_Screen_secondSubtitle" = "انشاء عيادة";
+"Document_National_title" ="بطاقه الرقم القومى";
+"Document_National_subtitle" ="الصورة الامامية و الخلفية(مطلوب)";
+"Document_Profession_title" = "كارنيه ممارسه المهنه";
+"Document_Profession_subtitle" = "الصورة الامامية و الخلفية(مطلوب)";
+"PopUp_title" = "رائع!";
+"PopUp_subtitle" = "تم الانتهاء من الملف الشخصي،اذهب الي العيادات";
+"PopUp_lets_go" = "اذهب";
+"Clinic_Screen_title" = "عيادة جديدة";
+"Clinic_Screen_subtitle" = "بيانات العيادة";
+"Clinic_Screen_secondSubTitle" = "مواعيد العيادة";
+"Clinic_Screen_NameEn" = "Clinc Name In English (Required) ";
+"Clinic_Screen_NameAr" = "اسم العيادة بالعربية";
+"Clinic_Screen_email" = "البريدالالكتروني ";
+"Clinic_Screen_phone1" = "رقم التليفون (Required) ";
+"Clinic_Screen_phone2" = "رقم التليفون 2 (Not Rquired)";
+"Clinic_Screen_phone3" = "رقم التليفون 3 (Not Rquired)";
+"Clinic_Screen_services" = "الخدمات";
+"Clinic_Screen_country" = "الدولة";
+"Clinic_Screen_city" = "المدينة";
+"Clinic_Screen_area" = "المنطقة";
+"Clinic_Screen_street" = "اسم الشارع (Required) ";
+"Clinic_Screen_building" = "رقم العقار";
+"Clinic_Screen_floor" = "رقم الدور";
+"Clinic_Screen_fee" = "رسوم ثابتة (Required)";
+"WorkingTimes_Screen_title" = "عيادة جديدة ";
+"WorkingTimes_Screen_subtitle" = "أوقات العمل";
+"WorkingTimes_Screen_secondSubTitle" = "صور العيادة";
+"WorkingTimes_Screen_timeper_slot" = "مدة الكشف أو الزيارة";
+"WorkingTimes_Screen_periods" = " الفترات";
+"WorkingTimes_Screen_period" = " الفترة";
+"WorkingTimes_Screen_newperiods" = "فترة جديدة";
+"WorkingTimes_Screen_add_new_period_button" = "اضافة فترة جديدة";
+"WorkingTimes_Screen_add_period_button" = "اضافة فترة";
+"WorkingTimes_Screen_reset_button" = "مسح";
+"WorkingTimes_Screen_Cancel" = "الغاء";
+
+"Minutes" = "الدقائق";
+"Edit" = "تعديل";
+"Visit Fee" = "الرسوم";
+"Time / Patient" = "الوقت / للمريض";
+"operating hours" = "ساعات العمل";
+"From" = "من";
+"To" = "الي";
+"Update period" = "تحديث الفترة";
+
+"Gallery_Screen_title" = "عيادة جديدة";
+"Gallery_Screen_subtitle" = "صور العيادة";
+"Gallery_Screen_secondSubTitle" = "الصفحة الرئيسية";
+
+"Services_Screen_title" = "الخدمات";
+"Services_Screen_timeper_slot" = "الفاصل الزمني لكل دقيقة للمريض";
+"Services_Screen_periods" = "الفترات";
+"Services_Screen_add_new_period_button" = "اضافة فترة جديدة";
+"Dashboard_Screen_statistics" = "إحصائيات";
+"Dashboard_Screen_see_all" = "عرض الكل";
+"TabBar_home" = "الرئيسية";
+"TabBar_appointments" = "الحجوزات";
+"TabBar_clinics" = "العيادات";
+"TabBar_services" = "الخدمات";
+"TabBar_more" = "اكثر";
+
+"Home_Hello_Dr" = "مرحبا, د ";
+"Home_UpComing_cases" = "الحالات \nالقادمه";
+"Home_Total_cases" = "اجمالى الحالات";
+"Home_Today_cases" = "حالات \nاليوم";
+"Home_Statistics" = "إحصائيات";
+"Home_See_All" = "مشاهدة الكل";
+
+
+
+
+"Appointment_Screen_title" = "الحجوزات";
+"Appointment_Screen_current" = "الحالي";
+"Appointment_Screen_history" = "السجلات السابقة";
+"Appointment_Screen_postReport" = "ارسال تقرير";
+"Appointment_Screen_cancel" = "الغاء";
+
+"Appointment_Screen_canceled" = "تم الالغاء";
+"Appointment_Screen_completed" = "اكتمل";
+
+"No_Result_Found" = "لا يوجد مواعيد بهذا البحث";
+"Appointment_Filter" = "تنقية";
+"Appointment_Filter_Consultation_Type" = "نوع المقابلة ";
+"Appointment_Filter_Dates" = "الموعد";
+"Start_Date" = "من تاريخ";
+"End_Date" = "حتى تاريخ";
+"From" = "من";
+"To" = "إلى";
+"Appointment_Filter_Clinic" = "العيادة ";
+"Confirm" = "تأكيد";
+"Create" = "انشاء";
+"Cancel" = "الغاء";
+
+"Popup_Cencel_Appointment" = "الغاء \nالمقابلة؟ ";
+"Popup_Cencel_Appointment_msg" = "هل انت متأكد انك تريد \nالغاء هذه المقابلة؟";
+"Popup_Cencel_Appointment_reason" = "سبب الالغاء";
+"Popup_Cencel_Appointment_Close" = "تراجع";
+"Popup_Cencel_Appointment_Confirm" = "تأكيد";
+
+
+"Patient_Screen_title" = "تفاصيل المريض";
+"Patient_Screen_profile" = "ملف المريض";
+"Patient_Screen_emr" = "الملف الطبي";
+"Patient_Screen_patientName" = "اسم المريض";
+"Patient_Screen_age" = "سن المريض";
+"Patient_Screen_number" = "رقم المريض";
+"Patient_Screen_address" = "عنوان المريض";
+"Patient_Screen_complain" = "شكوى المريض";
+"Patient_Screen_EmrProfile_addNewDescription" = "اضافة التفاصيل";
+"Patient_Screen_EmrProfile_RxTitle" = "العنوان";
+"Patient_Screen_EmrProfile_RxDescription" = "التفاصيل";
+"Patient_Screen_EmrProfile_RxDocument" = "الملف المرفق";
+"EMR" = "ملف";
+
+"Patient_Screen_EmrProfile_add_Description" = "تفاصيل جديدة";
+"Patient_Screen_EmrProfile_add_details" = "اضافة التفاصيل";
+"Patient_Screen_EmrProfile_instructions" = "التعليمات";
+"Patient_Screen_EmrProfile_add_instructions" = " تعليمات جديدة";
+"Patient_Screen_EmrProfile_attached_files" = "الملفات المرفقة";
+"Patient_Screen_EmrProfile_add_document" = "اضافة ملف";
+"More_Screen_updateProfile" = "تحديث الملف الشخصي";
+"More_Screen_myprofile" = "الملف الشخصي";
+"More_Screen_resetPassword" = "اعادة تعيين كلمة المرور";
+"More_Screen_aboutApp" = "معلومات عن التطبيق";
+"More_Screen_callUs" = "اتصل بنا";
+"More_Screen_termsAndCondition" = "شروط وأحكام";
+"More_Screen_Language" = "اللغة";
+"More_Screen_SignOut" = "خروج";
+"Today" = "اليوم";
+
+"Change Password" = "تحديث كلمة المرور";
+"Confirm Password" = "تأكيد كلمة المرور";
+"Update" = "تحديث";
+"Gender" = "النوع";
+
+"Back_Home_Document" = "العودة الي الرئيسية";
+"Doctor_Profile" = "الملف الشخصي للطبيب";
+"Certificate" = "الشهادات";
+"Documents" = "الملفات";
+"Profile" = "الملف الشخصي";
+
+"Add_new_Clinic" = "اضافة عيادة جديدة";
+"emptyClinic_title" = "لا يوجد عيادات الان";
+"emptyClinic_subtitle" = "آدر جميع عياداتاك الان بإضافة عيادة";
+
+"Back_Home_Clinic" = "العودة الي الرئيسية";
+"Edit_Clinic" = "تحديث العيادة";
+"Info" = "العيادة";
+"Schedule" = "المواعيد";
+"Gallery" = "الصور";
+"upload_gallery" = "اضافة صور للعيادة";
+
+
+
+
+
