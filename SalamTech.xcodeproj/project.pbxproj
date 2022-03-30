@@ -28,6 +28,12 @@
 		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
+		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
+		C82541EF27F44321005E0750 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */; };
+		C82541F027F44321005E0750 /* STC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EB27F44321005E0750 /* STC-Bold.ttf */; };
+		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
+		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
+		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +82,13 @@
 		57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.release.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.release.xcconfig"; sourceTree = "<group>"; };
 		65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.release.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C82541E927F44321005E0750 /* urlshort.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlshort.url; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/urlshort.url"; sourceTree = "<group>"; };
+		C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ArbFONTS-STC-Light.otf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/ArbFONTS-STC-Light.otf"; sourceTree = "<group>"; };
+		C82541EB27F44321005E0750 /* STC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Bold.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Bold.ttf"; sourceTree = "<group>"; };
+		C82541EC27F44321005E0750 /* arbfonts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arbfonts.txt; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/arbfonts.txt"; sourceTree = "<group>"; };
+		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
+		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,12 +148,14 @@
 		00C8BF3327F3100F00571078 /* SalamTech */ = {
 			isa = PBXGroup;
 			children = (
+				C82541F327F443CF005E0750 /* Info.plist */,
+				C82541E827F4421B005E0750 /* Fonts */,
+				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
+				00C8BF3627F3100F00571078 /* ContentView.swift */,
 				00C8BF7327F32B4500571078 /* Components */,
 				00C8BF7227F32B2700571078 /* SalamTechModules */,
 				00C8BF5F27F3180A00571078 /* Localization */,
 				00C8BF5E27F317FF00571078 /* Services */,
-				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
-				00C8BF3627F3100F00571078 /* ContentView.swift */,
 				00C8BF3827F3101100571078 /* Assets.xcassets */,
 				00C8BF3A27F3101100571078 /* Preview Content */,
 				00C8BF7027F31DFC00571078 /* Localizable.strings */,
@@ -232,6 +247,19 @@
 			children = (
 			);
 			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		C82541E827F4421B005E0750 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */,
+				C82541EC27F44321005E0750 /* arbfonts.txt */,
+				C82541EB27F44321005E0750 /* STC-Bold.ttf */,
+				C82541ED27F44321005E0750 /* STC-Regular.ttf */,
+				C82541E927F44321005E0750 /* urlshort.url */,
+				C82541F427F4441E005E0750 /* fontsExt.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
@@ -370,9 +398,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */,
+				C82541F127F44321005E0750 /* arbfonts.txt in Resources */,
 				00C8BF6E27F31DFC00571078 /* Localizable.strings in Resources */,
+				C82541EF27F44321005E0750 /* ArbFONTS-STC-Light.otf in Resources */,
+				C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */,
+				C82541F027F44321005E0750 /* STC-Bold.ttf in Resources */,
 				00C8BF7827F32CF200571078 /* Launch Screen.storyboard in Resources */,
 				00C8BF3927F3101100571078 /* Assets.xcassets in Resources */,
+				C82541EE27F44321005E0750 /* urlshort.url in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82541F527F4441E005E0750 /* fontsExt.swift in Sources */,
 				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
 				00C8BF7C27F33EF900571078 /* WelcomeScreenView.swift in Sources */,
 				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
@@ -725,6 +759,7 @@
 				DEVELOPMENT_TEAM = 6M5F747CRF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SalamTech/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -756,6 +791,7 @@
 				DEVELOPMENT_TEAM = 6M5F747CRF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SalamTech/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
