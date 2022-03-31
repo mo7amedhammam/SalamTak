@@ -239,6 +239,8 @@
 		00C8BF7227F32B2700571078 /* SalamTechModules */ = {
 			isa = PBXGroup;
 			children = (
+				0E586D0827F5B4DE00944F21 /* ProfileModule */,
+				0E586D0327F5B42300944F21 /* HomeModule */,
 				00C8BF7627F32B8D00571078 /* LoginModule */,
 				00C8BF7527F32B7F00571078 /* SignUpModule */,
 				00C8BF7427F32B6E00571078 /* OnBoardingModule */,
@@ -377,6 +379,68 @@
 				0E586CF927F5ABB500944F21 /* ModelCreateUser.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0E586D0327F5B42300944F21 /* HomeModule */ = {
+			isa = PBXGroup;
+			children = (
+				0E586D0427F5B43200944F21 /* TabBarModule */,
+			);
+			path = HomeModule;
+			sourceTree = "<group>";
+		};
+		0E586D0427F5B43200944F21 /* TabBarModule */ = {
+			isa = PBXGroup;
+			children = (
+				0E586D0727F5B49E00944F21 /* MoreScreen */,
+				0E586D0627F5B48C00944F21 /* ScheduleScreen */,
+				0E586D0527F5B48100944F21 /* HomeScreen */,
+			);
+			path = TabBarModule;
+			sourceTree = "<group>";
+		};
+		0E586D0527F5B48100944F21 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		0E586D0627F5B48C00944F21 /* ScheduleScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ScheduleScreen;
+			sourceTree = "<group>";
+		};
+		0E586D0727F5B49E00944F21 /* MoreScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MoreScreen;
+			sourceTree = "<group>";
+		};
+		0E586D0827F5B4DE00944F21 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				0E586D0A27F5B50400944F21 /* MedicalState */,
+				0E586D0927F5B4F000944F21 /* PersonalData */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		0E586D0927F5B4F000944F21 /* PersonalData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PersonalData;
+			sourceTree = "<group>";
+		};
+		0E586D0A27F5B50400944F21 /* MedicalState */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MedicalState;
 			sourceTree = "<group>";
 		};
 		C82541E827F4421B005E0750 /* Fonts */ = {
