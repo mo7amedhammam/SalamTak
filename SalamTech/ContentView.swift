@@ -12,7 +12,8 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
         ZStack{
-            OnBoardingView()
+//            OnBoardingView()
+            TabBarView()
             
         }
         .onChange(of: scenePhase, perform: { newPhase in

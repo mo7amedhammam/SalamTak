@@ -19,7 +19,6 @@ extension Font {
         let Bold16 = Font.custom("STC-Bold", size: 16)
         let Bold18 = Font.custom("STC-Bold", size: 18)
         let Bold24 = Font.custom("STC-Bold", size: 24)
-
     }
     static let SalamtechFonts = salamFonts()
 }
