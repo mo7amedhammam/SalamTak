@@ -140,7 +140,7 @@ struct ViewSignUp: View {
                    
 
                         Spacer()
-                        ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("blueColor") :  Color(uiColor: .lightGray)){
+                        ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
 //                            RegisterVM.isLoading = true
                             RegisterVM.startFetchUserRegisteration(fullname: RegisterVM.fullName, email: RegisterVM.email, phone: RegisterVM.phoneNumber, password: RegisterVM.password)
                         }.disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
@@ -165,7 +165,7 @@ struct ViewSignUp: View {
                             }
 
                             .font(.system(size: 13, weight: .bold))
-                            .foregroundColor(Color("blueColor"))
+                            .foregroundColor(Color("mainColor"))
                         }.padding(.bottom,25)
                     
                     }
@@ -218,8 +218,8 @@ struct ViewSignUp: View {
         
 
         //phone verification
-//            NavigationLink(destination: PhoneVerificationView(passedmodel: RegisterVM),isActive: $RegisterVM.isRegistered, label: {
-//            })
+            NavigationLink(destination: PhoneVerificationView(passedmodel: RegisterVM),isActive: $RegisterVM.isRegistered, label: {
+            })
     }
     
        
@@ -257,7 +257,7 @@ struct SecureInputView: View {
                     .disableAutocorrection(true)
                     .background(
                         Color.white
-                    ).foregroundColor(Color("blueColor"))
+                    ).foregroundColor(Color("mainColor"))
                         .cornerRadius(5)
                         .shadow(color: Color.gray.opacity(0.099), radius: 3)
             } else {
@@ -270,7 +270,7 @@ struct SecureInputView: View {
                     .disableAutocorrection(true)
                     .background(
                         Color.white
-                    ).foregroundColor(Color("blueColor"))
+                    ).foregroundColor(Color("mainColor"))
                         .cornerRadius(5)
                         .shadow(color: Color.black.opacity(0.099), radius: 3)
                 
@@ -313,7 +313,7 @@ struct SecureInputArabicView: View {
                     .disableAutocorrection(true)
                     .background(
                         Color.white
-                    ).foregroundColor(Color("blueColor"))
+                    ).foregroundColor(Color("mainColor"))
                         .cornerRadius(5)
                         .shadow(color: Color.gray.opacity(0.099), radius: 3)
             } else {
@@ -327,7 +327,7 @@ struct SecureInputArabicView: View {
                     .disableAutocorrection(true)
                     .background(
                         Color.white
-                    ).foregroundColor(Color("blueColor"))
+                    ).foregroundColor(Color("mainColor"))
                         .cornerRadius(5)
                         .shadow(color: Color.black.opacity(0.099), radius: 3)
                 
@@ -376,7 +376,7 @@ struct InputTextField: View {
         .disableAutocorrection(true)
         .background(
             Color.white
-        ).foregroundColor(Color("blueColor"))
+        ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
         
@@ -410,7 +410,7 @@ struct InputTextField1: View {
         .disableAutocorrection(true)
         .background(
             Color.white
-        ).foregroundColor(Color("blueColor"))
+        ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
         
@@ -446,7 +446,7 @@ struct InputTextField2: View {
         .disableAutocorrection(true)
         .background(
             Color.white
-        ).foregroundColor(Color("blueColor"))
+        ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
         
@@ -481,7 +481,7 @@ struct InputTextFieldArabic: View {
         .disableAutocorrection(true)
         .background(
             Color.white
-        ).foregroundColor(Color("blueColor"))
+        ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
         
@@ -518,7 +518,7 @@ struct EMRInputTextField: View {
         .disableAutocorrection(true)
         .background(
             Color.white
-        ).foregroundColor(Color("blueColor"))
+        ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
         
@@ -555,7 +555,7 @@ struct EMRInputTextField1: View {
         .disableAutocorrection(true)
         .background(
             Color.white
-        ).foregroundColor(Color("blueColor"))
+        ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
         

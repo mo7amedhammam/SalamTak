@@ -74,7 +74,7 @@ struct WelcomeScreenView: View {
                 Text("Welcome_Screen_subtitle".localized(language))
                     .font(.custom("SFUIText", size: 16))
                     .fontWeight(.semibold)
-                    .foregroundColor(Color("subText"))
+                    .foregroundColor(Color("subTitle"))
                     .multilineTextAlignment(.center)
                     .padding()
             }
@@ -102,9 +102,9 @@ struct WelcomeScreenView: View {
             .navigationBarBackButtonHidden(true)
         
             // go to complete Certs after completing first view
-//        NavigationLink(destination: ViewLogin(ispresented: .constant(false)),isActive: $isLogin , label: {
-//            })
-//
+        NavigationLink(destination: ViewLogin(ispresented: .constant(false)),isActive: $isLogin , label: {
+            })
+
             // go to complete Certs after completing first view
         NavigationLink(destination: ViewSignUp(ispresented: .constant(false)),isActive: $isSignup , label: {
             })

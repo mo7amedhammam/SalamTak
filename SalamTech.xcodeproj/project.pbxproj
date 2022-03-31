@@ -33,6 +33,13 @@
 		0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEF27F5A86E00944F21 /* AppBarView.swift */; };
 		0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF127F5A88E00944F21 /* CurvedSideView.swift */; };
 		0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */; };
+		0E586CF627F5AB5400944F21 /* PhoneVerficationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF527F5AB5400944F21 /* PhoneVerficationView.swift */; };
+		0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF727F5AB8100944F21 /* ViewModelOtp.swift */; };
+		0E586CFA27F5ABB500944F21 /* ModelCreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF927F5ABB500944F21 /* ModelCreateUser.swift */; };
+		0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CFB27F5ABCB00944F21 /* ViewModelCreateUser.swift */; };
+		0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CFD27F5B19F00944F21 /* ModelLogin.swift */; };
+		0E586D0027F5B1AA00944F21 /* ViewModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CFF27F5B1AA00944F21 /* ViewModelLogin.swift */; };
+		0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586D0127F5B1C200944F21 /* LoginView.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
@@ -90,6 +97,13 @@
 		0E586CEF27F5A86E00944F21 /* AppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarView.swift; sourceTree = "<group>"; };
 		0E586CF127F5A88E00944F21 /* CurvedSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedSideView.swift; sourceTree = "<group>"; };
 		0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveKeyBoard.swift; sourceTree = "<group>"; };
+		0E586CF527F5AB5400944F21 /* PhoneVerficationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerficationView.swift; sourceTree = "<group>"; };
+		0E586CF727F5AB8100944F21 /* ViewModelOtp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelOtp.swift; sourceTree = "<group>"; };
+		0E586CF927F5ABB500944F21 /* ModelCreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCreateUser.swift; sourceTree = "<group>"; };
+		0E586CFB27F5ABCB00944F21 /* ViewModelCreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCreateUser.swift; sourceTree = "<group>"; };
+		0E586CFD27F5B19F00944F21 /* ModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLogin.swift; sourceTree = "<group>"; };
+		0E586CFF27F5B1AA00944F21 /* ViewModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelLogin.swift; sourceTree = "<group>"; };
+		0E586D0127F5B1C200944F21 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
 		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +289,7 @@
 		0E586CDC27F5A43100944F21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E586D0127F5B1C200944F21 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -282,6 +297,7 @@
 		0E586CDD27F5A43800944F21 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CFF27F5B1AA00944F21 /* ViewModelLogin.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -289,6 +305,7 @@
 		0E586CDE27F5A44000944F21 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CFD27F5B19F00944F21 /* ModelLogin.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +357,7 @@
 		0E586CE427F5A59800944F21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CF527F5AB5400944F21 /* PhoneVerficationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +365,8 @@
 		0E586CE527F5A59D00944F21 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CF727F5AB8100944F21 /* ViewModelOtp.swift */,
+				0E586CFB27F5ABCB00944F21 /* ViewModelCreateUser.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -354,6 +374,7 @@
 		0E586CE627F5A5DB00944F21 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CF927F5ABB500944F21 /* ModelCreateUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -679,15 +700,22 @@
 				C82541F527F4441E005E0750 /* fontsExt.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
+				0E586D0027F5B1AA00944F21 /* ViewModelLogin.swift in Sources */,
 				00C8BF7C27F33EF900571078 /* WelcomeScreenView.swift in Sources */,
+				0E586CF627F5AB5400944F21 /* PhoneVerficationView.swift in Sources */,
 				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
 				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
+				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
+				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
+				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
+				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
+				0E586CFA27F5ABB500944F21 /* ModelCreateUser.swift in Sources */,
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
@@ -872,7 +900,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = 6M5F747CRF;
+				DEVELOPMENT_TEAM = F7P569JB4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -887,7 +915,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTech;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTech1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -904,7 +932,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = 6M5F747CRF;
+				DEVELOPMENT_TEAM = F7P569JB4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -919,7 +947,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTech;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wecancity.SalamTech1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
