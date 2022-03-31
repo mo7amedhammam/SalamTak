@@ -13,81 +13,81 @@ import SwiftUI
 
 final class ApiService{
     
-//    //MARK:  --------- RegisterUser ------
-//    static func userRegister(name:String, email:String, phone: String, password: String ,completion: @escaping ( Bool , ModelRegister?, String?) -> ()) {
-//        
-//        let url = URLs().RegisterUser
-//        let header:HTTPHeaders = ["Content-Type":"application/json" , "Accept":"application/json"]
-//        let parameters : [String : Any] = ["Name" : name ,"Email" : email ,"Phone" : phone ,"Password" : password ,"UserTypeId" : 2 ]
-//        
-//        
-//        
-//        AF.request(url, method: .post,parameters: parameters ,encoding: JSONEncoding.default ,headers: header )
-//            .validate(statusCode: 200...500)
-//            .responseDecodable(completionHandler: { ( response : DataResponse<ModelRegister?, AFError>) in
-//            ////////////////////////////////
-//                switch response.response?.statusCode {
-//                case 200 : print("Success Token")
-//            switch response.result {
-//                //--------------
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                completion(false, nil, error.localizedDescription)
-//                
-//            case .success(let model):
-//                guard model != nil else {return}
-//                //***************
-//                
-//                completion(true, model, nil)
-//                
-//                
-//                //******************
-//                if model?.Success == true{
-//                    completion(true, model, nil)
-//                    //                    print(model?.Message ?? "")
-//                    //                    print(model?.Data?.Code ?? "")
-//                    //                    print(model?.MessageCode ?? "")
-//                    
-//                    
-//                } else{
-//                    completion(false, nil, model?.Message)
-//                }
-//                //-------------
-//            }
-//                case 401 : print("The token expired (unauthorized)")
-//                case 400 : print("bad request")
-//                    switch response.result {
-//                          //--------------
-//                      case .failure(let error):
-//                          print(error.localizedDescription)
-//                          completion(false, nil, error.localizedDescription)
-//                          
-//                      case .success(let model):
-//                          guard model != nil else {return}
-//                      completion(false, model , model?.Message)
-//      //                print(model?.message ?? "")
-//      //                    if model?.success == false{
-//      //
-//      //                        completion(true, model , model?.message)
-//      //                        print(model?.message ?? "")
-//      //                        print("clinic schedual created from api servise")
-//      //                        //                      Helper.setAccessToken(access_token: model?.Data?.token ?? "")
-//      //
-//      //                    } else{
-//      //                        completion(false, nil, model?.message)
-//      //                    }
-//                          //-------------
-//                      }
-//
-//                default: return
-//                }
-//            ///////////////////////////
-//        })
-//        
-//        
-//        
-//    }
-//    
+    //MARK:  --------- RegisterUser ------
+    static func userRegister(name:String, email:String, phone: String, password: String ,completion: @escaping ( Bool , ModelRegister?, String?) -> ()) {
+        
+        let url = URLs().RegisterUser
+        let header:HTTPHeaders = ["Content-Type":"application/json" , "Accept":"application/json"]
+        let parameters : [String : Any] = ["Name" : name ,"Email" : email ,"Phone" : phone ,"Password" : password ,"UserTypeId" : 3 ]
+        
+        
+        
+        AF.request(url, method: .post,parameters: parameters ,encoding: JSONEncoding.default ,headers: header )
+            .validate(statusCode: 200...500)
+            .responseDecodable(completionHandler: { ( response : DataResponse<ModelRegister?, AFError>) in
+            ////////////////////////////////
+                switch response.response?.statusCode {
+                case 200 : print("Success Token")
+            switch response.result {
+                //--------------
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(false, nil, error.localizedDescription)
+                
+            case .success(let model):
+                guard model != nil else {return}
+                //***************
+                
+                completion(true, model, nil)
+                
+                
+                //******************
+                if model?.Success == true{
+                    completion(true, model, nil)
+                    //                    print(model?.Message ?? "")
+                    //                    print(model?.Data?.Code ?? "")
+                    //                    print(model?.MessageCode ?? "")
+                    
+                    
+                } else{
+                    completion(false, nil, model?.Message)
+                }
+                //-------------
+            }
+                case 401 : print("The token expired (unauthorized)")
+                case 400 : print("bad request")
+                    switch response.result {
+                          //--------------
+                      case .failure(let error):
+                          print(error.localizedDescription)
+                          completion(false, nil, error.localizedDescription)
+                          
+                      case .success(let model):
+                          guard model != nil else {return}
+                      completion(false, model , model?.Message)
+      //                print(model?.message ?? "")
+      //                    if model?.success == false{
+      //
+      //                        completion(true, model , model?.message)
+      //                        print(model?.message ?? "")
+      //                        print("clinic schedual created from api servise")
+      //                        //                      Helper.setAccessToken(access_token: model?.Data?.token ?? "")
+      //
+      //                    } else{
+      //                        completion(false, nil, model?.message)
+      //                    }
+                          //-------------
+                      }
+
+                default: return
+                }
+            ///////////////////////////
+        })
+        
+        
+        
+    }
+    
 //    //MARK:  --------- ResetPasswordUser ------
 //    static func resetPassword( email:String ,completion: @escaping ( Bool , ModelResetPassword?, String?) -> ()) {
 //        

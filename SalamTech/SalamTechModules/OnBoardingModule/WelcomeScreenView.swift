@@ -105,9 +105,9 @@ struct WelcomeScreenView: View {
 //        NavigationLink(destination: ViewLogin(ispresented: .constant(false)),isActive: $isLogin , label: {
 //            })
 //
-//            // go to complete Certs after completing first view
-//        NavigationLink(destination: ViewSignUp(ispresented: .constant(false)),isActive: $isSignup , label: {
-//            })
+            // go to complete Certs after completing first view
+        NavigationLink(destination: ViewSignUp(ispresented: .constant(false)),isActive: $isSignup , label: {
+            })
         
 
     }

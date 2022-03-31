@@ -26,6 +26,13 @@
 		00C8BF7C27F33EF900571078 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF7B27F33EF900571078 /* WelcomeScreenView.swift */; };
 		00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF7D27F33F3600571078 /* ButtonView.swift */; };
 		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
+		0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE727F5A6FB00944F21 /* ModelRegister.swift */; };
+		0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */; };
+		0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEB27F5A72700944F21 /* SignUpView.swift */; };
+		0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */; };
+		0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEF27F5A86E00944F21 /* AppBarView.swift */; };
+		0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF127F5A88E00944F21 /* CurvedSideView.swift */; };
+		0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
@@ -76,6 +83,13 @@
 		00C8BF7927F33E6100571078 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		00C8BF7B27F33EF900571078 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		00C8BF7D27F33F3600571078 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		0E586CE727F5A6FB00944F21 /* ModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRegister.swift; sourceTree = "<group>"; };
+		0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelRegister.swift; sourceTree = "<group>"; };
+		0E586CEB27F5A72700944F21 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsAndAlerts.swift; sourceTree = "<group>"; };
+		0E586CEF27F5A86E00944F21 /* AppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarView.swift; sourceTree = "<group>"; };
+		0E586CF127F5A88E00944F21 /* CurvedSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedSideView.swift; sourceTree = "<group>"; };
+		0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveKeyBoard.swift; sourceTree = "<group>"; };
 		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
 		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +236,10 @@
 			isa = PBXGroup;
 			children = (
 				00C8BF7D27F33F3600571078 /* ButtonView.swift */,
+				0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */,
+				0E586CEF27F5A86E00944F21 /* AppBarView.swift */,
+				0E586CF127F5A88E00944F21 /* CurvedSideView.swift */,
+				0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -238,6 +256,8 @@
 		00C8BF7527F32B7F00571078 /* SignUpModule */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CE027F5A57E00944F21 /* CreateUser */,
+				0E586CDF27F5A57400944F21 /* Register */,
 			);
 			path = SignUpModule;
 			sourceTree = "<group>";
@@ -245,8 +265,97 @@
 		00C8BF7627F32B8D00571078 /* LoginModule */ = {
 			isa = PBXGroup;
 			children = (
+				0E586CDE27F5A44000944F21 /* Model */,
+				0E586CDD27F5A43800944F21 /* ViewModel */,
+				0E586CDC27F5A43100944F21 /* View */,
 			);
 			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		0E586CDC27F5A43100944F21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E586CDD27F5A43800944F21 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E586CDE27F5A44000944F21 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E586CDF27F5A57400944F21 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0E586CE327F5A59200944F21 /* Model */,
+				0E586CE227F5A58B00944F21 /* ViewModel */,
+				0E586CE127F5A58500944F21 /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		0E586CE027F5A57E00944F21 /* CreateUser */ = {
+			isa = PBXGroup;
+			children = (
+				0E586CE627F5A5DB00944F21 /* Model */,
+				0E586CE527F5A59D00944F21 /* ViewModel */,
+				0E586CE427F5A59800944F21 /* View */,
+			);
+			path = CreateUser;
+			sourceTree = "<group>";
+		};
+		0E586CE127F5A58500944F21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E586CEB27F5A72700944F21 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E586CE227F5A58B00944F21 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E586CE327F5A59200944F21 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E586CE727F5A6FB00944F21 /* ModelRegister.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E586CE427F5A59800944F21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E586CE527F5A59D00944F21 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E586CE627F5A5DB00944F21 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C82541E827F4421B005E0750 /* Fonts */ = {
@@ -568,17 +677,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				C82541F527F4441E005E0750 /* fontsExt.swift in Sources */,
+				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
 				00C8BF7C27F33EF900571078 /* WelcomeScreenView.swift in Sources */,
 				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
+				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
+				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
+				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
+				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
+				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
+				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
