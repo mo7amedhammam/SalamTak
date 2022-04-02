@@ -13,7 +13,7 @@ struct AppBarView: View {
         
         CurvedSideRectangleView()
             .fill(Color("mainColor"))
-            .frame(height: 120)
+            .frame(height: 100)
             .shadow(radius: 8)
             .overlay(
                 HStack {
@@ -44,6 +44,44 @@ struct AppBarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
             AppBarView(Title: "Sign Up")
+                .edgesIgnoringSafeArea(.all)
+            Spacer()
+        }
+    }
+}
+struct AppBarLogoView: View {
+    @State var imageName: String
+    var body: some View{
+        
+        CurvedSideRectangleView()
+            .fill(Color("mainColor"))
+            .frame(height: 100)
+            .shadow(radius: 8)
+            .overlay(
+                HStack {
+                    
+                    Spacer()
+                    Image("\(imageName)")
+                        .resizable()
+                        .aspectRatio( contentMode: .fit)
+                        .frame(width:140 )
+
+                    
+                    Spacer()
+                    //BackButtonView()
+                    
+                    
+                }
+                    .padding(.bottom,-40)
+            )
+        
+    }
+}
+
+struct AppBarLogoView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack{
+            AppBarLogoView(imageName: "barlogo")
                 .edgesIgnoringSafeArea(.all)
             Spacer()
         }

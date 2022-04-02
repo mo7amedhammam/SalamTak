@@ -1,9 +1,4 @@
-//
-//  TabBarView.swift
-//  SalamTech
-//
-//  Created by Mostafa Morsy on 31/03/2022.
-//
+
 
 //
 //  TabBarGenericView.swift
@@ -63,13 +58,10 @@ struct TabBarView: View {
                             ForEach(Bar.tabs.indices ){tab in
                                 TabButton(title: Bar.tabs[tab] , selectedTab: $selectedTab)
                                 Spacer()
-//                                if tab != Bar.tabs.count {
-////                                    Spacer(minLength: 0)
-//                                }
                             }
                         }
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .padding([.leading,.trailing],20)
+                            .padding([.leading,.trailing],20)
                         .padding(.bottom, 15)
                         .background(
                             Image("tabBar")

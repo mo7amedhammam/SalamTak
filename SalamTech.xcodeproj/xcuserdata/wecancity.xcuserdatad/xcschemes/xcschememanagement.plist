@@ -7,7 +7,25 @@
 		<key>SalamTech.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>00C8BF3027F3100F00571078</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>00C8BF4027F3101100571078</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>00C8BF4A27F3101100571078</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

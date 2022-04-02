@@ -72,7 +72,7 @@ final class Helper{
     userDef.synchronize()
     }
     class func getLanguage()->String{
-    return userDef.string(forKey: "currentLanguage") ?? ""
+    return userDef.string(forKey: "currentLanguage") ?? "en"
     }
     
     //save access token

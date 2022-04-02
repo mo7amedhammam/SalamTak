@@ -62,6 +62,12 @@
 		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
 		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
 		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
+		C83C57EB27F8753A00575C90 /* examinationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EA27F8753A00575C90 /* examinationType.swift */; };
+		C83C57ED27F8757F00575C90 /* ModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */; };
+		C83C57EF27F875CB00575C90 /* ViewModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */; };
+		C83C57F227F88ADF00575C90 /* GetSpecialistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57F127F88ADF00575C90 /* GetSpecialistAPI.swift */; };
+		C83C57F427F88B2A00575C90 /* ModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57F327F88B2A00575C90 /* ModelSpecialist.swift */; };
+		C83C57F627F88BD500575C90 /* ViewModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57F527F88BD500575C90 /* ViewModelSpecialist.swift */; };
 		C8582DD727F5CA700027D5E5 /* BookingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8582DD627F5CA700027D5E5 /* BookingApiService.swift */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +152,12 @@
 		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
+		C83C57EA27F8753A00575C90 /* examinationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = examinationType.swift; sourceTree = "<group>"; };
+		C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExaminationTypeId.swift; sourceTree = "<group>"; };
+		C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelExaminationTypeId.swift; sourceTree = "<group>"; };
+		C83C57F127F88ADF00575C90 /* GetSpecialistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpecialistAPI.swift; sourceTree = "<group>"; };
+		C83C57F327F88B2A00575C90 /* ModelSpecialist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSpecialist.swift; sourceTree = "<group>"; };
+		C83C57F527F88BD500575C90 /* ViewModelSpecialist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSpecialist.swift; sourceTree = "<group>"; };
 		C8582DD627F5CA700027D5E5 /* BookingApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingApiService.swift; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,16 +219,15 @@
 			isa = PBXGroup;
 			children = (
 				C82541F327F443CF005E0750 /* Info.plist */,
-				C82541E827F4421B005E0750 /* Fonts */,
 				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
 				00C8BF3627F3100F00571078 /* ContentView.swift */,
-				00C8BF7327F32B4500571078 /* Components */,
-				00C8BF7227F32B2700571078 /* SalamTechModules */,
+				C82541E827F4421B005E0750 /* Fonts */,
 				00C8BF5F27F3180A00571078 /* Localization */,
 				00C8BF5E27F317FF00571078 /* Services */,
+				00C8BF7327F32B4500571078 /* Components */,
+				00C8BF7227F32B2700571078 /* SalamTechModules */,
 				00C8BF3827F3101100571078 /* Assets.xcassets */,
 				00C8BF3A27F3101100571078 /* Preview Content */,
-				00C8BF7027F31DFC00571078 /* Localizable.strings */,
 			);
 			path = SalamTech;
 			sourceTree = "<group>";
@@ -259,6 +270,7 @@
 		00C8BF5F27F3180A00571078 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				00C8BF7027F31DFC00571078 /* Localizable.strings */,
 				00C8BF6627F31AE500571078 /* Language.swift */,
 				00C8BF6827F31AF200571078 /* LocalizationService.swift */,
 				00C8BF6A27F31AFB00571078 /* Strings.swift */,
@@ -433,6 +445,8 @@
 		0E586D0527F5B48100944F21 /* BookingModule */ = {
 			isa = PBXGroup;
 			children = (
+				C83C57F027F88AB200575C90 /* Specialities */,
+				C83C57E927F8751C00575C90 /* ExaminationType */,
 				0E586D2B27F5B75C00944F21 /* Model */,
 				0E586D2A27F5B70100944F21 /* ViewModel */,
 				0E586D2927F5B6FB00944F21 /* View */,
@@ -611,6 +625,26 @@
 				C82541F427F4441E005E0750 /* fontsExt.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C83C57E927F8751C00575C90 /* ExaminationType */ = {
+			isa = PBXGroup;
+			children = (
+				C83C57EA27F8753A00575C90 /* examinationType.swift */,
+				C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */,
+				C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */,
+			);
+			path = ExaminationType;
+			sourceTree = "<group>";
+		};
+		C83C57F027F88AB200575C90 /* Specialities */ = {
+			isa = PBXGroup;
+			children = (
+				C83C57F127F88ADF00575C90 /* GetSpecialistAPI.swift */,
+				C83C57F327F88B2A00575C90 /* ModelSpecialist.swift */,
+				C83C57F527F88BD500575C90 /* ViewModelSpecialist.swift */,
+			);
+			path = Specialities;
 			sourceTree = "<group>";
 		};
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
@@ -921,6 +955,7 @@
 				C82541F527F4441E005E0750 /* fontsExt.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
+				C83C57EB27F8753A00575C90 /* examinationType.swift in Sources */,
 				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
 				0E586D0027F5B1AA00944F21 /* ViewModelLogin.swift in Sources */,
 				0E586D2827F5B6EF00944F21 /* ScheduleView.swift in Sources */,
@@ -935,6 +970,7 @@
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
+				C83C57EF27F875CB00575C90 /* ViewModelExaminationTypeId.swift in Sources */,
 				0E586D2F27F5B77C00944F21 /* ViewModelBooking.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
@@ -943,8 +979,10 @@
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
+				C83C57F627F88BD500575C90 /* ViewModelSpecialist.swift in Sources */,
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				0E586D1627F5B63A00944F21 /* ViewModelPersonalData.swift in Sources */,
+				C83C57F227F88ADF00575C90 /* GetSpecialistAPI.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
 				0E586D1A27F5B66800944F21 /* MedicalStateView.swift in Sources */,
@@ -955,7 +993,9 @@
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				0E586D2D27F5B76B00944F21 /* BookingView.swift in Sources */,
+				C83C57ED27F8757F00575C90 /* ModelExaminationTypeId.swift in Sources */,
 				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,
+				C83C57F427F88B2A00575C90 /* ModelSpecialist.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
