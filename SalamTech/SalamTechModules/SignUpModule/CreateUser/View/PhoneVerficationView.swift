@@ -170,8 +170,8 @@ struct PhoneVerificationView: View {
                         }).padding(.top, 120)
                     .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
                 
-//                NavigationLink(destination: completeProfile(),isActive: $matchedOTP, label: {
-//                })
+                NavigationLink(destination: PersonalDataView(),isActive: $matchedOTP, label: {
+                })
                 
                 // Alert with no internet connection
                     .alert(isPresented: $isErrorCode, content: {

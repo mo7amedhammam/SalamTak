@@ -47,8 +47,8 @@
 "PhoneVerfication_Screen_resendCode" = "Resend Code";
 "PhoneVerfication_Screen_sendCode_Button" = "Send Code";
 "CompeleteProfile_Screen_title" = "Complete Profile";
-"CompeleteProfile_Screen_subtitle" = "Doctor Info";
-"CompeleteProfile_Screen_secondSubTitle" = "Certificates";
+"CompeleteProfile_Screen_subtitle" = "Personal Data";
+"CompeleteProfile_Screen_secondSubTitle" = "Medical State";
 "CompeleteProfile_Screen_firstName" = "First Name (*)";
 "CompeleteProfile_Screen_middleName" = "Middle Name (*)";
 "CompeleteProfile_Screen_lastName" = "Last Name (*)";

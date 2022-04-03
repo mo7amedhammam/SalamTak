@@ -44,6 +44,13 @@ class URLs {
      var UpdatePassword = BaseUrl + "/api/\(Helper.getLanguage())/User/UpdatePassword"
     
     
+    // MARK: -------- Patient ------
+    
+    /// create patient profile >> needs token
+    var PatientCreateProfile = BaseUrl + "/api/\(Helper.getLanguage())/Patient/CreateProfile"
+   
+    
+    
     
     // MARK: -------- Doctor ------
     
