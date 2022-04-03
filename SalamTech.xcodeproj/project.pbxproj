@@ -62,6 +62,7 @@
 		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
 		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
 		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
+		C83831D927F9CD9800CB769E /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83831D827F9CD9800CB769E /* SpecialityView.swift */; };
 		C83C57EB27F8753A00575C90 /* examinationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EA27F8753A00575C90 /* examinationType.swift */; };
 		C83C57ED27F8757F00575C90 /* ModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */; };
 		C83C57EF27F875CB00575C90 /* ViewModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */; };
@@ -152,6 +153,7 @@
 		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
+		C83831D827F9CD9800CB769E /* SpecialityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
 		C83C57EA27F8753A00575C90 /* examinationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = examinationType.swift; sourceTree = "<group>"; };
 		C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExaminationTypeId.swift; sourceTree = "<group>"; };
 		C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelExaminationTypeId.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 			isa = PBXGroup;
 			children = (
 				0E586D2C27F5B76B00944F21 /* BookingView.swift */,
+				C83831D727F9CD5600CB769E /* SpecialityScreen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -625,6 +628,14 @@
 				C82541F427F4441E005E0750 /* fontsExt.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C83831D727F9CD5600CB769E /* SpecialityScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C83831D827F9CD9800CB769E /* SpecialityView.swift */,
+			);
+			path = SpecialityScreen;
 			sourceTree = "<group>";
 		};
 		C83C57E927F8751C00575C90 /* ExaminationType */ = {
@@ -969,6 +980,7 @@
 				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
+				C83831D927F9CD9800CB769E /* SpecialityView.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				C83C57EF27F875CB00575C90 /* ViewModelExaminationTypeId.swift in Sources */,
 				0E586D2F27F5B77C00944F21 /* ViewModelBooking.swift in Sources */,
