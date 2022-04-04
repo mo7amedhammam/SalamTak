@@ -70,6 +70,7 @@
 		0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */; };
 		0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */; };
 		0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */; };
+		0E9E0DC727FB017A00893ABF /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83831D827F9CD9800CB769E /* SpecialityView.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
@@ -78,7 +79,6 @@
 		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
 		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
 		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
-		C83831D927F9CD9800CB769E /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83831D827F9CD9800CB769E /* SpecialityView.swift */; };
 		C83C57EB27F8753A00575C90 /* examinationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EA27F8753A00575C90 /* examinationType.swift */; };
 		C83C57ED27F8757F00575C90 /* ModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */; };
 		C83C57EF27F875CB00575C90 /* ViewModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */; };
@@ -185,7 +185,7 @@
 		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
-		C83831D827F9CD9800CB769E /* SpecialityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
+		C83831D827F9CD9800CB769E /* SpecialityView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
 		C83C57EA27F8753A00575C90 /* examinationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = examinationType.swift; sourceTree = "<group>"; };
 		C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExaminationTypeId.swift; sourceTree = "<group>"; };
 		C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelExaminationTypeId.swift; sourceTree = "<group>"; };
@@ -1060,6 +1060,7 @@
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
+				0E9E0DC727FB017A00893ABF /* SpecialityView.swift in Sources */,
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
