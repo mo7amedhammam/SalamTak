@@ -34,6 +34,7 @@ struct BookingView: View {
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
                 }
+                
                 LazyVGrid(columns: vGridLayout){
                     ForEach(medicalType.publishedModelExaminationTypeId) { exType in
                         

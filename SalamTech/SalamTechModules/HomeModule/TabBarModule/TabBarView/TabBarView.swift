@@ -43,7 +43,7 @@ struct TabBarView: View {
                 ZStack{
                     VStack(spacing: 15){
                         if selectedTab == Bar.tabs[0] {
-                            BookingView()
+                            ServicesView()
                         } else if selectedTab == Bar.tabs[1] {
                             
 //                            ViewGetAppointments(isCancel:$isCancel, GetAppointments:GetAppointments,appointmentId: $appointmentId, filterShowing: $filterShowing, ConsultationShowing: $ConsultationShowing, DatesShowing: $DatesShowing, ClinicShowing:$ClinicShowing )
