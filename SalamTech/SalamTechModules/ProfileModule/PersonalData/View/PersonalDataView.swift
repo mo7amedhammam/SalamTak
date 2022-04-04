@@ -18,11 +18,18 @@ struct PersonalDataView: View {
     @State private var startPicking = false
     @State private var imgsource = ""
     
+    @State var offset = CGSize.zero
     @FocusState private var isfocused : Bool
-    let screenWidth = UIScreen.main.bounds.size.width - 50
+    let screenWidth = UIScreen.main.bounds.size.width - 55
     @State var isValid = true
+    @State var ShowingMap = false
+    @State var ShowNationality = false
+    @State var ShowCity = false
+    @State var ShowArea = false
     
     @StateObject var patientCreatedVM = ViewModelCreatePatientProfile()
+    @StateObject var locationViewModel = LocationViewModel()
+    @StateObject var NationalityVM = ViewModelCountries()
     
     var body: some View {
         ZStack{
@@ -150,6 +157,122 @@ struct PersonalDataView: View {
                                             }
                                         }
                                     }
+                                    Spacer().frame(height: 20)
+                                    VStack{
+                                        DateOfBirthView(date: $patientCreatedVM.Birthday)
+                                        
+                                        Spacer().frame(height: 20)
+                                        VStack{
+                                            Button {
+                                                
+                                                withAnimation {
+                                                    ShowNationality.toggle()
+                                                    
+                                                }
+                                                
+                                            } label: {
+                                                HStack{
+                                                    Text(patientCreatedVM.NationalityName)
+                                                        .foregroundColor(Color("lightGray"))
+                                                    
+                                                    Spacer()
+                                                    Image(systemName: "staroflife.fill")
+                                                        .font(.system(size: 10))
+                                                        .foregroundColor(patientCreatedVM.NationalityName == "" ? Color.red : Color.white)
+                                                    Image(systemName: "chevron.forward")
+                                                        .foregroundColor(Color("lightGray"))
+                                                }
+                                                .animation(.default)
+                                                .frame(width: screenWidth, height: 30)
+                                                .font(.system(size: 13))
+                                                .padding(12)
+                                                .disableAutocorrection(true)
+                                                .background(
+                                                    Color.white
+                                                ).foregroundColor(Color("blueColor"))
+                                                    .cornerRadius(5)
+                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                            }
+                                            Button {
+                                                withAnimation {
+                                                    ShowCity = true
+                                                }
+                                                
+                                            } label: {
+                                                HStack{
+                                                    Text(patientCreatedVM.cityName == "" ? "Clinic_Screen_city".localized(language): patientCreatedVM.cityName) // needs to handle get country by id
+                                                        .foregroundColor(patientCreatedVM.cityName == "" ?  Color("lightGray") : Color("blueColor"))
+                                                    
+                                                    Spacer()
+                                                    Image(systemName: "staroflife.fill")
+                                                        .font(.system(size: 10))
+                                                        .foregroundColor(patientCreatedVM.cityName == "" ? Color.red : Color.white)
+                                                    Image(systemName: "chevron.forward")
+                                                        .foregroundColor(Color("lightGray"))
+                                                }
+                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+    //                                            .animation(.default)
+                                                .animation(.default)
+                                                .frame(width: screenWidth, height: 30)
+                                                .font(.system(size: 13))
+                                                .padding(12)
+                                                .disableAutocorrection(true)
+                                                .background(
+                                                    Color.white
+                                                ).foregroundColor(Color("blueColor"))
+                                                    .cornerRadius(5)
+                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                            }
+                                            
+                                            Button {
+                                                
+                                                withAnimation {
+                                                    ShowArea = true
+                                                }
+                                                
+                                                
+                                            } label: {
+                                                HStack{
+                                                    Text(patientCreatedVM.areaName == "" ? "Clinic_Screen_area".localized(language):patientCreatedVM.areaName) // needs to handle get country by id
+                                                        .foregroundColor(patientCreatedVM.areaName == "" ? Color("lightGray"):Color("blueColor"))
+                                                    
+                                                    Spacer()
+                                                    Image(systemName: "staroflife.fill")
+                                                        .font(.system(size: 10))
+                                                        .foregroundColor(patientCreatedVM.areaName == "" ? Color.red : Color.white)
+                                                    Image(systemName: "chevron.forward")
+                                                        .foregroundColor(Color("lightGray"))
+                                                }
+                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+    //                                            .animation(.default)
+                                                .animation(.default)
+                                                .frame(width: screenWidth, height: 30)
+                                                .font(.system(size: 13))
+                                                .padding(12)
+                                                .disableAutocorrection(true)
+                                                .background(
+                                                    Color.white
+                                                ).foregroundColor(Color("blueColor"))
+                                                    .cornerRadius(5)
+                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                            }
+                                        }
+                                        GenderView(selection: $patientCreatedVM.GenderId)
+                                        Spacer().frame(height: 20)
+                                        TrackingView()
+                                            .environmentObject(locationViewModel)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                            .onTapGesture(perform: {
+                                                ShowingMap = true
+                                                if patientCreatedVM.Longitude == 0.0 {
+                                                    patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
+                                                }
+                                                if patientCreatedVM.Latitude == 0.0 {
+                                                    patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
+                                                }
+    //                                            print(locationViewModel.lastSeenLoca0
+                                            })
+                                    }
                                 }
                                
                                 Spacer()
@@ -190,11 +313,46 @@ struct PersonalDataView: View {
                             }
                             
                         }
-                    }.ignoresSafeArea()
+                    }
+                    .ignoresSafeArea()
+                    .background(Color("CLVBG"))
+                    .blur(radius: ShowCity || ShowNationality || ShowArea ? 10 : 0)
+                    .disabled(ShowCity || ShowNationality || ShowArea)
+                    if ShowNationality {
+                        ZStack {
+                            ChooseNationality(NationalityVM: NationalityVM, IsPresented: $ShowNationality, SelectedNationalityName: $patientCreatedVM.NationalityName, SelectedNationalityId: $patientCreatedVM.NationalityId, width: bounds.size.width)
+                        }
+                        .animation(.easeInOut)
+                        .transition(.move(edge: .bottom))
+                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    self.offset.height = gesture.translation.height
+                                }
+                                .onEnded { _ in
+                                    if self.offset.height > bounds.size.height / 2 {
+                                        withAnimation {
+                                            ShowNationality.toggle()
+                                        }
+                                        self.offset = .zero
+                                    } else {
+                                        self.offset = .zero
+                                    }
+                                }
+                        )
+                    }
                     
                    
                 }
+                .onAppear(perform: {
+                    NationalityVM.startFetchCountries()
+                })
                 
+            }
+            .sheet(isPresented: $ShowingMap) {
+//                    GoogleMapsView(long: clinicCreatedVM.Longitude, lat: clinicCreatedVM.Latitude)
+                ViewMapWithPin(showmap: $ShowingMap, title: "", subtitle: "", longtude: $patientCreatedVM.Longitude   , latitude: $patientCreatedVM.Latitude  )
             }
             //MARK: -------- imagePicker From Camera and Library ------
             .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {

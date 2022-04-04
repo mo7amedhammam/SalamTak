@@ -59,6 +59,17 @@
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
 		0E9E0DAA27F9F0DA00893ABF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */; };
 		0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DAB27F9F28200893ABF /* InfoTextFieldView.swift */; };
+		0E9E0DAE27FAEF2D00893ABF /* DateOfBirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DAD27FAEF2D00893ABF /* DateOfBirthView.swift */; };
+		0E9E0DB027FAEF6500893ABF /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DAF27FAEF6400893ABF /* DatePickerTextField.swift */; };
+		0E9E0DB227FAEFD100893ABF /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB127FAEFD100893ABF /* GenderView.swift */; };
+		0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB327FAF1FE00893ABF /* PickLocationView.swift */; };
+		0E9E0DB627FAF26B00893ABF /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB527FAF26B00893ABF /* LocationViewModel.swift */; };
+		0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */; };
+		0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */; };
+		0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */; };
+		0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */; };
+		0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */; };
+		0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
@@ -149,6 +160,17 @@
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0E9E0DAB27F9F28200893ABF /* InfoTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTextFieldView.swift; sourceTree = "<group>"; };
+		0E9E0DAD27FAEF2D00893ABF /* DateOfBirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOfBirthView.swift; sourceTree = "<group>"; };
+		0E9E0DAF27FAEF6400893ABF /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
+		0E9E0DB127FAEFD100893ABF /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
+		0E9E0DB327FAF1FE00893ABF /* PickLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickLocationView.swift; sourceTree = "<group>"; };
+		0E9E0DB527FAF26B00893ABF /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
+		0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMapWithPin.swift; sourceTree = "<group>"; };
+		0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNationalityView.swift; sourceTree = "<group>"; };
+		0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryApiService.swift; sourceTree = "<group>"; };
+		0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCountries.swift; sourceTree = "<group>"; };
+		0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetCountries.swift; sourceTree = "<group>"; };
 		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
 		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +292,7 @@
 		00C8BF5E27F317FF00571078 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0E9E0DBF27FAF96600893ABF /* LookUp */,
 				00C8BF6027F3182B00571078 /* ApiServices.swift */,
 				00C8BF6227F319B100571078 /* Config.swift */,
 				00C8BF6427F319BC00571078 /* Helper.swift */,
@@ -313,6 +336,14 @@
 				0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */,
 				0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */,
 				0E9E0DAB27F9F28200893ABF /* InfoTextFieldView.swift */,
+				0E9E0DAD27FAEF2D00893ABF /* DateOfBirthView.swift */,
+				0E9E0DAF27FAEF6400893ABF /* DatePickerTextField.swift */,
+				0E9E0DB127FAEFD100893ABF /* GenderView.swift */,
+				0E9E0DB327FAF1FE00893ABF /* PickLocationView.swift */,
+				0E9E0DB527FAF26B00893ABF /* LocationViewModel.swift */,
+				0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */,
+				0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */,
+				0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -627,6 +658,24 @@
 				0E586D3327F5B7BC00944F21 /* TabBarView.swift */,
 			);
 			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DC027FAF98600893ABF /* Countries */,
+			);
+			path = LookUp;
+			sourceTree = "<group>";
+		};
+		0E9E0DC027FAF98600893ABF /* Countries */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */,
+				0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */,
+				0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */,
+			);
+			path = Countries;
 			sourceTree = "<group>";
 		};
 		C82541E827F4421B005E0750 /* Fonts */ = {
@@ -979,22 +1028,29 @@
 				0E586CF627F5AB5400944F21 /* PhoneVerficationView.swift in Sources */,
 				0E586D2427F5B6CD00944F21 /* ModelSchedule.swift in Sources */,
 				C8582DD727F5CA700027D5E5 /* BookingApiService.swift in Sources */,
+				0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
 				0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */,
 				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
 				0E586D1427F5B62C00944F21 /* ModelPersonal.swift in Sources */,
+				0E9E0DB227FAEFD100893ABF /* GenderView.swift in Sources */,
 				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
+				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
 				0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */,
+				0E9E0DB627FAF26B00893ABF /* LocationViewModel.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				C83C57EF27F875CB00575C90 /* ViewModelExaminationTypeId.swift in Sources */,
 				0E586D2F27F5B77C00944F21 /* ViewModelBooking.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,
+				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
+				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
+				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
@@ -1004,11 +1060,14 @@
 				C83C57F227F88ADF00575C90 /* GetSpecialistAPI.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
+				0E9E0DAE27FAEF2D00893ABF /* DateOfBirthView.swift in Sources */,
 				0E586D1A27F5B66800944F21 /* MedicalStateView.swift in Sources */,
 				0E586D3127F5B78700944F21 /* ModelBooking.swift in Sources */,
 				0E586CFA27F5ABB500944F21 /* ModelCreateUser.swift in Sources */,
+				0E9E0DB027FAEF6500893ABF /* DatePickerTextField.swift in Sources */,
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
+				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
@@ -1017,6 +1076,7 @@
 				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,
 				C83C57F427F88B2A00575C90 /* ModelSpecialist.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
+				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
 			);

@@ -79,8 +79,8 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published  var CityId: Int = 0
     @Published  var AreaId: Int = 0
     @Published  var Address : String = ""
-    @Published  var Longtitude : String = ""
-    @Published  var Latitude : String = ""
+    @Published  var Latitude  = 0.0
+    @Published  var Longitude = 0.0
     @Published  var FloorNo: Int = 0
     @Published  var BlockNo : String = ""
     @Published  var ApartmentNo : String = ""
@@ -89,6 +89,8 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published  var profileImage = UIImage()
     
     @Published  var NationalityName: String = "Nationality"
+    @Published  var cityName             : String = ""
+    @Published  var areaName             : String = ""
     
 //    @Published  var SpecialityName: String = "CompeleteProfile_Screen_Speciality"
 //    @Published  var SubSpecialityName: [String] = []
@@ -170,7 +172,7 @@ class ViewModelCreatePatientProfile: ObservableObject {
                            "NationalityId" : NationalityId, "CountryId" : NationalityId,
                            "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
-                                               "Latitude": Latitude, "Longitude": Longtitude,
+                                               "Latitude": Latitude, "Longitude": Longitude,
                                                "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo
                             
                                                
