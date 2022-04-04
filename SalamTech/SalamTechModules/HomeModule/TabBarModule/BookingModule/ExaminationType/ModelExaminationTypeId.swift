@@ -26,9 +26,12 @@ struct ModelExaminationTypeId : Codable {
 struct ExaminationType: Codable,Identifiable {
     
     let id: Int?
-    let Name: String?
+    let Name,image: String?
+    let Inactive: Bool?
     enum CodingKeys: String, CodingKey {
         case id = "Id"
         case Name = "Name"
+        case image = "Image"
+        case Inactive = "Inactive"
     }
 }

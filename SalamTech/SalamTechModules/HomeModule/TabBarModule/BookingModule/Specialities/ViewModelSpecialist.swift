@@ -17,7 +17,7 @@ class ViewModelSpecialist: ObservableObject {
     
 //    // ------- input
 
-    @Published var  publishedSpecialistModel:  [Speciality] = []
+    @Published var  publishedSpecialistModel :  [Speciality]?
     @Published var isLoading = false
     @Published var isError = false
     @Published var errorMsg = ""
@@ -47,9 +47,10 @@ class ViewModelSpecialist: ObservableObject {
                 self.isLoading = true
             if success{
                 DispatchQueue.main.async {
+                    self.passthroughModelSubject.send(model!)
                     self.UserCreated = true
                     self.isLoading = false
-                    self.passthroughModelSubject.send(model!)
+                    print(model)
                 }
             }else{
                 self.isLoading = false
