@@ -78,6 +78,10 @@
 		0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD427FB104B00893ABF /* AreaApiService.swift */; };
 		0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */; };
 		0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */; };
+		0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */; };
+		0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDD27FB15A700893ABF /* ModelOccupation.swift */; };
+		0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDF27FB15BE00893ABF /* ViewModelGetOccupation.swift */; };
+		0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
@@ -187,6 +191,10 @@
 		0E9E0DD427FB104B00893ABF /* AreaApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaApiService.swift; sourceTree = "<group>"; };
 		0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetArea.swift; sourceTree = "<group>"; };
 		0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAreaView.swift; sourceTree = "<group>"; };
+		0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupationApiService.swift; sourceTree = "<group>"; };
+		0E9E0DDD27FB15A700893ABF /* ModelOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOccupation.swift; sourceTree = "<group>"; };
+		0E9E0DDF27FB15BE00893ABF /* ViewModelGetOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetOccupation.swift; sourceTree = "<group>"; };
+		0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOccupationView.swift; sourceTree = "<group>"; };
 		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
 		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,6 +370,7 @@
 				0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */,
 				0E9E0DD027FB091500893ABF /* ChooseCityView.swift */,
 				0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */,
+				0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -681,6 +690,7 @@
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
 			isa = PBXGroup;
 			children = (
+				0E9E0DDA27FB156900893ABF /* Occupation */,
 				0E9E0DC927FB020D00893ABF /* Area */,
 				0E9E0DC827FB020600893ABF /* Cities */,
 				0E9E0DC027FAF98600893ABF /* Countries */,
@@ -716,6 +726,16 @@
 				0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */,
 			);
 			path = Area;
+			sourceTree = "<group>";
+		};
+		0E9E0DDA27FB156900893ABF /* Occupation */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */,
+				0E9E0DDD27FB15A700893ABF /* ModelOccupation.swift */,
+				0E9E0DDF27FB15BE00893ABF /* ViewModelGetOccupation.swift */,
+			);
+			path = Occupation;
 			sourceTree = "<group>";
 		};
 		C82541E827F4421B005E0750 /* Fonts */ = {
@@ -1092,11 +1112,14 @@
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
+				0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
+				0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */,
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
+				0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */,
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
 				C83C57F627F88BD500575C90 /* ViewModelSpecialist.swift in Sources */,
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
@@ -1105,6 +1128,7 @@
 				C83C57F227F88ADF00575C90 /* GetSpecialistAPI.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
+				0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */,
 				0E9E0DAE27FAEF2D00893ABF /* DateOfBirthView.swift in Sources */,
 				0E586D1A27F5B66800944F21 /* MedicalStateView.swift in Sources */,
 				0E586D3127F5B78700944F21 /* ModelBooking.swift in Sources */,

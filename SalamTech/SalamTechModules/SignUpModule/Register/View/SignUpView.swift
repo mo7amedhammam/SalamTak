@@ -349,7 +349,7 @@ struct SecureInputArabicView: View {
 struct InputTextField: View {
     @Binding var text: String
     var title : String
-    let screenWidth = UIScreen.main.bounds.size.width - 50
+    let screenWidth = UIScreen.main.bounds.size.width - 55
     var body: some View {
         ZStack (alignment:.leading){
             

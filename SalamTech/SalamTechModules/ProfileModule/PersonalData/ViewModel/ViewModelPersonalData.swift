@@ -91,6 +91,7 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published  var NationalityName: String = "Nationality"
     @Published  var cityName             : String = ""
     @Published  var areaName             : String = ""
+    @Published  var occupationName       : String = "Occupation"
     
 //    @Published  var SpecialityName: String = "CompeleteProfile_Screen_Speciality"
 //    @Published  var SubSpecialityName: [String] = []
@@ -168,11 +169,11 @@ class ViewModelCreatePatientProfile: ObservableObject {
                           "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
                           "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
                           "GenderId" : GenderId ?? 1 ,
-                           "Birthday" : datef.string(from: self.Birthday ?? Date()) ,
+                           "Birthdate" : datef.string(from: self.Birthday ?? Date()) ,
                            "NationalityId" : NationalityId, "CountryId" : NationalityId,
                            "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
-                                               "Latitude": Latitude, "Longitude": Longitude,
+                                               "Latitude": String(Latitude), "Longitude": String(Longitude),
                                                "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo
                             
                                                

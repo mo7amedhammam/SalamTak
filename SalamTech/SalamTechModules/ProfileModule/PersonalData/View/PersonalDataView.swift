@@ -26,10 +26,12 @@ struct PersonalDataView: View {
     @State var ShowNationality = false
     @State var ShowCity = false
     @State var ShowArea = false
+    @State var ShowOccupation = false
     
     @StateObject var patientCreatedVM = ViewModelCreatePatientProfile()
     @StateObject var locationViewModel = LocationViewModel()
     @StateObject var NationalityVM = ViewModelCountries()
+    @StateObject var OccupationVM = ViewModelOccupation()
     
     var body: some View {
         ZStack{
@@ -162,6 +164,7 @@ struct PersonalDataView: View {
                                         DateOfBirthView(date: $patientCreatedVM.Birthday)
                                         
                                         Spacer().frame(height: 20)
+                                        
                                         VStack{
                                             Button {
                                                 
@@ -257,6 +260,14 @@ struct PersonalDataView: View {
                                                     .shadow(color: Color.black.opacity(0.099), radius: 3)
                                             }
                                         }
+                                        Spacer().frame(height: 20)
+                                        InputTextField(text: $patientCreatedVM.EmergencyContact, title: "Emergency Contact")
+                                            .focused($isfocused)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                            .autocapitalization(.none)
+                                            .keyboardType(.numberPad)
+                                            .textInputAutocapitalization(.never)
+                                        Spacer().frame(height: 20)
                                         GenderView(selection: $patientCreatedVM.GenderId)
                                         Spacer().frame(height: 20)
                                         TrackingView()
@@ -272,6 +283,62 @@ struct PersonalDataView: View {
                                                 }
     //                                            print(locationViewModel.lastSeenLoca0
                                             })
+                                        VStack{
+                                            Button {
+                                                
+                                                withAnimation {
+                                                    ShowOccupation.toggle()
+                                                    
+                                                }
+                                                
+                                            } label: {
+                                                HStack{
+                                                    Text(patientCreatedVM.occupationName)
+                                                        .foregroundColor(Color("lightGray"))
+                                                    
+                                                    Spacer()
+                                                    Image(systemName: "staroflife.fill")
+                                                        .font(.system(size: 10))
+                                                        .foregroundColor(patientCreatedVM.occupationName == "" ? Color.red : Color.white)
+                                                    Image(systemName: "chevron.forward")
+                                                        .foregroundColor(Color("lightGray"))
+                                                }
+                                                .animation(.default)
+                                                .frame(width: screenWidth, height: 30)
+                                                .font(.system(size: 13))
+                                                .padding(12)
+                                                .disableAutocorrection(true)
+                                                .background(
+                                                    Color.white
+                                                ).foregroundColor(Color("blueColor"))
+                                                    .cornerRadius(5)
+                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                            }
+                                            InputTextField(text: $patientCreatedVM.Address, title: "Clinic_Screen_street".localized(language))
+                                                .focused($isfocused).autocapitalization(.none)
+                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                                
+                                            
+                                            InputTextField(text: $patientCreatedVM.BlockNo, title: "Clinic_Screen_building".localized(language))
+                                                .focused($isfocused)
+                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                                .autocapitalization(.none)
+    //                                            .keyboardType(.numberPad)
+                                                .textInputAutocapitalization(.never)
+                                            InputTextField(text: $patientCreatedVM.FloorNo.string(), title: "Clinic_Screen_floor".localized(language))
+                                                .focused($isfocused)
+                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                                .autocapitalization(.none)
+                                                .keyboardType(.numberPad)
+                                                .textInputAutocapitalization(.never)
+                                            
+                                            InputTextField(text: $patientCreatedVM.ApartmentNo, title: "Apartment Number".localized(language))
+                                                .focused($isfocused)
+                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                                .autocapitalization(.none)
+    //                                            .keyboardType(.numberPad)
+                                                .textInputAutocapitalization(.never)
+                                        }
                                     }
                                 }
                                
@@ -280,32 +347,37 @@ struct PersonalDataView: View {
 //                                    patientCreatedVM.DoctorSubSpecialist = self.SubSpecIDArr
 //                                    print(SubSpecIDArr)
 //                                    print(patientCreatedVM.DoctorSubSpecialist)
-//                                    DispatchQueue.main.async {
-//
-//
-//                                        print("let's create profiles")
-//
-//                                        print(patientCreatedVM.FirstName)
-//                                        print(patientCreatedVM.FirstNameAr)
-//                                        print(patientCreatedVM.MiddelName)
-//                                        print(patientCreatedVM.MiddelNameAr)
-//                                        print(patientCreatedVM.LastName)
-//                                        print(patientCreatedVM.LastNameAr)
-//                                        print(patientCreatedVM.NationalityId)
-//                                        print(patientCreatedVM.Birthday ?? Date())
-//                                        print(datef.string(from: patientCreatedVM.Birthday ?? Date()) )
-//                                        //                                    print(patientCreatedVM.Birthday?.dateformatter)
-//
-//                                        print(patientCreatedVM.GenderId ?? 0)
-//                                        print(patientCreatedVM.SpecialistId)
-//                                        print(patientCreatedVM.DoctorSubSpecialist)
-//                                        print(patientCreatedVM.SeniorityLevelId)
-//                                        print(patientCreatedVM.DoctorInfo )
-//                                        print(patientCreatedVM.DoctorInfoAr )
-//
-////                                            patientCreatedVM.isLoading = true
-//                                        patientCreatedVM.startFetchDoctorProfileCreation(profileImage:patientCreatedVM.profileImage )
-//                                    }
+                                    DispatchQueue.main.async {
+
+
+                                        print("let's create profiles")
+
+                                        print(patientCreatedVM.FirstName)
+                                        print(patientCreatedVM.FirstNameAr)
+                                        print(patientCreatedVM.MiddelName)
+                                        print(patientCreatedVM.MiddelNameAr)
+                                        print(patientCreatedVM.FamilyName)
+                                        print(patientCreatedVM.FamilyNameAr)
+                                        print(patientCreatedVM.NationalityId)
+                                        print(patientCreatedVM.Birthday ?? Date())
+                                        print(datef.string(from: patientCreatedVM.Birthday ?? Date()) )
+                                        //                                    print(patientCreatedVM.Birthday?.dateformatter)
+
+                                        print(patientCreatedVM.GenderId ?? 0)
+                                        print(patientCreatedVM.CityId)
+                                        print(patientCreatedVM.AreaId)
+                                        print(patientCreatedVM.OccupationId)
+                                        print(patientCreatedVM.Latitude )
+                                        print(patientCreatedVM.Longitude )
+                                        print(patientCreatedVM.BlockNo )
+                                        print(patientCreatedVM.Address )
+                                        print(patientCreatedVM.FloorNo )
+                                        print(patientCreatedVM.ApartmentNo )
+                                        print(patientCreatedVM.EmergencyContact )
+
+//                                            patientCreatedVM.isLoading = true
+                                        patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
+                                    }
 //
                                 }, Cancelaction:  {
                                     //                                        self.presentationMode.wrappedValue.dismiss()
@@ -316,8 +388,8 @@ struct PersonalDataView: View {
                     }
                     .ignoresSafeArea()
                     .background(Color("CLVBG"))
-                    .blur(radius: ShowCity || ShowNationality || ShowArea ? 10 : 0)
-                    .disabled(ShowCity || ShowNationality || ShowArea)
+                    .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 10 : 0)
+                    .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
                     if ShowNationality {
                         ZStack {
                             ChooseNationality(NationalityVM: NationalityVM, IsPresented: $ShowNationality, SelectedNationalityName: $patientCreatedVM.NationalityName, SelectedNationalityId: $patientCreatedVM.NationalityId, width: bounds.size.width)
@@ -396,15 +468,51 @@ struct PersonalDataView: View {
                                 }
 
                         )
+                    }  else if ShowOccupation {
+                        ZStack {
+                            // needs to handle get country by id
+                            ChooseOccupation( OccupationVM: OccupationVM, IsPresented: $ShowOccupation, SelectedOccupationName: $patientCreatedVM.occupationName, SelectedOccupationId: $patientCreatedVM.OccupationId, width: bounds.size.width)
+                        
+                        }
+//                                .animation(.easeInOut)
+                        .transition(.move(edge: .bottom))
+                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    self.offset.height = gesture.translation.height
+
+                                }
+                                .onEnded { _ in
+                                    if self.offset.height > bounds.size.height / 2 {
+                                        withAnimation {
+                                            ShowOccupation = false
+                                        }
+                                        self.offset = .zero
+                                    } else {
+                                        self.offset = .zero
+                                    }
+                                }
+
+                        )
                     }
                     
                    
                 }
                 .onAppear(perform: {
                     NationalityVM.startFetchCountries()
+                    OccupationVM.startFetchOccupation()
                     print(Helper.getAccessToken())
                 })
                 
+            }
+            .toolbar{
+                ToolbarItemGroup(placement: .keyboard ){
+                    Spacer()
+                    Button("Done"){
+                        isfocused = false
+                    }
+                }
             }
             .sheet(isPresented: $ShowingMap) {
 //                    GoogleMapsView(long: clinicCreatedVM.Longitude, lat: clinicCreatedVM.Latitude)
@@ -426,12 +534,38 @@ struct PersonalDataView: View {
                     ImagePicker(sourceType: .camera, selectedImage: self.$patientCreatedVM.profileImage)
                 }
             }
+            // Alert with no internet connection
+            .alert(isPresented: $patientCreatedVM.isNetworkError, content: {
+                Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
+            })
+            
+            // alert with no ierror message
+            .alert(patientCreatedVM.errorMsg, isPresented: $patientCreatedVM.isError) {
+                Button("OK", role: .cancel) { }
+            }
+            
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $patientCreatedVM.isLoading)
         }
+        NavigationLink(destination:MedicalStateView(),isActive: $patientCreatedVM.UserCreated , label: {
+        })
     }
+   
+    
 }
 
 struct PersonalDataView_Previews: PreviewProvider {
     static var previews: some View {
         PersonalDataView()
+    }
+}
+
+extension Binding where Value == Int {
+    public func string() -> Binding<String> {
+        return Binding<String>(get:{ "\(self.wrappedValue)" },
+                               set: {
+                                guard $0.count > 0 else { return }
+            self.wrappedValue = Int(Double($0) ?? 0)
+                               })
     }
 }

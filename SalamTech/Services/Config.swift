@@ -65,6 +65,8 @@ class URLs {
     
     /// get country >> needs token
     var GetCountries = BaseUrl + "/api/\(Helper.getLanguage())/LookUp/GetCountries"
+    
+    var GetOccupation = BaseUrl + "/api/\(Helper.getLanguage())/LookUp/GetOccupation"
    
     /// get city>> needs countryid
     var GetCities = BaseUrl + "/api/\(Helper.getLanguage())/City/GetCities"
