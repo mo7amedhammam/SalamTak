@@ -536,10 +536,10 @@
 		0E586D0427F5B43200944F21 /* TabBarModule */ = {
 			isa = PBXGroup;
 			children = (
-				C800F81527FB585B00482151 /* BookingModule */,
 				0E586D3227F5B7A900944F21 /* TabBarView */,
-				0E586D0727F5B49E00944F21 /* MoreScreen */,
+				C800F81527FB585B00482151 /* BookingModule */,
 				0E586D0627F5B48C00944F21 /* ScheduleScreen */,
+				0E586D0727F5B49E00944F21 /* MoreScreen */,
 			);
 			path = TabBarModule;
 			sourceTree = "<group>";

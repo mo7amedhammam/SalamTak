@@ -103,11 +103,7 @@ struct CountryView: View {
                                 .background(Color.clear)
                                 .cornerRadius(8)
                                 .shadow(color: .black.opacity(0.099), radius: 5)
-                        
-
-            
-
-
+ 
                     }
 
 
@@ -117,11 +113,6 @@ struct CountryView: View {
             
             Spacer()
         }
-            
-            
-            
-            
-            
             
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.vertical)
