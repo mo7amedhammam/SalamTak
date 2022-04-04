@@ -195,7 +195,7 @@ struct PersonalDataView: View {
                                             }
                                             Button {
                                                 withAnimation {
-                                                    ShowCity = true
+                                                    ShowCity.toggle()
                                                 }
                                                 
                                             } label: {
@@ -227,7 +227,7 @@ struct PersonalDataView: View {
                                             Button {
                                                 
                                                 withAnimation {
-                                                    ShowArea = true
+                                                    ShowArea.toggle()
                                                 }
                                                 
                                                 
@@ -341,12 +341,68 @@ struct PersonalDataView: View {
                                     }
                                 }
                         )
+                    } else if ShowCity{
+                        ZStack {
+                            // needs to handle get country by id
+
+                            ChooseCity(IsPresented: $ShowCity , SelectedCityName: $patientCreatedVM.cityName , SelectedCityId: $patientCreatedVM.CityId ,SelectedCountryId: $patientCreatedVM.NationalityId , width: bounds.size.width )
+                            
+                        }
+//                                .animation(.easeInOut)
+                        .transition(.move(edge: .bottom))
+                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    self.offset.height = gesture.translation.height
+
+                                }
+                                .onEnded { _ in
+                                    if self.offset.height > bounds.size.height / 2 {
+                                        withAnimation {
+                                            ShowCity = false
+                                        }
+                                        self.offset = .zero
+                                    } else {
+                                        self.offset = .zero
+                                    }
+                                }
+
+                        )
+                    } else if ShowArea {
+                        ZStack {
+                            // needs to handle get country by id
+                            ChooseArea(IsPresented:$ShowArea,SelectedAreaName:$patientCreatedVM.areaName, SelectedAreaId: $patientCreatedVM.AreaId,SelectedCityId: $patientCreatedVM.CityId , width: bounds.size.width )
+                        
+                        }
+//                                .animation(.easeInOut)
+                        .transition(.move(edge: .bottom))
+                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { gesture in
+                                    self.offset.height = gesture.translation.height
+
+                                }
+                                .onEnded { _ in
+                                    if self.offset.height > bounds.size.height / 2 {
+                                        withAnimation {
+                                            ShowArea = false
+                                        }
+                                        self.offset = .zero
+                                    } else {
+                                        self.offset = .zero
+                                    }
+                                }
+
+                        )
                     }
                     
                    
                 }
                 .onAppear(perform: {
                     NationalityVM.startFetchCountries()
+                    print(Helper.getAccessToken())
                 })
                 
             }

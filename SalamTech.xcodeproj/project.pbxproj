@@ -70,7 +70,14 @@
 		0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */; };
 		0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */; };
 		0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */; };
-		0E9E0DC727FB017A00893ABF /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83831D827F9CD9800CB769E /* SpecialityView.swift */; };
+		0E9E0DCB27FB022700893ABF /* ModelCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DCA27FB022700893ABF /* ModelCities.swift */; };
+		0E9E0DCD27FB023600893ABF /* ViewModelGetCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DCC27FB023600893ABF /* ViewModelGetCities.swift */; };
+		0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DCE27FB024700893ABF /* CitiesApiService.swift */; };
+		0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD027FB091500893ABF /* ChooseCityView.swift */; };
+		0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD227FB103400893ABF /* ModelArea.swift */; };
+		0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD427FB104B00893ABF /* AreaApiService.swift */; };
+		0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */; };
+		0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
 		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
@@ -172,6 +179,14 @@
 		0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryApiService.swift; sourceTree = "<group>"; };
 		0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCountries.swift; sourceTree = "<group>"; };
 		0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetCountries.swift; sourceTree = "<group>"; };
+		0E9E0DCA27FB022700893ABF /* ModelCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCities.swift; sourceTree = "<group>"; };
+		0E9E0DCC27FB023600893ABF /* ViewModelGetCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetCities.swift; sourceTree = "<group>"; };
+		0E9E0DCE27FB024700893ABF /* CitiesApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesApiService.swift; sourceTree = "<group>"; };
+		0E9E0DD027FB091500893ABF /* ChooseCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityView.swift; sourceTree = "<group>"; };
+		0E9E0DD227FB103400893ABF /* ModelArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelArea.swift; sourceTree = "<group>"; };
+		0E9E0DD427FB104B00893ABF /* AreaApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaApiService.swift; sourceTree = "<group>"; };
+		0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetArea.swift; sourceTree = "<group>"; };
+		0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAreaView.swift; sourceTree = "<group>"; };
 		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
 		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,7 +200,6 @@
 		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
-		C83831D827F9CD9800CB769E /* SpecialityView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
 		C83C57EA27F8753A00575C90 /* examinationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = examinationType.swift; sourceTree = "<group>"; };
 		C83C57EC27F8757F00575C90 /* ModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExaminationTypeId.swift; sourceTree = "<group>"; };
 		C83C57EE27F875CB00575C90 /* ViewModelExaminationTypeId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelExaminationTypeId.swift; sourceTree = "<group>"; };
@@ -346,6 +360,8 @@
 				0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */,
 				0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */,
 				0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */,
+				0E9E0DD027FB091500893ABF /* ChooseCityView.swift */,
+				0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -634,7 +650,6 @@
 			isa = PBXGroup;
 			children = (
 				0E586D2C27F5B76B00944F21 /* BookingView.swift */,
-				C83831D727F9CD5600CB769E /* SpecialityScreen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -666,6 +681,8 @@
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
 			isa = PBXGroup;
 			children = (
+				0E9E0DC927FB020D00893ABF /* Area */,
+				0E9E0DC827FB020600893ABF /* Cities */,
 				0E9E0DC027FAF98600893ABF /* Countries */,
 			);
 			path = LookUp;
@@ -681,6 +698,26 @@
 			path = Countries;
 			sourceTree = "<group>";
 		};
+		0E9E0DC827FB020600893ABF /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DCA27FB022700893ABF /* ModelCities.swift */,
+				0E9E0DCC27FB023600893ABF /* ViewModelGetCities.swift */,
+				0E9E0DCE27FB024700893ABF /* CitiesApiService.swift */,
+			);
+			path = Cities;
+			sourceTree = "<group>";
+		};
+		0E9E0DC927FB020D00893ABF /* Area */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DD227FB103400893ABF /* ModelArea.swift */,
+				0E9E0DD427FB104B00893ABF /* AreaApiService.swift */,
+				0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */,
+			);
+			path = Area;
+			sourceTree = "<group>";
+		};
 		C82541E827F4421B005E0750 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,14 +729,6 @@
 				C82541F427F4441E005E0750 /* fontsExt.swift */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		C83831D727F9CD5600CB769E /* SpecialityScreen */ = {
-			isa = PBXGroup;
-			children = (
-				C83831D827F9CD9800CB769E /* SpecialityView.swift */,
-			);
-			path = SpecialityScreen;
 			sourceTree = "<group>";
 		};
 		C83C57E927F8751C00575C90 /* ExaminationType */ = {
@@ -1027,6 +1056,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */,
 				C82541F527F4441E005E0750 /* fontsExt.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
@@ -1040,7 +1070,9 @@
 				0E586D2427F5B6CD00944F21 /* ModelSchedule.swift in Sources */,
 				C8582DD727F5CA700027D5E5 /* BookingApiService.swift in Sources */,
 				0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */,
+				0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
+				0E9E0DCD27FB023600893ABF /* ViewModelGetCities.swift in Sources */,
 				0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */,
 				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
 				0E586D1427F5B62C00944F21 /* ModelPersonal.swift in Sources */,
@@ -1049,6 +1081,7 @@
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
+				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */,
 				0E9E0DB627FAF26B00893ABF /* LocationViewModel.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
@@ -1060,7 +1093,6 @@
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
-				0E9E0DC727FB017A00893ABF /* SpecialityView.swift in Sources */,
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
@@ -1069,6 +1101,7 @@
 				C83C57F627F88BD500575C90 /* ViewModelSpecialist.swift in Sources */,
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				0E586D1627F5B63A00944F21 /* ViewModelPersonalData.swift in Sources */,
+				0E9E0DCB27FB022700893ABF /* ModelCities.swift in Sources */,
 				C83C57F227F88ADF00575C90 /* GetSpecialistAPI.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
@@ -1085,9 +1118,12 @@
 				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
 				0E586D2D27F5B76B00944F21 /* BookingView.swift in Sources */,
 				C83C57ED27F8757F00575C90 /* ModelExaminationTypeId.swift in Sources */,
+				0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */,
 				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,
 				C83C57F427F88B2A00575C90 /* ModelSpecialist.swift in Sources */,
+				0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
+				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
 				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,

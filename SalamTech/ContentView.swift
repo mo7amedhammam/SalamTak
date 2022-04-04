@@ -19,7 +19,7 @@ struct ContentView: View {
         }
 //        .onAppear(perform: {
 //            Helper.setLanguage(currentLanguage: "en")
-//            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMDExMTExMTExIiwibmFtZWlkIjoiMTc0IiwianRpIjoiNWYxYTIzZjctNjk5OS00OGIzLThkZjEtNmE5Njg5NGM2ZTFiIiwiZXhwIjoxNjQ5MDczOTMyLCJpc3MiOiJTYWxhbVRlY2hAMjAyMSIsImF1ZCI6IlNhbGFtVGVjaEAyMDIxIn0.wtL2LGYlxl5htHjxMpD346g8LXttWfYNlu2cCvt1x84")
+//            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMjQzMzQ2NDQ0IiwibmFtZWlkIjoiMzU4NyIsImp0aSI6IjBjZjAwNDg4LWRlZjItNDExOC05ZTUyLWRjZTZkZDYwYTU2ZiIsImV4cCI6MTY0OTI0MzY5NiwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.r2jZSvwBIlzqr2hjum7WlEEVFe1GmTa85T_xiofvEqw")
 //        })
         .onChange(of: scenePhase, perform: { newPhase in
 

@@ -183,8 +183,8 @@ struct BookingView: View {
            
         }
         // go to clinic info
-        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
-             }
+//        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
+//             }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
 
