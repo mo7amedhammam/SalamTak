@@ -91,52 +91,172 @@ struct ViewSearchDoc: View {
 
 //                LazyVStack(spacing:15){
                     ForEach(0..<5){_ in
-                    ZStack{
+                    VStack(alignment:.leading){
+                        HStack{
+                           Image("logo")
+                                .resizable()
+                                .frame(width:70)
+                                .background(Color.gray)
+                                .cornerRadius(9)
+                                
+                                
+                            VStack(alignment:.leading){
+                                HStack{
+                                    Text("Dr/ ").foregroundColor(.black.opacity(0.7))
+                                    Text("Mohamed hammam").font(Font.SalamtechFonts.Bold18)
+
+                                }
+                                
+                                HStack{
+                                    Text("Psychiatry")
+                                        .foregroundColor(.gray.opacity(0.7))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    Text(".")
+                                        .foregroundColor(.gray.opacity(0.8))
+                                        .font(Font.system(size:30, design: .serif))
+                                        .fontWeight(.bold).offset(y:-8)
+                                    Text("Fellow of Surgeons R...")
+                                        .foregroundColor(.gray.opacity(0.7))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                }
+                                HStack{
+                                    ForEach(0..<5){_ in
+                                        Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
+                                            .foregroundColor(.yellow)
+                                    }
+                                    
+//                                    Image(systemName: "star.fill")
+//                                        .foregroundColor(.yellow)
+//                                    Image(systemName: "star.fill")
+//                                        .foregroundColor(.yellow)
+//                                    Image(systemName: "star.fill")
+//                                        .foregroundColor(.yellow)
+//                                    Image(systemName: "star.leadinghalf.filled")
+//                                        .foregroundColor(.yellow)
+//                                    Image(systemName:"star")
+//                                        .foregroundColor(.yellow)
+//
+                                    Text("( 224 Patients )")
+                                        .foregroundColor(.black.opacity(0.7))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                }
+                            }
+
+                            Spacer()
+
+                        }
+                        .padding(10)
+                        .frame(height:115)
                         
+                        VStack(spacing:0){
+                        HStack{
+                            Image("doc1")
+                            Text("Dentist")
+                                .foregroundColor(Color("darkGreen"))
+                                .font(Font.SalamtechFonts.Reg14)
+                            Text("Specialized in ")
+                                .foregroundColor(.secondary)
+                                .font(Font.SalamtechFonts.Reg14)
+                            Text("Endodontics, Cosmetic...")
+                                .foregroundColor(Color("darkGreen"))
+                                .font(Font.SalamtechFonts.Reg14)
+                            Spacer()
+                        }.padding(.leading)
+                        VStack (spacing:0){
+                            HStack{
+                                Image("doc2")
+                                Text("Better Life Dental Center:")
+                                    .foregroundColor(Color("darkGreen"))
+                                    .font(Font.SalamtechFonts.Reg14)
+                                Spacer()
+                                
+                            }
+                            Text("6th of October: 4th district, above KFC")
+                                .foregroundColor(.secondary)
+                                .font(Font.SalamtechFonts.Reg14)
+                        }
+                        .padding(.leading)
                         
 
+                        HStack{
+                            Image("doc3")
+                            Text("Fees:")
+                                .foregroundColor(Color("darkGreen"))
+                                .font(Font.SalamtechFonts.Reg14)
+                            Text("200 to 400 EGP (Upon time & date)")
+                                .foregroundColor(.secondary)
+                                .font(Font.SalamtechFonts.Reg14)
+                        
+                            Spacer()
+                        }.padding(.leading)
+                        
+                        HStack{
+                            Image("doc4")
+                            Text("Waiting Time:")
+                                .foregroundColor(Color("darkGreen"))
+                                .font(Font.SalamtechFonts.Reg14)
+                            Text("15 Minutes")
+                                .foregroundColor(.secondary)
+                                .font(Font.SalamtechFonts.Reg14)
+                        
+                            Spacer()
+                        }.padding(.leading)
                     }
-                    .frame(width: UIScreen.main.bounds.width - 40, height: 320)
+                     
+                        
+                        Text(" Available Today From 07:00 PM ")
+                            .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
+                            .background(Color.gray.opacity(0.3))
+                            .foregroundColor(.black.opacity(0.7))
+                            .font(Font.SalamtechFonts.Reg14)
+                        
+                        HStack{
+                            Spacer()
+                            Image("exClinic")
+                            Image("exHome")
+                            Image("exCall")
+                            Spacer()
+                            Button(action: {
+                            print("Book")
+                            }, label: {
+                                HStack{
+
+                                    Text("Book")
+                                        .foregroundColor(.white)
+                                        .font(Font.SalamtechFonts.Bold14)
+                                        .padding([.leading,.trailing],40)
+
+                                    
+                            }
+                            }
+                            )
+
+                                .padding(.horizontal,15)
+                                .frame( height: 40 )
+
+                                .background(Color("blueColor"))
+                                .cornerRadius(8)
+                            
+                            Spacer()
+
+                            
+                        }.padding(.bottom,10)
+                        
+                    }
+                        
                     .background(Color.white)
                     .cornerRadius(9)
                     .shadow(color: .black.opacity(0.1), radius: 9)
-                        
                     .listRowSeparator(.hidden)
-                    .foregroundColor(.clear)
                     .listRowBackground(Color.clear)
-                    
                     }
-//                }.padding(.top)
-                
-                
-            
-//                ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
-//                            Button(action: {
-//
-//                            }, label: {
-//
-//                                ZStack {
-//
-//                                    HStack{
-//                                        Spacer().frame(width:30)
-//                                            Text(city.Name ?? "")
-//                                                .frame(height:35)
-//                                                .font(Font.SalamtechFonts.Reg18)
-//                                                .foregroundColor(.black)
-//                                        Spacer()
-//                                        }
-//
-//                                        .frame(width: (UIScreen.main.bounds.width)-33, height: 50)
-//                                        .background(Color.white)
-//                                        .cornerRadius(25)
-//                                        .shadow(color: .black.opacity(0.099), radius: 5)
+                   
 
-
-                    
             }
             .listStyle(.plain)
+
             .padding(.top,-20)
-            .background(Color.clear)
+            .background(Color.red)
 
 
             Spacer()
