@@ -21,7 +21,10 @@ struct ViewSearchDoc: View {
     @State var selectedCityId = 0
 
     
-    
+    init() {
+            UITableView.appearance().showsVerticalScrollIndicator = false
+        }
+
     var body: some View {
         ZStack{
         VStack{
@@ -40,51 +43,72 @@ struct ViewSearchDoc: View {
                 }
             }
 
-            ScrollView( showsIndicators: false){
-//                Spacer().frame(height:60)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack( spacing: 10) {
+                    // Swipe TabView
+                    ForEach(medicalType.publishedModelExaminationTypeId){ type in
 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack( spacing: 10) {
-                        // Swipe TabView
-                        ForEach(medicalType.publishedModelExaminationTypeId){ type in
+                        if type.id==0{ }else{
 
-                            if type.id==0{ }else{
-
-                            Button(action: {
-                                withAnimation(.default) {
+                        Button(action: {
+                            withAnimation(.default) {
 
 
-                                    self.index = type.id ?? 1
-    //                                    SchedualVM.serviceId = index
-
-                                }
-
-                            }, label: {
-                                HStack(alignment: .center){
-                                    Text(type.Name ?? "")
-                                        .font(Font.SalamtechFonts.Reg14)
-                                        .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
-
-                                }.frame(minWidth: 100, maxWidth: 350)
-                                .padding(10)
-                                .padding(.bottom,1)
-                                .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
-                                                .cornerRadius(3))
-                                .clipShape(Rectangle())
-
-
-                            })
-
-
+                                self.index = type.id ?? 1
+//                                    SchedualVM.serviceId = index
 
                             }
-                            }
-                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+                        }, label: {
+                            HStack(alignment: .center){
+                                Text(type.Name ?? "")
+                                    .font(Font.SalamtechFonts.Reg14)
+                                    .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
+
+                            }.frame(minWidth: 100, maxWidth: 350)
+                            .padding(10)
+                            .padding(.bottom,1)
+                            .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
+                                            .cornerRadius(3))
+                            .clipShape(Rectangle())
+
+
+                        })
+
+
+
+                        }
+                        }
+                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 //                        .padding(.top,5)
-                        .padding(.horizontal)
-                }
+                    .padding(.horizontal)
+            }
+            
+            List( ){
 
-             
+              
+
+//                LazyVStack(spacing:15){
+                    ForEach(0..<5){_ in
+                    ZStack{
+                        
+                        
+
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 40, height: 320)
+                    .background(Color.white)
+                    .cornerRadius(9)
+                    .shadow(color: .black.opacity(0.1), radius: 9)
+                        
+                    .listRowSeparator(.hidden)
+                    .foregroundColor(.clear)
+                    .listRowBackground(Color.clear)
+                    
+                    }
+//                }.padding(.top)
+                
+                
             
 //                ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
 //                            Button(action: {
@@ -106,41 +130,13 @@ struct ViewSearchDoc: View {
 //                                        .background(Color.white)
 //                                        .cornerRadius(25)
 //                                        .shadow(color: .black.opacity(0.099), radius: 5)
-//
-//
-////                                    HStack {
-////                                        AsyncImage(url: URL(string:   URLs.BaseUrl + "\(specialityvm.publishedSpecialistModel?[speciality].image ?? "")" )) { image in
-////
-////                                            image.resizable()
-////
-////                                        } placeholder: {
-////                                            Image("heart")
-////                                                .resizable()
-////                                        }
-////                                        .clipShape(Circle())
-////                                        .frame(width: 60, height: 60)
-////                                        Spacer()
-////                                    }.padding(.leading,5)
-//
-//
-//
-//                                }
-//                            }) .frame(width: (UIScreen.main.bounds.width)-10)
-//                                .background(Color.clear)
-//                                .cornerRadius(8)
-//                                .shadow(color: .black.opacity(0.099), radius: 5)
-//
-//
-//
-//
-//
-//                    }
 
 
+                    
             }
-            
+            .listStyle(.plain)
+            .padding(.top,-20)
             .background(Color.clear)
-//                .padding([.horizontal])
 
 
             Spacer()
@@ -148,11 +144,7 @@ struct ViewSearchDoc: View {
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.vertical)
         .background(Color("CLVBG"))
-//        .background(.red)
-
-        .onAppear(perform: {
-
-        })
+        
         
             VStack{
                 AppBarView(Title: "Search a Doctor")
@@ -164,7 +156,6 @@ struct ViewSearchDoc: View {
 
         }
         .onAppear(perform: {
-//            CitiesVM.startFetchCities(countryid: CountryId)
         })
 
     }
