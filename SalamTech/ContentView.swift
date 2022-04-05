@@ -12,15 +12,16 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
         ZStack{
-//            OnBoardingView()
-            TabBarView()
+//            MedicalStateView()
+//            TabBarView()
 //            PersonalDataView()
+            OnBoardingView()
             
         }
-        .onAppear(perform: {
-            Helper.setLanguage(currentLanguage: "en")
-            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6Ijg3M2ViN2M3LWZkMzktNDhkNS1iODYxLWM1MDkyODcyMDAzYSIsImV4cCI6MTY0OTI0NzQxNSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.X14uzOqAz80wAJVwZOerJnsa5poB4TdD8WCtZkNqhf0")
-        })
+//        .onAppear(perform: {
+//            Helper.setLanguage(currentLanguage: "en")
+//            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMjQ1MzM0NjQ2IiwibmFtZWlkIjoiMzYyNyIsImp0aSI6ImZmZGM0NWM4LWM3NjYtNDY5Mi1hYTMzLWI4NmFmZWU5MTI4MyIsImV4cCI6MTY0OTM0MjkzOCwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.ejAbw_jS7ePDabkUBXsZDC6aXk_I54KlBRcLISQIDDI")
+//        })
 
         .onChange(of: scenePhase, perform: { newPhase in
 

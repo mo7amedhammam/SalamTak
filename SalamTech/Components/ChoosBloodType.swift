@@ -11,15 +11,15 @@ struct ChooseBloodType : View {
     var language = LocalizationService.shared.language
     //@ObservedObject var dataModel: DataModel
     //    @StateObject var checkModel = CheckBoxViewModel()
-    @ObservedObject private var patientCreatedVM = ViewModelCreatePatientProfile()
+    @ObservedObject private var medicalCreatedVM = ViewModelCreateMedicalProfile()
 
-    @StateObject var OccupationVM = ViewModelOccupation()
+    @StateObject var BloodTypeVM = ViewModelBloodType()
     
     @Binding var IsPresented: Bool
     @State public var buttonSelected: Int?
     
-    @Binding var SelectedOccupationName: String
-    @Binding var SelectedOccupationId: Int
+    @Binding var SelectedBloodName: String
+    @Binding var SelectedBloodId: Int
     var width: CGFloat
     
     var body: some View {
@@ -40,26 +40,26 @@ struct ChooseBloodType : View {
                 VStack {
                     
                         VStack {
-                            Text("Occupation")
+                            Text("Blood Group")
                                 .font(.title2)
                                 .bold()
                             ScrollView {
-                                ForEach(0..<OccupationVM.publishedCountryModel.count) { button in
+                                ForEach(0..<BloodTypeVM.publishedCountryModel.count) { button in
                                     HStack {
                                         Spacer().frame(width:30)
                                         Button(action: {
                                             self.buttonSelected = button
-                                            print("SelectedID is \(self.OccupationVM.publishedCountryModel[button].Id ?? 0)")
-                                            self.SelectedOccupationName = OccupationVM.publishedCountryModel[button].Name ?? ""
-                                            self.SelectedOccupationId = OccupationVM.publishedCountryModel[button].Id ?? 0
-                                            patientCreatedVM.occupationName = SelectedOccupationName
-                                            patientCreatedVM.OccupationId = SelectedOccupationId
+                                            print("SelectedID is \(self.BloodTypeVM.publishedCountryModel[button].Id ?? 0)")
+                                            self.SelectedBloodName = BloodTypeVM.publishedCountryModel[button].Name ?? ""
+                                            self.SelectedBloodId = BloodTypeVM.publishedCountryModel[button].Id ?? 0
+                                            medicalCreatedVM.BloodTypeName = SelectedBloodName
+                                            medicalCreatedVM.BloodTypeId = SelectedBloodId
                                         }, label: {
                                             HStack{
                                                 Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
                                                     .font(.system(size: 20))
                                                     .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                                Text(self.OccupationVM.publishedCountryModel[button].Name ?? "")  .padding()
+                                                Text(self.BloodTypeVM.publishedCountryModel[button].Name ?? "")  .padding()
                                                     .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                                 Spacer()
                                                 
@@ -77,8 +77,8 @@ struct ChooseBloodType : View {
                     HStack {
                         ButtonView(text: "CompeleteProfile_Screen_ConfirmButton".localized(language), action: {
                             withAnimation(.easeIn(duration: 0.3)) {
-                                patientCreatedVM.occupationName = SelectedOccupationName
-                                patientCreatedVM.OccupationId = SelectedOccupationId
+                                medicalCreatedVM.BloodTypeName = SelectedBloodName
+                                medicalCreatedVM.BloodTypeId = SelectedBloodId
                                 IsPresented.toggle()
                             }
                         })
@@ -94,7 +94,7 @@ struct ChooseBloodType : View {
             }
             
         }.onAppear(perform: {
-            OccupationVM.startFetchOccupation()
+            BloodTypeVM.startFetchBloodTypes()
         })
         .offset(y: (UIScreen.main.bounds.size.height / 2)  - 200)
     }
