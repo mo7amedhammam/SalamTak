@@ -25,12 +25,63 @@ struct ViewSearchDoc: View {
     var body: some View {
         ZStack{
         VStack{
+            
+            
+            VStack {
+                Spacer().frame(height:100)
+                ZStack {
+                    Image("WhiteCurve")
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.width, height: 120)
+                        .padding(.top,-20)
+
+                    SearchBar(PlaceHolder:"Search a doctor... ",text: .constant("")).shadow(color: .black.opacity(0.2), radius: 15)
+                    
+                }
+            }
+
             ScrollView( showsIndicators: false){
-                Spacer().frame(height:120)
-                HStack {
-                    Text("Search Doctor")
-                        .font(Font.SalamtechFonts.Bold18)
-                    Spacer()
+//                Spacer().frame(height:60)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack( spacing: 10) {
+                        // Swipe TabView
+                        ForEach(medicalType.publishedModelExaminationTypeId){ type in
+
+                            if type.id==0{ }else{
+
+                            Button(action: {
+                                withAnimation(.default) {
+
+
+                                    self.index = type.id ?? 1
+    //                                    SchedualVM.serviceId = index
+
+                                }
+
+                            }, label: {
+                                HStack(alignment: .center){
+                                    Text(type.Name ?? "")
+                                        .font(Font.SalamtechFonts.Reg14)
+                                        .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
+
+                                }.frame(minWidth: 100, maxWidth: 350)
+                                .padding(10)
+                                .padding(.bottom,1)
+                                .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
+                                                .cornerRadius(3))
+                                .clipShape(Rectangle())
+
+
+                            })
+
+
+
+                            }
+                            }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//                        .padding(.top,5)
+                        .padding(.horizontal)
                 }
 
              
@@ -86,77 +137,33 @@ struct ViewSearchDoc: View {
 //                    }
 
 
-            }.background(Color.clear)
-                .padding([.horizontal])
+            }
             
-            
+            .background(Color.clear)
+//                .padding([.horizontal])
+
+
             Spacer()
         }
-            
-            
-            
-            
-            
-            
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.vertical)
         .background(Color("CLVBG"))
+//        .background(.red)
+
         .onAppear(perform: {
 
         })
         
             VStack{
-                AppBarView(Title: "Search Doctor")
+                AppBarView(Title: "Search a Doctor")
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack( spacing: 10) {
-                        // Swipe TabView
-                        ForEach(medicalType.publishedModelExaminationTypeId){ type in
-                          
-                            if type.id==0{ }else{
-                            
-                            Button(action: {
-                                withAnimation(.default) {
-
-
-                                    self.index = type.id ?? 1
-//                                    SchedualVM.serviceId = index
-
-                                }
-                                
-                            }, label: {
-                                HStack(alignment: .center){
-                                    Text(type.Name ?? "")
-                                        .font(Font.SalamtechFonts.Reg14)
-                                        .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
-                                    
-                                }.frame(minWidth: 100, maxWidth: 350)
-                                .padding(10)
-                                .padding(.bottom,1)
-                                .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
-                                                .cornerRadius(3))
-                                .clipShape(Rectangle())
-                               
-                                
-                            })
-
-                            
-                            
-                            }
-                            }
-                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                    
-                    .padding(.top,35)
-                }
-                
-                
                     Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
 
-        }.onAppear(perform: {
+        }
+        .onAppear(perform: {
 //            CitiesVM.startFetchCities(countryid: CountryId)
         })
 
@@ -173,3 +180,69 @@ struct ViewSearchDoc_Previews: PreviewProvider {
         }.navigationBarHidden(true)
     }
 }
+
+
+
+
+struct SearchBar: View {
+    var PlaceHolder = ""
+    @Binding var text: String
+ 
+    @State private var isEditing = false
+
+    var body: some View {
+        HStack {
+ 
+            TextField(PlaceHolder, text: $text)
+                .padding(7)
+                .padding(.horizontal, 25)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .padding(.horizontal, 10)
+                .onTapGesture {
+                    self.isEditing = true
+                }
+ 
+//            if isEditing {
+//                Button(action: {
+//                    self.isEditing = false
+//                    self.text = ""
+//
+//                }) {
+//                    Text("Cancel")
+//                }
+//                .padding(.trailing, 10)
+//                .transition(.move(edge: .trailing))
+//                .animation(.default)
+//            }
+        }
+        
+        .overlay(
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 15)
+         
+                if isEditing {
+                    Button(action: {
+                        self.text = ""
+                        self.isEditing = false
+                        UIApplication.shared.dismissKeyboard()
+                        }) {
+                        Image(systemName: "multiply.circle.fill")
+                            .foregroundColor(.gray)
+                            .padding(.trailing, 15)
+                    }
+                }
+            }
+        )
+    }
+}
+
+extension UIApplication {
+      func dismissKeyboard() {
+          sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+      }
+  }
+ 
