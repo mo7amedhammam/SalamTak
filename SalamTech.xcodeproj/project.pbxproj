@@ -111,6 +111,10 @@
 		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
 		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
 		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
+		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
+		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
+		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
+		C8B3E17227FC47670040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17127FC47670040DAFD /* ViewSearchDoc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +247,10 @@
 		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
+		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
+		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
+		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
+		C8B3E17127FC47670040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
@@ -810,12 +818,13 @@
 		C800F81D27FB585B00482151 /* support */ = {
 			isa = PBXGroup;
 			children = (
-				C800F81E27FB585B00482151 /* SpecialityView.swift */,
-				C800F81F27FB585B00482151 /* ServicesView.swift */,
 				C800F82027FB585B00482151 /* Specialities */,
 				C800F82427FB585B00482151 /* ExaminationType */,
+				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
 				C800F82827FB585B00482151 /* CityView.swift */,
 				C800F82927FB585B00482151 /* CountryView.swift */,
+				C800F81E27FB585B00482151 /* SpecialityView.swift */,
+				C800F81F27FB585B00482151 /* ServicesView.swift */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -851,6 +860,17 @@
 				C82541F427F4441E005E0750 /* fontsExt.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
+				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
+				C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */,
+				C8B3E17127FC47670040DAFD /* ViewSearchDoc.swift */,
+			);
+			path = SearchDoctor;
 			sourceTree = "<group>";
 		};
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
@@ -1164,6 +1184,7 @@
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E26EA6C27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
+				C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */,
 				0E9E0DAA27F9F0DA00893ABF /* ImagePicker.swift in Sources */,
 				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
 				0E586D0027F5B1AA00944F21 /* ViewModelLogin.swift in Sources */,
@@ -1183,6 +1204,7 @@
 				0E586D1427F5B62C00944F21 /* ModelPersonal.swift in Sources */,
 				0E9E0DB227FAEFD100893ABF /* GenderView.swift in Sources */,
 				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
+				C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */,
 				C800F82E27FB585B00482151 /* SpecialityView.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
@@ -1223,6 +1245,7 @@
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
 				C800F82B27FB585B00482151 /* ViewModelBooking.swift in Sources */,
+				C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */,
 				0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */,
 				0E9E0DAE27FAEF2D00893ABF /* DateOfBirthView.swift in Sources */,
 				C800F82F27FB585B00482151 /* ServicesView.swift in Sources */,
@@ -1232,6 +1255,7 @@
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
+				C8B3E17227FC47670040DAFD /* ViewSearchDoc.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
