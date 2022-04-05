@@ -136,6 +136,10 @@ struct CountryView: View {
         //  go to clinic info
         NavigationLink(destination:CityView( CountryId: selectedCountryId),isActive: $gotocity) {
               }
+        //  go to clinic info
+         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
+              }
+
     }
     
 

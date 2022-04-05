@@ -59,7 +59,7 @@ struct CityView: View {
             
                 ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
                             Button(action: {
-
+                                gotoSearchdoctor = true
                             }, label: {
                                 
                                 ZStack {
@@ -139,6 +139,10 @@ struct CityView: View {
             CitiesVM.startFetchCities(countryid: CountryId)
         })
 
+        
+        //  go to clinic info
+         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
+              }
     }
     
 

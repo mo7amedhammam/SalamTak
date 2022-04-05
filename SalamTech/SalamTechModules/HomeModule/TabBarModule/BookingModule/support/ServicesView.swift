@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ServicesView: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
-    @StateObject var specialityvm = ViewModelSpecialist()
+//    @StateObject var specialityvm = ViewModelSpecialist()
     
     @State private var image = UIImage()
     @State private var radius: CGFloat = .zero

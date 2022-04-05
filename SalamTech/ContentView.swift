@@ -19,11 +19,10 @@ struct ContentView: View {
         }
         .onAppear(perform: {
             Helper.setLanguage(currentLanguage: "en")
-            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6Ijg3M2ViN2M3LWZkMzktNDhkNS1iODYxLWM1MDkyODcyMDAzYSIsImV4cCI6MTY0OTI0NzQxNSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.X14uzOqAz80wAJVwZOerJnsa5poB4TdD8WCtZkNqhf0")
+            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjE3NTZiMWY0LTEwNmItNDUzYy04MTc1LWI3MGM1MjM0ZjBjMSIsImV4cCI6MTY0OTMyODIwMSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.gHe41owhJ8R8A6gALhkwef0AM2S9lDUyVUgq1LEuLOk")
         })
 
         .onChange(of: scenePhase, perform: { newPhase in
-
                 if newPhase == .active {
                     print("Active")
                 } else if newPhase == .inactive {
