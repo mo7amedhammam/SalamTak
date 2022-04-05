@@ -114,7 +114,7 @@
 		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
-		C8B3E17227FC47670040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17127FC47670040DAFD /* ViewSearchDoc.swift */; };
+		C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,7 +250,7 @@
 		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
-		C8B3E17127FC47670040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
+		C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
@@ -775,6 +775,7 @@
 			isa = PBXGroup;
 			children = (
 				C800F81627FB585B00482151 /* services(first) */,
+				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
 				C800F81D27FB585B00482151 /* support */,
 				C800F82A27FB585B00482151 /* BookingApiService.swift */,
 			);
@@ -820,7 +821,6 @@
 			children = (
 				C800F82027FB585B00482151 /* Specialities */,
 				C800F82427FB585B00482151 /* ExaminationType */,
-				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
 				C800F82827FB585B00482151 /* CityView.swift */,
 				C800F82927FB585B00482151 /* CountryView.swift */,
 				C800F81E27FB585B00482151 /* SpecialityView.swift */,
@@ -868,7 +868,7 @@
 				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
 				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
 				C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */,
-				C8B3E17127FC47670040DAFD /* ViewSearchDoc.swift */,
+				C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */,
 			);
 			path = SearchDoctor;
 			sourceTree = "<group>";
@@ -1255,7 +1255,7 @@
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
-				C8B3E17227FC47670040DAFD /* ViewSearchDoc.swift in Sources */,
+				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
