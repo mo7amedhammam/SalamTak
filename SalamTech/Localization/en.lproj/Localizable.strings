@@ -69,8 +69,8 @@
 "CompeleteProfile_Screen_Next_Button" = "Next";
 "CompeleteProfile_Screen_Previos_Button" = "Previous";
 "Certificates_Screen_title" = "Complete Profile";
-"Certificates_Screen_subtitle" = "Doctor Certificates";
-"Certificates_Screen_secondSubtitle" = "Legal document";
+"Certificates_Screen_subtitle" = "Medical State";
+"Certificates_Screen_secondSubtitle" = "Family Member";
 "Certificates_Screen_addNewCert_Button" = "Add new certificate";
 "Certificates_Screen_addNewCert_title1" = "Your title will be here...";
 "Certificates_Screen_addNewCert_title2" = "Title of certificate(*)";

@@ -13,7 +13,8 @@ class ViewModelMedicineAllergy: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelSubject = PassthroughSubject<ModelMedicineAllergy, Error>()
     private var cancellables: Set<AnyCancellable> = []
-    
+    @Published  var Id : [Int] = []
+    @Published  var Name: [String] = []
 
     @Published private(set) var publishedCountryModel: [MedicineAllergy] = []
     @Published var isLoading = false
@@ -59,7 +60,7 @@ class ViewModelMedicineAllergy: ObservableObject {
     
   
     
-    func startFetchBloodTypes() {
+    func startFetchMedicineAllergy() {
 
         if Helper.isConnectedToNetwork(){
             GetMedicineAllergyApiService.GetMedicineAllergy(
