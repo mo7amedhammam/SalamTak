@@ -37,26 +37,15 @@ class VMSearchDoc: ObservableObject {
     @Published var MedicalExaminationTypeId                     :Int?
 
     
-    
-    
-    @Published var TimeFrom:Date = Date()                  // date but needs "05:30"
-    @Published var TimeTo:Date = Date()                    // "08:30"
-    
-    @Published var DurationMedicalExaminationId:Int?
-    @Published var Inactive:Bool?
- 
-    @Published var DurationValue:Int?
-    
     //update period
-        @Published var updateSchedualId:Int?
-        @Published var updateDayId:Int?
-        @Published var updateTimeFrom:Date = Date()                           // "05:30"
-        @Published var updateTimeTo:Date = Date()                             // "08:30"
-        @Published var updateFees:String = ""
-        @Published var updateDurationMedicalExaminationId:Int?
-        @Published var updateDurationMedicalExaminationValue:Int?
-       
-        @Published var updateInactive:Bool?
+//        @Published var updateSchedualId:Int?
+//        @Published var updateDayId:Int?
+//        @Published var updateTimeFrom:Date = Date()                           // "05:30"
+//        @Published var updateTimeTo:Date = Date()                             // "08:30"
+//        @Published var updateFees:String = ""
+//        @Published var updateDurationMedicalExaminationId:Int?
+//        @Published var updateDurationMedicalExaminationValue:Int?
+//        @Published var updateInactive:Bool?
 
     //------- output
     @Published var isValid = false
@@ -164,7 +153,7 @@ class VMSearchDoc: ObservableObject {
                 self.isLoading = false
                 self.isError = true
                 print(model?.message ?? "")
-                self.errorMsg = err ?? "cannot get servise id "
+                self.errorMsg = err ?? "cannot get Doctors"
             }
         })
             self.isLoading = false
