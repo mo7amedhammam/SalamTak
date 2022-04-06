@@ -172,7 +172,7 @@ class ViewModelCreateMedicalProfile: ObservableObject {
                 print(model?.message)
                 self.isLoading = false
                 self.isError = true
-                self.errorMsg = model?.message ?? ""
+                self.errorMsg = model?.message ?? "Please Compelete Your Data"
             }
 //print(err ?? "")
         })

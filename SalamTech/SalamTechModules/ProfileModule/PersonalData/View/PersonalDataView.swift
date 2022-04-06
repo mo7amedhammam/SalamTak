@@ -21,7 +21,7 @@ struct PersonalDataView: View {
     @State var offset = CGSize.zero
     @FocusState private var isfocused : Bool
     let screenWidth = UIScreen.main.bounds.size.width - 55
-    @State var isValid = true
+    @State var isValid = false
     @State var ShowingMap = false
     @State var ShowNationality = false
     @State var ShowCity = false
@@ -261,7 +261,7 @@ struct PersonalDataView: View {
                                             }
                                         }
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $patientCreatedVM.EmergencyContact, title: "Emergency Contact")
+                                        InputTextField(text: $patientCreatedVM.EmergencyContact, title: "Emergency Contact (Required)")
                                             .focused($isfocused)
                                             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                             .autocapitalization(.none)
@@ -511,6 +511,9 @@ struct PersonalDataView: View {
                     Spacer()
                     Button("Done"){
                         isfocused = false
+                        if patientCreatedVM.FirstName != "" && patientCreatedVM.FirstNameAr != "" && patientCreatedVM.MiddelName != "" && patientCreatedVM.MiddelNameAr != "" && patientCreatedVM.FamilyName != "" && patientCreatedVM.FamilyNameAr != "" &&  patientCreatedVM.NationalityId != 0 && patientCreatedVM.CityId != 0 && patientCreatedVM.AreaId != 0 && patientCreatedVM.EmergencyContact != "" && patientCreatedVM.OccupationId != 0 && patientCreatedVM.Address != "" && patientCreatedVM.GenderId != 0{
+                            isValid = true
+                        }
                     }
                 }
             }

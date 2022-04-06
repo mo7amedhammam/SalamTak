@@ -22,7 +22,7 @@
 "SignIn_Button" = "Sign In";
 "SignUp_Button" = "Sign Up";
 "SignIn_Screen_title" = "Sign In";
-"SignIn_Screen_phoneNumber" = "Enter your phone number";
+"SignIn_Screen_phoneNumber" = "Enter your phone Number ";
 "birthdate" = "Choose Your Date of Birth";
 "SignIn_Screen_password" = "Enter your password";
 "SignIn_Screen_forgetPassword" = "Forgot Password?";
@@ -30,13 +30,14 @@
 "Reset_Screen_title" = "Reset Password";
 "Reset_Screen_email" = "Enter your email";
 "Reset_Screen_confirmEmail_Button" = "Confirm Email";
+"ChangePass_Screen_title" = "Change Password";
 "ChangePass_Screen_enter_pass" = "Enter your new password";
 "ChangePass_Screen_confirm_pass" = "confirm your password";
 "ChangePass_Screen_confirm_pass_button" = "Confirm Password";
 "SignUp_Screen_title" = "Sign Up";
 "SignUp_Screen_enterfullName" = "Enter Your Full Name";
 "SignUp_Screen_enterEmail" = "Enter Your Email";
-"SignUp_Screen_enterPhone" = "Enter Your Phone Number";
+"SignUp_Screen_enterPhone" = "Enter Your Phone Number ";
 "SignUp_Screen_enterPassword" = "Enter Your Password";
 "SignUp_Screen_enterconfirmPassword" = "Confirm Your Password";
 "SignUp_Screen_haveAccount" = "Already Have Account?";
