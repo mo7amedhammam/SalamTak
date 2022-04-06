@@ -194,7 +194,7 @@ class ViewModelCreatePatientProfile: ObservableObject {
             }else{
                 self.isLoading = false
                 self.isError = true
-                self.errorMsg = err ?? "You must type your name"
+                self.errorMsg = err ?? "You Must Compelete Your Data"
             }
 //print(err ?? "")
         })

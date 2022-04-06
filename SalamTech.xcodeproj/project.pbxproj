@@ -63,6 +63,13 @@
 		0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586D3327F5B7BC00944F21 /* TabBarView.swift */; };
 		0E62C54827FC573000655D1A /* ChooseFoodAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */; };
 		0E62C54A27FC603000655D1A /* ChooseMedicineAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */; };
+		0E62C55027FD93D100655D1A /* ModelResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C54F27FD93D100655D1A /* ModelResetPassword.swift */; };
+		0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55127FD93DD00655D1A /* ModelUpdatePassword.swift */; };
+		0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55327FD941A00655D1A /* ViewModelResetPassword.swift */; };
+		0E62C55627FD942600655D1A /* ViewModelUpdatePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55527FD942600655D1A /* ViewModelUpdatePassword.swift */; };
+		0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55727FD943D00655D1A /* ResetPasswordView.swift */; };
+		0E62C55A27FD945200655D1A /* PhoneVerficationResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */; };
+		0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55B27FD946500655D1A /* ChangePasswordView.swift */; };
 		0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */; };
 		0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */; };
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
@@ -196,6 +203,13 @@
 		0E586D3327F5B7BC00944F21 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFoodAllergy.swift; sourceTree = "<group>"; };
 		0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMedicineAllergy.swift; sourceTree = "<group>"; };
+		0E62C54F27FD93D100655D1A /* ModelResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelResetPassword.swift; sourceTree = "<group>"; };
+		0E62C55127FD93DD00655D1A /* ModelUpdatePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUpdatePassword.swift; sourceTree = "<group>"; };
+		0E62C55327FD941A00655D1A /* ViewModelResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelResetPassword.swift; sourceTree = "<group>"; };
+		0E62C55527FD942600655D1A /* ViewModelUpdatePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelUpdatePassword.swift; sourceTree = "<group>"; };
+		0E62C55727FD943D00655D1A /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerficationResetView.swift; sourceTree = "<group>"; };
+		0E62C55B27FD946500655D1A /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAppBarView.swift; sourceTree = "<group>"; };
 		0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
@@ -378,6 +392,7 @@
 		00C8BF7227F32B2700571078 /* SalamTechModules */ = {
 			isa = PBXGroup;
 			children = (
+				0E62C54B27FD936E00655D1A /* ResetPasswordModule */,
 				0E586D0827F5B4DE00944F21 /* ProfileModule */,
 				0E586D0327F5B42300944F21 /* HomeModule */,
 				00C8BF7627F32B8D00571078 /* LoginModule */,
@@ -691,6 +706,44 @@
 				0E586D3327F5B7BC00944F21 /* TabBarView.swift */,
 			);
 			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		0E62C54B27FD936E00655D1A /* ResetPasswordModule */ = {
+			isa = PBXGroup;
+			children = (
+				0E62C54E27FD939500655D1A /* Model */,
+				0E62C54D27FD937D00655D1A /* ViewModel */,
+				0E62C54C27FD937700655D1A /* View */,
+			);
+			path = ResetPasswordModule;
+			sourceTree = "<group>";
+		};
+		0E62C54C27FD937700655D1A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E62C55727FD943D00655D1A /* ResetPasswordView.swift */,
+				0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */,
+				0E62C55B27FD946500655D1A /* ChangePasswordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E62C54D27FD937D00655D1A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0E62C55327FD941A00655D1A /* ViewModelResetPassword.swift */,
+				0E62C55527FD942600655D1A /* ViewModelUpdatePassword.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E62C54E27FD939500655D1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E62C54F27FD93D100655D1A /* ModelResetPassword.swift */,
+				0E62C55127FD93DD00655D1A /* ModelUpdatePassword.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
@@ -1221,6 +1274,7 @@
 				0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */,
 				0E9E0DB627FAF26B00893ABF /* LocationViewModel.swift in Sources */,
 				0E26EA6E27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift in Sources */,
+				0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
@@ -1231,6 +1285,7 @@
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
 				C800F83227FB585B00482151 /* GetSpecialistAPI.swift in Sources */,
 				C800F83727FB585B00482151 /* CountryView.swift in Sources */,
+				0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */,
 				0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
 				0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */,
@@ -1252,6 +1307,7 @@
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
 				0E62C54827FC573000655D1A /* ChooseFoodAllergy.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
+				0E62C55A27FD945200655D1A /* PhoneVerficationResetView.swift in Sources */,
 				C800F82B27FB585B00482151 /* ViewModelBooking.swift in Sources */,
 				C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */,
 				0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */,
@@ -1264,8 +1320,12 @@
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
+				0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */,
+				0E62C55627FD942600655D1A /* ViewModelUpdatePassword.swift in Sources */,
+				C8B3E17227FC47670040DAFD /* ViewSearchDoc.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
+				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
@@ -1274,6 +1334,7 @@
 				0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
 				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
+				0E62C55027FD93D100655D1A /* ModelResetPassword.swift in Sources */,
 				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
@@ -1460,6 +1521,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Use Media to pick image";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use Camera in Upload";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Use Location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1492,6 +1556,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Use Media to pick image";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Use Camera in Upload";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Use Location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
