@@ -255,8 +255,8 @@ struct ViewSearchDoc: View {
             }
             .listStyle(.plain)
 
-            .padding(.top,-20)
-            .background(Color.red)
+            .padding(.top,0)
+//            .background(Color.red)
 
 
             Spacer()
