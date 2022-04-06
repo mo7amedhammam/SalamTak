@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
+    @StateObject var searchDoc = VMSearchDoc()
 
 
     @State private var image = UIImage()
@@ -217,7 +218,13 @@ struct ViewSearchDoc: View {
                             Image("exCall")
                             Spacer()
                             Button(action: {
-                            print("Book")
+//                            print("Book")
+                                searchDoc.DoctorName = "medo"
+                                searchDoc.FetchDoctors()
+                                print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
+                                print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
+                                
+                                
                             }, label: {
                                 HStack{
 
@@ -225,8 +232,6 @@ struct ViewSearchDoc: View {
                                         .foregroundColor(.white)
                                         .font(Font.SalamtechFonts.Bold14)
                                         .padding([.leading,.trailing],40)
-
-                                    
                             }
                             }
                             )
@@ -276,6 +281,11 @@ struct ViewSearchDoc: View {
 
         }
         .onAppear(perform: {
+            searchDoc.FetchDoctors()
+
+            print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name ")
+            print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address ")
+
         })
 
     }
