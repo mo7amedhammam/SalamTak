@@ -318,7 +318,7 @@ final class ApiService{
         
         let url = URLs().CreateUser
         let header:HTTPHeaders = ["Content-Type":"application/json" , "Accept":"application/json"]
-        let parameters : [String : Any] = ["Name" : Name ,"Email" : Email ,"Phone" : Phone ,"Password" : Password , "UserTypeId" : 2]
+        let parameters : [String : Any] = ["Name" : Name ,"Email" : Email ,"Phone" : Phone ,"Password" : Password , "UserTypeId" : 3]
         
         AF.request(url, method: .post,parameters: parameters ,encoding: JSONEncoding.default ,headers: header )
             .validate(statusCode: 200...500)
@@ -553,8 +553,184 @@ final class ApiService{
         
     }
     
+//    static func CreatePatientMedicalState( passedparameters : [String:Any],
+//                                     completion: @escaping ( Bool , ModelCreateMedicalState?, String?) -> ()) {
+//
+//        let url = URLs().PatientCreateMedicalInfo
+//        let parameters : [String : Any] = passedparameters
+//        let header:HTTPHeaders = ["Content-Type":"application/json" ,
+//                                  "Authorization":Helper.getAccessToken()]
+//
+//        AF.upload(multipartFormData: { (multipartFormData) in
+//
+//            for (key , value) in parameters{
+//
+//                if let temp = value as? String {
+//                    multipartFormData.append(temp.data(using: .utf8)!, withName: key)
+//                }
+//                if let temp = value as? Int {
+//                    multipartFormData.append("\(temp)".data(using: .utf8)!, withName: key)
+//                }
+//                if let temp = value as? NSArray{
+//                    temp.forEach({ element in
+//                        let keyObj = key + "[]"
+//                        if let string = element as? String {
+//                            multipartFormData.append(string.data(using: .utf8)!, withName: keyObj)
+//                        } else
+//                        if let num = element as? Int {
+//                            let value = "\(num)"
+//                            multipartFormData.append(value.data(using: .utf8)!, withName: keyObj)
+//                        }
+//                    })
+//                }
+//            }
+////                if let data = profileImage?.jpegData(compressionQuality: 0.8), profileImage != nil {
+////                    //be carefull and put file name in withName parmeter
+////                    multipartFormData.append(data, withName: "profileImage" , fileName: "file.jpeg", mimeType: "image/jpeg")
+////                    //                    multipartFormData.append(data , withName: "profileImage", fileName: "\(Date.init().timeIntervalSince1970).png", mimeType: "image/png")
+////
+////                    // ---- To upload video ----
+////                    //                    multipartFormData.append(url, withName: "upload_data" , fileName: "movie.mp4", mimeType: "video/mp4")
+////
+////                }else{ print("cant get image data")
+////                    completion(false, nil,"Please Add Profile Image")
+////                }
+//
+//
+//        },     to: url,
+//                  method: .post,
+//                  headers: header
+//        )
+//
+//
+//            .uploadProgress(queue: .main, closure: { progress in
+//                //Current upload progress of file
+//                print("Upload Progress: \(progress.fractionCompleted)")
+//            })
+//            .validate(statusCode: 200...500)
+//            .responseDecodable(completionHandler: { ( response : DataResponse<ModelCreateMedicalState?, AFError>) in
+//                ////////////////////////////////
+////                print(response)
+//                switch response.response?.statusCode {
+//                case 200 : print("Success Token")
+//                switch response.result {
+//                    //--------------
+//                case .failure(let error):
+//                    completion(false, nil, error.localizedDescription)
+//
+//                case .success(let model):
+//                    guard model != nil else {return}
+//                    if model?.success == true {
+//                        completion(true, model , model?.message ?? "")
+//                        Helper.setUserData(Id: model?.data?.id ?? 0, PhoneNumber: "default phone ")
+//
+//                    } else{
+//                        print(model?.message ?? "")
+//                        completion(false, model, model?.message ?? "Fill Missing Data")
+//                    }
+//
+//                    //-------------
+//
+//                }
+////
+//            case 401 : print("The token expired (unauthorized)")
+//                    //login again
+//                    completion(false, nil,"login again")
+//
+//            case 400 : print("bad request create profile case 400")
+//
+//
+//                    switch response.result {
+//                          //--------------
+//                      case .failure(let error):
+//                          print(error.localizedDescription)
+//                          completion(false, nil, error.localizedDescription)
+//
+//                      case .success(let model):
+//                          guard model != nil else {return}
+//                      completion(false, model , model?.message)
+//
+//
+//                          //-------------
+//                      }
+//
+//
+//            default: return
+//            }
+//                ///////////////////////////
+//            })
+//
+//    }
     
-//    
+    
+//
+
+    static func CreatePatientMedicalState( passedparameters : [String:Any],completion: @escaping ( Bool , ModelCreateMedicalState?, String?) -> ()) {
+        
+        let url = URLs().PatientCreateMedicalInfo
+        let header:HTTPHeaders = ["Content-Type":"application/json" , "Accept":"application/json","Authorization":Helper.getAccessToken()]
+        let parameters : [String : Any] = passedparameters
+        
+        
+        AF.request(url, method: .post,parameters: parameters ,encoding: JSONEncoding.default ,headers: header )
+            .validate(statusCode: 200...500)
+            .responseDecodable(completionHandler: { ( response : DataResponse<ModelCreateMedicalState?, AFError>) in
+            ////////////////////////////////
+                switch response.response?.statusCode {
+                case 200 : print("Success Tokennnn")
+            switch response.result {
+                //--------------
+            case .failure(let error):
+                print(error)
+                completion(false, nil, error.localizedDescription)
+                
+            case .success(let model):
+                guard model != nil else {return}
+                if model?.success == true{
+                    
+                    completion(true, model , nil)
+                    print("user created from api servise")
+                    
+//                    Helper.setAccessToken(access_token: model?.Data?.Token ?? "")
+//                    Helper.setUserimage(userImage: URLs.BaseUrl+"\(model?.Data?.Image ?? "")")
+
+                    
+                } else{
+                    completion(false, nil, model?.message)
+                }
+                //-------------
+            }
+            case 401 : print("The token expired (unauthorized)")
+            case 400 : print("bad request")
+                    switch response.result {
+                          //--------------
+                      case .failure(let error):
+                          print(error.localizedDescription)
+                          completion(false, nil, error.localizedDescription)
+                          
+                      case .success(let model):
+                          guard model != nil else {return}
+                      completion(false, model , model?.message)
+      //                print(model?.message ?? "")
+      //                    if model?.success == false{
+      //
+      //                        completion(true, model , model?.message)
+      //                        print(model?.message ?? "")
+      //                        print("clinic schedual created from api servise")
+      //                        //                      Helper.setAccessToken(access_token: model?.Data?.token ?? "")
+      //
+      //                    } else{
+      //                        completion(false, nil, model?.message)
+      //                    }
+                          //-------------
+                      }
+
+            default: return
+            }
+            ///////////////////////////
+        })
+        
+    }
 //    
 //    
 //    //MARK: ------- Get doctor Specialist -----

@@ -66,3 +66,81 @@ struct InputTextFieldInfoArabic: View {
             .shadow(color: Color.black.opacity(0.099), radius: 3)
     }
 }
+
+struct MedicalTextFieldInfo: View {
+    @Binding var text: String
+    @State private var isActive = false
+    var title : String
+    let screenWidth = UIScreen.main.bounds.size.width - 55
+    var body: some View {
+        ZStack (alignment:.leading){
+            
+            HStack{
+                ZStack(alignment:.leading){
+                    Text(title)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                        .offset(y:  -20)
+                        .scaleEffect( 0.8, anchor: .leading)
+                    
+                    
+                    TextField("--/--",text:$text)
+                        .disabled(isActive)
+                        .textInputAutocapitalization(.never)
+                }
+                
+                Spacer()
+                Text("Normal")
+                    .font(.caption)
+                    .foregroundColor(isActive ? Color("blueColor") : Color.gray)
+                Toggle(isOn: $isActive) {
+                }
+                .toggleStyle(SwitchToggleStyle(tint: Color("blueColor")))
+                .frame(width: 70)
+                .padding(.trailing,10)
+            }
+            
+        }
+        .animation(.default)
+        .frame(width: screenWidth , height: 25)
+        .font(.system(size: 13))
+        .padding(12)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        ).foregroundColor(Color("blueColor"))
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+    }
+}
+
+struct InputTextFieldMedicalInfo: View {
+    @Binding var text: String
+    var title : String
+    let screenWidth = UIScreen.main.bounds.size.width - 120
+    var body: some View {
+        ZStack (alignment:.leading){
+            
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+            
+            
+            TextField("",text:$text)
+                .textInputAutocapitalization(.never)
+            
+        }
+        .animation(.default)
+        .frame(width: screenWidth / 2, height: 25)
+        .font(.system(size: 13))
+        .padding(12)
+        .disableAutocorrection(true)
+        .background(
+            Color.white
+        ).foregroundColor(Color("blueColor"))
+            .cornerRadius(5)
+            .shadow(color: Color.black.opacity(0.099), radius: 3)
+    }
+}

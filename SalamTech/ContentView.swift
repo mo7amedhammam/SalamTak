@@ -12,9 +12,10 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
         ZStack{
-//            OnBoardingView()
-            TabBarView()
+//            MedicalStateView()
+//            TabBarView()
 //            PersonalDataView()
+            OnBoardingView()
             
         }
         .onAppear(perform: {
