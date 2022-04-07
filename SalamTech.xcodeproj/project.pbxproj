@@ -71,6 +71,9 @@
 		0E62C55A27FD945200655D1A /* PhoneVerficationResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */; };
 		0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55B27FD946500655D1A /* ChangePasswordView.swift */; };
 		0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD8F27FEF04400327EBF /* LanguageView.swift */; };
+		0E68CD9527FEF69D00327EBF /* PatientProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD9427FEF69D00327EBF /* PatientProfile.swift */; };
+		0E68CD9B27FEF72700327EBF /* UpdateMedicalStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD9A27FEF72700327EBF /* UpdateMedicalStateView.swift */; };
+		0E68CD9D27FEF73900327EBF /* UpdatePersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD9C27FEF73900327EBF /* UpdatePersonalDataView.swift */; };
 		0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */; };
 		0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */; };
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
@@ -212,6 +215,9 @@
 		0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerficationResetView.swift; sourceTree = "<group>"; };
 		0E62C55B27FD946500655D1A /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		0E68CD8F27FEF04400327EBF /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
+		0E68CD9427FEF69D00327EBF /* PatientProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientProfile.swift; sourceTree = "<group>"; };
+		0E68CD9A27FEF72700327EBF /* UpdateMedicalStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMedicalStateView.swift; sourceTree = "<group>"; };
+		0E68CD9C27FEF73900327EBF /* UpdatePersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonalDataView.swift; sourceTree = "<group>"; };
 		0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAppBarView.swift; sourceTree = "<group>"; };
 		0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
@@ -589,6 +595,7 @@
 		0E586D0727F5B49E00944F21 /* MoreScreen */ = {
 			isa = PBXGroup;
 			children = (
+				0E68CD9227FEF67100327EBF /* UpdateProfilemodule */,
 				0E586D1D27F5B68A00944F21 /* View */,
 			);
 			path = MoreScreen;
@@ -747,6 +754,56 @@
 				0E62C55127FD93DD00655D1A /* ModelUpdatePassword.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0E68CD9227FEF67100327EBF /* UpdateProfilemodule */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CD9727FEF6EE00327EBF /* UpdateMedicalState */,
+				0E68CD9627FEF6E300327EBF /* UpdatePersonalData */,
+				0E68CD9327FEF68300327EBF /* PatientProfle */,
+			);
+			path = UpdateProfilemodule;
+			sourceTree = "<group>";
+		};
+		0E68CD9327FEF68300327EBF /* PatientProfle */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CD9427FEF69D00327EBF /* PatientProfile.swift */,
+			);
+			path = PatientProfle;
+			sourceTree = "<group>";
+		};
+		0E68CD9627FEF6E300327EBF /* UpdatePersonalData */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CD9927FEF70E00327EBF /* View */,
+			);
+			path = UpdatePersonalData;
+			sourceTree = "<group>";
+		};
+		0E68CD9727FEF6EE00327EBF /* UpdateMedicalState */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CD9827FEF70800327EBF /* View */,
+			);
+			path = UpdateMedicalState;
+			sourceTree = "<group>";
+		};
+		0E68CD9827FEF70800327EBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CD9A27FEF72700327EBF /* UpdateMedicalStateView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0E68CD9927FEF70E00327EBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CD9C27FEF73900327EBF /* UpdatePersonalDataView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
@@ -1309,12 +1366,14 @@
 				0E26EA7027FB2F1F00E3D9B8 /* ModelBloodType.swift in Sources */,
 				C800F83827FB585B00482151 /* BookingApiService.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
+				0E68CD9527FEF69D00327EBF /* PatientProfile.swift in Sources */,
 				0E62C54827FC573000655D1A /* ChooseFoodAllergy.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
 				0E62C55A27FD945200655D1A /* PhoneVerficationResetView.swift in Sources */,
 				C800F82B27FB585B00482151 /* ViewModelBooking.swift in Sources */,
 				C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */,
 				0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */,
+				0E68CD9B27FEF72700327EBF /* UpdateMedicalStateView.swift in Sources */,
 				0E9E0DAE27FAEF2D00893ABF /* DateOfBirthView.swift in Sources */,
 				C800F82F27FB585B00482151 /* ServicesView.swift in Sources */,
 				0E586D1A27F5B66800944F21 /* MedicalStateView.swift in Sources */,
@@ -1337,6 +1396,7 @@
 				0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
 				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
+				0E68CD9D27FEF73900327EBF /* UpdatePersonalDataView.swift in Sources */,
 				0E62C55027FD93D100655D1A /* ModelResetPassword.swift in Sources */,
 				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,

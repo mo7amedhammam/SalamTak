@@ -8,7 +8,7 @@ import SwiftUI
 
 struct MoreView: View {
     @State var islogout:Bool = false
-    @State var goingToDoctorUpdate = false
+    @State var goingToPatientUpdate = false
     @State var goingToResetPassword = false
     @State var goingToNew = false
     
@@ -68,8 +68,8 @@ struct MoreView: View {
                 ScrollView( showsIndicators: false){
                     VStack(alignment: .leading){
                         Button(action: {
-                            self.goingToDoctorUpdate.toggle()
-                            print(goingToDoctorUpdate)
+                            self.goingToPatientUpdate.toggle()
+                            print(goingToPatientUpdate)
                         }, label: {
                             HStack(spacing: 10){
                                 Image(systemName: "person.circle")
@@ -299,8 +299,8 @@ struct MoreView: View {
        
 //        NavigationLink(destination: UpdateDoctorView(),isActive:$goingToDoctorUpdate , label: {
 //        })
-//        NavigationLink(destination: DoctorProfile(),isActive:$goingToDoctorUpdate , label: {
-//        })
+        NavigationLink(destination: PatientProfile(),isActive:$goingToPatientUpdate , label: {
+        })
 //        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive:$goingToResetPassword , label: {
 //        })
 //        NavigationLink(destination: ChangePasswordView2(ispresented: .constant(false)),isActive:$goingToResetPassword , label: {

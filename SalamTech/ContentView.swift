@@ -15,13 +15,14 @@ struct ContentView: View {
 //            MedicalStateView()
 //            TabBarView()
 //            PersonalDataView()
-            OnBoardingView()
+//            OnBoardingView()
+            PatientProfile()
             
         }
-//        .onAppear(perform: {
-//            Helper.setLanguage(currentLanguage: "en")
-//            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjE3NTZiMWY0LTEwNmItNDUzYy04MTc1LWI3MGM1MjM0ZjBjMSIsImV4cCI6MTY0OTMyODIwMSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.gHe41owhJ8R8A6gALhkwef0AM2S9lDUyVUgq1LEuLOk")
-//        })
+        .onAppear(perform: {
+            Helper.setLanguage(currentLanguage: "en")
+            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjE3NTZiMWY0LTEwNmItNDUzYy04MTc1LWI3MGM1MjM0ZjBjMSIsImV4cCI6MTY0OTMyODIwMSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.gHe41owhJ8R8A6gALhkwef0AM2S9lDUyVUgq1LEuLOk")
+        })
 
         .onChange(of: scenePhase, perform: { newPhase in
                 if newPhase == .active {
