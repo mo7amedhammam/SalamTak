@@ -24,36 +24,26 @@ class VMSearchDoc: ObservableObject {
    
     // ------- input
 
-    @Published var MaxResultCount                            :Int?
-    @Published var SkipCount                               :Int?
+    @Published var MaxResultCount                            :Int = 10
+    @Published var SkipCount                               :Int = 0
+    @Published var SpecialistId                               :Int = 2
+    @Published var MedicalExaminationTypeId                     :Int = 2
     @Published var DoctorName                           :String?
-    @Published var SpecialistId                               :Int?
     @Published var CityId                               :Int?
     @Published var AreaId                               :Int?
     @Published var GenderId                               :Int?
     @Published var Fees                                     :String = ""
     @Published var SeniortyLevelId                               :Int?
     @Published var SubSpecialistId                               :[Int]?
-    @Published var MedicalExaminationTypeId                     :Int?
 
     
-    //update period
-//        @Published var updateSchedualId:Int?
-//        @Published var updateDayId:Int?
-//        @Published var updateTimeFrom:Date = Date()                           // "05:30"
-//        @Published var updateTimeTo:Date = Date()                             // "08:30"
-//        @Published var updateFees:String = ""
-//        @Published var updateDurationMedicalExaminationId:Int?
-//        @Published var updateDurationMedicalExaminationValue:Int?
-//        @Published var updateInactive:Bool?
+
 
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
     @Published var publishedModelSearchDoc: [Doc]?
-//    @Published var publishedModelSchedualByServiseDayId: [SchedualByServiseDayId] = []
-//    @Published var publishedCreatedSchedualModel: ModelCreateServiceById?
-//    @Published var publishedUpdatedSchedualModel: ModelUpdatedClinicSchedual?
+
 
 
     @Published var isLoading:Bool?
@@ -109,11 +99,12 @@ class VMSearchDoc: ObservableObject {
     func FetchDoctors() {
         var Parameters : [String:Any] = [
         // required
-            "MaxResultCount": 10,
-            "SkipCount":0,
-            "SpecialistId":2,
-            "MedicalExaminationTypeId":2
+            "MaxResultCount": MaxResultCount ,
+            "SkipCount":SkipCount,
+            "SpecialistId":SpecialistId ,
+            "MedicalExaminationTypeId":MedicalExaminationTypeId
     ]
+        // optional
         if DoctorName != ""{
             Parameters["DoctorName"] = DoctorName
         }

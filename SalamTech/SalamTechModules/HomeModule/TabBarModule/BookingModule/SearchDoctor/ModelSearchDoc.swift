@@ -37,24 +37,31 @@ struct ModelDoc:Codable{
 struct Doc: Codable, Identifiable , Hashable{
     
     var id, SumRate, Rate, NumVisites, WaitingTime: Int?
-    var Fees:Double?
-    var DoctorName, SpecialistName, SeniortyLevelName, ClinicAddress, Image: String?
+    var FeesFrom, FeesTo :Double?
+    var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image: String?
     var SubSpecialistName: [String]?
+//        var MedicalExamationTypeImage: [String]?
    
   
     enum CodingKeys: String, CodingKey {
         case id = "DoctorId"
-        case Fees = "Fees"
         case SumRate = "SumRate"
         case Rate = "Rate"
         case NumVisites = "NumVisites"
         case WaitingTime = "WaitingTime"
+        
+        case FeesFrom = "FeesFrom"
+        case FeesTo = "FeesTo"
+        
         case DoctorName = "DoctorName"
         case SpecialistName = "SpecialistName"
         case SeniortyLevelName = "SeniortyLevelName"
+        case ClinicName = "ClinicName"
         case ClinicAddress = "ClinicAddress"
         case Image = "Image"
+        
         case SubSpecialistName = "SubSpecialistName"
+//        case MedicalExamationTypeImage = "MedicalExamationTypeImage"
 
         
     }

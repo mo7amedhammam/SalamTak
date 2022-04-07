@@ -11,13 +11,15 @@ import SwiftUI
 
 struct SpecialityView: View {
     @StateObject var specialityvm = ViewModelSpecialist()
-    
+    @StateObject var searchDoc = VMSearchDoc()
+
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
     @State var gotocountry = false
-
     
+    @State var selectedTypeId : Int?
+    @State var selectedSpecialityId : Int?
     var body: some View {
         ZStack{
         VStack{
@@ -31,6 +33,7 @@ struct SpecialityView: View {
 
                 ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
                             Button(action: {
+                                selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
                                 gotocountry=true
 
                             }, label: {
@@ -123,7 +126,7 @@ struct SpecialityView: View {
 struct SpecialityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            SpecialityView()
+            SpecialityView (selectedTypeId: 1515151)
         }.navigationBarHidden(true)
     }
 }

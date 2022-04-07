@@ -12,6 +12,7 @@ import SwiftUI
 
 struct CountryView: View {
     @StateObject var NationalityVM = ViewModelCountries()
+    @StateObject var searchDoc = VMSearchDoc()
 
     @State private var image = UIImage()
     @State var loginAgain = false

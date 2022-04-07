@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CityView: View {
     @StateObject var CitiesVM = ViewModelGetCities()
+    @StateObject var searchDoc = VMSearchDoc()
 
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    var CountryId : Int
+    var CountryId : Int?
 
     @State var gotoSearchdoctor = false
     @State var selectedCityId = 0
@@ -59,6 +60,7 @@ struct CityView: View {
             
                 ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
                             Button(action: {
+                                searchDoc.CityId = city.Id ?? 5455454545
                                 gotoSearchdoctor = true
                             }, label: {
                                 

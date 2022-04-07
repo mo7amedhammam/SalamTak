@@ -20,7 +20,7 @@ struct ContentView: View {
         }
         .onAppear(perform: {
             Helper.setLanguage(currentLanguage: "en")
-            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjE3NTZiMWY0LTEwNmItNDUzYy04MTc1LWI3MGM1MjM0ZjBjMSIsImV4cCI6MTY0OTMyODIwMSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.gHe41owhJ8R8A6gALhkwef0AM2S9lDUyVUgq1LEuLOk")
+            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjllZmM5Zjg0LWNkYzYtNDEwMC05MjMyLTE2ZmZiYzUxMjMyMiIsImV4cCI6MTY0OTQ5NzE3NSwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.Z5VrJflF0Rts3FBuv10y8BCmdY6vdvkHy78GHR3cC_I")
         })
 
         .onChange(of: scenePhase, perform: { newPhase in
