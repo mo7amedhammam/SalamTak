@@ -70,6 +70,7 @@
 		0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55727FD943D00655D1A /* ResetPasswordView.swift */; };
 		0E62C55A27FD945200655D1A /* PhoneVerficationResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */; };
 		0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E62C55B27FD946500655D1A /* ChangePasswordView.swift */; };
+		0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD8F27FEF04400327EBF /* LanguageView.swift */; };
 		0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */; };
 		0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */; };
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
@@ -210,6 +211,7 @@
 		0E62C55727FD943D00655D1A /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		0E62C55927FD945200655D1A /* PhoneVerficationResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerficationResetView.swift; sourceTree = "<group>"; };
 		0E62C55B27FD946500655D1A /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		0E68CD8F27FEF04400327EBF /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAppBarView.swift; sourceTree = "<group>"; };
 		0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */,
 				0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */,
 				0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */,
+				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1270,6 +1273,7 @@
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				C800F82C27FB585B00482151 /* ModelBooking.swift in Sources */,
+				0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */,
 				0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */,
 				0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */,
 				0E9E0DB627FAF26B00893ABF /* LocationViewModel.swift in Sources */,
@@ -1322,7 +1326,6 @@
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
 				0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */,
 				0E62C55627FD942600655D1A /* ViewModelUpdatePassword.swift in Sources */,
-				C8B3E17227FC47670040DAFD /* ViewSearchDoc.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,

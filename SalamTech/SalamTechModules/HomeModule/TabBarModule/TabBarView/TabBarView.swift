@@ -50,7 +50,7 @@ struct TabBarView: View {
                         
 
                         } else if selectedTab == Bar.tabs[2] {
-//                            MoreView()
+                            MoreView()
                         }
                         Spacer()
                         HStack(spacing: 0){
