@@ -63,7 +63,7 @@ class ViewModelLogin: ObservableObject {
             }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 1{
                 self.destination = AnyView(MedicalStateView())
             
-            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 3{
+            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 2{
                 self.destination = AnyView(TabBarView())
             }
         }.store(in: &cancellables)
