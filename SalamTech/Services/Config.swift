@@ -203,7 +203,8 @@ class URLs {
 //static let GetDoctorServiceSchedualByServiceDayId = BaseUrl + "/api/\(language)/DoctorService/GetDoctorServiceSchedualByServiceDayId"
 
 
-
+//search Doctor
+    var DoctorSearch = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/DoctorSearch"
     
     
     

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
+    @StateObject var searchDoc = VMSearchDoc()
 
 
     @State private var image = UIImage()
@@ -90,7 +91,7 @@ struct ViewSearchDoc: View {
               
 
 //                LazyVStack(spacing:15){
-                    ForEach(0..<5){_ in
+                ForEach(searchDoc.publishedModelSearchDoc ?? []){ Doctor in
                     VStack(alignment:.leading){
                         HStack{
                            Image("logo")
@@ -103,21 +104,21 @@ struct ViewSearchDoc: View {
                             VStack(alignment:.leading){
                                 HStack{
                                     Text("Dr/ ").foregroundColor(.black.opacity(0.7))
-                                    Text("Mohamed hammam").font(Font.SalamtechFonts.Bold18)
+                                    Text(Doctor.DoctorName ?? "" ).font(Font.SalamtechFonts.Bold18)
 
                                 }
                                 
                                 HStack{
-                                    Text("Psychiatry")
+                                    Text(Doctor.SeniortyLevelName ?? "")
                                         .foregroundColor(.gray.opacity(0.7))
                                         .font(Font.SalamtechFonts.Reg14)
-                                    Text(".")
-                                        .foregroundColor(.gray.opacity(0.8))
-                                        .font(Font.system(size:30, design: .serif))
-                                        .fontWeight(.bold).offset(y:-8)
-                                    Text("Fellow of Surgeons R...")
-                                        .foregroundColor(.gray.opacity(0.7))
-                                        .font(Font.SalamtechFonts.Reg14)
+//                                    Text(".")
+//                                        .foregroundColor(.gray.opacity(0.8))
+//                                        .font(Font.system(size:30, design: .serif))
+//                                        .fontWeight(.bold).offset(y:-8)
+//                                    Text("Fellow of Surgeons R...")
+//                                        .foregroundColor(.gray.opacity(0.7))
+//                                        .font(Font.SalamtechFonts.Reg14)
                                 }
                                 HStack{
                                     ForEach(0..<5){_ in
@@ -136,7 +137,7 @@ struct ViewSearchDoc: View {
 //                                    Image(systemName:"star")
 //                                        .foregroundColor(.yellow)
 //
-                                    Text("( 224 Patients )")
+                                    Text("( \(Doctor.NumVisites ?? 0) Patients )")
                                         .foregroundColor(.black.opacity(0.7))
                                         .font(Font.SalamtechFonts.Reg14)
                                 }
@@ -151,13 +152,13 @@ struct ViewSearchDoc: View {
                         VStack(spacing:0){
                         HStack{
                             Image("doc1")
-                            Text("Dentist")
+                            Text(Doctor.SpecialistName ?? "")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
                             Text("Specialized in ")
                                 .foregroundColor(.secondary)
                                 .font(Font.SalamtechFonts.Reg14)
-                            Text("Endodontics, Cosmetic...")
+                            Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
                             Spacer()
@@ -169,21 +170,20 @@ struct ViewSearchDoc: View {
                                     .foregroundColor(Color("darkGreen"))
                                     .font(Font.SalamtechFonts.Reg14)
                                 Spacer()
-                                
+
                             }
-                            Text("6th of October: 4th district, above KFC")
+                            Text(Doctor.ClinicAddress ?? "")
                                 .foregroundColor(.secondary)
                                 .font(Font.SalamtechFonts.Reg14)
                         }
                         .padding(.leading)
-                        
-
+                            
                         HStack{
                             Image("doc3")
                             Text("Fees:")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
-                            Text("200 to 400 EGP (Upon time & date)")
+                            Text("\( String( Doctor.Fees ?? 0.0)) to 400 EGP (Upon time & date)")
                                 .foregroundColor(.secondary)
                                 .font(Font.SalamtechFonts.Reg14)
                         
@@ -195,7 +195,7 @@ struct ViewSearchDoc: View {
                             Text("Waiting Time:")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
-                            Text("15 Minutes")
+                            Text("\(Doctor.WaitingTime ?? 0) Minutes")
                                 .foregroundColor(.secondary)
                                 .font(Font.SalamtechFonts.Reg14)
                         
@@ -217,7 +217,13 @@ struct ViewSearchDoc: View {
                             Image("exCall")
                             Spacer()
                             Button(action: {
-                            print("Book")
+//                            print("Book")
+//                                searchDoc.DoctorName = "medo"
+                                searchDoc.FetchDoctors()
+                                print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
+                                print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
+                                
+                                
                             }, label: {
                                 HStack{
 
@@ -225,8 +231,6 @@ struct ViewSearchDoc: View {
                                         .foregroundColor(.white)
                                         .font(Font.SalamtechFonts.Bold14)
                                         .padding([.leading,.trailing],40)
-
-                                    
                             }
                             }
                             )
@@ -276,6 +280,11 @@ struct ViewSearchDoc: View {
 
         }
         .onAppear(perform: {
+            searchDoc.FetchDoctors()
+
+            print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name ")
+            print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address ")
+
         })
 
     }
