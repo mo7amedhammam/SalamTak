@@ -34,7 +34,7 @@ struct AppBarView: View {
                     
                     
                 }
-                    .padding(.bottom,-40)
+                    .padding(.bottom,-50)
             )
         
     }

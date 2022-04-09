@@ -13,12 +13,15 @@ struct MedicalStateView: View {
     @State var offset = CGSize.zero
     @FocusState private var isfocused : Bool
     let screenWidth = UIScreen.main.bounds.size.width - 55
-    @State var isValid = true
+    @State var isValid = false
     @State var ShowingMap = false
     @State var ShowBloodType = false
     @State var ShowFoodAllergy = false
     @State var ShowMedicineAllergy = false
     @State var ShowOccupation = false
+    
+    @State var normalPressure = "120"
+    @State var normalSugar = "96"
     
     @StateObject var medicalCreatedVM = ViewModelCreateMedicalProfile()
     @StateObject var locationViewModel = LocationViewModel()
@@ -34,7 +37,7 @@ struct MedicalStateView: View {
                     VStack{
                         ZStack{
                             VStack{
-                                InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "Certificates_Screen_subtitle".localized(language), Nexttext: "Certificates_Screen_secondSubtitle".localized(language),image: "2-3")
+                                InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "Certificates_Screen_subtitle".localized(language),image: "2-3")
                                     .offset(y: -10)
                                     
                                 Spacer().frame(height: 90)
@@ -51,47 +54,55 @@ struct MedicalStateView: View {
                                                 .keyboardType(.numberPad)
                                         }
                                         Spacer().frame(height: 20)
-                                        Button {
-                                            
-                                            withAnimation {
-                                                ShowBloodType.toggle()
-                                                
-                                            }
-                                            
-                                        } label: {
-                                            HStack{
-                                                Text(medicalCreatedVM.BloodTypeName)
-                                                    .foregroundColor(Color("lightGray"))
-                                                
-                                                Spacer()
-                                                Image(systemName: "staroflife.fill")
-                                                    .font(.system(size: 10))
-                                                    .foregroundColor(medicalCreatedVM.BloodTypeName == "" ? Color.red : Color.white)
-                                                Image(systemName: "chevron.forward")
-                                                    .foregroundColor(Color("lightGray"))
-                                            }
-                                            .animation(.default)
-                                            .frame(width: screenWidth, height: 30)
-                                            .font(.system(size: 13))
-                                            .padding(12)
-                                            .disableAutocorrection(true)
-                                            .background(
-                                                Color.white
-                                            ).foregroundColor(Color("blueColor"))
-                                                .cornerRadius(5)
-                                                .shadow(color: Color.black.opacity(0.099), radius: 3)
-                                        }
-                                        MedicalTextFieldInfo(text: $medicalCreatedVM.Pressure, title: "Pressure(MM/HG)")
+                                        
+                                        MedicalTextFieldInfo(text: $medicalCreatedVM.Pressure, text1: $normalPressure, title: "Pressure(MM/HG)")
                                             .focused($isfocused)
                                             .keyboardType(.numberPad)
                                         Spacer().frame(height: 20)
-                                        MedicalTextFieldInfo(text: $medicalCreatedVM.SugarLevel, title: "Sugar Level(MG/DL)")
+                                        MedicalTextFieldInfo(text: $medicalCreatedVM.SugarLevel, text1: $normalSugar, title: "Sugar Level(MG/DL)")
                                             .focused($isfocused)
                                             .keyboardType(.numberPad)
                                         
+                                        Spacer().frame(height: 20)
+                                        VStack{
+                                            Button {
+                                                
+                                                withAnimation {
+                                                    ShowBloodType.toggle()
+                                                    
+                                                }
+                                                
+                                            } label: {
+                                                HStack{
+                                                    Text(medicalCreatedVM.BloodTypeName)
+                                                        .foregroundColor(Color("lightGray"))
+                                                    
+                                                    Spacer()
+                                                    Image(systemName: "staroflife.fill")
+                                                        .font(.system(size: 10))
+                                                        .foregroundColor(medicalCreatedVM.BloodTypeName == "" ? Color.red : Color.white)
+                                                    Image(systemName: "chevron.forward")
+                                                        .foregroundColor(Color("lightGray"))
+                                                }
+                                                .animation(.default)
+                                                .frame(width: screenWidth, height: 30)
+                                                .font(.system(size: 13))
+                                                .padding(12)
+                                                .disableAutocorrection(true)
+                                                .background(
+                                                    Color.white
+                                                ).foregroundColor(Color("blueColor"))
+                                                    .cornerRadius(5)
+                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                            }
+                                            Spacer().frame(height: 20)
+                                        }
                                         VStack{
                                            
                                             Button {
+                                                
+                                                   
+                                                
                                                 withAnimation {
                                                     ShowFoodAllergy.toggle()
                                                 }
@@ -120,6 +131,9 @@ struct MedicalStateView: View {
                                             }
                                             
                                             Button {
+                                                if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientFoodAllergiesDto != [] {
+                                                    isValid = true
+                                                }
                                                 withAnimation {
                                                     ShowMedicineAllergy.toggle()
                                                 }
@@ -245,6 +259,15 @@ struct MedicalStateView: View {
 
 //                                            patientCreatedVM.isLoading = true
 //                                        patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
+                                        
+                                        if medicalCreatedVM.Pressure == "" {
+                                            medicalCreatedVM.Pressure = self.normalPressure
+                                        }
+                                        if medicalCreatedVM.SugarLevel == "" {
+                                            medicalCreatedVM.SugarLevel = self.normalSugar
+                                        }
+                                        print("pressure")
+                                        print(medicalCreatedVM.Pressure)
                                         medicalCreatedVM.startCreateMedicalProfile()
                                     }
 
@@ -333,7 +356,7 @@ struct MedicalStateView: View {
                                 }
 
                         )
-                    }
+                    } 
                     
                    
                 }
@@ -350,6 +373,9 @@ struct MedicalStateView: View {
                     Spacer()
                     Button("Done"){
                         isfocused = false
+//                        if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientMedicineAllergiesDto != [] && medicalCreatedVM.PatientMedicineAllergiesDto != []{
+//                            isValid = true
+//                        }
                     }
                 }
             }

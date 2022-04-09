@@ -69,6 +69,7 @@ struct InputTextFieldInfoArabic: View {
 
 struct MedicalTextFieldInfo: View {
     @Binding var text: String
+    @Binding var text1: String
     @State private var isActive = false
     var title : String
     let screenWidth = UIScreen.main.bounds.size.width - 55
@@ -84,7 +85,7 @@ struct MedicalTextFieldInfo: View {
                         .scaleEffect( 0.8, anchor: .leading)
                     
                     
-                    TextField("--/--",text:$text)
+                    TextField(isActive ? "120" : "--/--",text:isActive ? $text1 : $text)
                         .disabled(isActive)
                         .textInputAutocapitalization(.never)
                 }

@@ -49,7 +49,7 @@ class ViewModelLogin: ObservableObject {
     @Published var isNetworkError = false
 
     
-//    @Published var destination = AnyView(TabBarGenericView())
+    @Published var destination = AnyView(TabBarView())
     init(limit: Int = 11) {
         characterLimit = limit
         //     validations()
@@ -58,15 +58,14 @@ class ViewModelLogin: ObservableObject {
             //            print(completion)
         } receiveValue: { (modeldata) in
             self.publishedUserLogedInModel = modeldata
-//            if self.publishedUserLogedInModel?.Data?.ProfileStatus == 0 {
-//                self.destination = AnyView(completeProfile())
-//            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 1{
-//                self.destination = AnyView(DoctorCertificatesView(indicator:.constant(false), reload: false ))
-//            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 2{
-//                self.destination = AnyView(LegalDocView())
-//            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 3{
-//                self.destination = AnyView(TabBarGenericView())
-//            }
+            if self.publishedUserLogedInModel?.Data?.ProfileStatus == 0 {
+                self.destination = AnyView(PersonalDataView())
+            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 1{
+                self.destination = AnyView(MedicalStateView())
+            
+            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 2{
+                self.destination = AnyView(TabBarView())
+            }
         }.store(in: &cancellables)
         
     }

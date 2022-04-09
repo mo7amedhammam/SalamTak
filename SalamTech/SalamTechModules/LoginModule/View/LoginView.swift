@@ -175,12 +175,12 @@ struct ViewLogin: View {
       
 
           
-        // go to verify account to resset
-//        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive: $resetPassword) {
-//                        }
+//         go to verify account to resset
+        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive: $resetPassword) {
+                        }
         // go to complete profile after login
-//        NavigationLink(destination: LoginVM.destination ,isActive: $LoginVM.isLogedin, label: {
-//                        })
+        NavigationLink(destination: LoginVM.destination ,isActive: $LoginVM.isLogedin, label: {
+                        })
                         
                      
 
