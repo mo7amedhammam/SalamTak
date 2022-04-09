@@ -22,7 +22,7 @@ struct ModelSearchDoc : Codable {
         }
 }
 
-struct ModelDoc:Codable{
+struct ModelDoc:Codable, Hashable{
     var TotalCount: Int?
     var Items: [Doc]?
     enum CodingKeys: String, CodingKey {
@@ -34,14 +34,13 @@ struct ModelDoc:Codable{
 
 
 // MARK: - DataClass
-struct Doc: Codable, Identifiable , Hashable{
+struct Doc: Codable, Identifiable, Hashable{
     
     var id, SumRate, Rate, NumVisites, WaitingTime: Int?
     var FeesFrom, FeesTo :Double?
     var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image: String?
-    var SubSpecialistName,MedicalExamationTypeImage: [String]?
-//    var : [String]?
-   
+    var SubSpecialistName: [String]?
+    var MedicalExamationTypeImage: [String]?
   
     enum CodingKeys: String, CodingKey {
         case id = "DoctorId"
@@ -62,7 +61,11 @@ struct Doc: Codable, Identifiable , Hashable{
         
         case SubSpecialistName = "SubSpecialistName"
         case MedicalExamationTypeImage = "MedicalExamationTypeImage"
-
-        
     }
 }
+
+
+//struct imgURL:Codable, Hashable{
+////    var id: ObjectIdentifier
+//    var imgSTR: String?
+//}

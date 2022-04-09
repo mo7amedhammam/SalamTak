@@ -18,6 +18,7 @@ struct CityView: View {
 
     @State var gotoArea = false
     @State var selectedCityId = 0
+    @State var gotoSearchdoctor = false
 
     
     
@@ -34,7 +35,7 @@ struct CityView: View {
 
                 Button(action: {
                     selectedCityId = 0
-                    gotoArea=true
+                    gotoSearchdoctor=true
                 }, label: {
                     
                     ZStack {
@@ -145,6 +146,9 @@ struct CityView: View {
         
         //  go to clinic info
         NavigationLink(destination:AreaView(CityId:selectedCityId ),isActive: $gotoArea) {
+              }
+        //  go to clinic info
+         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
               }
     }
     

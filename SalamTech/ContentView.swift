@@ -13,9 +13,9 @@ struct ContentView: View {
     var body: some View {
         ZStack{
 //            MedicalStateView()
-//            TabBarView()
+            TabBarView()
 //            PersonalDataView()
-            OnBoardingView()
+//            OnBoardingView()
 //            PatientProfile()
             
         }

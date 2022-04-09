@@ -21,7 +21,8 @@ struct ViewSearchDoc: View {
     
     @State var gotodoctorDetails = false
     @State var selectedCityId = 0
-    
+    @State var imgs = []
+
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
@@ -207,35 +208,20 @@ struct ViewSearchDoc: View {
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
                             
-                            ZStack {
                                 HStack{
-                                    Spacer()
-    //                                Image("logo")
-                                    ForEach(0..<2 ) {img in
-//                                    Text("\(Doctor?.MedicalExamationTypeImage[0])")
-                                        Text("4545454545")
-                                    
-//                                            AsyncImage(url: URL(string: URLs.BaseUrl + "\( Doctor.MedicalExamationTypeImage?[1] ?? "" )")) { image in
-//                                                                                    image.resizable()
-//                                                                                } placeholder: {
-//                                                                                    Image("logo")
-//                                                                                        .resizable()
-//                                                                                }
-//                                                                                .clipShape(Circle())
-//                                                                                .frame(width: 30, height: 30)
-//                                                                                .foregroundColor(.black)
-//                                                                            .background(.blue)
-                                        
+                                    ForEach( 0..<4){ imge in
+                                        Text("\(imge)")
+
+//                                        Text("\(Doctor.MedicalExamationTypeImage?[1] ?? "")")
                                     }
-     
+
+  
                                     Spacer()
                                     Button(action: {
-                            //                            print("Book")
-                            //                            searchDoc.DoctorName = "medo"
-//                                        searchDoc.FetchDoctors()
-                                        print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
-                                        print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
-                                        print(searchDoc.publishedModelSearchDoc?[0].MedicalExamationTypeImage?[1] ?? "")
+
+//                                        print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
+//                                        print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
+//                                        print(searchDoc.publishedModelSearchDoc?[0].MedicalExamationTypeImage?[1] ?? "")
 
                                     }, label: {
                                         HStack{
@@ -258,7 +244,19 @@ struct ViewSearchDoc: View {
                                     
                                     
                                 }.padding(.bottom,10)
-                            }
+                            .onAppear(perform: {
+                                
+                                
+                                for image in Doctor.MedicalExamationTypeImage ?? [] {
+                                    print(image)
+                                }
+//                                self.imgs = Doctor.MedicalExamationTypeImage ?? []
+//                                ForEach(Doctor.MedicalExamationTypeImage ?? [], id:\.self){ imageurl in
+//                                    print("\(imageurl)")
+//
+//                                }
+//                                print(imgs)
+                            })
                             
                         }
                         
@@ -378,3 +376,10 @@ extension UIApplication {
     }
 }
 
+
+extension String: Identifiable {
+    public typealias ID = Int
+    public var id: Int {
+        return hash
+    }
+}
