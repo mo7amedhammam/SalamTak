@@ -74,6 +74,9 @@
 		0E68CD9527FEF69D00327EBF /* PatientProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD9427FEF69D00327EBF /* PatientProfile.swift */; };
 		0E68CD9B27FEF72700327EBF /* UpdateMedicalStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD9A27FEF72700327EBF /* UpdateMedicalStateView.swift */; };
 		0E68CD9D27FEF73900327EBF /* UpdatePersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CD9C27FEF73900327EBF /* UpdatePersonalDataView.swift */; };
+		0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA3280191FE00327EBF /* ModelUpdatePersonal.swift */; };
+		0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */; };
+		0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA7280192F700327EBF /* UpdatePersonalDataApiService.swift */; };
 		0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */; };
 		0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */; };
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
@@ -218,6 +221,9 @@
 		0E68CD9427FEF69D00327EBF /* PatientProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientProfile.swift; sourceTree = "<group>"; };
 		0E68CD9A27FEF72700327EBF /* UpdateMedicalStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMedicalStateView.swift; sourceTree = "<group>"; };
 		0E68CD9C27FEF73900327EBF /* UpdatePersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonalDataView.swift; sourceTree = "<group>"; };
+		0E68CDA3280191FE00327EBF /* ModelUpdatePersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUpdatePersonal.swift; sourceTree = "<group>"; };
+		0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelUpdatePersonalData.swift; sourceTree = "<group>"; };
+		0E68CDA7280192F700327EBF /* UpdatePersonalDataApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonalDataApiService.swift; sourceTree = "<group>"; };
 		0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAppBarView.swift; sourceTree = "<group>"; };
 		0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
@@ -777,6 +783,9 @@
 		0E68CD9627FEF6E300327EBF /* UpdatePersonalData */ = {
 			isa = PBXGroup;
 			children = (
+				0E68CDA228018E7700327EBF /* Service */,
+				0E68CDA028018E6800327EBF /* Model */,
+				0E68CD9F28018DC000327EBF /* ViewModel */,
 				0E68CD9927FEF70E00327EBF /* View */,
 			);
 			path = UpdatePersonalData;
@@ -785,6 +794,7 @@
 		0E68CD9727FEF6EE00327EBF /* UpdateMedicalState */ = {
 			isa = PBXGroup;
 			children = (
+				0E68CD9E28018DB800327EBF /* ViewModel */,
 				0E68CD9827FEF70800327EBF /* View */,
 			);
 			path = UpdateMedicalState;
@@ -804,6 +814,37 @@
 				0E68CD9C27FEF73900327EBF /* UpdatePersonalDataView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0E68CD9E28018DB800327EBF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E68CD9F28018DC000327EBF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E68CDA028018E6800327EBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CDA3280191FE00327EBF /* ModelUpdatePersonal.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0E68CDA228018E7700327EBF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0E68CDA7280192F700327EBF /* UpdatePersonalDataApiService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
@@ -1312,6 +1353,7 @@
 				0E586CF627F5AB5400944F21 /* PhoneVerficationView.swift in Sources */,
 				0E586D2427F5B6CD00944F21 /* ModelSchedule.swift in Sources */,
 				0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */,
+				0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */,
 				0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
 				0E9E0DCD27FB023600893ABF /* ViewModelGetCities.swift in Sources */,
@@ -1340,6 +1382,7 @@
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,
+				0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */,
 				0E62C54A27FC603000655D1A /* ChooseMedicineAllergy.swift in Sources */,
 				C800F83527FB585B00482151 /* ModelExaminationTypeId.swift in Sources */,
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
@@ -1401,6 +1444,7 @@
 				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
+				0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */,
 				C800F83327FB585B00482151 /* ViewModelExaminationTypeId.swift in Sources */,
 				C800F83027FB585B00482151 /* ViewModelSpecialist.swift in Sources */,
 			);

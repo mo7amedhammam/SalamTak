@@ -80,7 +80,7 @@ struct PatientProfile: View {
                     }
                     .padding(15)
                         .tag(0)
-                   UpdateMedicalStateView()
+                        UpdateMedicalStateView()
                         .tag(1)
 //                    UpdateLegalDocView()
 //                        .tag(2)
