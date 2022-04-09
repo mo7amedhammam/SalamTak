@@ -16,7 +16,7 @@ struct SpecialityView: View {
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    @State var gotocountry = false
+    @State var gotocity = false
     
     @State var selectedTypeId : Int?
     @State var selectedSpecialityId : Int?
@@ -34,7 +34,7 @@ struct SpecialityView: View {
                 ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
                             Button(action: {
                                 selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
-                                gotocountry=true
+                                gotocity=true
 
                             }, label: {
                                 
@@ -115,7 +115,7 @@ struct SpecialityView: View {
 
         
         //  go to clinic info
-         NavigationLink(destination:CountryView(),isActive: $gotocountry) {
+        NavigationLink(destination:CityView(CountryId:1),isActive: $gotocity) {
               }
     }
     

@@ -1,23 +1,23 @@
 //
-//  CityView.swift
+//  AreaView.swift
 //  SalamTech
 //
-//  Created by wecancity on 04/04/2022.
-
+//  Created by wecancity on 09/04/2022.
+//
 import SwiftUI
 
 
-struct CityView: View {
-    @StateObject var CitiesVM = ViewModelGetCities()
+struct AreaView: View {
+    @StateObject var AreasVM = ViewModelGetAreas()
     @StateObject var searchDoc = VMSearchDoc()
 
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    var CountryId : Int?
+    var CityId : Int?
 
-    @State var gotoArea = false
-    @State var selectedCityId = 0
+    @State var gotoSearchdoctor = false
+    @State var selectedAreaId = 0
 
     
     
@@ -27,21 +27,21 @@ struct CityView: View {
             ScrollView( showsIndicators: false){
                 Spacer().frame(height:120)
                 HStack {
-                    Text("Choose your City")
+                    Text("Choose your Area")
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
                 }
 
                 Button(action: {
-                    selectedCityId = 0
-                    gotoArea=true
+                    selectedAreaId = 0
+                    gotoSearchdoctor=true
                 }, label: {
                     
                     ZStack {
 
                         HStack{
                             Spacer().frame(width:30)
-                                Text("All Cities")
+                                Text("All Areas")
                                     .frame(height:35)
                                     .font(Font.SalamtechFonts.Reg18)
                                     .foregroundColor(.black)
@@ -58,11 +58,11 @@ struct CityView: View {
                     .cornerRadius(8)
                     .shadow(color: .black.opacity(0.099), radius: 5)
             
-                ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
+                ForEach(AreasVM.publishedAreaModel , id:\.self){ city in
                             Button(action: {
-//                                searchDoc.CityId = city.Id ?? 5455454545
-                                selectedCityId = city.Id ?? 8787878
-                                gotoArea = true
+//                                searchDoc.CityId = city.id ?? 5455454545
+                                selectedAreaId =  city.id ?? 454545454
+                                gotoSearchdoctor = true
                             }, label: {
                                 
                                 ZStack {
@@ -131,7 +131,7 @@ struct CityView: View {
         })
         
             VStack{
-                AppBarView(Title: "Choose City")
+                AppBarView(Title: "Choose Area")
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                     Spacer()
@@ -139,12 +139,12 @@ struct CityView: View {
             .edgesIgnoringSafeArea(.vertical)
 
         }.onAppear(perform: {
-            CitiesVM.startFetchCities(countryid: CountryId)
+            AreasVM.startFetchAreas(cityId: CityId ?? 151515154)
         })
 
         
         //  go to clinic info
-        NavigationLink(destination:AreaView(CityId:selectedCityId ),isActive: $gotoArea) {
+         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
               }
     }
     
@@ -152,10 +152,10 @@ struct CityView: View {
     
 }
 
-struct CityView_Previews: PreviewProvider {
+struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            CityView( CountryId: 565656656)
+            AreaView( CityId: 565656656)
         }.navigationBarHidden(true)
     }
 }

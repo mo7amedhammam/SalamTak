@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
@@ -87,9 +88,7 @@ struct ViewSearchDoc: View {
                 }
                 
                 List( ){
-                    
-                    
-                    
+
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? []){ Doctor in
                         VStack(alignment:.leading){
@@ -208,41 +207,58 @@ struct ViewSearchDoc: View {
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
                             
-                            HStack{
-                                Spacer()
-                                Image("exClinic")
-                                Image("exHome")
-                                Image("exCall")
-                                Spacer()
-                                Button(action: {
-                                    //                            print("Book")
-                                    //                                searchDoc.DoctorName = "medo"
-                                    searchDoc.FetchDoctors()
-                                    print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
-                                    print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
+                            ZStack {
+                                HStack{
+                                    Spacer()
+    //                                Image("logo")
+                                    ForEach(0..<2 ) {img in
+//                                    Text("\(Doctor?.MedicalExamationTypeImage[0])")
+                                        Text("4545454545")
                                     
-                                    
-                                }, label: {
-                                    HStack{
+//                                            AsyncImage(url: URL(string: URLs.BaseUrl + "\( Doctor.MedicalExamationTypeImage?[1] ?? "" )")) { image in
+//                                                                                    image.resizable()
+//                                                                                } placeholder: {
+//                                                                                    Image("logo")
+//                                                                                        .resizable()
+//                                                                                }
+//                                                                                .clipShape(Circle())
+//                                                                                .frame(width: 30, height: 30)
+//                                                                                .foregroundColor(.black)
+//                                                                            .background(.blue)
                                         
-                                        Text("Book")
-                                            .foregroundColor(.white)
-                                            .font(Font.SalamtechFonts.Bold14)
-                                            .padding([.leading,.trailing],40)
                                     }
-                                }
-                                )
-                                
-                                    .padding(.horizontal,15)
-                                    .frame( height: 40 )
-                                
-                                    .background(Color("blueColor"))
-                                    .cornerRadius(8)
-                                
-                                Spacer()
-                                
-                                
-                            }.padding(.bottom,10)
+     
+                                    Spacer()
+                                    Button(action: {
+                            //                            print("Book")
+                            //                            searchDoc.DoctorName = "medo"
+//                                        searchDoc.FetchDoctors()
+                                        print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
+                                        print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
+                                        print(searchDoc.publishedModelSearchDoc?[0].MedicalExamationTypeImage?[1] ?? "")
+
+                                    }, label: {
+                                        HStack{
+
+                                            Text("Book")
+                                                .foregroundColor(.white)
+                                                .font(Font.SalamtechFonts.Bold14)
+                                                .padding([.leading,.trailing],40)
+                                        }
+                                    }
+                                    )
+
+                                        .padding(.horizontal,15)
+                                        .frame( height: 40 )
+
+                                        .background(Color("blueColor"))
+                                        .cornerRadius(8)
+
+                                    Spacer()
+                                    
+                                    
+                                }.padding(.bottom,10)
+                            }
                             
                         }
                         
@@ -259,8 +275,6 @@ struct ViewSearchDoc: View {
                 
                 .padding(.top,0)
                 //            .background(Color.red)
-                
-                
                 Spacer()
             }
             .frame(width: UIScreen.main.bounds.width)
