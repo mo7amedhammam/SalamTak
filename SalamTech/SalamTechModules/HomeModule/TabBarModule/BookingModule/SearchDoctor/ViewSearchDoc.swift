@@ -21,7 +21,7 @@ struct ViewSearchDoc: View {
     
     @State var gotodoctorDetails = false
     @State var selectedCityId = 0
-    @State var imgs = []
+    @State var imgs : [Img] = []
 
     
     init() {
@@ -209,16 +209,14 @@ struct ViewSearchDoc: View {
                                 .font(Font.SalamtechFonts.Reg14)
                             
                                 HStack{
-                                    ForEach( 0..<4){ imge in
-                                        Text("\(imge)")
-
+                                    Spacer()
+                                    ForEach(0..<4){ imge2 in
+                                        Text("(imge2.Image)")
 //                                        Text("\(Doctor.MedicalExamationTypeImage?[1] ?? "")")
                                     }
 
-  
                                     Spacer()
                                     Button(action: {
-
 
                                     }, label: {
                                         HStack{
@@ -241,8 +239,13 @@ struct ViewSearchDoc: View {
                                     
                                     
                                 }.padding(.bottom,10)
-                            .onAppear(perform: {
-                                
+                                .onAppear(perform: {
+ 
+                                    self.imgs = Doctor.MedicalExamationTypeImage ?? []
+//                                    ForEach(Doctor.MedicalExamationTypeImage, id:\.self ){ imge in
+//                                        print("\(Doctor.MedicalExamationTypeImage[0])")
+//                                    }
+                                })
               
                             
                         }
