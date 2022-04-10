@@ -38,9 +38,9 @@ struct Doc: Codable, Identifiable, Hashable{
     
     var id, SumRate, Rate, NumVisites, WaitingTime: Int?
     var FeesFrom, FeesTo :Double?
-    var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image: String?
+    var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image,AvailableFrom: String?
     var SubSpecialistName: [String]?
-    var MedicalExamationTypeImage: [String]?
+    var MedicalExamationTypeImage: [Img]?
   
     enum CodingKeys: String, CodingKey {
         case id = "DoctorId"
@@ -58,14 +58,22 @@ struct Doc: Codable, Identifiable, Hashable{
         case ClinicName = "ClinicName"
         case ClinicAddress = "ClinicAddress"
         case Image = "Image"
-        
+        case AvailableFrom = "AvailableFrom"
         case SubSpecialistName = "SubSpecialistName"
         case MedicalExamationTypeImage = "MedicalExamationTypeImage"
     }
 }
 
 
-//struct imgURL:Codable, Hashable{
-////    var id: ObjectIdentifier
-//    var imgSTR: String?
-//}
+struct Img:Codable,Identifiable, Hashable{
+    var id :Int?
+    var Name,Image: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case Name = "Name"
+        case Image = "Image"
+      
+    }
+    
+}

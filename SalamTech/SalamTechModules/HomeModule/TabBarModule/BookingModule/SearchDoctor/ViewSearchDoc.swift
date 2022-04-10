@@ -202,7 +202,7 @@ struct ViewSearchDoc: View {
                             }
                             
                             
-                            Text(" Available Today From 07:00 PM ")
+                            Text(" Available \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) From \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) PM ")
                                 .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
                                 .background(Color.gray.opacity(0.3))
                                 .foregroundColor(.black.opacity(0.7))
@@ -219,9 +219,6 @@ struct ViewSearchDoc: View {
                                     Spacer()
                                     Button(action: {
 
-//                                        print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name 1")
-//                                        print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address 1")
-//                                        print(searchDoc.publishedModelSearchDoc?[0].MedicalExamationTypeImage?[1] ?? "")
 
                                     }, label: {
                                         HStack{
@@ -246,17 +243,7 @@ struct ViewSearchDoc: View {
                                 }.padding(.bottom,10)
                             .onAppear(perform: {
                                 
-                                
-                                for image in Doctor.MedicalExamationTypeImage ?? [] {
-                                    print(image)
-                                }
-//                                self.imgs = Doctor.MedicalExamationTypeImage ?? []
-//                                ForEach(Doctor.MedicalExamationTypeImage ?? [], id:\.self){ imageurl in
-//                                    print("\(imageurl)")
-//
-//                                }
-//                                print(imgs)
-                            })
+              
                             
                         }
                         
