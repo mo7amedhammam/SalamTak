@@ -6,7 +6,13 @@
 //
 
 import SwiftUI
-
+extension DateFormatter {
+    static var formate: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter
+    }
+}
 struct UpdatePersonalDataView: View {
     var language = LocalizationService.shared.language
     @State var showNationailty = false
@@ -160,7 +166,7 @@ struct UpdatePersonalDataView: View {
                                     }
                                     Spacer().frame(height: 20)
                                     VStack{
-                                        DateOfBirthView(date: $patientUpdatedVM.Birthday)
+                                        DateOfBirthView(date: $patientUpdatedVM.date)
                                         
                                         Spacer().frame(height: 20)
                                         

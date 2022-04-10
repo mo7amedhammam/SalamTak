@@ -74,7 +74,9 @@ class ViewModelUpdatePatientProfile: ObservableObject {
     @Published  var NationalityId: Int = 0
     @Published  var CountryId: Int = 0
     @Published  var GenderId: Int?               // 1 for male  2 for female
-    @Published  var Birthday: Date?              //  date format "yyyy/mm/dd"
+    @Published  var Id: Int?
+    @Published  var PatientId: Int?
+    @Published  var Birthday:String = ""            //  date format "yyyy/mm/dd"
     @Published  var EmergencyContact : String = ""
     @Published  var OccupationId: Int = 0
     @Published  var CityId: Int = 0
@@ -93,6 +95,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
     @Published  var cityName             : String = ""
     @Published  var areaName             : String = ""
     @Published  var occupationName       : String = "Occupation"
+    @Published var ImageUrl :String = ""
     
 //    @Published  var SpecialityName: String = "CompeleteProfile_Screen_Speciality"
 //    @Published  var SubSpecialityName: [String] = []
@@ -137,7 +140,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
 
         }.store(in: &cancellables)
         
-        
+        self.date = DateFormatter.formate.date(from: Birthday) ?? Date()
         passthroughModelGetSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
@@ -155,6 +158,13 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.AreaId = publishedPatientGetModel?.data?.areaId ?? 0
             self.CountryId = publishedPatientGetModel?.data?.nationalityId ?? 0
             self.OccupationId = publishedPatientGetModel?.data?.occupationId ?? 0
+            self.ImageUrl = publishedPatientGetModel?.data?.image ?? ""
+            self.Birthday = publishedPatientGetModel?.data?.birthdate ?? ""
+            self.date = DateFormatter.formate.date(from: Birthday) ?? Date()
+            self.Id = publishedPatientGetModel?.data?.id
+            self.Address = publishedPatientGetModel?.data?.address ?? ""
+            
+            //self.PatientId = publishedPatientGetModel?.data.
 //            self.Birthday = publishedPatientGetModel?.data?.birthdate ?? Date()
 
         }.store(in: &cancellables)
@@ -193,7 +203,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
                           "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
                           "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
                           "GenderId" : GenderId ?? 1 ,
-                           "Birthdate" : datef.string(from: self.Birthday ?? Date()) ,
+                           "Birthdate" :  Fulldatef1.string(from: self.date ?? Date()) ,
                            "NationalityId" : NationalityId, "CountryId" : NationalityId,
                            "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
