@@ -794,6 +794,7 @@
 		0E68CD9727FEF6EE00327EBF /* UpdateMedicalState */ = {
 			isa = PBXGroup;
 			children = (
+				0E68CDA92802BBBA00327EBF /* Model */,
 				0E68CD9E28018DB800327EBF /* ViewModel */,
 				0E68CD9827FEF70800327EBF /* View */,
 			);
@@ -845,6 +846,13 @@
 				0E68CDA7280192F700327EBF /* UpdatePersonalDataApiService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		0E68CDA92802BBBA00327EBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {

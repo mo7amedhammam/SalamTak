@@ -85,7 +85,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
     @Published  var FloorNo: Int = 0
     @Published  var BlockNo : String = ""
     @Published  var ApartmentNo : String = ""
-   
+    @Published var date: Date?
 //    @Published  var DoctorSubSpecialist : [Int] = []
     @Published  var profileImage = UIImage()
     
@@ -155,6 +155,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.AreaId = publishedPatientGetModel?.data?.areaId ?? 0
             self.CountryId = publishedPatientGetModel?.data?.nationalityId ?? 0
             self.OccupationId = publishedPatientGetModel?.data?.occupationId ?? 0
+//            self.Birthday = publishedPatientGetModel?.data?.birthdate ?? Date()
 
         }.store(in: &cancellables)
         
