@@ -25,6 +25,12 @@
 		00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF7927F33E6100571078 /* OnBoardingView.swift */; };
 		00C8BF7C27F33EF900571078 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF7B27F33EF900571078 /* WelcomeScreenView.swift */; };
 		00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF7D27F33F3600571078 /* ButtonView.swift */; };
+		00D86B992803132D00ABF9C9 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86B932803132D00ABF9C9 /* fontsExt.swift */; };
+		00D86B9A2803132D00ABF9C9 /* STC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B942803132D00ABF9C9 /* STC-Bold.ttf */; };
+		00D86B9B2803132D00ABF9C9 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B952803132D00ABF9C9 /* STC-Regular.ttf */; };
+		00D86B9C2803132D00ABF9C9 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B962803132D00ABF9C9 /* arbfonts.txt */; };
+		00D86B9D2803132D00ABF9C9 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B972803132D00ABF9C9 /* urlshort.url */; };
+		00D86B9E2803132D00ABF9C9 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */; };
 		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
 		0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */; };
 		0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6527FB2EDE00E3D9B8 /* FoodAllergyApiService.swift */; };
@@ -121,12 +127,6 @@
 		C800F83627FB585B00482151 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82827FB585B00482151 /* CityView.swift */; };
 		C800F83727FB585B00482151 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82927FB585B00482151 /* CountryView.swift */; };
 		C800F83827FB585B00482151 /* BookingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82A27FB585B00482151 /* BookingApiService.swift */; };
-		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
-		C82541EF27F44321005E0750 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */; };
-		C82541F027F44321005E0750 /* STC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EB27F44321005E0750 /* STC-Bold.ttf */; };
-		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
-		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
-		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
 		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
@@ -173,6 +173,12 @@
 		00C8BF7927F33E6100571078 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		00C8BF7B27F33EF900571078 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		00C8BF7D27F33F3600571078 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		00D86B932803132D00ABF9C9 /* fontsExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
+		00D86B942803132D00ABF9C9 /* STC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STC-Bold.ttf"; sourceTree = "<group>"; };
+		00D86B952803132D00ABF9C9 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STC-Regular.ttf"; sourceTree = "<group>"; };
+		00D86B962803132D00ABF9C9 /* arbfonts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = arbfonts.txt; sourceTree = "<group>"; };
+		00D86B972803132D00ABF9C9 /* urlshort.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = urlshort.url; sourceTree = "<group>"; };
+		00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArbFONTS-STC-Light.otf"; sourceTree = "<group>"; };
 		0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFoodAllergy.swift; sourceTree = "<group>"; };
 		0E26EA6527FB2EDE00E3D9B8 /* FoodAllergyApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAllergyApiService.swift; sourceTree = "<group>"; };
 		0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFoodAllergy.swift; sourceTree = "<group>"; };
@@ -272,13 +278,7 @@
 		C800F82827FB585B00482151 /* CityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		C800F82927FB585B00482151 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		C800F82A27FB585B00482151 /* BookingApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingApiService.swift; sourceTree = "<group>"; };
-		C82541E927F44321005E0750 /* urlshort.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = urlshort.url; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/urlshort.url"; sourceTree = "<group>"; };
-		C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ArbFONTS-STC-Light.otf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/ArbFONTS-STC-Light.otf"; sourceTree = "<group>"; };
-		C82541EB27F44321005E0750 /* STC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Bold.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Bold.ttf"; sourceTree = "<group>"; };
-		C82541EC27F44321005E0750 /* arbfonts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = arbfonts.txt; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/arbfonts.txt"; sourceTree = "<group>"; };
-		C82541ED27F44321005E0750 /* STC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "STC-Regular.ttf"; path = "../../../SalamTech-DR/SalamTech-DR/Fonts/STC-Regular.ttf"; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
 		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
@@ -342,10 +342,10 @@
 		00C8BF3327F3100F00571078 /* SalamTech */ = {
 			isa = PBXGroup;
 			children = (
+				00D86B922803132D00ABF9C9 /* Fonts */,
 				C82541F327F443CF005E0750 /* Info.plist */,
 				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
 				00C8BF3627F3100F00571078 /* ContentView.swift */,
-				C82541E827F4421B005E0750 /* Fonts */,
 				00C8BF5F27F3180A00571078 /* Localization */,
 				00C8BF5E27F317FF00571078 /* Services */,
 				00C8BF7327F32B4500571078 /* Components */,
@@ -474,6 +474,19 @@
 				0E586CDC27F5A43100944F21 /* View */,
 			);
 			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		00D86B922803132D00ABF9C9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				00D86B932803132D00ABF9C9 /* fontsExt.swift */,
+				00D86B942803132D00ABF9C9 /* STC-Bold.ttf */,
+				00D86B952803132D00ABF9C9 /* STC-Regular.ttf */,
+				00D86B962803132D00ABF9C9 /* arbfonts.txt */,
+				00D86B972803132D00ABF9C9 /* urlshort.url */,
+				00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		0E586CDC27F5A43100944F21 /* View */ = {
@@ -1017,19 +1030,6 @@
 			path = ExaminationType;
 			sourceTree = "<group>";
 		};
-		C82541E827F4421B005E0750 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */,
-				C82541EC27F44321005E0750 /* arbfonts.txt */,
-				C82541EB27F44321005E0750 /* STC-Bold.ttf */,
-				C82541ED27F44321005E0750 /* STC-Regular.ttf */,
-				C82541E927F44321005E0750 /* urlshort.url */,
-				C82541F427F4441E005E0750 /* fontsExt.swift */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1176,15 +1176,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D86B9D2803132D00ABF9C9 /* urlshort.url in Resources */,
 				00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */,
-				C82541F127F44321005E0750 /* arbfonts.txt in Resources */,
+				00D86B9E2803132D00ABF9C9 /* ArbFONTS-STC-Light.otf in Resources */,
 				00C8BF6E27F31DFC00571078 /* Localizable.strings in Resources */,
-				C82541EF27F44321005E0750 /* ArbFONTS-STC-Light.otf in Resources */,
-				C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */,
-				C82541F027F44321005E0750 /* STC-Bold.ttf in Resources */,
+				00D86B9A2803132D00ABF9C9 /* STC-Bold.ttf in Resources */,
 				00C8BF7827F32CF200571078 /* Launch Screen.storyboard in Resources */,
+				00D86B9B2803132D00ABF9C9 /* STC-Regular.ttf in Resources */,
 				00C8BF3927F3101100571078 /* Assets.xcassets in Resources */,
-				C82541EE27F44321005E0750 /* urlshort.url in Resources */,
+				00D86B9C2803132D00ABF9C9 /* arbfonts.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,7 +1348,6 @@
 			files = (
 				0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */,
 				0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */,
-				C82541F527F4441E005E0750 /* fontsExt.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E26EA6C27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
@@ -1361,6 +1360,7 @@
 				0E586CF627F5AB5400944F21 /* PhoneVerficationView.swift in Sources */,
 				0E586D2427F5B6CD00944F21 /* ModelSchedule.swift in Sources */,
 				0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */,
+				00D86B992803132D00ABF9C9 /* fontsExt.swift in Sources */,
 				0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */,
 				0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
