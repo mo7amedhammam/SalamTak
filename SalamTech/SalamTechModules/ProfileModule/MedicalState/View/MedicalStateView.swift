@@ -66,7 +66,11 @@ struct MedicalStateView: View {
                                         Spacer().frame(height: 20)
                                         VStack{
                                             Button {
-                                                
+                                                if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0  && medicalCreatedVM.BloodTypeId != 0 {
+                                                    isValid = true
+                                                }else {
+                                                    isValid = false
+                                                }
                                                 withAnimation {
                                                     ShowBloodType.toggle()
                                                     
@@ -101,7 +105,11 @@ struct MedicalStateView: View {
                                            
                                             Button {
                                                 
-                                                   
+                                                if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0  && medicalCreatedVM.BloodTypeId != 0 {
+                                                    isValid = true
+                                                }else {
+                                                    isValid = false
+                                                }
                                                 
                                                 withAnimation {
                                                     ShowFoodAllergy.toggle()
@@ -131,9 +139,7 @@ struct MedicalStateView: View {
                                             }
                                             
                                             Button {
-                                                if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientFoodAllergiesDto != [] {
-                                                    isValid = true
-                                                }
+                                                
                                                 withAnimation {
                                                     ShowMedicineAllergy.toggle()
                                                 }
@@ -373,6 +379,11 @@ struct MedicalStateView: View {
                     Spacer()
                     Button("Done"){
                         isfocused = false
+                        if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0  && medicalCreatedVM.BloodTypeId != 0 {
+                            isValid = true
+                        }else {
+                            isValid = false
+                        }
 //                        if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientMedicineAllergiesDto != [] && medicalCreatedVM.PatientMedicineAllergiesDto != []{
 //                            isValid = true
 //                        }
