@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ViewDocDetails:View{
-    
+    var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     var body: some View{
         NavigationView{
 
@@ -192,29 +192,83 @@ struct ViewDocDetails:View{
                         Text("Choose date & time").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
                         
                         ZStack{
-                            HStack{
-                                Image("doc2")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                    .padding(.leading)
-                                VStack{
-                                    Text("(Doctor.ClinicName ?? ): ")
+                            VStack{
+                                
+                                HStack{
+                                    Image("Appointments")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .padding(.leading)
+                                    //                                VStack{
+                                    Text("Apr 2022 >")
                                         .foregroundColor(Color("darkGreen"))
                                         .font(Font.SalamtechFonts.Reg14)
-                                    Text("(Doctor.ClinicAddress ?? )")
-                                        .foregroundColor(.secondary)
-                                        .font(Font.SalamtechFonts.Reg14)
-                                    //                Spacer()
-                                }.padding(.leading)
-                                    .padding()
-                                Spacer()
+                                    
+                                    Spacer()
+                                    
+                                }
+                                .padding()
+                                Divider().padding(.top,-10)
+                                
+                                
+                                HStack{
+                                    ForEach(weekdays){ day in
+                                        
+                                        VStack{
+                                            
+                                            Text("1")
+                                            Text(day)
+                                        }
+                                        .padding(5)
+                                      
+                                        
+                                    }
+//                                    .padding(5)
+                                }
+//
+                                
+                                
+                                
                                 
                             }
+                            
                             .background(Color.white)
+                        
+                        
                         }
-                        .frame(width: UIScreen.main.bounds.width-30, height:120)
+                        .frame(width: UIScreen.main.bounds.width-30)
                         .cornerRadius(9)
                         .shadow(color: .black.opacity(0.1), radius: 9)
+                        
+                        
+                        
+                        
+                        Text("About doctor").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                        
+                        ZStack{
+                                
+                                    Text("Ahmed was born on 1964 in El Fayoum. After studying veterinary medicine at Cairo University, Ahmed moved to Vienna, Austria where he completed his studies.")
+                                .foregroundColor(.gray)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                        .padding()
+                            .background(Color.white)
+                        
+                        
+                        }
+                        .frame(width: UIScreen.main.bounds.width-30)
+                        .cornerRadius(9)
+                        .shadow(color: .black.opacity(0.1), radius: 9)
+                        
+                        
+                        
+                        HStack{
+                            Text("Reviews")
+                            Spacer()
+                            Text("View all 125 reviews  >")
+                                .foregroundColor(Color("darkGreen"))
+
+                            
+                        }.frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
                         
                         
 
@@ -222,8 +276,8 @@ struct ViewDocDetails:View{
                     }
                     .frame(width: UIScreen.main.bounds.width-20)
                     .background(.clear)
-                .offset( y: -105)
-//                    }
+                    .padding(.top,-105)
+//                    .edgesIgnoringSafeArea(.all)
 
                     Spacer()
                 }
