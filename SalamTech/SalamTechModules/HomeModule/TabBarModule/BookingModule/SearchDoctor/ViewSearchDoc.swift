@@ -33,7 +33,7 @@ struct ViewSearchDoc: View {
             VStack{
                 
                 
-                VStack {
+//                VStack {
                     Spacer().frame(height:100)
                     ZStack {
                         Image("WhiteCurve")
@@ -44,7 +44,7 @@ struct ViewSearchDoc: View {
                         SearchBar(PlaceHolder:"Search a doctor... ",text: .constant("")).shadow(color: .black.opacity(0.2), radius: 15)
                         
                     }
-                }
+//                }
                 
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -92,7 +92,7 @@ struct ViewSearchDoc: View {
 
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
-                        LazyVStack(alignment:.leading){
+                        VStack(alignment:.leading){
                             HStack{
                                 Image("logo")
                                     .resizable()
@@ -211,10 +211,10 @@ struct ViewSearchDoc: View {
                                 HStack{
                                     Spacer()
                                 
-                                    ForEach(Doctor.MedicalExamationTypeImage ?? [], id:\.self ){ imge2 in
-                                        Text("\(imge2.Image ?? "")")
+//                                    ForEach(0..<(Doctor.MedicalExamationTypeImage?.count ?? 0), id:\.self ){ imge2 in
+//                                        Text("\(Doctor.MedicalExamationTypeImage?[imge2].Image ?? "")")
 //                                        Text("\(Doctor.MedicalExamationTypeImage?[1] ?? "")")
-                                    }
+//                                    }
                                     
                                     
                                     Spacer()
