@@ -28,19 +28,28 @@ struct ViewDocDetails:View{
                         
                         ZStack{
                             ZStack {
+                                
+                            } //Z
+                            .frame(width:350, height: 160)
+                            .background(.white)
+
+                            .cornerRadius(9)
+                            .offset( y: -10)
+                            
                                 VStack( spacing:0){
-
+                                    Spacer()
                                 HStack{
-                                    ZStack {
+                                    VStack {
+                                        Spacer().frame(height:15)
                                         Image("logo")
-                                            .resizable()
-                                            .frame(width: 70, height: 70)
-                                            .background(Color.gray)
-                                            .cornerRadius(9)
-                                            .padding(.top,-35)
-
-                                    }.frame(width: 70, height: 70)
-//                                        .offset(y:-20)
+                                                .resizable()
+                                                .frame(width: 70, height: 70)
+                                                .background(Color.gray)
+                                                .cornerRadius(9)
+                                        
+                                                .padding(.top,-35)
+//
+                                    }.padding()
 
                                     
                                         Text("Dr/ ")
@@ -51,7 +60,8 @@ struct ViewDocDetails:View{
 
                                     Spacer()
 
-                                }.padding(.leading)
+                                }
+//                                .padding(.leading)
                                 
                                     VStack(alignment:.leading, spacing:0){
                                        
@@ -154,24 +164,21 @@ struct ViewDocDetails:View{
                             }//V
                                 
                                 
-                            .frame(height: 140)
-                            .background(Color.white).frame( height: 140).cornerRadius(9)
+//                            .frame(height: 150)
+                            .background(Color.clear)
+//                            .frame( height: 140)
+//                            .cornerRadius(9)
 
                                 
-                            } //Z
-                            .frame(height: 180)
-                            .background(.clear)
 
-                            .cornerRadius(9)
-                            .offset( y: -10)
 
               
 
                         }//Z
-                        .frame(height: 180)
-                        .background(.red)
-                        .background(.white)
-//                        .cornerRadius(9)
+                        .frame(height: 250)
+//                        .background(.red)
+                        .background(.clear)
+                        .cornerRadius(9)
 //                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
                         
                         .shadow(color: .black.opacity(0.1), radius: 9)
