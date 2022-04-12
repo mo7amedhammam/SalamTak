@@ -91,8 +91,8 @@ struct ViewSearchDoc: View {
                 List( ){
 
                     //                LazyVStack(spacing:15){
-                    ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self){ Doctor in
-                        VStack(alignment:.leading){
+                    ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
+                        LazyVStack(alignment:.leading){
                             HStack{
                                 Image("logo")
                                     .resizable()

@@ -39,26 +39,25 @@ struct Doc: Codable, Identifiable, Hashable{
     // Satisfy Hashable requirement
       var hashValue: Int {
           get {
-              return Id.hashValue
+              return id.hashValue
           }
       }
     static func == (lhs: Doc, rhs: Doc) -> Bool {
-        return lhs.Id == rhs.Id
+        return lhs.id == rhs.id
 
     }
     
-    var id = UUID()
 
     
     
-    var Id, SumRate, Rate, NumVisites, WaitingTime: Int?
+    var id, SumRate, Rate, NumVisites, WaitingTime: Int?
     var FeesFrom, FeesTo :Double?
     var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image,AvailableFrom: String?
     var SubSpecialistName: [String]?
     var MedicalExamationTypeImage: [Img]?
   
     enum CodingKeys: String, CodingKey {
-        case Id = "DoctorId"
+        case id = "DoctorId"
         case SumRate = "SumRate"
         case Rate = "Rate"
         case NumVisites = "NumVisites"
@@ -75,19 +74,18 @@ struct Doc: Codable, Identifiable, Hashable{
         case Image = "Image"
         case AvailableFrom = "AvailableFrom"
         case SubSpecialistName = "SubSpecialistName"
-        case MedicalExamationTypeImage = "MedicalExamationTypeImage"
+        case MedicalExamationTypeImage = "MedicalExamationTypes"
     }
 }
 
 
 struct Img:Codable,Identifiable, Hashable{
-    var id = UUID()
     
-    var Id :Int?
+    var id :Int?
     var Name,Image: String?
     
     enum CodingKeys: String, CodingKey {
-        case Id = "Id"
+        case id = "Id"
         case Name = "Name"
         case Image = "Image"
 
