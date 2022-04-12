@@ -163,36 +163,62 @@ struct ViewDocDetails:View{
                             .frame(width: UIScreen.main.bounds.width-30, height:55)
                                 .cornerRadius(9)
                             .shadow(color: .black.opacity(0.1), radius: 9)
-ZStack{
-        HStack{
-            Image("doc2")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .padding(.leading)
-            VStack{
-            Text("(Doctor.ClinicName ?? ): ")
-                    .foregroundColor(Color("darkGreen"))
-                    .font(Font.SalamtechFonts.Reg14)
-            Text("(Doctor.ClinicAddress ?? )")
-                .foregroundColor(.secondary)
-                .font(Font.SalamtechFonts.Reg14)
-//                Spacer()
-        }.padding(.leading)
-                .padding()
-            Spacer()
+                        
+                        ZStack{
+                            HStack{
+                                Image("doc2")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .padding(.leading)
+                                VStack{
+                                    Text("(Doctor.ClinicName ?? ): ")
+                                        .foregroundColor(Color("darkGreen"))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    Text("(Doctor.ClinicAddress ?? )")
+                                        .foregroundColor(.secondary)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    //                Spacer()
+                                }.padding(.leading)
+                                    .padding()
+                                Spacer()
+                                
+                            }
+                            .background(Color.white)
+                        }
+                        .frame(width: UIScreen.main.bounds.width-30, height:55)
+                        .cornerRadius(9)
+                        .shadow(color: .black.opacity(0.1), radius: 9)
 
-    }
-    .background(Color.white)
-}
-.frame(width: UIScreen.main.bounds.width-30, height:55)
-    .cornerRadius(9)
-.shadow(color: .black.opacity(0.1), radius: 9)
-
-
+                        Text("Choose date & time").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                        
+                        ZStack{
+                            HStack{
+                                Image("doc2")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .padding(.leading)
+                                VStack{
+                                    Text("(Doctor.ClinicName ?? ): ")
+                                        .foregroundColor(Color("darkGreen"))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    Text("(Doctor.ClinicAddress ?? )")
+                                        .foregroundColor(.secondary)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    //                Spacer()
+                                }.padding(.leading)
+                                    .padding()
+                                Spacer()
+                                
+                            }
+                            .background(Color.white)
+                        }
+                        .frame(width: UIScreen.main.bounds.width-30, height:120)
+                        .cornerRadius(9)
+                        .shadow(color: .black.opacity(0.1), radius: 9)
+                        
+                        
 
     Spacer()
-
-
                     }
                     .frame(width: UIScreen.main.bounds.width-20)
                     .background(.clear)
