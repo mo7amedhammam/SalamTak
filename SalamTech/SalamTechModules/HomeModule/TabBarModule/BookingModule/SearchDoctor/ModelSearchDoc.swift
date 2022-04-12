@@ -34,18 +34,31 @@ struct ModelDoc:Codable{
 
 
 // MARK: - DataClass
-struct Doc: Codable, Identifiable{
- 
+struct Doc: Codable, Identifiable, Hashable{
+    
+    // Satisfy Hashable requirement
+      var hashValue: Int {
+          get {
+              return Id.hashValue
+          }
+      }
+    static func == (lhs: Doc, rhs: Doc) -> Bool {
+        return lhs.Id == rhs.Id
+
+    }
+    
+    var id = UUID()
+
     
     
-    var id, SumRate, Rate, NumVisites, WaitingTime: Int?
+    var Id, SumRate, Rate, NumVisites, WaitingTime: Int?
     var FeesFrom, FeesTo :Double?
     var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image,AvailableFrom: String?
     var SubSpecialistName: [String]?
     var MedicalExamationTypeImage: [Img]?
   
     enum CodingKeys: String, CodingKey {
-        case id = "DoctorId"
+        case Id = "DoctorId"
         case SumRate = "SumRate"
         case Rate = "Rate"
         case NumVisites = "NumVisites"
@@ -67,17 +80,17 @@ struct Doc: Codable, Identifiable{
 }
 
 
-struct Img:Codable,Identifiable{
-    var id: Int?
+struct Img:Codable,Identifiable, Hashable{
+    var id = UUID()
     
-//    var id :Int?
+    var Id :Int?
     var Name,Image: String?
     
-//    enum CodingKeys: String, CodingKey {
-////        case id = "Id"
-//        case Name = "Name"
-//        case Image = "Image"
-//
-//    }
+    enum CodingKeys: String, CodingKey {
+        case Id = "Id"
+        case Name = "Name"
+        case Image = "Image"
+
+    }
     
 }

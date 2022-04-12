@@ -91,7 +91,7 @@ struct ViewSearchDoc: View {
                 List( ){
 
                     //                LazyVStack(spacing:15){
-                    ForEach(searchDoc.publishedModelSearchDoc ?? []){ Doctor in
+                    ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self){ Doctor in
                         VStack(alignment:.leading){
                             HStack{
                                 Image("logo")
@@ -99,16 +99,16 @@ struct ViewSearchDoc: View {
                                     .frame(width:70)
                                     .background(Color.gray)
                                     .cornerRadius(9)
-                                
-                                
+
+
                                 VStack(alignment:.leading){
                                     HStack{
                                         Text("Dr/ ").foregroundColor(.black.opacity(0.7))
                                         Text(Doctor.DoctorName ?? "")
                                             .font(Font.SalamtechFonts.Bold18)
-                                        
+
                                     }
-                                    
+
                                     HStack{
                                         Text(Doctor.SeniortyLevelName ?? "")
                                             .foregroundColor(.gray.opacity(0.7))
@@ -126,7 +126,7 @@ struct ViewSearchDoc: View {
                                             Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
                                                 .foregroundColor(.yellow)
                                         }
-                                        
+
                                         //                                    Image(systemName: "star.fill")
                                         //                                        .foregroundColor(.yellow)
                                         //                                    Image(systemName: "star.fill")
@@ -143,9 +143,9 @@ struct ViewSearchDoc: View {
                                             .font(Font.SalamtechFonts.Reg14)
                                     }
                                 }
-                                
+
                                 Spacer()
-                                
+
                             }
                             .padding(10)
                             .frame(height:115)
@@ -175,7 +175,7 @@ struct ViewSearchDoc: View {
                                         .font(Font.SalamtechFonts.Reg14)
                                         Spacer()
                                 }.padding(.leading)
-                                
+
                                 HStack{
                                     Image("doc3")
                                     Text("Fees:")
@@ -184,10 +184,10 @@ struct ViewSearchDoc: View {
                                     Text("\( String( Doctor.FeesFrom ?? 0.0)) to \( String( Doctor.FeesTo ?? 0.0)) EGP (Upon time & date)")
                                         .foregroundColor(.secondary)
                                         .font(Font.SalamtechFonts.Reg14)
-                                    
+
                                     Spacer()
                                 }.padding(.leading)
-                                
+
                                 HStack{
                                     Image("doc4")
                                     Text("Waiting Time:")
@@ -196,7 +196,7 @@ struct ViewSearchDoc: View {
                                     Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
                                         .foregroundColor(.secondary)
                                         .font(Font.SalamtechFonts.Reg14)
-                                    
+
                                     Spacer()
                                 }.padding(.leading)
                             }
@@ -210,11 +210,13 @@ struct ViewSearchDoc: View {
                             
                                 HStack{
                                     Spacer()
-                                    ForEach(0..<4){ imge2 in
-                                        Text("(imge2.Image)")
+                                
+                                    ForEach(Doctor.MedicalExamationTypeImage ?? [], id:\.self ){ imge2 in
+                                        Text("\(imge2.Image ?? "")")
 //                                        Text("\(Doctor.MedicalExamationTypeImage?[1] ?? "")")
                                     }
-
+                                    
+                                    
                                     Spacer()
                                     Button(action: {
 
@@ -241,7 +243,7 @@ struct ViewSearchDoc: View {
                                 }.padding(.bottom,10)
                                 .onAppear(perform: {
  
-                                    self.imgs = Doctor.MedicalExamationTypeImage ?? []
+//                                    self.imgs = Doctor.MedicalExamationTypeImage ?? []
 //                                    ForEach(Doctor.MedicalExamationTypeImage, id:\.self ){ imge in
 //                                        print("\(Doctor.MedicalExamationTypeImage[0])")
 //                                    }
