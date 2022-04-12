@@ -123,7 +123,7 @@ struct ChooseMedicineAllergy: View {
         print(medicalCreatedVM.PatientMedicineAllergiesDto)
     
     }
-        .offset(y: (UIScreen.main.bounds.size.height / 2) - 200)
+        .offset(y: (UIScreen.main.bounds.size.height / 2) - 300)
 
 }
 }
