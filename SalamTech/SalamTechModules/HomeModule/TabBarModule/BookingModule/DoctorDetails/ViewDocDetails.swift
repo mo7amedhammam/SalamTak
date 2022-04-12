@@ -23,175 +23,181 @@ struct ViewDocDetails:View{
                         .frame( height: 80)
                         
                     
-                    
-                    ScrollView{
-                        
-                        ZStack{
-                            ZStack {
+//                    VStack{
+
+                    ScrollView {
+                            ZStack{
+                                ZStack {
+                                    
+                                } //Z
+                                .frame(width:UIScreen.main.bounds.width-30, height: 140)
+                                .background(.white)
+
+                                .cornerRadius(9)
+                                .offset( y: 20)
                                 
-                            } //Z
-                            .frame(width:350, height: 160)
-                            .background(.white)
+                                    VStack( spacing:0){
 
-                            .cornerRadius(9)
-                            .offset( y: -10)
-                            
-                                VStack( spacing:0){
-                                    Spacer()
-                                HStack{
-                                    VStack {
-                                        Spacer().frame(height:15)
-                                        Image("logo")
-                                                .resizable()
-                                                .frame(width: 70, height: 70)
-                                                .background(Color.gray)
-                                                .cornerRadius(9)
+                                        VStack( ) {
+                                            Spacer().frame(height:0)
+                                    HStack(alignment:.bottom){
+
+                                            Image("logo")
+                                                    .resizable()
+                                                    .frame(width: 60, height: 60)
+                                                    .background(Color.gray)
+                                                    .cornerRadius(9)
+                                            
+                                                   
+    //
+    //                                    }
+    //                                    .frame( height: 80)
+    //                                    .padding()
+    //                                    .padding(.top,-20)
                                         
-                                                .padding(.top,-35)
-//
-                                    }.padding()
-
-                                    
-                                        Text("Dr/ ")
-                                        .foregroundColor(.black.opacity(0.7))
-                                    
-                                        Text("doctor name")
+                                            Text("Dr/")
+                                            .foregroundColor(.black.opacity(0.7))
                                             .font(Font.SalamtechFonts.Bold18)
-
-                                    Spacer()
-
-                                }
-//                                .padding(.leading)
-                                
-                                    VStack(alignment:.leading, spacing:0){
-                                       
-
-                                        HStack{
-                                            Text("Seniority lvl ")
-                                                .foregroundColor(.gray.opacity(0.7))
-                                                .font(Font.SalamtechFonts.Reg14)
-                                        }
-                                        HStack{
-                                            ForEach(0..<5){_ in
-                                                Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-                                                    .foregroundColor(.yellow)
-                                            }
-
-                                     
-                                            Text("( (240)"+" Patients )")
-                                                .foregroundColor(.black.opacity(0.7))
-                                                .font(Font.SalamtechFonts.Reg14)
-                                        }
                                         
-                                        HStack{
-                                            Image("doc1")
-                                            Text("Doctor.SpecialistName" )
-                                                .foregroundColor(Color("darkGreen"))
-                                                .font(Font.SalamtechFonts.Reg14)
-                                            Text(" Specialized in ")
-                                                .foregroundColor(.secondary)
-                                                .font(Font.SalamtechFonts.Reg14)
-                                            Text("Doctor.subSpecialistName" )
-                                                .foregroundColor(Color("darkGreen"))
-                                                .font(Font.SalamtechFonts.Reg14)
-
-    //                                        Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
-    //                                            .foregroundColor(Color("darkGreen"))
-    //                                            .font(Font.SalamtechFonts.Reg14)
-                                            Spacer()
-                                        }
+                                            Text("doctor name")
+                                                .font(Font.SalamtechFonts.Bold18)
 
                                         Spacer()
+                                    }
+                                    }
+                                        .padding()
+    //                                    .padding(.top,-10)
+                                    
+                                        VStack(alignment:.leading, spacing:0){
+                                           
 
-                                    }.padding(.leading)
+                                            HStack{
+                                                Text("Seniority lvl ")
+                                                    .foregroundColor(.gray.opacity(0.7))
+                                                    .font(Font.SalamtechFonts.Reg14)
+                                            }
+                                            HStack{
+                                                ForEach(0..<5){_ in
+                                                    Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
+                                                        .foregroundColor(.yellow)
+                                                }
+
+                                         
+                                                Text("( (240)"+" Patients )")
+                                                    .foregroundColor(.black.opacity(0.7))
+                                                    .font(Font.SalamtechFonts.Reg14)
+                                            }
+                                            
+                                            HStack{
+                                                Image("doc1")
+                                                Text("Doctor.SpecialistName" )
+                                                    .foregroundColor(Color("darkGreen"))
+                                                    .font(Font.SalamtechFonts.Reg14)
+                                                Text(" Specialized in ")
+                                                    .foregroundColor(.secondary)
+                                                    .font(Font.SalamtechFonts.Reg14)
+                                                Text("Doctor.subSpecialistName" )
+                                                    .foregroundColor(Color("darkGreen"))
+                                                    .font(Font.SalamtechFonts.Reg14)
+                                                    
+       
+                                                Spacer()
+                                            }
+
+                                            Spacer()
+
+                                        }.padding(.leading)
+
+                                }//V
+                                    
+                                    
+                                .frame(height: 160)
+                                .background(Color.clear)
+    //                            .frame( height: 140)
+    //                            .cornerRadius(9)
+
+                            }//Z
+                            .frame(width: UIScreen.main.bounds.width-20, height: 180)
+    //                        .offset(y:40)
+                            .background(.clear)
+                            .cornerRadius(9)
+                            .shadow(color: .black.opacity(0.1), radius: 9)
+                           
+                            
+                            ZStack {
+                                HStack(){
+                                    Image("doc3")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .padding(.leading)
+                                    VStack{
+                                    Text("Fees:")
+                                        .foregroundColor(Color("darkGreen"))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    Text("starting From 200 EGP")
+                                        .foregroundColor(.secondary)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    
+        //                            Spacer()
+                                    }.padding(.trailing)
+                                    Spacer()
+        Divider()
+                                    
+        //                        HStack{
+                                    Image("doc4")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+//                                        .padding(.leading)
+                                    VStack{
+                                    Text("Waiting Time:")
+                                        .foregroundColor(Color("darkGreen"))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    Text("(15)" + " Minutes")
+                                        .foregroundColor(.secondary)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    
+                                    }.padding(.trailing)
+                                }
+                                .background(Color.white)
+                            }
+                            .frame(width: UIScreen.main.bounds.width-30, height:55)
+                                .cornerRadius(9)
+                            .shadow(color: .black.opacity(0.1), radius: 9)
+ZStack{
+        HStack{
+            Image("doc2")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .padding(.leading)
+            VStack{
+            Text("(Doctor.ClinicName ?? ): ")
+                    .foregroundColor(Color("darkGreen"))
+                    .font(Font.SalamtechFonts.Reg14)
+            Text("(Doctor.ClinicAddress ?? )")
+                .foregroundColor(.secondary)
+                .font(Font.SalamtechFonts.Reg14)
+//                Spacer()
+        }.padding(.leading)
+                .padding()
+            Spacer()
+
+    }
+    .background(Color.white)
+}
+.frame(width: UIScreen.main.bounds.width-30, height:55)
+    .cornerRadius(9)
+.shadow(color: .black.opacity(0.1), radius: 9)
 
 
 
-
-        //                        VStack(spacing:0){
-        //                            HStack{
-        //                                Image("doc1")
-        //                                Text(Doctor.SpecialistName ?? "")
-        //                                    .foregroundColor(Color("darkGreen"))
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //                                Text(" Specialized in ")
-        //                                    .foregroundColor(.secondary)
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //                                Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
-        //                                    .foregroundColor(Color("darkGreen"))
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //                                Spacer()
-        //                            }.padding(.leading)
-        //
-        //                            HStack{
-        //                                Image("doc2")
-        //                                Text("\(Doctor.ClinicName  ?? ""): ")
-        //                                        .foregroundColor(Color("darkGreen"))
-        //                                        .font(Font.SalamtechFonts.Reg14)
-        //                                Text("\n        \(Doctor.ClinicAddress ?? "")")
-        //                                    .foregroundColor(.secondary)
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //                                    Spacer()
-        //                            }.padding(.leading)
-        //
-        //                            HStack{
-        //                                Image("doc3")
-        //                                Text("Fees:")
-        //                                    .foregroundColor(Color("darkGreen"))
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //                                Text("\( String( Doctor.FeesFrom ?? 0.0)) to \( String( Doctor.FeesTo ?? 0.0)) EGP (Upon time & date)")
-        //                                    .foregroundColor(.secondary)
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //
-        //                                Spacer()
-        //                            }.padding(.leading)
-        //
-        //                            HStack{
-        //                                Image("doc4")
-        //                                Text("Waiting Time:")
-        //                                    .foregroundColor(Color("darkGreen"))
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //                                Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
-        //                                    .foregroundColor(.secondary)
-        //                                    .font(Font.SalamtechFonts.Reg14)
-        //
-        //                                Spacer()
-        //                            }.padding(.leading)
-        //                        }
+    Spacer()
 
 
-
-                            }//V
-                                
-                                
-//                            .frame(height: 150)
-                            .background(Color.clear)
-//                            .frame( height: 140)
-//                            .cornerRadius(9)
-
-                                
-
-
-              
-
-                        }//Z
-                        .frame(height: 250)
-//                        .background(.red)
-                        .background(.clear)
-                        .cornerRadius(9)
-//                        .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-                        
-                        .shadow(color: .black.opacity(0.1), radius: 9)
-
-                       
-
-
-
-
-                }
-                .frame(width: UIScreen.main.bounds.width-30)
-                .background(.clear)
+                    }
+                    .frame(width: UIScreen.main.bounds.width-20)
+                    .background(.clear)
                 .offset( y: -105)
+//                    }
 
                     Spacer()
                 }
