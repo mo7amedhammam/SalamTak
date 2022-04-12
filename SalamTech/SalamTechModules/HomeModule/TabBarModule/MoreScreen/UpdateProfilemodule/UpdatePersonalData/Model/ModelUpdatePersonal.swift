@@ -26,7 +26,7 @@ import Foundation
     // MARK: - DataClass
     struct Patient: Codable {
         let id, genderId,occupationId,nationalityId,countryId,cityId,areaId,floorNo: Int?
-        let image,firstName,middleName,familyName,firstNameAr,middleNameAr,familyNameAr,emergencyContact,birthdate,address,longitude,latitude,apartNo,blockNo:String?
+        let image,firstName,middleName,familyName,firstNameAr,middleNameAr,familyNameAr,emergencyContact,birthdate,address,longitude,latitude,apartNo,blockNo,nationalityName,cityName,areaName:String?
 
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -51,6 +51,9 @@ import Foundation
             case latitude = "Latitude"
             case apartNo = "ApartmentNo"
             case blockNo = "BlockNo"
+            case nationalityName = "NationalityName"
+            case cityName = "CityName"
+            case areaName = "AreaName"
         }
     }
 

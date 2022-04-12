@@ -79,9 +79,12 @@ struct PatientProfile: View {
                         UpdatePersonalDataView()
                     }
                     .padding(15)
-                        .tag(0)
+                    .tag(0)
+                    ZStack{
                         UpdateMedicalStateView()
-                        .tag(1)
+                    }
+                    .padding(15)
+                    .tag(1)
 //                    UpdateLegalDocView()
 //                        .tag(2)
                     

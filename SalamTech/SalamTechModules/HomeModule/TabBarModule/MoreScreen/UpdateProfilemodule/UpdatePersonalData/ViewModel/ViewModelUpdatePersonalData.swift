@@ -91,7 +91,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
 //    @Published  var DoctorSubSpecialist : [Int] = []
     @Published  var profileImage = UIImage()
     
-    @Published  var NationalityName: String = "Nationality"
+    @Published  var NationalityName: String = ""
     @Published  var cityName             : String = ""
     @Published  var areaName             : String = ""
     @Published  var occupationName       : String = "Occupation"
@@ -163,6 +163,9 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.date = DateFormatter.formate.date(from: Birthday) ?? Date()
             self.Id = publishedPatientGetModel?.data?.id
             self.Address = publishedPatientGetModel?.data?.address ?? ""
+            self.NationalityName = publishedPatientGetModel?.data?.nationalityName ?? "Nationality"
+            self.cityName = publishedPatientGetModel?.data?.cityName ?? "City"
+            self.areaName = publishedPatientGetModel?.data?.areaName ?? "Area"
             
             //self.PatientId = publishedPatientGetModel?.data.
 //            self.Birthday = publishedPatientGetModel?.data?.birthdate ?? Date()
@@ -196,7 +199,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
     
 
     
-    func startUpdatePatientProfile(  profileImage:  UIImage?) {
+    func startUpdatePatientProfile() {
 
         
         let parametersarr : [String : Any]  = ["FirstName" : FirstName ,"FirstNameAr" : FirstNameAr,
@@ -208,7 +211,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
                            "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
                                                "Latitude": String(Latitude), "Longitude": String(Longitude),
-                                               "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo
+                                               "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo, "Id":Id ?? 0
                             
                                                
                           ]
@@ -216,7 +219,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
         if Helper.isConnectedToNetwork(){
 //        if isValid == true {
             
-            UpdatePersonalApiService.UpdatePatientProfile(passedparameters : parametersarr , profileImage: profileImage,completion: { (success, model, err) in
+            UpdatePersonalApiService.UpdatePatientProfile(passedparameters : parametersarr , completion: { (success, model, err) in
                 print(parametersarr)
                 self.isLoading = true
             if success{

@@ -19,10 +19,12 @@ struct ContentView: View {
 //            PatientProfile()
             
         }
-//        .onAppear(perform: {
-//            Helper.setLanguage(currentLanguage: "en")
-//            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTk5ODg3NzY2IiwibmFtZWlkIjoiMzY0NSIsImp0aSI6IjU1ZGYxOTZhLTE0NTEtNGRjMi1iNTdiLWRjY2MwY2FjNWYyMyIsImV4cCI6MTY0OTQ5NjM2MywiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.6VVZmZC7RheuztFliG-WexIree587vdmS3AWKryZNPk")
-//        })
+        .onAppear(perform: {
+            Helper.setLanguage(currentLanguage: "en")
+            
+            
+//            Helper.setAccessToken(access_token: "Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMDMzMjU1NzAwIiwibmFtZWlkIjoiMzY1NiIsImp0aSI6IjMyMTk5YmEzLTg5NTUtNDRlZS04NWFmLTA5ZGU2MDkzY2I4MCIsImV4cCI6MTY0OTkzMDI3OCwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.FqpnPFs_R__ig_w8q6QWAd2EI7CWjcWAE6pMwtnQ-L8")
+        })
 
         .onChange(of: scenePhase, perform: { newPhase in
                 if newPhase == .active {
