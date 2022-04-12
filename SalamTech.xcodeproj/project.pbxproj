@@ -1632,7 +1632,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = 2K7WVT9HR2;
+				DEVELOPMENT_TEAM = F7P569JB4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -1650,7 +1650,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1667,7 +1667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = 2K7WVT9HR2;
+				DEVELOPMENT_TEAM = F7P569JB4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -1685,7 +1685,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

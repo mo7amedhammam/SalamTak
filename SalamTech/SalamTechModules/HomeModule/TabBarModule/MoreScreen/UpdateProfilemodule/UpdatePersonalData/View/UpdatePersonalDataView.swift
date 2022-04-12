@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 extension DateFormatter {
     static var formate: DateFormatter {
         let dateFormatter = DateFormatter()
@@ -58,12 +59,23 @@ struct UpdatePersonalDataView: View {
             
                                                 }, label: {
                                                     
-
-                                                    Image(uiImage: patientUpdatedVM.profileImage )
-                                                            .resizable()
-                                                            .foregroundColor(Color("blueColor"))
-                                                        
-                                                            .clipShape(Rectangle())
+                                                    if patientUpdatedVM.ImageUrl != "" {
+                                                        KFImage(URL(string: URLs.BaseUrl + "\(patientUpdatedVM.ImageUrl)"))
+                                           
+                                                               .resizable()
+                                                               .scaledToFill()
+                   
+                                                               .background(Color.clear)
+                   
+                                                           
+                                                    } else {
+                                                        Image(uiImage: patientUpdatedVM.profileImage )
+                                                                .resizable()
+                                                                .foregroundColor(Color("blueColor"))
+                                                            
+                                                                .clipShape(Rectangle())
+                                                    }
+                                                    
 
                                                 })
 
@@ -80,10 +92,10 @@ struct UpdatePersonalDataView: View {
                                             )
                                         .cornerRadius(10)
                                             
-                                            CircularButton(ButtonImage:Image(systemName: "pencil" ) , forgroundColor: Color.gray, backgroundColor: Color.white.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
-                                                self.showImageSheet = true
-
-                                            }.padding(.top,70)
+//                                            CircularButton(ButtonImage:Image(systemName: "pencil" ) , forgroundColor: Color.gray, backgroundColor: Color.white.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
+//                                                self.showImageSheet = true
+//
+//                                            }.padding(.top,70)
                                           } .frame(width: 90, height: 90, alignment: .center)
                                             .background(Color.clear)
                                         Spacer().frame(height: 20)
@@ -348,6 +360,10 @@ struct UpdatePersonalDataView: View {
                                 }
                                
                                 Spacer()
+                                
+                                ButtonView(text: "Update Profile", action: {
+                                    patientUpdatedVM.startUpdatePatientProfile()
+                                })
 //                                CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
 ////                                    patientUpdatedVM.DoctorSubSpecialist = self.SubSpecIDArr
 ////                                    print(SubSpecIDArr)
