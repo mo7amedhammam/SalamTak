@@ -49,7 +49,15 @@ class URLs {
     /// create patient profile >> needs token
     var PatientCreateProfile = BaseUrl + "/api/\(Helper.getLanguage())/Patient/CreateProfile"
     
+    var PatientGetProfile = BaseUrl + "/api/\(Helper.getLanguage())/Patient/GetPatient"
+    
+    var PatientUpdateProfile = BaseUrl + "/api/\(Helper.getLanguage())/Patient/UpdateProfile"
+    
     var PatientCreateMedicalInfo = BaseUrl + "/api/\(Helper.getLanguage())/Patient/CreatePatientMedicallInfo"
+    
+    var PatientGetMedicalInfo = BaseUrl + "/api/\(Helper.getLanguage())/Patient/GetPatientMedicalInfo"
+    
+    var PatientUpdateMedicalInfo = BaseUrl + "/api/\(Helper.getLanguage())/Patient/UpdatePatientMedicalInfo"
     
     var GetBloodTypes = BaseUrl + "/api/\(Helper.getLanguage())/PatientLookUp/GetBloodTypes"
     

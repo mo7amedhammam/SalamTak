@@ -54,6 +54,7 @@ struct ChooseNationality : View {
                                             self.SelectedNationalityId = NationalityVM.publishedCountryModel[button].Id ?? 0
                                             patientCreatedVM.NationalityName = SelectedNationalityName
                                             patientCreatedVM.NationalityId = SelectedNationalityId
+                                            IsPresented =  false
                                         }, label: {
                                             HStack{
                                                 Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
