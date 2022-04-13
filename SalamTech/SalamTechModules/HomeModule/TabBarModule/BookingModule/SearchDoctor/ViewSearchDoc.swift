@@ -219,7 +219,7 @@ struct ViewSearchDoc: View {
                                     
                                     Spacer()
                                     Button(action: {
-
+                                        gotodoctorDetails = true
                                     }, label: {
                                         HStack{
 
@@ -288,6 +288,11 @@ struct ViewSearchDoc: View {
             //            print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address ")
             
         })
+        
+        //  go to clinic info
+         NavigationLink(destination:ViewDocDetails(),isActive: $gotodoctorDetails) {
+              }
+        
         
     }
     
