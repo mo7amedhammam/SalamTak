@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ViewDocDetails:View{
     var body: some View{
-        NavigationView{
+//        NavigationView{
 
                     ZStack {
                 VStack{
@@ -68,8 +68,8 @@ struct ViewDocDetails:View{
         
      // go to clinic info
 //        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
-             }
-     .navigationBarHidden(true)
+//             }
+//     .navigationBarHidden(true)
 //     .navigationBarBackButtonHidden(true)
 
         
