@@ -11,17 +11,13 @@ struct ViewDocDetails:View{
     var body: some View{
         NavigationView{
 
-        
-            
-            ZStack {
+                    ZStack {
                 VStack{
                     Image("Rectangle")
                         .resizable()
 //                        .aspectRatio( contentMode: .fill)
                         .frame(width:UIScreen.main.bounds.width, height: 200)
 
-//                    VStack{
-//                        Spacer().frame(height:5)
                     ScrollView {
                         ViewDocMainInfo()
 
