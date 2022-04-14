@@ -89,70 +89,8 @@ struct ViewSearchDoc: View {
 
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
-                        VStack(alignment:.leading){
-                            
-//MARK: ****** Doc Main info ******
-                            ViewTopSection(Doctor: Doctor)
-// ******                    ******
-
-                            
-//MARK: ******* Middel Section ********
-                            ViewMiddelSection(Doctor: Doctor)
-//MARK: *******       ********
-
-                            
-                            Text(" Available \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) From \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) PM ")
-                                .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
-                                .background(Color.gray.opacity(0.3))
-                                .foregroundColor(.black.opacity(0.7))
-                                .font(Font.SalamtechFonts.Reg14)
-                            
-                            //MARK: --- TypeImage Name & Book bu ---
-                                HStack{
-                                    Spacer()
-                                
-                                    ForEach(Doctor.MedicalExamationTypeImage ?? [], id:\.self ){ imge2 in
-
-                                        KFImage(URL(string: URLs.BaseUrl + "\(imge2.Image ?? "")"))
-                                            .resizable()
-//                                            .clipShape(Circle())
-                                            .frame(width: 25,height: 25 )
-                                            .scaledToFit()
-                                            .cornerRadius(5)
-                                            .shadow(radius: 4)
-
-                                    }
-                                    Spacer()
-                                    Button(action: {
-                                        gotodoctorDetails = true
-                                    }, label: {
-                                        HStack{
-
-                                            Text("Book")
-                                                .foregroundColor(.white)
-                                                .font(Font.SalamtechFonts.Bold14)
-                                                .padding([.leading,.trailing],40)
-                                        }
-                                    }
-                                    )
-
-                                        .padding(.horizontal,15)
-                                        .frame( height: 40 )
-
-                                        .background(Color("blueColor"))
-                                        .cornerRadius(8)
-
-                                    Spacer()
-                                    
-                                    
-                                }.padding(.bottom,10)
-                        }
+                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails)
                         
-                        .background(Color.white)
-                        .cornerRadius(9)
-                        .shadow(color: .black.opacity(0.1), radius: 9)
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
                     }
                     
                     
@@ -386,3 +324,79 @@ struct ViewMiddelSection: View {
     }
 }
 
+
+struct ViewDocCell: View {
+    var Doctor : Doc
+    var searchDoc : VMSearchDoc
+    @Binding var gotodoctorDetails : Bool
+
+    
+    var body: some View {
+        VStack(alignment:.leading){
+            
+            //MARK: ****** Doc Main info ******
+            ViewTopSection(Doctor: Doctor)
+            // ******                    ******
+            
+            
+            //MARK: ******* Middel Section ********
+            ViewMiddelSection(Doctor: Doctor)
+            //MARK: *******       ********
+            
+            
+            Text(" Available \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) From \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) PM ")
+                .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
+                .background(Color.gray.opacity(0.3))
+                .foregroundColor(.black.opacity(0.7))
+                .font(Font.SalamtechFonts.Reg14)
+            
+            //MARK: --- TypeImage Name & Book bu ---
+            HStack{
+                Spacer()
+                
+                ForEach(Doctor.MedicalExamationTypeImage ?? [], id:\.self ){ imge2 in
+                    
+                    KFImage(URL(string: URLs.BaseUrl + "\(imge2.Image ?? "")"))
+                        .resizable()
+                    //                                            .clipShape(Circle())
+                        .frame(width: 25,height: 25 )
+                        .scaledToFit()
+                        .cornerRadius(5)
+                        .shadow(radius: 4)
+                    
+                }
+                Spacer()
+                
+                Button(action: {
+                    gotodoctorDetails = true
+                }, label: {
+                    HStack{
+                        Text("Book")
+                            .foregroundColor(.white)
+                            .font(Font.SalamtechFonts.Bold14)
+                    }
+                             .padding(.horizontal, 40)
+                }
+                )
+                    .buttonStyle(PlainButtonStyle())
+
+                    .padding(.horizontal,15)
+                    .frame( height: 40 )
+                    .background(Color("blueColor"))
+                    .cornerRadius(8)
+                
+                Spacer()
+                
+                
+            }
+            .padding(.bottom,10)
+            
+        }
+        
+        .background(Color.white)
+        .cornerRadius(9)
+        .shadow(color: .black.opacity(0.1), radius: 9)
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
+    }
+}
