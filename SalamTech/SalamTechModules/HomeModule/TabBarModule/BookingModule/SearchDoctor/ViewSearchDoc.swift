@@ -31,9 +31,7 @@ struct ViewSearchDoc: View {
     var body: some View {
         ZStack{
             VStack{
-                
-                
-//                VStack {
+                            
                     Spacer().frame(height:100)
                     ZStack {
                         Image("WhiteCurve")
@@ -44,7 +42,6 @@ struct ViewSearchDoc: View {
                         SearchBar(PlaceHolder:"Search a doctor... ",text: .constant("")).shadow(color: .black.opacity(0.2), radius: 15)
                         
                     }
-//                }
                 
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -93,6 +90,8 @@ struct ViewSearchDoc: View {
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
                         VStack(alignment:.leading){
+                            
+//MARK: ****** Doc Main info ******
                             HStack{
                                 Image("logo")
                                     .resizable()
@@ -100,15 +99,16 @@ struct ViewSearchDoc: View {
                                     .background(Color.gray)
                                     .cornerRadius(9)
 
-
                                 VStack(alignment:.leading){
+                                    //MARK:  --- Name ---
                                     HStack{
                                         Text("Dr/ ").foregroundColor(.black.opacity(0.7))
                                         Text(Doctor.DoctorName ?? "")
                                             .font(Font.SalamtechFonts.Bold18)
 
                                     }
-
+                                    
+                                    //MARK:  --- Seniority  ---
                                     HStack{
                                         Text(Doctor.SeniortyLevelName ?? "")
                                             .foregroundColor(.gray.opacity(0.7))
@@ -121,86 +121,87 @@ struct ViewSearchDoc: View {
                                         //                                        .foregroundColor(.gray.opacity(0.7))
                                         //                                        .font(Font.SalamtechFonts.Reg14)
                                     }
+                                    
+                                    //MARK:  --- Rate ---
                                     HStack{
                                         ForEach(0..<5){_ in
                                             Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
                                                 .foregroundColor(.yellow)
                                         }
 
-                                        //                                    Image(systemName: "star.fill")
-                                        //                                        .foregroundColor(.yellow)
-                                        //                                    Image(systemName: "star.fill")
-                                        //                                        .foregroundColor(.yellow)
-                                        //                                    Image(systemName: "star.fill")
-                                        //                                        .foregroundColor(.yellow)
-                                        //                                    Image(systemName: "star.leadinghalf.filled")
-                                        //                                        .foregroundColor(.yellow)
-                                        //                                    Image(systemName:"star")
-                                        //                                        .foregroundColor(.yellow)
-                                        //
                                         Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
                                             .foregroundColor(.black.opacity(0.7))
                                             .font(Font.SalamtechFonts.Reg14)
                                     }
                                 }
-
+                                
+                                
                                 Spacer()
 
                             }
                             .padding(10)
                             .frame(height:115)
+// ******                    ******
+
                             
-                            VStack(spacing:0){
-                                HStack{
-                                    Image("doc1")
-                                    Text(Doctor.SpecialistName ?? "")
-                                        .foregroundColor(Color("darkGreen"))
-                                        .font(Font.SalamtechFonts.Reg14)
-                                    Text(" Specialized in ")
-                                        .foregroundColor(.secondary)
-                                        .font(Font.SalamtechFonts.Reg14)
-                                    Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
-                                        .foregroundColor(Color("darkGreen"))
-                                        .font(Font.SalamtechFonts.Reg14)
-                                    Spacer()
-                                }.padding(.leading)
-
-                                HStack{
-                                    Image("doc2")
-                                    Text("\(Doctor.ClinicName  ?? ""): ")
-                                            .foregroundColor(Color("darkGreen"))
-                                            .font(Font.SalamtechFonts.Reg14)
-                                    Text("\n        \(Doctor.ClinicAddress ?? "")")
-                                        .foregroundColor(.secondary)
-                                        .font(Font.SalamtechFonts.Reg14)
-                                        Spacer()
-                                }.padding(.leading)
-
-                                HStack{
-                                    Image("doc3")
-                                    Text("Fees:")
-                                        .foregroundColor(Color("darkGreen"))
-                                        .font(Font.SalamtechFonts.Reg14)
-                                    Text("\( String( Doctor.FeesFrom ?? 0.0)) to \( String( Doctor.FeesTo ?? 0.0)) EGP (Upon time & date)")
-                                        .foregroundColor(.secondary)
-                                        .font(Font.SalamtechFonts.Reg14)
-
-                                    Spacer()
-                                }.padding(.leading)
-
-                                HStack{
-                                    Image("doc4")
-                                    Text("Waiting Time:")
-                                        .foregroundColor(Color("darkGreen"))
-                                        .font(Font.SalamtechFonts.Reg14)
-                                    Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
-                                        .foregroundColor(.secondary)
-                                        .font(Font.SalamtechFonts.Reg14)
-
-                                    Spacer()
-                                }.padding(.leading)
-                            }
-                            
+////MARK: ******* Middel Section ********
+//                            VStack(spacing:0){
+//
+//                                //MARK: --- Speciality & Sub speciality ---
+//                                HStack{
+//                                    Image("doc1")
+//                                    Text(Doctor.SpecialistName ?? "")
+//                                        .foregroundColor(Color("darkGreen"))
+//                                        .font(Font.SalamtechFonts.Reg14)
+//                                    Text(" Specialized in ")
+//                                        .foregroundColor(.secondary)
+//                                        .font(Font.SalamtechFonts.Reg14)
+//                                    Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
+//                                        .foregroundColor(Color("darkGreen"))
+//                                        .font(Font.SalamtechFonts.Reg14)
+//                                    Spacer()
+//                                }.padding(.leading)
+//
+//                                //MARK: --- Clinic Name & address ---
+//                                HStack{
+//                                    Image("doc2")
+//                                    Text("\(Doctor.ClinicName  ?? ""): ")
+//                                            .foregroundColor(Color("darkGreen"))
+//                                            .font(Font.SalamtechFonts.Reg14)
+//                                    Text("\n        \(Doctor.ClinicAddress ?? "")")
+//                                        .foregroundColor(.secondary)
+//                                        .font(Font.SalamtechFonts.Reg14)
+//                                        Spacer()
+//                                }.padding(.leading)
+//
+//                                //MARK: --- Fees ---
+//                                HStack{
+//                                    Image("doc3")
+//                                    Text("Fees:")
+//                                        .foregroundColor(Color("darkGreen"))
+//                                        .font(Font.SalamtechFonts.Reg14)
+//                                    Text("\( String( Doctor.FeesFrom ?? 0.0)) to \( String( Doctor.FeesTo ?? 0.0)) EGP (Upon time & date)")
+//                                        .foregroundColor(.secondary)
+//                                        .font(Font.SalamtechFonts.Reg14)
+//
+//                                    Spacer()
+//                                }.padding(.leading)
+//
+//                                //MARK: --- Waiting Time ---
+//                                HStack{
+//                                    Image("doc4")
+//                                    Text("Waiting Time:")
+//                                        .foregroundColor(Color("darkGreen"))
+//                                        .font(Font.SalamtechFonts.Reg14)
+//                                    Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
+//                                        .foregroundColor(.secondary)
+//                                        .font(Font.SalamtechFonts.Reg14)
+//
+//                                    Spacer()
+//                                }.padding(.leading)
+//                            }
+////MARK: *******       ********
+//
                             
                             Text(" Available \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) From \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) PM ")
                                 .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
@@ -208,13 +209,37 @@ struct ViewSearchDoc: View {
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
                             
+                            //MARK: --- TypeImage Name & Book bu ---
                                 HStack{
                                     Spacer()
                                 
-//                                    ForEach(0..<(Doctor.MedicalExamationTypeImage?.count ?? 0), id:\.self ){ imge2 in
+                                    ForEach(0..<(Doctor.MedicalExamationTypeImage?.count ?? 0), id:\.self ){ imge2 in
+                                        
+//                                        KFImage(URL(string: URLs.BaseUrl + "\(Doctor.MedicalExamationTypeImage?[imge2].Image ?? "")"))
+//                                            .resizable()
+//                                            .frame(width: 25,height: 25 )
+//                                            .scaledToFit()
+//                                            .cornerRadius(5)
+//                                            .shadow(radius: 4)
+                                        
+                                        
 //                                        Text("\(Doctor.MedicalExamationTypeImage?[imge2].Image ?? "")")
-//                                        Text("\(Doctor.MedicalExamationTypeImage?[1] ?? "")")
-//                                    }
+                                        AsyncImage(url: (URL(string: URLs.BaseUrl + "\(Doctor.MedicalExamationTypeImage?[imge2].Image ?? "")"))) { image in
+
+                                            image.resizable()
+
+                                        } placeholder: {
+                                            Image("logo")
+//                                                .resizable()
+
+                                        }
+//                                                                                        .resizable()
+
+//                                        .clipShape(Circle())
+//                                        .frame(width: 20, height: 20)
+//                                        .foregroundColor(.black)
+//    //                                        .background(.blue)
+                                    }
                                     
                                     
                                     Spacer()
@@ -242,14 +267,7 @@ struct ViewSearchDoc: View {
                                     
                                 }.padding(.bottom,10)
                                 .onAppear(perform: {
- 
-//                                    self.imgs = Doctor.MedicalExamationTypeImage ?? []
-//                                    ForEach(Doctor.MedicalExamationTypeImage, id:\.self ){ imge in
-//                                        print("\(Doctor.MedicalExamationTypeImage[0])")
-//                                    }
                                 })
-              
-                            
                         }
                         
                         .background(Color.white)
@@ -262,7 +280,6 @@ struct ViewSearchDoc: View {
                     
                 }
                 .listStyle(.plain)
-                
                 .padding(.top,0)
                 //            .background(Color.red)
                 Spacer()
@@ -283,21 +300,14 @@ struct ViewSearchDoc: View {
         }
         .onAppear(perform: {
             searchDoc.FetchDoctors()
-            
-            //            print(searchDoc.publishedModelSearchDoc?[0].DoctorName ?? "name ")
-            //            print(searchDoc.publishedModelSearchDoc?[0].ClinicAddress ?? "address ")
-            
         })
         
         //  go to clinic info
          NavigationLink(destination:ViewDocDetails(),isActive: $gotodoctorDetails) {
               }
-        
-        
+ 
     }
-    
-    
-    
+ 
 }
 
 struct ViewSearchDoc_Previews: PreviewProvider {
