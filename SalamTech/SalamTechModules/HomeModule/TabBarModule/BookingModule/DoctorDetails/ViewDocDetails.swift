@@ -84,6 +84,8 @@ struct ViewDocDetails_Previews: PreviewProvider {
     }
 }
 
+
+
 struct ViewDocMainInfo: View {
     var body: some View {
         VStack {
@@ -258,7 +260,7 @@ Divider()
 
 struct ViewDateAndTime: View {
     @State var selectedDate = ""
-    @State var timeexpanded = true
+    @State var timeexpanded = false
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
