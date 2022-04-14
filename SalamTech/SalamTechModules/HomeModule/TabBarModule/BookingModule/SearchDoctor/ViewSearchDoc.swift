@@ -22,6 +22,7 @@ struct ViewSearchDoc: View {
     @State var gotodoctorDetails = false
     @State var selectedCityId = 0
     @State var imgs : [Img] = []
+    @State var SelectedDoctor = Doc()
 
     
     init() {
@@ -89,7 +90,7 @@ struct ViewSearchDoc: View {
 
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
-                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails)
+                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
                         
                     }
                     
@@ -119,7 +120,7 @@ struct ViewSearchDoc: View {
         })
         
         //  go to clinic info
-         NavigationLink(destination:ViewDocDetails(),isActive: $gotodoctorDetails) {
+        NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor),isActive: $gotodoctorDetails) {
               }
  
     }
@@ -329,7 +330,7 @@ struct ViewDocCell: View {
     var Doctor : Doc
     var searchDoc : VMSearchDoc
     @Binding var gotodoctorDetails : Bool
-
+    @Binding var SelectedDoctor : Doc
     
     var body: some View {
         VStack(alignment:.leading){
@@ -368,6 +369,7 @@ struct ViewDocCell: View {
                 Spacer()
                 
                 Button(action: {
+                    SelectedDoctor = Doctor
                     gotodoctorDetails = true
                 }, label: {
                     HStack{

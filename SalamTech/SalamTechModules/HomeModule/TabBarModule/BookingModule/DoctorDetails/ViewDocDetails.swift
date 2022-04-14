@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ViewDocDetails:View{
+    var Doctor:Doc
+    
     var body: some View{
 //        NavigationView{
 
@@ -19,7 +21,7 @@ struct ViewDocDetails:View{
                         .frame(width:UIScreen.main.bounds.width, height: 200)
 
                     ScrollView {
-                        ViewDocMainInfo()
+                        ViewDocMainInfo(Doctor: Doctor)
 
                         ViewDateAndTime()
                         
@@ -79,7 +81,7 @@ struct ViewDocDetails:View{
 struct ViewDocDetails_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewDocDetails()
+            ViewDocDetails(Doctor: Doc.init())
         }.navigationBarHidden(true)
     }
 }
@@ -87,6 +89,8 @@ struct ViewDocDetails_Previews: PreviewProvider {
 
 
 struct ViewDocMainInfo: View {
+    var Doctor:Doc
+
     var body: some View {
         VStack {
             ZStack{
@@ -122,7 +126,7 @@ struct ViewDocMainInfo: View {
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Bold18)
                             
-                            Text("doctor name")
+                            Text(Doctor.DoctorName ?? "")
                                 .font(Font.SalamtechFonts.Bold18)
                             
                             Spacer()
