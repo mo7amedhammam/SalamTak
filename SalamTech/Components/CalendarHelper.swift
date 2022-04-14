@@ -64,7 +64,7 @@ class CalendarHelper
     func weekDay(date: Date) -> Int
     {
         let components = calendar.dateComponents([.weekday], from: date)
-        return components.weekday! - 1
+        return components.weekday! - 2
     }
     
     func addDays(date: Date, days: Int) -> Date
@@ -96,13 +96,13 @@ extension Date {
     var startOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         guard let startDay = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
-        return gregorian.date(byAdding: .day, value: 1, to: startDay)
+        return gregorian.date(byAdding: .day, value: -1, to: startDay)
     }
 
     var endOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
             guard let startDay = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
-           return gregorian.date(byAdding: .day, value: 7, to: startDay)
+           return gregorian.date(byAdding: .day, value: 5, to: startDay)
        }
 }
 
@@ -111,10 +111,10 @@ func convertDateToLocalTime(_ date: Date) -> Date {
         return Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: date)!
 }
 
-let now = convertDateToLocalTime(Date())
-
-let startWeek = convertDateToLocalTime(now.startOfWeek!)
-let endWeek = convertDateToLocalTime(now.endOfWeek!)
+//let now = convertDateToLocalTime(Date())
+//
+//let startWeek = convertDateToLocalTime(now.startOfWeek!)
+//let endWeek = convertDateToLocalTime(now.endOfWeek!)
 
 //print("Local time is: \(now)")
 //

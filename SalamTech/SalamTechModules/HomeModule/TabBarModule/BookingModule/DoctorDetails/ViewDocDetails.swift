@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+var selectedDate = Date()
+var totalSquares = [Date]()
+
 struct ViewDocDetails:View{
     var Doctor:Doc
     
@@ -65,6 +68,29 @@ struct ViewDocDetails:View{
             .edgesIgnoringSafeArea(.top)
             .navigationBarItems(leading: BackButtonView())
             .navigationBarBackButtonHidden(true)
+            .onAppear(perform: {
+                setWeekView()
+                let now = convertDateToLocalTime(Date())
+
+                let startWeek = convertDateToLocalTime(now.startOfWeek!)
+                let endWeek = convertDateToLocalTime(now.endOfWeek!)
+                
+                
+                print("Local time is: \(now)")
+                
+                print("Start of week is: \(startWeek)")
+                print("End of week is: \(endWeek)")
+                
+                print("Month : \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
+                print(" week :")
+                for dayyy  in totalSquares{
+                    print(dayyy)
+                }
+
+
+            })
+        
+        
         
 //     }
         
@@ -76,6 +102,29 @@ struct ViewDocDetails:View{
 
         
     }
+    
+    
+
+    func setWeekView()
+    {
+//        totalSquares.removeAll()
+        
+        var current = CalendarHelper().sundayForDate(date: selectedDate)
+        let nextSunday = CalendarHelper().addDays(date: current, days: 7)
+        
+        while (current < nextSunday)
+        {
+            totalSquares.append(current)
+            current = CalendarHelper().addDays(date: current, days: 1)
+        }
+        
+//        monthLabel.text = CalendarHelper().monthString(date: selectedDate)
+//            + " " + CalendarHelper().yearString(date: selectedDate)
+//        collectionView.reloadData()
+//        tableView.reloadData()
+    }
+
+    
 }
 
 struct ViewDocDetails_Previews: PreviewProvider {
@@ -319,7 +368,8 @@ struct ViewDateAndTime: View {
                                 timeexpanded = false
                             }, label: {
                                 VStack{
-                                    
+   
+
                                     Text("1")
                                     Text(day)
                                     //                                                    .padding(.vertical, 0)
