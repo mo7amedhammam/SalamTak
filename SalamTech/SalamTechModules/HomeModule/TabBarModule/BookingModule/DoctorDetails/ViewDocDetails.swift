@@ -81,7 +81,6 @@ struct ViewDocDetails_Previews: PreviewProvider {
         NavigationView{
             ViewDocDetails()
         }.navigationBarHidden(true)
-        
     }
 }
 
