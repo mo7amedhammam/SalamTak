@@ -258,14 +258,20 @@ Divider()
 
 struct ViewDateAndTime: View {
     @State var selectedDate = ""
-    @State var timeexpanded = false
+    @State var timeexpanded = true
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    
+    var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
+    var daytimes = ["2:30 PM", "2:50 PM", "3:30 PM", "3:50 PM","4:30 PM", "4:50 PM","5:30 PM", "5:50 PM"]
+    @State var selectedTime = ""
 
 
     var body: some View {
         VStack{
+            
             Text("Choose date & time").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
             
+            //MARK: ---- Days of Week --------
             ZStack{
                 VStack{
                     
@@ -304,6 +310,7 @@ struct ViewDateAndTime: View {
                             Button(action: {
                                 // select date
                                 selectedDate = day
+                                timeexpanded = false
                             }, label: {
                                 VStack{
                                     
@@ -344,7 +351,10 @@ struct ViewDateAndTime: View {
             .frame(width: UIScreen.main.bounds.width-30)
             .cornerRadius(9)
             .shadow(color: .black.opacity(0.1), radius: 9)
+         //---------------------------------
             
+            //MARK: ---- periods of slot --------
+            VStack{
             Button(action: {
                 timeexpanded.toggle()
                 
@@ -379,7 +389,7 @@ struct ViewDateAndTime: View {
                         .font(Font.SalamtechFonts.Reg16)
                     
                     Image( systemName: timeexpanded ?  "chevron.up":"chevron.down")
-                        .foregroundColor(Color("darkGreen"))
+                        .foregroundColor(Color("blueColor"))
                         .padding(.bottom,3)
                     
                     
@@ -399,6 +409,38 @@ struct ViewDateAndTime: View {
             })  .frame(width: UIScreen.main.bounds.width-30)
                 .cornerRadius(9)
                 .shadow(color: .black.opacity(0.1), radius: 9)
+            
+            if timeexpanded{
+                LazyVGrid(columns: vGridLayout){
+                    ForEach(daytimes) { exType in
+                        
+                        ZStack {
+                            Button(action: {
+                                selectedTime = exType
+//                                gotoSpec=true
+                                
+                            }, label: {
+                         
+
+                                    
+                                    Text(exType )
+                                        .padding(.vertical,10)
+                                        .foregroundColor(selectedTime == exType ? .white : .gray)
+                                
+                            })
+                                .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
+                                .background( selectedTime == exType ? Color("darkGreen").opacity(0.7):.white)
+                                .cornerRadius(8)
+                                .shadow(color: .black.opacity(0.099), radius: 5)
+                        }
+                    }
+                                        
+                }
+                .padding(.horizontal,13)
+            }
+        }
+            
+            //-----------------------------------------
             
             
         }
