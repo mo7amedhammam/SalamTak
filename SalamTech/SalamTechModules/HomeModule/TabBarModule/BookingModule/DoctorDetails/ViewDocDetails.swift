@@ -312,7 +312,7 @@ Divider()
 }
 
 struct ViewDateAndTime: View {
-    @State var selectedDate = ""
+    @State var TappedDate = ""
     @State var timeexpanded = false
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
@@ -341,7 +341,7 @@ struct ViewDateAndTime: View {
                                 .padding(.bottom,3)
                                 .padding(.leading)
                             //                                VStack{
-                            Text("Apr, 2022")
+                            Text("\(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg18)
                             
@@ -360,21 +360,22 @@ struct ViewDateAndTime: View {
                     
                     
                     HStack(spacing:0){
-                        ForEach(weekdays){ day in
+                        ForEach(0..<totalSquares.count, id:\.self){ day in
                             
                             Button(action: {
                                 // select date
-                                selectedDate = day
+                                TappedDate = weekdays[day]
                                 timeexpanded = false
                             }, label: {
                                 VStack{
-   
+                                    let date = totalSquares[day]
 
-                                    Text("1")
-                                    Text(day)
+                                    Text(                            String(CalendarHelper().dayOfMonth(date: date))
+)
+                                    Text(weekdays[day])
                                     //                                                    .padding(.vertical, 0)
                                     
-                                    if selectedDate == day{
+                                    if TappedDate == weekdays[day]{
                                         Text(".")
                                             .font(.system(size: 40) )
                                         //                                                        .frame(height:10)
@@ -384,10 +385,10 @@ struct ViewDateAndTime: View {
                                 
                                 
                             }).foregroundColor(Color("blueColor"))
-                                .background( selectedDate == day ? Color("darkGreen").opacity(0.19):.clear)
+                                .background( TappedDate == weekdays[day] ? Color("darkGreen").opacity(0.19):.clear)
                                 .cornerRadius(8)
                             
-                                .padding(.bottom, 5)
+                                .padding(.bottom, 10)
                             
                             
                         }
