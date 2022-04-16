@@ -105,24 +105,6 @@ struct ViewDocDetails:View{
     
     
 
-    func setWeekView()
-    {
-//        totalSquares.removeAll()
-        
-        var current = CalendarHelper().sundayForDate(date: selectedDate)
-        let nextSunday = CalendarHelper().addDays(date: current, days: 7)
-        
-        while (current < nextSunday)
-        {
-            totalSquares.append(current)
-            current = CalendarHelper().addDays(date: current, days: 1)
-        }
-        
-//        monthLabel.text = CalendarHelper().monthString(date: selectedDate)
-//            + " " + CalendarHelper().yearString(date: selectedDate)
-//        collectionView.reloadData()
-//        tableView.reloadData()
-    }
 
     
 }
@@ -135,6 +117,24 @@ struct ViewDocDetails_Previews: PreviewProvider {
     }
 }
 
+func setWeekView()
+{
+//        totalSquares.removeAll()
+    
+    var current = CalendarHelper().sundayForDate(date: selectedDate)
+    let nextSunday = CalendarHelper().addDays(date: current, days: 7)
+    
+    while (current < nextSunday)
+    {
+        totalSquares.append(current)
+        current = CalendarHelper().addDays(date: current, days: 1)
+    }
+    
+//        monthLabel.text = CalendarHelper().monthString(date: selectedDate)
+//            + " " + CalendarHelper().yearString(date: selectedDate)
+//        collectionView.reloadData()
+//        tableView.reloadData()
+}
 
 
 struct ViewDocMainInfo: View {
@@ -312,7 +312,7 @@ Divider()
 }
 
 struct ViewDateAndTime: View {
-    @State var TappedDate = ""
+    @State var TappedDate : Date?
     @State var timeexpanded = false
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
@@ -320,7 +320,9 @@ struct ViewDateAndTime: View {
     var daytimes = ["2:30 PM", "2:50 PM", "3:30 PM", "3:50 PM","4:30 PM", "4:50 PM","5:30 PM", "5:50 PM"]
     @State var selectedTime = ""
 
-
+    init(){
+        setWeekView()
+    }
     var body: some View {
         VStack{
             
@@ -329,6 +331,7 @@ struct ViewDateAndTime: View {
             //MARK: ---- Days of Week --------
             ZStack{
                 VStack{
+                    
                     
                     Button(action: {
                         // open Calendar
@@ -356,15 +359,17 @@ struct ViewDateAndTime: View {
                         }.frame(height:15)
                     })
                         .padding()
+                    
                     Divider().padding(.top,-10)
                     
                     
                     HStack(spacing:0){
-                        ForEach(0..<totalSquares.count, id:\.self){ day in
+                        ForEach(0..<weekdays.count, id:\.self){ day in
                             
                             Button(action: {
                                 // select date
-                                TappedDate = weekdays[day]
+                                print(totalSquares[day])
+                                TappedDate = totalSquares[day]
                                 timeexpanded = false
                             }, label: {
                                 VStack{
@@ -375,7 +380,7 @@ struct ViewDateAndTime: View {
                                     Text(weekdays[day])
                                     //                                                    .padding(.vertical, 0)
                                     
-                                    if TappedDate == weekdays[day]{
+                                    if TappedDate == totalSquares[day]{
                                         Text(".")
                                             .font(.system(size: 40) )
                                         //                                                        .frame(height:10)
@@ -385,7 +390,7 @@ struct ViewDateAndTime: View {
                                 
                                 
                             }).foregroundColor(Color("blueColor"))
-                                .background( TappedDate == weekdays[day] ? Color("darkGreen").opacity(0.19):.clear)
+                                .background( TappedDate == totalSquares[day] ? Color("darkGreen").opacity(0.19):.clear)
                                 .cornerRadius(8)
                             
                                 .padding(.bottom, 10)
@@ -394,13 +399,12 @@ struct ViewDateAndTime: View {
                         }
                         //                                    .padding(5)
                     }
-                    //
-                    
+                    .frame(height: 60)
+
                     
                     
                     
                 }
-                
                 .background(Color.white)
                 
                 
@@ -453,16 +457,9 @@ struct ViewDateAndTime: View {
                 }
                 .frame(height:50)
                 .padding(.horizontal)
-                
-                
-                
+   
                 .background(Color.white)
-                
-                
-                //                            }
-                //                            .onTapGesture {
-                //                                timeexpanded.toggle()
-                //                            }
+
             })  .frame(width: UIScreen.main.bounds.width-30)
                 .cornerRadius(9)
                 .shadow(color: .black.opacity(0.1), radius: 9)
