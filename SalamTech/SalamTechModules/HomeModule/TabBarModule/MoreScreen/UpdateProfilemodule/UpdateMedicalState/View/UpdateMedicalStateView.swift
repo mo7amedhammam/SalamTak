@@ -225,6 +225,9 @@ struct UpdateMedicalStateView: View {
                                 }
                                
                                 Spacer()
+                                ButtonView(text: "Update Profile", action: {
+                                    medicalUpdatedVM.startUpdateMedicalProfile()
+                                })
 //                                CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
 ////                                    patientCreatedVM.DoctorSubSpecialist = self.SubSpecIDArr
 ////                                    print(SubSpecIDArr)
