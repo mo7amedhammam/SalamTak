@@ -1,40 +1,39 @@
 //
-//  CountryView.swift
+//  AreaView.swift
 //  SalamTech
 //
-//  Created by wecancity on 04/04/2022.
+//  Created by wecancity on 09/04/2022.
 //
-
-import Foundation
-
 import SwiftUI
 
 
-struct CountryView: View {
-    @StateObject var NationalityVM = ViewModelCountries()
+struct AreaView: View {
+    @StateObject var AreasVM = ViewModelGetAreas()
     @StateObject var searchDoc = VMSearchDoc()
 
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    @State var gotocity = false
-    @State var selectedCountryId = 0
+    var CityId : Int?
 
     @State var gotoSearchdoctor = false
+    @State var selectedAreaId = 0
 
+    
+    
     var body: some View {
         ZStack{
         VStack{
             ScrollView( showsIndicators: false){
                 Spacer().frame(height:120)
                 HStack {
-                    Text("Choose your Governorate")
+                    Text("Choose your Area")
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
                 }
 
                 Button(action: {
-                    selectedCountryId = 0
+                    selectedAreaId = 0
                     gotoSearchdoctor=true
                 }, label: {
                     
@@ -42,7 +41,7 @@ struct CountryView: View {
 
                         HStack{
                             Spacer().frame(width:30)
-                                Text("All Governorates")
+                                Text("All Areas")
                                     .frame(height:35)
                                     .font(Font.SalamtechFonts.Reg18)
                                     .foregroundColor(.black)
@@ -59,18 +58,18 @@ struct CountryView: View {
                     .cornerRadius(8)
                     .shadow(color: .black.opacity(0.099), radius: 5)
             
-
-                ForEach(NationalityVM.publishedCountryModel , id:\.self){ Country in
+                ForEach(AreasVM.publishedAreaModel , id:\.self){ city in
                             Button(action: {
-                                selectedCountryId = Country.Id ?? 45454545454545454
-                                gotocity=true
+//                                searchDoc.CityId = city.id ?? 5455454545
+                                selectedAreaId =  city.id ?? 454545454
+                                gotoSearchdoctor = true
                             }, label: {
                                 
                                 ZStack {
 
                                     HStack{
                                         Spacer().frame(width:30)
-                                            Text(Country.Name ?? "")
+                                            Text(city.Name ?? "")
                                                 .frame(height:35)
                                                 .font(Font.SalamtechFonts.Reg18)
                                                 .foregroundColor(.black)
@@ -104,7 +103,11 @@ struct CountryView: View {
                                 .background(Color.clear)
                                 .cornerRadius(8)
                                 .shadow(color: .black.opacity(0.099), radius: 5)
- 
+                        
+
+            
+
+
                     }
 
 
@@ -115,42 +118,44 @@ struct CountryView: View {
             Spacer()
         }
             
+            
+            
+            
+            
+            
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.vertical)
         .background(Color("CLVBG"))
         .onAppear(perform: {
-            NationalityVM.startFetchCountries()
+
         })
         
             VStack{
-                AppBarView(Title: "Choose Governorate")
+                AppBarView(Title: "Choose Area")
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                     Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
 
-        }
+        }.onAppear(perform: {
+            AreasVM.startFetchAreas(cityId: CityId ?? 151515154)
+        })
 
         
-        
-        //  go to clinic info
-        NavigationLink(destination:CityView( CountryId: selectedCountryId),isActive: $gotocity) {
-              }
         //  go to clinic info
          NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
               }
-
     }
     
 
     
 }
 
-struct CountryView_Previews: PreviewProvider {
+struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            CountryView( selectedCountryId: 1212121212121212)
+            AreaView( CityId: 565656656)
         }.navigationBarHidden(true)
     }
 }

@@ -261,7 +261,7 @@ func getTimeString(inp:String) -> String {
     formatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
     if let date = formatter.date(from: inp) {
 //        print(date)
-        formatter.dateFormat = "HH:MM a"
+        formatter.dateFormat = "HH:mm a"
         newdate = formatter.string(from: date)
     }
  return newdate
@@ -274,7 +274,7 @@ func getEMRTimeString(inp:String) -> String {
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     if let date = formatter.date(from: inp) {
 //        print(date)
-        formatter.dateFormat = "HH:MM a"
+        formatter.dateFormat = "HH:mm a"
         newdate = formatter.string(from: date)
     }
  return newdate
@@ -291,6 +291,38 @@ func getEMRDateString(inp:String) -> String {
     }
  return newdate
   }
+
+
+func getAVFTimeString(inp:String) -> String {
+    var newdate = ""
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "dd-MM-yyyy HH:mm"
+    if let date = formatter.date(from: inp) {
+//        print(date)
+        formatter.dateFormat = "HH:mm"
+        newdate = formatter.string(from: date)
+    }
+ return newdate
+  }
+func getAVFDateString(inp:String) -> String {
+    var newdate = ""
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "dd-MM-yyyy HH:mm"
+    if let date = formatter.date(from: inp) {
+//        print(date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        newdate = formatter.string(from: date)
+    }
+ return newdate
+  }
+
+
+
+
+
+
 
 func LogoType(MedicalExaminationTypeId: Int) -> String {
     var logoname = ""

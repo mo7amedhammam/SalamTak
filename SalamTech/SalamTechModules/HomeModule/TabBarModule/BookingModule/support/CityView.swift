@@ -9,14 +9,16 @@ import SwiftUI
 
 struct CityView: View {
     @StateObject var CitiesVM = ViewModelGetCities()
+    @StateObject var searchDoc = VMSearchDoc()
 
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    var CountryId : Int
+    var CountryId : Int?
 
-    @State var gotoSearchdoctor = false
+    @State var gotoArea = false
     @State var selectedCityId = 0
+    @State var gotoSearchdoctor = false
 
     
     
@@ -59,7 +61,9 @@ struct CityView: View {
             
                 ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
                             Button(action: {
-                                gotoSearchdoctor = true
+//                                searchDoc.CityId = city.Id ?? 5455454545
+                                selectedCityId = city.Id ?? 8787878
+                                gotoArea = true
                             }, label: {
                                 
                                 ZStack {
@@ -140,6 +144,9 @@ struct CityView: View {
         })
 
         
+        //  go to clinic info
+        NavigationLink(destination:AreaView(CityId:selectedCityId ),isActive: $gotoArea) {
+              }
         //  go to clinic info
          NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
               }

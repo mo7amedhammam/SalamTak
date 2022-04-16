@@ -24,9 +24,7 @@ static func SearchDoctors(parameters:[String:Any] ,completion: @escaping ( Bool 
         .validate(statusCode: 200...500)
         .responseDecodable(completionHandler: { ( response : DataResponse<ModelSearchDoc?, AFError>) in
             
-            
         ////////////////////////////////
-            ///
             switch response.response?.statusCode {
             case 200 : print("Success Token")
         switch response.result {

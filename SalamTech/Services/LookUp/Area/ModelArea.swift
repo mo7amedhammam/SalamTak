@@ -20,7 +20,7 @@ struct ModelAreas: Codable {
 }
 
 // MARK: - Country
-struct Area: Codable , Identifiable {
+struct Area: Codable , Identifiable, Hashable {
 
     var id: Int?
     var Name: String?

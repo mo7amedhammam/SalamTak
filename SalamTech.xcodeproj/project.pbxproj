@@ -130,6 +130,15 @@
 		C800F83627FB585B00482151 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82827FB585B00482151 /* CityView.swift */; };
 		C800F83727FB585B00482151 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82927FB585B00482151 /* CountryView.swift */; };
 		C800F83827FB585B00482151 /* BookingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82A27FB585B00482151 /* BookingApiService.swift */; };
+		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
+		C82541EF27F44321005E0750 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */; };
+		C82541F027F44321005E0750 /* STC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EB27F44321005E0750 /* STC-Bold.ttf */; };
+		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
+		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
+		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
+		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
+		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
+		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
 		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
@@ -285,6 +294,10 @@
 		C800F82927FB585B00482151 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		C800F82A27FB585B00482151 /* BookingApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingApiService.swift; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
+		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
+		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
@@ -450,6 +463,7 @@
 				0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */,
 				0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */,
 				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
+				C861C12B2805C38400211018 /* CalendarHelper.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -972,6 +986,7 @@
 		C800F81527FB585B00482151 /* BookingModule */ = {
 			isa = PBXGroup;
 			children = (
+				C860837F2804529C001A0C39 /* DoctorDetails */,
 				C800F81627FB585B00482151 /* services(first) */,
 				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
 				C800F81D27FB585B00482151 /* support */,
@@ -1019,6 +1034,7 @@
 			children = (
 				C800F82027FB585B00482151 /* Specialities */,
 				C800F82427FB585B00482151 /* ExaminationType */,
+				C87B9A0F280194B9002DAF4E /* AreaView.swift */,
 				C800F82827FB585B00482151 /* CityView.swift */,
 				C800F82927FB585B00482151 /* CountryView.swift */,
 				C800F81E27FB585B00482151 /* SpecialityView.swift */,
@@ -1045,6 +1061,27 @@
 				C800F82727FB585B00482151 /* ModelExaminationTypeId.swift */,
 			);
 			path = ExaminationType;
+			sourceTree = "<group>";
+		};
+		C82541E827F4421B005E0750 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */,
+				C82541EC27F44321005E0750 /* arbfonts.txt */,
+				C82541EB27F44321005E0750 /* STC-Bold.ttf */,
+				C82541ED27F44321005E0750 /* STC-Regular.ttf */,
+				C82541E927F44321005E0750 /* urlshort.url */,
+				C82541F427F4441E005E0750 /* fontsExt.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C860837F2804529C001A0C39 /* DoctorDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C860838028045318001A0C39 /* ViewDocDetails.swift */,
+			);
+			path = DoctorDetails;
 			sourceTree = "<group>";
 		};
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
@@ -1394,6 +1431,7 @@
 				C800F82E27FB585B00482151 /* SpecialityView.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
+				C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */,
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				C800F82C27FB585B00482151 /* ModelBooking.swift in Sources */,
@@ -1473,7 +1511,9 @@
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
 				0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */,
+				C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */,
 				C800F83327FB585B00482151 /* ViewModelExaminationTypeId.swift in Sources */,
+				C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */,
 				C800F83027FB585B00482151 /* ViewModelSpecialist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1652,7 +1692,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = F7P569JB4H;
+				DEVELOPMENT_TEAM = 2K7WVT9HR2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -1670,7 +1710,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1684,10 +1724,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = F7P569JB4H;
+				DEVELOPMENT_TEAM = 2K7WVT9HR2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -1705,8 +1746,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

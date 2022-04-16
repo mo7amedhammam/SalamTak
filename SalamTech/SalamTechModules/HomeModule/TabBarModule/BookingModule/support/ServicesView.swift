@@ -11,7 +11,8 @@ import SwiftUI
 struct ServicesView: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
 //    @StateObject var specialityvm = ViewModelSpecialist()
-    
+    @StateObject var searchDoc = VMSearchDoc()
+
     @State private var image = UIImage()
     @State private var radius: CGFloat = .zero
     @State var loginAgain = false
@@ -19,7 +20,9 @@ struct ServicesView: View {
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
     @State var counter = 0
     @State var gotoSpec = false
+    @State var selectedTypeId = 0
 
+    
     
     var body: some View {
         NavigationView{
@@ -39,6 +42,8 @@ struct ServicesView: View {
                         
                         ZStack {
                             Button(action: {
+                                selectedTypeId = exType.id ?? 11212121212121
+                                
                                 gotoSpec=true
                                 
                             }, label: {
@@ -52,7 +57,7 @@ struct ServicesView: View {
                                             .resizable()
                                            
                                     }
-                                    .clipShape(Circle())
+//                                    .clipShape(Circle())
                                     .frame(width: 60, height: 60)
                                     .foregroundColor(.black)
 //                                        .background(.blue)
@@ -186,7 +191,7 @@ struct ServicesView: View {
            
         }
        //  go to clinic info
-        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
+        NavigationLink(destination:SpecialityView( selectedTypeId: selectedTypeId),isActive: $gotoSpec) {
              }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
