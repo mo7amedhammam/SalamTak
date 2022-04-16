@@ -42,6 +42,9 @@
 		0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */; };
 		0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */; };
 		0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */; };
+		0E33B26C280599E600CF35E5 /* UpdateMedicalStateApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26B280599E600CF35E5 /* UpdateMedicalStateApiService.swift */; };
+		0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */; };
+		0E33B27028059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26F28059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift */; };
 		0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE727F5A6FB00944F21 /* ModelRegister.swift */; };
 		0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */; };
 		0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEB27F5A72700944F21 /* SignUpView.swift */; };
@@ -198,6 +201,9 @@
 		0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeApiService.swift; sourceTree = "<group>"; };
 		0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBloodType.swift; sourceTree = "<group>"; };
 		0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosBloodType.swift; sourceTree = "<group>"; };
+		0E33B26B280599E600CF35E5 /* UpdateMedicalStateApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMedicalStateApiService.swift; sourceTree = "<group>"; };
+		0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGetMedicalState.swift; sourceTree = "<group>"; };
+		0E33B26F28059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelUpdateMedicalState.swift; sourceTree = "<group>"; };
 		0E586CE727F5A6FB00944F21 /* ModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRegister.swift; sourceTree = "<group>"; };
 		0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelRegister.swift; sourceTree = "<group>"; };
 		0E586CEB27F5A72700944F21 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -501,6 +507,14 @@
 				00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0E33B26A280599CD00CF35E5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0E33B26B280599E600CF35E5 /* UpdateMedicalStateApiService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		0E586CDC27F5A43100944F21 /* View */ = {
@@ -821,6 +835,7 @@
 		0E68CD9727FEF6EE00327EBF /* UpdateMedicalState */ = {
 			isa = PBXGroup;
 			children = (
+				0E33B26A280599CD00CF35E5 /* Service */,
 				0E68CDA92802BBBA00327EBF /* Model */,
 				0E68CD9E28018DB800327EBF /* ViewModel */,
 				0E68CD9827FEF70800327EBF /* View */,
@@ -847,6 +862,7 @@
 		0E68CD9E28018DB800327EBF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0E33B26F28059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -878,6 +894,7 @@
 		0E68CDA92802BBBA00327EBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1449,6 +1466,7 @@
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
 				0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */,
 				0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */,
+				0E33B26C280599E600CF35E5 /* UpdateMedicalStateApiService.swift in Sources */,
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				0E586D1627F5B63A00944F21 /* ViewModelPersonalData.swift in Sources */,
 				0E9E0DCB27FB022700893ABF /* ModelCities.swift in Sources */,
@@ -1470,6 +1488,7 @@
 				0E9E0DB027FAEF6500893ABF /* DatePickerTextField.swift in Sources */,
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
+				0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
 				0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */,
@@ -1479,6 +1498,7 @@
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
+				0E33B27028059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift in Sources */,
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
 				0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */,
 				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,

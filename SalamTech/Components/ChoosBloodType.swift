@@ -54,6 +54,7 @@ struct ChooseBloodType : View {
                                             self.SelectedBloodId = BloodTypeVM.publishedCountryModel[button].Id ?? 0
                                             medicalCreatedVM.BloodTypeName = SelectedBloodName
                                             medicalCreatedVM.BloodTypeId = SelectedBloodId
+                                            IsPresented = false
                                         }, label: {
                                             HStack{
                                                 Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
