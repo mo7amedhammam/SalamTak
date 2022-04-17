@@ -127,12 +127,7 @@
 		C800F83627FB585B00482151 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82827FB585B00482151 /* CityView.swift */; };
 		C800F83727FB585B00482151 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82927FB585B00482151 /* CountryView.swift */; };
 		C800F83827FB585B00482151 /* BookingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82A27FB585B00482151 /* BookingApiService.swift */; };
-		C82541EE27F44321005E0750 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = C82541E927F44321005E0750 /* urlshort.url */; };
-		C82541EF27F44321005E0750 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */; };
-		C82541F027F44321005E0750 /* STC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541EB27F44321005E0750 /* STC-Bold.ttf */; };
-		C82541F127F44321005E0750 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = C82541EC27F44321005E0750 /* arbfonts.txt */; };
-		C82541F227F44321005E0750 /* STC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82541ED27F44321005E0750 /* STC-Regular.ttf */; };
-		C82541F527F4441E005E0750 /* fontsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82541F427F4441E005E0750 /* fontsExt.swift */; };
+		C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF33280C53FB00B1B953 /* ViewSummary.swift */; };
 		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
@@ -288,7 +283,7 @@
 		C800F82927FB585B00482151 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		C800F82A27FB585B00482151 /* BookingApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingApiService.swift; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		C82541F427F4441E005E0750 /* fontsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fontsExt.swift; sourceTree = "<group>"; };
+		C82AFF33280C53FB00B1B953 /* ViewSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSummary.swift; sourceTree = "<group>"; };
 		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
@@ -969,6 +964,7 @@
 		C800F81527FB585B00482151 /* BookingModule */ = {
 			isa = PBXGroup;
 			children = (
+				C82AFF32280C53BF00B1B953 /* Summary */,
 				C860837F2804529C001A0C39 /* DoctorDetails */,
 				C800F81627FB585B00482151 /* services(first) */,
 				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
@@ -1046,17 +1042,12 @@
 			path = ExaminationType;
 			sourceTree = "<group>";
 		};
-		C82541E827F4421B005E0750 /* Fonts */ = {
+		C82AFF32280C53BF00B1B953 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				C82541EA27F44321005E0750 /* ArbFONTS-STC-Light.otf */,
-				C82541EC27F44321005E0750 /* arbfonts.txt */,
-				C82541EB27F44321005E0750 /* STC-Bold.ttf */,
-				C82541ED27F44321005E0750 /* STC-Regular.ttf */,
-				C82541E927F44321005E0750 /* urlshort.url */,
-				C82541F427F4441E005E0750 /* fontsExt.swift */,
+				C82AFF33280C53FB00B1B953 /* ViewSummary.swift */,
 			);
-			path = Fonts;
+			path = Summary;
 			sourceTree = "<group>";
 		};
 		C860837F2804529C001A0C39 /* DoctorDetails */ = {
@@ -1478,6 +1469,7 @@
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
+				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
 				0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */,

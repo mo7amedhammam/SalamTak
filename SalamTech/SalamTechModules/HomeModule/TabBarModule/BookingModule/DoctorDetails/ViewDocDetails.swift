@@ -12,7 +12,7 @@ var totalSquares = [Date]()
 
 struct ViewDocDetails:View{
     var Doctor:Doc
-   @State var showQuickLogin = true
+   @State var showQuickLogin = false
     var body: some View{
 //        NavigationView{
 
