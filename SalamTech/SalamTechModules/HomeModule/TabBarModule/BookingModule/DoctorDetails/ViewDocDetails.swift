@@ -695,11 +695,9 @@ struct quickLoginSheet : View {
                             IsPresented =  false
 
                         }
-                            
                             .border(Color("mainColor"), width: 2)
                             .cornerRadius(4)
                             .padding(.bottom,10)
-                        
 
                     }
 
