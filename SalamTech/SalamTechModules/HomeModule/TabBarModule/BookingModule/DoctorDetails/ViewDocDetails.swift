@@ -12,7 +12,7 @@ var totalSquares = [Date]()
 
 struct ViewDocDetails:View{
     var Doctor:Doc
-    
+   @State var showQuickLogin = true
     var body: some View{
 //        NavigationView{
 
@@ -44,6 +44,7 @@ struct ViewDocDetails:View{
                     ZStack{
                     Button(action: {
                         // add review
+                        showQuickLogin =  true
                     }, label: {
                         HStack {
                             Text("Book")
@@ -64,6 +65,9 @@ struct ViewDocDetails:View{
                     
                 }
                 .background(Color("CLVBG"))
+                        if showQuickLogin{
+                        quickLoginSheet(IsPresented: $showQuickLogin, width: UIScreen.main.bounds.width)
+                        }
             }
             .edgesIgnoringSafeArea(.top)
             .navigationBarItems(leading: BackButtonView())
@@ -89,7 +93,6 @@ struct ViewDocDetails:View{
 
 
             })
-        
         
         
 //     }
@@ -188,7 +191,7 @@ struct ViewDocMainInfo: View {
                         
                         
                         HStack{
-                            Text("Seniority lvl ")
+                            Text(Doctor.SeniortyLevelName ?? "")
                                 .foregroundColor(.gray.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
                         }
@@ -199,20 +202,20 @@ struct ViewDocMainInfo: View {
                             }
                             
                             
-                            Text("( (240)"+" Patients )")
+                            Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
                         }
                         
                         HStack{
                             Image("doc1")
-                            Text("Doctor.SpecialistName" )
+                            Text(Doctor.SpecialistName ?? "" )
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
                             Text(" Specialized in ")
                                 .foregroundColor(.secondary)
                                 .font(Font.SalamtechFonts.Reg14)
-                            Text("Doctor.subSpecialistName" )
+                            Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "" )
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
                             
@@ -253,7 +256,7 @@ struct ViewDocMainInfo: View {
                     Text("Fees:")
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
-                    Text("starting From 200 EGP")
+                        Text( String( Doctor.FeesFrom ?? 0.0))
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     
@@ -271,7 +274,7 @@ Divider()
                     Text("Waiting Time:")
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
-                    Text("(15)" + " Minutes")
+                        Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     
@@ -290,10 +293,10 @@ Divider()
                     .frame(width: 20, height: 20)
                     .padding(.leading)
                 VStack{
-                    Text("(Doctor.ClinicName ?? ): ")
+                    Text("\(Doctor.ClinicName ?? ""): ")
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
-                    Text("(Doctor.ClinicAddress ?? )")
+                    Text("\(Doctor.ClinicAddress ?? "")")
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     //                Spacer()
@@ -312,7 +315,7 @@ Divider()
 }
 
 struct ViewDateAndTime: View {
-    @State var TappedDate : Date?
+    @State var TappedDate = Date()
     @State var timeexpanded = false
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
@@ -368,7 +371,7 @@ struct ViewDateAndTime: View {
                             
                             Button(action: {
                                 // select date
-                                print(totalSquares[day])
+//                                print(totalSquares[day])
                                 TappedDate = totalSquares[day]
                                 timeexpanded = false
                             }, label: {
@@ -380,7 +383,7 @@ struct ViewDateAndTime: View {
                                     Text(weekdays[day])
                                     //                                                    .padding(.vertical, 0)
                                     
-                                    if TappedDate == totalSquares[day]{
+                                    if TappedDate == date{
                                         Text(".")
                                             .font(.system(size: 40) )
                                         //                                                        .frame(height:10)
@@ -400,7 +403,7 @@ struct ViewDateAndTime: View {
                         //                                    .padding(5)
                     }
                     .frame(height: 60)
-
+                  
                     
                     
                     
@@ -652,5 +655,76 @@ struct ViewDocReviews: View {
                 .padding(.horizontal, 20)
             })
         }
+    }
+}
+
+
+
+struct quickLoginSheet : View {
+    
+    var language = LocalizationService.shared.language
+    @Binding var IsPresented: Bool
+    var width: CGFloat
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            ZStack {
+                
+              
+                
+                VStack {
+                        Capsule()
+                            .frame(width: 50, height: 4)
+                            .foregroundColor(.gray)
+                            .padding(.top ,10)
+                            .padding(.bottom,20)
+                    
+                    VStack {
+                        
+                        
+                        
+                            ButtonView(text:"Sign in", action: {
+                                withAnimation(.easeIn(duration: 0.3)) {
+                                    IsPresented =  false
+                                }
+                            })
+                        
+                        ButtonView(text: "Quick Reservation", backgroundColor: .white){
+                            // action
+                            IsPresented =  false
+
+                        }
+                            
+                            .border(Color("mainColor"), width: 2)
+                            .cornerRadius(4)
+                            .padding(.bottom,10)
+                        
+
+                    }
+
+                }.background(
+                    RoundedRectangle(cornerRadius: 40.0)
+                        .foregroundColor(.white)
+                        .ignoresSafeArea()
+                        .opacity(1.5)
+                        .shadow(radius: 15)
+                        .frame(width: UIScreen.main.bounds.width)
+
+)
+
+            }
+
+        }
+        .frame(width: UIScreen.main.bounds.width)
+        .background(
+            Color.black.opacity(0.3)
+                .blur(radius: 12)
+        )
+        .onTapGesture(perform: {
+            IsPresented =  false
+
+        })
+        
     }
 }
