@@ -11,8 +11,11 @@ import Kingfisher
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
     @StateObject var searchDoc = VMSearchDoc()
-    
-    
+    @Binding var ExTpe:Int
+    @Binding var SpecialistId:Int
+    @Binding var CityId:Int
+    @Binding var AreaId:Int
+
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
@@ -25,8 +28,14 @@ struct ViewSearchDoc: View {
     @State var SelectedDoctor = Doc()
 
     
-    init() {
+    init(ExTpe: Binding<Int>,SpecialistId: Binding<Int> ,CityId: Binding<Int>,AreaId: Binding<Int> ) {
         UITableView.appearance().showsVerticalScrollIndicator = false
+        self._ExTpe = ExTpe
+        self._SpecialistId = SpecialistId
+        self._CityId = CityId
+        self._AreaId = AreaId
+
+
     }
     
     var body: some View {
@@ -130,7 +139,7 @@ struct ViewSearchDoc: View {
 struct ViewSearchDoc_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSearchDoc()
+            ViewSearchDoc(ExTpe: .constant(2), SpecialistId: .constant(2), CityId: .constant(2), AreaId: .constant(2))
         }.navigationBarHidden(true)
     }
 }

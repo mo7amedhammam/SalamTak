@@ -191,7 +191,7 @@ struct ServicesView: View {
            
         }
        //  go to clinic info
-        NavigationLink(destination:SpecialityView( selectedTypeId: selectedTypeId),isActive: $gotoSpec) {
+        NavigationLink(destination:SpecialityView( selectedTypeId: $selectedTypeId),isActive: $gotoSpec) {
              }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)

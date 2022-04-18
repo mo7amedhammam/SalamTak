@@ -19,6 +19,8 @@ struct CityView: View {
     @State var gotoArea = false
     @State var selectedCityId = 0
     @State var gotoSearchdoctor = false
+    @Binding var SelectedSpeciality : Int
+    @Binding var extype : Int
 
     
     
@@ -145,10 +147,11 @@ struct CityView: View {
 
         
         //  go to clinic info
-        NavigationLink(destination:AreaView(CityId:selectedCityId ),isActive: $gotoArea) {
+        NavigationLink(destination:AreaView(CityId: $selectedCityId, SelectedSpeciality: $SelectedSpeciality, extype: $extype)
+                        ,isActive: $gotoArea) {
               }
         //  go to clinic info
-         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
+        NavigationLink(destination:ViewSearchDoc(ExTpe: $extype, SpecialistId: $SelectedSpeciality, CityId: .constant(0), AreaId: .constant(0)),isActive: $gotoSearchdoctor) {
               }
     }
     
@@ -159,7 +162,7 @@ struct CityView: View {
 struct CityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            CityView( CountryId: 565656656)
+            CityView(SelectedSpeciality: .constant(45454545454), extype: .constant(454545454))
         }.navigationBarHidden(true)
     }
 }

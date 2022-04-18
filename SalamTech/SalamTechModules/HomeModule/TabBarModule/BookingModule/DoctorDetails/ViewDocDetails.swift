@@ -489,33 +489,33 @@ struct ViewDateAndTime: View {
                     .cornerRadius(9)
                     .shadow(color: .black.opacity(0.1), radius: 9)
                 
-    //            if timeexpanded{
-    //                LazyVGrid(columns: vGridLayout){
-    //                    ForEach(0..<5 ) { exType in
-    ////                    for exType in sched.DoctorSchedualSlots ?? []{
-    //
-    //                        ZStack {
-    //                            Button(action: {
-    ////                                selectedTime = exType.SlotTime
-    ////                                gotoSpec=true
-    //
-    //                            }, label: {
-    //
-    //                                Text(sched.DoctorSchedualSlots[0].SlotTime ?? "" )
-    //                                        .padding(.vertical,10)
-    //                                        .foregroundColor(selectedTime == (sched.DoctorSchedualSlots[0].SlotTime ?? "") ? .white : .gray)
-    //
-    //                            })
-    //                                .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
-    //                                .background( selectedTime == (sched.DoctorSchedualSlots[0].SlotTime ?? "") ? Color("darkGreen").opacity(0.7):.white)
-    //                                .cornerRadius(8)
-    //                                .shadow(color: .black.opacity(0.099), radius: 5)
-    //                        }
-    //                    }
-    //
-    //                }
-    //                .padding(.horizontal,13)
-    //            }
+//                if timeexpanded{
+//                    LazyVGrid(columns: vGridLayout){
+//                        ForEach(sched.DoctorSchedualSlots!, id:\.self ) { exType in
+//    //                    for exType in sched.DoctorSchedualSlots ?? []{
+//
+//                            ZStack {
+//                                Button(action: {
+//    //                                selectedTime = exType.SlotTime
+//    //                                gotoSpec=true
+//
+//                                }, label: {
+//
+//                                    Text(exType.SlotTime  )
+//                                            .padding(.vertical,10)
+//                                            .foregroundColor(selectedTime == (exType.SlotTime ) ? .white : .gray)
+//
+//                                })
+//                                    .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
+//                                    .background( selectedTime == (exType.SlotTime) ? Color("darkGreen").opacity(0.7):.white)
+//                                    .cornerRadius(8)
+//                                    .shadow(color: .black.opacity(0.099), radius: 5)
+//                            }
+//                        }
+//
+//                    }
+//                    .padding(.horizontal,13)
+//                }
                         
                     }
                 }

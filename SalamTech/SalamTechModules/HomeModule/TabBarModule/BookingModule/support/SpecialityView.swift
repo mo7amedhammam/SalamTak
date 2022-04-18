@@ -18,8 +18,9 @@ struct SpecialityView: View {
     var language = LocalizationService.shared.language
     @State var gotocity = false
     
-    @State var selectedTypeId : Int?
-    @State var selectedSpecialityId : Int?
+    @Binding var selectedTypeId : Int
+    @State var selectedSpecialityId  = 0
+    
     var body: some View {
         ZStack{
         VStack{
@@ -115,7 +116,7 @@ struct SpecialityView: View {
 
         
         //  go to clinic info
-        NavigationLink(destination:CityView(CountryId:1),isActive: $gotocity) {
+        NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extype: $selectedTypeId),isActive: $gotocity) {
               }
     }
     
@@ -126,7 +127,7 @@ struct SpecialityView: View {
 struct SpecialityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            SpecialityView (selectedTypeId: 1515151)
+            SpecialityView (selectedTypeId: .constant(54545454), selectedSpecialityId: 1212115)
         }.navigationBarHidden(true)
     }
 }

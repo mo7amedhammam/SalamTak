@@ -14,8 +14,10 @@ struct AreaView: View {
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    var CityId : Int?
-
+    @Binding var CityId : Int
+    @Binding var SelectedSpeciality : Int
+    @Binding var extype : Int
+    
     @State var gotoSearchdoctor = false
     @State var selectedAreaId = 0
 
@@ -139,12 +141,12 @@ struct AreaView: View {
             .edgesIgnoringSafeArea(.vertical)
 
         }.onAppear(perform: {
-            AreasVM.startFetchAreas(cityId: CityId ?? 151515154)
+            AreasVM.startFetchAreas(cityId: CityId )
         })
 
         
         //  go to clinic info
-         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
+        NavigationLink(destination:ViewSearchDoc(ExTpe: $extype, SpecialistId: $SelectedSpeciality, CityId: $CityId, AreaId: $selectedAreaId),isActive: $gotoSearchdoctor) {
               }
     }
     
@@ -155,7 +157,8 @@ struct AreaView: View {
 struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            AreaView( CityId: 565656656)
-        }.navigationBarHidden(true)
+            AreaView( CityId: .constant(48455151), SelectedSpeciality: .constant(48455151), extype: .constant(48455151),  selectedAreaId: 48455151)
+                
+                }.navigationBarHidden(true)
     }
 }

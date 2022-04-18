@@ -135,11 +135,11 @@ struct CountryView: View {
         
         
         //  go to clinic info
-        NavigationLink(destination:CityView( CountryId: selectedCountryId),isActive: $gotocity) {
-              }
+//        NavigationLink(destination:CityView( CountryId: selectedCountryId),isActive: $gotocity) {
+//              }
         //  go to clinic info
-         NavigationLink(destination:ViewSearchDoc(),isActive: $gotoSearchdoctor) {
-              }
+//        NavigationLink(destination:ViewSearchDoc(ExTpe: <#Binding<Int>#>, SpecialistId: <#Binding<Int>#>, CityId: <#Binding<Int>#>, AreaId: <#Binding<Int>#>),isActive: $gotoSearchdoctor) {
+//              }
 
     }
     
