@@ -55,6 +55,7 @@ struct Doc: Codable, Identifiable, Hashable{
     var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image,AvailableFrom: String?
     var SubSpecialistName: [String]?
     var MedicalExamationTypeImage: [Img]?
+    
   
     enum CodingKeys: String, CodingKey {
         case id = "DoctorId"

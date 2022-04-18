@@ -52,7 +52,7 @@ struct ModelSched: Codable,Identifiable{
 
 
 
-struct Sched: Codable{
+struct Sched: Codable, Hashable{
     
     var SlotTime: String?
     var IsAvailable:Bool?

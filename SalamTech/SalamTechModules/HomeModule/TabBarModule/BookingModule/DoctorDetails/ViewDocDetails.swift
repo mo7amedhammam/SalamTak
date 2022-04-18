@@ -14,7 +14,7 @@ var totalSquares = [Date]()
 struct ViewDocDetails:View{
     var Doctor:Doc
    @State var showQuickLogin = false
-    @StateObject var DocDetails = ViewModelDocDetails()
+//    @StateObject var DocDetails = ViewModelDocDetails()
 
     var body: some View{
 //        NavigationView{
@@ -31,7 +31,7 @@ struct ViewDocDetails:View{
 
                         ViewDateAndTime()
                         
-                        ViewAboutDoctor()
+//                        ViewAboutDoctor()
                         
                         ViewDocReviews()
 
@@ -76,7 +76,7 @@ struct ViewDocDetails:View{
             .navigationBarItems(leading: BackButtonView())
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
-                DocDetails.FetchDoctorDetails()
+//                DocDetails.FetchDoctorDetails()
                     
                 
                 
@@ -323,14 +323,18 @@ Divider()
 }
 
 struct ViewDateAndTime: View {
-    @State var TappedDate = Date()
+    @State var TappedDate:Date = Date()
     @State var timeexpanded = false
+    @StateObject var DocDetails = ViewModelDocDetails()
+
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
     var daytimes = ["2:30 PM", "2:50 PM", "3:30 PM", "3:50 PM","4:30 PM", "4:50 PM","5:30 PM", "5:50 PM"]
     @State var selectedTime = ""
+    @State var openSlots = false
 
+    
     init(){
         setWeekView()
     }
@@ -376,15 +380,19 @@ struct ViewDateAndTime: View {
                     
                     HStack(spacing:0){
                         ForEach(0..<weekdays.count, id:\.self){ day in
-                            
+                            let date = totalSquares[day]
+
                             Button(action: {
                                 // select date
 //                                print(totalSquares[day])
                                 TappedDate = totalSquares[day]
-                                timeexpanded = false
+//                                timeexpanded = false
+                                DocDetails.SchedualDate = totalSquares[day]
+                                DocDetails.FetchDoctorDetails()
+                                openSlots = true
+//                                DocDetails.FetchDoctorDetails()
                             }, label: {
                                 VStack{
-                                    let date = totalSquares[day]
 
                                     Text(                            String(CalendarHelper().dayOfMonth(date: date))
 )
@@ -401,7 +409,7 @@ struct ViewDateAndTime: View {
                                 
                                 
                             }).foregroundColor(Color("blueColor"))
-                                .background( TappedDate == totalSquares[day] ? Color("darkGreen").opacity(0.19):.clear)
+                                .background( TappedDate == date ? Color("darkGreen").opacity(0.19):.clear)
                                 .cornerRadius(8)
                             
                                 .padding(.bottom, 10)
@@ -411,7 +419,11 @@ struct ViewDateAndTime: View {
                         //                                    .padding(5)
                     }
                     .frame(height: 60)
-                  
+                    .onAppear(perform: {
+//                        print(Date())
+//                        print(TappedDate)
+                        
+                    })
                     
                     
                     
@@ -426,93 +438,102 @@ struct ViewDateAndTime: View {
          //---------------------------------
             
             //MARK: ---- periods of slot --------
-            VStack{
-            Button(action: {
-                timeexpanded.toggle()
-                
-            }, label: {
-                //                            ZStack{
-                //                            VStack{
-                
-                HStack{
+            if openSlots {
+                VStack{
+                    ForEach(0..<(DocDetails.publishedModelSearchDoc?.DoctorScheduals?.count ?? 0), id:\.self){ sched in
+                Button(action: {
+                    timeexpanded.toggle()
+                    
+                }, label: {
+                    //                            ZStack{
+                    //                            VStack{
                     
                     HStack{
-                        Text("2:30 PM")
-                            .foregroundColor(Color("darkGreen"))
-                            .font(Font.SalamtechFonts.Reg16)
                         
-                        Text("To")
+                        HStack{
+                            Text(DocDetails.publishedModelSearchDoc?.DoctorScheduals?[sched].TimeFrom ?? "" )
+                                .foregroundColor(Color("darkGreen"))
+                                .font(Font.SalamtechFonts.Reg16)
+                            
+                            Text("To")
+                                .foregroundColor(.gray)
+                                .font(Font.SalamtechFonts.Reg16)
+                            
+                            Text(DocDetails.publishedModelSearchDoc?.DoctorScheduals?[sched].TimeTo ?? "")
+                                .foregroundColor(Color("darkGreen"))
+                                .font(Font.SalamtechFonts.Reg16)
+                            
+                        }.background(Image("Rectangle2"))
+                        Spacer()
+                        
+                        Text("Fee:")
                             .foregroundColor(.gray)
                             .font(Font.SalamtechFonts.Reg16)
                         
-                        Text("4:30 PM")
+                        Text("\(DocDetails.publishedModelSearchDoc?.DoctorScheduals?[sched].Fees ?? 0) EGP")
                             .foregroundColor(Color("darkGreen"))
                             .font(Font.SalamtechFonts.Reg16)
                         
-                    }.background(Image("Rectangle2"))
-                    Spacer()
-                    
-                    Text("Fee:")
-                        .foregroundColor(.gray)
-                        .font(Font.SalamtechFonts.Reg16)
-                    
-                    Text("200 EGP")
-                        .foregroundColor(Color("darkGreen"))
-                        .font(Font.SalamtechFonts.Reg16)
-                    
-                    Image( systemName: timeexpanded ?  "chevron.up":"chevron.down")
-                        .foregroundColor(Color("blueColor"))
-                        .padding(.bottom,3)
-                    
-                    
-                }
-                .frame(height:50)
-                .padding(.horizontal)
-   
-                .background(Color.white)
-
-            })  .frame(width: UIScreen.main.bounds.width-30)
-                .cornerRadius(9)
-                .shadow(color: .black.opacity(0.1), radius: 9)
-            
-            if timeexpanded{
-                LazyVGrid(columns: vGridLayout){
-                    ForEach(daytimes) { exType in
+                        Image( systemName: timeexpanded ?  "chevron.up":"chevron.down")
+                            .foregroundColor(Color("blueColor"))
+                            .padding(.bottom,3)
                         
-                        ZStack {
-                            Button(action: {
-                                selectedTime = exType
-//                                gotoSpec=true
-                                
-                            }, label: {
-                         
-
-                                    
-                                    Text(exType )
-                                        .padding(.vertical,10)
-                                        .foregroundColor(selectedTime == exType ? .white : .gray)
-                                
-                            })
-                                .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
-                                .background( selectedTime == exType ? Color("darkGreen").opacity(0.7):.white)
-                                .cornerRadius(8)
-                                .shadow(color: .black.opacity(0.099), radius: 5)
-                        }
+                        
                     }
-                                        
+                    .frame(height:50)
+                    .padding(.horizontal)
+       
+                    .background(Color.white)
+
+                })  .frame(width: UIScreen.main.bounds.width-30)
+                    .cornerRadius(9)
+                    .shadow(color: .black.opacity(0.1), radius: 9)
+                
+    //            if timeexpanded{
+    //                LazyVGrid(columns: vGridLayout){
+    //                    ForEach(0..<5 ) { exType in
+    ////                    for exType in sched.DoctorSchedualSlots ?? []{
+    //
+    //                        ZStack {
+    //                            Button(action: {
+    ////                                selectedTime = exType.SlotTime
+    ////                                gotoSpec=true
+    //
+    //                            }, label: {
+    //
+    //                                Text(sched.DoctorSchedualSlots[0].SlotTime ?? "" )
+    //                                        .padding(.vertical,10)
+    //                                        .foregroundColor(selectedTime == (sched.DoctorSchedualSlots[0].SlotTime ?? "") ? .white : .gray)
+    //
+    //                            })
+    //                                .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
+    //                                .background( selectedTime == (sched.DoctorSchedualSlots[0].SlotTime ?? "") ? Color("darkGreen").opacity(0.7):.white)
+    //                                .cornerRadius(8)
+    //                                .shadow(color: .black.opacity(0.099), radius: 5)
+    //                        }
+    //                    }
+    //
+    //                }
+    //                .padding(.horizontal,13)
+    //            }
+                        
+                    }
                 }
-                .padding(.horizontal,13)
             }
-        }
+            
+            ViewAboutDoctor(Docinfo: DocDetails.publishedModelSearchDoc?.DoctorInfo ?? "")
             
             //-----------------------------------------
             
             
-        }
+        }.onAppear(perform: {
+            DocDetails.FetchDoctorDetails()
+        })
     }
 }
 
 struct ViewAboutDoctor: View {
+    var Docinfo : String
     var body: some View {
         VStack{
             
@@ -520,12 +541,13 @@ struct ViewAboutDoctor: View {
             
             ZStack{
                 
-                Text("Ahmed was born on 1964 in El Fayoum. After studying veterinary medicine at Cairo University, Ahmed moved to Vienna, Austria where he completed his studies.")
+                Text(Docinfo)
+                    .frame(width: UIScreen.main.bounds.width-30)
                     .foregroundColor(.gray)
                     .font(Font.SalamtechFonts.Reg14)
                     .padding()
                     .background(Color.white)
-                
+
                 
             }
             .frame(width: UIScreen.main.bounds.width-30)
