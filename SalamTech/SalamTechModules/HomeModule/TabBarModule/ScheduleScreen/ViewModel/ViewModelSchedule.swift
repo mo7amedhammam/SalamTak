@@ -22,7 +22,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     @Published  var Id: Int = 0
     @Published  var Height: Int = 0
     @Published  var Weight: Int = 0
-    @Published  var Pressure: String = ""              // 1 for male  2 for female
+    @Published  var DoctorName: String = ""              // 1 for male  2 for female
     @Published  var SugarLevel: String = ""              //  date format "yyyy/mm/dd"
     @Published  var OtherAllergies : String = ""
     @Published  var BloodTypeId: Int = 0
@@ -73,7 +73,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedDoctorCreatedModel: ModelGetSchedule? = nil
+    @Published var publishedDoctorCreatedModel: [AppointmentInfo] = []
     @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
@@ -85,17 +85,18 @@ class ViewModelGetAppointmentInfo: ObservableObject {
 //     validations()
         //-----------------------------------------------------------------
         
-        passthroughModelSubject.sink { (completion) in
-            //            print(completion)
-        } receiveValue: { (modeldata) in
-            self.publishedDoctorCreatedModel = modeldata
-
-        }.store(in: &cancellables)
+//        passthroughModelSubject.sink { (completion) in
+//            //            print(completion)
+//        } receiveValue: { (modeldata) in
+//            self.publishedDoctorCreatedModel = modeldata.data ?? []
+//
+//        }.store(in: &cancellables)
         
         passthroughModelGetSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
-            self.publishedDoctorCreatedModel = modeldata
+            self.publishedDoctorCreatedModel = modeldata.data ?? []
+//            self.DoctorName = publishedDoctorCreatedModel[0].doctorName ?? ""
 //            self.Height = publishedDoctorCreatedModel?.data?.height ?? 0
 //            self.Weight = publishedDoctorCreatedModel?.data?.weight ?? 0
 //            self.Pressure = publishedDoctorCreatedModel?.data?.pressure ?? ""
@@ -195,10 +196,10 @@ class ViewModelGetAppointmentInfo: ObservableObject {
 //               }
 //    }
  
-    func startFetchAppointmentInfo() {
+    func startFetchAppointmentInfo(medicalTypeId:Int) {
 
         if Helper.isConnectedToNetwork(){
-            ScheduleApiService.GetPatientAppointmentInfo(medicalExaminationTypeId:Id,
+            ScheduleApiService.GetPatientAppointmentInfo(medicalExaminationTypeId:medicalTypeId,
                 completion:  { (success, model, err) in
                 
             
@@ -208,7 +209,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
                     self.UserCreated = true
                     self.isLoading = false
                     self.passthroughModelGetSubject.send(model!)
-//                    print(model!)
+                    print(model!)
                 }
             }else{
                 self.isLoading = false

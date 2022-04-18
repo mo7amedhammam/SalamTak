@@ -47,6 +47,7 @@ struct TabBarView: View {
                         } else if selectedTab == Bar.tabs[1] {
                             
 //                            ViewGetAppointments(isCancel:$isCancel, GetAppointments:GetAppointments,appointmentId: $appointmentId, filterShowing: $filterShowing, ConsultationShowing: $ConsultationShowing, DatesShowing: $DatesShowing, ClinicShowing:$ClinicShowing )
+                            ScheduleView()
                         
 
                         } else if selectedTab == Bar.tabs[2] {
