@@ -169,11 +169,21 @@ struct ViewDocMainInfo: View {
                         Spacer().frame(height:0)
                         HStack(alignment:.bottom){
                             
-                            Image("logo")
-                                .resizable()
-                                .frame(width: 60, height: 60)
+                            AsyncImage(url: URL(string:   URLs.BaseUrl + "\(Doctor.Image ?? "")" )) { image in
+
+                                image.resizable()
+
+                            } placeholder: {
+                                Image("logo")
+                                    .resizable()
+                            }
+                //            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                                .scaledToFill()
+//                                .frame(width:70)
                                 .background(Color.gray)
                                 .cornerRadius(9)
+               
                             
                             
                             //

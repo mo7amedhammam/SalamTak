@@ -230,8 +230,19 @@ struct ViewTopSection: View {
     var Doctor:Doc
     var body: some View {
         HStack{
-            Image("logo")
-                .resizable()
+            
+            
+            AsyncImage(url: URL(string:   URLs.BaseUrl + "\(Doctor.Image ?? "")" )) { image in
+
+                image.resizable()
+
+            } placeholder: {
+                Image("logo")
+                    .resizable()
+            }
+//            .clipShape(Circle())
+//            .frame(width: 60, height: 60)
+                .scaledToFill()
                 .frame(width:70)
                 .background(Color.gray)
                 .cornerRadius(9)
