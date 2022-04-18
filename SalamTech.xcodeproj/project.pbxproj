@@ -127,6 +127,9 @@
 		C800F83627FB585B00482151 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82827FB585B00482151 /* CityView.swift */; };
 		C800F83727FB585B00482151 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82927FB585B00482151 /* CountryView.swift */; };
 		C800F83827FB585B00482151 /* BookingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82A27FB585B00482151 /* BookingApiService.swift */; };
+		C826D93B280D906A0072754B /* ModelDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C826D93A280D906A0072754B /* ModelDocDetails.swift */; };
+		C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C826D93C280D90950072754B /* ViewModelDocDetails.swift */; };
+		C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C826D93E280D90B90072754B /* ApiDocDetails.swift */; };
 		C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF33280C53FB00B1B953 /* ViewSummary.swift */; };
 		C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF35280C675C00B1B953 /* CustomSheet.swift */; };
 		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
@@ -284,6 +287,9 @@
 		C800F82927FB585B00482151 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		C800F82A27FB585B00482151 /* BookingApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingApiService.swift; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C826D93A280D906A0072754B /* ModelDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDocDetails.swift; sourceTree = "<group>"; };
+		C826D93C280D90950072754B /* ViewModelDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDocDetails.swift; sourceTree = "<group>"; };
+		C826D93E280D90B90072754B /* ApiDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDocDetails.swift; sourceTree = "<group>"; };
 		C82AFF33280C53FB00B1B953 /* ViewSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSummary.swift; sourceTree = "<group>"; };
 		C82AFF35280C675C00B1B953 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
 		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
@@ -1057,6 +1063,9 @@
 			isa = PBXGroup;
 			children = (
 				C860838028045318001A0C39 /* ViewDocDetails.swift */,
+				C826D93A280D906A0072754B /* ModelDocDetails.swift */,
+				C826D93C280D90950072754B /* ViewModelDocDetails.swift */,
+				C826D93E280D90B90072754B /* ApiDocDetails.swift */,
 			);
 			path = DoctorDetails;
 			sourceTree = "<group>";
@@ -1421,6 +1430,7 @@
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
+				C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */,
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,
 				0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */,
 				0E62C54A27FC603000655D1A /* ChooseMedicineAllergy.swift in Sources */,
@@ -1458,6 +1468,7 @@
 				0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */,
 				0E68CD9B27FEF72700327EBF /* UpdateMedicalStateView.swift in Sources */,
 				0E9E0DAE27FAEF2D00893ABF /* DateOfBirthView.swift in Sources */,
+				C826D93B280D906A0072754B /* ModelDocDetails.swift in Sources */,
 				C800F82F27FB585B00482151 /* ServicesView.swift in Sources */,
 				0E586D1A27F5B66800944F21 /* MedicalStateView.swift in Sources */,
 				0E586CFA27F5ABB500944F21 /* ModelCreateUser.swift in Sources */,
@@ -1466,6 +1477,7 @@
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
+				C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */,
 				0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */,
 				0E62C55627FD942600655D1A /* ViewModelUpdatePassword.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
