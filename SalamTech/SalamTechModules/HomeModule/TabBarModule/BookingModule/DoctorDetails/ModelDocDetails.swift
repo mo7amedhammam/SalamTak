@@ -12,7 +12,7 @@ struct ModelDocDetails : Codable {
   
     let message: String?
         let messageCode: Int?
-        let data: [DocDetails]?
+        let data: DocDetails?
         let success: Bool?
 
         enum CodingKeys: String, CodingKey {

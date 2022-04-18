@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 var selectedDate = Date()
 var totalSquares = [Date]()
@@ -13,6 +14,8 @@ var totalSquares = [Date]()
 struct ViewDocDetails:View{
     var Doctor:Doc
    @State var showQuickLogin = false
+    @StateObject var DocDetails = ViewModelDocDetails()
+
     var body: some View{
 //        NavigationView{
 
@@ -73,6 +76,11 @@ struct ViewDocDetails:View{
             .navigationBarItems(leading: BackButtonView())
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
+                DocDetails.FetchDoctorDetails()
+                    
+                
+                
+                
                 setWeekView()
                 let now = convertDateToLocalTime(Date())
 
@@ -90,7 +98,7 @@ struct ViewDocDetails:View{
                 for dayyy  in totalSquares{
                     print(dayyy)
                 }
-
+//                print(DocDetails.publishedModelSearchDoc ?? [])
 
             })
         
