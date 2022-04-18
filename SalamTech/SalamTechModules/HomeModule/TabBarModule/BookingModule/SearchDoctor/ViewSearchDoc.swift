@@ -125,8 +125,16 @@ struct ViewSearchDoc: View {
             
         }
         .onAppear(perform: {
+            searchDoc.MedicalExaminationTypeId = ExTpe
+            searchDoc.SpecialistId = SpecialistId
+//            searchDoc.
             searchDoc.FetchDoctors()
         })
+        .onChange(of: index){newval in
+            searchDoc.MedicalExaminationTypeId = newval
+            searchDoc.publishedModelSearchDoc?.removeAll()
+            searchDoc.FetchDoctors()
+        }
         
         //  go to clinic info
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor),isActive: $gotodoctorDetails) {
