@@ -42,6 +42,9 @@
 		0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */; };
 		0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */; };
 		0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */; };
+		0E33B26C280599E600CF35E5 /* UpdateMedicalStateApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26B280599E600CF35E5 /* UpdateMedicalStateApiService.swift */; };
+		0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */; };
+		0E33B27028059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26F28059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift */; };
 		0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE727F5A6FB00944F21 /* ModelRegister.swift */; };
 		0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */; };
 		0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEB27F5A72700944F21 /* SignUpView.swift */; };
@@ -84,6 +87,7 @@
 		0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */; };
 		0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA7280192F700327EBF /* UpdatePersonalDataApiService.swift */; };
 		0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */; };
+		0E9A2F66280AEE0000F7FEAE /* ScheduleApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9A2F65280AEE0000F7FEAE /* ScheduleApiService.swift */; };
 		0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */; };
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
 		0E9E0DAA27F9F0DA00893ABF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */; };
@@ -197,6 +201,9 @@
 		0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeApiService.swift; sourceTree = "<group>"; };
 		0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBloodType.swift; sourceTree = "<group>"; };
 		0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosBloodType.swift; sourceTree = "<group>"; };
+		0E33B26B280599E600CF35E5 /* UpdateMedicalStateApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMedicalStateApiService.swift; sourceTree = "<group>"; };
+		0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGetMedicalState.swift; sourceTree = "<group>"; };
+		0E33B26F28059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelUpdateMedicalState.swift; sourceTree = "<group>"; };
 		0E586CE727F5A6FB00944F21 /* ModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRegister.swift; sourceTree = "<group>"; };
 		0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelRegister.swift; sourceTree = "<group>"; };
 		0E586CEB27F5A72700944F21 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -239,6 +246,7 @@
 		0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelUpdatePersonalData.swift; sourceTree = "<group>"; };
 		0E68CDA7280192F700327EBF /* UpdatePersonalDataApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonalDataApiService.swift; sourceTree = "<group>"; };
 		0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAppBarView.swift; sourceTree = "<group>"; };
+		0E9A2F65280AEE0000F7FEAE /* ScheduleApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleApiService.swift; sourceTree = "<group>"; };
 		0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -507,6 +515,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		0E33B26A280599CD00CF35E5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0E33B26B280599E600CF35E5 /* UpdateMedicalStateApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		0E586CDC27F5A43100944F21 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +638,7 @@
 		0E586D0627F5B48C00944F21 /* ScheduleScreen */ = {
 			isa = PBXGroup;
 			children = (
+				0E9A2F64280AEDE500F7FEAE /* Service */,
 				0E586D2027F5B6A300944F21 /* Model */,
 				0E586D1F27F5B69900944F21 /* ViewModel */,
 				0E586D1E27F5B69300944F21 /* View */,
@@ -825,6 +842,7 @@
 		0E68CD9727FEF6EE00327EBF /* UpdateMedicalState */ = {
 			isa = PBXGroup;
 			children = (
+				0E33B26A280599CD00CF35E5 /* Service */,
 				0E68CDA92802BBBA00327EBF /* Model */,
 				0E68CD9E28018DB800327EBF /* ViewModel */,
 				0E68CD9827FEF70800327EBF /* View */,
@@ -851,6 +869,7 @@
 		0E68CD9E28018DB800327EBF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0E33B26F28059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -882,8 +901,17 @@
 		0E68CDA92802BBBA00327EBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0E9A2F64280AEDE500F7FEAE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0E9A2F65280AEE0000F7FEAE /* ScheduleApiService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		0E9E0DBF27FAF96600893ABF /* LookUp */ = {
@@ -1421,6 +1449,7 @@
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				C800F82C27FB585B00482151 /* ModelBooking.swift in Sources */,
+				0E9A2F66280AEE0000F7FEAE /* ScheduleApiService.swift in Sources */,
 				0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */,
 				0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */,
 				0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */,
@@ -1453,6 +1482,7 @@
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
 				0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */,
 				0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */,
+				0E33B26C280599E600CF35E5 /* UpdateMedicalStateApiService.swift in Sources */,
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				0E586D1627F5B63A00944F21 /* ViewModelPersonalData.swift in Sources */,
 				0E9E0DCB27FB022700893ABF /* ModelCities.swift in Sources */,
@@ -1475,6 +1505,7 @@
 				0E9E0DB027FAEF6500893ABF /* DatePickerTextField.swift in Sources */,
 				00C8BF6527F319BC00571078 /* Helper.swift in Sources */,
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
+				0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
 				C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */,
@@ -1486,6 +1517,7 @@
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
+				0E33B27028059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift in Sources */,
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
 				0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */,
 				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,
@@ -1680,7 +1712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = 2K7WVT9HR2;
+				DEVELOPMENT_TEAM = F7P569JB4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -1698,7 +1730,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1716,7 +1748,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
-				DEVELOPMENT_TEAM = 2K7WVT9HR2;
+				DEVELOPMENT_TEAM = F7P569JB4H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalamTech/Info.plist;
@@ -1734,7 +1766,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTech-Patient-V1.2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

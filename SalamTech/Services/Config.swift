@@ -57,6 +57,9 @@ class URLs {
     
     var PatientGetMedicalInfo = BaseUrl + "/api/\(Helper.getLanguage())/Patient/GetPatientMedicalInfo"
     
+    
+    
+    
     var PatientUpdateMedicalInfo = BaseUrl + "/api/\(Helper.getLanguage())/Patient/UpdatePatientMedicalInfo"
     
     var GetBloodTypes = BaseUrl + "/api/\(Helper.getLanguage())/PatientLookUp/GetBloodTypes"
@@ -65,6 +68,8 @@ class URLs {
     
     var GetFoodAllergy = BaseUrl + "/api/\(Helper.getLanguage())/PatientLookUp/GetFoodAllergy"
    
+    
+    var GetPatientAppointment =  BaseUrl + "/api/\(Helper.getLanguage())/PatientAppointment/GetPatientAppointmentes"
     
     
     

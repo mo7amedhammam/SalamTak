@@ -23,7 +23,7 @@ struct UpdateMedicalStateView: View {
     @State var normalPressure = "120"
     @State var normalSugar = "96"
     
-    @StateObject var medicalCreatedVM = ViewModelCreateMedicalProfile()
+    @StateObject var medicalUpdatedVM = ViewModelUpdateMedicalProfile()
     @StateObject var locationViewModel = LocationViewModel()
     @StateObject var NationalityVM = ViewModelCountries()
     @StateObject var OccupationVM = ViewModelOccupation()
@@ -46,20 +46,20 @@ struct UpdateMedicalStateView: View {
                                     VStack{
                                         Spacer().frame(height: 30)
                                         HStack(spacing: 40){
-                                            InputTextFieldMedicalInfo(text: $medicalCreatedVM.Height.string(), title: "Height")
+                                            InputTextFieldMedicalInfo(text: $medicalUpdatedVM.Height.string(), title: "Height")
                                                 .focused($isfocused)
                                                 .keyboardType(.numberPad)
-                                            InputTextFieldMedicalInfo(text: $medicalCreatedVM.Weight.string(), title: "Weight")
+                                            InputTextFieldMedicalInfo(text: $medicalUpdatedVM.Weight.string(), title: "Weight")
                                                 .focused($isfocused)
                                                 .keyboardType(.numberPad)
                                         }
                                         Spacer().frame(height: 20)
                                         
-                                        MedicalTextFieldInfo(text: $medicalCreatedVM.Pressure, text1: $normalPressure, title: "Pressure(MM/HG)")
+                                        MedicalTextFieldInfo(text: $medicalUpdatedVM.Pressure, text1: $normalPressure, title: "Pressure(MM/HG)")
                                             .focused($isfocused)
                                             .keyboardType(.numberPad)
                                         Spacer().frame(height: 20)
-                                        MedicalTextFieldInfo(text: $medicalCreatedVM.SugarLevel, text1: $normalSugar, title: "Sugar Level(MG/DL)")
+                                        MedicalTextFieldInfo(text: $medicalUpdatedVM.SugarLevel, text1: $normalSugar, title: "Sugar Level(MG/DL)")
                                             .focused($isfocused)
                                             .keyboardType(.numberPad)
                                         
@@ -74,13 +74,13 @@ struct UpdateMedicalStateView: View {
                                                 
                                             } label: {
                                                 HStack{
-                                                    Text(medicalCreatedVM.BloodTypeName)
+                                                    Text(medicalUpdatedVM.BloodTypeName)
                                                         .foregroundColor(Color("lightGray"))
                                                     
                                                     Spacer()
                                                     Image(systemName: "staroflife.fill")
                                                         .font(.system(size: 10))
-                                                        .foregroundColor(medicalCreatedVM.BloodTypeName == "" ? Color.red : Color.white)
+                                                        .foregroundColor(medicalUpdatedVM.BloodTypeName == "" ? Color.red : Color.white)
                                                     Image(systemName: "chevron.forward")
                                                         .foregroundColor(Color("lightGray"))
                                                 }
@@ -109,8 +109,8 @@ struct UpdateMedicalStateView: View {
                                                 
                                             } label: {
                                                 HStack{
-                                                    Text( medicalCreatedVM.PatientFoodAllergiesName.isEmpty ? "Food Allergies" : medicalCreatedVM.PatientFoodAllergiesName.joined(separator: ",")) .font(Font.SalamtechFonts.Reg14)
-                                                        .foregroundColor(medicalCreatedVM.PatientFoodAllergiesName.isEmpty ? Color("lightGray"):Color("blueColor"))
+                                                    Text( medicalUpdatedVM.PatientFoodAllergiesName.isEmpty ? "Food Allergies" : medicalUpdatedVM.PatientFoodAllergiesName.joined(separator: ",")) .font(Font.SalamtechFonts.Reg14)
+                                                        .foregroundColor(medicalUpdatedVM.PatientFoodAllergiesName.isEmpty ? Color("lightGray"):Color("blueColor"))
 
                                                     Spacer()
                                                     Image(systemName: "chevron.forward")
@@ -131,7 +131,7 @@ struct UpdateMedicalStateView: View {
                                             }
                                             
                                             Button {
-                                                if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientFoodAllergiesDto != [] {
+                                                if medicalUpdatedVM.Height != 0 && medicalUpdatedVM.Weight != 0 && medicalUpdatedVM.BloodTypeId != 0 && medicalUpdatedVM.PatientFoodAllergiesDto != [] {
                                                     isValid = true
                                                 }
                                                 withAnimation {
@@ -140,8 +140,8 @@ struct UpdateMedicalStateView: View {
                                                 
                                             } label: {
                                                 HStack{
-                                                    Text( medicalCreatedVM.PatientMedicineAllergiesName.isEmpty ? "Medicine Allergies" : medicalCreatedVM.PatientMedicineAllergiesName.joined(separator: ",")) .font(Font.SalamtechFonts.Reg14)
-                                                        .foregroundColor(medicalCreatedVM.PatientMedicineAllergiesName.isEmpty ? Color("lightGray"):Color("blueColor"))
+                                                    Text( medicalUpdatedVM.PatientMedicineAllergiesName.isEmpty ? "Medicine Allergies" : medicalUpdatedVM.PatientMedicineAllergiesName.joined(separator: ",")) .font(Font.SalamtechFonts.Reg14)
+                                                        .foregroundColor(medicalUpdatedVM.PatientMedicineAllergiesName.isEmpty ? Color("lightGray"):Color("blueColor"))
 
                                                     Spacer()
                                                     Image(systemName: "chevron.forward")
@@ -161,7 +161,7 @@ struct UpdateMedicalStateView: View {
                                                     .shadow(color: Color.black.opacity(0.099), radius: 3)
                                             }
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.OtherAllergies, title: "Other Allergies")
+                                            InputTextField(text: $medicalUpdatedVM.OtherAllergies, title: "Other Allergies")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
@@ -169,7 +169,7 @@ struct UpdateMedicalStateView: View {
                                                 .textInputAutocapitalization(.never)
                                             
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.Prescriptions, title: "Prescriptions")
+                                            InputTextField(text: $medicalUpdatedVM.Prescriptions, title: "Prescriptions")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
@@ -177,7 +177,7 @@ struct UpdateMedicalStateView: View {
                                                 .textInputAutocapitalization(.never)
                                             
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.CurrentMedication, title: "CurrentMedication")
+                                            InputTextField(text: $medicalUpdatedVM.CurrentMedication, title: "CurrentMedication")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
@@ -188,7 +188,7 @@ struct UpdateMedicalStateView: View {
                                         }
                                         VStack{
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.PastMedication, title: "PastMedication")
+                                            InputTextField(text: $medicalUpdatedVM.PastMedication, title: "PastMedication")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
@@ -196,7 +196,7 @@ struct UpdateMedicalStateView: View {
                                                 .textInputAutocapitalization(.never)
                                             
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.ChronicDiseases, title: "ChronicDiseases")
+                                            InputTextField(text: $medicalUpdatedVM.ChronicDiseases, title: "ChronicDiseases")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
@@ -204,14 +204,14 @@ struct UpdateMedicalStateView: View {
                                                 .textInputAutocapitalization(.never)
                                             
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.Iinjuries, title: "Iinjuries")
+                                            InputTextField(text: $medicalUpdatedVM.Iinjuries, title: "Iinjuries")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
                                                 
                                                 .textInputAutocapitalization(.never)
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalCreatedVM.Surgeries, title: "Surgeries")
+                                            InputTextField(text: $medicalUpdatedVM.Surgeries, title: "Surgeries")
                                                 .focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
@@ -225,6 +225,9 @@ struct UpdateMedicalStateView: View {
                                 }
                                
                                 Spacer()
+                                ButtonView(text: "Update Profile", action: {
+                                    medicalUpdatedVM.startUpdateMedicalProfile()
+                                })
 //                                CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
 ////                                    patientCreatedVM.DoctorSubSpecialist = self.SubSpecIDArr
 ////                                    print(SubSpecIDArr)
@@ -234,14 +237,14 @@ struct UpdateMedicalStateView: View {
 //
 //                                        print("let's create profiles")
 //
-//                                        print(medicalCreatedVM.Height)
-//                                        print(medicalCreatedVM.Weight)
-//                                        print(medicalCreatedVM.Pressure)
-//                                        print(medicalCreatedVM.SugarLevel)
-//                                        print(medicalCreatedVM.PatientFoodAllergiesDto)
-//                                        print(medicalCreatedVM.PatientMedicineAllergiesDto)
-////                                        print(medicalCreatedVM.NationalityId)
-//////                                        print(medicalCreatedVM.Birthday ?? Date())
+//                                        print(medicalUpdatedVM.Height)
+//                                        print(medicalUpdatedVM.Weight)
+//                                        print(medicalUpdatedVM.Pressure)
+//                                        print(medicalUpdatedVM.SugarLevel)
+//                                        print(medicalUpdatedVM.PatientFoodAllergiesDto)
+//                                        print(medicalUpdatedVM.PatientMedicineAllergiesDto)
+////                                        print(medicalUpdatedVM.NationalityId)
+//////                                        print(medicalUpdatedVM.Birthday ?? Date())
 //////                                        print(datef.string(from: patientCreatedVM.Birthday ?? Date()) )
 ////                                        //                                    print(patientCreatedVM.Birthday?.dateformatter)
 ////
@@ -260,15 +263,15 @@ struct UpdateMedicalStateView: View {
 ////                                            patientCreatedVM.isLoading = true
 ////                                        patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
 //
-//                                        if medicalCreatedVM.Pressure == "" {
-//                                            medicalCreatedVM.Pressure = self.normalPressure
+//                                        if medicalUpdatedVM.Pressure == "" {
+//                                            medicalUpdatedVM.Pressure = self.normalPressure
 //                                        }
-//                                        if medicalCreatedVM.SugarLevel == "" {
-//                                            medicalCreatedVM.SugarLevel = self.normalSugar
+//                                        if medicalUpdatedVM.SugarLevel == "" {
+//                                            medicalUpdatedVM.SugarLevel = self.normalSugar
 //                                        }
 //                                        print("pressure")
-//                                        print(medicalCreatedVM.Pressure)
-//                                        medicalCreatedVM.startCreateMedicalProfile()
+//                                        print(medicalUpdatedVM.Pressure)
+//                                        medicalUpdatedVM.startCreateMedicalProfile()
 //                                    }
 //
 //                                }, Cancelaction:  {
@@ -285,7 +288,7 @@ struct UpdateMedicalStateView: View {
                     if ShowBloodType {
                         ZStack {
                             
-                            ChooseBloodType( BloodTypeVM: BloodTypeVM, IsPresented:$ShowBloodType ,  SelectedBloodName: $medicalCreatedVM.BloodTypeName, SelectedBloodId: $medicalCreatedVM.BloodTypeId, width: bounds.size.width)
+                            ChooseBloodType( BloodTypeVM: BloodTypeVM, IsPresented:$ShowBloodType ,  SelectedBloodName: $medicalUpdatedVM.BloodTypeName, SelectedBloodId: $medicalUpdatedVM.BloodTypeId, width: bounds.size.width)
                         }
                         .animation(.easeInOut)
                         .transition(.move(edge: .bottom))
@@ -308,7 +311,7 @@ struct UpdateMedicalStateView: View {
                         )
                     } else if ShowFoodAllergy{
                         ZStack {
-                            ChooseFoodAllergy(IsPresented: $ShowFoodAllergy, selectedServiceName: $medicalCreatedVM.PatientFoodAllergiesName, selectedServiceId: $medicalCreatedVM.PatientFoodAllergiesDto,  width: UIScreen.main.bounds.size.width)
+                            ChooseFoodAllergy(IsPresented: $ShowFoodAllergy, selectedServiceName: $medicalUpdatedVM.PatientFoodAllergiesName, selectedServiceId: $medicalUpdatedVM.PatientFoodAllergiesDto,  width: UIScreen.main.bounds.size.width)
                         }
 //                                .animation(.easeInOut)
                         .transition(.move(edge: .bottom))
@@ -333,7 +336,7 @@ struct UpdateMedicalStateView: View {
                         )
                     } else if ShowMedicineAllergy{
                         ZStack {
-                            ChooseMedicineAllergy(IsPresented: $ShowMedicineAllergy, selectedServiceName: $medicalCreatedVM.PatientMedicineAllergiesName, selectedServiceId: $medicalCreatedVM.PatientMedicineAllergiesDto,  width: UIScreen.main.bounds.size.width)
+                            ChooseMedicineAllergy(IsPresented: $ShowMedicineAllergy, selectedServiceName: $medicalUpdatedVM.PatientMedicineAllergiesName, selectedServiceId: $medicalUpdatedVM.PatientMedicineAllergiesDto,  width: UIScreen.main.bounds.size.width)
                         }
 //                                .animation(.easeInOut)
                         .transition(.move(edge: .bottom))
@@ -361,6 +364,7 @@ struct UpdateMedicalStateView: View {
                    
                 }
                 .onAppear(perform: {
+                    medicalUpdatedVM.startFetchPatientMedicalState()
 //                    NationalityVM.startFetchCountries()
 //                    OccupationVM.startFetchOccupation()
                     BloodTypeVM.startFetchBloodTypes()
@@ -373,7 +377,7 @@ struct UpdateMedicalStateView: View {
                     Spacer()
                     Button("Done"){
                         isfocused = false
-//                        if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientMedicineAllergiesDto != [] && medicalCreatedVM.PatientMedicineAllergiesDto != []{
+//                        if medicalUpdatedVM.Height != 0 && medicalUpdatedVM.Weight != 0 && medicalUpdatedVM.BloodTypeId != 0 && medicalUpdatedVM.PatientMedicineAllergiesDto != [] && medicalUpdatedVM.PatientMedicineAllergiesDto != []{
 //                            isValid = true
 //                        }
                     }
@@ -381,20 +385,20 @@ struct UpdateMedicalStateView: View {
             }
             
             // Alert with no internet connection
-            .alert(isPresented: $medicalCreatedVM.isNetworkError, content: {
+            .alert(isPresented: $medicalUpdatedVM.isNetworkError, content: {
                 Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
             })
             
             // alert with no ierror message
-            .alert(medicalCreatedVM.errorMsg, isPresented: $medicalCreatedVM.isError) {
+            .alert(medicalUpdatedVM.errorMsg, isPresented: $medicalUpdatedVM.isError) {
                 Button("OK", role: .cancel) { }
             }
             
             // showing loading indicator
-            ActivityIndicatorView(isPresented: $medicalCreatedVM.isLoading)
+            ActivityIndicatorView(isPresented: $medicalUpdatedVM.isLoading)
         }
-        NavigationLink(destination:TabBarView(),isActive: $medicalCreatedVM.UserCreated , label: {
-        })
+//        NavigationLink(destination:TabBarView(),isActive: $medicalUpdatedVM.UserCreated , label: {
+//        })
     }
 }
 

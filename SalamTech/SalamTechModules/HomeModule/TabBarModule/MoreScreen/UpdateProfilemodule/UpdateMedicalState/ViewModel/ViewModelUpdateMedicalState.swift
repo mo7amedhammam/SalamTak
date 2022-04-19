@@ -9,11 +9,11 @@ import Foundation
 import Combine
 import Alamofire
 
-class ViewModelGetAppointmentInfo: ObservableObject {
+class ViewModelUpdateMedicalProfile: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelGetSubject = PassthroughSubject<ModelGetSchedule, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelGetSchedule, Error>()
+    let passthroughModelGetSubject = PassthroughSubject<ModelGetMedicalState, Error>()
+    let passthroughModelSubject = PassthroughSubject<ModelGetMedicalState, Error>()
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -73,7 +73,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedDoctorCreatedModel: ModelGetSchedule? = nil
+    @Published var publishedDoctorCreatedModel: ModelGetMedicalState? = nil
     @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
@@ -96,23 +96,23 @@ class ViewModelGetAppointmentInfo: ObservableObject {
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
             self.publishedDoctorCreatedModel = modeldata
-//            self.Height = publishedDoctorCreatedModel?.data?.height ?? 0
-//            self.Weight = publishedDoctorCreatedModel?.data?.weight ?? 0
-//            self.Pressure = publishedDoctorCreatedModel?.data?.pressure ?? ""
-//            self.SugarLevel = publishedDoctorCreatedModel?.data?.sugarLevel ?? ""
-//            self.PatientFoodAllergiesDto = publishedDoctorCreatedModel?.data?.PatientFoodAllergiesDto ?? []
-//            self.PatientMedicineAllergiesDto = publishedDoctorCreatedModel?.data?.PatientMedicineAllergiesDto ?? []
-//            self.PatientFoodAllergiesName = publishedDoctorCreatedModel?.data?.PatientFoodAllergiesName ?? []
-//            self.PatientMedicineAllergiesName = publishedDoctorCreatedModel?.data?.PatientMedicineAllergiesName ?? []
-//            self.BloodTypeName = publishedDoctorCreatedModel?.data?.bloodName ?? "Blood Group"
-//            self.OtherAllergies = publishedDoctorCreatedModel?.data?.otherAllergyies ?? ""
-//            self.Prescriptions = publishedDoctorCreatedModel?.data?.prescriptions ?? ""
-//            self.CurrentMedication = publishedDoctorCreatedModel?.data?.currentMedication ?? ""
-//            self.PastMedication = publishedDoctorCreatedModel?.data?.pastMedication ?? ""
-//            self.ChronicDiseases = publishedDoctorCreatedModel?.data?.chronicDiseases ?? ""
-//            self.Iinjuries = publishedDoctorCreatedModel?.data?.injuires ?? ""
-//            self.Surgeries = publishedDoctorCreatedModel?.data?.surgries ?? ""
-//            self.Id = publishedDoctorCreatedModel?.data?.id ?? 0
+            self.Height = publishedDoctorCreatedModel?.data?.height ?? 0
+            self.Weight = publishedDoctorCreatedModel?.data?.weight ?? 0
+            self.Pressure = publishedDoctorCreatedModel?.data?.pressure ?? ""
+            self.SugarLevel = publishedDoctorCreatedModel?.data?.sugarLevel ?? ""
+            self.PatientFoodAllergiesDto = publishedDoctorCreatedModel?.data?.PatientFoodAllergiesDto ?? []
+            self.PatientMedicineAllergiesDto = publishedDoctorCreatedModel?.data?.PatientMedicineAllergiesDto ?? []
+            self.PatientFoodAllergiesName = publishedDoctorCreatedModel?.data?.PatientFoodAllergiesName ?? []
+            self.PatientMedicineAllergiesName = publishedDoctorCreatedModel?.data?.PatientMedicineAllergiesName ?? []
+            self.BloodTypeName = publishedDoctorCreatedModel?.data?.bloodName ?? "Blood Group"
+            self.OtherAllergies = publishedDoctorCreatedModel?.data?.otherAllergyies ?? ""
+            self.Prescriptions = publishedDoctorCreatedModel?.data?.prescriptions ?? ""
+            self.CurrentMedication = publishedDoctorCreatedModel?.data?.currentMedication ?? ""
+            self.PastMedication = publishedDoctorCreatedModel?.data?.pastMedication ?? ""
+            self.ChronicDiseases = publishedDoctorCreatedModel?.data?.chronicDiseases ?? ""
+            self.Iinjuries = publishedDoctorCreatedModel?.data?.injuires ?? ""
+            self.Surgeries = publishedDoctorCreatedModel?.data?.surgries ?? ""
+            self.Id = publishedDoctorCreatedModel?.data?.id ?? 0
         }.store(in: &cancellables)
         
         //-----------------------------------------------------------------
@@ -144,61 +144,61 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     
 
     
-//    func startUpdateMedicalProfile( ) {
-//
-//
-//
-//        let parametersarr : [String : Any]  = ["Height" : Height ,"Weight" : Weight,
-//                          "Pressure" : Pressure ,"SugarLevel" : SugarLevel,
-//                          "BloodTypeId" : BloodTypeId
-//                                               ,"OtherAllergies" : OtherAllergies,
-//                          "Prescriptions" : Prescriptions ,
-//                           "CurrentMedication" : CurrentMedication ,
-//                           "PastMedication" : PastMedication, "ChronicDiseases" : ChronicDiseases,
-//                           "Iinjuries": Iinjuries, "Surgeries" : Surgeries,
-//                            "PatientFoodAllergiesDto": PatientFoodAllergiesDto, "PatientMedicineAllergiesDto" : PatientMedicineAllergiesDto,
-//                                               "Id" : Id
-//
-//                          ]
-//
-//        if Helper.isConnectedToNetwork(){
-////        if isValid == true {
-//
-//            UpdateMedicalStateApiService.UpdatePatientMedicalState(passedparameters: parametersarr, completion: {(success, model, err) in
-//                print("data")
-//                print(parametersarr)
-//                self.isLoading = true
-//            if success{
-//                DispatchQueue.main.async {
-//                    self.UserCreated = true
-//                    self.isLoading = false
-//                    self.passthroughModelSubject.send(model!)
-//                    print(model?.message)
-//                }
-//            }else{
-//                print(model?.message)
-//                self.isLoading = false
-//                self.isError = true
-//                self.errorMsg = model?.message ?? "Please Compelete Your Data"
-//            }
-////print(err ?? "")
-//        })
-//            self.isLoading = false
-//
-////        }else{
-////            print("not validated")
-////        }
-//        }else{
-//                   // Alert with no internet connection
-//            self.isLoading = false
-//          isNetworkError = true
-//               }
-//    }
- 
-    func startFetchAppointmentInfo() {
+    func startUpdateMedicalProfile( ) {
+
+
+
+        let parametersarr : [String : Any]  = ["Height" : Height ,"Weight" : Weight,
+                          "Pressure" : Pressure ,"SugarLevel" : SugarLevel,
+                          "BloodTypeId" : BloodTypeId
+                                               ,"OtherAllergies" : OtherAllergies,
+                          "Prescriptions" : Prescriptions ,
+                           "CurrentMedication" : CurrentMedication ,
+                           "PastMedication" : PastMedication, "ChronicDiseases" : ChronicDiseases,
+                           "Iinjuries": Iinjuries, "Surgeries" : Surgeries,
+                            "PatientFoodAllergiesDto": PatientFoodAllergiesDto, "PatientMedicineAllergiesDto" : PatientMedicineAllergiesDto,
+                                               "Id" : Id
+
+                          ]
 
         if Helper.isConnectedToNetwork(){
-            ScheduleApiService.GetPatientAppointmentInfo(medicalExaminationTypeId:Id,
+//        if isValid == true {
+
+            UpdateMedicalStateApiService.UpdatePatientMedicalState(passedparameters: parametersarr, completion: {(success, model, err) in
+                print("data")
+                print(parametersarr)
+                self.isLoading = true
+            if success{
+                DispatchQueue.main.async {
+                    self.UserCreated = true
+                    self.isLoading = false
+                    self.passthroughModelSubject.send(model!)
+                    print(model?.message)
+                }
+            }else{
+                print(model?.message)
+                self.isLoading = false
+                self.isError = true
+                self.errorMsg = model?.message ?? "Please Compelete Your Data"
+            }
+//print(err ?? "")
+        })
+            self.isLoading = false
+
+//        }else{
+//            print("not validated")
+//        }
+        }else{
+                   // Alert with no internet connection
+            self.isLoading = false
+          isNetworkError = true
+               }
+    }
+ 
+    func startFetchPatientMedicalState() {
+
+        if Helper.isConnectedToNetwork(){
+            UpdateMedicalStateApiService.GetPatientMedicalState(
                 completion:  { (success, model, err) in
                 
             
