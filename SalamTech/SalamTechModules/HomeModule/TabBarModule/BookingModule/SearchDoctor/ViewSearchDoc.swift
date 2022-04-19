@@ -15,6 +15,9 @@ struct ViewSearchDoc: View {
     @Binding var SpecialistId:Int
     @Binding var CityId:Int
     @Binding var AreaId:Int
+    
+    @State  var isSearch = false
+    @State  var searchTxt = ""
 
     @State private var image = UIImage()
     @State var loginAgain = false
@@ -37,6 +40,10 @@ struct ViewSearchDoc: View {
 
 
     }
+    func getAllDoctors(){
+        searchDoc.DoctorName = searchTxt
+        searchDoc.FetchDoctors()
+    }
     
     var body: some View {
         ZStack{
@@ -49,7 +56,10 @@ struct ViewSearchDoc: View {
                             .frame(width: UIScreen.main.bounds.width, height: 120)
                             .padding(.top,-20)
                         
-                        SearchBar(PlaceHolder:"Search a doctor... ",text: .constant("")).shadow(color: .black.opacity(0.2), radius: 15)
+                        SearchBar(PlaceHolder:"Search a doctor... ",text: $searchTxt, isSearch: $isSearch){
+                       getAllDoctors()
+                        }
+                            .shadow(color: .black.opacity(0.2), radius: 15)
                         
                     }
                 
@@ -128,22 +138,23 @@ struct ViewSearchDoc: View {
             self.index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId
-//            searchDoc.
-            searchDoc.FetchDoctors()
+            getAllDoctors()
+
         })
         .onChange(of: index){newval in
             self.ExTpe = newval
             searchDoc.MedicalExaminationTypeId = newval
-            searchDoc.publishedModelSearchDoc?.removeAll()
-            searchDoc.FetchDoctors()
+            getAllDoctors()
+
         }
-        
+
+        //        }
         //  go to clinic info
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor),isActive: $gotodoctorDetails) {
               }
  
     }
- 
+    
 }
 
 struct ViewSearchDoc_Previews: PreviewProvider {
@@ -160,7 +171,9 @@ struct SearchBar: View {
     @Binding var text: String
     
     @State private var isEditing = false
-    
+    @Binding  var isSearch : Bool
+    var action: () -> Void
+
     var body: some View {
         HStack {
             
@@ -173,19 +186,28 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
+                .submitLabel(.search)
+                .onSubmit {
+                    action()
+//                    isSearch = true
+//                    isEditing = false
+                }
             
-            //            if isEditing {
-            //                Button(action: {
-            //                    self.isEditing = false
-            //                    self.text = ""
-            //
-            //                }) {
-            //                    Text("Cancel")
-            //                }
-            //                .padding(.trailing, 10)
-            //                .transition(.move(edge: .trailing))
-            //                .animation(.default)
-            //            }
+//            if text != "" || !text.isEmpty{
+//                            Button(action: {
+//                                self.isEditing = false
+//                                self.text = ""
+//                   self.isSearch = false
+//            action()
+
+//                     UIApplication.shared.dismissKeyboard()
+//                            }) {
+//                                Text("Cancel")
+//                            }
+//                            .padding(.trailing, 10)
+//                            .transition(.move(edge: .trailing))
+//                            .animation(.default)
+//                        }
         }
         
         .overlay(
@@ -195,10 +217,12 @@ struct SearchBar: View {
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 15)
                 
-                if isEditing {
+                if  text != "" || !text.isEmpty{
                     Button(action: {
                         self.text = ""
                         self.isEditing = false
+                        action()
+
                         UIApplication.shared.dismissKeyboard()
                     }) {
                         Image(systemName: "multiply.circle.fill")
