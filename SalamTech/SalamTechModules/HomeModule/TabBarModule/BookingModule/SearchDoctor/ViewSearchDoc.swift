@@ -125,12 +125,14 @@ struct ViewSearchDoc: View {
             
         }
         .onAppear(perform: {
+            self.index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId
 //            searchDoc.
             searchDoc.FetchDoctors()
         })
         .onChange(of: index){newval in
+            self.ExTpe = newval
             searchDoc.MedicalExaminationTypeId = newval
             searchDoc.publishedModelSearchDoc?.removeAll()
             searchDoc.FetchDoctors()
@@ -294,6 +296,7 @@ struct ViewTopSection: View {
 
 struct ViewMiddelSection: View {
     var Doctor:Doc
+    @State var multiline = false
     var body: some View {
         VStack(spacing:0){
             
@@ -309,6 +312,10 @@ struct ViewMiddelSection: View {
                 Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
                     .foregroundColor(Color("darkGreen"))
                     .font(Font.SalamtechFonts.Reg14)
+                    .lineLimit(multiline ? 0:1)
+                    .onTapGesture {
+                        multiline.toggle()
+                    }
                 Spacer()
             }.padding(.leading)
             

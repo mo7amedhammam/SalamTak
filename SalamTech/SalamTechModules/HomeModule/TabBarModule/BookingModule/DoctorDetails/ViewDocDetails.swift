@@ -31,7 +31,6 @@ struct ViewDocDetails:View{
 
                         ViewDateAndTime()
                         
-//                        ViewAboutDoctor()
                         
                         ViewDocReviews()
 
@@ -76,29 +75,19 @@ struct ViewDocDetails:View{
             .navigationBarItems(leading: BackButtonView())
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
-//                DocDetails.FetchDoctorDetails()
-                    
-                
-                
-                
                 setWeekView()
-                let now = convertDateToLocalTime(Date())
-
-                let startWeek = convertDateToLocalTime(now.startOfWeek!)
-                let endWeek = convertDateToLocalTime(now.endOfWeek!)
-                
-                
-                print("Local time is: \(now)")
-                
-                print("Start of week is: \(startWeek)")
-                print("End of week is: \(endWeek)")
-                
-                print("Month : \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
-                print(" week :")
-                for dayyy  in totalSquares{
-                    print(dayyy)
-                }
-//                print(DocDetails.publishedModelSearchDoc ?? [])
+//                let now = convertDateToLocalTime(Date())
+//                let startWeek = convertDateToLocalTime(now.startOfWeek!)
+//                let endWeek = convertDateToLocalTime(now.endOfWeek!)
+//                print("Local time is: \(now)")
+//                print("Start of week is: \(startWeek)")
+//                print("End of week is: \(endWeek)")
+//
+//                print("Month : \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
+//                print(" week :")
+//                for dayyy  in totalSquares{
+//                    print(dayyy)
+//                }
 
             })
         
@@ -398,7 +387,6 @@ struct ViewDateAndTime: View {
                                 TappedDate = totalSquares[day]
 //                                timeexpanded = false
                                 DocDetails.SchedualDate = totalSquares[day]
-                                DocDetails.FetchDoctorDetails()
                                 openSlots = true
 //                                DocDetails.FetchDoctorDetails()
                             }, label: {
@@ -432,9 +420,10 @@ struct ViewDateAndTime: View {
                     .onAppear(perform: {
 //                        print(Date())
 //                        print(TappedDate)
-                        
                     })
-                    
+                    .onChange(of: DocDetails.SchedualDate){_ in
+                        DocDetails.FetchDoctorDetails()
+                    }
                     
                     
                 }
@@ -499,8 +488,8 @@ struct ViewDateAndTime: View {
                     .cornerRadius(9)
                     .shadow(color: .black.opacity(0.1), radius: 9)
                 
-//                if timeexpanded{
-//                    LazyVGrid(columns: vGridLayout){
+                if timeexpanded{
+                    LazyVGrid(columns: vGridLayout){
 //                        ForEach(sched.DoctorSchedualSlots!, id:\.self ) { exType in
 //    //                    for exType in sched.DoctorSchedualSlots ?? []{
 //
@@ -522,10 +511,10 @@ struct ViewDateAndTime: View {
 //                                    .shadow(color: .black.opacity(0.099), radius: 5)
 //                            }
 //                        }
-//
-//                    }
-//                    .padding(.horizontal,13)
-//                }
+
+                    }
+                    .padding(.horizontal,13)
+                }
                         
                     }
                 }
