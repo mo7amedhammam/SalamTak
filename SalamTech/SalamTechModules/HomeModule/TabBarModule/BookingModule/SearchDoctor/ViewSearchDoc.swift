@@ -155,8 +155,6 @@ struct ViewSearchDoc_Previews: PreviewProvider {
 }
 
 
-
-
 struct SearchBar: View {
     var PlaceHolder = ""
     @Binding var text: String
