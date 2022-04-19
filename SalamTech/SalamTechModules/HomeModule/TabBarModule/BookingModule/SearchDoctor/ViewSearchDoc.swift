@@ -294,7 +294,7 @@ struct ViewTopSection: View {
 
 struct ViewMiddelSection: View {
     var Doctor:Doc
-    @State var multiline = false
+    @State var multiline = true
     var body: some View {
         VStack(spacing:0){
             

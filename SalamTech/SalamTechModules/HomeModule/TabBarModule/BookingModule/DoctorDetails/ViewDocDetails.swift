@@ -17,21 +17,15 @@ struct ViewDocDetails:View{
 //    @StateObject var DocDetails = ViewModelDocDetails()
 
     var body: some View{
-//        NavigationView{
-
                     ZStack {
                 VStack{
                     Image("Rectangle")
                         .resizable()
-//                        .aspectRatio( contentMode: .fill)
                         .frame(width:UIScreen.main.bounds.width, height: 200)
 
                     ScrollView {
                         ViewDocMainInfo(Doctor: Doctor)
-
                         ViewDateAndTime()
-                        
-                        
                         ViewDocReviews()
 
                         Spacer()
@@ -41,7 +35,6 @@ struct ViewDocDetails:View{
                     .padding(.top,-105)
 
                     Spacer()
-//                    }.padding(.top,5)
 
                     ZStack{
                     Button(action: {
@@ -72,7 +65,14 @@ struct ViewDocDetails:View{
                         }
             }
             .edgesIgnoringSafeArea(.top)
-            .navigationBarItems(leading: BackButtonView())
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if !showQuickLogin{
+                        BackButtonView()
+                    }
+                }
+            }
+            .navigationBarHidden(showQuickLogin)
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
                 setWeekView()
@@ -92,7 +92,6 @@ struct ViewDocDetails:View{
             })
         
         
-//     }
         
      // go to clinic info
 //        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
@@ -336,6 +335,7 @@ struct ViewDateAndTime: View {
     
     init(){
         setWeekView()
+        TappedDate = Date()
     }
     var body: some View {
         VStack{
@@ -386,7 +386,6 @@ struct ViewDateAndTime: View {
 //                                print(totalSquares[day])
                                 TappedDate = totalSquares[day]
 //                                timeexpanded = false
-                                DocDetails.SchedualDate = totalSquares[day]
                                 openSlots = true
 //                                DocDetails.FetchDoctorDetails()
                             }, label: {
@@ -409,27 +408,15 @@ struct ViewDateAndTime: View {
                             }).foregroundColor(Color("blueColor"))
                                 .background( TappedDate == date ? Color("darkGreen").opacity(0.19):.clear)
                                 .cornerRadius(8)
-                            
                                 .padding(.bottom, 10)
                             
                             
                         }
-                        //                                    .padding(5)
                     }
                     .frame(height: 60)
-                    .onAppear(perform: {
-//                        print(Date())
-//                        print(TappedDate)
-                    })
-                    .onChange(of: DocDetails.SchedualDate){_ in
-                        DocDetails.FetchDoctorDetails()
-                    }
-                    
-                    
                 }
                 .background(Color.white)
-                
-                
+            
             }
             .frame(width: UIScreen.main.bounds.width-30)
             .cornerRadius(9)
@@ -437,9 +424,9 @@ struct ViewDateAndTime: View {
          //---------------------------------
             
             //MARK: ---- periods of slot --------
-            if openSlots {
+            if openSlots && (DocDetails.publishedModelSearchDoc?.DoctorScheduals?.count ?? 0) > 0 {
                 VStack{
-                    ForEach(0..<(DocDetails.publishedModelSearchDoc?.DoctorScheduals?.count ?? 0), id:\.self){ sched in
+                    ForEach(DocDetails.publishedModelSearchDoc?.DoctorScheduals ?? [] ){ sched in
                 Button(action: {
                     timeexpanded.toggle()
                     
@@ -450,7 +437,7 @@ struct ViewDateAndTime: View {
                     HStack{
                         
                         HStack{
-                            Text(DocDetails.publishedModelSearchDoc?.DoctorScheduals?[sched].TimeFrom ?? "" )
+                            Text(sched.TimeFrom ?? "" )
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg16)
                             
@@ -458,7 +445,7 @@ struct ViewDateAndTime: View {
                                 .foregroundColor(.gray)
                                 .font(Font.SalamtechFonts.Reg16)
                             
-                            Text(DocDetails.publishedModelSearchDoc?.DoctorScheduals?[sched].TimeTo ?? "")
+                            Text(sched.TimeTo ?? "")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg16)
                             
@@ -469,7 +456,7 @@ struct ViewDateAndTime: View {
                             .foregroundColor(.gray)
                             .font(Font.SalamtechFonts.Reg16)
                         
-                        Text("\(DocDetails.publishedModelSearchDoc?.DoctorScheduals?[sched].Fees ?? 0) EGP")
+                        Text("\(sched.Fees ?? 0) EGP")
                             .foregroundColor(Color("darkGreen"))
                             .font(Font.SalamtechFonts.Reg16)
                         
@@ -525,9 +512,19 @@ struct ViewDateAndTime: View {
             //-----------------------------------------
             
             
-        }.onAppear(perform: {
-            DocDetails.FetchDoctorDetails()
-        })
+        }
+
+            .onAppear(perform: {
+//                        print(Date())
+//                        print(TappedDate)
+//                        DocDetails.SchedualDate = newdate
+                DocDetails.FetchDoctorDetails()
+            })
+            .onChange(of:self.TappedDate ){newdate in
+                DocDetails.publishedModelSearchDoc?.DoctorScheduals?.removeAll()
+                DocDetails.SchedualDate = newdate
+                DocDetails.FetchDoctorDetails()
+            }
     }
 }
 
