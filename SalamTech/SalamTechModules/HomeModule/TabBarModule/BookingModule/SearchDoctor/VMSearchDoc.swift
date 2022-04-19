@@ -13,15 +13,10 @@ import SwiftUI
 class VMSearchDoc: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let ModelSchedualByServiseId = PassthroughSubject<ModelSearchDoc , Error>()
-//    let ModelSchedualByServiseDayId = PassthroughSubject<ModelGetSchedualByServiseDayId, Error>()
-//    let ModelCreatedSchedual = PassthroughSubject<ModelCreateServiceById, Error>()
-//    let ModelUpdatedSchedual = PassthroughSubject<ModelUpdatedClinicSchedual, Error>()
+    let ModelFetchDoctors = PassthroughSubject<ModelSearchDoc , Error>()
+    let ModelFetchMoreDoctors = PassthroughSubject<ModelSearchDoc , Error>()
     
     private var cancellables: Set<AnyCancellable> = []
-    
-
-   
     // ------- input
 
     @Published var MaxResultCount                            :Int = 10
@@ -36,13 +31,12 @@ class VMSearchDoc: ObservableObject {
     @Published var SeniortyLevelId                               :Int?
     @Published var SubSpecialistId                               :[Int]?
 
-    
-
-
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
     @Published var publishedModelSearchDoc: [Doc]?
+    
+//    @Published var publishedModelSearchDoc: [Doc] = [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
 
 
 
@@ -56,12 +50,21 @@ class VMSearchDoc: ObservableObject {
     
     init() {
    
-        ModelSchedualByServiseId.sink { (completion) in
-            //            print(completion)
-        } receiveValue: { [self] (modeldata) in
-            
-            self.publishedModelSearchDoc = modeldata.data?.Items ?? []
         
+        ModelFetchDoctors.sink { (completion) in
+            //            print(completion)
+        } receiveValue: { [weak self]  (modeldata) in
+            
+            self?.publishedModelSearchDoc = modeldata.data?.Items ?? []
+        
+  
+        }.store(in: &cancellables)
+        
+        ModelFetchMoreDoctors.sink { (completion) in
+            //            print(completion)
+        } receiveValue: { [weak self] (modeldata) in
+            
+            self?.publishedModelSearchDoc?.append( contentsOf: modeldata.data?.Items ?? [])
   
         }.store(in: &cancellables)
     
@@ -135,7 +138,7 @@ class VMSearchDoc: ObservableObject {
                 self.isLoading = true
             if success{
                 DispatchQueue.main.async {
-                    self.ModelSchedualByServiseId.send(model!)
+                    self.ModelFetchDoctors.send(model!)
                     self.isLoading = false
                     self.isDone = true
                     print(model!)
@@ -155,6 +158,67 @@ class VMSearchDoc: ObservableObject {
           isNetworkError = true
                }
     }
+    
+    func FetchMoreDoctors() {
+        var Parameters : [String:Any] = [
+        // required
+            "MaxResultCount": MaxResultCount ,
+            "SkipCount":SkipCount,
+            "SpecialistId":SpecialistId ,
+            "MedicalExaminationTypeId":MedicalExaminationTypeId
+    ]
+        // optional
+        if DoctorName != ""{
+            Parameters["DoctorName"] = DoctorName
+        }
+        if CityId != 0{
+            Parameters["CityId"] = CityId
+        }
+        if AreaId != 0{
+            Parameters["AreaId"] = AreaId
+        }
+        if Fees != ""{
+            Parameters["Fees"] = Double( Fees )
+        }
+        if GenderId != 0{
+            Parameters["GenderId"] = GenderId
+        }
+        if SeniortyLevelId != 0{
+            Parameters["SeniortyLevelId"] = SeniortyLevelId
+        }
+        if SubSpecialistId != []{
+            Parameters["SubSpecialistId"] = SubSpecialistId
+        }
+        
+        
+        if Helper.isConnectedToNetwork(){
+            APISearchDoc.SearchDoctors(parameters: Parameters,
+        completion:  { (success, model, err) in
+            
+                self.isLoading = true
+            if success{
+                DispatchQueue.main.async {
+                    self.ModelFetchMoreDoctors.send(model!)
+                    self.isLoading = false
+                    self.isDone = true
+                    print(model!)
+                }
+            }else{
+                self.isLoading = false
+                self.isError = true
+                print(model?.message ?? "")
+                self.errorMsg = err ?? "cannot get Doctors"
+            }
+        })
+            self.isLoading = false
+
+        }else{
+                   // Alert with no internet connection
+            self.isLoading = false
+          isNetworkError = true
+               }
+    }
+
     
 //    func GetClinicSchedualserviceDayId() {
 //

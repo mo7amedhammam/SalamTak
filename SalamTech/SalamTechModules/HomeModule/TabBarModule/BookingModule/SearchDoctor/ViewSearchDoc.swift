@@ -41,7 +41,9 @@ struct ViewSearchDoc: View {
 
     }
     func getAllDoctors(){
+        
         searchDoc.DoctorName = searchTxt
+        searchDoc.SkipCount = 0
         searchDoc.FetchDoctors()
     }
     
@@ -110,15 +112,29 @@ struct ViewSearchDoc: View {
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
                         ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
+                            
                         
                     }
+                    ZStack {
+                        Image("Line")
+                            .resizable()
+                            .renderingMode(.original)
+                            .tint(.black)
+                            .frame( maxHeight: 2)
+                            .foregroundColor(.black)
+                            .onAppear(perform: {
+                            searchDoc.SkipCount += searchDoc.publishedModelSearchDoc?.count ?? 0
+                            searchDoc.FetchMoreDoctors()
+                        })
+                    }
                     
-                    
-                }
+                }.refreshable(action: {
+                    getAllDoctors()
+                })
                 .listStyle(.plain)
-                .padding(.top,0)
+                .padding(.vertical,0)
                 //            .background(Color.red)
-                Spacer()
+//                Spacer()
             }
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
@@ -135,7 +151,8 @@ struct ViewSearchDoc: View {
             
         }
         .onAppear(perform: {
-            self.index =  ExTpe
+            searchDoc.MaxResultCount = 3
+            index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId
             getAllDoctors()
@@ -144,6 +161,7 @@ struct ViewSearchDoc: View {
         .onChange(of: index){newval in
             self.ExTpe = newval
             searchDoc.MedicalExaminationTypeId = newval
+            searchDoc.publishedModelSearchDoc?.removeAll()
             getAllDoctors()
 
         }
