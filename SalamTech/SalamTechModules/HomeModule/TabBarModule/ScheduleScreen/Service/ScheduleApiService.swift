@@ -15,8 +15,15 @@ final class ScheduleApiService {
         
         let url = URLs().GetPatientAppointment
             let header:HTTPHeaders = ["Authorization":Helper.getAccessToken()]
+        let queryItems = [URLQueryItem(name:"medicalExaminationTypeId",value:"\(medicalExaminationTypeId)")]
+        var urlComponents = URLComponents(string: url)
+        urlComponents?.queryItems = queryItems
+        let convertedUrl = urlComponents?.url
+        if let convertUrl = convertedUrl {
+            print(convertUrl)
+        }
         
-        AF.request(url, method: .get,parameters: nil ,encoding: JSONEncoding.default ,headers: header )
+        AF.request(convertedUrl!, method: .get,parameters: nil ,encoding: JSONEncoding.default ,headers: header )
             .validate(statusCode: 200..<500)
             .responseDecodable(completionHandler: { ( response : DataResponse<ModelGetSchedule?, AFError>) in
                 switch response.response?.statusCode {
