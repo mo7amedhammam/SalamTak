@@ -112,10 +112,7 @@ struct ViewSearchDoc: View {
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
                         ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
-                            
-                        
                     }
-                    ZStack {
                         Image("Line")
                             .resizable()
                             .renderingMode(.original)
@@ -126,7 +123,7 @@ struct ViewSearchDoc: View {
                             searchDoc.SkipCount += searchDoc.publishedModelSearchDoc?.count ?? 0
                             searchDoc.FetchMoreDoctors()
                         })
-                    }
+                    
                     
                 }.refreshable(action: {
                     getAllDoctors()
@@ -269,6 +266,7 @@ extension String: Identifiable {
 
 
 struct ViewTopSection: View {
+    
     var Doctor:Doc
     var body: some View {
         HStack{
@@ -292,7 +290,8 @@ struct ViewTopSection: View {
             VStack(alignment:.leading){
                 //MARK:  --- Name ---
                 HStack{
-                    Text("Dr/ ").foregroundColor(.black.opacity(0.7))
+                    Text("Dr/ ")
+                        .foregroundColor(.black.opacity(0.7))
                     Text(Doctor.DoctorName ?? "")
                         .font(Font.SalamtechFonts.Bold18)
                     
@@ -359,6 +358,7 @@ struct ViewMiddelSection: View {
                 Spacer()
             }.padding(.leading)
             
+            
             //MARK: --- Clinic Name & address ---
             HStack{
                 Image("doc2")
@@ -396,6 +396,8 @@ struct ViewMiddelSection: View {
                 
                 Spacer()
             }.padding(.leading)
+
+        
         }
     }
 }

@@ -7,37 +7,193 @@
 
 
 import SwiftUI
+import Kingfisher
 
 struct ViewSummary:View{
-    var Doctor:Doc
+    var Doctor:Doc = Doc.init(id: 1, SumRate: 3, Rate: 3, NumVisites: 5, WaitingTime: 15, FeesFrom: 230, FeesTo: 250, DoctorName: "mohamed hammam", SpecialistName: "surgery", SeniortyLevelName: "senior", ClinicName: "clinic name ", ClinicAddress: "add", Image: "imag", AvailableFrom: "av from", SubSpecialistName: ["sub", "sub1"], MedicalExamationTypeImage: [])
     @State var showQuickLogin = false
 
     var body: some View{
 //        NavigationView{
 
         ZStack{
-            VStack{
+                VStack{
+                                
+                        Spacer().frame(height:100)
+  
+                    ZStack {
+                        VStack(alignment:.leading){
+                            
+                            ViewTopSection(Doctor: Doctor)
+                          
+                            Image("Line")
+                                .resizable()
+                                .renderingMode(.original)
+                                .tint(.black)
+                                .frame( maxHeight: 2)
+                                .foregroundColor(.black)
+                          
+                            VStack(spacing:5){
+                                    HStack {
+                                        Text("Booking details")
+                                        Spacer()
+                                    }.padding(.leading)
+                                    .padding(.vertical,10)
+                                HStack(){
+                                        Image("doc3")
+                                            .resizable()
+                                            .frame(width: 25, height: 25)
+                                            .padding(.leading)
+                                    VStack(alignment:.leading){
+                                        Text("Booking Date & Time :")
+                                            .foregroundColor(Color("darkGreen"))
+                                            .font(Font.SalamtechFonts.Reg14)
+                                            Text( String( Doctor.FeesFrom ?? 230))
+                                            .foregroundColor(.secondary)
+                                            .font(Font.SalamtechFonts.Reg14)
+                                        
+                                        }
+                                        .padding(.trailing)
+                                    Spacer()
+                                }.padding(.leading)
+                                    
+                                            HStack{
+                                        Image("doc4")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .padding(.leading)
+                                                
+                                                VStack(alignment:.leading){
+                                        Text("Call Appointment :")
+                                            .foregroundColor(Color("darkGreen"))
+                                            .font(Font.SalamtechFonts.Reg14)
+                                            Text("Doctor will call you on time")
+                                            .foregroundColor(.secondary)
+                                            .font(Font.SalamtechFonts.Reg14)
+                                        
+                                        }
+                                        .padding(.trailing)
+                                
+                                                Spacer()
+
+                                }.padding(.leading)
+                                    
+                                    HStack{
+                                Image("doc4")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .padding(.leading)
+                                        
+                                        VStack(alignment:.leading){
+                                Text("Waiting Time :")
+                                    .foregroundColor(Color("darkGreen"))
+                                    .font(Font.SalamtechFonts.Reg14)
+                                    Text("\(Doctor.WaitingTime ?? 15)" + " Minutes")
+                                    .foregroundColor(.secondary)
+                                    .font(Font.SalamtechFonts.Reg14)
+                                
+                                }
+                                .padding(.trailing)
+                        
+                                        Spacer()
+
+                        }.padding(.leading)
+                    .cornerRadius(9)
+                            }
+                            
+                            VStack(spacing:10){
+                                HStack {
+                                    Text("Patient  details")
+                                    Spacer()
+                                }
+                                .padding(.leading)
+                                    .padding(.vertical,10)
+
+                            HStack(){
+                                    Image("doc3")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .padding(.leading)
+                                HStack{
+                                    Text("Patient Name :")
+                                        .foregroundColor(Color("darkGreen"))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                        Text(  Doctor.ClinicName ?? "Mostafa Morsy")
+                                        .foregroundColor(.secondary)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    
+                                    }
+                                    .padding(.trailing)
+                                Spacer()
+                            }.padding(.leading)
+                                        HStack{
+                                    Image("doc4")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .padding(.leading)
+                                            
+                                            HStack(){
+                                    Text("Patient Number :")
+                                        .foregroundColor(Color("darkGreen"))
+                                        .font(Font.SalamtechFonts.Reg14)
+                                        Text("\(Doctor.ClinicName ?? "01201201255")" )
+                                        .foregroundColor(.secondary)
+                                        .font(Font.SalamtechFonts.Reg14)
+                                    
+                                    }
+                                    .padding(.trailing)
+                            
+                                            Spacer()
+
+                            }.padding(.leading)
+                                
+                                
+                                HStack{
+                                    Circle()
+                                        .fill(Color("CLVBG"))
+                                                    .shadow(color: .black.opacity(0.2), radius: 2)
+                                                    .frame(width: 40, height: 40).padding(.leading,-20)
+                                    Image("Line")
+                                        .resizable()
+                                        .renderingMode(.original)
+                                        .tint(.black)
+                                        .frame( height: 2)
+                                        .foregroundColor(.black)
+                                    Circle()
+                                        .fill(Color("CLVBG"))
+                                                    .shadow(color: .black.opacity(0.2), radius: 2)
+                                                    .frame(width: 40, height: 40).padding(.trailing,-20)
+
+                                }                                .padding(.vertical,20)
+
+                            }
 
 
-                
+                            
+                            Spacer()
+                            
+                        }
 
-//                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
-                        Spacer()
-                    
-                ButtonView(text:"Sign in", action: {
-                    withAnimation(.easeIn(duration: 0.3)) {
-                        showQuickLogin =  true
+                        .background(Color.white)
+                    .cornerRadius(9)
+                    .shadow(color: .black.opacity(0.1), radius: 9)
+
                     }
-                })
                     
-             
-              
-                Spacer()
-            }
-            .frame(width: UIScreen.main.bounds.width)
-            .edgesIgnoringSafeArea(.vertical)
-            .background(Color("CLVBG"))
-            
+                    .padding(.horizontal,10)
+//                    .frame(width: UIScreen.main.bounds.width-)
+
+//                    .shadow(color: .black.opacity(0.1), radius: 9)
+    
+   
+                    Spacer()
+               
+                }
+//                .frame(width: UIScreen.main.bounds.width)
+                    .edgesIgnoringSafeArea(.vertical)
+                    .background(Color("CLVBG"))
+//                    .padding(.horizontal,10)
+
             
             VStack{
                 AppBarView(Title: "Summary")
@@ -48,20 +204,19 @@ struct ViewSummary:View{
             .edgesIgnoringSafeArea(.vertical)
             
             
-//            if showQuickLogin{
             ConfirmBooking(IsPresented: $showQuickLogin, content: {
                     HStack{
-                        VStack() {
+                        ZStack() {
                             Text("230")                                .font(.system(size: 18))
-//                                .padding(.top)
+                                .padding(.top,-20)
 
                             Text("\nEGP")
                                 .font(.system(size: 15))
                                 .foregroundColor(.black.opacity(0.5))
-//                                .padding(.bottom,-10)
+                                .padding(.bottom,-20)
 
-                        }.padding(.leading)
-                            .padding(.top)
+                        }
+                        .padding(.leading)
                         Button(action: {
                             // add review
                             showQuickLogin =  true
@@ -75,37 +230,20 @@ struct ViewSummary:View{
                             .padding()
                             .foregroundColor(.white)
                             .background(Color("blueColor"))
-            //                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
                             .cornerRadius(12)
                             .padding(.horizontal, 20)
                         })
-                    }.padding(.horizontal)
+                    }
+                    .frame( height: 60)
+                    .padding(.horizontal)
+//                    .padding(.bottom,0)
                     
                 })
     
-//            }
   
         }
-            .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.vertical)
             .onAppear(perform: {
-                setWeekView()
-                let now = convertDateToLocalTime(Date())
-
-                let startWeek = convertDateToLocalTime(now.startOfWeek!)
-                let endWeek = convertDateToLocalTime(now.endOfWeek!)
-                
-                
-                print("Local time is: \(now)")
-                
-                print("Start of week is: \(startWeek)")
-                print("End of week is: \(endWeek)")
-                
-                print("Month : \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
-                print(" week :")
-                for dayyy  in totalSquares{
-                    print(dayyy)
-                }
-
 
             })
         
