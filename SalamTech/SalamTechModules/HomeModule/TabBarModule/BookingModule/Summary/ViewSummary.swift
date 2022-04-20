@@ -17,10 +17,18 @@ struct ViewSummary:View{
 //        NavigationView{
 
         ZStack{
+            
                 VStack{
+                    VStack{
+                        AppBarView(Title: "Summary")
+                            .navigationBarItems(leading: BackButtonView())
+                            .navigationBarBackButtonHidden(true)
+                        Spacer()
+                    }
+                    .edgesIgnoringSafeArea(.vertical)
+
                                 
-                        Spacer().frame(height:100)
-  
+                        Spacer().frame(height:11)
                     ZStack {
                         VStack(alignment:.leading){
                             
@@ -164,8 +172,29 @@ struct ViewSummary:View{
                                                     .shadow(color: .black.opacity(0.2), radius: 2)
                                                     .frame(width: 40, height: 40).padding(.trailing,-20)
 
-                                }                                .padding(.vertical,20)
+                                }                                .padding(.bottom,0)
 
+                                
+                                HStack{
+                                    Text("Total Fee")
+                                  Spacer()
+                                    ZStack {
+                                        Text("230 EGP")
+                                            .fontWeight(.semibold)
+                                            .font(.title2)
+                                            .padding(.all,10)
+                                    }
+                                    .foregroundColor(Color("darkGreen"))
+                                    .background(Color("darkGreen").opacity(0.3))
+                                    .cornerRadius(12)
+                                    .border( .regularMaterial ,width: 1.1)
+
+                                    //                                    .clipShape(RoundedRectangle(cornerSize: .init( )) )
+
+                                }
+                                .padding(.top, 0)
+
+                                .padding(.horizontal, 20)
                             }
 
 
@@ -177,70 +206,64 @@ struct ViewSummary:View{
                         .background(Color.white)
                     .cornerRadius(9)
                     .shadow(color: .black.opacity(0.1), radius: 9)
-
                     }
                     
                     .padding(.horizontal,10)
-//                    .frame(width: UIScreen.main.bounds.width-)
-
-//                    .shadow(color: .black.opacity(0.1), radius: 9)
-    
-   
                     Spacer()
-               
+                 
+                    ConfirmBooking(IsPresented: $showQuickLogin, content: {
+                        VStack {
+                            HStack{
+                                    ZStack() {
+                                        Text("230")                                .font(.system(size: 18))
+                                            .padding(.top,-20)
+
+                                        Text("\nEGP")
+                                            .font(.system(size: 15))
+                                            .foregroundColor(.black.opacity(0.5))
+                                            .padding(.bottom,-20)
+
+                                    }
+                                    .padding(.leading)
+                                    Button(action: {
+                                        // add review
+                                        showQuickLogin =  true
+                                    }, label: {
+                                        HStack {
+                                            Text("Confirm")
+                                                .fontWeight(.semibold)
+                                                .font(.title2)
+                                        }
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                        .padding()
+                                        .foregroundColor(.white)
+                                        .background(Color("blueColor"))
+                                        .cornerRadius(12)
+                                        .padding(.horizontal, 20)
+                                    })
+                                }
+                                .frame( height: 60)
+                                .padding(.horizontal)
+//                            .padding(.bottom,10)
+                            Spacer()
+                        }
+                    })
+                        .edgesIgnoringSafeArea(.bottom)
+
+
+
                 }
 //                .frame(width: UIScreen.main.bounds.width)
                     .edgesIgnoringSafeArea(.vertical)
                     .background(Color("CLVBG"))
-//                    .padding(.horizontal,10)
 
             
-            VStack{
-                AppBarView(Title: "Summary")
-                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.vertical)
+      
             
-            
-            ConfirmBooking(IsPresented: $showQuickLogin, content: {
-                    HStack{
-                        ZStack() {
-                            Text("230")                                .font(.system(size: 18))
-                                .padding(.top,-20)
+         
 
-                            Text("\nEGP")
-                                .font(.system(size: 15))
-                                .foregroundColor(.black.opacity(0.5))
-                                .padding(.bottom,-20)
-
-                        }
-                        .padding(.leading)
-                        Button(action: {
-                            // add review
-                            showQuickLogin =  true
-                        }, label: {
-                            HStack {
-                                Text("Confirm")
-                                    .fontWeight(.semibold)
-                                    .font(.title2)
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color("blueColor"))
-                            .cornerRadius(12)
-                            .padding(.horizontal, 20)
-                        })
-                    }
-                    .frame( height: 60)
-                    .padding(.horizontal)
-//                    .padding(.bottom,0)
-                    
-                })
     
-  
+            
         }
             .edgesIgnoringSafeArea(.vertical)
             .onAppear(perform: {
