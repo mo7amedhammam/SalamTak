@@ -10,6 +10,7 @@ import SwiftUI
 struct ScheduleView: View {
     var language = LocalizationService.shared.language
     @StateObject var medicalType = ViewModelExaminationTypeId()
+    
     @State var index = 1
     var body: some View {
         ZStack{
@@ -98,7 +99,7 @@ struct ScheduleView: View {
 //                        .tag(2)
                     
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                
             }
             .edgesIgnoringSafeArea(.bottom)

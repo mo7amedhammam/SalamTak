@@ -130,6 +130,19 @@ final class Helper{
 
    
     }
+    class func openGoogleMap(longitude: Double, latitude: Double) {
+            let appURL = NSURL(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
+            let webURL = NSURL(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
+            let application = UIApplication.shared
+            
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+                print(appURL)
+            } else {
+                // if Youtube app is not installed, open URL inside Safari
+                application.open(webURL as URL)
+            }
+           }
     
     
     // Checking internet connection

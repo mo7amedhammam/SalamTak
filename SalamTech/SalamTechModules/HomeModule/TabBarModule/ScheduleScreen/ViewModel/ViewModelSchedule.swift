@@ -82,6 +82,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     
     
     init() {
+        
 //     validations()
         //-----------------------------------------------------------------
         
@@ -96,6 +97,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
             self.publishedDoctorCreatedModel = modeldata.data ?? []
+            self.DoctorName = publishedDoctorCreatedModel[0].doctorName ?? ""
 //            self.DoctorName = publishedDoctorCreatedModel[0].doctorName ?? ""
 //            self.Height = publishedDoctorCreatedModel?.data?.height ?? 0
 //            self.Weight = publishedDoctorCreatedModel?.data?.weight ?? 0

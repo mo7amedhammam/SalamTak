@@ -11,38 +11,18 @@ struct ScheduleCellView: View {
     @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
     @Binding var medicalTypeId:Int
     var body: some View {
-        VStack{
+        ScrollView(.vertical, showsIndicators: false){
             VStack{
-                HStack{
-                    ScrollView(.vertical){
-                        VStack{
-                            ForEach(scheduleVM.publishedDoctorCreatedModel){ model in
-                                
-                                VStack{
-//                                    
-                                }
-                                
-                            }
+                        ForEach( 0..<(scheduleVM.publishedDoctorCreatedModel.count ?? 0 ), id:\.self) { index in
+                            ScheduleEachCellView(schedule: scheduleVM.publishedDoctorCreatedModel[index])
                         }
-                    }
+                    }.onAppear(perform: {
+                        scheduleVM.startFetchAppointmentInfo(medicalTypeId: medicalTypeId)
+                        print("MOdellll")
+                        print(scheduleVM.publishedDoctorCreatedModel)
+                    })
                 }
-            }
-            VStack{
-                HStack{
-                    VStack{
-                        // Second Row
-                    }
-                }
-            }
-            VStack{
-                HStack{
-                    // Button Row
-                }
-            }
-        }.onAppear(perform: {
-            scheduleVM.startFetchAppointmentInfo(medicalTypeId: medicalTypeId)
-        })
-    }
+        }
 }
 
 struct ScheduleCellView_Previews: PreviewProvider {
