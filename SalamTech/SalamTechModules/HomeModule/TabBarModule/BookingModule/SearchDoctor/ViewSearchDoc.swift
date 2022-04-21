@@ -165,7 +165,7 @@ struct ViewSearchDoc: View {
 
         //        }
         //  go to clinic info
-        NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor),isActive: $gotodoctorDetails) {
+        NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
               }
  
     }

@@ -20,8 +20,9 @@ struct ContentView: View {
             
         }
         .onAppear(perform: {
+            Helper.setUserData(Id: 25, PhoneNumber: "01101201322")
             Helper.setLanguage(currentLanguage: "en")
-            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjE2NDYwYWQ3LWRhNjUtNDAwNy04ZDNjLWNkMGNjMmM4YmY4NCIsImV4cCI6MTY1MDU0MTczNywiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.HmqE06pOg34s92_zeEYYe4i70wq4hGhWZ_mS9HM2Vfw")
+            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjRlMTZmM2JlLTRiOWQtNDExNS04MDcyLTVmM2MzM2E1OTczNiIsImV4cCI6MTY1MDcyMTg2MiwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.Z1annkgN1hh2lhcP8CJw6sHMzfiDa7zObH5SGm_3qA4")
         })
 
         .onChange(of: scenePhase, perform: { newPhase in

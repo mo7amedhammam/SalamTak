@@ -11,7 +11,8 @@ import Kingfisher
 
 struct ViewSummary:View{
     var Doctor:Doc = Doc.init(id: 1, SumRate: 3, Rate: 3, NumVisites: 5, WaitingTime: 15, FeesFrom: 230, FeesTo: 250, DoctorName: "mohamed hammam", SpecialistName: "surgery", SeniortyLevelName: "senior", ClinicName: "clinic name ", ClinicAddress: "add", Image: "imag", AvailableFrom: "av from", SubSpecialistName: ["sub", "sub1"], MedicalExamationTypeImage: [])
-    @State var showQuickLogin = false
+    @State var BookingDateTime = ""
+    @Binding var ExType :Int
 
     var body: some View{
 //        NavigationView{
@@ -28,7 +29,7 @@ struct ViewSummary:View{
                     .edgesIgnoringSafeArea(.vertical)
 
                                 
-                        Spacer().frame(height:11)
+                        Spacer().frame(height:15)
                     ZStack {
                         VStack(alignment:.leading){
                             
@@ -40,7 +41,7 @@ struct ViewSummary:View{
                                 .tint(.black)
                                 .frame( height: 2)
                                 .foregroundColor(.black)
-                            
+                //MARK: ----- Booking Details --------
                             VStack(spacing:5){
                                     HStack {
                                         Text("Booking details")
@@ -50,13 +51,14 @@ struct ViewSummary:View{
                                 HStack(){
                                         Image("Appointments")
                                             .resizable()
+                                            .foregroundColor(Color("darkGreen"))
                                             .frame(width: 25, height: 25)
                                             .padding(.leading)
                                     VStack(alignment:.leading){
                                         Text("Booking Date & Time :")
                                             .foregroundColor(Color("darkGreen"))
                                             .font(Font.SalamtechFonts.Reg14)
-                                            Text( String( Doctor.ClinicName ?? "08 Feb. 2022  (08:00 PM)"))
+                                        Text( String( BookingDateTime ))
                                             .foregroundColor(.secondary)
                                             .font(Font.SalamtechFonts.Reg14)
                                         
@@ -66,7 +68,7 @@ struct ViewSummary:View{
                                 }.padding(.leading)
                                     
                                             HStack{
-                                        Image("Phone")
+                                        Image(LogoType(MedicalExaminationTypeId: ExType))
                                             .resizable()
                                             .foregroundColor(Color("darkGreen"))
                                             .frame(width: 25, height: 25)
@@ -110,6 +112,7 @@ struct ViewSummary:View{
                     .cornerRadius(9)
                             }
                             
+                //MARK: ----- Patient Details ------
                             VStack(spacing:10){
                                 HStack {
                                     Text("Patient  details")
@@ -149,7 +152,7 @@ struct ViewSummary:View{
                                     Text("Patient Number :")
                                         .foregroundColor(Color("darkGreen"))
                                         .font(Font.SalamtechFonts.Reg14)
-                                        Text("\(Doctor.ClinicName ?? "01201201255")" )
+                                                Text("\(Helper.getUserPhone() )" )
                                         .foregroundColor(.secondary)
                                         .font(Font.SalamtechFonts.Reg14)
                                     
@@ -184,11 +187,12 @@ struct ViewSummary:View{
                                     Text("Total Fee")
                                   Spacer()
                                     ZStack {
-                                        Text("230 EGP")
+                                        Text("\(String(Doctor.FeesFrom ?? 0.0)) EGP")
                                             .fontWeight(.semibold)
-                                            .font(.title2)
-                                            .padding(.all,10)
+                                            .font(.title3)
+//                                            .padding(.all,10)
                                     }
+                                    .padding(10)
                                     .foregroundColor(Color("darkGreen"))
                                     .background(Color("darkGreen").opacity(0.3))
                                     .cornerRadius(12)
@@ -202,62 +206,70 @@ struct ViewSummary:View{
                                 .padding(.horizontal, 20)
                             }
 
-
-                            
                             Spacer()
                             
                         }
 
                         .background(Color.white)
+//                        .background(
+//                            Image("summaryBack")
+//                                .resizable()
+//                                .padding()
+//                        )
                     .cornerRadius(9)
                     .shadow(color: .black.opacity(0.1), radius: 9)
                     }
                     
-                    .padding(.horizontal,10)
+                    .padding(.horizontal,15)
                     Spacer()
-                 
-                    ConfirmBooking(IsPresented: $showQuickLogin, content: {
-                        VStack {
-                            HStack{
-                                    ZStack() {
-                                        Text("230")                                .font(.system(size: 18))
-                                            .padding(.top,-20)
+                 //
 
-                                        Text("\nEGP")
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.black.opacity(0.5))
-                                            .padding(.bottom,-20)
 
-                                    }
-                                    .padding(.leading)
-                                    Button(action: {
-                                        // add review
-                                        showQuickLogin =  true
-                                    }, label: {
-                                        HStack {
-                                            Text("Confirm")
-                                                .fontWeight(.semibold)
-                                                .font(.title2)
+                    VStack{
+                        Spacer()
+                        ConfirmBooking(IsPresented: .constant(true), content: {
+                                HStack{
+                                        ZStack() {
+                                            Text("230")                                .font(.system(size: 18))
+                                                .padding(.top,-20)
+
+                                            Text("\nEGP")
+                                                .font(.system(size: 15))
+                                                .foregroundColor(.black.opacity(0.5))
+                                                .padding(.bottom,-20)
+
                                         }
-                                        .frame(minWidth: 0, maxWidth: .infinity)
-                                        .padding()
-                                        .foregroundColor(.white)
-                                        .background(Color("blueColor"))
-                                        .cornerRadius(12)
-                                        .padding(.horizontal, 20)
-                                    })
-                                }
-                                .frame( height: 60)
-                                .padding(.horizontal)
-//                            .padding(.bottom,10)
-                            Spacer()
-                        }
-                    })
-                        .edgesIgnoringSafeArea(.bottom)
+                                        .padding(.leading)
+                                        Button(action: {
+                                            // add review
+                                        }, label: {
+                                            HStack {
+                                                Text("Confirm")
+                                                    .fontWeight(.semibold)
+                                                    .font(.title2)
+                                            }
+                                            .frame(minWidth: 0, maxWidth: .infinity)
+                                            .padding()
+                                            .foregroundColor(.white)
+                                            .background(Color("blueColor"))
+                                            .cornerRadius(12)
+                                            .padding(.horizontal, 20)
+                                        })
+                                    }
+                                    .frame( height: 60)
+                                    .padding(.horizontal)
+//                                    .padding(.bottom,10)
+                        })
+                            .edgesIgnoringSafeArea(.vertical)
 
-
+                    }
 
                 }
+            
+            
+            
+            
+            
 //                .frame(width: UIScreen.main.bounds.width)
                     .edgesIgnoringSafeArea(.vertical)
                     .background(Color("CLVBG"))
@@ -298,7 +310,7 @@ struct ViewSummary:View{
 struct ViewSummary_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSummary(Doctor: Doc.init())
+            ViewSummary(Doctor: Doc.init(), ExType: .constant(645454545))
         }.navigationBarHidden(true)
     }
 }

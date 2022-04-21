@@ -15,6 +15,8 @@ struct ViewDocDetails:View{
     var Doctor:Doc
    @State var showQuickLogin = false
 //    @StateObject var DocDetails = ViewModelDocDetails()
+    @State var GotoSummary = false
+    @Binding var ExType :Int
 
     var body: some View{
                     ZStack {
@@ -39,7 +41,11 @@ struct ViewDocDetails:View{
                     ZStack{
                     Button(action: {
                         // add review
+                        if Helper.userExist(){
+                            GotoSummary = true
+                        }else{
                         showQuickLogin =  true
+                        }
                     }, label: {
                         HStack {
                             Text("Book")
@@ -94,8 +100,9 @@ struct ViewDocDetails:View{
         
         
      // go to clinic info
-//        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
-//             }
+        NavigationLink(destination:ViewSummary(Doctor: Doctor, BookingDateTime: "20 Feb. 2022  (08:00 PM)", ExType: $ExType),isActive: $GotoSummary) {
+             }
+        
 //     .navigationBarHidden(true)
 //     .navigationBarBackButtonHidden(true)
 
@@ -111,7 +118,7 @@ struct ViewDocDetails:View{
 struct ViewDocDetails_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewDocDetails(Doctor: Doc.init())
+            ViewDocDetails(Doctor: Doc.init(), ExType: .constant(15545454))
         }.navigationBarHidden(true)
     }
 }
@@ -166,13 +173,11 @@ struct ViewDocMainInfo: View {
                                     .resizable()
                             }
                 //            .clipShape(Circle())
-                            .frame(width: 60, height: 60)
                                 .scaledToFill()
-//                                .frame(width:70)
+                                .frame(width:60)
                                 .background(Color.gray)
                                 .cornerRadius(9)
-               
-                            
+
                             
                             //
                             //                                    }
