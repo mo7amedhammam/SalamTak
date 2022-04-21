@@ -38,9 +38,9 @@ struct ViewSummary:View{
                                 .resizable()
                                 .renderingMode(.original)
                                 .tint(.black)
-                                .frame( maxHeight: 2)
+                                .frame( height: 2)
                                 .foregroundColor(.black)
-                          
+                            
                             VStack(spacing:5){
                                     HStack {
                                         Text("Booking details")
@@ -48,7 +48,7 @@ struct ViewSummary:View{
                                     }.padding(.leading)
                                     .padding(.vertical,10)
                                 HStack(){
-                                        Image("doc3")
+                                        Image("Appointments")
                                             .resizable()
                                             .frame(width: 25, height: 25)
                                             .padding(.leading)
@@ -56,7 +56,7 @@ struct ViewSummary:View{
                                         Text("Booking Date & Time :")
                                             .foregroundColor(Color("darkGreen"))
                                             .font(Font.SalamtechFonts.Reg14)
-                                            Text( String( Doctor.FeesFrom ?? 230))
+                                            Text( String( Doctor.ClinicName ?? "08 Feb. 2022  (08:00 PM)"))
                                             .foregroundColor(.secondary)
                                             .font(Font.SalamtechFonts.Reg14)
                                         
@@ -66,9 +66,10 @@ struct ViewSummary:View{
                                 }.padding(.leading)
                                     
                                             HStack{
-                                        Image("doc4")
+                                        Image("Phone")
                                             .resizable()
-                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(Color("darkGreen"))
+                                            .frame(width: 25, height: 25)
                                             .padding(.leading)
                                                 
                                                 VStack(alignment:.leading){
@@ -118,8 +119,10 @@ struct ViewSummary:View{
                                     .padding(.vertical,10)
 
                             HStack(){
-                                    Image("doc3")
+                                    Image("person")
                                         .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+
                                         .frame(width: 25, height: 25)
                                         .padding(.leading)
                                 HStack{
@@ -135,9 +138,11 @@ struct ViewSummary:View{
                                 Spacer()
                             }.padding(.leading)
                                         HStack{
-                                    Image("doc4")
+                                            Image( "Phone")
                                         .resizable()
-                                        .frame(width: 20, height: 20)
+//                                        .renderingMode(.original)
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 25, height: 25)
                                         .padding(.leading)
                                             
                                             HStack(){
