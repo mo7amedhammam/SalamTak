@@ -141,6 +141,7 @@
 		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
+		C8A91A1628141C50002437EC /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C8A91A1528141C50002437EC /* FSCalendar */; };
 		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
@@ -322,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */,
+				C8A91A1628141C50002437EC /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1159,9 @@
 			dependencies = (
 			);
 			name = SalamTech;
+			packageProductDependencies = (
+				C8A91A1528141C50002437EC /* FSCalendar */,
+			);
 			productName = SalamTech;
 			productReference = 00C8BF3127F3100F00571078 /* SalamTech.app */;
 			productType = "com.apple.product-type.application";
@@ -1234,6 +1239,9 @@
 				ar,
 			);
 			mainGroup = 00C8BF2827F3100F00571078;
+			packageReferences = (
+				C8A91A1428141C50002437EC /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 00C8BF3227F3100F00571078 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1903,6 +1911,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C8A91A1428141C50002437EC /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8A91A1528141C50002437EC /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8A91A1428141C50002437EC /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 00C8BF2927F3100F00571078 /* Project object */;
 }
