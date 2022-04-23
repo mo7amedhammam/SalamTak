@@ -16,6 +16,8 @@ struct DateOfBirthView: View {
 //        df.dateFormat = "yyyy/mm/dd"
 //        return df
 //    }
+    
+    
     let screenWidth = UIScreen.main.bounds.size.width - 55
     var body: some View {
         HStack{
