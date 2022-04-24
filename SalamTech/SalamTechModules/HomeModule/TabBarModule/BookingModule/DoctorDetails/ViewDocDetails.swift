@@ -221,10 +221,12 @@ struct ViewDocMainInfo: View {
                                 .font(Font.SalamtechFonts.Reg14)
                         }
                         HStack{
-                            ForEach(0..<5){_ in
-                                Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-                                    .foregroundColor(.yellow)
-                            }
+//                            ForEach(0..<5){_ in
+//                                Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
+//                                    .foregroundColor(.yellow)
+//                            }
+                            StarsView(rating: Float( Doctor.Rate ?? 0))
+
                             
                             
                             Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")

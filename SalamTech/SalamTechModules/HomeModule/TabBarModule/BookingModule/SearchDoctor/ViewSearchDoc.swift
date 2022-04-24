@@ -110,7 +110,7 @@ struct ViewSearchDoc: View {
                 List( ){
 
                     //                LazyVStack(spacing:15){
-                    ForEach(searchDoc.publishedModelSearchDoc ?? [], id:\.self.id){ Doctor in
+                    ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
                         ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
                     }
                         Image("Line")
@@ -120,7 +120,7 @@ struct ViewSearchDoc: View {
                             .frame( maxHeight: 2)
                             .foregroundColor(.black)
                             .onAppear(perform: {
-                            searchDoc.SkipCount += searchDoc.publishedModelSearchDoc?.count ?? 0
+                                searchDoc.SkipCount += searchDoc.publishedModelSearchDoc.count
                             searchDoc.FetchMoreDoctors()
                         })
                     
@@ -158,7 +158,7 @@ struct ViewSearchDoc: View {
         .onChange(of: index){newval in
             self.ExTpe = newval
             searchDoc.MedicalExaminationTypeId = newval
-            searchDoc.publishedModelSearchDoc?.removeAll()
+            searchDoc.publishedModelSearchDoc.removeAll()
             getAllDoctors()
 
         }
@@ -313,10 +313,11 @@ struct ViewTopSection: View {
                 
                 //MARK:  --- Rate ---
                 HStack{
-                    ForEach(0..<5){_ in
-                        Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-                            .foregroundColor(.yellow)
-                    }
+//                    ForEach(0..<5){_ in
+//                        Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
+//                            .foregroundColor(.yellow)
+//                    }
+                    StarsView(rating: Float( Doctor.Rate ?? 0))
                     
                     Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
                         .foregroundColor(.black.opacity(0.7))
@@ -478,4 +479,49 @@ struct ViewDocCell: View {
         .listRowSeparator(.hidden)
         .listRowBackground(Color.clear)
     }
+}
+
+
+
+struct StarsView: View {
+  private static let MAX_RATING: Float = 5 // Defines upper limit of the rating
+  private static let COLOR = Color.orange // The color of the stars
+
+  let rating: Float
+  private let fullCount: Int
+  private let emptyCount: Int
+  private let halfFullCount: Int
+
+  init(rating: Float) {
+    self.rating = rating
+    fullCount = Int(rating)
+    emptyCount = Int(StarsView.MAX_RATING - rating)
+    halfFullCount = (Float(fullCount + emptyCount) < StarsView.MAX_RATING) ? 1 : 0
+  }
+
+  var body: some View {
+    HStack {
+      ForEach(0..<fullCount) { _ in
+         self.fullStar
+       }
+       ForEach(0..<halfFullCount) { _ in
+         self.halfFullStar
+       }
+       ForEach(0..<emptyCount) { _ in
+         self.emptyStar
+       }
+     }
+  }
+
+  private var fullStar: some View {
+    Image(systemName: "star.fill").foregroundColor(StarsView.COLOR)
+  }
+
+  private var halfFullStar: some View {
+    Image(systemName: "star.lefthalf.fill").foregroundColor(StarsView.COLOR)
+  }
+
+  private var emptyStar: some View {
+    Image(systemName: "star").foregroundColor(StarsView.COLOR)
+  }
 }

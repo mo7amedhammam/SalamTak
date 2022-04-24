@@ -34,9 +34,9 @@ class VMSearchDoc: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedModelSearchDoc: [Doc]?
+//    @Published var publishedModelSearchDoc: [Doc]
     
-//    @Published var publishedModelSearchDoc: [Doc] = [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
+    @Published var publishedModelSearchDoc: [Doc] = [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
 
 
 
@@ -64,7 +64,7 @@ class VMSearchDoc: ObservableObject {
             //            print(completion)
         } receiveValue: { [weak self] (modeldata) in
             
-            self?.publishedModelSearchDoc?.append( contentsOf: modeldata.data?.Items ?? [])
+            self?.publishedModelSearchDoc.append( contentsOf: modeldata.data?.Items ?? [])
   
         }.store(in: &cancellables)
     
