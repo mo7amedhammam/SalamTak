@@ -142,6 +142,7 @@
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
 		C8A91A1628141C50002437EC /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C8A91A1528141C50002437EC /* FSCalendar */; };
+		C8A91A1828141D6D002437EC /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A91A1728141D6D002437EC /* FSCalendarView.swift */; };
 		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
@@ -308,6 +309,7 @@
 		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
+		C8A91A1728141D6D002437EC /* FSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
 		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
 				C861C12B2805C38400211018 /* CalendarHelper.swift */,
 				C82AFF35280C675C00B1B953 /* CustomSheet.swift */,
+				C8A91A1728141D6D002437EC /* FSCalendarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1545,6 +1548,7 @@
 				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
+				C8A91A1828141D6D002437EC /* FSCalendarView.swift in Sources */,
 				0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */,
 				C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */,
 				C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */,

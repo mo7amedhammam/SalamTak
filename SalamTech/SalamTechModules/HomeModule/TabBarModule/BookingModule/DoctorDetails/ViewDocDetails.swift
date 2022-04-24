@@ -17,7 +17,10 @@ struct ViewDocDetails:View{
 //    @StateObject var DocDetails = ViewModelDocDetails()
     @State var GotoSummary = false
     @Binding var ExType :Int
+    @State var ShowCalendar = false
+    @State var selectedDate = Date()
 
+    
     var body: some View{
                     ZStack {
                 VStack{
@@ -27,7 +30,7 @@ struct ViewDocDetails:View{
 
                     ScrollView {
                         ViewDocMainInfo(Doctor: Doctor)
-                        ViewDateAndTime()
+                        ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate)
                         ViewDocReviews()
 
                         Spacer()
@@ -69,7 +72,18 @@ struct ViewDocDetails:View{
                         if showQuickLogin{
                         quickLoginSheet(IsPresented: $showQuickLogin, width: UIScreen.main.bounds.width)
                         }
-            }
+                        
+                        if ShowCalendar {
+                        ZStack{
+                            calendarPopUp(selectedDate: $selectedDate, isPresented: $ShowCalendar)
+                            }
+
+                        }
+                        
+                        
+                        
+                    }
+                    .disabled(ShowCalendar)
             .edgesIgnoringSafeArea(.top)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -326,7 +340,7 @@ Divider()
 }
 
 struct ViewDateAndTime: View {
-    @State var TappedDate:Date = Date()
+    @State var TappedDate = Date()
     @State var timeexpanded = false
     @StateObject var DocDetails = ViewModelDocDetails()
 
@@ -335,53 +349,67 @@ struct ViewDateAndTime: View {
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
     var daytimes = ["2:30 PM", "2:50 PM", "3:30 PM", "3:50 PM","4:30 PM", "4:50 PM","5:30 PM", "5:50 PM"]
     @State var selectedTime = ""
+    @State var seldatenum = ""
     @State var openSlots = false
+    @Binding var ShowCalendar : Bool
+    @Binding var selectedDate : Date
 
+   
     
-    init(){
+    init(ShowCalendar: Binding<Bool>, selectedDate: Binding<Date>){
+        self._ShowCalendar = ShowCalendar
+        self._selectedDate = selectedDate
         setWeekView()
-        TappedDate = Date()
+//        TappedDate = Date()
     }
     var body: some View {
         VStack{
+                
+
             
             Text("Choose date & time").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+//            ZStack {
+//                FSCalendarView(SelectedDate: $TappedDate)
+//                    .frame( minHeight: 150)
+//            }
+
             
             //MARK: ---- Days of Week --------
             ZStack{
                 VStack{
-                    
-                    
+
+
                     Button(action: {
                         // open Calendar
+                        ShowCalendar = true
                     }, label: {
                         HStack{
                             Image("Appointments")
                                 .resizable()
                                 .frame(width: 20, height: 20)
-                            
+
                                 .padding(.bottom,3)
                                 .padding(.leading)
                             //                                VStack{
-                            Text("\(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
+                            Text("\(seldatenum) \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg18)
-                            
+
                             Image( systemName: "chevron.forward")
                             //                                        .resizable()
                                 .foregroundColor(Color("darkGreen"))
                             //                                        .frame(width: 20, height: 20)
                                 .padding(.bottom,3)
-                            
+
                             Spacer()
-                            
+
                         }.frame(height:15)
                     })
                         .padding()
-                    
+
                     Divider().padding(.top,-10)
-                    
-                    
+
+
                     HStack(spacing:0){
                         ForEach(0..<weekdays.count, id:\.self){ day in
                             let date = totalSquares[day]
@@ -389,43 +417,50 @@ struct ViewDateAndTime: View {
                             Button(action: {
                                 // select date
 //                                print(totalSquares[day])
-                                TappedDate = totalSquares[day]
+//                                TappedDate = totalSquares[day]
 //                                timeexpanded = false
+                                TappedDate = date
                                 openSlots = true
 //                                DocDetails.FetchDoctorDetails()
+                                seldatenum =                             String(CalendarHelper().dayOfMonth(date: date))
                             }, label: {
+                                    
                                 VStack{
 
                                     Text(                            String(CalendarHelper().dayOfMonth(date: date))
 )
                                     Text(weekdays[day])
                                     //                                                    .padding(.vertical, 0)
-                                    
                                     if TappedDate == date{
                                         Text(".")
                                             .font(.system(size: 40) )
-                                        //                                                        .frame(height:10)
                                             .padding(.top, -40)
                                     }
                                 }                                            .frame(width:(UIScreen.main.bounds.width-40)/7)
-                                
-                                
+
+
+
+
                             }).foregroundColor(Color("blueColor"))
                                 .background( TappedDate == date ? Color("darkGreen").opacity(0.19):.clear)
                                 .cornerRadius(8)
                                 .padding(.bottom, 10)
-                            
-                            
+                          
+
                         }
                     }
                     .frame(height: 60)
                 }
                 .background(Color.white)
-            
+
             }
             .frame(width: UIScreen.main.bounds.width-30)
             .cornerRadius(9)
             .shadow(color: .black.opacity(0.1), radius: 9)
+            
+            
+
+            
          //---------------------------------
             
             //MARK: ---- periods of slot --------
@@ -529,6 +564,10 @@ struct ViewDateAndTime: View {
                 DocDetails.publishedModelSearchDoc?.DoctorScheduals?.removeAll()
                 DocDetails.SchedualDate = newdate
                 DocDetails.FetchDoctorDetails()
+            }
+            .onChange(of: self.selectedDate){newdate in
+                self.TappedDate = newdate
+                seldatenum =                             String(CalendarHelper().dayOfMonth(date: newdate))
             }
     }
 }
