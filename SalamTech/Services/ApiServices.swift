@@ -513,7 +513,7 @@ final class ApiService{
                     guard model != nil else {return}
                     if model?.success == true {
                         completion(true, model , model?.message ?? "")
-                        Helper.setUserData(Id: model?.data?.id ?? 0, PhoneNumber: "default phone ")
+                        Helper.setUserData(Id: model?.data?.id ?? 0, PhoneNumber: "default phone ", patientName: "\(model?.data?.firstName ?? "")" + "\(model?.data?.middleName ?? "" )")
                         
                     } else{
                         print(model?.message ?? "")

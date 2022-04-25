@@ -66,7 +66,7 @@ class ViewModelCreateUser: ObservableObject {
 //                    print(model?.Data?.Phone ?? "")
 //                    print(model?.Data?.Token ?? "")
 
-                    Helper.setUserData(Id: model?.Data?.Id ?? 0, PhoneNumber: model?.Data?.Phone ?? "")
+                    Helper.setUserData(Id: model?.Data?.Id ?? 0, PhoneNumber: model?.Data?.Phone ?? "", patientName: "model?.Data?.Name" )
                     Helper.setAccessToken(access_token: "Bearer " + "\(model?.Data?.Token ?? "")")
                     Helper.setUserimage(userImage: URLs.BaseUrl+"\(model?.Data?.Image ?? "")")
 

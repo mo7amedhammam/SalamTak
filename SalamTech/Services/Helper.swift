@@ -18,6 +18,7 @@ final class Helper{
     var Id           = 0
     var clinicId     = 0
     var PhoneNumber = ""
+    var patientName = ""
     var Image = ""
     var CurrentLatitude = ""
     var CurrentLongtude = ""
@@ -27,13 +28,15 @@ final class Helper{
     
     class func setUserData(
         Id : Int,
-        PhoneNumber : String
-        
+        PhoneNumber : String,
+        patientName : String
     ){
         
 //        userDef.set(clinicId, forKey: "clinicId")
         userDef.set(  Id             , forKey:  "Id" )
         userDef.set(  PhoneNumber         , forKey: "PhoneNumber"  )
+        userDef.set(  patientName         , forKey: "patientName"  )
+
         userDef.synchronize()
         //        restartApp()
     }
@@ -50,6 +53,9 @@ final class Helper{
     
     class func getUserPhone() ->String {
         return userDef.string(forKey: "PhoneNumber") ?? "default phone number"
+    }
+    class func getpatientName() ->String {
+        return userDef.string(forKey: "patientName") ?? "default patient Name"
     }
     
     class func setUserimage(userImage : String) {

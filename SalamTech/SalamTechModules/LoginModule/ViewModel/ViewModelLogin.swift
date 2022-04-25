@@ -150,7 +150,7 @@ class ViewModelLogin: ObservableObject {
                     self.isLoading = false
                     
                    // self.passthroughModelSubject.send(model!)
-                    Helper.setUserData(Id: model?.Data?.Id ?? 0, PhoneNumber: model?.Data?.Phone ?? "" )
+                    Helper.setUserData(Id: model?.Data?.Id ?? 0, PhoneNumber: model?.Data?.Phone ?? "", patientName: model?.Data?.Name ?? "" )
                     Helper.setUserimage(userImage: URLs.BaseUrl+"\(model?.Data?.Image ?? "")")
                     Helper.setAccessToken(access_token: "Bearer " + "\(model?.Data?.Token ?? "")" )
                 }

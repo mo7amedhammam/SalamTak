@@ -133,6 +133,9 @@
 		C800F83627FB585B00482151 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82827FB585B00482151 /* CityView.swift */; };
 		C800F83727FB585B00482151 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82927FB585B00482151 /* CountryView.swift */; };
 		C800F83827FB585B00482151 /* BookingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82A27FB585B00482151 /* BookingApiService.swift */; };
+		C814EA5C2816D04600D7730E /* CreatePtAppointmentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814EA5B2816D04600D7730E /* CreatePtAppointmentApi.swift */; };
+		C814EA5E2816D10200D7730E /* ModelCreateAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814EA5D2816D10200D7730E /* ModelCreateAppointment.swift */; };
+		C814EA602816D19D00D7730E /* VMCreateAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */; };
 		C826D93B280D906A0072754B /* ModelDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C826D93A280D906A0072754B /* ModelDocDetails.swift */; };
 		C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C826D93C280D90950072754B /* ViewModelDocDetails.swift */; };
 		C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C826D93E280D90B90072754B /* ApiDocDetails.swift */; };
@@ -300,6 +303,9 @@
 		C800F82827FB585B00482151 /* CityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		C800F82927FB585B00482151 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		C800F82A27FB585B00482151 /* BookingApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingApiService.swift; sourceTree = "<group>"; };
+		C814EA5B2816D04600D7730E /* CreatePtAppointmentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePtAppointmentApi.swift; sourceTree = "<group>"; };
+		C814EA5D2816D10200D7730E /* ModelCreateAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCreateAppointment.swift; sourceTree = "<group>"; };
+		C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMCreateAppointment.swift; sourceTree = "<group>"; };
 		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C826D93A280D906A0072754B /* ModelDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDocDetails.swift; sourceTree = "<group>"; };
 		C826D93C280D90950072754B /* ViewModelDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDocDetails.swift; sourceTree = "<group>"; };
@@ -1014,8 +1020,8 @@
 			children = (
 				C82AFF32280C53BF00B1B953 /* Summary */,
 				C860837F2804529C001A0C39 /* DoctorDetails */,
-				C800F81627FB585B00482151 /* services(first) */,
 				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
+				C800F81627FB585B00482151 /* services(first) */,
 				C800F81D27FB585B00482151 /* support */,
 				C800F82A27FB585B00482151 /* BookingApiService.swift */,
 			);
@@ -1094,6 +1100,9 @@
 			isa = PBXGroup;
 			children = (
 				C82AFF33280C53FB00B1B953 /* ViewSummary.swift */,
+				C814EA5B2816D04600D7730E /* CreatePtAppointmentApi.swift */,
+				C814EA5D2816D10200D7730E /* ModelCreateAppointment.swift */,
+				C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -1527,11 +1536,14 @@
 				0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
+				C814EA602816D19D00D7730E /* VMCreateAppointment.swift in Sources */,
 				C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */,
 				0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */,
 				0E62C55627FD942600655D1A /* ViewModelUpdatePassword.swift in Sources */,
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
+				C814EA5E2816D10200D7730E /* ModelCreateAppointment.swift in Sources */,
+				C814EA5C2816D04600D7730E /* CreatePtAppointmentApi.swift in Sources */,
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,

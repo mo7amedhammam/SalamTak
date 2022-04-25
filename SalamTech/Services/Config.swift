@@ -221,6 +221,9 @@ class URLs {
     
     //search Doctor
         var DoctorDetails = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/GetDoctorDetail"
+ 
+    //search Doctor
+        var CreatePatientAppointment = BaseUrl + "/api/\(Helper.getLanguage())/Patient/CreatePatientAppointment"
     
     
 }

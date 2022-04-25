@@ -68,10 +68,13 @@ struct ViewDocDetails:View{
                         .shadow(color: .gray, radius: 9)
                     
                 }
+                .disabled(ShowCalendar)
                 .background(Color("CLVBG"))
                         if showQuickLogin{
                         quickLoginSheet(IsPresented: $showQuickLogin, width: UIScreen.main.bounds.width)
                         }
+                        
+                        
                         
                         if ShowCalendar {
                         ZStack{
@@ -79,11 +82,8 @@ struct ViewDocDetails:View{
                             }
 
                         }
-                        
-                        
-                        
+
                     }
-                    .disabled(ShowCalendar)
             .edgesIgnoringSafeArea(.top)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -120,6 +120,8 @@ struct ViewDocDetails:View{
 //     .navigationBarHidden(true)
 //     .navigationBarBackButtonHidden(true)
 
+
+        
         
     }
     
