@@ -68,19 +68,17 @@ struct ViewDocDetails:View{
                         .shadow(color: .gray, radius: 9)
                     
                 }
+                .blur(radius: ShowCalendar||showQuickLogin ? 9:0)
                 .disabled(ShowCalendar)
                 .background(Color("CLVBG"))
                         if showQuickLogin{
                         quickLoginSheet(IsPresented: $showQuickLogin, width: UIScreen.main.bounds.width)
                         }
-                        
-                        
-                        
+
                         if ShowCalendar {
                         ZStack{
                             calendarPopUp(selectedDate: $selectedDate, isPresented: $ShowCalendar)
-                            }
-
+                        }
                         }
 
                     }
@@ -92,7 +90,7 @@ struct ViewDocDetails:View{
                     }
                 }
             }
-            .navigationBarHidden(showQuickLogin)
+            .navigationBarHidden(showQuickLogin||ShowCalendar)
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
                 setWeekView()

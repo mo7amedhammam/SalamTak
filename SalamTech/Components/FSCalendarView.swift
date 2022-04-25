@@ -101,11 +101,14 @@ struct calendarPopUp:View{
 
             
             
-        } .shadow(color: .black.opacity(0.3), radius: 12)
+        }
+        .shadow(color: .black.opacity(0.3), radius: 12)
                 .onChange(of: selectedDate){_ in
                     isPresented = false
                 }
         }
+           
+
     }
 }
 struct calendarPopUp_Previews: PreviewProvider {
