@@ -33,13 +33,15 @@ struct ModelDoc:Codable{
 }
 
 
+
+
 // MARK: - DataClass
 struct Doc: Codable, Identifiable, Hashable{
     
     // Satisfy Hashable requirement
       var hashValue: Int {
           get {
-              return id.hashValue
+              return id?.hashValue ?? 0115151551
           }
       }
     static func == (lhs: Doc, rhs: Doc) -> Bool {

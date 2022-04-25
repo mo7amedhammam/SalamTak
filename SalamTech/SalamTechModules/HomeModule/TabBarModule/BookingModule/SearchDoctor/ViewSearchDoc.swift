@@ -120,7 +120,7 @@ struct ViewSearchDoc: View {
                             .frame( maxHeight: 2)
                             .foregroundColor(.black)
                             .onAppear(perform: {
-                                searchDoc.SkipCount += searchDoc.publishedModelSearchDoc.count
+                                searchDoc.SkipCount += searchDoc.MaxResultCount
                             searchDoc.FetchMoreDoctors()
                         })
                     
@@ -148,7 +148,7 @@ struct ViewSearchDoc: View {
             
         }
         .onAppear(perform: {
-            searchDoc.MaxResultCount = 3
+            searchDoc.MaxResultCount = 10
             index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId

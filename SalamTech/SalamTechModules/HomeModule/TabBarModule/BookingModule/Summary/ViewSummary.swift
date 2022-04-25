@@ -218,6 +218,7 @@ struct ViewSummary:View{
 //                        )
                     .cornerRadius(9)
                     .shadow(color: .black.opacity(0.1), radius: 9)
+                        
                     }
                     
                     .padding(.horizontal,15)

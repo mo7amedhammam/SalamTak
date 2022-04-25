@@ -73,7 +73,12 @@ struct ServicesView: View {
                                 .background(Color.white)
                                 .cornerRadius(8)
                                 .shadow(color: .black.opacity(0.099), radius: 5)
-                        }
+                                .disabled(exType.Inactive ?? false)
+                        }.overlay(content: {
+                            if  (exType.Inactive ?? false){
+                            Color.white.opacity(0.2)
+                            }
+                        })
                     }
                                         
                 }
