@@ -35,10 +35,12 @@ struct CustomSheet <Content: View>: View {
                             .padding(.top ,10)
                             .padding(.bottom,20)
                     
-                    VStack {
+//                    ScrollView( showsIndicators: false, content: {
+//                        self.content
+//                    })
+                        VStack {
                         self.content
                     }
-
                 }.background(
                     RoundedRectangle(cornerRadius: 40.0)
                         .foregroundColor(.white)
@@ -54,8 +56,7 @@ struct CustomSheet <Content: View>: View {
         }
         .frame(width: UIScreen.main.bounds.width)
         .background(
-            Color.black.opacity(0.3)
-                .blur(radius: 12)
+            Color.clear
         )
         .onTapGesture(perform: {
             IsPresented.wrappedValue.toggle()

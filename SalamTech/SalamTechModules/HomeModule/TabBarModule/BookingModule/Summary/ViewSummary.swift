@@ -227,7 +227,7 @@ struct ViewSummary:View{
 
 
                     VStack{
-                        Spacer()
+//                        Spacer()
                         ConfirmBooking(IsPresented: .constant(true), content: {
                                 HStack{
                                         ZStack() {
@@ -259,11 +259,13 @@ struct ViewSummary:View{
                                     }
                                     .frame( height: 60)
                                     .padding(.horizontal)
-//                                    .padding(.bottom,10)
+                                    .padding(.bottom,10)
+
                         })
-                            .edgesIgnoringSafeArea(.vertical)
 
                     }
+//                    .edgesIgnoringSafeArea(.vertical)
+
 
                 }
             
@@ -281,12 +283,11 @@ struct ViewSummary:View{
          
 
     
-            
+                    
         }
+        .background(Color.red)
+        
             .edgesIgnoringSafeArea(.vertical)
-            .onAppear(perform: {
-
-            })
         
         
        
@@ -362,12 +363,15 @@ struct ConfirmBooking <Content: View>: View {
 )
 
             }
+//            .background(Color.red)
+//                .edgesIgnoringSafeArea(.bottom)
 
         }
-        .frame(width: UIScreen.main.bounds.width)
+        .edgesIgnoringSafeArea(.bottom)
+//        .frame(width: UIScreen.main.bounds.width)
 //        .background(
 //            Color.black.opacity(0.3)
-//                .blur(radius: 12)
+////                .blur(radius: 12)
 //        )
         .onTapGesture(perform: {
             IsPresented.wrappedValue.toggle()

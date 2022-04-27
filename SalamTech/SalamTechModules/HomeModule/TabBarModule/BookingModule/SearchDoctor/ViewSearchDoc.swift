@@ -37,9 +37,10 @@ struct ViewSearchDoc: View {
         self._SpecialistId = SpecialistId
         self._CityId = CityId
         self._AreaId = AreaId
-
-
     }
+    
+    @State var showFilter = false
+
     func getAllDoctors(){
         
         searchDoc.DoctorName = searchTxt
@@ -133,6 +134,8 @@ struct ViewSearchDoc: View {
                 //            .background(Color.red)
 //                Spacer()
             }
+            .blur(radius: showFilter ? 9:0)
+
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
@@ -140,12 +143,220 @@ struct ViewSearchDoc: View {
             
             VStack{
                 AppBarView(Title: "Search a Doctor")
-                    .navigationBarItems(leading: BackButtonView())
+//                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
             
+            
+            
+            if showFilter == false{
+                GeometryReader{ geo in
+                CustomSheet(IsPresented: $showFilter, content: {
+//                    HStack {
+                        Text("Search Filter")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+//                    }
+                    List(){
+                       
+
+                        Button(action: {
+                            
+//                            IsPresented.toggle()
+//                            IsPresentedConsultation.toggle()
+                             
+                        }, label: {
+                            HStack{
+
+                                Image("FilterTitle")
+                                VStack(alignment:.leading){
+                                    Text("Title")
+                                        .font(.system(size: 16))
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.black)
+                                    Text("selected Title")
+                                        .font(.system(size: 12))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.gray)
+                                }
+                                
+                               Spacer()
+
+                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                
+                            }.padding()
+                        })
+                            .listRowSeparator(.hidden)
+                        
+                        Button(action: {
+                            
+//                            IsPresented.toggle()
+//                            IsPresentedConsultation.toggle()
+                             
+                        }, label: {
+                            HStack{
+
+                                Image("FilterSpec")
+                                VStack(alignment:.leading){
+                                    Text("Speciality")
+                                        .font(.system(size: 16))
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.black)
+                                    Text("Dentistry")
+                                        .font(.system(size: 12))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.gray)
+                                }
+                                
+                               Spacer()
+
+                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                
+                            }.padding()
+                        })
+
+                        Button(action: {
+                            
+//                            IsPresented.toggle()
+//                            IsPresentedConsultation.toggle()
+                             
+                        }, label: {
+                            HStack{
+
+                                Image("FilterSpec")
+                                VStack(alignment:.leading){
+                                    Text("Sub Specialities")
+                                        .font(.system(size: 16))
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.black)
+                                    Text("Adult Dentistry, Pediatric Dentistry, El...+2")
+                                        .font(.system(size: 12))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.gray)
+                                }
+                                
+                               Spacer()
+
+                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                
+                            }.padding()
+                        })
+                        
+                        Button(action: {
+                            
+//                            IsPresented.toggle()
+//                            IsPresentedConsultation.toggle()
+                             
+                        }, label: {
+                            HStack{
+
+                                Image("FilterPerson")
+                                VStack(alignment:.leading){
+                                    Text("Gender")
+                                        .font(.system(size: 16))
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.black)
+                                    Text("Select Gender")
+                                        .font(.system(size: 12))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.gray)
+                                }
+                                
+                               Spacer()
+
+                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                
+                            }.padding()
+                        })
+                        
+                        Button(action: {
+                            
+                            //                            IsPresented.toggle()
+                            //                            IsPresentedConsultation.toggle()
+                                                         
+                                                    }, label: {
+                                                        HStack{
+
+                                                            Image("FilterLocation")
+                                                            VStack(alignment:.leading){
+                                                                Text("City")
+                                                                    .font(.system(size: 16))
+                                                                    .fontWeight(.semibold)
+                                                                    .foregroundColor(.black)
+                                                                Text("6th of october")
+                                                                    .font(.system(size: 12))
+                                                                    .fontWeight(.medium)
+                                                                    .foregroundColor(.gray)
+                                                            }
+                                                            
+                                                           Spacer()
+
+                                                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                                            
+                                                        }.padding()
+                                                    })
+                        Button(action: {
+                                                        
+                                                        //                            IsPresented.toggle()
+                                                        //                            IsPresentedConsultation.toggle()
+                                                                                     
+                                                                                }, label: {
+                                                                                    HStack{
+
+                                                                                        Image("FilterLocation")
+                                                                                        VStack(alignment:.leading){
+                                                                                            Text("Area")
+                                                                                                .font(.system(size: 16))
+                                                                                                .fontWeight(.semibold)
+                                                                                                .foregroundColor(.black)
+                                                                                            Text("El-Hossary")
+                                                                                                .font(.system(size: 12))
+                                                                                                .fontWeight(.medium)
+                                                                                                .foregroundColor(.gray)
+                                                                                        }
+                                                                                        
+                                                                                       Spacer()
+
+                                                                                        CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                                                                        
+                                                                                    }.padding()
+                                                                                })
+                        
+                        Button(action: {
+                                                                                    
+                                                                                    //                            IsPresented.toggle()
+                                                                                    //                            IsPresentedConsultation.toggle()
+                                                                                                                 
+                                                                                                            }, label: {
+                                                                                                                HStack{
+
+                                                                                                                    Image("FilterFees")
+                                                                                                                    VStack(alignment:.leading){
+                                                                                                                        Text("Examination Fee")
+                                                                                                                            .font(.system(size: 16))
+                                                                                                                            .fontWeight(.semibold)
+                                                                                                                            .foregroundColor(.black)
+                                                                                                                        Text("From 50 to 100 EGP")
+                                                                                                                            .font(.system(size: 12))
+                                                                                                                            .fontWeight(.medium)
+                                                                                                                            .foregroundColor(.gray)
+                                                                                                                    }
+                                                                                                                    
+                                                                                                                   Spacer()
+
+                                                                                                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                                                                                                    
+                                                                                                                }.padding()
+                                                                                                            })
+                        
+                    }
+                    .listStyle(.plain)
+                    
+                })
+            }
+            }
         }
         .onAppear(perform: {
             searchDoc.MaxResultCount = 10
@@ -162,7 +373,23 @@ struct ViewSearchDoc: View {
             getAllDoctors()
 
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                if !showFilter{
+                    BackButtonView()
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                FilterButtonView(imagename: "filter"){
+//                    print("Show filter")
+                    showFilter.toggle()
+                }
+            }
+        }
 
+        
         //        }
         //  go to clinic info
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
@@ -525,3 +752,7 @@ struct StarsView: View {
     Image(systemName: "star").foregroundColor(StarsView.COLOR)
   }
 }
+
+
+
+
