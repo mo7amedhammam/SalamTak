@@ -60,7 +60,6 @@ struct CustomSheet <Content: View>: View {
         )
         .onTapGesture(perform: {
             IsPresented.wrappedValue.toggle()
-
         })
         
     }

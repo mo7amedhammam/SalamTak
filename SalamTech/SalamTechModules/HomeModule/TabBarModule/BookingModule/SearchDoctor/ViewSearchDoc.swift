@@ -18,7 +18,7 @@ struct ViewSearchDoc: View {
     
     @State  var isSearch = false
     @State  var searchTxt = ""
-
+    
     @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
@@ -29,7 +29,7 @@ struct ViewSearchDoc: View {
     @State var selectedCityId = 0
     @State var imgs : [Img] = []
     @State var SelectedDoctor = Doc()
-
+    
     
     init(ExTpe: Binding<Int>,SpecialistId: Binding<Int> ,CityId: Binding<Int>,AreaId: Binding<Int> ) {
         UITableView.appearance().showsVerticalScrollIndicator = false
@@ -40,7 +40,7 @@ struct ViewSearchDoc: View {
     }
     
     @State var showFilter = false
-
+    
     func getAllDoctors(){
         
         searchDoc.DoctorName = searchTxt
@@ -51,20 +51,20 @@ struct ViewSearchDoc: View {
     var body: some View {
         ZStack{
             VStack{
-                            
-                    Spacer().frame(height:100)
-                    ZStack {
-                        Image("WhiteCurve")
-                            .resizable()
-                            .frame(width: UIScreen.main.bounds.width, height: 120)
-                            .padding(.top,-20)
-                        
-                        SearchBar(PlaceHolder:"Search a doctor... ",text: $searchTxt, isSearch: $isSearch){
-                       getAllDoctors()
-                        }
-                            .shadow(color: .black.opacity(0.2), radius: 15)
-                        
+                
+                Spacer().frame(height:100)
+                ZStack {
+                    Image("WhiteCurve")
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.width, height: 120)
+                        .padding(.top,-20)
+                    
+                    SearchBar(PlaceHolder:"Search a doctor... ",text: $searchTxt, isSearch: $isSearch){
+                        getAllDoctors()
                     }
+                    .shadow(color: .black.opacity(0.2), radius: 15)
+                    
+                }
                 
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -109,19 +109,19 @@ struct ViewSearchDoc: View {
                 }
                 
                 List( ){
-
+                    
                     //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
                         ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
                     }
-                        Image("Line")
-                            .resizable()
-                            .renderingMode(.original)
-                            .tint(.black)
-                            .frame( maxHeight: 2)
-                            .foregroundColor(.black)
-                            .onAppear(perform: {
-                                searchDoc.SkipCount += searchDoc.MaxResultCount
+                    Image("Line")
+                        .resizable()
+                        .renderingMode(.original)
+                        .tint(.black)
+                        .frame( maxHeight: 2)
+                        .foregroundColor(.black)
+                        .onAppear(perform: {
+                            searchDoc.SkipCount += searchDoc.MaxResultCount
                             searchDoc.FetchMoreDoctors()
                         })
                     
@@ -129,13 +129,13 @@ struct ViewSearchDoc: View {
                 }.refreshable(action: {
                     getAllDoctors()
                 })
-                .listStyle(.plain)
-                .padding(.vertical,0)
+                    .listStyle(.plain)
+                    .padding(.vertical,0)
                 //            .background(Color.red)
-//                Spacer()
+                //                Spacer()
             }
             .blur(radius: showFilter ? 9:0)
-
+            
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
@@ -143,7 +143,7 @@ struct ViewSearchDoc: View {
             
             VStack{
                 AppBarView(Title: "Search a Doctor")
-//                    .navigationBarItems(leading: BackButtonView())
+                //                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Spacer()
             }
@@ -151,211 +151,258 @@ struct ViewSearchDoc: View {
             
             
             
-            if showFilter == false{
+            if showFilter {
                 GeometryReader{ geo in
-                CustomSheet(IsPresented: $showFilter, content: {
-//                    HStack {
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
                         Text("Search Filter")
                             .font(.system(size: 18))
                             .fontWeight(.bold)
-//                    }
-                    List(){
-                       
-
-                        Button(action: {
+                        //                    }
+                        ScrollView(){
                             
-//                            IsPresented.toggle()
-//                            IsPresentedConsultation.toggle()
-                             
-                        }, label: {
-                            HStack{
+                            
+                            Button(action: {
+                                print("sel Title")
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterTitle")
+                                    VStack(alignment:.leading){
+                                        Text("Title")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("selected Title")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+//                                .buttonStyle(.plain)
+                                .listRowSeparator(.hidden)
+                            
+                            Button(action: {
+                                print("sel spec")
 
-                                Image("FilterTitle")
-                                VStack(alignment:.leading){
-                                    Text("Title")
-                                        .font(.system(size: 16))
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterSpec")
+                                    VStack(alignment:.leading){
+                                        Text("Speciality")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("Dentistry")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+//                                .buttonStyle(.plain)
+                            
+                            
+                            Button(action: {
+                                
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterSpec")
+                                    VStack(alignment:.leading){
+                                        Text("Sub Specialities")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("Adult Dentistry, Pediatric Dentistry, El...+2")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+//                                .buttonStyle(.plain)
+                            
+                            
+                            Button(action: {
+                                
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterPerson")
+                                    VStack(alignment:.leading){
+                                        Text("Gender")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("Select Gender")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+//                                .buttonStyle(.plain)
+                            
+                            
+                            Button(action: {
+                                
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterLocation")
+                                    VStack(alignment:.leading){
+                                        Text("City")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("6th of october")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+                            Button(action: {
+                                
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterLocation")
+                                    VStack(alignment:.leading){
+                                        Text("Area")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("El-Hossary")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+//                                .buttonStyle(.plain)
+                            
+                            Button(action: {
+                                
+                                //                            IsPresented.toggle()
+                                //                            IsPresentedConsultation.toggle()
+                                
+                            }, label: {
+                                HStack{
+                                    
+                                    Image("FilterFees")
+                                    VStack(alignment:.leading){
+                                        Text("Examination Fee")
+                                            .font(.system(size: 16))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        Text("From 50 to 100 EGP")
+                                            .font(.system(size: 12))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.gray)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+                                    
+                                }.padding()
+                            })
+//                                .buttonStyle(.plain)
+                            
+                            
+                        }
+                        .listStyle(.plain)
+                        
+                        HStack{
+                            
+                            Button( action: {
+                                
+                            }, label: {
+                                Text("Reset")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.black.opacity(0.5))
+                                //            .padding(.bottom,-20)
+                                
+                            })
+                            
+                                .padding(.leading)
+                            Button(action: {
+                                // add review
+                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Apply Filter")
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.black)
-                                    Text("selected Title")
-                                        .font(.system(size: 12))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.gray)
+                                        .font(.title3)
                                 }
-                                
-                               Spacer()
-
-                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                
-                            }.padding()
-                        })
-                            .listRowSeparator(.hidden)
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 30)
+                            })
+                        }
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
                         
-                        Button(action: {
-                            
-//                            IsPresented.toggle()
-//                            IsPresentedConsultation.toggle()
-                             
-                        }, label: {
-                            HStack{
-
-                                Image("FilterSpec")
-                                VStack(alignment:.leading){
-                                    Text("Speciality")
-                                        .font(.system(size: 16))
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.black)
-                                    Text("Dentistry")
-                                        .font(.system(size: 12))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.gray)
-                                }
-                                
-                               Spacer()
-
-                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                
-                            }.padding()
-                        })
-
-                        Button(action: {
-                            
-//                            IsPresented.toggle()
-//                            IsPresentedConsultation.toggle()
-                             
-                        }, label: {
-                            HStack{
-
-                                Image("FilterSpec")
-                                VStack(alignment:.leading){
-                                    Text("Sub Specialities")
-                                        .font(.system(size: 16))
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.black)
-                                    Text("Adult Dentistry, Pediatric Dentistry, El...+2")
-                                        .font(.system(size: 12))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.gray)
-                                }
-                                
-                               Spacer()
-
-                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                
-                            }.padding()
-                        })
                         
-                        Button(action: {
-                            
-//                            IsPresented.toggle()
-//                            IsPresentedConsultation.toggle()
-                             
-                        }, label: {
-                            HStack{
-
-                                Image("FilterPerson")
-                                VStack(alignment:.leading){
-                                    Text("Gender")
-                                        .font(.system(size: 16))
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.black)
-                                    Text("Select Gender")
-                                        .font(.system(size: 12))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.gray)
-                                }
-                                
-                               Spacer()
-
-                                CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                
-                            }.padding()
-                        })
                         
-                        Button(action: {
-                            
-                            //                            IsPresented.toggle()
-                            //                            IsPresentedConsultation.toggle()
-                                                         
-                                                    }, label: {
-                                                        HStack{
-
-                                                            Image("FilterLocation")
-                                                            VStack(alignment:.leading){
-                                                                Text("City")
-                                                                    .font(.system(size: 16))
-                                                                    .fontWeight(.semibold)
-                                                                    .foregroundColor(.black)
-                                                                Text("6th of october")
-                                                                    .font(.system(size: 12))
-                                                                    .fontWeight(.medium)
-                                                                    .foregroundColor(.gray)
-                                                            }
-                                                            
-                                                           Spacer()
-
-                                                            CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                                            
-                                                        }.padding()
-                                                    })
-                        Button(action: {
-                                                        
-                                                        //                            IsPresented.toggle()
-                                                        //                            IsPresentedConsultation.toggle()
-                                                                                     
-                                                                                }, label: {
-                                                                                    HStack{
-
-                                                                                        Image("FilterLocation")
-                                                                                        VStack(alignment:.leading){
-                                                                                            Text("Area")
-                                                                                                .font(.system(size: 16))
-                                                                                                .fontWeight(.semibold)
-                                                                                                .foregroundColor(.black)
-                                                                                            Text("El-Hossary")
-                                                                                                .font(.system(size: 12))
-                                                                                                .fontWeight(.medium)
-                                                                                                .foregroundColor(.gray)
-                                                                                        }
-                                                                                        
-                                                                                       Spacer()
-
-                                                                                        CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                                                                        
-                                                                                    }.padding()
-                                                                                })
-                        
-                        Button(action: {
-                                                                                    
-                                                                                    //                            IsPresented.toggle()
-                                                                                    //                            IsPresentedConsultation.toggle()
-                                                                                                                 
-                                                                                                            }, label: {
-                                                                                                                HStack{
-
-                                                                                                                    Image("FilterFees")
-                                                                                                                    VStack(alignment:.leading){
-                                                                                                                        Text("Examination Fee")
-                                                                                                                            .font(.system(size: 16))
-                                                                                                                            .fontWeight(.semibold)
-                                                                                                                            .foregroundColor(.black)
-                                                                                                                        Text("From 50 to 100 EGP")
-                                                                                                                            .font(.system(size: 12))
-                                                                                                                            .fontWeight(.medium)
-                                                                                                                            .foregroundColor(.gray)
-                                                                                                                    }
-                                                                                                                    
-                                                                                                                   Spacer()
-
-                                                                                                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                                                                                                    
-                                                                                                                }.padding()
-                                                                                                            })
-                        
-                    }
-                    .listStyle(.plain)
-                    
-                })
-            }
+                    })
+                }
             }
         }
         .onAppear(perform: {
@@ -364,14 +411,14 @@ struct ViewSearchDoc: View {
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId
             getAllDoctors()
-
+            
         })
         .onChange(of: index){newval in
             self.ExTpe = newval
             searchDoc.MedicalExaminationTypeId = newval
             searchDoc.publishedModelSearchDoc.removeAll()
             getAllDoctors()
-
+            
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -383,18 +430,18 @@ struct ViewSearchDoc: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 FilterButtonView(imagename: "filter"){
-//                    print("Show filter")
+                    //                    print("Show filter")
                     showFilter.toggle()
                 }
             }
         }
-
+        
         
         //        }
         //  go to clinic info
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
-              }
- 
+        }
+        
     }
     
 }
@@ -415,7 +462,7 @@ struct SearchBar: View {
     @State private var isEditing = false
     @Binding  var isSearch : Bool
     var action: () -> Void
-
+    
     var body: some View {
         HStack {
             
@@ -431,25 +478,25 @@ struct SearchBar: View {
                 .submitLabel(.search)
                 .onSubmit {
                     action()
-//                    isSearch = true
-//                    isEditing = false
+                    //                    isSearch = true
+                    //                    isEditing = false
                 }
             
-//            if text != "" || !text.isEmpty{
-//                            Button(action: {
-//                                self.isEditing = false
-//                                self.text = ""
-//                   self.isSearch = false
-//            action()
-
-//                     UIApplication.shared.dismissKeyboard()
-//                            }) {
-//                                Text("Cancel")
-//                            }
-//                            .padding(.trailing, 10)
-//                            .transition(.move(edge: .trailing))
-//                            .animation(.default)
-//                        }
+            //            if text != "" || !text.isEmpty{
+            //                            Button(action: {
+            //                                self.isEditing = false
+            //                                self.text = ""
+            //                   self.isSearch = false
+            //            action()
+            
+            //                     UIApplication.shared.dismissKeyboard()
+            //                            }) {
+            //                                Text("Cancel")
+            //                            }
+            //                            .padding(.trailing, 10)
+            //                            .transition(.move(edge: .trailing))
+            //                            .animation(.default)
+            //                        }
         }
         
         .overlay(
@@ -464,7 +511,7 @@ struct SearchBar: View {
                         self.text = ""
                         self.isEditing = false
                         action()
-
+                        
                         UIApplication.shared.dismissKeyboard()
                     }) {
                         Image(systemName: "multiply.circle.fill")
@@ -500,19 +547,19 @@ struct ViewTopSection: View {
             
             
             AsyncImage(url: URL(string:   URLs.BaseUrl + "\(Doctor.Image ?? "")" )) { image in
-
+                
                 image.resizable()
-
+                
             } placeholder: {
                 Image("logo")
                     .resizable()
             }
-//            .clipShape(Circle())
-//            .frame(width: 60, height: 60)
-                .scaledToFill()
-                .frame(width:70)
-                .background(Color.gray)
-                .cornerRadius(9)
+            //            .clipShape(Circle())
+            //            .frame(width: 60, height: 60)
+            .scaledToFill()
+            .frame(width:70)
+            .background(Color.gray)
+            .cornerRadius(9)
             
             VStack(alignment:.leading){
                 //MARK:  --- Name ---
@@ -540,10 +587,10 @@ struct ViewTopSection: View {
                 
                 //MARK:  --- Rate ---
                 HStack{
-//                    ForEach(0..<5){_ in
-//                        Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-//                            .foregroundColor(.yellow)
-//                    }
+                    //                    ForEach(0..<5){_ in
+                    //                        Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
+                    //                            .foregroundColor(.yellow)
+                    //                    }
                     StarsView(rating: Float( Doctor.Rate ?? 0))
                     
                     Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
@@ -624,8 +671,8 @@ struct ViewMiddelSection: View {
                 
                 Spacer()
             }.padding(.leading)
-
-        
+            
+            
         }
     }
 }
@@ -682,11 +729,11 @@ struct ViewDocCell: View {
                             .foregroundColor(.white)
                             .font(Font.SalamtechFonts.Bold14)
                     }
-                             .padding(.horizontal, 40)
+                    .padding(.horizontal, 40)
                 }
                 )
                     .buttonStyle(PlainButtonStyle())
-
+                
                     .padding(.horizontal,15)
                     .frame( height: 40 )
                     .background(Color("blueColor"))
@@ -711,46 +758,46 @@ struct ViewDocCell: View {
 
 
 struct StarsView: View {
-  private static let MAX_RATING: Float = 5 // Defines upper limit of the rating
-  private static let COLOR = Color.orange // The color of the stars
-
-  let rating: Float
-  private let fullCount: Int
-  private let emptyCount: Int
-  private let halfFullCount: Int
-
-  init(rating: Float) {
-    self.rating = rating
-    fullCount = Int(rating)
-    emptyCount = Int(StarsView.MAX_RATING - rating)
-    halfFullCount = (Float(fullCount + emptyCount) < StarsView.MAX_RATING) ? 1 : 0
-  }
-
-  var body: some View {
-    HStack {
-      ForEach(0..<fullCount) { _ in
-         self.fullStar
-       }
-       ForEach(0..<halfFullCount) { _ in
-         self.halfFullStar
-       }
-       ForEach(0..<emptyCount) { _ in
-         self.emptyStar
-       }
-     }
-  }
-
-  private var fullStar: some View {
-    Image(systemName: "star.fill").foregroundColor(StarsView.COLOR)
-  }
-
-  private var halfFullStar: some View {
-    Image(systemName: "star.lefthalf.fill").foregroundColor(StarsView.COLOR)
-  }
-
-  private var emptyStar: some View {
-    Image(systemName: "star").foregroundColor(StarsView.COLOR)
-  }
+    private static let MAX_RATING: Float = 5 // Defines upper limit of the rating
+    private static let COLOR = Color.orange // The color of the stars
+    
+    let rating: Float
+    private let fullCount: Int
+    private let emptyCount: Int
+    private let halfFullCount: Int
+    
+    init(rating: Float) {
+        self.rating = rating
+        fullCount = Int(rating)
+        emptyCount = Int(StarsView.MAX_RATING - rating)
+        halfFullCount = (Float(fullCount + emptyCount) < StarsView.MAX_RATING) ? 1 : 0
+    }
+    
+    var body: some View {
+        HStack {
+            ForEach(0..<fullCount) { _ in
+                self.fullStar
+            }
+            ForEach(0..<halfFullCount) { _ in
+                self.halfFullStar
+            }
+            ForEach(0..<emptyCount) { _ in
+                self.emptyStar
+            }
+        }
+    }
+    
+    private var fullStar: some View {
+        Image(systemName: "star.fill").foregroundColor(StarsView.COLOR)
+    }
+    
+    private var halfFullStar: some View {
+        Image(systemName: "star.lefthalf.fill").foregroundColor(StarsView.COLOR)
+    }
+    
+    private var emptyStar: some View {
+        Image(systemName: "star").foregroundColor(StarsView.COLOR)
+    }
 }
 
 
