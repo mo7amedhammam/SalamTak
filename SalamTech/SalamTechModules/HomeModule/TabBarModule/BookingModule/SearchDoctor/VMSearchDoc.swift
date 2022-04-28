@@ -30,6 +30,10 @@ class VMSearchDoc: ObservableObject {
     @Published var Fees                                     :String = ""
     @Published var SeniortyLevelId                               :Int?
     @Published var SubSpecialistId                               :[Int]?
+    
+    
+    //MARK:  ------- Filter ------
+    
 
     //------- output
     @Published var isValid = false

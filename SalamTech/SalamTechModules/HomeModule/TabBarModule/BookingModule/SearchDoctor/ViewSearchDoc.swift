@@ -41,6 +41,14 @@ struct ViewSearchDoc: View {
     
     @State var showFilter = false
     @State var FilterTag = "Filter"
+    @StateObject var seniorityVM = ViewModelSeniorityLevel()
+    @State var selectedSeniorityLvlName :String?
+    @State var selectedSeniorityId = 0
+    @State var buttonSelected: Int?
+    
+    @State var selectedSenLvlName : [String] = []
+    @State var selectedSenLvlId : [Int] = []
+
 
     func getAllDoctors(){
         
@@ -162,10 +170,35 @@ struct ViewSearchDoc: View {
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
-//                        ScrollView{
-//
-//                        }
-                        .listStyle(.plain)
+                        ScrollView {
+                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                                HStack {
+                                    Spacer().frame(width:30)
+                                    Button(action: {
+                                        self.buttonSelected = button
+                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
+
+                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
+                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+//                                        doctorCreatedVM.SeniorityLevelId = selectedSeniorityId
+//                                        doctorCreatedVM.SeniorityName = selectedSeniorityName
+                                    }, label: {
+                                        HStack{
+                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                                .font(.system(size: 20))
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Spacer()
+
+
+                                        }
+                                    })
+                                    
+//                                    SeniorityBtn(seniorityLvl: seniorityVM.publishedSeniorityLevelModel[button], selectedSenLvlName: $selectedSenLvlName, selectedSenLvlId: $selectedSenLvlId)
+                                }
+                            }
+                        }
                         
                       
                             Button(action: {
@@ -191,10 +224,11 @@ struct ViewSearchDoc: View {
                         .padding(.horizontal)
                         .padding(.bottom,10)
                         
-                        
-                        
                     })
-                
+                        .onAppear(perform: {
+                        seniorityVM.startFetchSenioritylevel()
+                    })
+                    
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
@@ -207,8 +241,6 @@ struct ViewSearchDoc: View {
                             
                             Button(action: {
                                 print("sel Title")
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
                                 FilterTag = "Title"
                                 
                             }, label: {
@@ -220,7 +252,9 @@ struct ViewSearchDoc: View {
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("selected Title")
+                                        
+                                        Text(selectedSeniorityLvlName ?? "Seniority")
+//                                        Text(selectedSeniorityName.map { "\($0)" }.joined(separator: ", "))
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -455,6 +489,7 @@ struct ViewSearchDoc: View {
                         
                     })
 
+                    
                 }
             }
             
@@ -858,3 +893,73 @@ struct StarsView: View {
 
 
 
+
+struct SeniorityBtn: View {
+    var language = LocalizationService.shared.language
+    var seniorityLvl : seniority
+    @Binding var selectedSenLvlName : [String]
+    @Binding var selectedSenLvlId : [Int]
+    @State var isTapped : Bool? = false
+    
+    var body: some View {
+        
+        
+        Button(action: {
+            isTapped?.toggle()
+//            self.buttonSelected = supspec
+            
+            if selectedSenLvlId == []{
+                self.selectedSenLvlId.insert(seniorityLvl.id ?? 0, at: 0)
+                self.selectedSenLvlName.insert(seniorityLvl.Name ?? "", at: 0)
+            } else{
+                
+                if self.selectedSenLvlId.contains(seniorityLvl.id ?? 0) && self.selectedSenLvlName.contains(seniorityLvl.Name ?? "") {
+                    self.selectedSenLvlId.removeAll(where: {$0 == seniorityLvl.id
+                    })
+                    self.selectedSenLvlName.removeAll(where: {$0 == seniorityLvl.Name
+                    })
+                }else{
+                    self.selectedSenLvlId.append(seniorityLvl.id ?? 0)
+                    self.selectedSenLvlName.append(seniorityLvl.Name ?? "")
+                }
+                
+                
+                
+                
+            }
+            
+//                        print(selectedSenLvlId)
+            
+            
+        }, label: {
+            
+                HStack (spacing: 20 ){
+                    
+                    Image(systemName: isTapped ?? false ? "checkmark.rectangle.fill": "checkmark.rectangle")
+                        .foregroundColor( isTapped ?? false ? Color("blueColor") :Color("lightGray"))
+                    Text(seniorityLvl.Name ?? "")
+                        .font(.system(size: 20))
+                        .foregroundColor( isTapped ?? false ? Color("blueColor") :Color("lightGray"))
+                    
+                    Spacer()
+                    
+                }
+                
+                .padding([.top,.bottom],5)
+                .padding([.leading,.trailing],10)
+           
+            
+            
+            //                                            SucspecView(isTapped: $isTapped , subspeciality: SubSpecialityVM.publishedSubSpecialistModel[supspec])
+            //                                                .padding([.leading,.trailing],0)
+            //
+        })
+            .onAppear(perform: {
+                for id  in selectedSenLvlId {
+                    if seniorityLvl.id == id {
+                    self.isTapped = true
+                }
+                }
+            })
+    }
+}

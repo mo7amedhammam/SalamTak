@@ -150,6 +150,8 @@
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
 		C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */; };
+		C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */; };
+		C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -320,6 +322,8 @@
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
+		C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-Sub.swift"; sourceTree = "<group>"; };
+		C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-subspecVM.swift"; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
@@ -1121,12 +1125,38 @@
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
 			isa = PBXGroup;
 			children = (
+				C8F970A9281ACD4C006630A7 /* Filter */,
 				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
 				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
 				C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */,
 				C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */,
 			);
 			path = SearchDoctor;
+			sourceTree = "<group>";
+		};
+		C8F970A9281ACD4C006630A7 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				C8F970AD281ACFDD006630A7 /* ViewModel */,
+				C8F970AA281ACD6B006630A7 /* Model */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		C8F970AA281ACD6B006630A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C8F970AD281ACFDD006630A7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
@@ -1474,6 +1504,7 @@
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
 				C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */,
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
+				C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				C800F82C27FB585B00482151 /* ModelBooking.swift in Sources */,
 				0E9A2F66280AEE0000F7FEAE /* ScheduleApiService.swift in Sources */,
@@ -1503,6 +1534,7 @@
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
+				C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
 				0E26EA6A27FB2EF800E3D9B8 /* ModelMedicineAllergy.swift in Sources */,
 				0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */,
