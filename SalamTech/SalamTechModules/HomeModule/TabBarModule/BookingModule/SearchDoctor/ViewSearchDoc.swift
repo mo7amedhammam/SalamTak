@@ -40,7 +40,8 @@ struct ViewSearchDoc: View {
     }
     
     @State var showFilter = false
-    
+    @State var FilterTag = "Filter"
+
     func getAllDoctors(){
         
         searchDoc.DoctorName = searchTxt
@@ -152,7 +153,49 @@ struct ViewSearchDoc: View {
             
             
             if showFilter {
-                GeometryReader{ geo in
+                switch FilterTag{
+                    
+                case "Title":
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
+                        Text("Title")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                        //                    }
+//                        ScrollView{
+//
+//                        }
+                        .listStyle(.plain)
+                        
+                      
+                            Button(action: {
+                                // add review
+                                print("Confirm Title")
+                                FilterTag = "Filter"
+//                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Confirm")
+                                        .fontWeight(.semibold)
+                                        .font(.title3)
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 12)
+                            })
+                        
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
+                        
+                        
+                        
+                    })
+                
+                default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
                         Text("Search Filter")
@@ -166,6 +209,7 @@ struct ViewSearchDoc: View {
                                 print("sel Title")
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
+                                FilterTag = "Title"
                                 
                             }, label: {
                                 HStack{
@@ -196,7 +240,8 @@ struct ViewSearchDoc: View {
 
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
-                                
+                                FilterTag = "Speciality"
+
                             }, label: {
                                 HStack{
                                     
@@ -222,7 +267,8 @@ struct ViewSearchDoc: View {
                             
                             
                             Button(action: {
-                                
+                                FilterTag = "SubSpeciality"
+
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
                                 
@@ -251,7 +297,8 @@ struct ViewSearchDoc: View {
                             
                             
                             Button(action: {
-                                
+                                FilterTag = "Gender"
+
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
                                 
@@ -280,7 +327,8 @@ struct ViewSearchDoc: View {
                             
                             
                             Button(action: {
-                                
+                                FilterTag = "City"
+
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
                                 
@@ -306,7 +354,8 @@ struct ViewSearchDoc: View {
                                 }.padding()
                             })
                             Button(action: {
-                                
+                                FilterTag = "Area"
+
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
                                 
@@ -334,7 +383,8 @@ struct ViewSearchDoc: View {
 //                                .buttonStyle(.plain)
                             
                             Button(action: {
-                                
+                                FilterTag = "Fees"
+
                                 //                            IsPresented.toggle()
                                 //                            IsPresentedConsultation.toggle()
                                 
@@ -369,6 +419,7 @@ struct ViewSearchDoc: View {
                             
                             Button( action: {
                                 
+                                print("Reset and Hide")
                             }, label: {
                                 Text("Reset")
                                     .font(.system(size: 15))
@@ -380,6 +431,7 @@ struct ViewSearchDoc: View {
                                 .padding(.leading)
                             Button(action: {
                                 // add review
+                                print("Apply Filter and Hide")
                                 showFilter.toggle()
                             }, label: {
                                 HStack {
@@ -402,8 +454,11 @@ struct ViewSearchDoc: View {
                         
                         
                     })
+
                 }
             }
+            
+            
         }
         .onAppear(perform: {
             searchDoc.MaxResultCount = 10
