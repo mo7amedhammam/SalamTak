@@ -43,17 +43,31 @@ struct ViewSearchDoc: View {
     @State var FilterTag = "Filter"
     @StateObject var seniorityVM = ViewModelSeniorityLevel()
     @StateObject var specialityvm = ViewModelSpecialist()
+    @StateObject var SubSpecialityVM = ViewModelSubSpecialist()
     @StateObject var CitiesVM = ViewModelGetCities()
     @StateObject var AreasVM = ViewModelGetAreas()
 
     @State var selectedSeniorityLvlName :String?
-    @State var selectedSeniorityId = 0
-    @State var buttonSelected: Int?
+    @State var selectedSeniorityLvlId :Int?
+    @State var SenbuttonSelected: Int?
+
+    @State var selectedSpecLvlName :String?
+    @State var selectedSpecLvlId :Int?
+    @State var SpecbuttonSelected: Int?
+
+    @State var selectedSubSpecLvlNames : [String] = []
+    @State var selectedSubSpecLvlIds : [Int] = []
+
+    @State var selectedFee :Int?
+
+    @State var selectedFilterCityName :String?
+    @State var selectedFilterCityId :Int?
+    @State var CitybuttonSelected: Int?
+
+    @State var selectedFilterAreaName :String?
+    @State var selectedFilterAreaId :Int?
+    @State var AreabuttonSelected: Int?
     
-    @State var selectedSenLvlName : [String] = []
-    @State var selectedSenLvlId : [Int] = []
-
-
     func getAllDoctors(){
         
         searchDoc.DoctorName = searchTxt
@@ -179,20 +193,20 @@ struct ViewSearchDoc: View {
                                 HStack {
                                     Spacer().frame(width:30)
                                     Button(action: {
-                                        self.buttonSelected = button
+                                        self.SenbuttonSelected = button
                                         print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
 
-                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
+                                        self.selectedSeniorityLvlId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
                                         self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
 //                                        doctorCreatedVM.SeniorityLevelId = selectedSeniorityId
 //                                        doctorCreatedVM.SeniorityName = selectedSeniorityName
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  self.SenbuttonSelected == button ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.SenbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                             Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.SenbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
 
 
@@ -230,7 +244,7 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                        seniorityVM.startFetchSenioritylevel()
+//                        seniorityVM.startFetchSenioritylevel()
                     })
                    
                 case "Speciality":
@@ -245,19 +259,19 @@ struct ViewSearchDoc: View {
                                 HStack {
                                     Spacer().frame(width:30)
                                     Button(action: {
-                                        self.buttonSelected = button
+                                        self.SpecbuttonSelected = button
                                         print("SelectedID is \(self.specialityvm.publishedSpecialistModel?[button].id ?? 0)")
 
-                                        self.selectedSeniorityId = self.specialityvm.publishedSpecialistModel?[button].id ?? 0
-                                        self.selectedSeniorityLvlName = self.specialityvm.publishedSpecialistModel?[button].Name ?? ""
+                                        self.selectedSpecLvlId = self.specialityvm.publishedSpecialistModel?[button].id ?? 0
+                                        self.selectedSpecLvlName = self.specialityvm.publishedSpecialistModel?[button].Name ?? ""
 
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  self.SpecbuttonSelected == button ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.SpecbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                             Text(self.specialityvm.publishedSpecialistModel?[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.SpecbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
 
 
@@ -294,7 +308,7 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                        specialityvm.startFetchSpecialist()
+//                        specialityvm.startFetchSpecialist()
                     })
                
                 case "SubSpeciality":
@@ -305,7 +319,7 @@ struct ViewSearchDoc: View {
                             .fontWeight(.bold)
                         //                    }
                         ScrollView {
-                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                            ForEach(0..<SubSpecialityVM.publishedSubSpecialistModel.count, id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:30)
 //                                    Button(action: {
@@ -328,7 +342,7 @@ struct ViewSearchDoc: View {
 //                                        }
 //                                    })
                                     
-                        SeniorityBtn(seniorityLvl: seniorityVM.publishedSeniorityLevelModel[button], selectedSenLvlName: $selectedSenLvlName, selectedSenLvlId: $selectedSenLvlId)
+                        SeniorityBtn(seniorityLvl: SubSpecialityVM.publishedSubSpecialistModel[button], selectedSenLvlName: $selectedSubSpecLvlNames, selectedSenLvlId: $selectedSubSpecLvlIds)
 
                                     
                                 }
@@ -361,7 +375,7 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                        seniorityVM.startFetchSenioritylevel()
+                            SubSpecialityVM.startFetchSubSpecialist(id: selectedSpecLvlId ?? SpecialistId)
                     })
                 case "City":
                     CustomSheet(IsPresented: $showFilter, content: {
@@ -371,23 +385,23 @@ struct ViewSearchDoc: View {
                             .fontWeight(.bold)
                         //                    }
                         ScrollView {
-                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                            ForEach(0..<CitiesVM.publishedCityModel.count, id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:30)
                                     Button(action: {
-                                        self.buttonSelected = button
-                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
+                                        self.CitybuttonSelected = button
+                                        print("SelectedID is \(self.CitiesVM.publishedCityModel[button].Id ?? 0)")
 
-                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
-                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+                                        self.selectedFilterCityId = self.CitiesVM.publishedCityModel[button].Id ?? 0
+                                        self.selectedFilterCityName = self.CitiesVM.publishedCityModel[button].Name ?? ""
 
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  self.CitybuttonSelected == button ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.CitybuttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Text(self.CitiesVM.publishedCityModel[button].Name ?? "")  .padding()
+                                                .foregroundColor(self.CitybuttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
 
 
@@ -424,8 +438,8 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                        seniorityVM.startFetchSenioritylevel()
-                    })
+                            CitiesVM.startFetchCities(countryid: 1)
+                        })
                     
                 case "Area":
                     CustomSheet(IsPresented: $showFilter, content: {
@@ -435,23 +449,23 @@ struct ViewSearchDoc: View {
                             .fontWeight(.bold)
                         //                    }
                         ScrollView {
-                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                            ForEach(0..<AreasVM.publishedAreaModel.count, id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:30)
                                     Button(action: {
-                                        self.buttonSelected = button
-                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
+                                        self.AreabuttonSelected = button
+                                        print("SelectedID is \(self.AreasVM.publishedAreaModel[button].id ?? 0)")
 
-                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
-                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+                                        self.selectedFilterAreaId = self.AreasVM.publishedAreaModel[button].id ?? 0
+                                        self.selectedFilterAreaName = self.AreasVM.publishedAreaModel[button].Name ?? ""
 
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  self.AreabuttonSelected == button ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.AreabuttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Text(self.AreasVM.publishedAreaModel[button].Name ?? "")  .padding()
+                                                .foregroundColor(self.AreabuttonSelected == button ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
 
 
@@ -488,8 +502,7 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                        seniorityVM.startFetchSenioritylevel()
-                    })
+                            AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)                    })
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
@@ -546,7 +559,7 @@ struct ViewSearchDoc: View {
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("Dentistry")
+                                        Text(selectedSpecLvlName ?? "speciality lvl")
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -576,7 +589,7 @@ struct ViewSearchDoc: View {
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("Adult Dentistry, Pediatric Dentistry, El...+2")
+                                        Text(selectedSubSpecLvlNames.joined(separator: ", "))
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -636,7 +649,7 @@ struct ViewSearchDoc: View {
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("6th of october")
+                                        Text(selectedFilterCityName ?? "")
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -663,7 +676,7 @@ struct ViewSearchDoc: View {
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("El-Hossary")
+                                        Text(selectedFilterAreaName ?? "")
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -1157,7 +1170,7 @@ struct StarsView: View {
 
 struct SeniorityBtn: View {
     var language = LocalizationService.shared.language
-    var seniorityLvl : seniority
+    var seniorityLvl : subspeciality
     @Binding var selectedSenLvlName : [String]
     @Binding var selectedSenLvlId : [Int]
     @State var isTapped : Bool? = false
