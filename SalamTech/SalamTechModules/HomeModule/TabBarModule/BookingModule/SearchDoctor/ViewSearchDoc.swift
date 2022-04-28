@@ -42,6 +42,10 @@ struct ViewSearchDoc: View {
     @State var showFilter = false
     @State var FilterTag = "Filter"
     @StateObject var seniorityVM = ViewModelSeniorityLevel()
+    @StateObject var specialityvm = ViewModelSpecialist()
+    @StateObject var CitiesVM = ViewModelGetCities()
+    @StateObject var AreasVM = ViewModelGetAreas()
+
     @State var selectedSeniorityLvlName :String?
     @State var selectedSeniorityId = 0
     @State var buttonSelected: Int?
@@ -228,7 +232,264 @@ struct ViewSearchDoc: View {
                         .onAppear(perform: {
                         seniorityVM.startFetchSenioritylevel()
                     })
+                   
+                case "Speciality":
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
+                        Text("Speciality")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                        //                    }
+                        ScrollView {
+                            ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0), id:\.self) { button in
+                                HStack {
+                                    Spacer().frame(width:30)
+                                    Button(action: {
+                                        self.buttonSelected = button
+                                        print("SelectedID is \(self.specialityvm.publishedSpecialistModel?[button].id ?? 0)")
+
+                                        self.selectedSeniorityId = self.specialityvm.publishedSpecialistModel?[button].id ?? 0
+                                        self.selectedSeniorityLvlName = self.specialityvm.publishedSpecialistModel?[button].Name ?? ""
+
+                                    }, label: {
+                                        HStack{
+                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                                .font(.system(size: 20))
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Text(self.specialityvm.publishedSpecialistModel?[button].Name ?? "")  .padding()
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Spacer()
+
+
+                                        }
+                                    })
+                                    
+                                }
+                            }
+                        }
+                        
+                      
+                            Button(action: {
+                                // add review
+                                print("Confirm Title")
+                                FilterTag = "Filter"
+//                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Confirm")
+                                        .fontWeight(.semibold)
+                                        .font(.title3)
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 12)
+                            })
+                        
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
+                        
+                    })
+                        .onAppear(perform: {
+                        specialityvm.startFetchSpecialist()
+                    })
+               
+                case "SubSpeciality":
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
+                        Text("Sub Specialities")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                        //                    }
+                        ScrollView {
+                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                                HStack {
+                                    Spacer().frame(width:30)
+//                                    Button(action: {
+//                                        self.buttonSelected = button
+//                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
+//
+//                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
+//                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+//
+//                                    }, label: {
+//                                        HStack{
+//                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+//                                                .font(.system(size: 20))
+//                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+//                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
+//                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+//                                            Spacer()
+//
+//
+//                                        }
+//                                    })
+                                    
+                        SeniorityBtn(seniorityLvl: seniorityVM.publishedSeniorityLevelModel[button], selectedSenLvlName: $selectedSenLvlName, selectedSenLvlId: $selectedSenLvlId)
+
+                                    
+                                }
+                            }
+                        }
+                        
+                      
+                            Button(action: {
+                                // add review
+                                print("Confirm Title")
+                                FilterTag = "Filter"
+//                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Confirm")
+                                        .fontWeight(.semibold)
+                                        .font(.title3)
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 12)
+                            })
+                        
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
+                        
+                    })
+                        .onAppear(perform: {
+                        seniorityVM.startFetchSenioritylevel()
+                    })
+                case "City":
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
+                        Text("City")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                        //                    }
+                        ScrollView {
+                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                                HStack {
+                                    Spacer().frame(width:30)
+                                    Button(action: {
+                                        self.buttonSelected = button
+                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
+
+                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
+                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+
+                                    }, label: {
+                                        HStack{
+                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                                .font(.system(size: 20))
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Spacer()
+
+
+                                        }
+                                    })
+                                    
+                                }
+                            }
+                        }
+                        
+                      
+                            Button(action: {
+                                // add review
+                                print("Confirm Title")
+                                FilterTag = "Filter"
+//                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Confirm")
+                                        .fontWeight(.semibold)
+                                        .font(.title3)
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 12)
+                            })
+                        
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
+                        
+                    })
+                        .onAppear(perform: {
+                        seniorityVM.startFetchSenioritylevel()
+                    })
                     
+                case "Area":
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
+                        Text("Area")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                        //                    }
+                        ScrollView {
+                            ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                                HStack {
+                                    Spacer().frame(width:30)
+                                    Button(action: {
+                                        self.buttonSelected = button
+                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
+
+                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
+                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+
+                                    }, label: {
+                                        HStack{
+                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                                .font(.system(size: 20))
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
+                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                            Spacer()
+
+
+                                        }
+                                    })
+                                    
+                                }
+                            }
+                        }
+                        
+                      
+                            Button(action: {
+                                // add review
+                                print("Confirm Title")
+                                FilterTag = "Filter"
+//                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Confirm")
+                                        .fontWeight(.semibold)
+                                        .font(.title3)
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 12)
+                            })
+                        
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
+                        
+                    })
+                        .onAppear(perform: {
+                        seniorityVM.startFetchSenioritylevel()
+                    })
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
