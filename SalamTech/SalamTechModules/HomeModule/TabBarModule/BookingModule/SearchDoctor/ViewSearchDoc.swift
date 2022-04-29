@@ -58,7 +58,10 @@ struct ViewSearchDoc: View {
     @State var selectedSubSpecLvlNames : [String] = []
     @State var selectedSubSpecLvlIds : [Int] = []
 
-    @State var selectedFee :Int?
+    @State var minFee:CGFloat  = 0
+    @State var maxFee:CGFloat  = 100
+
+    @State var selectedFee :Double?
 
     @State var selectedFilterCityName :String?
     @State var selectedFilterCityId :Int?
@@ -503,6 +506,55 @@ struct ViewSearchDoc: View {
                     })
                         .onAppear(perform: {
                             AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)                    })
+                    
+                case "Fees":
+                    CustomSheet(IsPresented: $showFilter, content: {
+                        //                    HStack {
+                        Text("Examination Fee")
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                        //                    }
+                        VStack{
+                        HStack{
+                            FeesFilterTextField(text: .constant("100"), title: "Minimum")
+                                .disabled(true)
+                            FeesFilterTextField1(text:  String(format:"%2f",  minFee-15) , title: "Maximum")
+                                .disabled(true)
+                            Text( String(format:"%2f",  (minFee+15)/UIScreen.main.bounds.width)  )
+                            
+                        }
+                            SliderView(width: $minFee, width1: $maxFee)
+
+
+                        }.padding()
+                      
+                            Button(action: {
+                                // add review
+                                print("Confirm Title")
+                                FilterTag = "Filter"
+//                                showFilter.toggle()
+                            }, label: {
+                                HStack {
+                                    Text("Confirm")
+                                        .fontWeight(.semibold)
+                                        .font(.title3)
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("blueColor"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 12)
+                            })
+                        
+                        .frame( height: 60)
+                        .padding(.horizontal)
+                        .padding(.bottom,10)
+                        
+                    })
+                        .onAppear(perform: {
+                            AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)                    })
+
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
@@ -1237,3 +1289,5 @@ struct SeniorityBtn: View {
             })
     }
 }
+
+
