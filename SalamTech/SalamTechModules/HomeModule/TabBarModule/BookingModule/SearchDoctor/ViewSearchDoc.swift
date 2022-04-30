@@ -58,10 +58,11 @@ struct ViewSearchDoc: View {
     @State var selectedSubSpecLvlNames : [String] = []
     @State var selectedSubSpecLvlIds : [Int] = []
 
-    @State var minFee:CGFloat  = 0
-    @State var maxFee:CGFloat  = 100
+    @State var minFee:CGFloat  = 100
+    @State var maxFee:CGFloat  = 150
 
     @State var selectedFee :Double?
+    @State var floselectedFee :Float = 12
 
     @State var selectedFilterCityName :String?
     @State var selectedFilterCityId :Int?
@@ -518,12 +519,12 @@ struct ViewSearchDoc: View {
                         HStack{
                             FeesFilterTextField(text: .constant("100"), title: "Minimum")
                                 .disabled(true)
-                            FeesFilterTextField1(text:  String(format:"%2f",  minFee-15) , title: "Maximum")
+                            FeesFilterTextField1(text:  String(Int( Float(minFee) + floselectedFee)) , title: "Maximum")
                                 .disabled(true)
-                            Text( String(format:"%2f",  (minFee+15)/UIScreen.main.bounds.width)  )
-                            
                         }
-                            SliderView(width: $minFee, width1: $maxFee)
+
+//                            SliderView(minFee: $minFee, maxFee: $maxFee, range: Int(maxFee-minFee), percentage: $floselectedFee)
+                            CustomView(percentage: $floselectedFee)
 
 
                         }.padding()
@@ -552,6 +553,7 @@ struct ViewSearchDoc: View {
                         .padding(.bottom,10)
                         
                     })
+                    
                         .onAppear(perform: {
                             AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)                    })
 

@@ -139,59 +139,129 @@ struct FeesFilterTextField1: View {
     }
 }
 struct SliderView: View {
-    @Binding var width :CGFloat
-    @Binding var width1 :CGFloat
+    @Binding var minFee :CGFloat
+    @Binding var maxFee :CGFloat
+    var range :Int
+    @Binding var percentage :Float
+
+    
     var totalWith = UIScreen.main.bounds.width - 50
     var body: some View {
-        VStack{
-            ZStack(alignment:.leading){
-                Capsule()
-                    .fill(Color.black.opacity(0.20))
-                    .frame(height:4)
+        
+        VStack {
+            GeometryReader { geometry in
                 
-                Capsule()
-                    .fill(Color.black)
-                    .frame(width:self.width+15   ,height:4)
-//                    .offset(x: self.width+15)
-                
-//                HStack(spacing:0){
-//                    Circle()
-//                        .fill(Color.blue)
-//                        .frame(width: 15, height: 15)
-//                        .offset(x: self.width)
-//                        .gesture(
-//                            DragGesture()
-//                                .onChanged({ (Value) in
-//                                    if Value.location.x <= 0 && Value.location.x <= self.width1{
-//                                    self.width = Value.location.x
-//                                    }
-//                                })
-//                        )
-                    
-                    Circle()
-                        .fill(Color.blue)
-                        .frame(width: 15, height: 15)
-                        .background(Circle().stroke(Color.red.opacity(0.55), lineWidth:2))
-                        .offset(x: self.width)
-                        .gesture(
-                            DragGesture()
-                                .onChanged({ (Value) in
-                                    if Value.location.x >= 15 && Value.location.x <= self.totalWith{
-                                    self.width = Value.location.x - 15
-                                    }
-                                })
-                        )
-                    
-//                }
-                
-                
-            }.padding()
+                VStack {
+                    ZStack(alignment:.leading){
+                        Capsule()
+                            .fill(Color.black.opacity(0.20))
+                            .frame(height:4)
+                        
+                        Capsule()
+                            .fill(Color.black)
+                            .frame(height:4)
+                            .frame(width: geometry.size.width * CGFloat(self.percentage / Float( range)))
+
+        //                    .offset(x: self.width+15)
+                        
+        //                HStack(spacing:0){
+        //                    Circle()
+        //                        .fill(Color.blue)
+        //                        .frame(width: 15, height: 15)
+        //                        .offset(x: self.width)
+        //                        .gesture(
+        //                            DragGesture()
+        //                                .onChanged({ (Value) in
+        //                                    if Value.location.x <= 0 && Value.location.x <= self.width1{
+        //                                    self.width = Value.location.x
+        //                                    }
+        //                                })
+        //                        )
+                            
+                            Circle()
+                                .fill(Color.blue)
+                                .frame(width: 15, height: 15)
+                                .background(Circle().stroke(Color.red.opacity(0.55), lineWidth:2))
+                                .offset(x: geometry.size.width * CGFloat(self.percentage / Float( range)))
+        //                        .offset(x: width)
+
+                                .gesture(DragGesture(minimumDistance: 0)
+                                .onChanged({ value in
+                                    self.percentage = Float(minFee)+(min(max(0, Float(value.location.x / geometry.size.width * CGFloat( range) )), Float(range)))
+                                    print(self.percentage)
+                                }))
+                            
+        //                }
+                        
+                        
+                    }
+                }
+                .frame(height:55)
+            }
+            .frame(height:55)
         }
+        .frame(height:55)
+
     }
 
 }
 func getval(val:CGFloat)->String{
     return String(format: "%.2f", val)
+}
+struct SliderView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            SliderView(minFee:.constant(0),maxFee:.constant(120), range: 50, percentage: .constant(12))
+        }.navigationBarHidden(true)
+    }
+}
+
+
+struct CustomView: View {
+
+    @Binding var percentage: Float // or some value binded
+    let range = 50
+
+    var body: some View {
+        VStack {
+            GeometryReader { geometry in
+                VStack {
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .foregroundColor(.gray.opacity(0.2))
+                            .frame(height:22)
+
+                        Rectangle()
+                            .foregroundColor(Color("blueColor"))
+                            .frame(height:22)
+                            .frame(width: geometry.size.width * CGFloat(self.percentage / Float(range)))
+                    }
+                    .cornerRadius(12)
+                    .gesture(DragGesture(minimumDistance: 0)
+                    .onChanged({ value in
+                        self.percentage = min(max(0, Float(value.location.x / geometry.size.width * CGFloat(range))), Float(range))
+                        print(self.percentage)
+                }))
+//                    .frame(height:55)
+//                    .padding(.vertical,20)
+
+                }
+//                .frame(height:55)
+//                .padding()
+
+            }
+            .frame(height:55)
+            .padding()
+        }
+    }
+}
+
+struct CustomView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView{
+            CustomView(percentage: .constant(12))
+        }.navigationBarHidden(true)
+    }
 }
 
 
