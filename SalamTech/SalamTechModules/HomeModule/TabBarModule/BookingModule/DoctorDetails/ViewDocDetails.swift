@@ -122,7 +122,7 @@ struct ViewDocDetails:View{
         
         
      // go to clinic info
-        NavigationLink(destination:ViewSummary(Doctor: Doctor, BookingDateTime: "20 Feb. 2022  (08:00 PM)", ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $selectedDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
+        NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $selectedDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
              }
         
 //     .navigationBarHidden(true)
