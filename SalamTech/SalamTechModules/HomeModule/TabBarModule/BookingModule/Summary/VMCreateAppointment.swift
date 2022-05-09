@@ -64,7 +64,7 @@ class VMCreateAppointment: ObservableObject {
     }
         
     
-    func FetchDoctorDetails() {
+    func CreatePatientAppointment() {
         let Parameters : [String:Any] = [
         // required
             "PatientId": PatientId ,
@@ -87,6 +87,8 @@ class VMCreateAppointment: ObservableObject {
                     self.isLoading = false
                     self.isDone = true
                     print(model!)
+                    self.errorMsg = model?.message ?? "success"
+
                 }
             }else{
                 self.isLoading = false

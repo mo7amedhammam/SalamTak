@@ -10,14 +10,15 @@ import SwiftUI
 import Kingfisher
 
 struct ViewSummary:View{
-    var Doctor:Doc = Doc.init(id: 1, SumRate: 3, Rate: 3, NumVisites: 5, WaitingTime: 15, FeesFrom: 230, FeesTo: 250, DoctorName: "mohamed hammam", SpecialistName: "surgery", SeniortyLevelName: "senior", ClinicName: "clinic name ", ClinicAddress: "add", Image: "imag", AvailableFrom: "av from", SubSpecialistName: ["sub", "sub1"], MedicalExamationTypeImage: [])
+    var Doctor:Doc
+  @StateObject var CreateAppointment = VMCreateAppointment()
     
-//    @Binding var BookingDateTime :String
     @Binding var ExType :Int
     
     @Binding var BookingscedualId :Int
     @Binding var BookiDate :Date
     @Binding var BookiTime :String
+    
     
 
     var body: some View{
@@ -34,7 +35,8 @@ struct ViewSummary:View{
                     }
                     .edgesIgnoringSafeArea(.vertical)
 
-                                
+                          
+                    
                         Spacer().frame(height:15)
                     ZStack {
                         VStack(alignment:.leading){
@@ -248,7 +250,13 @@ struct ViewSummary:View{
                                         }
                                         .padding(.leading)
                                         Button(action: {
-                                            // add review
+                                            // Create patient appointment
+                                            CreateAppointment.CreatePatientAppointment()
+//                                            print("patient id : \(Helper.getUserID())")
+//                                            print("schedual id : \(BookingscedualId)")
+//                                            print("schedual dateTime : \(Filterdatef.string(from: BookiDate))T\(BookiTime)")
+//                                            print("fees : \(Doctor.FeesFrom ?? 00)")
+                                            
                                         }, label: {
                                             HStack {
                                                 Text("Confirm")
@@ -265,11 +273,12 @@ struct ViewSummary:View{
                                     }
                                     .frame( height: 60)
                                     .padding(.horizontal)
-                                    .padding(.bottom,10)
+                                    .padding(.bottom,20)
 
                         })
 
                     }
+                    
 //                    .edgesIgnoringSafeArea(.vertical)
 
 
@@ -286,17 +295,28 @@ struct ViewSummary:View{
             
       
             
-         
+            // Alert with Error message
+                .alert(CreateAppointment.errorMsg, isPresented: $CreateAppointment.isError) {
+                                    Button("OK", role: .cancel) { }
+            }
 
-    
+
                     
         }
         .background(Color.red)
-        
             .edgesIgnoringSafeArea(.vertical)
         
+            .onAppear(perform: {
+                CreateAppointment.PatientId = Helper.getUserID()
+            
+                CreateAppointment.DoctorWorkingDayTimeId = BookingscedualId
+                CreateAppointment.AppointmentDate = "\(Filterdatef.string(from: BookiDate))T\(BookiTime)"
+                CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
+            })
         
-       
+        // showing loading indicator
+        ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
+
         
 //     }
         
