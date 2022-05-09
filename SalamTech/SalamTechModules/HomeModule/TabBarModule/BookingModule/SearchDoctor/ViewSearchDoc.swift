@@ -94,7 +94,6 @@ struct ViewSearchDoc: View {
                         getAllDoctors()
                     }
                     .shadow(color: .black.opacity(0.2), radius: 15)
-                    
                 }
                 
                 
@@ -381,6 +380,7 @@ struct ViewSearchDoc: View {
                         .onAppear(perform: {
                             SubSpecialityVM.startFetchSubSpecialist(id: selectedSpecLvlId ?? SpecialistId)
                     })
+                    
                 case "City":
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
@@ -506,15 +506,15 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                            AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)                    })
+                            AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)
+                        })
                     
                 case "Fees":
                     CustomSheet(IsPresented: $showFilter, content: {
-                        //                    HStack {
                         Text("Examination Fee")
                             .font(.system(size: 18))
                             .fontWeight(.bold)
-                        //                    }
+
                         VStack{
                         HStack{
                             FeesFilterTextField(text: .constant("100"), title: "Minimum")
@@ -525,7 +525,6 @@ struct ViewSearchDoc: View {
 
 //                            SliderView(minFee: $minFee, maxFee: $maxFee, range: Int(maxFee-minFee), percentage: $floselectedFee)
                             CustomView(percentage: $floselectedFee)
-
 
                         }.padding()
                       
@@ -848,7 +847,6 @@ struct ViewSearchDoc: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 FilterButtonView(imagename: "filter"){
-                    //                    print("Show filter")
                     showFilter.toggle()
                 }
             }
