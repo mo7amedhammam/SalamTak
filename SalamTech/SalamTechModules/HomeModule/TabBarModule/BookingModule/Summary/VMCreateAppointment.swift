@@ -39,7 +39,7 @@ class VMCreateAppointment: ObservableObject {
 
 
 
-    @Published var isLoading:Bool?
+    @Published var isLoading : Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var isDone = false

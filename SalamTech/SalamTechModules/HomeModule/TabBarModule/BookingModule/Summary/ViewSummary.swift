@@ -251,8 +251,13 @@ struct ViewSummary:View{
                                         .padding(.leading)
                                         Button(action: {
                                             // Create patient appointment
-                                            CreateAppointment.CreatePatientAppointment()
-//                                            print("patient id : \(Helper.getUserID())")
+                                            CreateAppointment.isLoading = true
+                                            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                                                CreateAppointment.CreatePatientAppointment()
+
+                                            })
+                                            
+                                            //                                            print("patient id : \(Helper.getUserID())")
 //                                            print("schedual id : \(BookingscedualId)")
 //                                            print("schedual dateTime : \(Filterdatef.string(from: BookiDate))T\(BookiTime)")
 //                                            print("fees : \(Doctor.FeesFrom ?? 00)")
@@ -300,6 +305,8 @@ struct ViewSummary:View{
                                     Button("OK", role: .cancel) { }
             }
 
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
 
                     
         }
@@ -314,9 +321,7 @@ struct ViewSummary:View{
                 CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
             })
         
-        // showing loading indicator
-        ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
-
+      
         
 //     }
         
