@@ -34,7 +34,7 @@ struct DocDetails: Codable{
     }
 }
 
-struct ModelSched: Codable,Identifiable{
+struct ModelSched: Codable,Identifiable, Hashable{
     
     var id,Fees: Int?
     var TimeFrom, TimeTo:String?
@@ -48,17 +48,34 @@ struct ModelSched: Codable,Identifiable{
         case DoctorSchedualSlots = "DoctorSchedualSlots"
         
     }
+    
+    static func == (lhs: ModelSched, rhs: ModelSched) -> Bool {
+            lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
 }
 
 
 
-struct Sched: Codable, Hashable{
-    
+struct Sched: Codable, Hashable, Identifiable{
+    var id :Int?
     var SlotTime: String?
     var IsAvailable:Bool?
     
     enum CodingKeys: String, CodingKey {
+        case id = "SlotId"
         case SlotTime = "SlotTime"
         case IsAvailable = "IsAvailable"
     }
+    
+    static func == (lhs: Sched, rhs: Sched) -> Bool {
+            lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
 }

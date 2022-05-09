@@ -11,8 +11,14 @@ import Kingfisher
 
 struct ViewSummary:View{
     var Doctor:Doc = Doc.init(id: 1, SumRate: 3, Rate: 3, NumVisites: 5, WaitingTime: 15, FeesFrom: 230, FeesTo: 250, DoctorName: "mohamed hammam", SpecialistName: "surgery", SeniortyLevelName: "senior", ClinicName: "clinic name ", ClinicAddress: "add", Image: "imag", AvailableFrom: "av from", SubSpecialistName: ["sub", "sub1"], MedicalExamationTypeImage: [])
-    @State var BookingDateTime = ""
+    
+//    @Binding var BookingDateTime :String
     @Binding var ExType :Int
+    
+    @Binding var BookingscedualId :Int
+    @Binding var BookiDate :Date
+    @Binding var BookiTime :String
+    
 
     var body: some View{
 //        NavigationView{
@@ -58,7 +64,7 @@ struct ViewSummary:View{
                                         Text("Booking Date & Time :")
                                             .foregroundColor(Color("darkGreen"))
                                             .font(Font.SalamtechFonts.Reg14)
-                                        Text( String( BookingDateTime ))
+                                        Text( String( "\(Filterdatef.string(from: BookiDate)) (\(BookiTime))" ))
                                             .foregroundColor(.secondary)
                                             .font(Font.SalamtechFonts.Reg14)
                                         
@@ -231,7 +237,7 @@ struct ViewSummary:View{
                         ConfirmBooking(IsPresented: .constant(true), content: {
                                 HStack{
                                         ZStack() {
-                                            Text("230")                                .font(.system(size: 18))
+                                            Text("\(String(Doctor.FeesFrom ?? 0.0))")                                .font(.system(size: 18))
                                                 .padding(.top,-20)
 
                                             Text("\nEGP")
@@ -312,7 +318,7 @@ struct ViewSummary:View{
 struct ViewSummary_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSummary(Doctor: Doc.init(), ExType: .constant(645454545))
+            ViewSummary(Doctor: Doc.init(), ExType: .constant(645454545),BookingscedualId :.constant(645454545),BookiDate :.constant(Date()),BookiTime :.constant("645454545"))
         }.navigationBarHidden(true)
     }
 }

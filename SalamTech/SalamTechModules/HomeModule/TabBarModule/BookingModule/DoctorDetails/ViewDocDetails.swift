@@ -17,9 +17,16 @@ struct ViewDocDetails:View{
 //    @StateObject var DocDetails = ViewModelDocDetails()
     @State var GotoSummary = false
     @Binding var ExType :Int
+    
+    //Calendar
     @State var ShowCalendar = false
     @State var selectedDate = Date()
+    
+    
+    @State var selectedSchedualId = 0
+    @State var selectedTime = ""
 
+    
     
     var body: some View{
                     ZStack {
@@ -30,7 +37,7 @@ struct ViewDocDetails:View{
 
                     ScrollView {
                         ViewDocMainInfo(Doctor: Doctor)
-                        ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate)
+                        ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
                         ViewDocReviews()
 
                         Spacer()
@@ -58,11 +65,14 @@ struct ViewDocDetails:View{
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                         .foregroundColor(.white)
-                        .background(Color("blueColor"))
+                        .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
         //                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
                         .cornerRadius(12)
                         .padding(.horizontal, 20)
-                    })
+                    }).disabled(selectedTime == "")
+                        
+                        
+                        
                     }.background(.clear
                     )
                         .shadow(color: .gray, radius: 9)
@@ -112,7 +122,7 @@ struct ViewDocDetails:View{
         
         
      // go to clinic info
-        NavigationLink(destination:ViewSummary(Doctor: Doctor, BookingDateTime: "20 Feb. 2022  (08:00 PM)", ExType: $ExType),isActive: $GotoSummary) {
+        NavigationLink(destination:ViewSummary(Doctor: Doctor, BookingDateTime: "20 Feb. 2022  (08:00 PM)", ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $selectedDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
              }
         
 //     .navigationBarHidden(true)
@@ -350,17 +360,23 @@ struct ViewDateAndTime: View {
     
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
     var daytimes = ["2:30 PM", "2:50 PM", "3:30 PM", "3:50 PM","4:30 PM", "4:50 PM","5:30 PM", "5:50 PM"]
-    @State var selectedTime = ""
+//    @State var selectedTime = ""
     @State var seldatenum = ""
     @State var openSlots = false
     @Binding var ShowCalendar : Bool
     @Binding var selectedDate : Date
+    @Binding var selectedSchedualId :Int
+    @Binding var selectedTime :String
 
+    
    
     
-    init(ShowCalendar: Binding<Bool>, selectedDate: Binding<Date>){
+    init(ShowCalendar: Binding<Bool>, selectedDate: Binding<Date>,selectedSchedualId: Binding<Int>,selectedTime: Binding<String>){
         self._ShowCalendar = ShowCalendar
         self._selectedDate = selectedDate
+        self._selectedSchedualId = selectedSchedualId
+        self._selectedTime = selectedTime
+
         setWeekView()
 //        TappedDate = Date()
     }
@@ -380,7 +396,7 @@ struct ViewDateAndTime: View {
             ZStack{
                 VStack{
 
-
+//MARK: Selected date & show calednar
                     Button(action: {
                         // open Calendar
                         ShowCalendar = true
@@ -411,7 +427,7 @@ struct ViewDateAndTime: View {
 
                     Divider().padding(.top,-10)
 
-
+//MARK: --- Current Week ------
                     HStack(spacing:0){
                         ForEach(0..<weekdays.count, id:\.self){ day in
                             let date = totalSquares[day]
@@ -468,10 +484,11 @@ struct ViewDateAndTime: View {
             //MARK: ---- periods of slot --------
             if openSlots && (DocDetails.publishedModelSearchDoc?.DoctorScheduals?.count ?? 0) > 0 {
                 VStack{
-                    ForEach(DocDetails.publishedModelSearchDoc?.DoctorScheduals ?? [] ){ sched in
+                    ForEach(DocDetails.publishedModelSearchDoc?.DoctorScheduals ?? [], id:\.id ){ sched in
+                        
                 Button(action: {
+                    selectedSchedualId = sched.id ?? 0
                     timeexpanded.toggle()
-                    
                 }, label: {
                     //                            ZStack{
                     //                            VStack{
@@ -513,36 +530,13 @@ struct ViewDateAndTime: View {
        
                     .background(Color.white)
 
-                })  .frame(width: UIScreen.main.bounds.width-30)
-                    .cornerRadius(9)
-                    .shadow(color: .black.opacity(0.1), radius: 9)
+                })
+                            .frame(width: UIScreen.main.bounds.width-30)
+                            .cornerRadius(9)
+                            .shadow(color: .black.opacity(0.1), radius: 9)
                 
-                if timeexpanded{
-                    LazyVGrid(columns: vGridLayout){
-//                        ForEach(sched.DoctorSchedualSlots!, id:\.self ) { exType in
-//    //                    for exType in sched.DoctorSchedualSlots ?? []{
-//
-//                            ZStack {
-//                                Button(action: {
-//    //                                selectedTime = exType.SlotTime
-//    //                                gotoSpec=true
-//
-//                                }, label: {
-//
-//                                    Text(exType.SlotTime  )
-//                                            .padding(.vertical,10)
-//                                            .foregroundColor(selectedTime == (exType.SlotTime ) ? .white : .gray)
-//
-//                                })
-//                                    .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
-//                                    .background( selectedTime == (exType.SlotTime) ? Color("darkGreen").opacity(0.7):.white)
-//                                    .cornerRadius(8)
-//                                    .shadow(color: .black.opacity(0.099), radius: 5)
-//                            }
-//                        }
-
-                    }
-                    .padding(.horizontal,13)
+                if timeexpanded == true{
+                        slotView(slots: sched.DoctorSchedualSlots ?? [], selectedTime: $selectedTime )
                 }
                         
                     }
@@ -570,6 +564,11 @@ struct ViewDateAndTime: View {
             .onChange(of: self.selectedDate){newdate in
                 self.TappedDate = newdate
                 seldatenum =                             String(CalendarHelper().dayOfMonth(date: newdate))
+            }
+            .onChange(of: self.selectedTime){ newTime in
+                self.selectedTime = newTime
+                print("\(Filterdatef.string(from: TappedDate))T\(newTime)")
+//                self.selectedTime = "\(Filterdatef.string(from: TappedDate))T\(newTime)"
             }
     }
 }
@@ -796,5 +795,37 @@ struct quickLoginSheet : View {
 
         })
         
+    }
+}
+
+struct slotView:View{
+    var slots : [Sched]
+    var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 20) ]
+    @Binding var selectedTime :String
+    var body:some View{
+        LazyVGrid(columns: vGridLayout){
+            ForEach(slots, id:\.id ) { exType in
+                            ZStack {
+                                Button(action: {
+                                    selectedTime = exType.SlotTime ?? ""
+    //                                gotoSpec=true
+
+                                }, label: {
+//
+                Text(exType.SlotTime ?? "")
+                                .padding(.vertical,10)
+                                .foregroundColor(selectedTime == (exType.SlotTime ) ? .white : .gray)
+//
+                                })
+                                    .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
+                                    .background( selectedTime == (exType.SlotTime) ? Color("darkGreen").opacity(0.7):.white)
+                                    .cornerRadius(8)
+                                    .shadow(color: .black.opacity(0.099), radius: 5)
+                            }
+            }
+
+        }
+        .padding(.horizontal,13)
+
     }
 }
