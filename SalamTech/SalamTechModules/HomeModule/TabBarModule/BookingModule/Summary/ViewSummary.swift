@@ -254,7 +254,6 @@ struct ViewSummary:View{
                                             CreateAppointment.isLoading = true
                                             DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
                                                 CreateAppointment.CreatePatientAppointment()
-
                                             })
                                             
                                             //                                            print("patient id : \(Helper.getUserID())")

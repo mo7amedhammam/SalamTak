@@ -17,7 +17,6 @@ struct ContentView: View {
 //            PersonalDataView()
 //            OnBoardingView()
 //            PatientProfile()
-            
         }
         .onAppear(perform: {
             Helper.setUserData(Id: 25, PhoneNumber: "01101201322", patientName: "mohamed hammam")

@@ -48,16 +48,13 @@ struct Doc: Codable, Identifiable, Hashable{
         return lhs.id == rhs.id
 
     }
-    
 
-    
-    
     var id, SumRate, Rate, NumVisites, WaitingTime: Int?
     var FeesFrom, FeesTo :Double?
     var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image,AvailableFrom: String?
     var SubSpecialistName: [String]?
     var MedicalExamationTypeImage: [Img]?
-    
+    var DoctorRate : [DoctorRate]?
   
     enum CodingKeys: String, CodingKey {
         case id = "DoctorId"
@@ -78,6 +75,8 @@ struct Doc: Codable, Identifiable, Hashable{
         case AvailableFrom = "AvailableFrom"
         case SubSpecialistName = "SubSpecialistName"
         case MedicalExamationTypeImage = "MedicalExamationTypes"
+        case DoctorRate = "DoctorRate"
+
     }
 }
 
@@ -94,4 +93,17 @@ struct Img:Codable,Identifiable, Hashable{
 
     }
     
+}
+
+struct DoctorRate:Codable,Identifiable, Hashable{
+    var id,Rate :Int?
+    var PatientName,Comment,StatueName:String?
+    enum CodingKeys: String, CodingKey {
+        case id = "RateId"
+        case Rate = "Rate"
+        case PatientName = "PatientName"
+        case Comment = "Comment"
+        case StatueName = "StatueName"
+        
+    }
 }

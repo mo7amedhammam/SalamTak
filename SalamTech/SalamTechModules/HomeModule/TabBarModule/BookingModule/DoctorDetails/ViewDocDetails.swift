@@ -38,7 +38,7 @@ struct ViewDocDetails:View{
                     ScrollView {
                         ViewDocMainInfo(Doctor: Doctor)
                         ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
-                        ViewDocReviews()
+                        ViewDocReviews( Doctor: Doctor)
 
                         Spacer()
                     }
@@ -600,12 +600,13 @@ struct ViewAboutDoctor: View {
 
 struct ViewDocReviews: View {
     @State var hei: CGFloat = 180
+    var Doctor:Doc
     var body: some View {
         VStack{
             HStack{
                 Text("Reviews")
                 Spacer()
-                Text("View all 125 reviews")
+                Text("View all \(Doctor.DoctorRate?.count ?? 0) reviews")
                     .foregroundColor(Color("darkGreen"))
                 Image( systemName: "chevron.forward")
                 //                                        .resizable()
@@ -618,7 +619,7 @@ struct ViewDocReviews: View {
             
             ScrollView(.horizontal){
                 HStack{
-                    ForEach(0..<4){_ in
+                    ForEach(Doctor.DoctorRate ?? [],id:\.self){Rate in
                         ZStack{
                             ZStack {
                                 
@@ -643,21 +644,22 @@ struct ViewDocReviews: View {
                                             .cornerRadius(9)
                                     
                                         VStack(spacing:0){
-                                            Text("patient name").padding(.bottom,8)
+                                            Text(Rate.PatientName ?? "").padding(.bottom,8)
 //                                            .font(Font.SalamtechFonts.Bold18)
                                             .font(.system(size: 20))
                                         
+                                            StarsView(rating: Float(Rate.Rate ?? 00) )
                                             
-                                            HStack(spacing:15){
-                                                      ForEach(0..<5){_ in
-                                                          Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-                                                              .frame(width: 10, height: 10)
-                                                              .foregroundColor(.yellow)
-                                                      }
-                                                      
-                                                      
-                                                      
-                                            }.padding(.trailing)
+//                                            HStack(spacing:15){
+//                                                      ForEach(0..<5){_ in
+//                                                          Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
+//                                                              .frame(width: 10, height: 10)
+//                                                              .foregroundColor(.yellow)
+//                                                      }
+//
+//
+//
+//                                            }.padding(.trailing)
 
                                         }
                                         .padding(.top, 10)
@@ -670,8 +672,8 @@ struct ViewDocReviews: View {
                                 
                                 VStack(alignment:.leading, spacing:0){
                                     
-                                    Text("Thank you very much! Great clinic! The dog was limping, X-rayed, prescribed quality treatment. Dog of fights! Excellent specialists! more" )
-//                                    Text(".." )
+//                                    Text("Thank you very much! Great clinic! The dog was limping, X-rayed, prescribed quality treatment. Dog of fights! Excellent specialists! more" )
+                                    Text(Rate.Comment ?? "" )
 
                                     .foregroundColor(.gray)
                                         .font(Font.SalamtechFonts.Reg14)
