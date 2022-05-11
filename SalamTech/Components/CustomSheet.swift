@@ -116,11 +116,15 @@ struct FeesFilterTextField1: View {
                     .scaleEffect(text.isEmpty ? 1 : 0.9, anchor: .leading)
             }
             
-            Text(text)
-                .autocapitalization(.none)
-                .textInputAutocapitalization(.none)
-//                .padding(12)
+            HStack {
+                Text(text)
+                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.none)
+    //                .padding(12)
                 .font(.system(size: 20))
+                
+                Spacer()
+            }
 
             
         }

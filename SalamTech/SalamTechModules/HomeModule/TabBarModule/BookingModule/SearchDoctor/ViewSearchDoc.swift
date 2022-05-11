@@ -169,7 +169,14 @@ struct ViewSearchDoc: View {
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
-            
+//            .onTapGesture(perform: {
+//                if showFilter == true && FilterTag != "Filter"{
+//                    FilterTag = "Filter"
+//                }else{
+//                    showFilter = false
+//                }
+//            })
+
             
             VStack{
                 AppBarView(Title: "Search a Doctor")
@@ -178,8 +185,7 @@ struct ViewSearchDoc: View {
                 Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
-            
-            
+                        
             
             if showFilter {
                 switch FilterTag{
@@ -518,8 +524,10 @@ struct ViewSearchDoc: View {
                         VStack{
                         HStack{
                             FeesFilterTextField(text: .constant("100"), title: "Minimum")
+                                .frame(width:(UIScreen.main.bounds.width - 50)/2)
                                 .disabled(true)
                             FeesFilterTextField1(text:  String(Int( Float(minFee) + floselectedFee)) , title: "Maximum")
+                                .frame(width:(UIScreen.main.bounds.width - 50)/2)
                                 .disabled(true)
                         }
 
@@ -532,7 +540,6 @@ struct ViewSearchDoc: View {
                                 // add review
                                 print("Confirm Title")
                                 FilterTag = "Filter"
-//                                showFilter.toggle()
                             }, label: {
                                 HStack {
                                     Text("Confirm")
@@ -598,9 +605,6 @@ struct ViewSearchDoc: View {
                             
                             Button(action: {
                                 print("sel spec")
-
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
                                 FilterTag = "Speciality"
 
                             }, label: {
@@ -629,10 +633,6 @@ struct ViewSearchDoc: View {
                             
                             Button(action: {
                                 FilterTag = "SubSpeciality"
-
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
-                                
                             }, label: {
                                 HStack{
                                     
@@ -659,10 +659,6 @@ struct ViewSearchDoc: View {
                             
                             Button(action: {
                                 FilterTag = "Gender"
-
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
-                                
                             }, label: {
                                 HStack{
                                     
@@ -689,10 +685,6 @@ struct ViewSearchDoc: View {
                             
                             Button(action: {
                                 FilterTag = "City"
-
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
-                                
                             }, label: {
                                 HStack{
                                     
@@ -716,10 +708,6 @@ struct ViewSearchDoc: View {
                             })
                             Button(action: {
                                 FilterTag = "Area"
-
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
-                                
                             }, label: {
                                 HStack{
                                     
@@ -745,10 +733,6 @@ struct ViewSearchDoc: View {
                             
                             Button(action: {
                                 FilterTag = "Fees"
-
-                                //                            IsPresented.toggle()
-                                //                            IsPresentedConsultation.toggle()
-                                
                             }, label: {
                                 HStack{
                                     
@@ -781,6 +765,21 @@ struct ViewSearchDoc: View {
                             Button( action: {
                                 
                                 print("Reset and Hide")
+                                
+                                selectedSeniorityLvlId = 0
+                                selectedSpecLvlId = 0
+                                selectedSubSpecLvlIds = []
+                                selectedFilterCityId = 0
+                                selectedFilterAreaId = 0
+                                selectedFee  = 0
+                                selectedSeniorityLvlId = 0
+                                selectedSpecLvlId = 0
+                                selectedSubSpecLvlIds = []
+                                selectedFilterCityId = 0
+                                selectedFilterAreaId = 0
+                                selectedFee = 0
+                                getAllDoctors()
+                                
                             }, label: {
                                 Text("Reset")
                                     .font(.system(size: 15))
@@ -793,6 +792,15 @@ struct ViewSearchDoc: View {
                             Button(action: {
                                 // add review
                                 print("Apply Filter and Hide")
+                                
+                                searchDoc.FilterSeniortyLevelId = selectedSeniorityLvlId
+                                searchDoc.FilterSpecialistId = selectedSpecLvlId ?? 115151
+                                searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds
+                                searchDoc.FilterCityId = selectedFilterCityId
+                                searchDoc.FilterAreaId = selectedFilterAreaId
+                                searchDoc.FilterFees = String(Int( Float(minFee) + floselectedFee))
+                               
+                                getAllDoctors()
                                 showFilter.toggle()
                             }, label: {
                                 HStack {
