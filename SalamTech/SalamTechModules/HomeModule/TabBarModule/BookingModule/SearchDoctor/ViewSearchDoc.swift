@@ -73,7 +73,6 @@ struct ViewSearchDoc: View {
     @State var AreabuttonSelected: Int?
     
     func getAllDoctors(){
-        
         searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
         searchDoc.FetchDoctors()
@@ -151,7 +150,7 @@ struct ViewSearchDoc: View {
                         .frame( maxHeight: 2)
                         .foregroundColor(.black)
                         .onAppear(perform: {
-                            if searchDoc.publishedModelSearchDoc.count > 3{
+                            if searchDoc.publishedModelSearchDoc.count > searchDoc.SkipCount{
                             searchDoc.SkipCount += searchDoc.MaxResultCount
                             searchDoc.FetchMoreDoctors()
                             }

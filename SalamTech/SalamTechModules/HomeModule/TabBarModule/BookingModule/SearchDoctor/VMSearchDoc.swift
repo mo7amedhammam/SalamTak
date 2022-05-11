@@ -19,26 +19,26 @@ class VMSearchDoc: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     // ------- input
 
-    @Published var MaxResultCount                      :Int = 10
+    @Published var MaxResultCount                      :Int = 0
     @Published var SkipCount                            :Int = 0
-    @Published var SpecialistId                         :Int = 2
-    @Published var MedicalExaminationTypeId           :Int = 2
+    @Published var SpecialistId                         :Int = 0
+    @Published var MedicalExaminationTypeId           :Int = 0
     @Published var DoctorName                           :String?
-    @Published var CityId                                :Int?
-    @Published var AreaId                                :Int?
-    @Published var GenderId                              :Int?
+    @Published var CityId                                :Int? = 0
+    @Published var AreaId                                :Int? = 0
+    @Published var GenderId                              :Int? = 0
     @Published var Fees                                   :String = ""
-    @Published var SeniortyLevelId                      :Int?
-    @Published var SubSpecialistId                      :[Int]?
+    @Published var SeniortyLevelId                      :Int? = 0
+    @Published var SubSpecialistId                      :[Int]? = []
     
 //MARK: --- Filter ------
-    @Published var FilterSpecialistId                        :Int = 2
-    @Published var FilterCityId                               :Int?
-    @Published var FilterAreaId                               :Int?
-    @Published var FilterGenderId                             :Int?
+    @Published var FilterSpecialistId                        :Int? = 0
+    @Published var FilterCityId                               :Int? = 0
+    @Published var FilterAreaId                               :Int? = 0
+    @Published var FilterGenderId                             :Int? = 0
     @Published var FilterFees                                  :String = ""
-    @Published var FilterSeniortyLevelId                     :Int?
-    @Published var FilterSubSpecialistId                     :[Int]?
+    @Published var FilterSeniortyLevelId                     :Int? = 0
+    @Published var FilterSubSpecialistId                     :[Int]? = []
     
     
     
@@ -116,7 +116,7 @@ class VMSearchDoc: ObservableObject {
         // required
             "MaxResultCount": MaxResultCount ,
             "SkipCount":SkipCount,
-            "SpecialistId":SpecialistId ,
+            "SpecialistId":FilterSpecialistId == 0 ? SpecialistId:FilterSpecialistId ?? true ,
             "MedicalExaminationTypeId":MedicalExaminationTypeId
     ]
         // optional
@@ -126,7 +126,6 @@ class VMSearchDoc: ObservableObject {
         
         if FilterCityId != 0{
             Parameters["CityId"] = FilterCityId
-
         }else if CityId != 0{
             Parameters["CityId"] = CityId
         }
@@ -207,7 +206,6 @@ class VMSearchDoc: ObservableObject {
         
         if FilterCityId != 0{
             Parameters["CityId"] = FilterCityId
-
         }else if CityId != 0{
             Parameters["CityId"] = CityId
         }
