@@ -23,7 +23,7 @@ struct ModelExaminationTypeId : Codable {
 }
 
 // MARK: - DataClass
-struct ExaminationType: Codable,Identifiable {
+struct ExaminationType: Codable,Identifiable, Hashable {
     
     let id: Int?
     let Name,image: String?

@@ -163,6 +163,8 @@ class VMSearchDoc: ObservableObject {
         
         
         if Helper.isConnectedToNetwork(){
+            print(Parameters)
+
             APISearchDoc.SearchDoctors(parameters: Parameters,
         completion:  { (success, model, err) in
             
@@ -202,27 +204,46 @@ class VMSearchDoc: ObservableObject {
         if DoctorName != ""{
             Parameters["DoctorName"] = DoctorName
         }
-        if CityId != 0{
+        
+        if FilterCityId != 0{
+            Parameters["CityId"] = FilterCityId
+
+        }else if CityId != 0{
             Parameters["CityId"] = CityId
         }
-        if AreaId != 0{
+        
+        if FilterAreaId != 0{
+            Parameters["AreaId"] = FilterAreaId
+        }else  if AreaId != 0{
             Parameters["AreaId"] = AreaId
         }
-        if Fees != ""{
+        
+        if FilterFees != ""{
+            Parameters["Fees"] = Double( FilterFees )
+        }else if Fees != ""{
             Parameters["Fees"] = Double( Fees )
         }
-        if GenderId != 0{
+        
+        if FilterGenderId != 0{
+            Parameters["GenderId"] = FilterGenderId
+        }else if GenderId != 0{
             Parameters["GenderId"] = GenderId
         }
-        if SeniortyLevelId != 0{
+        
+        if FilterSeniortyLevelId != 0{
+            Parameters["SeniortyLevelId"] = FilterSeniortyLevelId
+        }else if SeniortyLevelId != 0{
             Parameters["SeniortyLevelId"] = SeniortyLevelId
         }
-        if SubSpecialistId != []{
+        
+        if FilterSubSpecialistId != []{
+            Parameters["SubSpecialistId"] = FilterSubSpecialistId
+        }else if SubSpecialistId != []{
             Parameters["SubSpecialistId"] = SubSpecialistId
         }
         
-        
         if Helper.isConnectedToNetwork(){
+            print(Parameters)
             APISearchDoc.SearchDoctors(parameters: Parameters,
         completion:  { (success, model, err) in
             

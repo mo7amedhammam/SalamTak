@@ -151,8 +151,10 @@ struct ViewSearchDoc: View {
                         .frame( maxHeight: 2)
                         .foregroundColor(.black)
                         .onAppear(perform: {
+                            if searchDoc.publishedModelSearchDoc.count > 3{
                             searchDoc.SkipCount += searchDoc.MaxResultCount
                             searchDoc.FetchMoreDoctors()
+                            }
                         })
                     
                     
@@ -185,7 +187,6 @@ struct ViewSearchDoc: View {
                 Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
-                        
             
             if showFilter {
                 switch FilterTag{
@@ -828,13 +829,14 @@ struct ViewSearchDoc: View {
                 }
             }
             
-            
         }
         .onAppear(perform: {
             searchDoc.MaxResultCount = 10
             index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId
+            searchDoc.CityId = CityId
+            searchDoc.AreaId = AreaId
             getAllDoctors()
             
         })
@@ -843,7 +845,6 @@ struct ViewSearchDoc: View {
             searchDoc.MedicalExaminationTypeId = newval
             searchDoc.publishedModelSearchDoc.removeAll()
             getAllDoctors()
-            
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

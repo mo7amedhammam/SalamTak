@@ -64,7 +64,7 @@ struct ServicesView: View {
                         }
                         
                         LazyVGrid(columns: vGridLayout){
-                            ForEach(medicalType.publishedModelExaminationTypeId) { exType in
+                            ForEach(medicalType.publishedModelExaminationTypeId, id:\.self) { exType in
                                 
                                 ZStack {
                                     Button(action: {

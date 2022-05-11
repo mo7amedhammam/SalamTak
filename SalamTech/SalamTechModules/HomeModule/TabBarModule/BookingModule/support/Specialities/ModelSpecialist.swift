@@ -26,7 +26,7 @@ struct ModelSpecialist: Codable {
 }
 
 // MARK: - Datum
-struct Speciality: Codable ,Identifiable {
+struct Speciality: Codable ,Identifiable, Hashable {
     let id: Int?
     let Name,image: String?
     let Inactive: Bool?
