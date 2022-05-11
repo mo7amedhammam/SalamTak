@@ -58,11 +58,11 @@ struct ViewSearchDoc: View {
     @State var selectedSubSpecLvlNames : [String] = []
     @State var selectedSubSpecLvlIds : [Int] = []
 
-    @State var minFee:CGFloat  = 100
-    @State var maxFee:CGFloat  = 150
+    @State var minFee:CGFloat  = 0
+    @State var maxFee:CGFloat  = 0
 
-    @State var selectedFee :Double?
-    @State var floselectedFee :Float = 12
+//    @State var selectedFee :Double?
+    @State var selectedFee :Float = 0
 
     @State var selectedFilterCityName :String?
     @State var selectedFilterCityId :Int?
@@ -523,16 +523,16 @@ struct ViewSearchDoc: View {
 
                         VStack{
                         HStack{
-                            FeesFilterTextField(text: .constant("100"), title: "Minimum")
+                            FeesFilterTextField1(text: String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0), title: "Minimum")
                                 .frame(width:(UIScreen.main.bounds.width - 50)/2)
                                 .disabled(true)
-                            FeesFilterTextField1(text:  String(Int( Float(minFee) + floselectedFee)) , title: "Maximum")
+                            FeesFilterTextField1(text:  String(Int( Float(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + selectedFee)) , title: "Maximum")
                                 .frame(width:(UIScreen.main.bounds.width - 50)/2)
                                 .disabled(true)
                         }
 
 //                            SliderView(minFee: $minFee, maxFee: $maxFee, range: Int(maxFee-minFee), percentage: $floselectedFee)
-                            CustomView(percentage: $floselectedFee)
+                            CustomView(percentage: $selectedFee, range: Int( searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0) - Int(  0) )
 
                         }.padding()
                       
@@ -742,7 +742,7 @@ struct ViewSearchDoc: View {
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("From 50 to 100 EGP")
+                                        Text("From \(String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0)) to \(String( searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0)) EGP")
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -798,7 +798,7 @@ struct ViewSearchDoc: View {
                                 searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds
                                 searchDoc.FilterCityId = selectedFilterCityId
                                 searchDoc.FilterAreaId = selectedFilterAreaId
-                                searchDoc.FilterFees = String(Int( Float(minFee) + floselectedFee))
+                                searchDoc.FilterFees = selectedFee > 0 ?  Int(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + Int(selectedFee):0
                                
                                 getAllDoctors()
                                 showFilter.toggle()
@@ -838,6 +838,8 @@ struct ViewSearchDoc: View {
             searchDoc.AreaId = AreaId
             getAllDoctors()
             
+            self.minFee = CGFloat(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0)
+            self.maxFee = CGFloat(searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0)
         })
         .onChange(of: index){newval in
             self.ExTpe = newval

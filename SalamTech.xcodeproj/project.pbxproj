@@ -150,6 +150,8 @@
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
 		C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */; };
+		C8D93262282BD9C30089C520 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93261282BD9C30089C520 /* ApiService.swift */; };
+		C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */; };
 		C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */; };
 		C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */; };
 /* End PBXBuildFile section */
@@ -322,6 +324,8 @@
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
+		C8D93261282BD9C30089C520 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMinMaxFee.swift; sourceTree = "<group>"; };
 		C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-Sub.swift"; sourceTree = "<group>"; };
 		C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-subspecVM.swift"; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1134,9 +1138,19 @@
 			path = SearchDoctor;
 			sourceTree = "<group>";
 		};
+		C8D93260282BD98B0089C520 /* MinMaxFee */ = {
+			isa = PBXGroup;
+			children = (
+				C8D93261282BD9C30089C520 /* ApiService.swift */,
+				C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */,
+			);
+			path = MinMaxFee;
+			sourceTree = "<group>";
+		};
 		C8F970A9281ACD4C006630A7 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				C8D93260282BD98B0089C520 /* MinMaxFee */,
 				C8F970AD281ACFDD006630A7 /* ViewModel */,
 				C8F970AA281ACD6B006630A7 /* Model */,
 			);
@@ -1503,6 +1517,7 @@
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
 				C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */,
+				C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */,
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
 				C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
@@ -1516,6 +1531,7 @@
 				0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
+				C8D93262282BD9C30089C520 /* ApiService.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */,
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,

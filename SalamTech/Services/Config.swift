@@ -218,6 +218,9 @@ class URLs {
 
 //search Doctor
     var DoctorSearch = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/DoctorSearch"
+    var FilteredFees = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/FilteredFees"
+
+    
     
     //search Doctor
         var DoctorDetails = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/GetDoctorDetail"

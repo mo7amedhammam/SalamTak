@@ -15,7 +15,8 @@ class VMSearchDoc: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
     let ModelFetchDoctors = PassthroughSubject<ModelSearchDoc , Error>()
     let ModelFetchMoreDoctors = PassthroughSubject<ModelSearchDoc , Error>()
-    
+    let ModelFetchMinMaxFee = PassthroughSubject<ModelMinMaxFee , Error>()
+
     private var cancellables: Set<AnyCancellable> = []
     // ------- input
 
@@ -27,7 +28,7 @@ class VMSearchDoc: ObservableObject {
     @Published var CityId                                :Int? = 0
     @Published var AreaId                                :Int? = 0
     @Published var GenderId                              :Int? = 0
-    @Published var Fees                                   :String = ""
+    @Published var Fees                                   :Int? = 0
     @Published var SeniortyLevelId                      :Int? = 0
     @Published var SubSpecialistId                      :[Int]? = []
     
@@ -36,7 +37,7 @@ class VMSearchDoc: ObservableObject {
     @Published var FilterCityId                               :Int? = 0
     @Published var FilterAreaId                               :Int? = 0
     @Published var FilterGenderId                             :Int? = 0
-    @Published var FilterFees                                  :String = ""
+    @Published var FilterFees                                  :Int? = 0
     @Published var FilterSeniortyLevelId                     :Int? = 0
     @Published var FilterSubSpecialistId                     :[Int]? = []
     
@@ -49,6 +50,8 @@ class VMSearchDoc: ObservableObject {
 //    @Published var publishedModelSearchDoc: [Doc]
     
     @Published var publishedModelSearchDoc: [Doc] = [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
+    
+    @Published var publishedModelMinMaxFee : MinMaxFee?
 
 
 
@@ -61,7 +64,7 @@ class VMSearchDoc: ObservableObject {
 
     
     init() {
-   
+   GetMinMaxFees()
         
         ModelFetchDoctors.sink { (completion) in
             //            print(completion)
@@ -81,13 +84,13 @@ class VMSearchDoc: ObservableObject {
         }.store(in: &cancellables)
     
         
-//        ModelSchedualByServiseDayId.sink { (completion) in
-//            //            print(completion)
-//        } receiveValue: { (modeldata) in
-//            self.publishedModelSchedualByServiseDayId = modeldata.data ?? []
-//
-//        }.store(in: &cancellables)
-//
+        ModelFetchMinMaxFee.sink { (completion) in
+            //            print(completion)
+        } receiveValue: { (modeldata) in
+            self.publishedModelMinMaxFee = modeldata.data ?? MinMaxFee.init(MinimumFees: 0, MaximumFees: 0)
+
+        }.store(in: &cancellables)
+
 //
 //
 //        ModelCreatedSchedual.sink { (completion) in
@@ -136,10 +139,10 @@ class VMSearchDoc: ObservableObject {
             Parameters["AreaId"] = AreaId
         }
         
-        if FilterFees != ""{
-            Parameters["Fees"] = Double( FilterFees )
-        }else if Fees != ""{
-            Parameters["Fees"] = Double( Fees )
+        if FilterFees != 0{
+            Parameters["Fees"] = FilterFees
+        }else if Fees != 0{
+            Parameters["Fees"] = Fees
         }
         
         if FilterGenderId != 0{
@@ -216,10 +219,10 @@ class VMSearchDoc: ObservableObject {
             Parameters["AreaId"] = AreaId
         }
         
-        if FilterFees != ""{
-            Parameters["Fees"] = Double( FilterFees )
-        }else if Fees != ""{
-            Parameters["Fees"] = Double( Fees )
+        if FilterFees != 0{
+            Parameters["Fees"] =  FilterFees
+        }else if Fees != 0{
+            Parameters["Fees"] = Fees
         }
         
         if FilterGenderId != 0{
@@ -270,36 +273,35 @@ class VMSearchDoc: ObservableObject {
     }
 
     
-//    func GetClinicSchedualserviceDayId() {
-//
-//        if Helper.isConnectedToNetwork(){
-//            GetDocSchedualByServIdApiServise.GetDocSchedualByServDayId(serviceId: serviceId ?? 0,DayId: DayId ?? 0,
-//        completion:  { (success, model, err) in
-//               self.isLoading = true
-//            if success{
-//                DispatchQueue.main.async {
-//                    self.ModelSchedualByServiseDayId.send(model!)
-//                    self.isLoading = false
-//                    self.isDone = true
-//                    print(model!)
-//                }
-//            }else{
-//                self.isLoading = false
-//                self.isError = true
-//                print(model?.message ?? "")
-//
-//
-//                self.errorMsg = err ?? "cannot get serviseby day id "
-//            }
-//        })
-//            self.isLoading = false
-//
-//        }else{
-//                   // Alert with no internet connection
-//            self.isLoading = false
-//          isNetworkError = true
-//               }
-//    }
+    func GetMinMaxFees(){
+
+        if Helper.isConnectedToNetwork(){
+            APIGetMinMaxFee.GetMinMaxFee(completion:  { (success, model, err) in
+               self.isLoading = true
+            if success{
+                DispatchQueue.main.async {
+                    self.ModelFetchMinMaxFee.send(model!)
+                    self.isLoading = false
+                    self.isDone = true
+                    print(model!)
+                }
+            }else{
+                self.isLoading = false
+                self.isError = true
+                print(model?.message ?? "")
+
+
+                self.errorMsg = err ?? "cannot get serviseby day id "
+            }
+        })
+            self.isLoading = false
+
+        }else{
+                   // Alert with no internet connection
+            self.isLoading = false
+          isNetworkError = true
+               }
+    }
 
 //    func startCreatingSchedualByServDayId(){
 //        self.isLoading = true

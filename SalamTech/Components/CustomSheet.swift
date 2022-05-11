@@ -224,7 +224,7 @@ struct SliderView_Previews: PreviewProvider {
 struct CustomView: View {
 
     @Binding var percentage: Float // or some value binded
-    let range = 50
+    var range:Int = 50
 
     var body: some View {
         VStack {
