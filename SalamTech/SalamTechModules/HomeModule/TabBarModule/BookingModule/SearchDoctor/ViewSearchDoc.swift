@@ -71,13 +71,7 @@ struct ViewSearchDoc: View {
     @State var selectedFilterAreaName :String?
     @State var selectedFilterAreaId :Int?
     @State var AreabuttonSelected: Int?
-    
-    func getAllDoctors(){
-        searchDoc.DoctorName = searchTxt
-        searchDoc.SkipCount = 0
-        searchDoc.FetchDoctors()
-    }
-    
+  
     var body: some View {
         ZStack{
             VStack{
@@ -765,21 +759,8 @@ struct ViewSearchDoc: View {
                             Button( action: {
                                 
                                 print("Reset and Hide")
-                                
-                                selectedSeniorityLvlId = 0
-                                selectedSpecLvlId = 0
-                                selectedSubSpecLvlIds = []
-                                selectedFilterCityId = 0
-                                selectedFilterAreaId = 0
-                                selectedFee  = 0
-                                selectedSeniorityLvlId = 0
-                                selectedSpecLvlId = 0
-                                selectedSubSpecLvlIds = []
-                                selectedFilterCityId = 0
-                                selectedFilterAreaId = 0
-                                selectedFee = 0
-                                getAllDoctors()
-                                
+                                resetFilter()
+                                showFilter.toggle()
                             }, label: {
                                 Text("Reset")
                                     .font(.system(size: 15))
@@ -793,14 +774,7 @@ struct ViewSearchDoc: View {
                                 // add review
                                 print("Apply Filter and Hide")
                                 
-                                searchDoc.FilterSeniortyLevelId = selectedSeniorityLvlId
-                                searchDoc.FilterSpecialistId = selectedSpecLvlId ?? 115151
-                                searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds
-                                searchDoc.FilterCityId = selectedFilterCityId
-                                searchDoc.FilterAreaId = selectedFilterAreaId
-                                searchDoc.FilterFees = selectedFee > 0 ?  Int(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + Int(selectedFee):0
-                               
-                                getAllDoctors()
+                               applyFilter()
                                 showFilter.toggle()
                             }, label: {
                                 HStack {
@@ -868,6 +842,40 @@ struct ViewSearchDoc: View {
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
         }
         
+    }
+    
+    
+    
+    //MARK: --- Functions ----
+    func getAllDoctors(){
+        searchDoc.DoctorName = searchTxt
+        searchDoc.SkipCount = 0
+        searchDoc.FetchDoctors()
+    }
+    
+    func applyFilter(){
+        searchDoc.FilterSeniortyLevelId = selectedSeniorityLvlId
+        searchDoc.FilterSpecialistId = selectedSpecLvlId ?? 115151
+        searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds
+        searchDoc.FilterCityId = selectedFilterCityId
+        searchDoc.FilterAreaId = selectedFilterAreaId
+        searchDoc.FilterFees = selectedFee > 0 ?  Int(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + Int(selectedFee):0
+        getAllDoctors()
+    }
+    
+    func resetFilter(){
+        selectedSeniorityLvlId = 0
+        selectedSpecLvlId = 0
+        selectedSubSpecLvlIds = []
+        selectedFilterCityId = 0
+        selectedFilterAreaId = 0
+        selectedFee  = 0
+        selectedSeniorityLvlId = 0
+        selectedSpecLvlId = 0
+        selectedSubSpecLvlIds = []
+        selectedFilterCityId = 0
+        selectedFilterAreaId = 0
+        getAllDoctors()
     }
     
 }

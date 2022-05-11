@@ -152,6 +152,10 @@
 		C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */; };
 		C8D93262282BD9C30089C520 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93261282BD9C30089C520 /* ApiService.swift */; };
 		C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */; };
+		C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93266282C28A30089C520 /* ReviewsView.swift */; };
+		C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93268282C28BC0089C520 /* ReviewsVM.swift */; };
+		C8D9326B282C28D40089C520 /* ReviewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326A282C28D40089C520 /* ReviewsApi.swift */; };
+		C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */; };
 		C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */; };
 		C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */; };
 /* End PBXBuildFile section */
@@ -326,6 +330,10 @@
 		C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
 		C8D93261282BD9C30089C520 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMinMaxFee.swift; sourceTree = "<group>"; };
+		C8D93266282C28A30089C520 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
+		C8D93268282C28BC0089C520 /* ReviewsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVM.swift; sourceTree = "<group>"; };
+		C8D9326A282C28D40089C520 /* ReviewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsApi.swift; sourceTree = "<group>"; };
+		C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
 		C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-Sub.swift"; sourceTree = "<group>"; };
 		C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-subspecVM.swift"; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1118,6 +1126,7 @@
 		C860837F2804529C001A0C39 /* DoctorDetails */ = {
 			isa = PBXGroup;
 			children = (
+				C8D93265282C28470089C520 /* AllDocReviews */,
 				C860838028045318001A0C39 /* ViewDocDetails.swift */,
 				C826D93A280D906A0072754B /* ModelDocDetails.swift */,
 				C826D93C280D90950072754B /* ViewModelDocDetails.swift */,
@@ -1145,6 +1154,17 @@
 				C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */,
 			);
 			path = MinMaxFee;
+			sourceTree = "<group>";
+		};
+		C8D93265282C28470089C520 /* AllDocReviews */ = {
+			isa = PBXGroup;
+			children = (
+				C8D93266282C28A30089C520 /* ReviewsView.swift */,
+				C8D93268282C28BC0089C520 /* ReviewsVM.swift */,
+				C8D9326A282C28D40089C520 /* ReviewsApi.swift */,
+				C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */,
+			);
+			path = AllDocReviews;
 			sourceTree = "<group>";
 		};
 		C8F970A9281ACD4C006630A7 /* Filter */ = {
@@ -1484,6 +1504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */,
 				0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */,
 				0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
@@ -1529,11 +1550,13 @@
 				0E9E0DB627FAF26B00893ABF /* LocationViewModel.swift in Sources */,
 				0E26EA6E27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift in Sources */,
 				0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */,
+				C8D9326B282C28D40089C520 /* ReviewsApi.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				C8D93262282BD9C30089C520 /* ApiService.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */,
+				C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */,
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,
 				0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */,
 				0E62C54A27FC603000655D1A /* ChooseMedicineAllergy.swift in Sources */,
@@ -1583,6 +1606,7 @@
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */,
 				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
+				C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
 				C814EA602816D19D00D7730E /* VMCreateAppointment.swift in Sources */,
 				C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */,
