@@ -22,7 +22,7 @@ struct ReviewsModel : Codable {
 }
 
 // MARK: - DataClass
-struct DocReview: Codable{
+struct DocReview: Codable,Identifiable, Hashable{
     var id:Int?
     
     var DoctorInfo : String?

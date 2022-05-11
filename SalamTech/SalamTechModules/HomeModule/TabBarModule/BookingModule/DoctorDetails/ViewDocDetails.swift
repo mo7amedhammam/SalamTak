@@ -16,6 +16,8 @@ struct ViewDocDetails:View{
    @State var showQuickLogin = false
 //    @StateObject var DocDetails = ViewModelDocDetails()
     @State var GotoSummary = false
+    @State var GotoReviews = false
+
     @Binding var ExType :Int
     
     //Calendar
@@ -38,7 +40,7 @@ struct ViewDocDetails:View{
                     ScrollView {
                         ViewDocMainInfo(Doctor: Doctor)
                         ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
-                        ViewDocReviews( Doctor: Doctor)
+                        ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews)
 
                         Spacer()
                     }
@@ -124,7 +126,11 @@ struct ViewDocDetails:View{
      // go to clinic info
         NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $selectedDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
              }
-        
+
+        // go to clinic info
+        NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
+                }
+
 //     .navigationBarHidden(true)
 //     .navigationBarBackButtonHidden(true)
 
@@ -601,18 +607,27 @@ struct ViewAboutDoctor: View {
 struct ViewDocReviews: View {
     @State var hei: CGFloat = 180
     var Doctor:Doc
+    @Binding var GotoReviews : Bool
     var body: some View {
         VStack{
             HStack{
                 Text("Reviews")
                 Spacer()
-                Text("View all \(Doctor.DoctorRate?.count ?? 0) reviews")
-                    .foregroundColor(Color("darkGreen"))
-                Image( systemName: "chevron.forward")
-                //                                        .resizable()
-                    .foregroundColor(Color("darkGreen"))
-                //                                        .frame(width: 20, height: 20)
-                    .padding(.trailing)
+                Button(action: {
+                    GotoReviews = true
+                }, label: {
+                  
+                    HStack{
+                        Text("View all \(Doctor.DoctorRate?.count ?? 0) reviews")
+                            .foregroundColor(Color("darkGreen"))
+                        Image( systemName: "chevron.forward")
+                        //                                        .resizable()
+                            .foregroundColor(Color("darkGreen"))
+                        //                                        .frame(width: 20, height: 20)
+                            .padding(.trailing)
+
+                    }
+                })
                 
                 
             }.frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
