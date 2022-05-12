@@ -140,7 +140,7 @@ struct ViewSummary:View{
                                     Text("Patient Name :")
                                         .foregroundColor(Color("darkGreen"))
                                         .font(Font.SalamtechFonts.Reg14)
-                                        Text(  Doctor.ClinicName ?? "Mostafa Morsy")
+                                    Text(  Helper.getpatientName() )
                                         .foregroundColor(.secondary)
                                         .font(Font.SalamtechFonts.Reg14)
                                     

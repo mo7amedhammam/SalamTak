@@ -38,7 +38,22 @@ struct ViewLogin: View {
             ZStack {
              
                 VStack {
-                    AppBarView(Title: "SignIn_Screen_title".localized(language))
+                    ZStack {
+                        
+                        AppBarView(Title: "SignIn_Screen_title".localized(language))
+                        HStack{
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+
+                            }, label: {
+                            Image("chevron.down.circle.fill")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .frame(width: 25, height: 25)
+                            })
+Spacer()
+                        }
+                    }
 //                        .navigationBarItems(leading: BackButtonView())
 //                        .navigationBarBackButtonHidden(true)
                     Spacer()
@@ -88,11 +103,7 @@ struct ViewLogin: View {
                             .textInputAutocapitalization(.never)
                             .focused($isfocused)
                     }
-
-                   
-                            
-
-                
+      
                     Button("SignIn_Screen_forgetPassword".localized(language), action: {
                             print("password reset")
                             self.resetPassword.toggle()
@@ -148,10 +159,21 @@ struct ViewLogin: View {
                     }
                 }
             }
+            
+            //Quick Login
+            .onChange(of: LoginVM.isLogedin){newval in
+                if newval==true{
+                    self.ispresented=false
+                }
+            }
+            
+            
+            
         }
         .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
 
+            
         
 //            .sheet(isPresented: $dontHaveAccount,onDismiss: {
 //                print("dismiss")

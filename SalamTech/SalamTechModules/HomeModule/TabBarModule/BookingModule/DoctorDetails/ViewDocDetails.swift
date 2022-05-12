@@ -28,7 +28,10 @@ struct ViewDocDetails:View{
     @State var selectedSchedualId = 0
     @State var selectedTime = ""
 
-    
+    @State var LoginOrReservation = 0
+    @State var presentLogin = false
+    @State var presentReservation = false
+
     
     var body: some View{
                     ZStack {
@@ -54,7 +57,8 @@ struct ViewDocDetails:View{
                     Button(action: {
                         // add review
                         if Helper.userExist(){
-                            GotoSummary = true
+//                            GotoSummary = true
+                            showQuickLogin =  true
                         }else{
                         showQuickLogin =  true
                         }
@@ -78,20 +82,29 @@ struct ViewDocDetails:View{
                     }.background(.clear
                     )
                         .shadow(color: .gray, radius: 9)
+                  
                     
                 }
                 .blur(radius: ShowCalendar||showQuickLogin ? 9:0)
                 .disabled(ShowCalendar)
                 .background(Color("CLVBG"))
-                        if showQuickLogin{
-                        quickLoginSheet(IsPresented: $showQuickLogin, width: UIScreen.main.bounds.width)
+                        if showQuickLogin == true{
+                            quickLoginSheet(IsPresented: $showQuickLogin, QuickLogin: $presentLogin,QuickReservation: $presentReservation  , width: UIScreen.main.bounds.width)
                         }
+                        
+//                        if LoginOrReservation == 1 {
+//                            presentLogin = true
 
-                        if ShowCalendar {
+//                        } else if LoginOrReservation == 2 {
+//                            presentReservation = true
+//                        }
+
+                        if ShowCalendar == true{
                         ZStack{
                             calendarPopUp(selectedDate: $selectedDate, isPresented: $ShowCalendar)
                         }
                         }
+                      
 
                     }
             .edgesIgnoringSafeArea(.top)
@@ -131,18 +144,22 @@ struct ViewDocDetails:View{
         NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
                 }
 
-//     .navigationBarHidden(true)
-//     .navigationBarBackButtonHidden(true)
-
+        .fullScreenCover(isPresented: $presentLogin,
+                         onDismiss:{
+            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                if Helper.userExist(){
+                GotoSummary = true
+                }
+            })
+        }
+        ){
+            ViewLogin( ispresented: $presentLogin)
+        }
 
         
         
     }
-    
-    
-
-
-    
+   
 }
 
 struct ViewDocDetails_Previews: PreviewProvider {
@@ -752,6 +769,9 @@ struct quickLoginSheet : View {
     
     var language = LocalizationService.shared.language
     @Binding var IsPresented: Bool
+    @Binding var QuickLogin : Bool
+    @Binding var QuickReservation : Bool
+
     var width: CGFloat
     
     var body: some View {
@@ -775,13 +795,14 @@ struct quickLoginSheet : View {
                             ButtonView(text:"Sign in", action: {
                                 withAnimation(.easeIn(duration: 0.3)) {
                                     IsPresented =  false
+                                    QuickLogin = true
                                 }
                             })
                         
                         ButtonView(text: "Quick Reservation", backgroundColor: .white){
                             // action
                             IsPresented =  false
-
+                            QuickReservation = true
                         }
                             .border(Color("mainColor"), width: 2)
                             .cornerRadius(4)
