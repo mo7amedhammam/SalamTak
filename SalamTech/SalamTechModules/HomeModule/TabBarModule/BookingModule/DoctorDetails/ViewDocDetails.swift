@@ -144,9 +144,9 @@ struct ViewDocDetails:View{
         NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
                 }
 
-        .fullScreenCover(isPresented: $presentLogin,
+        .sheet(isPresented: $presentLogin,
                          onDismiss:{
-            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                 if Helper.userExist(){
                 GotoSummary = true
                 }

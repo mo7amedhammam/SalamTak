@@ -38,24 +38,10 @@ struct ViewLogin: View {
             ZStack {
              
                 VStack {
-                    ZStack {
-                        
-                        AppBarView(Title: "SignIn_Screen_title".localized(language))
-                        HStack{
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-
-                            }, label: {
-                            Image("chevron.down.circle.fill")
-                                    .resizable()
-                                    .foregroundColor(.white)
-                                    .frame(width: 25, height: 25)
-                            })
-Spacer()
-                        }
-                    }
+                    AppBarView(Title: "SignIn_Screen_title".localized(language))
 //                        .navigationBarItems(leading: BackButtonView())
-//                        .navigationBarBackButtonHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarHidden(true)
                     Spacer()
 
                     Image("logoWelcome")
@@ -103,7 +89,8 @@ Spacer()
                             .textInputAutocapitalization(.never)
                             .focused($isfocused)
                     }
-      
+            
+                    if ispresented == false{
                     Button("SignIn_Screen_forgetPassword".localized(language), action: {
                             print("password reset")
                             self.resetPassword.toggle()
@@ -112,8 +99,11 @@ Spacer()
                             
                         }).frame( height: 45)
                             .foregroundColor(Color("darkGreen"))
-                        Spacer()
+                    }
                         
+                        
+                        Spacer()
+                    
                      
                     ButtonView(text: "SignIn_Button".localized(language),backgroundColor:  LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("mainColor") :                                 Color(uiColor: .lightGray) , action: {
 //                                               LoginVM.isLoading = true
@@ -121,6 +111,7 @@ Spacer()
 
                     }).disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "")
 
+                    if ispresented == false{
                         HStack {
                             Text("SignIn_Screen_dont_haveAccount".localized(language)).foregroundColor(Color("subTitle"))
                             
@@ -135,9 +126,10 @@ Spacer()
                             .font(.system(size: 13, weight: .bold))
                             .foregroundColor(Color("mainColor"))
                                 
-                        }.padding(.bottom,25)
-                        
+                        }
+                        }
     
+                    Spacer().frame(height:25)
                     }
                 .adaptsToKeyboard()
                   
@@ -166,12 +158,25 @@ Spacer()
                     self.ispresented=false
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+
+                    }, label: {
+                    Image("chevron.down.circle.fill")
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width: 25, height: 25)
+                    })
+                }
+            }
             
             
             
         }
-        .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+//        .navigationBarHidden(true)
+//            .navigationBarBackButtonHidden(true)
 
             
         
