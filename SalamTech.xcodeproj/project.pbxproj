@@ -156,6 +156,7 @@
 		C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93268282C28BC0089C520 /* ReviewsVM.swift */; };
 		C8D9326B282C28D40089C520 /* ReviewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326A282C28D40089C520 /* ReviewsApi.swift */; };
 		C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */; };
+		C8E28158282FF09D00BDF6F7 /* BottomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */; };
 		C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */; };
 		C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */; };
 /* End PBXBuildFile section */
@@ -334,6 +335,7 @@
 		C8D93268282C28BC0089C520 /* ReviewsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVM.swift; sourceTree = "<group>"; };
 		C8D9326A282C28D40089C520 /* ReviewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsApi.swift; sourceTree = "<group>"; };
 		C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
+		C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopupView.swift; sourceTree = "<group>"; };
 		C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-Sub.swift"; sourceTree = "<group>"; };
 		C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-subspecVM.swift"; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -501,6 +503,7 @@
 				C861C12B2805C38400211018 /* CalendarHelper.swift */,
 				C82AFF35280C675C00B1B953 /* CustomSheet.swift */,
 				C8A91A1728141D6D002437EC /* FSCalendarView.swift */,
+				C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1636,6 +1639,7 @@
 				0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */,
 				C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */,
 				C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */,
+				C8E28158282FF09D00BDF6F7 /* BottomPopupView.swift in Sources */,
 				C800F83327FB585B00482151 /* ViewModelExaminationTypeId.swift in Sources */,
 				C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */,
 				C800F83027FB585B00482151 /* ViewModelSpecialist.swift in Sources */,

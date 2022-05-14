@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Kingfisher
+//import XCTest
 
 struct ViewSummary:View{
     var Doctor:Doc
@@ -19,6 +20,8 @@ struct ViewSummary:View{
     @Binding var BookiDate :Date
     @Binding var BookiTime :String
     
+    @State var GotoSchedual = false
+
     
 
     var body: some View{
@@ -306,8 +309,7 @@ struct ViewSummary:View{
 
             // showing loading indicator
             ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
-
-                    
+              
         }
         .background(Color.red)
             .edgesIgnoringSafeArea(.vertical)
@@ -319,7 +321,58 @@ struct ViewSummary:View{
                 CreateAppointment.AppointmentDate = "\(Filterdatef.string(from: BookiDate))T\(BookiTime)"
                 CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
             })
+       
         
+            .popup(isPresented: .constant(true)){
+//                    .popup(isPresented: $CreateAppointment.isDone){
+                BottomPopupView{
+                    ZStack{
+                        VStack{
+                            Image("Awsome")
+                                .resizable()
+                                .frame(width: 100, height: 55 , alignment: .center)
+                                .padding(.top)
+                            
+                        Text("Confirmed!")
+                                .foregroundColor(Color("blueColor"))
+                                .font(.system(size: 24, weight: .bold))
+                                .padding()
+
+                    Text("Your appointment is\nFeb. 2022  (08:00 PM)")
+                                .font(.system(size: 18))
+                                .multilineTextAlignment(.center)
+//                                .padding()
+                                .foregroundColor(Color("subText"))
+                            
+                        Button(action: {
+                            // Goto my scheduals
+                            GotoSchedual = true
+                        }, label: {
+                            HStack {
+                                Text("My schedule")
+                                    .fontWeight(.semibold)
+                                    .font(.title2)
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color("blueColor"))
+                            .cornerRadius(12)
+                            .padding(.horizontal, 20)
+                        })
+                    }
+                    
+                    }
+                    .padding()
+                    .background(.white)
+                    .cornerRadius(12)
+
+                    Spacer()
+                }
+                .shadow(color: .black.opacity(0.3), radius: 12)
+                .padding()
+            }
+
       
         
 //     }
