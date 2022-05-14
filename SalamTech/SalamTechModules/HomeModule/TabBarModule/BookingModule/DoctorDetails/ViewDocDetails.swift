@@ -155,7 +155,17 @@ struct ViewDocDetails:View{
         ){
             ViewLogin( ispresented: $presentLogin)
         }
-
+        .sheet(isPresented: $presentReservation,
+                         onDismiss:{
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                if Helper.userExist(){
+                GotoSummary = true
+                }
+            })
+        }
+        ){
+                ViewSignUp(ispresented: $presentReservation)
+        }
         
         
     }

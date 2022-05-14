@@ -74,6 +74,7 @@ struct ViewSignUp: View {
                                         .frame(maxWidth:.infinity, alignment: .leading)
                                 }
 
+                                if ispresented == false{
                                 SecureInputView("SignUp_Screen_enterPassword".localized(language), text: $RegisterVM.password)
                                     .focused($isfocused)
                                     .textInputAutocapitalization(.never)
@@ -81,7 +82,9 @@ struct ViewSignUp: View {
                                 SecureInputView("SignUp_Screen_enterconfirmPassword".localized(language), text: $RegisterVM.password1)
                                     .focused($isfocused)
                                     .textInputAutocapitalization(.never)
+                                }
                             } else if language.rawValue == "ar" {
+                                
                                 InputTextFieldArabic( text: $RegisterVM.fullName,title: "SignUp_Screen_enterfullName".localized(language))
                                     .keyboardType(.namePhonePad)
                                     .textInputAutocapitalization(.never)
@@ -94,6 +97,7 @@ struct ViewSignUp: View {
                                         .frame(maxWidth:.infinity, alignment: .leading)
                                 }
                                 
+                            
                                 InputTextFieldArabic( text: $RegisterVM.email,title: "SignUp_Screen_enterEmail".localized(language))
                                     .keyboardType(.emailAddress)
                                     .textInputAutocapitalization(.never)
@@ -120,6 +124,7 @@ struct ViewSignUp: View {
                                         .frame(maxWidth:.infinity, alignment: .leading)
                                 }
 
+                                if ispresented == false{
                                 SecureInputArabicView("SignUp_Screen_enterPassword".localized(language), text: $RegisterVM.password)
                                     .focused($isfocused)
                                     .textInputAutocapitalization(.never)
@@ -127,6 +132,7 @@ struct ViewSignUp: View {
                                 SecureInputArabicView("SignUp_Screen_enterconfirmPassword".localized(language), text: $RegisterVM.password1)
                                     .focused($isfocused)
                                     .textInputAutocapitalization(.never)
+                                }
                             }
                            
                            
@@ -140,11 +146,12 @@ struct ViewSignUp: View {
                    
 
                         Spacer()
-                        ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
+                        ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && (( RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password ) || ispresented == true) && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
 //                            RegisterVM.isLoading = true
                             RegisterVM.startFetchUserRegisteration(fullname: RegisterVM.fullName, email: RegisterVM.email, phone: RegisterVM.phoneNumber, password: RegisterVM.password)
-                        }.disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
+                        }.disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || (( RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  ) && ispresented == false ) || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
                     
+                        if ispresented == false{
                         HStack (spacing: -10){
                             Text("SignUp_Screen_haveAccount".localized(language))
                                 .padding()
@@ -166,8 +173,9 @@ struct ViewSignUp: View {
 
                             .font(.system(size: 13, weight: .bold))
                             .foregroundColor(Color("mainColor"))
-                        }.padding(.bottom,25)
-                    
+                        }
+                        }
+                        Spacer().frame(height:25)
                     }
 
                 }
@@ -185,6 +193,13 @@ struct ViewSignUp: View {
                 .onTapGesture(perform: {
                     hideKeyboard()
                 })
+        
+        //Quick Login
+                .onChange(of: RegisterVM.isRegistered ){newval in
+            if newval==true{
+                self.ispresented=false
+            }
+        }
                 .toolbar{
                     ToolbarItemGroup(placement: .keyboard ){
                         Spacer()
