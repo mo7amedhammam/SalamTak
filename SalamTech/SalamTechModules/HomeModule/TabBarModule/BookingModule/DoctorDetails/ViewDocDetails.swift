@@ -91,13 +91,6 @@ struct ViewDocDetails:View{
                         if showQuickLogin == true{
                             quickLoginSheet(IsPresented: $showQuickLogin, QuickLogin: $presentLogin,QuickReservation: $presentReservation  , width: UIScreen.main.bounds.width)
                         }
-                        
-//                        if LoginOrReservation == 1 {
-//                            presentLogin = true
-
-//                        } else if LoginOrReservation == 2 {
-//                            presentReservation = true
-//                        }
 
                         if ShowCalendar == true{
                         ZStack{
@@ -180,8 +173,7 @@ struct ViewDocDetails_Previews: PreviewProvider {
     }
 }
 
-func setWeekView()
-{
+func setWeekView(){
 //        totalSquares.removeAll()
     
     var current = CalendarHelper().sundayForDate(date: selectedDate)

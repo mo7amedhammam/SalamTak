@@ -32,7 +32,7 @@ struct ViewSummary:View{
                 VStack{
                     VStack{
                         AppBarView(Title: "Summary")
-                            .navigationBarItems(leading: BackButtonView())
+//                            .navigationBarItems(leading: BackButtonView())
                             .navigationBarBackButtonHidden(true)
                         Spacer()
                     }
@@ -322,9 +322,17 @@ struct ViewSummary:View{
                 CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
             })
        
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if self.CreateAppointment.isDone == false{
+                        BackButtonView()
+                    }
+                }
+            }
+
         
-            .popup(isPresented: .constant(true)){
-//                    .popup(isPresented: $CreateAppointment.isDone){
+//            .popup(isPresented: .constant(true)){
+                    .popup(isPresented: $CreateAppointment.isDone){
                 BottomPopupView{
                     ZStack{
                         VStack{
@@ -338,7 +346,7 @@ struct ViewSummary:View{
                                 .font(.system(size: 24, weight: .bold))
                                 .padding()
 
-                    Text("Your appointment is\nFeb. 2022  (08:00 PM)")
+                    Text("Your appointment is\n \(Filterdatef.string(from: BookiDate)) (\(BookiTime)) )")
                                 .font(.system(size: 18))
                                 .multilineTextAlignment(.center)
 //                                .padding()
