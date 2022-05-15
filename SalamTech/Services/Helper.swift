@@ -230,7 +230,15 @@ public var Filterdatef:DateFormatter{
     df.locale = Locale(identifier: "en_US_POSIX")
     return df
 }
+public var summarydatef:DateFormatter{
+    let df = DateFormatter()
+//    df.dateFormat = "yyyy/MM/dd"
+    df.dateFormat = "dd  MMM. yyyy"
+//    df.dateFormat = "MM/dd/yyyy"
 
+    df.locale = Locale(identifier: "en_US_POSIX")
+    return df
+}
 
 func TimeStringToDate(time: String) -> Date {
     var newdate = Date()

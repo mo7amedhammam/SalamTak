@@ -69,7 +69,7 @@ struct ViewSummary:View{
                                         Text("Booking Date & Time :")
                                             .foregroundColor(Color("darkGreen"))
                                             .font(Font.SalamtechFonts.Reg14)
-                                        Text( String( "\(Filterdatef.string(from: BookiDate)) (\(BookiTime))" ))
+                                        Text( String( "\(summarydatef.string(from: BookiDate)) (\(BookiTime))" ))
                                             .foregroundColor(.secondary)
                                             .font(Font.SalamtechFonts.Reg14)
                                         
@@ -79,17 +79,18 @@ struct ViewSummary:View{
                                 }.padding(.leading)
                                     
                                             HStack{
-                                        Image(LogoType(MedicalExaminationTypeId: ExType))
+                                                Image(systemName: getEx(id: ExType).image ?? "")
                                             .resizable()
                                             .foregroundColor(Color("darkGreen"))
                                             .frame(width: 25, height: 25)
+                                            .aspectRatio( contentMode: .fit)
                                             .padding(.leading)
-                                                
+
                                                 VStack(alignment:.leading){
-                                        Text("Call Appointment :")
+                                        Text("\(getEx(id: ExType).name ?? "") Appointment :")
                                             .foregroundColor(Color("darkGreen"))
                                             .font(Font.SalamtechFonts.Reg14)
-                                            Text("Doctor will call you on time")
+                                            Text(getEx(id: ExType).Comment ?? "")
                                             .foregroundColor(.secondary)
                                             .font(Font.SalamtechFonts.Reg14)
                                         
@@ -316,7 +317,6 @@ struct ViewSummary:View{
         
             .onAppear(perform: {
                 CreateAppointment.PatientId = Helper.getUserID()
-            
                 CreateAppointment.DoctorWorkingDayTimeId = BookingscedualId
                 CreateAppointment.AppointmentDate = "\(Filterdatef.string(from: BookiDate))T\(BookiTime)"
                 CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
@@ -346,7 +346,7 @@ struct ViewSummary:View{
                                 .font(.system(size: 24, weight: .bold))
                                 .padding()
 
-                    Text("Your appointment is\n \(Filterdatef.string(from: BookiDate)) (\(BookiTime)) )")
+                    Text("Your appointment is\n \(summarydatef.string(from: BookiDate)) (\(BookiTime)) )")
                                 .font(.system(size: 18))
                                 .multilineTextAlignment(.center)
 //                                .padding()
@@ -403,7 +403,7 @@ struct ViewSummary:View{
 struct ViewSummary_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSummary(Doctor: Doc.init(), ExType: .constant(645454545),BookingscedualId :.constant(645454545),BookiDate :.constant(Date()),BookiTime :.constant("645454545"))
+            ViewSummary(Doctor: Doc.init(), ExType: .constant(5),BookingscedualId :.constant(645454545),BookiDate :.constant(Date()),BookiTime :.constant("18:33"))
         }.navigationBarHidden(true)
     }
 }

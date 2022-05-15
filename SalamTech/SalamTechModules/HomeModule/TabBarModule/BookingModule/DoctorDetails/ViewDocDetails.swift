@@ -168,7 +168,7 @@ struct ViewDocDetails:View{
 struct ViewDocDetails_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewDocDetails(Doctor: Doc.init(), ExType: .constant(15545454))
+            ViewDocDetails(Doctor: Doc.init(), ExType: .constant(2))
         }.navigationBarHidden(true)
     }
 }

@@ -21,8 +21,8 @@ class VMCreateAppointment: ObservableObject {
    
     // ------- input
 
-    @Published var PatientId                            :Int = 3305
-    @Published var DoctorWorkingDayTimeId              :Int = 2
+    @Published var PatientId                            :Int = 0
+    @Published var DoctorWorkingDayTimeId              :Int = 0
     @Published var AppointmentDate                       :String = ""
     @Published var Fees                      : Double = 0.0
     @Published var Comment                      : String = ""
