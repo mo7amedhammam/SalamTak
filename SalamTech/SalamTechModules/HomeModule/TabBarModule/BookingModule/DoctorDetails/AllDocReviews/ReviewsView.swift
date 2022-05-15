@@ -81,13 +81,9 @@ struct ReviewsView: View {
                                     .frame(height: 100)
                                 
                             }//V
-                            
-                            
-//
+
                             .background(Color.clear)
-                            //                            .frame( height: 140)
-                            //                            .cornerRadius(9)
-                            
+
                         }//Z
                         .frame(width: (UIScreen.main.bounds.width/1)-40)
                         //                        .offset(y:40)
