@@ -102,11 +102,11 @@ struct WelcomeScreenView: View {
             .navigationBarBackButtonHidden(true)
         
             // go to complete Certs after completing first view
-        NavigationLink(destination: ViewLogin(ispresented: .constant(false)),isActive: $isLogin , label: {
+        NavigationLink(destination: ViewLogin(ispresented: .constant(false), QuickLogin: .constant(false)),isActive: $isLogin , label: {
             })
 
             // go to complete Certs after completing first view
-        NavigationLink(destination: ViewSignUp(ispresented: .constant(false)),isActive: $isSignup , label: {
+        NavigationLink(destination: ViewSignUp(ispresented: .constant(false), quickSignup: .constant(false)),isActive: $isSignup , label: {
             })
         
 

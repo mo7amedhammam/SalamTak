@@ -258,7 +258,7 @@ struct MoreView: View {
                                     .foregroundColor(Color("darkGreen"))
                                     .frame(width: 30, height: 30)
                                 
-                                Text("More_Screen_SignOut".localized(language))
+                                Text( Helper.userExist() ? "More_Screen_SignOut".localized(language):"SignIn_Button".localized(language))
                                     .font(Font.SalamtechFonts.Reg16)
 
                                     .foregroundColor(Color("lightGray"))

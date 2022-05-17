@@ -132,7 +132,7 @@ struct ResetPasswordView: View {
     //                }, content: {ViewLogin(ispresented: $haveAccount)})
             
             //phone verification
-                NavigationLink(destination: ViewLogin(ispresented: $haveAccount),isActive: $haveAccount, label: {
+            NavigationLink(destination: ViewLogin(ispresented: $haveAccount, QuickLogin: .constant(false)),isActive: $haveAccount, label: {
                 })
                
 

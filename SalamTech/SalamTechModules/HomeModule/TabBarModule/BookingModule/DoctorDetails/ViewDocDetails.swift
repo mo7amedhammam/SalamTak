@@ -57,8 +57,8 @@ struct ViewDocDetails:View{
                     Button(action: {
                         // add review
                         if Helper.userExist(){
-//                            GotoSummary = true
-                            showQuickLogin =  true
+                            GotoSummary = true
+//                            showQuickLogin =  true
                         }else{
                         showQuickLogin =  true
                         }
@@ -72,7 +72,6 @@ struct ViewDocDetails:View{
                         .padding()
                         .foregroundColor(.white)
                         .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
-        //                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
                         .cornerRadius(12)
                         .padding(.horizontal, 20)
                     }).disabled(selectedTime == "")
@@ -112,19 +111,6 @@ struct ViewDocDetails:View{
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
                 setWeekView()
-//                let now = convertDateToLocalTime(Date())
-//                let startWeek = convertDateToLocalTime(now.startOfWeek!)
-//                let endWeek = convertDateToLocalTime(now.endOfWeek!)
-//                print("Local time is: \(now)")
-//                print("Start of week is: \(startWeek)")
-//                print("End of week is: \(endWeek)")
-//
-//                print("Month : \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
-//                print(" week :")
-//                for dayyy  in totalSquares{
-//                    print(dayyy)
-//                }
-
             })
         
         
@@ -146,7 +132,7 @@ struct ViewDocDetails:View{
             })
         }
         ){
-            ViewLogin( ispresented: $presentLogin)
+            ViewLogin( ispresented: .constant(false), QuickLogin: $presentLogin)
         }
         .sheet(isPresented: $presentReservation,
                          onDismiss:{
@@ -157,7 +143,7 @@ struct ViewDocDetails:View{
             })
         }
         ){
-                ViewSignUp(ispresented: $presentReservation)
+            ViewSignUp(ispresented: .constant(false), quickSignup: $presentReservation)
         }
         
         
@@ -184,11 +170,6 @@ func setWeekView(){
         totalSquares.append(current)
         current = CalendarHelper().addDays(date: current, days: 1)
     }
-    
-//        monthLabel.text = CalendarHelper().monthString(date: selectedDate)
-//            + " " + CalendarHelper().yearString(date: selectedDate)
-//        collectionView.reloadData()
-//        tableView.reloadData()
 }
 
 
@@ -433,7 +414,6 @@ struct ViewDateAndTime: View {
 
                                 .padding(.bottom,3)
                                 .padding(.leading)
-                            //                                VStack{
                             Text("\(seldatenum) \(CalendarHelper().monthString(date: selectedDate))  \(CalendarHelper().yearString(date: selectedDate) )")
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg18)
@@ -459,12 +439,8 @@ struct ViewDateAndTime: View {
 
                             Button(action: {
                                 // select date
-//                                print(totalSquares[day])
-//                                TappedDate = totalSquares[day]
-//                                timeexpanded = false
                                 TappedDate = date
                                 openSlots = true
-//                                DocDetails.FetchDoctorDetails()
                                 seldatenum =                             String(CalendarHelper().dayOfMonth(date: date))
                             }, label: {
                                     
@@ -473,7 +449,6 @@ struct ViewDateAndTime: View {
                                     Text(                            String(CalendarHelper().dayOfMonth(date: date))
 )
                                     Text(weekdays[day])
-                                    //                                                    .padding(.vertical, 0)
                                     if TappedDate == date{
                                         Text(".")
                                             .font(.system(size: 40) )
@@ -515,9 +490,7 @@ struct ViewDateAndTime: View {
                     selectedSchedualId = sched.id ?? 0
                     timeexpanded.toggle()
                 }, label: {
-                    //                            ZStack{
-                    //                            VStack{
-                    
+
                     HStack{
                         
                         HStack{
@@ -576,9 +549,6 @@ struct ViewDateAndTime: View {
         }
 
             .onAppear(perform: {
-//                        print(Date())
-//                        print(TappedDate)
-//                        DocDetails.SchedualDate = newdate
                 DocDetails.FetchDoctorDetails()
             })
             .onChange(of:self.TappedDate ){newdate in
@@ -588,12 +558,11 @@ struct ViewDateAndTime: View {
             }
             .onChange(of: self.selectedDate){newdate in
                 self.TappedDate = newdate
-                seldatenum =                             String(CalendarHelper().dayOfMonth(date: newdate))
+                seldatenum = String(CalendarHelper().dayOfMonth(date: newdate))
             }
             .onChange(of: self.selectedTime){ newTime in
                 self.selectedTime = newTime
                 print("\(Filterdatef.string(from: TappedDate))T\(newTime)")
-//                self.selectedTime = "\(Filterdatef.string(from: TappedDate))T\(newTime)"
             }
     }
 }

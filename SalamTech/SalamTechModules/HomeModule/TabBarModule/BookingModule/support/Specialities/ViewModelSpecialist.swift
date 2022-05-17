@@ -50,7 +50,7 @@ class ViewModelSpecialist: ObservableObject {
                     self.passthroughModelSubject.send(model!)
                     self.UserCreated = true
                     self.isLoading = false
-                    print(model)
+//                    print(model)
                 }
             }else{
                 self.isLoading = false

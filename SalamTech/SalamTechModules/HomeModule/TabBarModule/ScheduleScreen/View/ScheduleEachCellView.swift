@@ -48,7 +48,7 @@ struct ScheduleEachCellView: View {
                                     Button(action: {
 
                                     }, label: {
-                                            KFImage(URL(string: URLs.BaseUrl + "\(schedule.doctorImage)"))
+                                        KFImage(URL(string: URLs.BaseUrl + "\(schedule.doctorImage ?? "")"))
                                                    .resizable()
                                                    .scaledToFill()
                                                    .background(Color.clear)
@@ -164,7 +164,7 @@ struct ScheduleEachCellView: View {
                                     Button(action: {
 
                                     }, label: {
-                                            KFImage(URL(string: URLs.BaseUrl + "\(schedule.doctorImage)"))
+                                        KFImage(URL(string: URLs.BaseUrl + "\(schedule.doctorImage ?? "")"))
                                                    .resizable()
                                                    .scaledToFill()
                                                    .background(Color.clear)

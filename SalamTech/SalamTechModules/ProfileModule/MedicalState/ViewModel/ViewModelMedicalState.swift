@@ -166,10 +166,10 @@ class ViewModelCreateMedicalProfile: ObservableObject {
                     self.UserCreated = true
                     self.isLoading = false
                     self.passthroughModelSubject.send(model!)
-                    print(model?.message)
+                    print(model?.message ?? "")
                 }
             }else{
-                print(model?.message)
+                print(model?.message ?? "")
                 self.isLoading = false
                 self.isError = true
                 self.errorMsg = model?.message ?? "Please Compelete Your Data"

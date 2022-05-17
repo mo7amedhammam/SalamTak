@@ -27,6 +27,8 @@ struct ViewLogin: View {
     
     @FocusState private var isfocused : Bool
    @Binding var ispresented: Bool
+    @Binding var QuickLogin: Bool
+
     @Environment(\.presentationMode) var presentationMode
     func editingChanged(_ value: String) {
         LoginVM.phoneNumber = String(value.prefix(LoginVM.characterLimit))
@@ -34,7 +36,7 @@ struct ViewLogin: View {
 
     var body: some View {
         
-        NavigationView{
+//        NavigationView{
             ZStack {
              
                 VStack {
@@ -45,15 +47,8 @@ struct ViewLogin: View {
                     Spacer()
 
                     Image("logoWelcome")
-//                    VStack( spacing: 15){
-////                        Text(response?.Message ?? "")
-//                        Text(apiService.response?.Message ?? "")
-//                        Text("\(apiService.response?.Data?.ReSendCounter ?? 0)")
-//                        }
                             .foregroundColor(.black)
-//                        TextFieldView(text: LoginVM.phoneNumber, placeHolder:" Enter your phone number").textInputAutocapitalization(.never)
-//                            .keyboardType(.numberPad)
-//
+
                     if language.rawValue == "en" {
                         InputTextField(text: $LoginVM.phoneNumber, title:"SignIn_Screen_phoneNumber".localized(language))
                             .focused($isfocused)
@@ -90,7 +85,7 @@ struct ViewLogin: View {
                             .focused($isfocused)
                     }
             
-                    if ispresented == false{
+                    if QuickLogin == false{
                     Button("SignIn_Screen_forgetPassword".localized(language), action: {
                             print("password reset")
                             self.resetPassword.toggle()
@@ -111,7 +106,7 @@ struct ViewLogin: View {
 
                     }).disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "")
 
-                    if ispresented == false{
+                    if QuickLogin == false{
                         HStack {
                             Text("SignIn_Screen_dont_haveAccount".localized(language)).foregroundColor(Color("subTitle"))
                             
@@ -137,6 +132,19 @@ struct ViewLogin: View {
                 ActivityIndicatorView(isPresented: $LoginVM.isLoading)
                 
                 Spacer()
+                
+                // go to verify account to resset
+                  NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount, quickSignup: .constant(false)),isActive: $dontHaveAccount) {
+                                }
+        //         go to verify account to resset
+                NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive: $resetPassword) {
+                                }
+                // go to complete profile after login
+                NavigationLink(destination: LoginVM.destination ,isActive: $LoginVM.isLogedin, label: {
+                                })
+
+                
+                
                 }
             .background(Color("CLVBG"))
             .ignoresSafeArea()
@@ -155,28 +163,23 @@ struct ViewLogin: View {
             //Quick Login
             .onChange(of: LoginVM.isLogedin){newval in
                 if newval==true{
-                    self.ispresented=false
+                    self.QuickLogin=false
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+   
 
-                    }, label: {
-                    Image("chevron.down.circle.fill")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 25, height: 25)
-                    })
-                }
-            }
             
             
             
-        }
+//        }
 //        .navigationBarHidden(true)
 //            .navigationBarBackButtonHidden(true)
+
+            .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                          BackButtonView()
+                        }
+                    }
 
             
         
@@ -184,9 +187,7 @@ struct ViewLogin: View {
 //                print("dismiss")
 //            }, content: {ViewSignUp(ispresented: $dontHaveAccount)})
         
-      // go to verify account to resset
-                      NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount),isActive: $dontHaveAccount) {
-                      }
+      
 
         
         // alert with no ierror message
@@ -198,16 +199,7 @@ struct ViewLogin: View {
             .alert(isPresented: $LoginVM.isNetworkError, content: {
         Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
         })
-        
-      
-
           
-//         go to verify account to resset
-        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive: $resetPassword) {
-                        }
-        // go to complete profile after login
-        NavigationLink(destination: LoginVM.destination ,isActive: $LoginVM.isLogedin, label: {
-                        })
                         
                      
 
@@ -221,7 +213,7 @@ struct ViewLogin: View {
 struct ViewLogin_Previews: PreviewProvider {
     static var previews: some View {
    
-        ViewLogin(ispresented: .constant(false))
+        ViewLogin(ispresented: .constant(false), QuickLogin: .constant(false))
        
     }
 }

@@ -94,6 +94,7 @@ final class Helper{
     class func logout() {
         userDef.removeObject(forKey:"Id"  )
         userDef.removeObject(forKey:"PhoneNumber"  )
+        userDef.removeObject(forKey:"patientName"  )
         userDef.removeObject(forKey:"Image"  )
         userDef.removeObject(forKey:"access_token"  )
         userDef.removeObject(forKey: "clinicId")
@@ -145,7 +146,7 @@ final class Helper{
                 application.open(appURL as URL)
                 print(appURL)
             } else {
-                // if Youtube app is not installed, open URL inside Safari
+                // if GoogleMaps app is not installed, open URL inside Safari
                 application.open(webURL as URL)
             }
            }
