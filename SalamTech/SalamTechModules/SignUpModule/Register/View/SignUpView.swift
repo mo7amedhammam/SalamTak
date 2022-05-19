@@ -10,7 +10,6 @@ import Combine
 
 struct ViewSignUp: View {
     var language = LocalizationService.shared.language
-//    @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 1)
     @ObservedObject private var RegisterVM = ViewModelRegister(limit: 11)
     @State private var haveAccount = false
     

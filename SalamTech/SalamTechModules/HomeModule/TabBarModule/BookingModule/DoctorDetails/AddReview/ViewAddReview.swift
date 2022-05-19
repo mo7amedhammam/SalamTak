@@ -1,35 +1,29 @@
 //
-//  ReviewsView.swift
+//  ViewAddReview.swift
 //  SalamTech
 //
-//  Created by wecancity on 11/05/2022.
+//  Created by wecancity on 18/05/2022.
 //
 
 import SwiftUI
 
-struct ReviewsView: View {
-    
-    @StateObject var DocReviews = ReviewsVM()
-    var DoctorId:Int
-    @State var hei: CGFloat = 180
-
+struct ViewAddReview: View {
+    @StateObject var addRate = VMAddReview()
+     var  Doctor:Doc
     var body: some View {
         ZStack{
             VStack{
-                
-                List( ){
-                    
-                    ForEach(DocReviews.publishedReviewsModel ?? [] , id:\.self){Rate in
-                        ZStack{
-                            ZStack {
-                                
-                            } //Z
-                            .frame(width:(UIScreen.main.bounds.width/1)-40)
-                            .frame( minHeight: hei)
-                            .background(.white)
-                            
-                            .cornerRadius(9)
-                            .offset( y: 30)
+            
+                ZStack{
+//                            ZStack {
+//
+//                            } //Z
+//                            .frame(width:(UIScreen.main.bounds.width/1)-40)
+//                            .frame( minHeight: 66)
+//                            .background(.white)
+//
+//                            .cornerRadius(9)
+//                            .offset( y: 30)
                             
                             VStack( spacing:0){
                                 
@@ -37,19 +31,30 @@ struct ReviewsView: View {
                                     Spacer().frame(height:0)
                                     HStack(){
                                         
-                                        Image("logo")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
+                                        AsyncImage(url: URL(string:   URLs.BaseUrl + "\(Doctor.Image ?? "")" )) { image in
+
+                                            image.resizable()
+
+                                        } placeholder: {
+                                            Image("logo")
+                                                .resizable()
+                                        }
+                                            .scaledToFill()
+                                            .frame(width:60, height: 60)
                                             .background(Color.gray)
                                             .cornerRadius(9)
                                     
-                                        VStack(spacing:0){
-                                            Text("Rate.PatientName" ).padding(.bottom,8)
+                                        VStack(alignment:.leading   ,spacing:0){
+                                            Text("Dr/\( Doctor.DoctorName ?? "Ali Ahmed")" )
+                                                .padding(.bottom,8)
 //                                            .font(Font.SalamtechFonts.Bold18)
                                             .font(.system(size: 20))
                                         
-//                                StarsView(rating: Float("Rate.Rate" ?? 00) )
-                                            
+                                            Text( Doctor.SeniortyLevelName ?? "Psychiatry" )
+                                                .padding(.bottom,8)
+                                                .foregroundColor(.gray)
+//                                            .font(Font.SalamtechFonts.Bold18)
+                                            .font(.system(size: 13))
 
                                         }
                                         .padding(.top, 10)
@@ -82,24 +87,19 @@ struct ReviewsView: View {
                                 
                             }//V
 
-                            .background(Color.clear)
+//                            .background(Color.clear)
+                                                .background(.white)
+                    
+                                                .cornerRadius(9)
 
                         }//Z
-                        .frame(width: (UIScreen.main.bounds.width/1)-40)
-                        //                        .offset(y:40)
-                        .background(.clear)
-                        .cornerRadius(9)
-                        .shadow(color: .black.opacity(0.1), radius: 9)
-                        
-                    }
-    
-                }.refreshable(action: {
-//                    getAllReviews()
-                })
-                    .listStyle(.plain)
-                    .padding(.vertical,0)
-                //            .background(Color.red)
-                //                Spacer()
+                      
+  
+                    .padding(.bottom,0)
+                    .padding(.top,110)
+                    .background(Color("CLVBG"))
+
+                                Spacer()
             }
             
             .frame(width: UIScreen.main.bounds.width)
@@ -107,31 +107,30 @@ struct ReviewsView: View {
             .background(Color("CLVBG"))
             
             VStack{
-                AppBarView(Title: "Reviews")
+                AppBarView(Title: "Rate Doctor")
                 //                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
-            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                        BackButtonView()
+                    
+                }
+            }
             
         }.onAppear(perform: {
-            DocReviews.doctorId = DoctorId
-            DocReviews.startFetchReviews()
+            addRate.DoctorId = Doctor.id ?? 0
         })
         
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                    BackButtonView()
-                
-            }
-        }
+        
         
     }
 }
 
-struct ReviewsView_Previews: PreviewProvider {
+struct ViewAddReview_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewsView(DoctorId: 0)
+        ViewAddReview( Doctor: Doc.init())
     }
 }

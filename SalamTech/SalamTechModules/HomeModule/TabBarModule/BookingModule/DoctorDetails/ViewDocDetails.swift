@@ -17,6 +17,7 @@ struct ViewDocDetails:View{
 //    @StateObject var DocDetails = ViewModelDocDetails()
     @State var GotoSummary = false
     @State var GotoReviews = false
+    @State var GotoAddReview = false
 
     @Binding var ExType :Int
     
@@ -43,7 +44,7 @@ struct ViewDocDetails:View{
                     ScrollView {
                         ViewDocMainInfo(Doctor: Doctor)
                         ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
-                        ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews)
+                        ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
 
                         Spacer()
                     }
@@ -58,7 +59,6 @@ struct ViewDocDetails:View{
                         // add review
                         if Helper.userExist(){
                             GotoSummary = true
-//                            showQuickLogin =  true
                         }else{
                         showQuickLogin =  true
                         }
@@ -74,11 +74,12 @@ struct ViewDocDetails:View{
                         .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
                         .cornerRadius(12)
                         .padding(.horizontal, 20)
-                    }).disabled(selectedTime == "")
+                    })
+                            .disabled(selectedTime == "")
                         
-                        
-                        
-                    }.background(.clear
+                    }
+                    .background(.clear
+                    
                     )
                         .shadow(color: .gray, radius: 9)
                   
@@ -115,12 +116,16 @@ struct ViewDocDetails:View{
         
         
         
-     // go to clinic info
+     // go to summary
         NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $selectedDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
              }
 
-        // go to clinic info
+        // go to Reviews
         NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
+                }
+        
+        // go to addReview
+        NavigationLink(destination:ViewAddReview( Doctor: Doctor),isActive: $GotoAddReview) {
                 }
 
         .sheet(isPresented: $presentLogin,
@@ -202,18 +207,10 @@ struct ViewDocMainInfo: View {
                                 Image("logo")
                                     .resizable()
                             }
-                //            .clipShape(Circle())
                                 .scaledToFill()
                                 .frame(width:60)
                                 .background(Color.gray)
                                 .cornerRadius(9)
-
-                            
-                            //
-                            //                                    }
-                            //                                    .frame( height: 80)
-                            //                                    .padding()
-                            //                                    .padding(.top,-20)
                             
                             Text("Dr/")
                                 .foregroundColor(.black.opacity(0.7))
@@ -226,7 +223,6 @@ struct ViewDocMainInfo: View {
                         }
                     }
                     .padding()
-                    //                                    .padding(.top,-10)
                     
                     VStack(alignment:.leading, spacing:0){
                         
@@ -237,10 +233,6 @@ struct ViewDocMainInfo: View {
                                 .font(Font.SalamtechFonts.Reg14)
                         }
                         HStack{
-//                            ForEach(0..<5){_ in
-//                                Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-//                                    .foregroundColor(.yellow)
-//                            }
                             StarsView(rating: Float( Doctor.Rate ?? 0))
 
                             
@@ -271,16 +263,11 @@ struct ViewDocMainInfo: View {
                     }.padding(.leading)
                     
                 }//V
-                
-                
                 .frame(height: 160)
                 .background(Color.clear)
-                //                            .frame( height: 140)
-                //                            .cornerRadius(9)
                 
             }//Z
             .frame(width: UIScreen.main.bounds.width-20, height: 180)
-            //                        .offset(y:40)
             .background(.clear)
             .cornerRadius(9)
         .shadow(color: .black.opacity(0.1), radius: 9)
@@ -303,16 +290,13 @@ struct ViewDocMainInfo: View {
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     
-//                            Spacer()
                     }.padding(.trailing)
                     Spacer()
 Divider()
                     
-//                        HStack{
                     Image("doc4")
                         .resizable()
                         .frame(width: 20, height: 20)
-//                                        .padding(.leading)
                     VStack{
                     Text("Waiting Time:")
                         .foregroundColor(Color("darkGreen"))
@@ -363,10 +347,8 @@ struct ViewDateAndTime: View {
     @StateObject var DocDetails = ViewModelDocDetails()
 
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-    
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
-    var daytimes = ["2:30 PM", "2:50 PM", "3:30 PM", "3:50 PM","4:30 PM", "4:50 PM","5:30 PM", "5:50 PM"]
-//    @State var selectedTime = ""
+    
     @State var seldatenum = ""
     @State var openSlots = false
     @Binding var ShowCalendar : Bool
@@ -384,20 +366,15 @@ struct ViewDateAndTime: View {
         self._selectedTime = selectedTime
 
         setWeekView()
-//        TappedDate = Date()
     }
     var body: some View {
         VStack{
-                
-
-            
             Text("Choose date & time").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
 //            ZStack {
 //                FSCalendarView(SelectedDate: $TappedDate)
 //                    .frame( minHeight: 150)
 //            }
 
-            
             //MARK: ---- Days of Week --------
             ZStack{
                 VStack{
@@ -419,9 +396,7 @@ struct ViewDateAndTime: View {
                                 .font(Font.SalamtechFonts.Reg18)
 
                             Image( systemName: "chevron.forward")
-                            //                                        .resizable()
                                 .foregroundColor(Color("darkGreen"))
-                            //                                        .frame(width: 20, height: 20)
                                 .padding(.bottom,3)
 
                             Spacer()
@@ -593,9 +568,13 @@ struct ViewAboutDoctor: View {
 }
 
 struct ViewDocReviews: View {
+//    @StateObject var DocDetails : ViewModelDocDetails
+
     @State var hei: CGFloat = 180
     var Doctor:Doc
     @Binding var GotoReviews : Bool
+    @Binding var GotoAddReview : Bool
+
     var body: some View {
         VStack{
             HStack{
@@ -606,12 +585,10 @@ struct ViewDocReviews: View {
                 }, label: {
                   
                     HStack{
-                        Text("View all \(Doctor.DoctorRate?.count ?? 0) reviews")
+                        Text("View all reviews")
                             .foregroundColor(Color("darkGreen"))
                         Image( systemName: "chevron.forward")
-                        //                                        .resizable()
                             .foregroundColor(Color("darkGreen"))
-                        //                                        .frame(width: 20, height: 20)
                             .padding(.trailing)
 
                     }
@@ -647,22 +624,12 @@ struct ViewDocReviews: View {
                                             .cornerRadius(9)
                                     
                                         VStack(spacing:0){
-                                            Text(Rate.PatientName ?? "").padding(.bottom,8)
+                                            Text(Rate.PatientName ?? "")
+                                                .padding(.bottom,8)
 //                                            .font(Font.SalamtechFonts.Bold18)
                                             .font(.system(size: 20))
                                         
                                             StarsView(rating: Float(Rate.Rate ?? 00) )
-                                            
-//                                            HStack(spacing:15){
-//                                                      ForEach(0..<5){_ in
-//                                                          Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-//                                                              .frame(width: 10, height: 10)
-//                                                              .foregroundColor(.yellow)
-//                                                      }
-//
-//
-//
-//                                            }.padding(.trailing)
 
                                         }
                                         .padding(.top, 10)
@@ -671,16 +638,14 @@ struct ViewDocReviews: View {
                                     }
                                 }
                                 .padding()
-                                //                                    .padding(.top,-10)
                                 
                                 VStack(alignment:.leading, spacing:0){
                                     
-//                                    Text("Thank you very much! Great clinic! The dog was limping, X-rayed, prescribed quality treatment. Dog of fights! Excellent specialists! more" )
                                     Text(Rate.Comment ?? "" )
 
                                     .foregroundColor(.gray)
                                         .font(Font.SalamtechFonts.Reg14)
-//
+                                    
                                     HStack{
                                         Spacer()
                                         Text("26.02.2019" )
@@ -688,22 +653,15 @@ struct ViewDocReviews: View {
                                             .font(Font.SalamtechFonts.Reg14)
                                     }.padding(.trailing)
                                     
-//                                    Spacer()
                                     
                                 }.padding(.leading)
                                     .frame(height: 100)
                                 
                             }//V
-                            
-                            
-//
                             .background(Color.clear)
-                            //                            .frame( height: 140)
-                            //                            .cornerRadius(9)
                             
                         }//Z
                         .frame(width: (UIScreen.main.bounds.width/1)-80)
-                        //                        .offset(y:40)
                         .background(.clear)
                         .cornerRadius(9)
                         .shadow(color: .black.opacity(0.1), radius: 9)
@@ -714,6 +672,7 @@ struct ViewDocReviews: View {
             
             Button(action: {
                 // add review
+                GotoAddReview = true
             }, label: {
                 HStack {
                     Image("pen")
@@ -726,7 +685,6 @@ struct ViewDocReviews: View {
                 .padding()
                 .foregroundColor(Color("darkGreen"))
                 .background(.gray.opacity(0.09))
-//                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(12)
                 .padding(.horizontal, 20)
             })
@@ -749,10 +707,7 @@ struct quickLoginSheet : View {
         VStack {
             Spacer()
             ZStack {
-                
-              
-                
-                VStack {
+                 VStack {
                         Capsule()
                             .frame(width: 50, height: 4)
                             .foregroundColor(.gray)
@@ -760,9 +715,6 @@ struct quickLoginSheet : View {
                             .padding(.bottom,20)
                     
                     VStack {
-                        
-                        
-                        
                             ButtonView(text:"Sign in", action: {
                                 withAnimation(.easeIn(duration: 0.3)) {
                                     IsPresented =  false
@@ -817,19 +769,17 @@ struct slotView:View{
                             ZStack {
                                 Button(action: {
                                     selectedTime = exType.SlotTime ?? ""
-    //                                gotoSpec=true
 
                                 }, label: {
-//
                 Text(exType.SlotTime ?? "")
                                 .padding(.vertical,10)
                                 .foregroundColor(selectedTime == (exType.SlotTime ) ? .white : .gray)
-//
                                 })
                                     .frame(width: (UIScreen.main.bounds.width/3)-20, height: 35)
-                                    .background( selectedTime == (exType.SlotTime) ? Color("darkGreen").opacity(0.7):.white)
+                                    .background(!(exType.IsAvailable ?? true) ? Color("darkGreen").opacity(0.3):selectedTime == (exType.SlotTime) ? Color("darkGreen").opacity(0.7):.white)
                                     .cornerRadius(8)
                                     .shadow(color: .black.opacity(0.099), radius: 5)
+                                    .disabled(!(exType.IsAvailable ?? true))
                             }
             }
 

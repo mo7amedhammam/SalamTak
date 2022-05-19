@@ -151,6 +151,10 @@
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
 		C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */; };
+		C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BC928355BB3009A89AC /* ViewAddReview.swift */; };
+		C8B52BCC28355BD0009A89AC /* VMAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCB28355BD0009A89AC /* VMAddReview.swift */; };
+		C8B52BCE28355BE6009A89AC /* MAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCD28355BE6009A89AC /* MAddReview.swift */; };
+		C8B52BD028355C18009A89AC /* APIAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCF28355C18009A89AC /* APIAddReview.swift */; };
 		C8D93262282BD9C30089C520 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93261282BD9C30089C520 /* ApiService.swift */; };
 		C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */; };
 		C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93266282C28A30089C520 /* ReviewsView.swift */; };
@@ -331,6 +335,10 @@
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearchDoc.swift; sourceTree = "<group>"; };
+		C8B52BC928355BB3009A89AC /* ViewAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddReview.swift; sourceTree = "<group>"; };
+		C8B52BCB28355BD0009A89AC /* VMAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMAddReview.swift; sourceTree = "<group>"; };
+		C8B52BCD28355BE6009A89AC /* MAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAddReview.swift; sourceTree = "<group>"; };
+		C8B52BCF28355C18009A89AC /* APIAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAddReview.swift; sourceTree = "<group>"; };
 		C8D93261282BD9C30089C520 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMinMaxFee.swift; sourceTree = "<group>"; };
 		C8D93266282C28A30089C520 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
@@ -1140,6 +1148,7 @@
 		C860837F2804529C001A0C39 /* DoctorDetails */ = {
 			isa = PBXGroup;
 			children = (
+				C8B52BC828355B48009A89AC /* AddReview */,
 				C8D93265282C28470089C520 /* AllDocReviews */,
 				C860838028045318001A0C39 /* ViewDocDetails.swift */,
 				C826D93A280D906A0072754B /* ModelDocDetails.swift */,
@@ -1159,6 +1168,17 @@
 				C8B3E17327FC4B310040DAFD /* ViewSearchDoc.swift */,
 			);
 			path = SearchDoctor;
+			sourceTree = "<group>";
+		};
+		C8B52BC828355B48009A89AC /* AddReview */ = {
+			isa = PBXGroup;
+			children = (
+				C8B52BC928355BB3009A89AC /* ViewAddReview.swift */,
+				C8B52BCB28355BD0009A89AC /* VMAddReview.swift */,
+				C8B52BCD28355BE6009A89AC /* MAddReview.swift */,
+				C8B52BCF28355C18009A89AC /* APIAddReview.swift */,
+			);
+			path = AddReview;
 			sourceTree = "<group>";
 		};
 		C8D93260282BD98B0089C520 /* MinMaxFee */ = {
@@ -1521,6 +1541,7 @@
 				C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */,
 				0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */,
 				0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */,
+				C8B52BD028355C18009A89AC /* APIAddReview.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E26EA6C27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
@@ -1580,6 +1601,7 @@
 				C800F83227FB585B00482151 /* GetSpecialistAPI.swift in Sources */,
 				C800F83727FB585B00482151 /* CountryView.swift in Sources */,
 				0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */,
+				C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */,
 				0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
 				0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */,
@@ -1592,6 +1614,7 @@
 				0E26EA6A27FB2EF800E3D9B8 /* ModelMedicineAllergy.swift in Sources */,
 				0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */,
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
+				C8B52BCE28355BE6009A89AC /* MAddReview.swift in Sources */,
 				0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */,
 				0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */,
 				0E33B26C280599E600CF35E5 /* UpdateMedicalStateApiService.swift in Sources */,
@@ -1623,6 +1646,7 @@
 				C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */,
 				C8B3E17427FC4B310040DAFD /* ViewSearchDoc.swift in Sources */,
 				C814EA602816D19D00D7730E /* VMCreateAppointment.swift in Sources */,
+				C8B52BCC28355BD0009A89AC /* VMAddReview.swift in Sources */,
 				C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */,
 				0E62C55227FD93DD00655D1A /* ModelUpdatePassword.swift in Sources */,
 				0E62C55627FD942600655D1A /* ViewModelUpdatePassword.swift in Sources */,

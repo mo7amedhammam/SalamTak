@@ -56,7 +56,6 @@ struct MoreView: View {
                     }
                     
                 }
-//                .ignoresSafeArea()
                 Spacer().frame( height: 30)
                 VStack{
                     Text("More_Screen_updateProfile".localized(language))
@@ -85,7 +84,6 @@ struct MoreView: View {
                                 Spacer()
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .animation(.default)
                             .frame(width: screenWidth, height: 40)
                             .font(.system(size: 13))
                             .padding(12)
@@ -115,7 +113,6 @@ struct MoreView: View {
                                 Spacer()
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .animation(.default)
                             .frame(width: screenWidth, height: 40)
                             .font(.system(size: 13))
                             .padding(12)
@@ -144,7 +141,6 @@ struct MoreView: View {
                                 Spacer()
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .animation(.default)
                             .frame(width: screenWidth, height: 40)
                             .font(.system(size: 13))
                             .padding(12)
@@ -173,7 +169,6 @@ struct MoreView: View {
                                 Spacer()
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .animation(.default)
                             .frame(width: screenWidth, height: 40)
                             .font(.system(size: 13))
                             .padding(12)
@@ -201,7 +196,6 @@ struct MoreView: View {
                                 Spacer()
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .animation(.default)
                             .frame(width: screenWidth, height: 40)
                             .font(.system(size: 13))
                             .padding(12)
@@ -230,14 +224,10 @@ struct MoreView: View {
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                            
                             HStack{
-//                                    Spacer().frame(height: 20)
                             LanguageView(selection: $patientCreatedVM.GenderId)
                                     
                             }
-//                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         }
-//                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                        .animation(.default)
                         .frame(width: screenWidth, height: 80)
                         .font(.system(size: 13))
                         .padding(12)
@@ -250,7 +240,7 @@ struct MoreView: View {
                        
                         Button(action: {
                             Helper.logout()
-                            islogout = true
+//                            islogout = true
                         }, label: {
                             HStack(spacing: 10){
                                 Image(systemName: "arrow.left.square.fill")
@@ -265,7 +255,6 @@ struct MoreView: View {
                                 Spacer()
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                            .animation(.default)
                             .frame(width: screenWidth, height: 40)
                             .font(.system(size: 13))
                             .padding(12)
@@ -281,14 +270,6 @@ struct MoreView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
                 }
-                
-               
-//                VStack{
-//                    ButtonView(text: "Log Out", backgroundColor: Color("blueColor")){
-////
-//                    }
-//                                .padding(.bottom,80)
-//                }
             }
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
@@ -297,24 +278,11 @@ struct MoreView: View {
         .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
        
-//        NavigationLink(destination: UpdateDoctorView(),isActive:$goingToDoctorUpdate , label: {
-//        })
         NavigationLink(destination: PatientProfile(),isActive:$goingToPatientUpdate , label: {
         })
-//        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive:$goingToResetPassword , label: {
-//        })
-//        NavigationLink(destination: ChangePasswordView2(ispresented: .constant(false)),isActive:$goingToResetPassword , label: {
-//        })
+
         NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$islogout , label: {
         })
-//            .sheet(isPresented: $aboutApp, content: {
-//                AboutApp(isPresented: $aboutApp)
-//            })
-//
-//            .sheet(isPresented: $TermsAndConditions , content: {
-//                salamtechWebView(url: URL(string: URLs().TermsAndConditionsURL )!   , isPresented: $TermsAndConditions)
-//            })
-
     }
 }
 

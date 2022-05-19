@@ -8,36 +8,13 @@
 import Foundation
 import SwiftUI
 
-//enum lang: String {
-//
-////    case russian = "ru"
-//    case  CreateUser = "https://salamtech.azurewebsites.net/api/\(language)/User/CreateUser"
-////    case spanish = "es"
-////    case arabic = "ar"
-//
-//}
 
 class URLs {
-     
-//    @ObservedObject var lang2 : lango.init()
-    // get language from user default and pass it to BaseURL
+
+     static let BaseUrl = "https://salamtakapitest.azurewebsites.net"
+
     
-    
-//    static var language = Helper.getLanguage()
-     static let BaseUrl = "https://salamtech.azurewebsites.net"
-//    mutating func changelang(){
-//        self.language = Helper.getLanguage()
-//    }
-    
-    // MARK: -------- Authntication ------
-    
-//     func add(lang:String){
-//        language = lang
-//        print(language)
-////        let CreateUser1 = BaseUrl + "/api/\(language)/User/CreateUser"
-////        print(CreateUser1)
-//    }
-     var CreateUser = BaseUrl + "/api/\(Helper.getLanguage())/User/CreateUser"
+    var CreateUser = BaseUrl + "/api/\(Helper.getLanguage())/User/CreateUser"
      var RegisterUser = BaseUrl + "/api/\(Helper.getLanguage())/User/Register"
      var LoginUser = BaseUrl + "/api/\(Helper.getLanguage())/User/Login"
      var ResetPassword = BaseUrl + "/api/\(Helper.getLanguage())/User/ResetPassword"
@@ -210,22 +187,19 @@ class URLs {
     /// post >
     var CreateDoctorSchedualByServiceId = BaseUrl + "/api/\(Helper.getLanguage())/DoctorService/CreateDoctorServiceSchedualByServiceId" // Create Schedual
 
-    
-   
-    /// Get Services by dayid & service id
-//static let GetDoctorServiceSchedualByServiceDayId = BaseUrl + "/api/\(language)/DoctorService/GetDoctorServiceSchedualByServiceDayId"
-
-
 //search Doctor
     var DoctorSearch = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/DoctorSearch"
     var FilteredFees = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/FilteredFees"
-
-    var DoctorRate = BaseUrl + "/api/\(Helper.getLanguage())/DoctorRate/GetDoctorReviews"
+    
     
     //search Doctor
         var DoctorDetails = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/GetDoctorDetail"
  
-    //search Doctor
+    //Doctor Rate
+    var CreateDoctorRate = BaseUrl + "/api/\(Helper.getLanguage())/DoctorRate/CreateDoctorRate"
+    var DoctorRate = BaseUrl + "/api/\(Helper.getLanguage())/DoctorRate/GetDoctorReviews"
+
+    //Create appointment
         var CreatePatientAppointment = BaseUrl + "/api/\(Helper.getLanguage())/Patient/CreatePatientAppointment"
     
     
