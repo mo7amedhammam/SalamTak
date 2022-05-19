@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.scenePhase) var scenePhase
+    
+
     var body: some View {
         ZStack{
             TabBarView()

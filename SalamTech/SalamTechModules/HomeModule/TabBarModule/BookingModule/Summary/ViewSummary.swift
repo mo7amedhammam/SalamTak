@@ -21,6 +21,9 @@ struct ViewSummary:View{
     @Binding var BookiTime :String
     
     @State var GotoSchedual = false
+  
+//    @EnvironmentObject var Tap:selectedtapNum
+    @StateObject var selectedTab = selectedtapNum()
 
     
 
@@ -310,6 +313,11 @@ struct ViewSummary:View{
 
             // showing loading indicator
             ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
+            
+            
+    //      go to clinic info
+            NavigationLink(destination:TabBarView(selectedTab1:"TabBar_schedual"),isActive: $GotoSchedual) {
+                 }
               
         }
         .background(Color.red)
@@ -354,7 +362,10 @@ struct ViewSummary:View{
                             
                         Button(action: {
                             // Goto my scheduals
+                            selectedTab.tabNum = "TabBar_schedual"
+                            CreateAppointment.isDone = false
                             GotoSchedual = true
+
                         }, label: {
                             HStack {
                                 Text("My schedule")
@@ -367,7 +378,7 @@ struct ViewSummary:View{
                             .background(Color("blueColor"))
                             .cornerRadius(12)
                             .padding(.horizontal, 20)
-                        })
+                        }).environmentObject(selectedTab)
                     }
                     
                     }
@@ -384,10 +395,7 @@ struct ViewSummary:View{
       
         
 //     }
-        
-     // go to clinic info
-//        NavigationLink(destination:SpecialityView(),isActive: $gotoSpec) {
-//             }
+  
 //     .navigationBarHidden(true)
 //     .navigationBarBackButtonHidden(true)
 

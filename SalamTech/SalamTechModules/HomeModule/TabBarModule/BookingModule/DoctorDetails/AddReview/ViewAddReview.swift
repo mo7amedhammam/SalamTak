@@ -10,20 +10,15 @@ import SwiftUI
 struct ViewAddReview: View {
     @StateObject var addRate = VMAddReview()
      var  Doctor:Doc
+    @State var rate = 0
+    @State var reviewComment = "klmlkmklnklnlk"
+    @State var wordCount = 0
+
     var body: some View {
         ZStack{
             VStack{
             
                 ZStack{
-//                            ZStack {
-//
-//                            } //Z
-//                            .frame(width:(UIScreen.main.bounds.width/1)-40)
-//                            .frame( minHeight: 66)
-//                            .background(.white)
-//
-//                            .cornerRadius(9)
-//                            .offset( y: 30)
                             
                             VStack( spacing:0){
                                 
@@ -45,7 +40,7 @@ struct ViewAddReview: View {
                                             .cornerRadius(9)
                                     
                                         VStack(alignment:.leading   ,spacing:0){
-                                            Text("Dr/\( Doctor.DoctorName ?? "Ali Ahmed")" )
+                                            Text("Dr/ \( Doctor.DoctorName ?? "Ali Ahmed")" )
                                                 .padding(.bottom,8)
 //                                            .font(Font.SalamtechFonts.Bold18)
                                             .font(.system(size: 20))
@@ -63,42 +58,86 @@ struct ViewAddReview: View {
                                     }
                                 }
                                 .padding()
-                                //                                    .padding(.top,-10)
-                                
-                                VStack(alignment:.leading, spacing:0){
-                                    
-//                                    Text("Thank you very much! Great clinic! The dog was limping, X-rayed, prescribed quality treatment. Dog of fights! Excellent specialists! more" )
-                                    Text("Rate.Comment" )
 
-                                    .foregroundColor(.gray)
-                                        .font(Font.SalamtechFonts.Reg14)
 //
                                     HStack{
                                         Spacer()
-                                        Text("26.02.2019" )
-                                            .foregroundColor(.gray.opacity(0.3))
-                                            .font(Font.SalamtechFonts.Reg14)
-                                    }.padding(.trailing)
+                                        Text("Clinic Visit  |  26.02.2019  |  18:20:00" )
+                                            .frame(height: 40)
+                                            .foregroundColor(Color("blueColor"))
+                                            .font(Font.SalamtechFonts.Reg16)
                                     
-//                                    Spacer()
+                                    Spacer()
                                     
-                                }.padding(.leading)
-                                    .frame(height: 100)
+                                }
+                                .background(Color("addReviewSubHead"))
+
                                 
                             }//V
-
-//                            .background(Color.clear)
+                            .padding(.top,50)
+//                            .background(Color.gray)
                                                 .background(.white)
-                    
-                                                .cornerRadius(9)
+                                                .cornerRadius(15)
 
                         }//Z
-                      
-  
-                    .padding(.bottom,0)
-                    .padding(.top,110)
-                    .background(Color("CLVBG"))
+                    .padding(.top,60)
+                    .background(.white)
+//                    .background(Color("CLVBG"))
 
+                Text("Choose Rate")
+                    .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                HStack{
+                    Spacer()
+                    ForEach(0..<5){ num in
+                        
+                        Button(action: {
+                            rate = num+1
+                        }, label: {
+                            Image(systemName: rate>num ? "star.fill":"star")
+                                .resizable()
+                                .frame(width: 35, height: 35, alignment: .center)
+    //                            .padding(.horizontal,2)
+                                .foregroundColor(.yellow)
+                        })
+                    }
+                    Spacer()
+                }
+
+                .padding()
+                .background(.white)
+                .cornerRadius(15)
+                .padding(.horizontal,30)
+
+                
+                Text("Add comment")
+                    .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                ZStack{
+                    TextEditor(text: $reviewComment)
+                                    .font(.body)
+                                    .padding()
+//                                    .padding(.top, 20)
+                                    .onChange(of: reviewComment) { value in
+//                                        let words = reviewComment.split { $0 == " " || $0.isNewline }
+//                                        self.wordCount = words.count
+                                        reviewComment = String(value.prefix(500))
+
+                                    }
+
+                }
+                .padding(.vertical,0)
+                .frame(height:130)
+                .background(.white)
+                .cornerRadius(15)
+                .padding(.horizontal,30)
+
+                
+                Text("\(reviewComment.count) / 500")
+                    .frame(width: UIScreen.main.bounds.width-45, height: 30, alignment:.topTrailing)
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                                .padding(.trailing)
+
+                
                                 Spacer()
             }
             

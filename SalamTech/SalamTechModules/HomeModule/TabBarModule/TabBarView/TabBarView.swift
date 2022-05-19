@@ -13,14 +13,17 @@ import SwiftUI
 var language = LocalizationService.shared.language
 
 struct TabBarView: View {
-
+//@StateObject var SelTap = selectedtapNum()
+    
     @StateObject var Bar = tabbar()
     @State var clinicId:Int? = 130
     @State var index:Int? = 2
     @State var islogout:Bool = false
     @State private var ispreviewImage = false
     @State private var previewImageurl :String = ""
-    @State var selectedTab = "TabBar_home"
+    @State var selectedTab1 = "TabBar_home"
+    @StateObject var selectedTab = selectedtapNum()
+
 //    @ObservedObject var GetAppointments = VMGetAppointment()
     @State var filterShowing=false
     @State var ConsultationShowing=false
@@ -42,22 +45,20 @@ struct TabBarView: View {
             GeometryReader{ bounds in
                 ZStack{
                     VStack(spacing: 15){
-                        if selectedTab == Bar.tabs[0] {
+                        if selectedTab1 == Bar.tabs[0] {
                             ServicesView()
-                        } else if selectedTab == Bar.tabs[1] {
-                            
-//                            ViewGetAppointments(isCancel:$isCancel, GetAppointments:GetAppointments,appointmentId: $appointmentId, filterShowing: $filterShowing, ConsultationShowing: $ConsultationShowing, DatesShowing: $DatesShowing, ClinicShowing:$ClinicShowing )
-                            ScheduleView()
-                        
 
-                        } else if selectedTab == Bar.tabs[2] {
+                        } else if selectedTab1 == Bar.tabs[1] {
+                            ScheduleView()
+
+                        } else if selectedTab1 == Bar.tabs[2] {
                             MoreView()
                         }
                         Spacer()
                         HStack(spacing: 0){
                             Spacer()
                             ForEach(Bar.tabs.indices ){tab in
-                                TabButton(title: Bar.tabs[tab] , selectedTab: $selectedTab)
+                                TabButton(title: Bar.tabs[tab] , selectedTab: $selectedTab1).environmentObject(selectedTab)
                                 Spacer()
                             }
                         }
@@ -72,125 +73,13 @@ struct TabBarView: View {
                         
                     }
                     .ignoresSafeArea()
-                    
-                    
-//                    .popup(isPresented: $isCancel){
-//                        BottomPopupView{
-//                            ViewCancelAppointmentPopUp(showCancePopUp: $isCancel, cancelReason: $GetAppointments.AppointmentCancelReason, appointmentId: $appointmentId)
-//                        }
-//                    }
+//                    .environmentObject(selectedtapNum)
                     
                     
                 }
                 .blur(radius:filterShowing || ConsultationShowing || ClinicShowing || DatesShowing ? 10 : 0)
                 .disabled(filterShowing || ConsultationShowing || ClinicShowing || DatesShowing)
-                
-                // end main V
-//                if filterShowing {
-//                    ZStack {
-//
-//
-////                        ChooseFilter(IsPresentedConsultation: $ConsultationShowing, IsPresentedDates: $DatesShowing, IsPresentedClinic: $ClinicShowing, IsPresented: $filterShowing,appointment: GetAppointments, width: bounds.size.width)
-//                    }
-////                    .animation(.easeInOut)
-//                    .transition(.move(edge: .bottom))
-//                    .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-//                    .gesture(
-//                        DragGesture()
-//                            .onChanged { gesture in
-//                                self.offset.height = gesture.translation.height
-//                            }
-//                            .onEnded { _ in
-//                                if self.offset.height > UIScreen.main.bounds.size.height / 2 {
-//                                    withAnimation {
-//                                        filterShowing.toggle()
-//        //                                        GetAppointments.publishedAppointmentsModel.removeAll()
-//        //                                        GetAppointments.startSearchAppointment()
-//                                    }
-//                                    self.offset = .zero
-//                                } else {
-//                                    self.offset = .zero
-//                                }
-//                            }
-//                    )
-//                }
-//                else if ConsultationShowing{
-//                    ZStack {
-//                        ChooseConsultationType( IsPresentedBack: $filterShowing, IsPresentedConsultation: $ConsultationShowing,appointment: GetAppointments,   width: UIScreen.main.bounds.size.width)
-//                    }
-////                    .animation(.easeInOut)
-//                    .transition(.move(edge: .bottom))
-//                    .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-//                    .gesture(
-//                        DragGesture()
-//                            .onChanged { gesture in
-//                                self.offset.height = gesture.translation.height
-//                            }
-//                            .onEnded { _ in
-//                                if self.offset.height > UIScreen.main.bounds.size.height / 2 {
-//                                    withAnimation {
-//                                        ConsultationShowing.toggle()
-//                                        print(GetAppointments.filterConsultationTypeId)
-//                                    }
-//                                    self.offset = .zero
-//                                } else {
-//                                    self.offset = .zero
-//                                }
-//                            }
-//                    )
-//                }
-//                else if DatesShowing{
-//                    ZStack {
-//                        ChooseDate( IsPresentedBack: $filterShowing, IsPresentedDate: $DatesShowing,appointment: GetAppointments,   width: UIScreen.main.bounds.size.width)
-//                    }
-////                    .animation(.easeInOut)
-//                    .transition(.move(edge: .bottom))
-//                    .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-//                    .gesture(
-//                        DragGesture()
-//                            .onChanged { gesture in
-//                                self.offset.height = gesture.translation.height
-//                            }
-//                            .onEnded { _ in
-//                                if self.offset.height > UIScreen.main.bounds.size.height / 2 {
-//                                    withAnimation {
-//                                        DatesShowing.toggle()
-//        //                                        print( Filterdatef.string(from:  GetAppointments.filterFromDate))
-//        //                                        print( Filterdatef.string(from:  GetAppointments.filterToDate))
-//
-//                                    }
-//                                    self.offset = .zero
-//                                } else {
-//                                    self.offset = .zero
-//                                }
-//                            }
-//                    )
-//                }
-//                else if ClinicShowing{
-//                    ZStack {
-//                        ChooseClinic( IsPresentedBack: $filterShowing, IsPresentedClinic: $ClinicShowing,appointment: GetAppointments , width: UIScreen.main.bounds.size.width)
-//                    }
-////                    .animation(.easeInOut)
-//                    .transition(.move(edge: .bottom))
-//                    .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-//                    .gesture(
-//                        DragGesture()
-//                            .onChanged { gesture in
-//                                self.offset.height = gesture.translation.height
-//                            }
-//                            .onEnded { _ in
-//                                if self.offset.height > UIScreen.main.bounds.size.height / 2 {
-//                                    withAnimation {
-//                                        ClinicShowing.toggle()
-//                                        print(GetAppointments.filterClinicId)
-//                                    }
-//                                    self.offset = .zero
-//                                } else {
-//                                    self.offset = .zero
-//                                }
-//                            }
-//                    )
-//                }
+  
             }
     
         }
@@ -205,14 +94,16 @@ struct TabBarView: View {
 
 struct TabButton: View{
     @AppStorage("language")
-    var language = LocalizationService.shared.language
 
+    var language = LocalizationService.shared.language
+    @EnvironmentObject var Tap:selectedtapNum
      var title: String
     @Binding var selectedTab: String
     var body: some View {
         Button(action: {
 //            withAnimation{
             selectedTab = title
+            Tap.tabNum = title
 //                .localized(language)
 //            }
         }, label: {
@@ -230,6 +121,7 @@ struct TabButton: View{
                     .foregroundColor(Color.black.opacity(selectedTab == title ? 0.6 : 0.2))
             }
         })
+//            .EnvironmentObject(selectedtapNum)
     }
 }
 
@@ -255,6 +147,15 @@ class tabbar:ObservableObject{
 
 
 
+
+
+@MainActor class selectedtapNum:ObservableObject{
+    @Published var tabNum:String
+    init(){
+        tabNum = "TabBar_home"
+    }
+    
+}
 
 
 

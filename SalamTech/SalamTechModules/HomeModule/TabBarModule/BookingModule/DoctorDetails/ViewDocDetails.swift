@@ -278,7 +278,7 @@ struct ViewDocMainInfo: View {
             
             ZStack {
                 HStack(){
-                    Image("doc3")
+                    Image("FilterFees")
                         .resizable()
                         .frame(width: 25, height: 25)
                         .padding(.leading)

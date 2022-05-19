@@ -108,9 +108,9 @@ struct ScheduleView: View {
            
            
         }
-       
+        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading:  BackButtonView())
+//        .navigationBarItems(leading:  BackButtonView())
         
     }
 }

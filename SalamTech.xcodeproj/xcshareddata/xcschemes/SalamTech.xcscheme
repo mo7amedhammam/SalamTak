@@ -17,7 +17,7 @@
                BlueprintIdentifier = "00C8BF3027F3100F00571078"
                BuildableName = "SalamTech.app"
                BlueprintName = "SalamTech"
-               ReferencedContainer = "container:SalamTech.xcodeproj">
+               ReferencedContainer = "container:SalamTak.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,7 +48,7 @@
             BlueprintIdentifier = "00C8BF3027F3100F00571078"
             BuildableName = "SalamTech.app"
             BlueprintName = "SalamTech"
-            ReferencedContainer = "container:SalamTech.xcodeproj">
+            ReferencedContainer = "container:SalamTak.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -65,7 +65,7 @@
             BlueprintIdentifier = "00C8BF3027F3100F00571078"
             BuildableName = "SalamTech.app"
             BlueprintName = "SalamTech"
-            ReferencedContainer = "container:SalamTech.xcodeproj">
+            ReferencedContainer = "container:SalamTak.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
