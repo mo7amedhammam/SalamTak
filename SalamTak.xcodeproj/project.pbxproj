@@ -184,14 +184,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00C8BF3127F3100F00571078 /* SalamTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalamTech.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C8BF3127F3100F00571078 /* SalamTak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalamTak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C8BF3427F3100F00571078 /* SalamTechApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechApp.swift; sourceTree = "<group>"; };
 		00C8BF3627F3100F00571078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		00C8BF3827F3101100571078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00C8BF3B27F3101100571078 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		00C8BF4127F3101100571078 /* SalamTechTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTechTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C8BF4127F3101100571078 /* SalamTakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C8BF4527F3101100571078 /* SalamTechTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechTests.swift; sourceTree = "<group>"; };
-		00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C8BF4B27F3101100571078 /* SalamTakUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTakUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C8BF4F27F3101100571078 /* SalamTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITests.swift; sourceTree = "<group>"; };
 		00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		00C8BF6027F3182B00571078 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
@@ -398,9 +398,9 @@
 		00C8BF3227F3100F00571078 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				00C8BF3127F3100F00571078 /* SalamTech.app */,
-				00C8BF4127F3101100571078 /* SalamTechTests.xctest */,
-				00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */,
+				00C8BF3127F3100F00571078 /* SalamTak.app */,
+				00C8BF4127F3101100571078 /* SalamTakTests.xctest */,
+				00C8BF4B27F3101100571078 /* SalamTakUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1253,9 +1253,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00C8BF3027F3100F00571078 /* SalamTech */ = {
+		00C8BF3027F3100F00571078 /* SalamTak */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTech" */;
+			buildConfigurationList = 00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTak" */;
 			buildPhases = (
 				FD12AF66A6CE3938A4650227 /* [CP] Check Pods Manifest.lock */,
 				00C8BF2D27F3100F00571078 /* Sources */,
@@ -1268,17 +1268,17 @@
 			);
 			dependencies = (
 			);
-			name = SalamTech;
+			name = SalamTak;
 			packageProductDependencies = (
 				C8A91A1528141C50002437EC /* FSCalendar */,
 			);
 			productName = SalamTech;
-			productReference = 00C8BF3127F3100F00571078 /* SalamTech.app */;
+			productReference = 00C8BF3127F3100F00571078 /* SalamTak.app */;
 			productType = "com.apple.product-type.application";
 		};
-		00C8BF4027F3101100571078 /* SalamTechTests */ = {
+		00C8BF4027F3101100571078 /* SalamTakTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechTests" */;
+			buildConfigurationList = 00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTakTests" */;
 			buildPhases = (
 				E452BD0978B423F66B93F762 /* [CP] Check Pods Manifest.lock */,
 				00C8BF3D27F3101100571078 /* Sources */,
@@ -1290,14 +1290,14 @@
 			dependencies = (
 				00C8BF4327F3101100571078 /* PBXTargetDependency */,
 			);
-			name = SalamTechTests;
+			name = SalamTakTests;
 			productName = SalamTechTests;
-			productReference = 00C8BF4127F3101100571078 /* SalamTechTests.xctest */;
+			productReference = 00C8BF4127F3101100571078 /* SalamTakTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		00C8BF4A27F3101100571078 /* SalamTechUITests */ = {
+		00C8BF4A27F3101100571078 /* SalamTakUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechUITests" */;
+			buildConfigurationList = 00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTakUITests" */;
 			buildPhases = (
 				71ED5EAAAF13C9B89445C6BE /* [CP] Check Pods Manifest.lock */,
 				00C8BF4727F3101100571078 /* Sources */,
@@ -1311,9 +1311,9 @@
 			dependencies = (
 				00C8BF4D27F3101100571078 /* PBXTargetDependency */,
 			);
-			name = SalamTechUITests;
+			name = SalamTakUITests;
 			productName = SalamTechUITests;
-			productReference = 00C8BF4B27F3101100571078 /* SalamTechUITests.xctest */;
+			productReference = 00C8BF4B27F3101100571078 /* SalamTakUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1339,7 +1339,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00C8BF2C27F3100F00571078 /* Build configuration list for PBXProject "SalamTech" */;
+			buildConfigurationList = 00C8BF2C27F3100F00571078 /* Build configuration list for PBXProject "SalamTak" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1356,9 +1356,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				00C8BF3027F3100F00571078 /* SalamTech */,
-				00C8BF4027F3101100571078 /* SalamTechTests */,
-				00C8BF4A27F3101100571078 /* SalamTechUITests */,
+				00C8BF3027F3100F00571078 /* SalamTak */,
+				00C8BF4027F3101100571078 /* SalamTakTests */,
+				00C8BF4A27F3101100571078 /* SalamTakUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1704,12 +1704,12 @@
 /* Begin PBXTargetDependency section */
 		00C8BF4327F3101100571078 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00C8BF3027F3100F00571078 /* SalamTech */;
+			target = 00C8BF3027F3100F00571078 /* SalamTak */;
 			targetProxy = 00C8BF4227F3101100571078 /* PBXContainerItemProxy */;
 		};
 		00C8BF4D27F3101100571078 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00C8BF3027F3100F00571078 /* SalamTech */;
+			target = 00C8BF3027F3100F00571078 /* SalamTak */;
 			targetProxy = 00C8BF4C27F3101100571078 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1880,7 +1880,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTak-Pt";
-				PRODUCT_NAME = SalamTech;
+				PRODUCT_NAME = SalamTak;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1917,7 +1917,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wecancity.SalamTak-Pt";
-				PRODUCT_NAME = SalamTech;
+				PRODUCT_NAME = SalamTak;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1942,7 +1942,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalamTech.app/SalamTech";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalamTak.app/SalamTak";
 			};
 			name = Debug;
 		};
@@ -1963,7 +1963,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalamTech.app/SalamTech";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalamTak.app/SalamTak";
 			};
 			name = Release;
 		};
@@ -2008,7 +2008,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00C8BF2C27F3100F00571078 /* Build configuration list for PBXProject "SalamTech" */ = {
+		00C8BF2C27F3100F00571078 /* Build configuration list for PBXProject "SalamTak" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00C8BF5327F3101100571078 /* Debug */,
@@ -2017,7 +2017,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTech" */ = {
+		00C8BF5527F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTak" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00C8BF5627F3101100571078 /* Debug */,
@@ -2026,7 +2026,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechTests" */ = {
+		00C8BF5827F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTakTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00C8BF5927F3101100571078 /* Debug */,
@@ -2035,7 +2035,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTechUITests" */ = {
+		00C8BF5B27F3101100571078 /* Build configuration list for PBXNativeTarget "SalamTakUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00C8BF5C27F3101100571078 /* Debug */,
