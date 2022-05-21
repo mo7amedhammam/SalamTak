@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import MapKit
+import ImageViewerRemote
 
 struct ContentView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.scenePhase) var scenePhase
-    
 
     var body: some View {
         ZStack{
             TabBarView()
+     
         }
         .onAppear(perform: {
 //            Helper.setUserData(Id: 25, PhoneNumber: "01101201322", patientName: "mohamed hammam")
@@ -40,5 +42,17 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().navigationBarHidden(true)
+       
+    }
+}
+
+
+@MainActor class imagView: ObservableObject {
+    @Published var ShowImage: Bool
+    @Published var ImageURL: String
+    
+    init(){
+        ShowImage = false
+        ImageURL = ""
     }
 }

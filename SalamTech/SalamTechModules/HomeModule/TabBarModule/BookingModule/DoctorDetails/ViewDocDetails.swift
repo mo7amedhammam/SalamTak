@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import ImageViewerRemote
 
 var selectedDate = Date()
 var totalSquares = [Date]()
@@ -32,88 +33,96 @@ struct ViewDocDetails:View{
     @State var LoginOrReservation = 0
     @State var presentLogin = false
     @State var presentReservation = false
-
+    
+    @State var ispreviewImage=false
+    @State var previewImageurl=""
     
     var body: some View{
-                    ZStack {
-                VStack{
-                    Image("Rectangle")
-                        .resizable()
-                        .frame(width:UIScreen.main.bounds.width, height: 200)
+            ZStack {
+                    VStack{
+                        Image("Rectangle")
+                            .resizable()
+                            .frame(width:UIScreen.main.bounds.width, height: 200)
 
-                    ScrollView {
-                        ViewDocMainInfo(Doctor: Doctor)
-                        ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
-                        ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
+                        ScrollView {
+                            ViewDocMainInfo(Doctor: Doctor, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
+                            ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
+                            ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
+
+                            Spacer()
+                        }
+                        .frame(width: UIScreen.main.bounds.width-20)
+                        .background(.clear)
+                        .padding(.top,-105)
 
                         Spacer()
-                    }
-                    .frame(width: UIScreen.main.bounds.width-20)
-                    .background(.clear)
-                    .padding(.top,-105)
 
-                    Spacer()
-
-                    ZStack{
-                    Button(action: {
-                        // add review
-                        if Helper.userExist(){
-                            GotoSummary = true
-                        }else{
-                        showQuickLogin =  true
+                        ZStack{
+                        Button(action: {
+                            // add review
+                            if Helper.userExist(){
+                                GotoSummary = true
+                            }else{
+                            showQuickLogin =  true
+                            }
+                        }, label: {
+                            HStack {
+                                Text("Book")
+                                    .fontWeight(.semibold)
+                                    .font(.title3)
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
+                            .cornerRadius(12)
+                            .padding(.horizontal, 20)
+                        })
+                                .disabled(selectedTime == "")
+                            
                         }
-                    }, label: {
-                        HStack {
-                            Text("Book")
-                                .fontWeight(.semibold)
-                                .font(.title3)
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
-                        .cornerRadius(12)
-                        .padding(.horizontal, 20)
-                    })
-                            .disabled(selectedTime == "")
+                        .background(.clear
+                        
+                        )
+                            .shadow(color: .gray, radius: 9)
+                      
                         
                     }
-                    .background(.clear
-                    
-                    )
-                        .shadow(color: .gray, radius: 9)
-                  
-                    
-                }
-                .blur(radius: ShowCalendar||showQuickLogin ? 9:0)
-                .disabled(ShowCalendar)
-                .background(Color("CLVBG"))
-                        if showQuickLogin == true{
-                            quickLoginSheet(IsPresented: $showQuickLogin, QuickLogin: $presentLogin,QuickReservation: $presentReservation  , width: UIScreen.main.bounds.width)
-                        }
+                    .blur(radius: ShowCalendar||showQuickLogin ? 9:0)
+                    .disabled(ShowCalendar)
+                    .background(Color("CLVBG"))
+                            if showQuickLogin == true{
+                                quickLoginSheet(IsPresented: $showQuickLogin, QuickLogin: $presentLogin,QuickReservation: $presentReservation  , width: UIScreen.main.bounds.width)
+                            }
 
-                        if ShowCalendar == true{
-                        ZStack{
-                            calendarPopUp(selectedDate: $selectedDate, isPresented: $ShowCalendar)
+                            if ShowCalendar == true{
+                            ZStack{
+                                calendarPopUp(selectedDate: $selectedDate, isPresented: $ShowCalendar)
+                            }
+                            }
+                          
+                         
                         }
+                .edgesIgnoringSafeArea(.top)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        if !showQuickLogin && !ispreviewImage{
+                            BackButtonView()
                         }
-                      
-
-                    }
-            .edgesIgnoringSafeArea(.top)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if !showQuickLogin{
-                        BackButtonView()
                     }
                 }
-            }
-            .navigationBarHidden(showQuickLogin||ShowCalendar)
-            .navigationBarBackButtonHidden(true)
-            .onAppear(perform: {
-                setWeekView()
+                .navigationBarHidden(showQuickLogin||ShowCalendar||ispreviewImage)
+                .navigationBarBackButtonHidden(true)
+                .onAppear(perform: {
+                    setWeekView()
             })
+                .overlay(content: {
+                    ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
+                })
+          
         
+        
+       
         
         
      // go to summary
@@ -180,6 +189,8 @@ func setWeekView(){
 
 struct ViewDocMainInfo: View {
     var Doctor:Doc
+    @Binding var ispreviewImage:Bool
+    @Binding var previewImageurl:String
 
     var body: some View {
         VStack {
@@ -211,6 +222,10 @@ struct ViewDocMainInfo: View {
                                 .frame(width:60)
                                 .background(Color.gray)
                                 .cornerRadius(9)
+                                .onTapGesture(perform: {
+                                    ispreviewImage = true
+                                    previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
+                                })
                             
                             Text("Dr/")
                                 .foregroundColor(.black.opacity(0.7))

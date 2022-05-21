@@ -12,9 +12,10 @@ let APIKey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
 @main
 struct SalamTechApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var immmm = imagView()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(immmm)
         }
     }
 }

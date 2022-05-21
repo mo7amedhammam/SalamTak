@@ -71,7 +71,10 @@ struct ViewSearchDoc: View {
     @State var selectedFilterAreaName :String?
     @State var selectedFilterAreaId :Int?
     @State var AreabuttonSelected: Int?
-  
+    @State var ispreviewImage=false
+    @State var previewImageurl=""
+
+
     var body: some View {
         ZStack{
             VStack{
@@ -139,7 +142,7 @@ struct ViewSearchDoc: View {
                     }
                     
                     ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
-                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
+                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor , ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl)
                     }
                         ZStack{}
                         .frame( maxHeight: 2)
@@ -178,6 +181,8 @@ struct ViewSearchDoc: View {
             }
             .edgesIgnoringSafeArea(.vertical)
             
+            
+
             if showFilter {
                 switch FilterTag{
                     
@@ -803,8 +808,13 @@ struct ViewSearchDoc: View {
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $searchDoc.isLoading)
+              
 
+            
         }
+       
+        .navigationBarHidden(ispreviewImage)
+
         .onAppear(perform: {
             medicalType.GetExaminationTypeId()
             
@@ -829,18 +839,23 @@ struct ViewSearchDoc: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                if !showFilter{
+                if !showFilter && !ispreviewImage{
                     BackButtonView()
                 }
             }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
+                if  !ispreviewImage{
                 FilterButtonView(imagename: "filter"){
                     showFilter.toggle()
                 }
+                }
             }
         }
+        .overlay(content: {
+            ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
+        })
         
         
         //        }
@@ -981,16 +996,16 @@ extension String: Identifiable {
     }
 }
 
-
+import ImageViewerRemote
 struct ViewTopSection: View {
-    
+
     var Doctor:Doc
+    @Binding var ispreviewImage:Bool
+    @Binding var previewImageurl:String
+
     var body: some View {
         HStack{
-            
-            
             AsyncImage(url: URL(string:   URLs.BaseUrl + "\(Doctor.Image ?? "")" )) { image in
-                
                 image.resizable()
                 
             } placeholder: {
@@ -1003,6 +1018,11 @@ struct ViewTopSection: View {
             .frame(width:70)
             .background(Color.gray)
             .cornerRadius(9)
+            .onTapGesture(perform: {
+                ispreviewImage = true
+                previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
+            })
+
             
             VStack(alignment:.leading){
                 //MARK:  --- Name ---
@@ -1019,21 +1039,11 @@ struct ViewTopSection: View {
                     Text(Doctor.SeniortyLevelName ?? "")
                         .foregroundColor(.gray.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
-                    //                                    Text(".")
-                    //                                        .foregroundColor(.gray.opacity(0.8))
-                    //                                        .font(Font.system(size:30, design: .serif))
-                    //                                        .fontWeight(.bold).offset(y:-8)
-                    //                                    Text("Fellow of Surgeons R...")
-                    //                                        .foregroundColor(.gray.opacity(0.7))
-                    //                                        .font(Font.SalamtechFonts.Reg14)
+
                 }
                 
                 //MARK:  --- Rate ---
                 HStack{
-                    //                    ForEach(0..<5){_ in
-                    //                        Image(systemName: "star.fill") // Imagenames: star || star.fill || star.leadinghalf.filled
-                    //                            .foregroundColor(.yellow)
-                    //                    }
                     StarsView(rating: Float( Doctor.Rate ?? 0))
                     
                     Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
@@ -1046,6 +1056,7 @@ struct ViewTopSection: View {
             Spacer()
             
         }
+
         .padding(10)
         .frame(height:115)
     }
@@ -1127,11 +1138,13 @@ struct ViewDocCell: View {
     @Binding var gotodoctorDetails : Bool
     @Binding var SelectedDoctor : Doc
     
+    @Binding var ispreviewImage:Bool
+    @Binding var previewImageurl:String
     var body: some View {
         VStack(alignment:.leading){
             
             //MARK: ****** Doc Main info ******
-            ViewTopSection(Doctor: Doctor)
+            ViewTopSection(Doctor: Doctor,ispreviewImage:$ispreviewImage,previewImageurl:$previewImageurl)
             // ******                    ******
             
             
