@@ -16,7 +16,7 @@ class ViewModelCountries: ObservableObject {
     
 
     @Published private(set) var publishedCountryModel: [Country] = []
-    @Published var isLoading = false
+    @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var UserCreated = false

@@ -114,8 +114,10 @@ struct ReviewsView: View {
             }
             .edgesIgnoringSafeArea(.vertical)
             
-            
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $DocReviews.isLoading)
         }.onAppear(perform: {
+            DocReviews.isLoading = true
             DocReviews.doctorId = DoctorId
             DocReviews.startFetchReviews()
         })

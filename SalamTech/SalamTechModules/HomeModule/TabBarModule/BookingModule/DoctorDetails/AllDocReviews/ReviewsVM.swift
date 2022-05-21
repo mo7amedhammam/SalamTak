@@ -21,7 +21,7 @@ class ReviewsVM: ObservableObject {
 //    @Published var isValid = false
 //    @Published var inlineErrorPassword = ""
     @Published var publishedReviewsModel: [DocReview]? = []
-    @Published var isLoading = false
+    @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var IsDone = false

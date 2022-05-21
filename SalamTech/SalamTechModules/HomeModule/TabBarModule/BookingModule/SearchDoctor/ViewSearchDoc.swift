@@ -93,16 +93,13 @@ struct ViewSearchDoc: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack( spacing: 10) {
                         // Swipe TabView
-                        ForEach(medicalType.publishedModelExaminationTypeId){ type in
+                        ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in
                             
                             if type.id==0{ }else{
                                 
                                 Button(action: {
                                     withAnimation(.default) {
-                                        
-                                        
                                         self.index = type.id ?? 1
-                                        //                                    SchedualVM.serviceId = index
                                         
                                     }
                                     
@@ -116,7 +113,7 @@ struct ViewSearchDoc: View {
                                         .padding(10)
                                         .padding(.bottom,1)
                                         .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
-                                                        .cornerRadius(3))
+                                                        .cornerRadius(5))
                                         .clipShape(Rectangle())
                                     
                                     
@@ -131,16 +128,20 @@ struct ViewSearchDoc: View {
                         .padding(.horizontal)
                 }
                 
+                
                 List( ){
+
+                    if searchDoc.noDoctors == true{
+                        Text("Sorry,\nNo Doctors Found 🤷‍♂️")
+                            .multilineTextAlignment(.center)
+                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                        
+                    }
                     
-                    //                LazyVStack(spacing:15){
                     ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
                         ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor )
                     }
-                    Image("Line")
-                        .resizable()
-                        .renderingMode(.original)
-                        .tint(.black)
+                        ZStack{}
                         .frame( maxHeight: 2)
                         .foregroundColor(.black)
                         .onAppear(perform: {
@@ -150,27 +151,23 @@ struct ViewSearchDoc: View {
                             }
                         })
                     
-                    
+                   
                 }.refreshable(action: {
                     getAllDoctors()
                 })
                     .listStyle(.plain)
                     .padding(.vertical,0)
-                //            .background(Color.red)
-                //                Spacer()
+               
+                    .edgesIgnoringSafeArea(.bottom)
             }
-            .blur(radius: showFilter ? 9:0)
+            
+                
+                .blur(radius: showFilter ? 9:0)
             
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
-//            .onTapGesture(perform: {
-//                if showFilter == true && FilterTag != "Filter"{
-//                    FilterTag = "Filter"
-//                }else{
-//                    showFilter = false
-//                }
-//            })
+            
 
             
             VStack{
@@ -311,7 +308,7 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-//                        specialityvm.startFetchSpecialist()
+                        specialityvm.startFetchSpecialist()
                     })
                
                 case "SubSpeciality":
@@ -555,7 +552,8 @@ struct ViewSearchDoc: View {
                     })
                     
                         .onAppear(perform: {
-                            AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)                    })
+                            
+                        })
 
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
@@ -802,8 +800,14 @@ struct ViewSearchDoc: View {
                 }
             }
             
+            
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $searchDoc.isLoading)
+
         }
         .onAppear(perform: {
+            medicalType.GetExaminationTypeId()
+            
             searchDoc.MaxResultCount = 10
             index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
@@ -817,6 +821,8 @@ struct ViewSearchDoc: View {
         })
         .onChange(of: index){newval in
             self.ExTpe = newval
+            searchDoc.isLoading = true
+
             searchDoc.MedicalExaminationTypeId = newval
             searchDoc.publishedModelSearchDoc.removeAll()
             getAllDoctors()
@@ -848,12 +854,15 @@ struct ViewSearchDoc: View {
     
     //MARK: --- Functions ----
     func getAllDoctors(){
+        searchDoc.isLoading = true
+        
         searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
         searchDoc.FetchDoctors()
     }
     
     func applyFilter(){
+
         searchDoc.FilterSeniortyLevelId = selectedSeniorityLvlId
         searchDoc.FilterSpecialistId = selectedSpecLvlId ?? 115151
         searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds

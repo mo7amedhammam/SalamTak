@@ -101,7 +101,6 @@ struct SpecialityView: View {
         .edgesIgnoringSafeArea(.vertical)
         .background(Color("CLVBG"))
         .onAppear(perform: {
-
         })
         
             VStack{
@@ -112,7 +111,12 @@ struct SpecialityView: View {
             }
             .edgesIgnoringSafeArea(.vertical)
 
-        }
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $specialityvm.isLoading)
+        }.onAppear(perform: {
+            specialityvm.isLoading = true
+            specialityvm.startFetchSpecialist()
+        })
 
         
         //  go to clinic info

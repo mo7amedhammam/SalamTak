@@ -26,7 +26,7 @@ class ViewModelExaminationTypeId: ObservableObject {
     @Published var publishedModelExaminationTypeId: [ExaminationType] = []
     
     
-    @Published var isLoading = false
+    @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var isDone = false
@@ -36,7 +36,7 @@ class ViewModelExaminationTypeId: ObservableObject {
     
     init() {
         
-        GetExaminationTypeId()
+//        GetExaminationTypeId()
         
         ModelExaminationTypeId.sink { (completion) in
         } receiveValue: { [self] (modeldata) in

@@ -139,6 +139,8 @@ struct AreaView: View {
                     Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $AreasVM.isLoading)
 
         }.onAppear(perform: {
             AreasVM.startFetchAreas(cityId: CityId )

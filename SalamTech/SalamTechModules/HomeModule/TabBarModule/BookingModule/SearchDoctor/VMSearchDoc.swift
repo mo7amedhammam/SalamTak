@@ -47,13 +47,10 @@ class VMSearchDoc: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-//    @Published var publishedModelSearchDoc: [Doc]
     
     @Published var publishedModelSearchDoc: [Doc] = [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
     
     @Published var publishedModelMinMaxFee : MinMaxFee?
-
-
 
     @Published var isLoading:Bool?
     @Published var isError = false
@@ -61,16 +58,22 @@ class VMSearchDoc: ObservableObject {
     @Published var isDone = false
     @Published var isNetworkError = false
     @Published var SessionExpired = false
-
+    @Published var noDoctors = false
     
     init() {
    GetMinMaxFees()
         
+        
+        
         ModelFetchDoctors.sink { (completion) in
             //            print(completion)
         } receiveValue: { [weak self]  (modeldata) in
-            
+            self?.noDoctors = false
             self?.publishedModelSearchDoc = modeldata.data?.Items ?? []
+            
+            if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc.isEmpty == true {
+                self?.noDoctors = true
+            }
         
   
         }.store(in: &cancellables)
@@ -78,9 +81,12 @@ class VMSearchDoc: ObservableObject {
         ModelFetchMoreDoctors.sink { (completion) in
             //            print(completion)
         } receiveValue: { [weak self] (modeldata) in
-            
+            self?.noDoctors = false
             self?.publishedModelSearchDoc.append( contentsOf: modeldata.data?.Items ?? [])
-  
+            if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc.isEmpty == true {
+                self?.noDoctors = true
+            }
+
         }.store(in: &cancellables)
     
         

@@ -29,7 +29,7 @@ class ViewModelGetCities: ObservableObject {
     
     @Published var publishedCityInfoByIdModel: CityInfo?
 
-    @Published var isLoading = false
+    @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var IsDone = false

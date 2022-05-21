@@ -18,7 +18,7 @@ class ViewModelSpecialist: ObservableObject {
 //    // ------- input
 
     @Published var  publishedSpecialistModel :  [Speciality]?
-    @Published var isLoading = false
+    @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var UserCreated = false
@@ -26,7 +26,7 @@ class ViewModelSpecialist: ObservableObject {
  
     init() {
         
-        startFetchSpecialist()
+//        startFetchSpecialist()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedSpecialistModel = modeldata.Data ?? []

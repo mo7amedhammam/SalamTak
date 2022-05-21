@@ -49,8 +49,8 @@ struct Doc: Codable, Identifiable, Hashable{
 
     }
 
-    var id, SumRate, Rate, NumVisites, WaitingTime: Int?
-    var FeesFrom, FeesTo :Double?
+    var id, ClinicId, SumRate,  NumVisites, WaitingTime: Int?
+    var FeesFrom, Rate, FeesTo :Double?
     var DoctorName, SpecialistName, SeniortyLevelName, ClinicName, ClinicAddress, Image,AvailableFrom: String?
     var SubSpecialistName: [String]?
     var MedicalExamationTypeImage: [Img]?
@@ -58,6 +58,7 @@ struct Doc: Codable, Identifiable, Hashable{
   
     enum CodingKeys: String, CodingKey {
         case id = "DoctorId"
+        case ClinicId = "ClinicId"
         case SumRate = "SumRate"
         case Rate = "Rate"
         case NumVisites = "NumVisites"

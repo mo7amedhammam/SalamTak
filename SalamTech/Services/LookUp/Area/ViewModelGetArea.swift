@@ -21,7 +21,7 @@ class ViewModelGetAreas: ObservableObject {
 //    @Published var isValid = false
 //    @Published var inlineErrorPassword = ""
     @Published var publishedAreaModel: [Area] = []
-    @Published var isLoading = false
+    @Published var isLoading:Bool? = false
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var IsDone = false

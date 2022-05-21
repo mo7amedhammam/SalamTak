@@ -11,13 +11,12 @@ struct ViewAddReview: View {
     @StateObject var addRate = VMAddReview()
      var  Doctor:Doc
     @State var rate = 0
-    @State var reviewComment = "klmlkmklnklnlk"
+    @State var reviewComment = ""
     @State var wordCount = 0
 
     var body: some View {
         ZStack{
             VStack{
-            
                 ZStack{
                             
                             VStack( spacing:0){
@@ -115,12 +114,8 @@ struct ViewAddReview: View {
                     TextEditor(text: $reviewComment)
                                     .font(.body)
                                     .padding()
-//                                    .padding(.top, 20)
                                     .onChange(of: reviewComment) { value in
-//                                        let words = reviewComment.split { $0 == " " || $0.isNewline }
-//                                        self.wordCount = words.count
                                         reviewComment = String(value.prefix(500))
-
                                     }
 
                 }
@@ -158,13 +153,56 @@ struct ViewAddReview: View {
                     
                 }
             }
+          
+
             
+            CustomSheet(IsPresented: .constant(true), content: {
+       
+                    Button(action: {
+                        // add review
+    //                    FilterTag = "Filter"
+                        addReview()
+                    }, label: {
+                        HStack {
+                            Text("Confirm")
+                                .fontWeight(.semibold)
+                                .font(.title3)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color("blueColor"))
+                        .cornerRadius(12)
+                        .padding(.horizontal, 12)
+                    })
+                
+                .frame( height: 60)
+                .padding(.horizontal)
+                .padding(.bottom,10)
+                
+            })
+            
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $addRate.isLoading)
         }.onAppear(perform: {
             addRate.DoctorId = Doctor.id ?? 0
         })
         
+            .onTapGesture(perform: {
+                hideKeyboard()
+            })
         
+     
+
         
+    }
+    
+    func addReview(){
+        addRate.isLoading = true
+        addRate.DoctorId = Doctor.id ?? 0
+        addRate.Rate = rate
+        addRate.Comment = reviewComment
+        addRate.AddDocRate()
     }
 }
 

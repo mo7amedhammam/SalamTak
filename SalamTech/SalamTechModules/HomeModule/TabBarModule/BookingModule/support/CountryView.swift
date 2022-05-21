@@ -130,6 +130,9 @@ struct CountryView: View {
             }
             .edgesIgnoringSafeArea(.vertical)
 
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $NationalityVM.isLoading)
+
         }
 
         

@@ -141,7 +141,10 @@ struct CityView: View {
             }
             .edgesIgnoringSafeArea(.vertical)
 
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $CitiesVM.isLoading)
         }.onAppear(perform: {
+            CitiesVM.isLoading = true
             CitiesVM.startFetchCities(countryid: CountryId)
         })
 
