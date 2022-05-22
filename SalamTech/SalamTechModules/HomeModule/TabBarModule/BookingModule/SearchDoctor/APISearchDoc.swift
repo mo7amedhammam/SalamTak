@@ -8,9 +8,6 @@
 import Foundation
 import Alamofire
 
-
-
-
 final class APISearchDoc {
 
 static func SearchDoctors(parameters:[String:Any] ,completion: @escaping ( Bool , ModelSearchDoc?, String?) -> ()) {
