@@ -19,6 +19,7 @@ struct ViewDocDetails:View{
     @State var GotoSummary = false
     @State var GotoReviews = false
     @State var GotoAddReview = false
+    var language = LocalizationService.shared.language
 
     @Binding var ExType :Int
     
@@ -67,7 +68,7 @@ struct ViewDocDetails:View{
                             }
                         }, label: {
                             HStack {
-                                Text("Book")
+                                Text("Book".localized(language))
                                     .fontWeight(.semibold)
                                     .font(.title3)
                             }
@@ -191,6 +192,7 @@ struct ViewDocMainInfo: View {
     var Doctor:Doc
     @Binding var ispreviewImage:Bool
     @Binding var previewImageurl:String
+    var language = LocalizationService.shared.language
 
     var body: some View {
         VStack {
@@ -227,7 +229,7 @@ struct ViewDocMainInfo: View {
                                     previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
                                 })
                             
-                            Text("Dr/")
+                            Text("Dr/ ".localized(language))
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Bold18)
                             
@@ -235,7 +237,7 @@ struct ViewDocMainInfo: View {
                                 .font(Font.SalamtechFonts.Bold18)
                             
                             Spacer()
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     }
                     .padding()
                     
@@ -246,23 +248,24 @@ struct ViewDocMainInfo: View {
                             Text(Doctor.SeniortyLevelName ?? "")
                                 .foregroundColor(.gray.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         HStack{
                             StarsView(rating: Float( Doctor.Rate ?? 0))
 
                             
                             
-                            Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
+                            Text("( \(Doctor.NumVisites ?? 0) "+"Patientsـ)".localized(language))
                                 .foregroundColor(.black.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                         
                         HStack{
                             Image("doc1")
                             Text(Doctor.SpecialistName ?? "" )
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg14)
-                            Text(" Specialized in ")
+                            Text(" Specialized_in ".localized(language))
                                 .foregroundColor(.secondary)
                                 .font(Font.SalamtechFonts.Reg14)
                             Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "" )
@@ -271,11 +274,13 @@ struct ViewDocMainInfo: View {
                             
                             
                             Spacer()
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                         
                         Spacer()
                         
                     }.padding(.leading)
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     
                 }//V
                 .frame(height: 160)
@@ -298,7 +303,7 @@ struct ViewDocMainInfo: View {
                         .frame(width: 25, height: 25)
                         .padding(.leading)
                     VStack{
-                    Text("Fees:")
+                        Text("Fees:".localized(language))
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
                         Text( String( Doctor.FeesFrom ?? 0.0))
@@ -313,15 +318,16 @@ Divider()
                         .resizable()
                         .frame(width: 20, height: 20)
                     VStack{
-                    Text("Waiting Time:")
+                        Text("Waiting_Time:".localized(language))
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
-                        Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
+                        Text("\(Doctor.WaitingTime ?? 0) " + "Minutes".localized(language))
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     
                     }.padding(.trailing)
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                 .background(Color.white)
             }
             .frame(width: UIScreen.main.bounds.width-30, height:55)
@@ -346,7 +352,7 @@ Divider()
                     .padding()
                 Spacer()
                 
-            }
+            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .background(Color.white)
         }
         .frame(width: UIScreen.main.bounds.width-30, height:55)
@@ -357,11 +363,14 @@ Divider()
 }
 
 struct ViewDateAndTime: View {
+    var language = LocalizationService.shared.language
+
     @State var TappedDate = Date()
     @State var timeexpanded = false
     @StateObject var DocDetails = ViewModelDocDetails()
 
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+//    :["اثنين", "ثلاث", "اربع", "Fri", "خميس"]
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
     
     @State var seldatenum = ""
@@ -384,7 +393,9 @@ struct ViewDateAndTime: View {
     }
     var body: some View {
         VStack{
-            Text("Choose date & time").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+            Text("Choose_date_&_time".localized(language))
+                .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 //            ZStack {
 //                FSCalendarView(SelectedDate: $TappedDate)
 //                    .frame( minHeight: 150)
@@ -416,7 +427,9 @@ struct ViewDateAndTime: View {
 
                             Spacer()
 
-                        }.frame(height:15)
+                        }
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                        .frame(height:15)
                     })
                         .padding()
 
@@ -436,8 +449,7 @@ struct ViewDateAndTime: View {
                                     
                                 VStack{
 
-                                    Text(                            String(CalendarHelper().dayOfMonth(date: date))
-)
+                                    Text(String(CalendarHelper().dayOfMonth(date: date)))
                                     Text(weekdays[day])
                                     if TappedDate == date{
                                         Text(".")
@@ -457,6 +469,8 @@ struct ViewDateAndTime: View {
 
                         }
                     }
+//                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                     .frame(height: 60)
                 }
                 .background(Color.white)
@@ -488,7 +502,7 @@ struct ViewDateAndTime: View {
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg16)
                             
-                            Text("To")
+                            Text("to".localized(language))
                                 .foregroundColor(.gray)
                                 .font(Font.SalamtechFonts.Reg16)
                             
@@ -496,14 +510,19 @@ struct ViewDateAndTime: View {
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg16)
                             
-                        }.background(Image("Rectangle2"))
+                        }
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+                        .background(Image("Rectangle2")
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                    )
                         Spacer()
                         
-                        Text("Fee:")
+                        Text("Fees:".localized(language))
                             .foregroundColor(.gray)
                             .font(Font.SalamtechFonts.Reg16)
                         
-                        Text("\(sched.Fees ?? 0) EGP")
+                        Text("\(sched.Fees ?? 0)" + "EGP".localized(language))
                             .foregroundColor(Color("darkGreen"))
                             .font(Font.SalamtechFonts.Reg16)
                         
@@ -512,7 +531,8 @@ struct ViewDateAndTime: View {
                             .padding(.bottom,3)
                         
                         
-                    }
+                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                     .frame(height:50)
                     .padding(.horizontal)
        
@@ -558,11 +578,15 @@ struct ViewDateAndTime: View {
 }
 
 struct ViewAboutDoctor: View {
+    var language = LocalizationService.shared.language
+
     var Docinfo : String
     var body: some View {
         VStack{
             
-            Text("About doctor").frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+            Text("About_doctor".localized(language))
+                .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             
             ZStack{
                 
@@ -584,6 +608,7 @@ struct ViewAboutDoctor: View {
 
 struct ViewDocReviews: View {
 //    @StateObject var DocDetails : ViewModelDocDetails
+    var language = LocalizationService.shared.language
 
     @State var hei: CGFloat = 180
     var Doctor:Doc
@@ -593,24 +618,27 @@ struct ViewDocReviews: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Reviews")
+                Text("Reviews".localized(language))
                 Spacer()
                 Button(action: {
                     GotoReviews = true
                 }, label: {
                   
                     HStack{
-                        Text("View all reviews")
+                        Text("View_all_reviews".localized(language))
                             .foregroundColor(Color("darkGreen"))
                         Image( systemName: "chevron.forward")
                             .foregroundColor(Color("darkGreen"))
                             .padding(.trailing)
 
-                    }
+                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 })
                 
                 
-            }.frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+            }
+            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+            .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
             
             ScrollView(.horizontal){
                 HStack{
@@ -650,7 +678,7 @@ struct ViewDocReviews: View {
                                         .padding(.top, 10)
 
                                         Spacer()
-                                    }
+                                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 }
                                 .padding()
                                 
@@ -661,12 +689,14 @@ struct ViewDocReviews: View {
                                     .foregroundColor(.gray)
                                         .font(Font.SalamtechFonts.Reg14)
                                     
-                                    HStack{
-                                        Spacer()
-                                        Text("26.02.2019" )
-                                            .foregroundColor(.gray.opacity(0.3))
-                                            .font(Font.SalamtechFonts.Reg14)
-                                    }.padding(.trailing)
+//                                    HStack{
+//                                        Spacer()
+//                                        Text("26.02.2019" )
+//                                            .foregroundColor(.gray.opacity(0.3))
+//                                            .font(Font.SalamtechFonts.Reg14)
+//                                    }.padding(.trailing)
+//                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                     
                                     
                                 }.padding(.leading)
@@ -682,7 +712,9 @@ struct ViewDocReviews: View {
                         .shadow(color: .black.opacity(0.1), radius: 9)
                         
                     }
-                }.padding([.bottom,.leading],8)
+                }
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                .padding([.bottom,.leading],8)
             }
             
             Button(action: {
@@ -692,7 +724,7 @@ struct ViewDocReviews: View {
                 HStack {
                     Image("pen")
                         .font(.title)
-                    Text("Write a Review")
+                    Text("Write_a_Review".localized(language))
                         .fontWeight(.semibold)
                         .font(.title3)
                 }
@@ -730,14 +762,14 @@ struct quickLoginSheet : View {
                             .padding(.bottom,20)
                     
                     VStack {
-                            ButtonView(text:"Sign in", action: {
+                        ButtonView(text:"Sign_in".localized(language), action: {
                                 withAnimation(.easeIn(duration: 0.3)) {
                                     IsPresented =  false
                                     QuickLogin = true
                                 }
                             })
                         
-                        ButtonView(text: "Quick Reservation", backgroundColor: .white){
+                        ButtonView(text: "Quick_Reservation".localized(language), backgroundColor: .white){
                             // action
                             IsPresented =  false
                             QuickReservation = true
@@ -798,7 +830,7 @@ struct slotView:View{
                             }
             }
 
-        }
+        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
         .padding(.horizontal,13)
 
     }

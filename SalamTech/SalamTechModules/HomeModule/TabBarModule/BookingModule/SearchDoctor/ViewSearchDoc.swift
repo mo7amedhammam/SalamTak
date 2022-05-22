@@ -191,7 +191,7 @@ struct ViewSearchDoc: View {
                 case "Title":
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
-                        Text("Title")
+                        Text("Title".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
@@ -217,11 +217,13 @@ struct ViewSearchDoc: View {
                                             Spacer()
 
 
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                     })
                                     
 //                                    SeniorityBtn(seniorityLvl: seniorityVM.publishedSeniorityLevelModel[button], selectedSenLvlName: $selectedSenLvlName, selectedSenLvlId: $selectedSenLvlId)
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             }
                         }
                         
@@ -233,10 +235,10 @@ struct ViewSearchDoc: View {
 //                                showFilter.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Confirm")
+                                    Text("Confirm".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .frame(minWidth: 0, maxWidth: .infinity)
                                 .padding()
                                 .foregroundColor(.white)
@@ -251,13 +253,13 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-//                        seniorityVM.startFetchSenioritylevel()
+                        seniorityVM.startFetchSenioritylevel()
                     })
                    
                 case "Speciality":
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
-                        Text("Speciality")
+                        Text("Speciality".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
@@ -282,10 +284,12 @@ struct ViewSearchDoc: View {
                                             Spacer()
 
 
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                     })
                                     
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             }
                         }
                         
@@ -297,10 +301,11 @@ struct ViewSearchDoc: View {
 //                                showFilter.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Confirm")
+                                    Text("Confirm".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                 .frame(minWidth: 0, maxWidth: .infinity)
                                 .padding()
                                 .foregroundColor(.white)
@@ -321,7 +326,7 @@ struct ViewSearchDoc: View {
                 case "SubSpeciality":
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
-                        Text("Sub Specialities")
+                        Text("Sub_Specialities".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
@@ -329,30 +334,12 @@ struct ViewSearchDoc: View {
                             ForEach(0..<SubSpecialityVM.publishedSubSpecialistModel.count, id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:30)
-//                                    Button(action: {
-//                                        self.buttonSelected = button
-//                                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
 //
-//                                        self.selectedSeniorityId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
-//                                        self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
-//
-//                                    }, label: {
-//                                        HStack{
-//                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
-//                                                .font(.system(size: 20))
-//                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-//                                            Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
-//                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-//                                            Spacer()
-//
-//
-//                                        }
-//                                    })
                                     
                         SeniorityBtn(seniorityLvl: SubSpecialityVM.publishedSubSpecialistModel[button], selectedSenLvlName: $selectedSubSpecLvlNames, selectedSenLvlId: $selectedSubSpecLvlIds)
 
                                     
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             }
                         }
                         
@@ -364,7 +351,7 @@ struct ViewSearchDoc: View {
 //                                showFilter.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Confirm")
+                                    Text("Confirm".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
                                 }
@@ -388,7 +375,7 @@ struct ViewSearchDoc: View {
                 case "City":
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
-                        Text("City")
+                        Text("City".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
@@ -413,10 +400,10 @@ struct ViewSearchDoc: View {
                                             Spacer()
 
 
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                     })
                                     
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             }
                         }
                         
@@ -428,7 +415,7 @@ struct ViewSearchDoc: View {
 //                                showFilter.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Confirm")
+                                    Text("Confirm".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
                                 }
@@ -452,7 +439,7 @@ struct ViewSearchDoc: View {
                 case "Area":
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
-                        Text("Area")
+                        Text("Area".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
@@ -477,10 +464,10 @@ struct ViewSearchDoc: View {
                                             Spacer()
 
 
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                     })
                                     
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             }
                         }
                         
@@ -492,7 +479,7 @@ struct ViewSearchDoc: View {
 //                                showFilter.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Confirm")
+                                    Text("Confirm".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
                                 }
@@ -515,19 +502,19 @@ struct ViewSearchDoc: View {
                     
                 case "Fees":
                     CustomSheet(IsPresented: $showFilter, content: {
-                        Text("Examination Fee")
+                        Text("Examination_Fee".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
 
                         VStack{
                         HStack{
-                            FeesFilterTextField1(text: String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0), title: "Minimum")
+                            FeesFilterTextField1(text: String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0), title: "Minimum".localized(language))
                                 .frame(width:(UIScreen.main.bounds.width - 50)/2)
                                 .disabled(true)
-                            FeesFilterTextField1(text:  String(Int( Float(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + selectedFee)) , title: "Maximum")
+                            FeesFilterTextField1(text:  String(Int( Float(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + selectedFee)) , title: "Maximum".localized(language))
                                 .frame(width:(UIScreen.main.bounds.width - 50)/2)
                                 .disabled(true)
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
 //                            SliderView(minFee: $minFee, maxFee: $maxFee, range: Int(maxFee-minFee), percentage: $floselectedFee)
                             CustomView(percentage: $selectedFee, range: Int( searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0) - Int(  0) )
@@ -540,7 +527,7 @@ struct ViewSearchDoc: View {
                                 FilterTag = "Filter"
                             }, label: {
                                 HStack {
-                                    Text("Confirm")
+                                    Text("Confirm".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
                                 }
@@ -565,7 +552,7 @@ struct ViewSearchDoc: View {
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
-                        Text("Search Filter")
+                        Text("Search_Filter".localized(language))
                             .font(.system(size: 18))
                             .fontWeight(.bold)
                         //                    }
@@ -581,12 +568,12 @@ struct ViewSearchDoc: View {
                                     
                                     Image("FilterTitle")
                                     VStack(alignment:.leading){
-                                        Text("Title")
+                                        Text("Title".localized(language))
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
                                         
-                                        Text(selectedSeniorityLvlName ?? "Seniority")
+                                        Text(selectedSeniorityLvlName ?? "")
 //                                        Text(selectedSeniorityName.map { "\($0)" }.joined(separator: ", "))
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
@@ -598,6 +585,8 @@ struct ViewSearchDoc: View {
                                     CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                                     
                                 }.padding()
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             })
 //                                .buttonStyle(.plain)
                                 .listRowSeparator(.hidden)
@@ -611,11 +600,11 @@ struct ViewSearchDoc: View {
                                     
                                     Image("FilterSpec")
                                     VStack(alignment:.leading){
-                                        Text("Speciality")
+                                        Text("Speciality".localized(language))
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text(selectedSpecLvlName ?? "speciality lvl")
+                                        Text(selectedSpecLvlName ?? "")
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -626,6 +615,8 @@ struct ViewSearchDoc: View {
                                     CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                                     
                                 }.padding()
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             })
 //                                .buttonStyle(.plain)
                             
@@ -637,7 +628,7 @@ struct ViewSearchDoc: View {
                                     
                                     Image("FilterSpec")
                                     VStack(alignment:.leading){
-                                        Text("Sub Specialities")
+                                        Text("Sub_Specialities".localized(language))
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
@@ -652,33 +643,37 @@ struct ViewSearchDoc: View {
                                     CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                                     
                                 }.padding()
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             })
 //                                .buttonStyle(.plain)
                             
                             
-                            Button(action: {
-                                FilterTag = "Gender"
-                            }, label: {
-                                HStack{
-                                    
-                                    Image("FilterPerson")
-                                    VStack(alignment:.leading){
-                                        Text("Gender")
-                                            .font(.system(size: 16))
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.black)
-                                        Text("Select Gender")
-                                            .font(.system(size: 12))
-                                            .fontWeight(.medium)
-                                            .foregroundColor(.gray)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                                    
-                                }.padding()
-                            })
+//                            Button(action: {
+//                                FilterTag = "Gender"
+//                            }, label: {
+//                                HStack{
+//
+//                                    Image("FilterPerson")
+//                                    VStack(alignment:.leading){
+//                                        Text("Gender".localized(language))
+//                                            .font(.system(size: 16))
+//                                            .fontWeight(.semibold)
+//                                            .foregroundColor(.black)
+//                                        Text("Select Gender")
+//                                            .font(.system(size: 12))
+//                                            .fontWeight(.medium)
+//                                            .foregroundColor(.gray)
+//                                    }
+//
+//                                    Spacer()
+//
+//                                    CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
+//
+//                                }.padding()
+//                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//
+//                            })
 //                                .buttonStyle(.plain)
                             
                             
@@ -689,7 +684,7 @@ struct ViewSearchDoc: View {
                                     
                                     Image("FilterLocation")
                                     VStack(alignment:.leading){
-                                        Text("City")
+                                        Text("City".localized(language))
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
@@ -704,6 +699,8 @@ struct ViewSearchDoc: View {
                                     CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                                     
                                 }.padding()
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             })
                             Button(action: {
                                 FilterTag = "Area"
@@ -712,7 +709,7 @@ struct ViewSearchDoc: View {
                                     
                                     Image("FilterLocation")
                                     VStack(alignment:.leading){
-                                        Text("Area")
+                                        Text("Area".localized(language))
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
@@ -727,6 +724,8 @@ struct ViewSearchDoc: View {
                                     CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                                     
                                 }.padding()
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             })
 //                                .buttonStyle(.plain)
                             
@@ -737,11 +736,11 @@ struct ViewSearchDoc: View {
                                     
                                     Image("FilterFees")
                                     VStack(alignment:.leading){
-                                        Text("Examination Fee")
+                                        Text("Examination_Fee".localized(language))
                                             .font(.system(size: 16))
                                             .fontWeight(.semibold)
                                             .foregroundColor(.black)
-                                        Text("From \(String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0)) to \(String( searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0)) EGP")
+                                        Text("From".localized(language) + " \(String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0))" + "to".localized(language) + " \(String( searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0))"+"EGP".localized(language))
                                             .font(.system(size: 12))
                                             .fontWeight(.medium)
                                             .foregroundColor(.gray)
@@ -752,6 +751,8 @@ struct ViewSearchDoc: View {
                                     CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
                                     
                                 }.padding()
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             })
 //                                .buttonStyle(.plain)
                             
@@ -767,7 +768,7 @@ struct ViewSearchDoc: View {
                                 resetFilter()
                                 showFilter.toggle()
                             }, label: {
-                                Text("Reset")
+                                Text("Reset".localized(language))
                                     .font(.system(size: 15))
                                     .foregroundColor(.black.opacity(0.5))
                                 //            .padding(.bottom,-20)
@@ -783,7 +784,7 @@ struct ViewSearchDoc: View {
                                 showFilter.toggle()
                             }, label: {
                                 HStack {
-                                    Text("Apply Filter")
+                                    Text("Apply_Filter".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title3)
                                 }
@@ -795,6 +796,8 @@ struct ViewSearchDoc: View {
                                 .padding(.horizontal, 30)
                             })
                         }
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                         .frame( height: 60)
                         .padding(.horizontal)
                         .padding(.bottom,10)
@@ -1175,7 +1178,7 @@ struct ViewDocCell: View {
             //MARK: *******       ********
             
             
-            Text("Available".localized(language)+" \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) "+"From".localized(language)+" \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) "+"PM".localized(language) )
+            Text("Available".localized(language)+" \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) "+"From".localized(language)+" \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) " )
                 .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
                 .background(Color.gray.opacity(0.3))
                 .foregroundColor(.black.opacity(0.7))

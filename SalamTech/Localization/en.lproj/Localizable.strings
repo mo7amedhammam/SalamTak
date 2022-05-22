@@ -270,3 +270,46 @@
 "From" = "From";
 "PM" = "PM";
 "Book" = "Book";
+
+
+
+"Title" = "Title";  // seniority
+"Confirm" = "Confirm";
+"Speciality" = "Speciality";
+"Sub_Specialities" = "Sub Specialities";
+"City" = "City";
+"Area" = "Area";
+"Examination_Fee" = "Examination Fee";
+"Minimum" = "Minimum";
+"Maximum" = "Minimum";
+
+"Search_Filter" = "Search Filter";
+
+"EGP" = "EGP";
+"Reset" = "Reset";
+
+"Apply_Filter" = "Apply Filter";
+
+"Choose_date_&_time" = "Choose date & time";
+"About_doctor" = "About_doctor";
+"Reviews" = "Reviews";
+"View_all_reviews" = "View all reviews";
+"Write_a_Review" = "Write_a_Review";
+"Sign_in" = "Sign in";
+"Quick_Reservation" = "Quick Reservation";
+"Choose_Rate" = "Choose Rate";
+"Add_comment" = "Add comment";
+"500" = "500";
+
+"Rate_Doctor" = "Rate Doctor";
+"OK" = "OK";
+"Summary" = "Summary";
+
+"Booking_details" = "Booking details";
+"Booking_Date_&_Time_:" = "Booking Date & Time :";
+"Appointment" = "Appointment";
+"Patient_details" = "Patient details";
+"Patient_Name_:" = "Patient Name :";
+"Patient_Number_:" = "Patient Number :";
+"Total_Fee" = "Total_Fee";
+"Summary" = "Summary";

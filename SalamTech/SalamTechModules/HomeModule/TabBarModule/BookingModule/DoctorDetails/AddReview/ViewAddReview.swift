@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ViewAddReview: View {
+    var language = LocalizationService.shared.language
+
     @StateObject var addRate = VMAddReview()
      var  Doctor:Doc
     @State var rate = 0
@@ -42,7 +44,7 @@ struct ViewAddReview: View {
                                                 .cornerRadius(9)
                                         
                                             VStack(alignment:.leading   ,spacing:0){
-                                                Text("Dr/ \( Doctor.DoctorName ?? "Ali Ahmed")" )
+                                                Text("Dr/ ".localized(language) + "\( Doctor.DoctorName ?? "Ali Ahmed")" )
                                                     .padding(.bottom,8)
     //                                            .font(Font.SalamtechFonts.Bold18)
                                                 .font(.system(size: 20))
@@ -57,7 +59,8 @@ struct ViewAddReview: View {
                                             .padding(.top, 10)
 
                                             Spacer()
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                     }
                                     .padding()
 
@@ -71,7 +74,8 @@ struct ViewAddReview: View {
                                         
                                         Spacer()
                                         
-                                    }
+                                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                     .background(Color("addReviewSubHead"))
 
                                     
@@ -86,8 +90,10 @@ struct ViewAddReview: View {
                         .background(.white)
     //                    .background(Color("CLVBG"))
 
-                    Text("Choose Rate")
+                        Text("Choose_Rate".localized(language))
                         .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                     HStack{
                         Spacer()
                         ForEach(0..<5){ num in
@@ -104,6 +110,7 @@ struct ViewAddReview: View {
                         }
                         Spacer()
                     }
+                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
                     .padding()
                     .background(.white)
@@ -111,8 +118,10 @@ struct ViewAddReview: View {
                     .padding(.horizontal,30)
 
                     
-                    Text("Add comment")
+                        Text("Add_comment".localized(language))
                         .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                     ZStack{
                         TextEditor(text: $reviewComment)
                                         .font(.body)
@@ -122,6 +131,8 @@ struct ViewAddReview: View {
                                         }
 
                     }
+                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                     .padding(.vertical,0)
                     .frame(height:130)
                     .background(.white)
@@ -129,11 +140,14 @@ struct ViewAddReview: View {
                     .padding(.horizontal,30)
 
                     
-                    Text("\(reviewComment.count) / 500")
+                        Text("\(reviewComment.count) /"+"500".localized(language))
+                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                         .frame(width: UIScreen.main.bounds.width-45, height: 30, alignment:.topTrailing)
                                     .font(.headline)
                                     .foregroundColor(.secondary)
                                     .padding(.trailing)
+                        
 
                     
                     }.ignoresSafeArea(.keyboard)
@@ -165,7 +179,7 @@ struct ViewAddReview: View {
             })
             
             VStack{
-                AppBarView(Title: "Rate Doctor")
+                AppBarView(Title: "Rate_Doctor".localized(language))
                     .navigationBarBackButtonHidden(true)
                 Spacer()
             }
@@ -180,7 +194,7 @@ struct ViewAddReview: View {
                         addReview()
                     }, label: {
                         HStack {
-                            Text("Confirm")
+                            Text("Confirm".localized(language))
                                 .fontWeight(.semibold)
                                 .font(.title3)
                         }

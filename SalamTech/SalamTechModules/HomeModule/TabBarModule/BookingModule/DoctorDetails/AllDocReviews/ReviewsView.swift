@@ -12,6 +12,7 @@ struct ReviewsView: View {
     @StateObject var DocReviews = ReviewsVM()
     var DoctorId:Int
     @State var hei: CGFloat = 180
+    var language = LocalizationService.shared.language
 
     var body: some View {
         ZStack{
@@ -68,12 +69,13 @@ struct ReviewsView: View {
                                     .foregroundColor(.gray)
                                         .font(Font.SalamtechFonts.Reg14)
 //
-                                    HStack{
-                                        Spacer()
-                                        Text("26.02.2019" )
-                                            .foregroundColor(.gray.opacity(0.3))
-                                            .font(Font.SalamtechFonts.Reg14)
-                                    }.padding(.trailing)
+//                                    HStack{
+//                                        Spacer()
+//                                        Text("26.02.2019" )
+//                                            .foregroundColor(.gray.opacity(0.3))
+//                                            .font(Font.SalamtechFonts.Reg14)
+//                                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//                                        .padding(.trailing)
                                     
 //                                    Spacer()
                                     
@@ -107,7 +109,7 @@ struct ReviewsView: View {
             .background(Color("CLVBG"))
             
             VStack{
-                AppBarView(Title: "Reviews")
+                AppBarView(Title: "Reviews".localized(language))
                 //                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Spacer()

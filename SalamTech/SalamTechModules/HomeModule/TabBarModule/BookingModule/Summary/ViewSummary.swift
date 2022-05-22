@@ -12,6 +12,8 @@ import ImageViewerRemote
 //import XCTest
 
 struct ViewSummary:View{
+    var language = LocalizationService.shared.language
+
     var Doctor:Doc
   @StateObject var CreateAppointment = VMCreateAppointment()
     
@@ -57,10 +59,12 @@ struct ViewSummary:View{
                         //MARK: ----- Booking Details --------
                                     VStack(spacing:5){
                                             HStack {
-                                                Text("Booking details")
+                                                Text("Booking_details".localized(language))
                                                 Spacer()
                                             }.padding(.leading)
                                             .padding(.vertical,10)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                         HStack(){
                                                 Image("Appointments")
                                                     .resizable()
@@ -68,7 +72,7 @@ struct ViewSummary:View{
                                                     .frame(width: 25, height: 25)
                                                     .padding(.leading)
                                             VStack(alignment:.leading){
-                                                Text("Booking Date & Time :")
+                                                Text("Booking_Date_&_Time_:".localized(language))
                                                     .foregroundColor(Color("darkGreen"))
                                                     .font(Font.SalamtechFonts.Reg14)
                                                 Text( String( "\(summarydatef.string(from: BookiDate)) (\(BookiTime))" ))
@@ -79,6 +83,8 @@ struct ViewSummary:View{
                                                 .padding(.trailing)
                                             Spacer()
                                         }.padding(.leading)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                             
                                                     HStack{
                                                         Image(systemName: getEx(id: ExType).image ?? "")
@@ -89,7 +95,7 @@ struct ViewSummary:View{
                                                     .padding(.leading)
 
                                                         VStack(alignment:.leading){
-                                                Text("\(getEx(id: ExType).name ?? "") Appointment :")
+                                                            Text("\(getEx(id: ExType).name ?? "") " + "Appointment".localized(language) + ":")
                                                     .foregroundColor(Color("darkGreen"))
                                                     .font(Font.SalamtechFonts.Reg14)
                                                     Text(getEx(id: ExType).Comment ?? "")
@@ -102,6 +108,8 @@ struct ViewSummary:View{
                                                         Spacer()
 
                                         }.padding(.leading)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                             
                                             HStack{
                                         Image("doc4")
@@ -110,10 +118,10 @@ struct ViewSummary:View{
                                             .padding(.leading)
                                                 
                                                 VStack(alignment:.leading){
-                                        Text("Waiting Time :")
+                                                    Text("Waiting_Time:".localized(language))
                                             .foregroundColor(Color("darkGreen"))
                                             .font(Font.SalamtechFonts.Reg14)
-                                            Text("\(Doctor.WaitingTime ?? 15)" + " Minutes")
+                                                    Text("\(Doctor.WaitingTime ?? 15) " + "Minutes".localized(language))
                                             .foregroundColor(.secondary)
                                             .font(Font.SalamtechFonts.Reg14)
                                         
@@ -123,17 +131,22 @@ struct ViewSummary:View{
                                                 Spacer()
 
                                 }.padding(.leading)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             .cornerRadius(9)
                                     }
                                     
                         //MARK: ----- Patient Details ------
                                     VStack(spacing:10){
                                         HStack {
-                                            Text("Patient  details")
+                                            Text("Patient_details".localized(language))
                                             Spacer()
                                         }
+
                                         .padding(.leading)
                                             .padding(.vertical,10)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
                                     HStack(){
                                             Image("person")
@@ -143,7 +156,7 @@ struct ViewSummary:View{
                                                 .frame(width: 25, height: 25)
                                                 .padding(.leading)
                                         HStack{
-                                            Text("Patient Name :")
+                                            Text("Patient_Name_:".localized(language))
                                                 .foregroundColor(Color("darkGreen"))
                                                 .font(Font.SalamtechFonts.Reg14)
                                             Text(  Helper.getpatientName() )
@@ -151,9 +164,13 @@ struct ViewSummary:View{
                                                 .font(Font.SalamtechFonts.Reg14)
                                             
                                             }
+                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                             .padding(.trailing)
                                         Spacer()
                                     }.padding(.leading)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                                 HStack{
                                                     Image( "Phone")
                                                 .resizable()
@@ -163,7 +180,7 @@ struct ViewSummary:View{
                                                 .padding(.leading)
                                                     
                                                     HStack(){
-                                            Text("Patient Number :")
+                                                        Text("Patient_Number_:".localized(language))
                                                 .foregroundColor(Color("darkGreen"))
                                                 .font(Font.SalamtechFonts.Reg14)
                                                         Text("\(Helper.getUserPhone() )" )
@@ -176,6 +193,8 @@ struct ViewSummary:View{
                                                     Spacer()
 
                                     }.padding(.leading)
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                         
                                         
                                         HStack{
@@ -194,14 +213,17 @@ struct ViewSummary:View{
                                                             .shadow(color: .black.opacity(0.2), radius: 2)
                                                             .frame(width: 40, height: 40).padding(.trailing,-20)
 
-                                        }                                .padding(.bottom,0)
+                                        }
+                                        .padding(.bottom,0)
+                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
                                         
                                         HStack{
-                                            Text("Total Fee")
+                                            Text("Total_Fee".localized(language))
                                           Spacer()
                                             ZStack {
-                                                Text("\(String(Doctor.FeesFrom ?? 0.0)) EGP")
+                                                Text("\(String(Doctor.FeesFrom ?? 0.0)) "+"EGP".localized(language))
                                                     .fontWeight(.semibold)
                                                     .font(.title3)
         //                                            .padding(.all,10)
@@ -214,7 +236,8 @@ struct ViewSummary:View{
 
                                             //                                    .clipShape(RoundedRectangle(cornerSize: .init( )) )
 
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                         .padding(.top, 0)
 
                                         .padding(.horizontal, 20)
@@ -241,7 +264,7 @@ struct ViewSummary:View{
                 }
 
                 VStack{
-                    AppBarView(Title: "Summary")
+                    AppBarView(Title: "Summary".localized(language))
 //                            .navigationBarItems(leading: BackButtonView())
                         .navigationBarBackButtonHidden(true)
                     Spacer()
@@ -256,7 +279,7 @@ struct ViewSummary:View{
                                         Text("\(String(Doctor.FeesFrom ?? 0.0))")                                .font(.system(size: 18))
                                             .padding(.top,-20)
 
-                                        Text("\nEGP")
+                                        Text("\n"+"EGP".localized(language))
                                             .font(.system(size: 15))
                                             .foregroundColor(.black.opacity(0.5))
                                             .padding(.bottom,-20)
@@ -277,7 +300,7 @@ struct ViewSummary:View{
                                         
                                     }, label: {
                                         HStack {
-                                            Text("Confirm")
+                                            Text("Confirm".localized(language))
                                                 .fontWeight(.semibold)
                                                 .font(.title2)
                                         }
@@ -288,7 +311,8 @@ struct ViewSummary:View{
                                         .cornerRadius(12)
                                         .padding(.horizontal, 20)
                                     })
-                                }
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                 .frame( height: 60)
                                 .padding(.horizontal)
                                 .padding(.bottom,20)
@@ -298,7 +322,7 @@ struct ViewSummary:View{
 //                }
                 // Alert with Error message
                     .alert(CreateAppointment.errorMsg, isPresented: $CreateAppointment.isError) {
-                                        Button("OK", role: .cancel) { }
+                        Button("OK".localized(language), role: .cancel) { }
                 }
 
                 // showing loading indicator

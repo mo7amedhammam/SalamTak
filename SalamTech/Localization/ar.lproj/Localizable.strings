@@ -264,7 +264,7 @@
 
 " Specialized_in " = " متخصص فى ";
 "Fees:" = "التكلفه:";
-"to" = "الى";
+"to" = "الى ";
 "EGP_(Upon_time_&_date)" = "جنيه ( حسب اليوم والموعد ) ";
 "Waiting_Time:" = "وقت الانتظار:";
 "Minutes" = "دقيقه";
@@ -273,3 +273,45 @@
 "From" = "من";
 "PM" = "مساء";
 "Book" = "حجز";
+
+
+
+
+"Title" = "الخبرة";  // seniority
+"Confirm" = "تأكيد";
+"Speciality" = "التخصص";
+"Sub_Specialities" = "التخصص الفرعى";
+"City" = "المدينة";
+"Area" = "المنطقة";
+"Examination_Fee" = "تكلفة الكشف";
+"Minimum" = "اقل قيمة";
+"Maximum" = "اعلى قيمة";
+"Search_Filter" = "تنقية البحث";
+
+"EGP" = "جنية ";
+"Reset" = "الغاء";
+
+"Apply_Filter" = "تنفيذ التنقيه";
+
+"Choose_date_&_time" = "اختر يوم وموعد";
+"About_doctor" = "عن الدكتور";
+"Reviews" = "التقييمات";
+"View_all_reviews" = "رؤية كل التقييمات";
+"Write_a_Review" = "تقييم الدكتور";
+"Sign_in" = "دخول";
+"Quick_Reservation" = "تسجيل سريع";
+"Choose_Rate" = "اختر تقييم";
+"Add_comment" = "اضافة تعليق";
+"500" = "٥٠٠";
+
+"Rate_Doctor" = "تقييم الدكتور";
+"OK" = "موافق";
+"Summary" = "ملخص";
+
+"Booking_details" = "تفاصيل الحجز";
+"Booking_Date_&_Time_:" = "يوم وموعد الحجز :";
+"Appointment" = "مقابلة";
+"Patient_details" = "تفاصيل الدكتور";
+"Patient_Name_:" = "اسم المريض :";
+"Patient_Number_:" = "رقم المريض :";
+"Total_Fee" = "اجمالى التكلفة";
