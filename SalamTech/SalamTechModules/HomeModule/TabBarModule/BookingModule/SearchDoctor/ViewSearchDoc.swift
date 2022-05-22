@@ -86,7 +86,7 @@ struct ViewSearchDoc: View {
                         .frame(width: UIScreen.main.bounds.width, height: 120)
                         .padding(.top,-20)
                     
-                    SearchBar(PlaceHolder:"Search a doctor... ",text: $searchTxt, isSearch: $isSearch){
+                    SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchTxt, isSearch: $isSearch){
                         getAllDoctors()
                     }
                     .shadow(color: .black.opacity(0.2), radius: 15)
@@ -112,7 +112,9 @@ struct ViewSearchDoc: View {
                                             .font(Font.SalamtechFonts.Reg14)
                                             .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
                                         
-                                    }.frame(minWidth: 100, maxWidth: 350)
+                                    }
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                    .frame(minWidth: 100, maxWidth: 350)
                                         .padding(10)
                                         .padding(.bottom,1)
                                         .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
@@ -135,7 +137,7 @@ struct ViewSearchDoc: View {
                 List( ){
 
                     if searchDoc.noDoctors == true{
-                        Text("Sorry,\nNo Doctors Found 🤷‍♂️")
+                        Text("Sorry,\nNo_Doctors_Found_🤷‍♂️".localized(language))
                             .multilineTextAlignment(.center)
                         .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
                         
@@ -174,7 +176,7 @@ struct ViewSearchDoc: View {
 
             
             VStack{
-                AppBarView(Title: "Search a Doctor")
+                AppBarView(Title: "Search_a_Doctor".localized(language))
                 //                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Spacer()
@@ -914,6 +916,8 @@ struct ViewSearchDoc_Previews: PreviewProvider {
 
 
 struct SearchBar: View {
+    var language = LocalizationService.shared.language
+
     var PlaceHolder = ""
     @Binding var text: String
     
@@ -955,7 +959,8 @@ struct SearchBar: View {
             //                            .transition(.move(edge: .trailing))
             //                            .animation(.default)
             //                        }
-        }
+        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
         
         .overlay(
             HStack {
@@ -998,6 +1003,7 @@ extension String: Identifiable {
 
 import ImageViewerRemote
 struct ViewTopSection: View {
+    var language = LocalizationService.shared.language
 
     var Doctor:Doc
     @Binding var ispreviewImage:Bool
@@ -1027,12 +1033,13 @@ struct ViewTopSection: View {
             VStack(alignment:.leading){
                 //MARK:  --- Name ---
                 HStack{
-                    Text("Dr/ ")
+                    Text("Dr/ ".localized(language))
                         .foregroundColor(.black.opacity(0.7))
                     Text(Doctor.DoctorName ?? "")
                         .font(Font.SalamtechFonts.Bold18)
                     
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                 
                 //MARK:  --- Seniority  ---
                 HStack{
@@ -1040,22 +1047,25 @@ struct ViewTopSection: View {
                         .foregroundColor(.gray.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
 
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                 
                 //MARK:  --- Rate ---
                 HStack{
                     StarsView(rating: Float( Doctor.Rate ?? 0))
                     
-                    Text("( \(Doctor.NumVisites ?? 0)"+" Patients )")
+                    Text("( \(Doctor.NumVisites ?? 0)"+" Patients )".localized(language))
                         .foregroundColor(.black.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
             }
             
             
             Spacer()
             
-        }
+        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
         .padding(10)
         .frame(height:115)
@@ -1063,6 +1073,8 @@ struct ViewTopSection: View {
 }
 
 struct ViewMiddelSection: View {
+    var language = LocalizationService.shared.language
+
     var Doctor:Doc
     @State var multiline = true
     var body: some View {
@@ -1074,7 +1086,7 @@ struct ViewMiddelSection: View {
                 Text(Doctor.SpecialistName ?? "")
                     .foregroundColor(Color("darkGreen"))
                     .font(Font.SalamtechFonts.Reg14)
-                Text(" Specialized in ")
+                Text(" Specialized_in ".localized(language))
                     .foregroundColor(.secondary)
                     .font(Font.SalamtechFonts.Reg14)
                 Text(Doctor.SubSpecialistName?.joined(separator: ", ") ?? "")
@@ -1086,6 +1098,8 @@ struct ViewMiddelSection: View {
                     }
                 Spacer()
             }.padding(.leading)
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
             
             
             //MARK: --- Clinic Name & address ---
@@ -1099,32 +1113,38 @@ struct ViewMiddelSection: View {
                     .font(Font.SalamtechFonts.Reg14)
                 Spacer()
             }.padding(.leading)
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
             
             //MARK: --- Fees ---
             HStack{
                 Image("doc3")
-                Text("Fees:")
+                Text("Fees:".localized(language))
                     .foregroundColor(Color("darkGreen"))
                     .font(Font.SalamtechFonts.Reg14)
-                Text("\( String( Doctor.FeesFrom ?? 0.0)) to \( String( Doctor.FeesTo ?? 0.0)) EGP (Upon time & date)")
+                Text("\( String( Doctor.FeesFrom ?? 0.0)) "+"to".localized(language)+" \( String( Doctor.FeesTo ?? 0.0)) "+"EGP_(Upon_time_&_date)".localized(language))
                     .foregroundColor(.secondary)
                     .font(Font.SalamtechFonts.Reg14)
                 
                 Spacer()
             }.padding(.leading)
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
             
             //MARK: --- Waiting Time ---
             HStack{
                 Image("doc4")
-                Text("Waiting Time:")
+                Text("Waiting_Time:".localized(language))
                     .foregroundColor(Color("darkGreen"))
                     .font(Font.SalamtechFonts.Reg14)
-                Text("\(Doctor.WaitingTime ?? 0)" + " Minutes")
+                Text("\(Doctor.WaitingTime ?? 0) " + "Minutes".localized(language))
                     .foregroundColor(.secondary)
                     .font(Font.SalamtechFonts.Reg14)
                 
                 Spacer()
             }.padding(.leading)
+                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
             
             
         }
@@ -1133,6 +1153,8 @@ struct ViewMiddelSection: View {
 
 
 struct ViewDocCell: View {
+    var language = LocalizationService.shared.language
+
     var Doctor : Doc
     var searchDoc : VMSearchDoc
     @Binding var gotodoctorDetails : Bool
@@ -1153,7 +1175,7 @@ struct ViewDocCell: View {
             //MARK: *******       ********
             
             
-            Text(" Available \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) From \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) PM ")
+            Text("Available".localized(language)+" \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) "+"From".localized(language)+" \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) "+"PM".localized(language) )
                 .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
                 .background(Color.gray.opacity(0.3))
                 .foregroundColor(.black.opacity(0.7))
@@ -1181,10 +1203,11 @@ struct ViewDocCell: View {
                     gotodoctorDetails = true
                 }, label: {
                     HStack{
-                        Text("Book")
+                        Text("Book".localized(language))
                             .foregroundColor(.white)
                             .font(Font.SalamtechFonts.Bold14)
-                    }
+                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                     .padding(.horizontal, 40)
                 }
                 )
@@ -1198,7 +1221,7 @@ struct ViewDocCell: View {
                 Spacer()
                 
                 
-            }
+            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             .padding(.bottom,10)
             
         }
@@ -1288,15 +1311,8 @@ struct SeniorityBtn: View {
                     self.selectedSenLvlId.append(seniorityLvl.id ?? 0)
                     self.selectedSenLvlName.append(seniorityLvl.Name ?? "")
                 }
-                
-                
-                
-                
             }
-            
-//                        print(selectedSenLvlId)
-            
-            
+         
         }, label: {
             
                 HStack (spacing: 20 ){
@@ -1309,16 +1325,13 @@ struct SeniorityBtn: View {
                     
                     Spacer()
                     
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                 
                 .padding([.top,.bottom],5)
                 .padding([.leading,.trailing],10)
            
-            
-            
-            //                                            SucspecView(isTapped: $isTapped , subspeciality: SubSpecialityVM.publishedSubSpecialistModel[supspec])
-            //                                                .padding([.leading,.trailing],0)
-            //
+
         })
             .onAppear(perform: {
                 for id  in selectedSenLvlId {

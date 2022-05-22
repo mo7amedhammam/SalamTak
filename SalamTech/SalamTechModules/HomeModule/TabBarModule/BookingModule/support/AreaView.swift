@@ -29,10 +29,11 @@ struct AreaView: View {
             ScrollView( showsIndicators: false){
                 Spacer().frame(height:120)
                 HStack {
-                    Text("Choose your Area")
+                    Text("Choose_your_Area".localized(language))
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
                 Button(action: {
                     selectedAreaId = 0
@@ -43,12 +44,13 @@ struct AreaView: View {
 
                         HStack{
                             Spacer().frame(width:30)
-                                Text("All Areas")
+                            Text("All_Areas".localized(language))
                                     .frame(height:35)
                                     .font(Font.SalamtechFonts.Reg18)
                                     .foregroundColor(.black)
                             Spacer()
-                            }
+                            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             
                             .frame(width: (UIScreen.main.bounds.width)-33, height: 50)
                             .background(Color.white)
@@ -76,30 +78,14 @@ struct AreaView: View {
                                                 .font(Font.SalamtechFonts.Reg18)
                                                 .foregroundColor(.black)
                                         Spacer()
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                         
                                         .frame(width: (UIScreen.main.bounds.width)-33, height: 50)
                                         .background(Color.white)
                                         .cornerRadius(25)
                                         .shadow(color: .black.opacity(0.099), radius: 5)
-
-                                    
-//                                    HStack {
-//                                        AsyncImage(url: URL(string:   URLs.BaseUrl + "\(specialityvm.publishedSpecialistModel?[speciality].image ?? "")" )) { image in
-//
-//                                            image.resizable()
-//
-//                                        } placeholder: {
-//                                            Image("heart")
-//                                                .resizable()
-//                                        }
-//                                        .clipShape(Circle())
-//                                        .frame(width: 60, height: 60)
-//                                        Spacer()
-//                                    }.padding(.leading,5)
-
-
-                                    
+  
                                 }
                             }) .frame(width: (UIScreen.main.bounds.width)-10)
                                 .background(Color.clear)
@@ -133,7 +119,7 @@ struct AreaView: View {
         })
         
             VStack{
-                AppBarView(Title: "Choose Area")
+                AppBarView(Title: "Choose_Area".localized(language))
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                     Spacer()

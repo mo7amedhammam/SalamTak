@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   SalamTech
 
@@ -237,3 +237,36 @@
 "Schedule" = "Schedule";
 "Gallery" = "Gallery";
 "upload_gallery" = "Upload Clinic Gallery";
+
+
+"Our_Services" = "Our Services";
+"Choose_Speciality" = "Choose Speciality";
+"SpecialitiesـSubTitle" = "Specialities";
+
+"Choose_City" = "Choose City";
+"Choose_your_City" = "Choose your City";
+"All_Cities" = "All Cities";
+
+"Choose_Area" = "Choose Area";
+"Choose_your_Area" = "Choose your Area";
+"All_Areas" = "All Areas";
+
+
+"Search_a_Doctor" = "Search a Doctor";
+"Search_a_doctor..." = "Search a doctor...";
+"Sorry,\nNo_Doctors_Found_🤷‍♂️" = "Sorry,\nNo Doctors Found 🤷‍♂️";
+
+"Dr/ " = "Dr/ ";
+" Patients " = " Patients ";
+
+" Specialized_in " = " Specialized in ";
+"Fees:" = "Fees:";
+"to" = "to";
+"EGP_(Upon_time_&_date)" = "EGP (Upon time & date)";
+"Waiting_Time:" = "Waiting Time:";
+"Minutes" = "Minute";
+
+"Available" = " Available";
+"From" = "From";
+"PM" = "PM";
+"Book" = "Book";

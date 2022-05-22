@@ -58,10 +58,10 @@ struct ServicesView: View {
                     
                     ScrollView( showsIndicators: false){
                         HStack {
-                            Text("Our Services")
+                            Text("Our_Services".localized(language))
                                 .font(Font.SalamtechFonts.Bold18)
                             Spacer()
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
                         LazyVGrid(columns: vGridLayout){
                             ForEach(medicalType.publishedModelExaminationTypeId, id:\.self) { exType in
@@ -108,7 +108,7 @@ struct ServicesView: View {
                                 })
                             }
                                                 
-                        }
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         .padding(.horizontal,13)
                         
 

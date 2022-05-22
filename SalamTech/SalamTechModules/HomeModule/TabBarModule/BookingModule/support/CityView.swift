@@ -30,10 +30,11 @@ struct CityView: View {
             ScrollView( showsIndicators: false){
                 Spacer().frame(height:120)
                 HStack {
-                    Text("Choose your City")
+                    Text("Choose_your_City".localized(language))
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
                 Button(action: {
                     selectedCityId = 0
@@ -44,13 +45,14 @@ struct CityView: View {
 
                         HStack{
                             Spacer().frame(width:30)
-                                Text("All Cities")
+                            Text("All_Cities".localized(language))
                                     .frame(height:35)
                                     .font(Font.SalamtechFonts.Reg18)
                                     .foregroundColor(.black)
                             Spacer()
                             }
-                            
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                             .frame(width: (UIScreen.main.bounds.width)-33, height: 50)
                             .background(Color.white)
                             .cornerRadius(25)
@@ -77,39 +79,19 @@ struct CityView: View {
                                                 .font(Font.SalamtechFonts.Reg18)
                                                 .foregroundColor(.black)
                                         Spacer()
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                         
                                         .frame(width: (UIScreen.main.bounds.width)-33, height: 50)
                                         .background(Color.white)
                                         .cornerRadius(25)
                                         .shadow(color: .black.opacity(0.099), radius: 5)
-
-                                    
-//                                    HStack {
-//                                        AsyncImage(url: URL(string:   URLs.BaseUrl + "\(specialityvm.publishedSpecialistModel?[speciality].image ?? "")" )) { image in
-//
-//                                            image.resizable()
-//
-//                                        } placeholder: {
-//                                            Image("heart")
-//                                                .resizable()
-//                                        }
-//                                        .clipShape(Circle())
-//                                        .frame(width: 60, height: 60)
-//                                        Spacer()
-//                                    }.padding(.leading,5)
-
-
-                                    
+ 
                                 }
                             }) .frame(width: (UIScreen.main.bounds.width)-10)
                                 .background(Color.clear)
                                 .cornerRadius(8)
                                 .shadow(color: .black.opacity(0.099), radius: 5)
-                        
-
-            
-
 
                     }
 
@@ -121,11 +103,7 @@ struct CityView: View {
             Spacer()
         }
             
-            
-            
-            
-            
-            
+
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.vertical)
         .background(Color("CLVBG"))
@@ -134,7 +112,7 @@ struct CityView: View {
         })
         
             VStack{
-                AppBarView(Title: "Choose City")
+                AppBarView(Title: "Choose_City".localized(language))
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                     Spacer()

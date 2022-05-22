@@ -27,10 +27,11 @@ struct SpecialityView: View {
             ScrollView( showsIndicators: false){
                 Spacer().frame(height:120)
                 HStack {
-                    Text("Specialities")
+                    Text("SpecialitiesـSubTitle".localized(language))
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
-                }
+                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
                 ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
                             Button(action: {
@@ -48,7 +49,8 @@ struct SpecialityView: View {
                                                 .font(Font.SalamtechFonts.Reg18)
                                                 .foregroundColor(.black)
                                         Spacer()
-                                        }
+                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
                                         
                                         .frame(width: (UIScreen.main.bounds.width)-33, height: 55)
                                         .background(Color.white)
@@ -69,6 +71,8 @@ struct SpecialityView: View {
                                         .frame(width: 60, height: 60)
                                         Spacer()
                                     }.padding(.leading,5)
+                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
 
 
                                     
@@ -104,7 +108,7 @@ struct SpecialityView: View {
         })
         
             VStack{
-                AppBarView(Title: "Choose Speciality")
+                AppBarView(Title: "Choose_Speciality".localized(language))
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                     Spacer()
