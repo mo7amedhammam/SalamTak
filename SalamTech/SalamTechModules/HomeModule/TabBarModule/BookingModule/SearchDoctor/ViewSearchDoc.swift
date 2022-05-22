@@ -1054,7 +1054,7 @@ struct ViewTopSection: View {
                 HStack{
                     StarsView(rating: Float( Doctor.Rate ?? 0))
                     
-                    Text("( \(Doctor.NumVisites ?? 0)"+" Patients )".localized(language))
+                    Text("( \(Doctor.NumVisites ?? 0) "+"Patientsـ)".localized(language))
                         .foregroundColor(.black.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -1118,7 +1118,7 @@ struct ViewMiddelSection: View {
             
             //MARK: --- Fees ---
             HStack{
-                Image("doc3")
+                Image("FilterFees")
                 Text("Fees:".localized(language))
                     .foregroundColor(Color("darkGreen"))
                     .font(Font.SalamtechFonts.Reg14)
