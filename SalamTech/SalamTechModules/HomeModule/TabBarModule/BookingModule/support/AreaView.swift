@@ -136,6 +136,12 @@ struct AreaView: View {
         //  go to clinic info
         NavigationLink(destination:ViewSearchDoc(ExTpe: $extype, SpecialistId: $SelectedSpeciality, CityId: $CityId, AreaId: $selectedAreaId),isActive: $gotoSearchdoctor) {
               }
+        
+        // Alert with no internet connection
+            .alert(isPresented: $AreasVM.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
     }
     
 

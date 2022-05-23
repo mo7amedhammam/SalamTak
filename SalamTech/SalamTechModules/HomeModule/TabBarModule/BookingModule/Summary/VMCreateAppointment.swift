@@ -67,7 +67,7 @@ class VMCreateAppointment: ObservableObject {
     func CreatePatientAppointment() {
         let Parameters : [String:Any] = [
         // required
-            "PatientId": PatientId ,
+//            "PatientId": PatientId ,
             "DoctorWorkingDayTimeId":DoctorWorkingDayTimeId,
             "AppointmentDate":AppointmentDate ,
             "Fees":Fees,

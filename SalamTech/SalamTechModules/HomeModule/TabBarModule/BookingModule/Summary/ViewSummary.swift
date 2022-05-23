@@ -423,13 +423,15 @@ struct ViewSummary:View{
      .navigationBarHidden(ispreviewImage)
 //     .navigationBarBackButtonHidden(true)
 
+ 
+        // Alert with no internet connection
+            .alert(isPresented: $CreateAppointment.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
         
     }
-    
-    
-
-
-    
+  
 }
 
 struct ViewSummary_Previews: PreviewProvider {

@@ -255,6 +255,7 @@
 "Search_a_Doctor" = "Search a Doctor";
 "Search_a_doctor..." = "Search a doctor...";
 "Sorry,\nNo_Doctors_Found_🤷‍♂️" = "Sorry,\nNo Doctors Found 🤷‍♂️";
+"Sorry,\nNo_Scheduales_Found_🤷‍♂️" = "Sorry,\nNo Scheduales Found 🤷‍♂️";
 
 "Dr/ " = "Dr/ ";
 "Patientsـ)" = "Patients )";
@@ -291,10 +292,10 @@
 "Apply_Filter" = "Apply Filter";
 
 "Choose_date_&_time" = "Choose date & time";
-"About_doctor" = "About_doctor";
+"About_doctor" = "About doctor";
 "Reviews" = "Reviews";
 "View_all_reviews" = "View all reviews";
-"Write_a_Review" = "Write_a_Review";
+"Write_a_Review" = "Write a Review";
 "Sign_in" = "Sign in";
 "Quick_Reservation" = "Quick Reservation";
 "Choose_Rate" = "Choose Rate";
@@ -311,5 +312,9 @@
 "Patient_details" = "Patient details";
 "Patient_Name_:" = "Patient Name :";
 "Patient_Number_:" = "Patient Number :";
-"Total_Fee" = "Total_Fee";
+"Total_Fee" = "Total Fee";
 "Summary" = "Summary";
+
+
+
+"Check_Your_Internet_Connection" = "Check Your Internet Connection",

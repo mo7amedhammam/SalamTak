@@ -868,6 +868,13 @@ struct ViewSearchDoc: View {
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
         }
         
+        
+        // Alert with no internet connection
+            .alert(isPresented: $searchDoc.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
+        
     }
     
     

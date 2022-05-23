@@ -23,13 +23,13 @@ struct ModelGetSchedule : Codable {
 }
 
 // MARK: - DataClass
-struct AppointmentInfo: Codable,Identifiable {
-    let id:Int?
-    let medicalTypeId: Int?
-    let doctorName,doctorImage,seniorityName,specialistName,medicalTypeName,appointmentDate,clinicName,clinicLatitude,clinicLongitude:String?
-    let isCancel:Bool?
+struct AppointmentInfo: Codable,Identifiable , Hashable {
+    var id:Int?
+    var medicalTypeId:Int?
+    var doctorName,doctorImage,seniorityName,specialistName,medicalTypeName,appointmentDate,clinicName,clinicLatitude,clinicLongitude:String?
+    var isCancel,canRate:Bool?
     
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys:String, CodingKey {
        
         case id = "DoctorId"
         case medicalTypeId = "MedicalExaminationTypeId"
@@ -45,6 +45,7 @@ struct AppointmentInfo: Codable,Identifiable {
         case clinicLongitude = "ClinicLongitude"
         
         case isCancel = "IsCancel"
-       
+        case canRate = "CanRate"
+
     }
 }

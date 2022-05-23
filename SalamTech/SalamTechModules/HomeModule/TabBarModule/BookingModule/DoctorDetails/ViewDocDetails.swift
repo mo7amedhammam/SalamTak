@@ -135,7 +135,7 @@ struct ViewDocDetails:View{
                 }
         
         // go to addReview
-        NavigationLink(destination:ViewAddReview( Doctor: Doctor),isActive: $GotoAddReview) {
+        NavigationLink(destination:ViewAddReview( Doctor: Doctor, schedule: AppointmentInfo.init()),isActive: $GotoAddReview) {
                 }
 
         .sheet(isPresented: $presentLogin,
@@ -249,6 +249,7 @@ struct ViewDocMainInfo: View {
                                 .foregroundColor(.gray.opacity(0.7))
                                 .font(Font.SalamtechFonts.Reg14)
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                        
                         HStack{
                             StarsView(rating: Float( Doctor.Rate ?? 0))
 
@@ -259,7 +260,6 @@ struct ViewDocMainInfo: View {
                                 .font(Font.SalamtechFonts.Reg14)
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-                        
                         HStack{
                             Image("doc1")
                             Text(Doctor.SpecialistName ?? "" )
@@ -428,7 +428,7 @@ struct ViewDateAndTime: View {
                             Spacer()
 
                         }
-                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         .frame(height:15)
                     })
                         .padding()
@@ -574,6 +574,13 @@ struct ViewDateAndTime: View {
                 self.selectedTime = newTime
                 print("\(Filterdatef.string(from: TappedDate))T\(newTime)")
             }
+        
+        
+        // Alert with no internet connection
+            .alert(isPresented: $DocDetails.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
     }
 }
 
@@ -717,24 +724,25 @@ struct ViewDocReviews: View {
                 .padding([.bottom,.leading],8)
             }
             
-            Button(action: {
-                // add review
-                GotoAddReview = true
-            }, label: {
-                HStack {
-                    Image("pen")
-                        .font(.title)
-                    Text("Write_a_Review".localized(language))
-                        .fontWeight(.semibold)
-                        .font(.title3)
-                }
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding()
-                .foregroundColor(Color("darkGreen"))
-                .background(.gray.opacity(0.09))
-                .cornerRadius(12)
-                .padding(.horizontal, 20)
-            })
+//            Button(action: {
+//                // add review
+//                GotoAddReview = true
+//            }, label: {
+//                HStack {
+//                    Image("pen")
+//                        .font(.title)
+//                    Text("Write_a_Review".localized(language))
+//                        .fontWeight(.semibold)
+//                        .font(.title3)
+//                }
+//                .frame(minWidth: 0, maxWidth: .infinity)
+//                .padding()
+//                .foregroundColor(Color("darkGreen"))
+//                .background(.gray.opacity(0.09))
+//                .cornerRadius(12)
+//                .padding(.horizontal, 20)
+//            })
+            
         }
     }
 }

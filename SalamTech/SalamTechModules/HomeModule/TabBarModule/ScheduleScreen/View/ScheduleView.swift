@@ -59,7 +59,7 @@ struct ScheduleView: View {
                         
                         
                     }.offset(y: 80)
-                    AppBarView(Title:"Schedule")
+                    AppBarView(Title:"Schedule".localized(language))
                         .offset(y:-10)
                 }
                 Spacer().frame(height: 90)
@@ -107,7 +107,9 @@ struct ScheduleView: View {
             .background(Color("CLVBG"))
            
            
-        }
+        }.onAppear(perform: {
+            medicalType.GetExaminationTypeId()
+        })
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
 //        .navigationBarItems(leading:  BackButtonView())

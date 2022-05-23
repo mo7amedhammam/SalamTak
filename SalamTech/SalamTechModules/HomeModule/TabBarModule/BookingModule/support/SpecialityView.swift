@@ -126,6 +126,11 @@ struct SpecialityView: View {
         //  go to clinic info
         NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extype: $selectedTypeId),isActive: $gotocity) {
               }
+        // Alert with no internet connection
+            .alert(isPresented: $specialityvm.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
     }
     
 

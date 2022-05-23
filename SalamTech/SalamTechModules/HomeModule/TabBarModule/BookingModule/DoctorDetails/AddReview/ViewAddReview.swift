@@ -15,6 +15,7 @@ struct ViewAddReview: View {
     @State var rate = 0
     @State var reviewComment = ""
     @State var wordCount = 0
+     var schedule: AppointmentInfo
 
     var body: some View {
         ZStack{
@@ -30,7 +31,7 @@ struct ViewAddReview: View {
                                         Spacer().frame(height:0)
                                         HStack(){
                                             
-                                            AsyncImage(url: URL(string:   URLs.BaseUrl + "\(Doctor.Image ?? "")" )) { image in
+                                            AsyncImage(url: URL(string:   URLs.BaseUrl + "\(schedule.doctorImage ?? "")" )) { image in
 
                                                 image.resizable()
 
@@ -44,12 +45,12 @@ struct ViewAddReview: View {
                                                 .cornerRadius(9)
                                         
                                             VStack(alignment:.leading   ,spacing:0){
-                                                Text("Dr/ ".localized(language) + "\( Doctor.DoctorName ?? "Ali Ahmed")" )
+                                                Text("Dr/ ".localized(language) + "\( schedule.doctorName ?? "Ali Ahmed")" )
                                                     .padding(.bottom,8)
     //                                            .font(Font.SalamtechFonts.Bold18)
                                                 .font(.system(size: 20))
                                             
-                                                Text( Doctor.SeniortyLevelName ?? "Psychiatry" )
+                                                Text( schedule.seniorityName ?? "Psychiatry" )
                                                     .padding(.bottom,8)
                                                     .foregroundColor(.gray)
     //                                            .font(Font.SalamtechFonts.Bold18)
@@ -64,10 +65,9 @@ struct ViewAddReview: View {
                                     }
                                     .padding()
 
-    //
                                         HStack{
                                             Spacer()
-                                            Text("Clinic Visit  |  26.02.2019  |  18:20:00" )
+                                            Text("\(schedule.medicalTypeName ?? "")  |  \(schedule.appointmentDate ?? "")  " )
                                                 .frame(height: 40)
                                                 .foregroundColor(Color("blueColor"))
                                                 .font(Font.SalamtechFonts.Reg16)
@@ -190,7 +190,6 @@ struct ViewAddReview: View {
        
                     Button(action: {
                         // add review
-    //                    FilterTag = "Filter"
                         addReview()
                     }, label: {
                         HStack {
@@ -219,15 +218,21 @@ struct ViewAddReview: View {
         .edgesIgnoringSafeArea(.top)
         .onAppear(perform: {
         })
+   
         
-     
+        // Alert with no internet connection
+            .alert(isPresented: $addRate.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
         
     }
     
     
     func addReview(){
         addRate.isLoading = true
-        addRate.DoctorId = Doctor.id ?? 0
+//        addRate.DoctorId = Doctor.id ?? 0
+        addRate.DoctorId = schedule.id ?? 0
         addRate.Rate = rate
         addRate.Comment = reviewComment
         addRate.AddDocRate()
@@ -236,6 +241,6 @@ struct ViewAddReview: View {
 
 struct ViewAddReview_Previews: PreviewProvider {
     static var previews: some View {
-        ViewAddReview( Doctor: Doc.init())
+        ViewAddReview( Doctor: Doc.init(), schedule: AppointmentInfo.init())
     }
 }

@@ -142,6 +142,12 @@ struct ServicesView: View {
              }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        
+        // Alert with no internet connection
+            .alert(isPresented: $medicalType.isNetworkError, content: {
+                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+        })
+
 
     }
     
