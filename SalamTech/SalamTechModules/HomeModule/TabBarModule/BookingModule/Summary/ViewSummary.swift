@@ -75,7 +75,6 @@ struct ViewSummary:View{
                                                 Text("Booking_Date_&_Time_:".localized(language))
                                                     .foregroundColor(Color("darkGreen"))
                                                     .font(Font.SalamtechFonts.Reg14)
-//                                                Text( String( "\(summarydatef.string(from: BookiDate)) (\(BookiTime))" ))
                                                 
                                                 Text(ConvertDateFormateToStr(inp: BookiDate, FormatTo: "dd MMM. yyyy") + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )" )
                                                     .foregroundColor(.secondary)
@@ -373,16 +372,17 @@ struct ViewSummary:View{
                                     .frame(width: 100, height: 55 , alignment: .center)
                                     .padding(.top)
                                 
-                            Text("Confirmed!")
+                                Text("Confirmed!".localized(language))
                                     .foregroundColor(Color("blueColor"))
                                     .font(.system(size: 24, weight: .bold))
                                     .padding()
 
-                        Text("Your appointment is\n \(summarydatef.string(from: BookiDate)) (\(BookiTime)) )")
+                                Text("Your_appointment_is".localized(language) + "\n \(ConvertDateFormateToStr(inp: BookiDate, FormatTo: "dd MMM. yyyy") + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )")")
                                     .font(.system(size: 18))
                                     .multilineTextAlignment(.center)
     //                                .padding()
                                     .foregroundColor(Color("subText"))
+                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 
                             Button(action: {
                                 // Goto my scheduals
@@ -392,7 +392,7 @@ struct ViewSummary:View{
 
                             }, label: {
                                 HStack {
-                                    Text("My schedule")
+                                    Text("Myـschedule".localized(language))
                                         .fontWeight(.semibold)
                                         .font(.title2)
                                 }

@@ -1185,7 +1185,7 @@ struct ViewDocCell: View {
             //MARK: *******       ********
             
             
-            Text("Available".localized(language)+" \(getAVFDateString(inp:Doctor.AvailableFrom ?? "") ) "+"From".localized(language)+" \(getAVFTimeString(inp:Doctor.AvailableFrom ?? "")) " )
+            Text("Available".localized(language) + " \(ConvertStringDate(inp: Doctor.AvailableFrom ?? "", FormatFrom: "dd-MM-yyyy HH:mm", FormatTo: "dd MMM. yyyy")) " + "From".localized(language) + " \(ConvertStringDate(inp: Doctor.AvailableFrom ?? "", FormatFrom: "dd-MM-yyyy HH:mm", FormatTo: "hh:mm a"))" )
                 .frame(width: UIScreen.main.bounds.width - 40, height: 35, alignment: .center)
                 .background(Color.gray.opacity(0.3))
                 .foregroundColor(.black.opacity(0.7))

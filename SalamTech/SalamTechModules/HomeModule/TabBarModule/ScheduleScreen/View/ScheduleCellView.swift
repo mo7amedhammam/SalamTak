@@ -16,10 +16,10 @@ struct ScheduleCellView: View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false){
               
-                VStack{
+                VStack(spacing:0){
                     ForEach( 0..<(scheduleVM.publishedDoctorCreatedModel.count ), id:\.self) { index in
                         ScheduleEachCellView(schedule: scheduleVM.publishedDoctorCreatedModel[index])
-                            .padding(.bottom)
+                            .padding(.bottom,20)
                             }
                         }.onAppear(perform: {
                             scheduleVM.isLoading=true

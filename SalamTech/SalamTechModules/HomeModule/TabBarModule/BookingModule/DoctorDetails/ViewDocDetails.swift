@@ -571,6 +571,7 @@ struct ViewDateAndTime: View {
                 DocDetails.FetchDoctorDetails()
             })
             .onChange(of:self.TappedDate ){newdate in
+                self.selectedDate = newdate
                 DocDetails.publishedModelSearchDoc?.DoctorScheduals?.removeAll()
                 DocDetails.SchedualDate = newdate
                 DocDetails.FetchDoctorDetails()
