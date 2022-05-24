@@ -318,5 +318,10 @@
 "Total_Fee" = "اجمالى التكلفة";
 
 
-
-"Check_Your_Internet_Connection" = "تاكد من اتصالك بالانترنت",
+"Check_Your_Internet_Connection" = "تاكد من اتصالك بالانترنت";
+"Rate" = "تقييم";
+"Help" = "مساعده";
+"Done" = "اكتملت";
+"Cancel" = "الغاء";
+"Map" = "خريطه";
+"Canceled" = "تم الغائها";

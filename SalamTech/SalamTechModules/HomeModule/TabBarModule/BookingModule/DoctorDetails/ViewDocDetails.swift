@@ -47,7 +47,7 @@ struct ViewDocDetails:View{
 
                         ScrollView {
                             ViewDocMainInfo(Doctor: Doctor, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
-                            ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime)
+                            ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedDate: $selectedDate, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime,DoctorId:.constant(Doctor.id ?? 0), ClinicId: .constant(Doctor.ClinicId ?? 0), ExTypeId:$ExType)
                             ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
 
                             Spacer()
@@ -380,14 +380,19 @@ struct ViewDateAndTime: View {
     @Binding var selectedSchedualId :Int
     @Binding var selectedTime :String
 
+    @Binding var DoctorId :Int
+    @Binding var ClinicId :Int
+    @Binding var ExTypeId :Int
     
-   
-    
-    init(ShowCalendar: Binding<Bool>, selectedDate: Binding<Date>,selectedSchedualId: Binding<Int>,selectedTime: Binding<String>){
+
+    init(ShowCalendar: Binding<Bool>, selectedDate: Binding<Date>,selectedSchedualId: Binding<Int>,selectedTime: Binding<String>,DoctorId: Binding<Int>,ClinicId: Binding<Int>,ExTypeId: Binding<Int>){
         self._ShowCalendar = ShowCalendar
         self._selectedDate = selectedDate
         self._selectedSchedualId = selectedSchedualId
         self._selectedTime = selectedTime
+        self._DoctorId = DoctorId
+        self._ClinicId = ClinicId
+        self._ExTypeId = ExTypeId
 
         setWeekView()
     }
@@ -498,7 +503,7 @@ struct ViewDateAndTime: View {
                     HStack{
                         
                         HStack{
-                            Text(sched.TimeFrom ?? "" )
+                            Text(ConvertStringDate(inp: sched.TimeFrom ?? "", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg16)
                             
@@ -506,7 +511,7 @@ struct ViewDateAndTime: View {
                                 .foregroundColor(.gray)
                                 .font(Font.SalamtechFonts.Reg16)
                             
-                            Text(sched.TimeTo ?? "")
+                            Text(ConvertStringDate(inp: sched.TimeTo ?? "", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
                                 .foregroundColor(Color("darkGreen"))
                                 .font(Font.SalamtechFonts.Reg16)
                             
@@ -559,6 +564,10 @@ struct ViewDateAndTime: View {
         }
 
             .onAppear(perform: {
+                DocDetails.DoctorId = DoctorId
+                DocDetails.ClinicId = ClinicId
+                DocDetails.MedicalExaminationTypeId = ExTypeId
+                
                 DocDetails.FetchDoctorDetails()
             })
             .onChange(of:self.TappedDate ){newdate in
@@ -826,7 +835,8 @@ struct slotView:View{
                                     selectedTime = exType.SlotTime ?? ""
 
                                 }, label: {
-                Text(exType.SlotTime ?? "")
+                                    Text(ConvertStringDate(inp: exType.SlotTime ?? "", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
+
                                 .padding(.vertical,10)
                                 .foregroundColor(selectedTime == (exType.SlotTime ) ? .white : .gray)
                                 })

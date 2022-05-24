@@ -36,7 +36,6 @@ class VMAddReview: ObservableObject {
 
     
     init() {
-        AddDocRate()
         
         ModelFetchDoctors.sink { (completion) in
             //            print(completion)
@@ -70,6 +69,7 @@ class VMAddReview: ObservableObject {
                 DispatchQueue.main.async {
                     self.ModelFetchDoctors.send(model!)
                     self.isLoading = false
+                    self.errorMsg = model?.message ?? ""
                     self.isDone = true
                     print(model!)
                 }

@@ -75,7 +75,9 @@ struct ViewSummary:View{
                                                 Text("Booking_Date_&_Time_:".localized(language))
                                                     .foregroundColor(Color("darkGreen"))
                                                     .font(Font.SalamtechFonts.Reg14)
-                                                Text( String( "\(summarydatef.string(from: BookiDate)) (\(BookiTime))" ))
+//                                                Text( String( "\(summarydatef.string(from: BookiDate)) (\(BookiTime))" ))
+                                                
+                                                Text(ConvertDateFormateToStr(inp: BookiDate, FormatTo: "dd MMM. yyyy") + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )" )
                                                     .foregroundColor(.secondary)
                                                     .font(Font.SalamtechFonts.Reg14)
                                                 

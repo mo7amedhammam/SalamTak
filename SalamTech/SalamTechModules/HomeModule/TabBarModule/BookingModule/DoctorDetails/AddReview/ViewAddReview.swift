@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ViewAddReview: View {
     var language = LocalizationService.shared.language
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @StateObject var addRate = VMAddReview()
      var  Doctor:Doc
@@ -213,6 +214,7 @@ struct ViewAddReview: View {
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $addRate.isLoading)
+         
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .edgesIgnoringSafeArea(.top)
@@ -224,6 +226,14 @@ struct ViewAddReview: View {
             .alert(isPresented: $addRate.isNetworkError, content: {
                 Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
         })
+        // Alert with no internet connection
+            .alert(addRate.errorMsg, isPresented: $addRate.isDone) {
+                Button("OK".localized(language), role: .cancel) {
+                            self.presentationMode.wrappedValue.dismiss()
+
+                        }
+                    }
+      
 
         
     }

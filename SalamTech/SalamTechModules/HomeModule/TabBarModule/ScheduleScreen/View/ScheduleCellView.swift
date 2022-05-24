@@ -13,33 +13,40 @@ struct ScheduleCellView: View {
     @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
     @Binding var medicalTypeId:Int
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false){
+        ZStack {
+            ScrollView(.vertical, showsIndicators: false){
+              
+                VStack{
+                    ForEach( 0..<(scheduleVM.publishedDoctorCreatedModel.count ), id:\.self) { index in
+                        ScheduleEachCellView(schedule: scheduleVM.publishedDoctorCreatedModel[index])
+                            .padding(.bottom)
+                            }
+                        }.onAppear(perform: {
+                            scheduleVM.isLoading=true
+                            scheduleVM.startFetchAppointmentInfo(medicalTypeId: medicalTypeId)
+                            print("MOdellll")
+                            print(scheduleVM.publishedDoctorCreatedModel)
+                        })
+                
+
+                    }
+            
             if scheduleVM.noschedules == true{
                 Text("Sorry,\nNo_Scheduales_Found_🤷‍♂️".localized(language))
                     .multilineTextAlignment(.center)
                 .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
                 
             }
-            VStack{
-                ForEach( 0..<(scheduleVM.publishedDoctorCreatedModel.count ), id:\.self) { index in
-                            ScheduleEachCellView(schedule: scheduleVM.publishedDoctorCreatedModel[index])
-                        }
-                    }.onAppear(perform: {
-                        scheduleVM.isLoading=true
-                        scheduleVM.startFetchAppointmentInfo(medicalTypeId: medicalTypeId)
-                        print("MOdellll")
-                        print(scheduleVM.publishedDoctorCreatedModel)
-                    })
+            
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
 
-                }
-        
-        // Alert with no internet connection
-            .alert(isPresented: $scheduleVM.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-        })
+            // Alert with no internet connection
+                .alert(isPresented: $scheduleVM.isNetworkError, content: {
+                    Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+            })
+        }
         
         }
 }

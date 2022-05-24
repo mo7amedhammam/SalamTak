@@ -25,9 +25,9 @@ class ViewModelDocDetails: ObservableObject {
    
     // ------- input
 
-    @Published var DoctorId                            :Int = 3305
-    @Published var MedicalExaminationTypeId              :Int = 2
-    @Published var ClinicId                               :Int = 1334
+    @Published var DoctorId                            :Int = 0
+    @Published var MedicalExaminationTypeId              :Int = 0
+    @Published var ClinicId                               :Int = 0
     @Published var SchedualDate                      : Date = Date()
 
 
@@ -61,30 +61,7 @@ class ViewModelDocDetails: ObservableObject {
         }.store(in: &cancellables)
     
         
-//        ModelSchedualByServiseDayId.sink { (completion) in
-//            //            print(completion)
-//        } receiveValue: { (modeldata) in
-//            self.publishedModelSchedualByServiseDayId = modeldata.data ?? []
-//
-//        }.store(in: &cancellables)
-//
-//
-//
-//        ModelCreatedSchedual.sink { (completion) in
-//            //            print(completion)
-//        } receiveValue: { (modeldata) in
-//            self.publishedCreatedSchedualModel = modeldata
-//
-//        }.store(in: &cancellables)
 
-//
-//        ModelSchedualByServiseDayId.sink { (completion) in
-//            //            print(completion)
-//        } receiveValue: { (modeldata) in
-//            self.publishedUpdatedSchedualModel = modeldata
-//
-//        }.store(in: &cancellables)
-//
         
         
         

@@ -346,8 +346,34 @@ func getAVFDateString(inp:String) -> String {
  return newdate
   }
 
+func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String {
+    var newdate = ""
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = FormatFrom
+    if let date = formatter.date(from: inp) {
+//        print(date)
+        formatter.dateFormat = FormatTo
+        newdate = formatter.string(from: date)
+    }
+ return newdate
+  }
 
 
+func ConvertDateFormateToStr(inp:Date, FormatTo:String) -> String {
+
+ var summarydatef:DateFormatter{
+    let df = DateFormatter()
+//    df.dateFormat = "yyyy/MM/dd"
+    df.dateFormat = FormatTo
+//    df.dateFormat = "MM/dd/yyyy"
+
+    df.locale = Locale(identifier: "en_US_POSIX")
+    return df
+}
+    
+    return String( summarydatef.string(from: inp))
+}
 
 
 

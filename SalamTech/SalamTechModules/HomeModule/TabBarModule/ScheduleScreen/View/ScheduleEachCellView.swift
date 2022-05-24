@@ -13,9 +13,13 @@ extension String {
 }
 
 struct ScheduleEachCellView: View {
+    var language = LocalizationService.shared.language
+
    @State var schedule: AppointmentInfo
     let screenWidth = UIScreen.main.bounds.size.width - 50
     @State var goingToRate = false
+    @State var goingToHelp = false
+
     var body: some View {
       
                 if schedule.isCancel == true {
@@ -24,13 +28,19 @@ struct ScheduleEachCellView: View {
                             VStack{
                                 HStack{
                                     Spacer()
-                                    Text("Canceled")
+                                    Text("Canceled".localized(language))
                                         .foregroundColor(.red)
                                     Text(schedule.medicalTypeName ?? "")
                                     
                                     Text(" | ")
                                     
-                                    Text(String(schedule.appointmentDate ?? ""))
+//                                    Text(String(schedule.appointmentDate ?? ""))
+                                    Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"d/M/yyyy"))
+                                    
+                                    Text(" | ")
+                                    
+                                    Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"hh:mm a"))
+
                                     Spacer()
                                     
                                 }
@@ -73,13 +83,16 @@ struct ScheduleEachCellView: View {
             //                                                self.showImageSheet = true
             //
             //                                            }.padding(.top,70)
-                                      } .frame(width: 90, height: 90, alignment: .center)
+                                      
+                                    }
+//                                    .frame(width: 90, height: 90, alignment: .center)
+                                    .padding(.horizontal)
                                         .background(Color.clear)
                                 }
                                 
                                 VStack{
                                     // Second Row
-                                    Text("Dr/ " + (schedule.doctorName ?? "") )
+                                    Text("Dr/ ".localized(language) + (schedule.doctorName ?? "") )
                                         .foregroundColor(Color("blueColor"))
                                     VStack{
                                         HStack{
@@ -102,14 +115,14 @@ struct ScheduleEachCellView: View {
                                
                                 
                                 Button(action: {
-                                    
+                                    goingToHelp = true
                                 }, label: {
                                     HStack{
                                         Image(systemName: "headphones.circle")
                                             .resizable()
                                             .frame(width: 25, height: 25)
                                             .foregroundColor(Color("blueColor"))
-                                        Text("Help")
+                                        Text("Help".localized(language))
                                             .foregroundColor(Color("blueColor"))
                                     }
                                     .padding(10)
@@ -126,7 +139,9 @@ struct ScheduleEachCellView: View {
                         }
                         Spacer()
                     }
-                    .frame(width: screenWidth, height: 200)
+//                    .frame(width: screenWidth, height: 170)
+                    .frame(width: screenWidth)
+
                     .font(.system(size: 15))
                     .border(Color("lightGray").opacity(0.3))
             //        .padding(12)
@@ -136,17 +151,23 @@ struct ScheduleEachCellView: View {
                     ).foregroundColor(Color("blueColor"))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.099), radius: 3)
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 } else if schedule.isCancel == false && schedule.canRate == false{
                     VStack{
                         ZStack{
                             VStack{
                                 HStack{
                                     Spacer()
-                                    Text(schedule.medicalTypeName ?? "")
+                                    Text(schedule.medicalTypeName ?? "clinic")
                                     
                                     Text(" | ")
                                     
-                                    Text(String(schedule.appointmentDate ?? ""))
+                                    Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"d/M/yyyy"))
+                                    
+                                    Text(" | ")
+                                    
+                                    Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"hh:mm a"))
+
                                     Spacer()
                                     
                                 }
@@ -163,8 +184,24 @@ struct ScheduleEachCellView: View {
                                     ZStack {
                                         ZStack {
                                             Button(action: {
-
+//                                                ispreviewImage = true
+//                                                previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
                                             }, label: {
+                                                
+//                                                AsyncImage(url: URL(string:   URLs.BaseUrl + "\(schedule.doctorImage ?? "")" )) { image in
+//
+//                                                    image.resizable()
+//
+//                                                } placeholder: {
+//                                                    Image("logo")
+//                                                        .resizable()
+//                                                }
+//                                                    .scaledToFill()
+//                                                    .frame(width:60)
+//                                                    .background(Color.gray)
+//                                                    .cornerRadius(9)
+                                                
+                                                
                                                 KFImage(URL(string: URLs.BaseUrl + "\(schedule.doctorImage ?? "")"))
                                                            .resizable()
                                                            .scaledToFill()
@@ -189,13 +226,15 @@ struct ScheduleEachCellView: View {
             //                                                self.showImageSheet = true
             //
             //                                            }.padding(.top,70)
-                                      } .frame(width: 90, height: 90, alignment: .center)
+                                      }
+//                                    .frame(width: 90, height: 90, alignment: .center)
+                                    .padding(.horizontal)
                                         .background(Color.clear)
                                 }
                                 //Spacer()
                                 VStack{
                                     // Second Row
-                                    Text("Dr/ " + (schedule.doctorName ?? "") )
+                                    Text("Dr/ ".localized(language) + (schedule.doctorName ?? "mostafa ") )
                                         .foregroundColor(Color("blueColor"))
                                     VStack{
                                         HStack{
@@ -223,7 +262,7 @@ struct ScheduleEachCellView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                             .foregroundColor(Color("blueColor"))
-                                        Text("Map")
+                                        Text("Map".localized(language))
                                             .foregroundColor(Color("blueColor"))
                                             .font(.system(size: 12))
                                     }
@@ -238,14 +277,14 @@ struct ScheduleEachCellView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    
+                                    goingToHelp = true
                                 }, label: {
                                     HStack{
                                         Image(systemName: "headphones.circle")
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                             .foregroundColor(Color("blueColor"))
-                                        Text("Help")
+                                        Text("Help".localized(language))
                                             .foregroundColor(Color("blueColor"))
                                             .font(.system(size: 12))
                                     }
@@ -266,7 +305,7 @@ struct ScheduleEachCellView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                             .foregroundColor(Color("blueColor"))
-                                        Text("Cancel")
+                                        Text("Cancel".localized(language))
                                             .foregroundColor(Color("blueColor"))
                                             .font(.system(size: 12))
                                     }
@@ -282,8 +321,8 @@ struct ScheduleEachCellView: View {
                         }
                         Spacer()
                     }
-                    .frame(width: screenWidth, height: 250)
-                    .font(.system(size: 15))
+                    //                    .frame(width: screenWidth, height: 170)
+                                        .frame(width: screenWidth)                    .font(.system(size: 15))
                     .border(Color("lightGray").opacity(0.3))
             //        .padding(12)
                     .disableAutocorrection(true)
@@ -292,19 +331,24 @@ struct ScheduleEachCellView: View {
                     ).foregroundColor(Color.white)
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.099), radius: 3)
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 } else if schedule.canRate == true {
                     VStack{
                         ZStack{
                             VStack{
                                 HStack{
                                     Spacer()
-                                    Text("Done")
+                                    Text("Done".localized(language))
                                         .foregroundColor(Color("blueColor"))
                                     Text(schedule.medicalTypeName ?? "")
                                     
                                     Text(" | ")
                                     
-                                    Text(String(schedule.appointmentDate ?? ""))
+                                    Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"d/M/yyyy"))
+                                    
+                                    Text(" | ")
+                                    
+                                    Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"hh:mm a"))
                                     Spacer()
                                     
                                 }
@@ -321,8 +365,11 @@ struct ScheduleEachCellView: View {
                                     ZStack {
                                         ZStack {
                                             Button(action: {
-
+//                                                ispreviewImage = true
+//                                                previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
                                             }, label: {
+                                                
+                                                
                                                 KFImage(URL(string: URLs.BaseUrl + "\(schedule.doctorImage ?? "")"))
                                                            .resizable()
                                                            .scaledToFill()
@@ -347,13 +394,15 @@ struct ScheduleEachCellView: View {
             //                                                self.showImageSheet = true
             //
             //                                            }.padding(.top,70)
-                                      } .frame(width: 90, height: 90, alignment: .center)
+                                      }
+//                                    .frame(width: 90, height: 90, alignment: .center)
+                                    .padding(.horizontal)
                                         .background(Color.clear)
                                 }
                                 
                                 VStack{
                                     // Second Row
-                                    Text("Dr/ " + (schedule.doctorName ?? "") )
+                                    Text("Dr/ ".localized(language) + (schedule.doctorName ?? "") )
                                         .foregroundColor(Color("blueColor"))
                                     VStack{
                                         HStack{
@@ -380,7 +429,7 @@ struct ScheduleEachCellView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                             .foregroundColor(.white)
-                                        Text("Rate")
+                                        Text("Rate".localized(language))
                                             .foregroundColor(.white)
                                     }
                                     .padding(10)
@@ -394,14 +443,15 @@ struct ScheduleEachCellView: View {
                                
                                 
                                 Button(action: {
-                                    
+                                    goingToHelp = true
+
                                 }, label: {
                                     HStack{
                                         Image(systemName: "headphones.circle")
                                             .resizable()
                                             .frame(width: 25, height: 25)
                                             .foregroundColor(Color("blueColor"))
-                                        Text("Help")
+                                        Text("Help".localized(language))
                                             .foregroundColor(Color("blueColor"))
                                     }
                                     .padding(10)
@@ -419,8 +469,8 @@ struct ScheduleEachCellView: View {
                         }
                         Spacer()
                     }
-                    .frame(width: screenWidth, height: 200)
-                    .font(.system(size: 15))
+                    //                    .frame(width: screenWidth, height: 170)
+                                        .frame(width: screenWidth)                    .font(.system(size: 15))
                     .border(Color("lightGray").opacity(0.3))
             //        .padding(12)
                     .disableAutocorrection(true)
@@ -429,6 +479,7 @@ struct ScheduleEachCellView: View {
                     ).foregroundColor(Color("blueColor"))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.099), radius: 3)
+                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 }
 
         // go to addReview
@@ -441,5 +492,11 @@ struct ScheduleEachCellView: View {
         
 //        ViewAddReview(Doctor: schedule)
 
+    }
+}
+
+struct ScheduleEachCellView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScheduleEachCellView(schedule: AppointmentInfo.init(id: 1, medicalTypeId: 2, doctorName: "mostafa", isCancel: false) )
     }
 }
