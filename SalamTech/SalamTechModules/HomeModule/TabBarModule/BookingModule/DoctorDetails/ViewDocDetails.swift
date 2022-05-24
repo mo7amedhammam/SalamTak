@@ -497,7 +497,11 @@ struct ViewDateAndTime: View {
                         
                 Button(action: {
                     selectedSchedualId = sched.id ?? 0
+                   if selectedSchedualId == sched.id ?? 0{
                     timeexpanded.toggle()
+                    }else{
+                        timeexpanded = true
+                    }
                 }, label: {
 
                     HStack{
@@ -548,7 +552,8 @@ struct ViewDateAndTime: View {
                             .cornerRadius(9)
                             .shadow(color: .black.opacity(0.1), radius: 9)
                 
-                if timeexpanded == true{
+                        
+                if timeexpanded == true && selectedSchedualId == sched.id ?? 0{
                         slotView(slots: sched.DoctorSchedualSlots ?? [], selectedTime: $selectedTime )
                 }
                         
