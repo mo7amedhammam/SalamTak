@@ -49,3 +49,29 @@ struct AppointmentInfo: Codable,Identifiable , Hashable {
 
     }
 }
+
+
+
+//MARK: Cancel appointment
+// MARK: - cancel model
+struct ModelCancelAppointment: Codable {
+let message: String?
+    let messageCode: Int?
+    let data: CancelBody?
+    let success: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case message = "Message"
+        case messageCode = "MessageCode"
+        case data = "Data"
+        case success = "Success"
+    }
+}
+
+struct CancelBody: Codable {
+    let Statues: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case Statues = "Statues"
+    }
+}

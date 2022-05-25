@@ -328,3 +328,10 @@
 "Confirmed!" = "!تم الحجز";
 "Your_appointment_is" = "موعدك هو" ;
 "Myـschedule" = "مواعيدى";
+
+
+"Popup_Cencel_Appointment" = "الغاء \nالمقابلة؟ ";
+"Popup_Cencel_Appointment_msg" = "هل انت متأكد انك تريد \nالغاء هذه المقابلة؟";
+"Popup_Cencel_Appointment_reason" = "سبب الالغاء";
+"Popup_Cencel_Appointment_Close" = "تراجع";
+"Popup_Cencel_Appointment_Confirm" = "تأكيد";

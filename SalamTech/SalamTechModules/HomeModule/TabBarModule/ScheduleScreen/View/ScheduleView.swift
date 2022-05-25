@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ScheduleView: View {
     var language = LocalizationService.shared.language
+    @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
     @StateObject var medicalType = ViewModelExaminationTypeId()
-    
+
     @State var index = 1
     var body: some View {
         ZStack{
@@ -46,6 +47,7 @@ struct ScheduleView: View {
                                                     .cornerRadius(3))
                                     .clipShape(Rectangle())
                                     })
+                                   
                                 }
 
                                 
@@ -63,57 +65,81 @@ struct ScheduleView: View {
                         .offset(y:-10)
                 }
                 Spacer().frame(height: 90)
-                TabView (selection: self.$index){
                     ZStack{
-                        ScheduleCellView(medicalTypeId: $index)
+                        ScheduleCellView( )
                     }
                     .padding(15)
-                    .tag(1)
-                    ZStack{
-                        ScheduleCellView(medicalTypeId: $index)
-                    }
-                    .padding(15)
-                    .tag(2)
-                    ZStack{
-                        ScheduleCellView(medicalTypeId: $index)
-                    }
-                    .padding(15)
-                    .tag(3)
-                    ZStack{
-                        ScheduleCellView(medicalTypeId: $index)
-                    }
-                    .padding(15)
-                    .tag(4)
-                    ZStack{
-                        ScheduleCellView(medicalTypeId: $index)
-                    }
-                    .padding(15)
-                    .tag(5)
-                    
-//                    ZStack{
-//                        UpdateMedicalStateView()
-//                    }
-//                    .padding(15)
-//                    .tag(1)
-//                    UpdateLegalDocView()
-//                        .tag(2)
-                    
-                }
-//                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+               
                
             }
             .edgesIgnoringSafeArea(.bottom)
             .ignoresSafeArea()
             .background(Color("CLVBG"))
            
+         
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
+            
            
-        }.onAppear(perform: {
+        }.environmentObject(scheduleVM)
+        .onAppear(perform: {
             medicalType.GetExaminationTypeId()
+            scheduleVM.exmodelId = index
+            scheduleVM.startFetchAppointmentInfo()
+
         })
+            .onChange(of: index){newval in
+                scheduleVM.exmodelId = newval
+                scheduleVM.publishedDoctorCreatedModel.removeAll()
+                scheduleVM.startFetchAppointmentInfo()
+            }
+        
+
+        
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
 //        .navigationBarItems(leading:  BackButtonView())
+     
+        .popup(isPresented: $scheduleVM.showcncel){
+            BottomPopupView{
+                ViewCancelAppointmentPopUp(showCancePopUp: $scheduleVM.showcncel, cancelReason: $scheduleVM.AppointmentCancelReason)
+                
+            }.environmentObject(scheduleVM)
+
+        }
         
+    
+        
+        // Alert with no internet connection
+            .alert(isPresented: $scheduleVM.isAlert, content: {
+                
+                switch scheduleVM.activeAlert{
+                case .NetworkError :
+                    return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK"), action: {
+                        scheduleVM.isAlert = false
+
+                    }))
+                    
+                case .serverError :
+                    return  Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK"), action: {
+                        scheduleVM.isAlert = false
+
+                    }))
+                    
+                case .cancel :
+               return Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK"), action: {
+                    scheduleVM.isAlert = false
+                   if !scheduleVM.errorMsg.contains("error") && (!scheduleVM.errorMsg.contains("خطأ") || !scheduleVM.errorMsg.contains("خطا")) {
+                    scheduleVM.publishedDoctorCreatedModel.removeAll()
+                    scheduleVM.startFetchAppointmentInfo()
+                    }
+                }))
+                
+                }
+                })
+        
+
+
     }
 }
 
@@ -121,4 +147,8 @@ struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
         ScheduleView()
     }
+}
+
+enum ActiveAlert {
+    case NetworkError, serverError, cancel
 }

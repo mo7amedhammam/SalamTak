@@ -9,24 +9,19 @@ import SwiftUI
 
 struct ScheduleCellView: View {
     var language = LocalizationService.shared.language
+    @EnvironmentObject var scheduleVM : ViewModelGetAppointmentInfo
 
-    @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
-    @Binding var medicalTypeId:Int
+    
     var body: some View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false){
               
                 VStack(spacing:0){
                     ForEach( 0..<(scheduleVM.publishedDoctorCreatedModel.count ), id:\.self) { index in
-                        ScheduleEachCellView(schedule: scheduleVM.publishedDoctorCreatedModel[index])
+                        ScheduleEachCellView(schedule: scheduleVM.publishedDoctorCreatedModel[index]).environmentObject(scheduleVM)
                             .padding(.bottom,20)
                             }
-                        }.onAppear(perform: {
-                            scheduleVM.isLoading=true
-                            scheduleVM.startFetchAppointmentInfo(medicalTypeId: medicalTypeId)
-                            print("MOdellll")
-                            print(scheduleVM.publishedDoctorCreatedModel)
-                        })
+                        }
                 
 
                     }
@@ -38,21 +33,14 @@ struct ScheduleCellView: View {
                 
             }
             
-            
-            // showing loading indicator
-            ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
-
-            // Alert with no internet connection
-                .alert(isPresented: $scheduleVM.isNetworkError, content: {
-                    Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-            })
+                    
         }
-        
+
         }
 }
 
 struct ScheduleCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleCellView( medicalTypeId: .constant(1))
+        ScheduleCellView()
     }
 }

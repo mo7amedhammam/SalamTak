@@ -13,63 +13,18 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelGetSubject = PassthroughSubject<ModelGetSchedule, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelGetSchedule, Error>()
-    
+    let passCancelModel = PassthroughSubject<ModelCancelAppointment, Error>()
+
     private var cancellables: Set<AnyCancellable> = []
+ 
+    @Published var exmodelId  = 0
     
+    @Published var showcncel = false
+    @Published var AppointmentCancelID  = 0
+    @Published var AppointmentCancelReason  = ""
     
-    
-    @Published  var Id: Int = 0
-    @Published  var Height: Int = 0
-    @Published  var Weight: Int = 0
-    @Published  var DoctorName: String = ""              // 1 for male  2 for female
-    @Published  var SugarLevel: String = ""              //  date format "yyyy/mm/dd"
-    @Published  var OtherAllergies : String = ""
-    @Published  var BloodTypeId: Int = 0
-    @Published  var BloodTypeName: String = ""
-    @Published  var Prescriptions : String = ""
-    
-    @Published  var CurrentMedication : String = ""
-    @Published  var PastMedication : String = ""
-    @Published  var ChronicDiseases : String = ""
-    @Published  var Iinjuries : String = ""
-    @Published  var Surgeries : String = ""
-    
-    @Published  var PatientFoodAllergiesName     : [String] = []
-    @Published  var PatientFoodAllergiesDto     : [Int] = []
-    @Published  var PatientMedicineAllergiesName     : [String] = []
-    @Published  var PatientMedicineAllergiesDto     : [Int] = []
-    
-   
+    @Published var publishedCancelModel: ModelCancelAppointment?
 
-
-    
-    @Published  var NationalityName: String = "Nationality"
-    @Published  var cityName             : String = ""
-    @Published  var areaName             : String = ""
-    @Published  var occupationName       : String = "Occupation"
-    
-//    @Published  var SpecialityName: String = "CompeleteProfile_Screen_Speciality"
-//    @Published  var SubSpecialityName: [String] = []
-//    @Published  var SeniorityName: String = "CompeleteProfile_Screen_Seniority"
-
-    
-    
-    //------- validation
-    @Published  var errorFirstName : String = ""
-    @Published  var errorFirstNameAr: String = ""
-    @Published  var errorMiddelName: String = ""
-    @Published  var errorMiddelNameAr: String = ""
-    @Published  var errorLastName: String = ""
-    @Published  var errorLastNameAr: String = ""
-    @Published  var errorNationalityId: Int = 0
-    @Published  var errorGenderId: Int?               // 1 for male  2 for female
-    @Published  var errorSpecialistId: Int = 0
-    @Published  var errorBirthday: Date?              //  date format "yyyy/mm/dd"
-    @Published  var errorSeniorityLevelId: Int = 0
-    @Published  var errorWebsite : String = ""
-    @Published  var errorDoctorInfo : String = ""
-    @Published  var errorDoctorInfoAr : String = ""
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
@@ -78,9 +33,15 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     @Published var isError = false
     @Published var errorMsg = ""
     @Published var UserCreated = false
+    @Published var iscancelled = false
+
     @Published var isNetworkError = false
     @Published var noschedules = false
 
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    
+    
     
     init() {
         
@@ -91,33 +52,44 @@ class ViewModelGetAppointmentInfo: ObservableObject {
         } receiveValue: { [self] (modeldata) in
             noschedules = false
             self.publishedDoctorCreatedModel = modeldata.data ?? []
-            self.DoctorName = publishedDoctorCreatedModel.first?.doctorName ?? ""
             if publishedDoctorCreatedModel.count == 0 || publishedDoctorCreatedModel == [] {
                 noschedules = true
             }
         }.store(in: &cancellables)
         
- 
+        passCancelModel.sink { (completion) in
+        } receiveValue: { (modeldata) in
+            self.publishedCancelModel = modeldata
+            print(self.publishedCancelModel!)
+            print(self.publishedCancelModel?.data?.Statues ?? false )
+            
+        }.store(in: &cancellables)
+
         
     }
     
-    func startFetchAppointmentInfo(medicalTypeId:Int) {
+    func startFetchAppointmentInfo() {
+                    self.isLoading = true
 
         if Helper.isConnectedToNetwork(){
-            self.isLoading = true
 
-            ScheduleApiService.GetPatientAppointmentInfo(medicalExaminationTypeId:medicalTypeId,
+            
+            ScheduleApiService.GetPatientAppointmentInfo(medicalExaminationTypeId:exmodelId,
                 completion:  { (success, model, err) in
             if success{
                 DispatchQueue.main.async {
-                    self.UserCreated = true
+//                    self.UserCreated = true
+                    self.errorMsg = model?.message ?? ""
                     self.isLoading = false
                     self.passthroughModelGetSubject.send(model!)
                     print(model!)
                 }
             }else{
+                self.isAlert = true
+                self.activeAlert = .serverError
+                
                 self.isLoading = false
-                self.isError = true
+//                self.UserCreated = true
                 print(model?.message ?? "")
                 self.errorMsg = err ?? ""
             }
@@ -125,9 +97,48 @@ class ViewModelGetAppointmentInfo: ObservableObject {
 
         }else{
                    // Alert with no internet connection
-            self.isLoading = false
+            self.isAlert = true
+            self.activeAlert = .NetworkError
+            
+//            self.isLoading = false
           isNetworkError = true
                }
     }
     
+    func startFetchCancelAppointment() {
+        self.isLoading = true
+
+        if Helper.isConnectedToNetwork(){
+       
+            ScheduleApiService.CanselAppointment(AppointmentId: AppointmentCancelID , CancelReason: AppointmentCancelReason,
+                completion: { (success, model, err) in
+            if success == true{
+                DispatchQueue.main.async {
+                    self.errorMsg = model?.message ?? ""
+                    self.isLoading = false
+                    self.passCancelModel.send(model!)
+                    print(self.iscancelled)
+                    
+                    self.isAlert = true
+                    self.activeAlert = .cancel
+                }
+            }else{
+                self.isAlert = true
+                self.activeAlert = .cancel
+                self.isLoading = false
+
+                self.errorMsg = err ?? "cannot get history appointment"
+                print(self.errorMsg)
+            }
+        })
+
+        }else{
+                   // Alert with no internet connection
+            self.isAlert = true
+            self.activeAlert = .NetworkError
+            self.isLoading = false
+//          isNetworkError = true
+               }
+    }
+
 }

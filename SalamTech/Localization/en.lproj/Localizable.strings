@@ -329,5 +329,9 @@
 
 
 
-
+"Popup_Cencel_Appointment" = "Cencel \n Appointment";
+"Popup_Cencel_Appointment_msg" = "Are you sure you want to cancel \n this appointment?";
+"Popup_Cencel_Appointment_reason" = "Cancel Reason";
+"Popup_Cencel_Appointment_Close" = "Close";
+"Popup_Cencel_Appointment_Confirm" = "Confirm";
 
