@@ -62,6 +62,7 @@ struct ViewDocDetails:View{
                         Button(action: {
                             // add review
                             if Helper.userExist(){
+                                // check if token is available
                                 GotoSummary = true
                             }else{
                             showQuickLogin =  true

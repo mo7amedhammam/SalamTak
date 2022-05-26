@@ -335,3 +335,5 @@
 "Popup_Cencel_Appointment_reason" = "سبب الالغاء";
 "Popup_Cencel_Appointment_Close" = "تراجع";
 "Popup_Cencel_Appointment_Confirm" = "تأكيد";
+
+"you_signed_out" = "تم تسجيل خروجك";

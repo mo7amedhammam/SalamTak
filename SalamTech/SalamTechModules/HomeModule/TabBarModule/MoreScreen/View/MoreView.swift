@@ -8,6 +8,8 @@ import SwiftUI
 
 struct MoreView: View {
     @State var islogout:Bool = false
+    @State var goToLogin:Bool = false
+    
     @State var goingToPatientUpdate = false
     @State var goingToResetPassword = false
     @State var goingToNew = false
@@ -239,8 +241,12 @@ struct MoreView: View {
                             .shadow(color: Color.black.opacity(0.099), radius: 3)
                        
                         Button(action: {
+                            if Helper.userExist(){
                             Helper.logout()
-//                            islogout = true
+                                islogout = true
+                            }else{
+                                goToLogin = true
+                            }
                         }, label: {
                             HStack(spacing: 10){
                                 Image(systemName: "arrow.left.square.fill")
@@ -281,8 +287,17 @@ struct MoreView: View {
         NavigationLink(destination: PatientProfile(),isActive:$goingToPatientUpdate , label: {
         })
 
-        NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$islogout , label: {
+        NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$goToLogin , label: {
         })
+        
+            .alert(isPresented: $islogout, content: {
+                Alert(title: Text("you_signed_out".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                  islogout = false
+
+              }))
+            })
+       
+        
     }
 }
 

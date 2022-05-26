@@ -26,6 +26,7 @@ struct ScheduleEachCellView: View {
     var body: some View {
       
                 if schedule.isCancel == true {
+                    
                     VStack{
                         ZStack{
                             VStack{
@@ -118,8 +119,7 @@ struct ScheduleEachCellView: View {
                                
                                 
                                 Button(action: {
-                                    scheduleVM.AppointmentCancelID = schedule.id ?? 1
-                                    scheduleVM.showcncel = true
+                                 
                                     goingToHelp = true
                                 }, label: {
                                     HStack{
@@ -282,8 +282,7 @@ struct ScheduleEachCellView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    scheduleVM.AppointmentCancelID = schedule.id ?? 2
-                                    scheduleVM.showcncel = true
+                              
 
                                     goingToHelp = true
 
@@ -307,7 +306,7 @@ struct ScheduleEachCellView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    scheduleVM.AppointmentCancelID = schedule.id ?? 3
+                                    scheduleVM.AppointmentCancelID = schedule.id ?? 1
                                     scheduleVM.showcncel = true
 
                                 }, label: {
@@ -454,8 +453,6 @@ struct ScheduleEachCellView: View {
                                
                                 
                                 Button(action: {
-                                    scheduleVM.AppointmentCancelID = schedule.id ?? 4
-                                    scheduleVM.showcncel = true
                                     goingToHelp = true
 
                                 }, label: {

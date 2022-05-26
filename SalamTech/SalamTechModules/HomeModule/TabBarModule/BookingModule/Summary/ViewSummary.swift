@@ -347,7 +347,7 @@ struct ViewSummary:View{
                 
 
                 .onAppear(perform: {
-                    CreateAppointment.PatientId = Helper.getUserID()
+                    CreateAppointment.DoctorId = Doctor.id ?? 0
                     CreateAppointment.DoctorWorkingDayTimeId = BookingscedualId
                     CreateAppointment.AppointmentDate = "\(Filterdatef.string(from: BookiDate))T\(BookiTime)"
                     CreateAppointment.Fees = Doctor.FeesFrom  ?? 00

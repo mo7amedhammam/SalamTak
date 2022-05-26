@@ -21,7 +21,7 @@ class VMCreateAppointment: ObservableObject {
    
     // ------- input
 
-    @Published var PatientId                            :Int = 0
+    @Published var DoctorId                            :Int = 0
     @Published var DoctorWorkingDayTimeId              :Int = 0
     @Published var AppointmentDate                       :String = ""
     @Published var Fees                      : Double = 0.0
@@ -67,7 +67,7 @@ class VMCreateAppointment: ObservableObject {
     func CreatePatientAppointment() {
         let Parameters : [String:Any] = [
         // required
-//            "PatientId": PatientId ,
+            "DoctorId": DoctorId ,
             "DoctorWorkingDayTimeId":DoctorWorkingDayTimeId,
             "AppointmentDate":AppointmentDate ,
             "Fees":Fees,

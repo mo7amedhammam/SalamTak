@@ -484,7 +484,7 @@ final class ApiService{
                     //                    multipartFormData.append(url, withName: "upload_data" , fileName: "movie.mp4", mimeType: "video/mp4")
               
                 }else{ print("cant get image data")
-                    completion(false, nil,"Please Add Profile Image")
+//                    completion(false, nil,"Please Add Profile Image")
                 }
             
             
