@@ -11,6 +11,7 @@ struct ScheduleView: View {
     var language = LocalizationService.shared.language
     @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
     @StateObject var medicalType = ViewModelExaminationTypeId()
+    @State var goToLogin = false
 
     @State var index = 1
     var body: some View {
@@ -79,8 +80,10 @@ struct ScheduleView: View {
          
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
+        
+            NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$goToLogin , label: {
+            })
             
-           
         }.environmentObject(scheduleVM)
         .onAppear(perform: {
             medicalType.GetExaminationTypeId()
@@ -115,25 +118,32 @@ struct ScheduleView: View {
                 
                 switch scheduleVM.activeAlert{
                 case .NetworkError :
-                    return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK"), action: {
+                    return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                         scheduleVM.isAlert = false
 
                     }))
                     
                 case .serverError :
-                    return  Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK"), action: {
+                    return  Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                         scheduleVM.isAlert = false
 
                     }))
                     
                 case .cancel :
-               return Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK"), action: {
+                    return Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                     scheduleVM.isAlert = false
                    if !scheduleVM.errorMsg.contains("error") && (!scheduleVM.errorMsg.contains("خطأ") || !scheduleVM.errorMsg.contains("خطا")) {
                     scheduleVM.publishedDoctorCreatedModel.removeAll()
                     scheduleVM.startFetchAppointmentInfo()
                     }
                 }))
+                case .unauthorized:
+                    return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                         scheduleVM.isAlert = false
+                        self.goToLogin = true
+
+                      
+                     }))
                 
                 }
                 })
@@ -150,5 +160,5 @@ struct ScheduleView_Previews: PreviewProvider {
 }
 
 enum ActiveAlert {
-    case NetworkError, serverError, cancel
+    case NetworkError, serverError, cancel, unauthorized
 }

@@ -40,7 +40,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
 
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
-    
+
     
     
     init() {
@@ -85,13 +85,24 @@ class ViewModelGetAppointmentInfo: ObservableObject {
                     print(model!)
                 }
             }else{
+                if model != nil{
                 self.isAlert = true
                 self.activeAlert = .serverError
-                
                 self.isLoading = false
 //                self.UserCreated = true
                 print(model?.message ?? "")
                 self.errorMsg = err ?? ""
+                }else{
+                  if err == "unauthorized"{
+                      self.errorMsg = "Session expired\n login again"
+
+                      self.isAlert = true
+                      self.activeAlert = .unauthorized
+                      self.isLoading = false
+
+                  }
+              }
+                
             }
         })
 
@@ -123,12 +134,21 @@ class ViewModelGetAppointmentInfo: ObservableObject {
                     self.activeAlert = .cancel
                 }
             }else{
+                if model != nil{
                 self.isAlert = true
                 self.activeAlert = .cancel
                 self.isLoading = false
 
                 self.errorMsg = err ?? "cannot get history appointment"
                 print(self.errorMsg)
+                }else{
+                  if err == "unauthorized"{
+                      self.isAlert = true
+                      self.activeAlert = .unauthorized
+                      self.isLoading = false
+
+                  }
+              }
             }
         })
 

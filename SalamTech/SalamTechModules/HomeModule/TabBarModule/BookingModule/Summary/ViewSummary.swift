@@ -29,7 +29,8 @@ struct ViewSummary:View{
 //    @StateObject var selectedTab = selectedtapNum()
     @State var ispreviewImage = false
     @State var previewImageurl = ""
-    
+    @State var goToLogin = false
+
 
     
 
@@ -321,10 +322,10 @@ struct ViewSummary:View{
                     })
 
 //                }
-                // Alert with Error message
-                    .alert(CreateAppointment.errorMsg, isPresented: $CreateAppointment.isError) {
-                        Button("OK".localized(language), role: .cancel) { }
-                }
+//                // Alert with Error message
+//                    .alert(CreateAppointment.errorMsg, isPresented: $CreateAppointment.isError) {
+//                        Button("OK".localized(language), role: .cancel) { }
+//                }
 
                 // showing loading indicator
                 ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
@@ -333,12 +334,15 @@ struct ViewSummary:View{
                         ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
 //                    })
 
-
                 
         //      go to clinic info
                 NavigationLink(destination:TabBarView(selectedTab1:"TabBar_schedual"),isActive: $GotoSchedual) {
                      }
-                  
+       
+        //      go to clinic info
+                        NavigationLink(destination:WelcomeScreenView(),isActive: $goToLogin) {
+                             }
+                
             }
 //            .navigationBarHidden(ispreviewImage)
 
@@ -431,6 +435,39 @@ struct ViewSummary:View{
                 Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
         })
 
+        // Alert with no internet connection
+            .alert(isPresented: $CreateAppointment.isAlert, content: {
+                
+                switch CreateAppointment.activeAlert{
+                case .NetworkError :
+                    return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        CreateAppointment.isAlert = false
+
+                    }))
+                    
+                case .serverError :
+                    return  Alert(title: Text(CreateAppointment.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        CreateAppointment.isAlert = false
+
+                    }))
+                    
+                case .cancel :
+                    return Alert(title: Text(CreateAppointment.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        CreateAppointment.isAlert = false
+                 
+                }))
+                case .unauthorized:
+                    return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        CreateAppointment.isAlert = false
+                        self.goToLogin = true
+
+                      
+                     }))
+                
+                }
+                })
+        
+        
         
     }
   

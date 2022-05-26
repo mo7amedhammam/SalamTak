@@ -48,6 +48,8 @@ final class UpdatePersonalApiService {
                 //-------------
             }
             case 401 : print("The token expired (unauthorized)")
+                    completion(false, nil,"unauthorized")
+
             case 400 : print("bad request")
                     switch response.result {
                           //--------------
@@ -114,6 +116,8 @@ final class UpdatePersonalApiService {
          
 
             case 401 : print("The token expired (unauthorized)")
+                    completion(false, nil,"unauthorized")
+
             case 400 : print("bad request")
                     switch response.result {
                           //--------------

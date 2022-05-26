@@ -115,9 +115,6 @@ struct ScheduleEachCellView: View {
                         
                         VStack{
                             HStack{
-                                
-                               
-                                
                                 Button(action: {
                                  
                                     goingToHelp = true

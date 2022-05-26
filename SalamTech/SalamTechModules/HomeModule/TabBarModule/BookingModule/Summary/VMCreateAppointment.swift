@@ -44,7 +44,8 @@ class VMCreateAppointment: ObservableObject {
     @Published var errorMsg = ""
     @Published var isDone = false
     @Published var isNetworkError = false
-    @Published var SessionExpired = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
 
     
     init() {
@@ -91,10 +92,17 @@ class VMCreateAppointment: ObservableObject {
 
                 }
             }else{
+                if model != nil{
                 self.isLoading = false
-                self.isError = true
+                self.isAlert = true
+                    self.activeAlert = .serverError
                 print(model?.message ?? "")
                 self.errorMsg = err ?? "cannot get Doctors"
+                } else{
+                    self.isAlert = true
+                    self.activeAlert = .unauthorized
+                    self.isLoading = false
+                    }
             }
         })
             self.isLoading = false
@@ -102,7 +110,8 @@ class VMCreateAppointment: ObservableObject {
         }else{
                    // Alert with no internet connection
             self.isLoading = false
-          isNetworkError = true
+            self.isAlert = true
+            self.activeAlert = .NetworkError
                }
     }
  

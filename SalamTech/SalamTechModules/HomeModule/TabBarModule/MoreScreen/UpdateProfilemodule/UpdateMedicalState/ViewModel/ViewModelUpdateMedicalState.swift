@@ -79,7 +79,8 @@ class ViewModelUpdateMedicalProfile: ObservableObject {
     @Published var errorMsg = ""
     @Published var UserCreated = false
     @Published var isNetworkError = false
-    
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
     
     init() {
 //     validations()
@@ -176,10 +177,19 @@ class ViewModelUpdateMedicalProfile: ObservableObject {
                     print(model?.message ?? "")
                 }
             }else{
+                if model != nil{
                 print(model?.message ?? "")
                 self.isLoading = false
-                self.isError = true
+                    self.isAlert = true
+                    self.activeAlert = .serverError
                 self.errorMsg = model?.message ?? "Please Compelete Your Data"
+                }else{
+                    if err == "unauthorized"{
+                        self.isAlert = true
+                        self.activeAlert = .unauthorized
+                        self.isLoading = false
+                    }
+                }
             }
 //print(err ?? "")
         })
@@ -191,7 +201,8 @@ class ViewModelUpdateMedicalProfile: ObservableObject {
         }else{
                    // Alert with no internet connection
             self.isLoading = false
-          isNetworkError = true
+            self.isAlert = true
+            self.activeAlert = .NetworkError
                }
     }
  
@@ -211,17 +222,28 @@ class ViewModelUpdateMedicalProfile: ObservableObject {
 //                    print(model!)
                 }
             }else{
+                if model != nil{
                 self.isLoading = false
-                self.isError = true
+                    self.isAlert = true
+                    self.activeAlert = .serverError
                 print(model?.message ?? "")
                 self.errorMsg = err ?? ""
+                }else{
+                  if err == "unauthorized"{
+                      self.isAlert = true
+                      self.activeAlert = .unauthorized
+                      self.isLoading = false
+
+                  }
+              }
             }
         })
 
         }else{
                    // Alert with no internet connection
             self.isLoading = false
-          isNetworkError = true
+            self.isAlert = true
+            self.activeAlert = .NetworkError
                }
     }
     

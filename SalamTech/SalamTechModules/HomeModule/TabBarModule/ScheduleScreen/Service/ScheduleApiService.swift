@@ -52,6 +52,8 @@ final class ScheduleApiService {
          
 
             case 401 : print("The token expired (unauthorized)")
+                    completion(false, nil, "unauthorized")
+
             case 400 : print("bad request")
                     switch response.result {
                           //--------------
@@ -117,11 +119,11 @@ final class ScheduleApiService {
                     guard model != nil else { return }
                         if model?.success == true {
                         completion(true, model , model?.message ?? "")
-                            print(model)
+//                            print(model)
                         print(model?.message ?? "")
                     } else{
                         completion(false, model , model?.message ?? "")
-                        print(model)
+//                        print(model)
                         print(model?.message ?? "")
                     }
         
