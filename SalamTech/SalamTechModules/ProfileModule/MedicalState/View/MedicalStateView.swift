@@ -404,6 +404,7 @@ struct MedicalStateView: View {
             // showing loading indicator
             ActivityIndicatorView(isPresented: $medicalCreatedVM.isLoading)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         NavigationLink(destination:TabBarView(),isActive: $medicalCreatedVM.UserCreated , label: {
         })
     }

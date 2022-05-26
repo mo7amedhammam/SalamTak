@@ -146,6 +146,9 @@ struct ViewLogin: View {
                 
                 
                 }
+        
+            .navigationViewStyle(StackNavigationViewStyle())
+
             .background(Color("CLVBG"))
             .ignoresSafeArea()
             .onTapGesture(perform: {

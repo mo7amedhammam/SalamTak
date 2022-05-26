@@ -85,7 +85,8 @@ struct TabBarView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-            
+        .navigationViewStyle(StackNavigationViewStyle())
+
 //            ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true).edgesIgnoringSafeArea(.all)
         }
 

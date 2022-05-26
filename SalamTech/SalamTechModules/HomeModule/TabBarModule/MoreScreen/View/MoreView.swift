@@ -182,7 +182,9 @@ struct MoreView: View {
                                 .shadow(color: Color.black.opacity(0.099), radius: 3)
                         })
                         Button(action: {
-                            CallUs = true
+//                            CallUs = true
+                            Helper.MakePhoneCall(PhoneNumber: "0221256299")
+
                         }, label: {
                             HStack(spacing: 10){
                                 Image(systemName: "phone.circle")
@@ -286,9 +288,46 @@ struct MoreView: View {
        
         NavigationLink(destination: PatientProfile(),isActive:$goingToPatientUpdate , label: {
         })
+        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive:$goingToResetPassword , label: {
+        })
 
         NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$goToLogin , label: {
         })
+            .navigationViewStyle(StackNavigationViewStyle())
+
+            .sheet(isPresented: $aboutApp, content: {
+                AboutApp(isPresented: $aboutApp)
+            })
+        
+            .sheet(isPresented: $TermsAndConditions , content: {
+                ZStack{
+                SalamtakWebView(url: URL(string: URLs().TermsAndConditionsURL )!   , isPresented: $TermsAndConditions)
+                    
+                    VStack {
+                        Spacer()
+                        Button(action: {
+                            // add review
+                            TermsAndConditions = false
+
+                        }, label: {
+                            HStack {
+                                Text("Ok".localized(language))
+                                    .fontWeight(.semibold)
+                                    .font(.title3)
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(.green)
+            //                .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(12)
+                            .padding(.horizontal, 20)
+                        })
+                    }
+                }
+                    
+            })
+
         
             .alert(isPresented: $islogout, content: {
                 Alert(title: Text("you_signed_out".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

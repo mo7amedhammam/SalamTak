@@ -108,7 +108,8 @@ struct WelcomeScreenView: View {
             // go to complete Certs after completing first view
         NavigationLink(destination: ViewSignUp(ispresented: .constant(false), quickSignup: .constant(false)),isActive: $isSignup , label: {
             })
-        
+            .navigationViewStyle(StackNavigationViewStyle())
+
 
     }
     

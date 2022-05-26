@@ -817,7 +817,8 @@ struct ViewSearchDoc: View {
 
             
         }
-       
+        .navigationViewStyle(StackNavigationViewStyle())
+
         .navigationBarHidden(ispreviewImage)
 
         .onAppear(perform: {

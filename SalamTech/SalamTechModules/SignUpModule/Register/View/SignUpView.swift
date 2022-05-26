@@ -198,6 +198,8 @@ struct ViewSignUp: View {
                 NavigationLink(destination: PhoneVerificationView(passedmodel: RegisterVM),isActive: $RegisterVM.isRegistered, label: {
                 })
                 }
+            .navigationViewStyle(StackNavigationViewStyle())
+
                 .background(Color("CLVBG"))
             
                     .adaptsToKeyboard()

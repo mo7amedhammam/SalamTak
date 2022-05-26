@@ -117,7 +117,9 @@ struct SpecialityView: View {
 
             // showing loading indicator
             ActivityIndicatorView(isPresented: $specialityvm.isLoading)
-        }.onAppear(perform: {
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: {
             specialityvm.isLoading = true
             specialityvm.startFetchSpecialist()
         })

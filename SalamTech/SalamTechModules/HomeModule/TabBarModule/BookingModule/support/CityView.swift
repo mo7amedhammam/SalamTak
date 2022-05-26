@@ -121,7 +121,9 @@ struct CityView: View {
 
             // showing loading indicator
             ActivityIndicatorView(isPresented: $CitiesVM.isLoading)
-        }.onAppear(perform: {
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: {
             CitiesVM.isLoading = true
             CitiesVM.startFetchCities(countryid: CountryId)
         })

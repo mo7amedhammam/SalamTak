@@ -101,6 +101,7 @@ struct ChangePasswordView: View {
                 ActivityIndicatorView(isPresented: $UpdatePassVM.isLoading)
                 
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .background(Color("CLVBG"))
         
                 .adaptsToKeyboard()

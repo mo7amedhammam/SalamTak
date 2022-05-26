@@ -138,10 +138,11 @@
 		C8282CB02831601A005DD9BE /* ExModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8282CAF2831601A005DD9BE /* ExModel.swift */; };
 		C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF33280C53FB00B1B953 /* ViewSummary.swift */; };
 		C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF35280C675C00B1B953 /* CustomSheet.swift */; };
+		C82E64E0283FC4B600B20354 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64DF283FC4B600B20354 /* AboutApp.swift */; };
+		C82E64E4283FC7FC00B20354 /* SalamtakWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */; };
 		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
-		C8844D64283BAABD00820D54 /* RateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8844D63283BAABD00820D54 /* RateScreen.swift */; };
 		C8A825E128393DF300FB8D76 /* ImageViewerRemote in Frameworks */ = {isa = PBXBuildFile; productRef = C8A825E028393DF300FB8D76 /* ImageViewerRemote */; };
 		C8A91A1628141C50002437EC /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C8A91A1528141C50002437EC /* FSCalendar */; };
 		C8A91A1828141D6D002437EC /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A91A1728141D6D002437EC /* FSCalendarView.swift */; };
@@ -321,10 +322,11 @@
 		C8282CAF2831601A005DD9BE /* ExModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExModel.swift; sourceTree = "<group>"; };
 		C82AFF33280C53FB00B1B953 /* ViewSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSummary.swift; sourceTree = "<group>"; };
 		C82AFF35280C675C00B1B953 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
+		C82E64DF283FC4B600B20354 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
+		C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamtakWebView.swift; sourceTree = "<group>"; };
 		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
-		C8844D63283BAABD00820D54 /* RateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateScreen.swift; sourceTree = "<group>"; };
 		C8A91A1728141D6D002437EC /* FSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
 		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
@@ -679,7 +681,6 @@
 		0E586D0627F5B48C00944F21 /* ScheduleScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C8844D5F283BAA6D00820D54 /* RateScreen */,
 				0E9A2F64280AEDE500F7FEAE /* Service */,
 				0E586D2027F5B6A300944F21 /* Model */,
 				0E586D1F27F5B69900944F21 /* ViewModel */,
@@ -778,6 +779,8 @@
 			isa = PBXGroup;
 			children = (
 				0E586D2127F5B6BC00944F21 /* MoreView.swift */,
+				C82E64DF283FC4B600B20354 /* AboutApp.swift */,
+				C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1117,22 +1120,6 @@
 				C826D93E280D90B90072754B /* ApiDocDetails.swift */,
 			);
 			path = DoctorDetails;
-			sourceTree = "<group>";
-		};
-		C8844D5F283BAA6D00820D54 /* RateScreen */ = {
-			isa = PBXGroup;
-			children = (
-				C8844D62283BAA9500820D54 /* View */,
-			);
-			path = RateScreen;
-			sourceTree = "<group>";
-		};
-		C8844D62283BAA9500820D54 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C8844D63283BAABD00820D54 /* RateScreen.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
@@ -1556,7 +1543,6 @@
 				C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				0E9A2F66280AEE0000F7FEAE /* ScheduleApiService.swift in Sources */,
-				C8844D64283BAABD00820D54 /* RateScreen.swift in Sources */,
 				0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */,
 				0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */,
 				0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */,
@@ -1599,6 +1585,7 @@
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				0EC34CCE280ED63000701344 /* ScheduleEachCellView.swift in Sources */,
 				0E586D1627F5B63A00944F21 /* ViewModelPersonalData.swift in Sources */,
+				C82E64E0283FC4B600B20354 /* AboutApp.swift in Sources */,
 				0E9E0DCB27FB022700893ABF /* ModelCities.swift in Sources */,
 				0E26EA7027FB2F1F00E3D9B8 /* ModelBloodType.swift in Sources */,
 				00C8BF7E27F33F3600571078 /* ButtonView.swift in Sources */,
@@ -1643,6 +1630,7 @@
 				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
 				0E68CD9D27FEF73900327EBF /* UpdatePersonalDataView.swift in Sources */,
 				0E62C55027FD93D100655D1A /* ModelResetPassword.swift in Sources */,
+				C82E64E4283FC7FC00B20354 /* SalamtakWebView.swift in Sources */,
 				0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */,
 				C8282CB02831601A005DD9BE /* ExModel.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,

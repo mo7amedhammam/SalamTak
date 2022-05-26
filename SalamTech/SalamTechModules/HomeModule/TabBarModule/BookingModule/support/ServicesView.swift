@@ -142,6 +142,8 @@ struct ServicesView: View {
              }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
+
         
         // Alert with no internet connection
             .alert(isPresented: $medicalType.isNetworkError, content: {

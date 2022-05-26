@@ -134,6 +134,7 @@ struct CountryView: View {
             ActivityIndicatorView(isPresented: $NationalityVM.isLoading)
 
         }
+        .navigationViewStyle(StackNavigationViewStyle())
 
         
         

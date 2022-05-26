@@ -185,7 +185,10 @@ struct PhoneVerificationView: View {
                         Spacer()
             }  .edgesIgnoringSafeArea(.all)
                 
-        }  .adaptsToKeyboard()
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+
+        .adaptsToKeyboard()
             .ignoresSafeArea()
             .onTapGesture(perform: {
                 hideKeyboard()

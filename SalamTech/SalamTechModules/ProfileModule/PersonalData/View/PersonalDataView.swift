@@ -550,6 +550,8 @@ struct PersonalDataView: View {
             // showing loading indicator
             ActivityIndicatorView(isPresented: $patientCreatedVM.isLoading)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+
         NavigationLink(destination:MedicalStateView(),isActive: $patientCreatedVM.UserCreated , label: {
         })
     }

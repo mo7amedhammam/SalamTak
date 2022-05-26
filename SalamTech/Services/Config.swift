@@ -202,6 +202,8 @@ class URLs {
     //Create appointment
         var CreatePatientAppointment = BaseUrl + "/api/\(Helper.getLanguage())/Patient/CreatePatientAppointment"
     
+    var TermsAndConditionsURL =  "https://salamtechfront.azurewebsites.net/Terms"
+
     
 }
 

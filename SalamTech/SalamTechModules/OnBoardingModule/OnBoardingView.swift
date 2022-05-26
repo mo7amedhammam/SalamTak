@@ -105,7 +105,8 @@ struct OnBoardingView: View {
            
         }.navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-     
+            .navigationViewStyle(StackNavigationViewStyle())
+
         
         
         }

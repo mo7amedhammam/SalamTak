@@ -125,7 +125,8 @@ struct ViewDocDetails:View{
         
         
        
-        
+                .navigationViewStyle(StackNavigationViewStyle())
+
         
      // go to summary
         NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $selectedDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
@@ -134,6 +135,7 @@ struct ViewDocDetails:View{
         // go to Reviews
         NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
                 }
+        
         
         // go to addReview
         NavigationLink(destination:ViewAddReview( Doctor: Doctor, schedule: AppointmentInfo.init()),isActive: $GotoAddReview) {

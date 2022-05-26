@@ -559,21 +559,55 @@ struct UpdatePersonalDataView: View {
                     ImagePicker(sourceType: .camera, selectedImage: self.$patientUpdatedVM.profileImage)
                 }
             }
-            // Alert with no internet connection
-            .alert(isPresented: $patientUpdatedVM.isNetworkError, content: {
-                Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
-            })
             
-            // alert with no ierror message
-            .alert(patientUpdatedVM.errorMsg, isPresented: $patientUpdatedVM.isError) {
-                Button("OK", role: .cancel) { }
-            }
+//            // alert with no ierror message
+//            .alert(patientUpdatedVM.errorMsg, isPresented: $patientUpdatedVM.isError) {
+//                Button("OK", role: .cancel) { }
+//            }
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $patientUpdatedVM.isLoading)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+
 //        NavigationLink(destination:MedicalStateView(),isActive: $patientUpdatedVM.UserCreated , label: {
 //        })
+        
+        
+        // Alert with no internet connection
+            .alert(isPresented: $patientUpdatedVM.isAlert, content: {
+                
+                switch patientUpdatedVM.activeAlert{
+                case .NetworkError :
+                    return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        patientUpdatedVM.isAlert = false
+
+                    }))
+                    
+                case .serverError :
+                    return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        patientUpdatedVM.isAlert = false
+
+                    }))
+                    
+                case .cancel :
+                        return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                            patientUpdatedVM.isAlert = false
+
+                        }))
+                    
+                case .unauthorized:
+                    return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        patientUpdatedVM.isAlert = false
+//                        self.goToLogin = true
+
+                      
+                     }))
+                
+                }
+                })
+        
+        
     }
 }
 

@@ -111,6 +111,8 @@ struct ResetPasswordView: View {
                     ActivityIndicatorView(isPresented: $ResetVM.isLoading)
                     
                 }
+                .navigationViewStyle(StackNavigationViewStyle())
+
                 .background(Color("CLVBG"))
             
                     .adaptsToKeyboard()

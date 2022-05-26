@@ -98,7 +98,8 @@ struct PatientProfile: View {
            
            
         }
-       
+        .navigationViewStyle(StackNavigationViewStyle())
+
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:  BackButtonView())
         

@@ -216,6 +216,7 @@ struct ViewAddReview: View {
             ActivityIndicatorView(isPresented: $addRate.isLoading)
          
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .edgesIgnoringSafeArea(.top)
         .onAppear(perform: {

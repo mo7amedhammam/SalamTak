@@ -345,7 +345,7 @@ struct ViewSummary:View{
                 
             }
 //            .navigationBarHidden(ispreviewImage)
-
+            .navigationViewStyle(StackNavigationViewStyle())
             .background(Color.red)
 //                .edgesIgnoringSafeArea(.vertical)
                 
@@ -430,10 +430,6 @@ struct ViewSummary:View{
 //     .navigationBarBackButtonHidden(true)
 
  
-        // Alert with no internet connection
-            .alert(isPresented: $CreateAppointment.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-        })
 
         // Alert with no internet connection
             .alert(isPresented: $CreateAppointment.isAlert, content: {

@@ -118,7 +118,9 @@ struct ReviewsView: View {
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $DocReviews.isLoading)
-        }.onAppear(perform: {
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: {
             DocReviews.isLoading = true
             DocReviews.doctorId = DoctorId
             DocReviews.startFetchReviews()

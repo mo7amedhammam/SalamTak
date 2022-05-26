@@ -128,7 +128,9 @@ struct AreaView: View {
             // showing loading indicator
             ActivityIndicatorView(isPresented: $AreasVM.isLoading)
 
-        }.onAppear(perform: {
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: {
             AreasVM.startFetchAreas(cityId: CityId )
         })
 

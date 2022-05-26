@@ -85,6 +85,8 @@ struct ScheduleView: View {
             })
             
         }.environmentObject(scheduleVM)
+            .navigationViewStyle(StackNavigationViewStyle())
+
         .onAppear(perform: {
             medicalType.GetExaminationTypeId()
             scheduleVM.exmodelId = index
