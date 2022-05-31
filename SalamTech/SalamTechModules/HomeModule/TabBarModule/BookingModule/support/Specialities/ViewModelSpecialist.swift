@@ -36,43 +36,9 @@ class ViewModelSpecialist: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedSpecialistModel = modeldata.data ?? []
-        }.store(in: &cancellables)
-        
-      
+        }.store(in: &cancellables)      
         
     }
-    
-    
-  
-    
-//    func startFetchSpecialist() {
-//
-//        if Helper.isConnectedToNetwork(){
-//            GetSpecialistAPI.GetSpecialist(completion:  { (success, model, err) in
-//
-//                self.isLoading = true
-//            if success{
-//                DispatchQueue.main.async {
-//                    self.passthroughModelSubject.send(model!)
-//                    self.UserCreated = true
-//                    self.isLoading = false
-////                    print(model)
-//                }
-//            }else{
-//                self.isLoading = false
-//                self.isError = true
-//                print(model?.Message ?? "")
-//                self.errorMsg = err ?? "cannot get Specialist"
-//            }
-//        })
-//
-//        }else{
-//                   // Alert with no internet connection
-//            self.isLoading = false
-//          isNetworkError = true
-//               }
-//    }
-    
     
     func startFetchSpecialist() {
         if Helper.isConnectedToNetwork(){

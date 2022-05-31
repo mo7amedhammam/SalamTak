@@ -167,14 +167,12 @@ struct ViewSearchDoc: View {
             }
             
                 
-                .blur(radius: showFilter ? 9:0)
+                .blur(radius: showFilter==true ? 9:0)
             
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
-            
 
-            
             VStack{
                 AppBarView(Title: "Search_a_Doctor".localized(language))
                 //                    .navigationBarItems(leading: BackButtonView())
@@ -185,7 +183,7 @@ struct ViewSearchDoc: View {
             
             
 
-            if showFilter {
+            if showFilter == true {
                 switch FilterTag{
                     
                 case "Title":
@@ -433,7 +431,8 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                            CitiesVM.startFetchCities(countryid: 1)
+                            CitiesVM.CountryId = 1
+                            CitiesVM.startFetchCities()
                         })
                     
                 case "Area":
@@ -497,7 +496,8 @@ struct ViewSearchDoc: View {
                         
                     })
                         .onAppear(perform: {
-                            AreasVM.startFetchAreas(cityId: selectedFilterCityId ?? CityId)
+                            AreasVM.cityId = selectedFilterCityId ?? CityId
+                            AreasVM.startFetchAreas()
                         })
                     
                 case "Fees":
@@ -545,10 +545,6 @@ struct ViewSearchDoc: View {
                         
                     })
                     
-                        .onAppear(perform: {
-                            
-                        })
-
                 default:
                     CustomSheet(IsPresented: $showFilter, content: {
                         //                    HStack {
@@ -806,7 +802,6 @@ struct ViewSearchDoc: View {
                         
                     })
 
-                    
                 }
             }
             

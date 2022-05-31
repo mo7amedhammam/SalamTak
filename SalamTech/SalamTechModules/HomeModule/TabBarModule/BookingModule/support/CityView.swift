@@ -124,8 +124,8 @@ struct CityView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
-            CitiesVM.isLoading = true
-            CitiesVM.startFetchCities(countryid: CountryId)
+            CitiesVM.CountryId = CountryId ?? 0
+            CitiesVM.startFetchCities()
         })
 
         
@@ -138,8 +138,8 @@ struct CityView: View {
               }
         
         // Alert with no internet connection
-            .alert(isPresented: $CitiesVM.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+            .alert(isPresented: $CitiesVM.isAlert, content: {
+                Alert(title: Text(CitiesVM.message), message: nil, dismissButton: .cancel())
         })
 
     }

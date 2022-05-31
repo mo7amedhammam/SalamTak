@@ -128,37 +128,46 @@ struct SpecialityView: View {
         //  go to clinic info
         NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extype: $selectedTypeId),isActive: $gotocity) {
               }
+        
+        .alert(isPresented: $specialityvm.isAlert, content: {
+            Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                specialityvm.isAlert = false
+
+            }))
+
+        })
+
 
         // Alert with no internet connection
-            .alert(isPresented: $specialityvm.isAlert, content: {
-                
-                switch specialityvm.activeAlert{
-                case .NetworkError :
-                    return   Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        specialityvm.isAlert = false
-
-                    }))
-                    
-                case .serverError :
-                    return  Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        specialityvm.isAlert = false
-
-                    }))
-                    
-                case .success :
-                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        specialityvm.isAlert = false
-                 
-                }))
-                case .unauthorized:
-                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        specialityvm.isAlert = false
-
-                      
-                     }))
-                
-                }
-                })
+//            .alert(isPresented: $specialityvm.isAlert, content: {
+//                
+//                switch specialityvm.activeAlert{
+//                case .NetworkError :
+//                    return   Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        specialityvm.isAlert = false
+//
+//                    }))
+//                    
+//                case .serverError :
+//                    return  Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        specialityvm.isAlert = false
+//
+//                    }))
+//                    
+//                case .success :
+//                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        specialityvm.isAlert = false
+//                 
+//                }))
+//                case .unauthorized:
+//                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        specialityvm.isAlert = false
+//
+//                      
+//                     }))
+//                
+//                }
+//                })
         
 
     }

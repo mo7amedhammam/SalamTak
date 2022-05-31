@@ -101,7 +101,8 @@ struct ChooseArea : View {
 //            print(areaVM.cityId ?? 000)
 
 //            areaVM.startFetchAreas()
-            areaVM.startFetchAreas(cityId: SelectedCityId)
+            areaVM.cityId = SelectedCityId
+            areaVM.startFetchAreas()
         }
         .onDisappear{
 //            areaVM.startFetchAreas(cityId: self.SelectedCityId ?? 0)

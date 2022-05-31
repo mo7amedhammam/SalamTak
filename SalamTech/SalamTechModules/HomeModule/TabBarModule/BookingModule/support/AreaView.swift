@@ -131,7 +131,8 @@ struct AreaView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
-            AreasVM.startFetchAreas(cityId: CityId )
+            AreasVM.cityId = CityId
+            AreasVM.startFetchAreas()
         })
 
         
@@ -140,8 +141,8 @@ struct AreaView: View {
               }
         
         // Alert with no internet connection
-            .alert(isPresented: $AreasVM.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+            .alert(isPresented: $AreasVM.isAlert, content: {
+                Alert(title: Text(AreasVM.message), message: nil, dismissButton: .cancel())
         })
 
     }

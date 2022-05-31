@@ -104,7 +104,8 @@ struct ChooseCity : View {
             
             print(SelectedCountryId) // 1
 //            print(cityVM.CountryId)  // 0
-            cityVM.startFetchCities(countryid: SelectedCountryId) // 1
+            cityVM.CountryId = SelectedCountryId
+            cityVM.startFetchCities() // 1
 //            cityVM.startFetchCities(countryid: updateClinicVM.CountryId) // 0
 
 //            cityVM.startFetchCities(countryid: cityVM.CountryId) // 0

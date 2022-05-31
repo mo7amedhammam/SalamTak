@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 class ViewModelGetAreas: ObservableObject {
     
@@ -15,7 +16,7 @@ class ViewModelGetAreas: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
   
     
-//    @Published var cityId: Int?
+    @Published var cityId: Int = 0
 
 //    //------- output
 //    @Published var isValid = false
@@ -26,51 +27,70 @@ class ViewModelGetAreas: ObservableObject {
     @Published var errorMsg = ""
     @Published var IsDone = false
     @Published var isNetworkError = false
+    
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
  
     init() {
         
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedAreaModel = modeldata.Data ?? []
-            print("self.publishedAreaModel VM ")
-
-            print(self.publishedAreaModel ?? [])
-//            print(self.publishedAreaModel?[0].Name ?? "" )
+//            print(self.publishedAreaModel )
             
         }.store(in: &cancellables)
    
     }
     
-    func startFetchAreas(cityId:Int) {
-
-        if Helper.isConnectedToNetwork(){
-            GetAreasApiService.GetAreas(
-                cityId: cityId , completion:  { (success, model, err) in
-            
-                    self.isLoading = true
-            if success{
-                DispatchQueue.main.async {
-                    self.passthroughModelSubject.send(model!)
-                    self.IsDone = true
-                    self.isLoading = false
-//                    print("model! API ")
-//
-//                    print(model!)
-                }
-            }else{
-                self.isLoading = false
-                self.isError = true
-//                print(model?.Message ?? "")
-                self.errorMsg = err ?? "cannot get areas"
-            }
-        })
-
-        }else{
-                   // Alert with no internet connection
-            self.isLoading = false
-          isNetworkError = true
-               }
-    }
     
+    func startFetchAreas() {
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            let url  = URLs().GetAreas
+            let Parameters : [String:Any] = [:]
+                
+                let header:HTTPHeaders = ["Authorization":Helper.getAccessToken()]
+                let queryItems = [URLQueryItem(name:"cityId",value:"\(cityId)")]
+                var urlComponents = URLComponents(string: url)
+                urlComponents?.queryItems = queryItems
+                let convertedUrl = urlComponents?.url
+                if let convertUrl = convertedUrl {
+                    print(convertUrl)
+                }
+            
+            NetworkLayer.request(url: "\(convertedUrl!)", method: .get, parameters: Parameters, header: header, model: ModelAreas.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send( model!  )
+                    }
+                    message = model?.Message ?? "Bad Request"
+
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.Message ?? "Bad Request"
+                        activeAlert = .serverError
+                }
+                    else{
+                    //case of Empty model (unauthorized)
+                        message = "Session_expired\nlogin_again".localized(language)
+                    activeAlert = .unauthorized
+
+                }
+                    isAlert = true
+                }
+                isLoading = false
+            }
+            
+        }else{
+            //case of no internet connection
+            activeAlert = .NetworkError
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
+        
+    }
     
 }

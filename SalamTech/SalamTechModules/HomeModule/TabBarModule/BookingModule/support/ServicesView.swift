@@ -145,42 +145,44 @@ struct ServicesView: View {
         .navigationViewStyle(StackNavigationViewStyle())
 
         
-//        // Alert with no internet connection
-//            .alert(isPresented: $medicalType.isNetworkError, content: {
-//                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-//        })
+        .alert(isPresented: $medicalType.isAlert, content: {
+            Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                medicalType.isAlert = false
 
+            }))
+
+        })
         
         // Alert with no internet connection
-            .alert(isPresented: $medicalType.isAlert, content: {
-                
-                switch medicalType.activeAlert{
-                case .NetworkError :
-                    return   Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        medicalType.isAlert = false
-
-                    }))
-                    
-                case .serverError :
-                    return  Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        medicalType.isAlert = false
-
-                    }))
-                    
-                case .success :
-                    return Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        medicalType.isAlert = false
-                 
-                }))
-                case .unauthorized:
-                    return Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        medicalType.isAlert = false
-
-                      
-                     }))
-                
-                }
-                })
+//            .alert(isPresented: $medicalType.isAlert, content: {
+//
+//                switch medicalType.activeAlert{
+//                case .NetworkError :
+//                    return   Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        medicalType.isAlert = false
+//
+//                    }))
+//
+//                case .serverError :
+//                    return  Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        medicalType.isAlert = false
+//
+//                    }))
+//
+//                case .success :
+//                    return Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        medicalType.isAlert = false
+//
+//                }))
+//                case .unauthorized:
+//                    return Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        medicalType.isAlert = false
+//
+//
+//                     }))
+//
+//                }
+//                })
 
     }
     
