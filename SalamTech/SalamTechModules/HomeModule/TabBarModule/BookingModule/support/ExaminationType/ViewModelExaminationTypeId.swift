@@ -115,7 +115,6 @@ class ViewModelExaminationTypeId: ObservableObject {
                 }
                     else{
                     //case of Empty model (unauthorized)
-//                    message = err ?? "unauthorized"
                         message = "Session_expired\nlogin_again".localized(language)
                     activeAlert = .unauthorized
 

@@ -11,16 +11,16 @@ import Foundation
 
 // MARK: - ModelSpecialist
 struct ModelSpecialist: Codable {
-    let Message: String?
-    let MessageCode: Int?
-    let Data: [Speciality]?
-    let Success: Bool?
+    let message: String?
+    let messageCode: Int?
+    let data: [Speciality]?
+    let success: Bool?
   
     enum CodingKeys: String, CodingKey {
-        case Message = "Message"
-        case MessageCode = "MessageCode"
-        case Data = "Data"
-        case Success = "Success"
+        case message = "Message"
+        case messageCode = "MessageCode"
+        case data = "Data"
+        case success = "Success"
 
     }
 }

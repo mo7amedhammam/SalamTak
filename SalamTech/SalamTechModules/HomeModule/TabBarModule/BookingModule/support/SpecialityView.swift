@@ -120,7 +120,7 @@ struct SpecialityView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
-            specialityvm.isLoading = true
+//            specialityvm.isLoading = true
             specialityvm.startFetchSpecialist()
         })
 
@@ -128,10 +128,38 @@ struct SpecialityView: View {
         //  go to clinic info
         NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extype: $selectedTypeId),isActive: $gotocity) {
               }
+
         // Alert with no internet connection
-            .alert(isPresented: $specialityvm.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-        })
+            .alert(isPresented: $specialityvm.isAlert, content: {
+                
+                switch specialityvm.activeAlert{
+                case .NetworkError :
+                    return   Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        specialityvm.isAlert = false
+
+                    }))
+                    
+                case .serverError :
+                    return  Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        specialityvm.isAlert = false
+
+                    }))
+                    
+                case .success :
+                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        specialityvm.isAlert = false
+                 
+                }))
+                case .unauthorized:
+                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                        specialityvm.isAlert = false
+
+                      
+                     }))
+                
+                }
+                })
+        
 
     }
     

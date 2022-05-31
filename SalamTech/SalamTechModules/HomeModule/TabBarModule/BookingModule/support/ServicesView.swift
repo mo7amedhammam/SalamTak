@@ -130,7 +130,7 @@ struct ServicesView: View {
         .edgesIgnoringSafeArea(.top)
         .background(Color("CLVBG"))
         .onAppear(perform: {
-            medicalType.isLoading = true
+//            medicalType.isLoading = true
             medicalType.GetExaminationTypeId()
             
         })

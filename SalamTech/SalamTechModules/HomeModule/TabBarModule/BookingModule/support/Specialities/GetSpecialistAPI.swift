@@ -36,13 +36,13 @@ static func GetSpecialist( completion: @escaping ( Bool , ModelSpecialist?, Stri
                 
             case .success(let model):
                 guard model != nil else {return}
-                if model?.Success == true {
-                    completion(true, model , model?.Message ?? "")
+                if model?.success == true {
+                    completion(true, model , model?.message ?? "")
                     
                 } else{
-                    print(model?.Message ?? "")
+                    print(model?.message ?? "")
                     
-                    completion(false, model, model?.Message ?? "")
+                    completion(false, model, model?.message ?? "")
                 }
     
                 //-------------
@@ -60,7 +60,7 @@ static func GetSpecialist( completion: @escaping ( Bool , ModelSpecialist?, Stri
                       
                   case .success(let model):
                       guard model != nil else {return}
-                  completion(false, model , model?.Message)
+                  completion(false, model , model?.message)
   //                print(model?.message ?? "")
   //                    if model?.success == false{
   //
