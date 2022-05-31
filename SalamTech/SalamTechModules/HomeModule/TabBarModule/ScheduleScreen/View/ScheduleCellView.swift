@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-
 struct ScheduleCellView: View {
     var language = LocalizationService.shared.language
     @EnvironmentObject var scheduleVM : ViewModelGetAppointmentInfo
 
-    
     var body: some View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false){

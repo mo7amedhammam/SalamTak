@@ -29,3 +29,6 @@ struct rateSt: Codable{
         case Statues = "Statues"
     }
 }
+
+
+

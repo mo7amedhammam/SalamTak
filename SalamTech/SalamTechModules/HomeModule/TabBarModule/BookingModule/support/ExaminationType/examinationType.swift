@@ -13,10 +13,10 @@ final class GetExaminationTypeIdApiServise {
     
     static func GetExaminationTypeIdApiServise( completion: @escaping ( Bool , ModelExaminationTypeId?, String?) -> ()) {
         
-        let header:HTTPHeaders = ["Authorization":Helper.getAccessToken()]
+//        let header:HTTPHeaders = [:]
         let url = URLs().GetMedicalExaminationType
       
-        AF.request(url, method: .get,parameters: nil ,encoding: JSONEncoding.default ,headers: header )
+        AF.request(url, method: .get,parameters: nil ,encoding: JSONEncoding.default ,headers: nil )
             .validate(statusCode: 200...500)
             .responseDecodable(completionHandler: { ( response : DataResponse<ModelExaminationTypeId?, AFError>) in
                 switch response.response?.statusCode {

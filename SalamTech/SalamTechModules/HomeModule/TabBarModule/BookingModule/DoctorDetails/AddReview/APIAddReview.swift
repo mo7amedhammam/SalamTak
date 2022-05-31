@@ -74,3 +74,65 @@ final class ApiAddReview{
         
     }
     }
+
+
+
+
+
+
+
+
+
+
+//try Generic model
+struct PanpaResponse<T>: Codable where T: Codable {
+    
+    private var messageCode: Int?
+    var msgCode: Status {
+        if messageCode == 1 || messageCode == 0 {
+            return .success
+        }
+        return .failed
+    }
+    
+    private var messageString: String?
+    var message: String {
+        if let messageString = messageString {
+            return messageString
+        } else {
+            return "error_generic"
+        }
+    }
+    
+    private var success: Bool?
+    var st: Bool {
+        if let success = success {
+            return success
+        } else {
+            return false
+        }
+    }
+    
+    private(set) var data: T?
+    
+    enum CodingKeys: String, CodingKey {
+        case messageCode = "MessageCode"
+        case messageString = "Message"
+        case data = "Data"
+        case success = "Success"
+
+    }
+    
+    init() {
+        self.messageCode = -1
+        self.messageString = "error_generic"
+        self.data = nil
+        self.success = false
+    }
+    
+    enum Status {
+        case success
+        case failed
+    }
+    
+}
