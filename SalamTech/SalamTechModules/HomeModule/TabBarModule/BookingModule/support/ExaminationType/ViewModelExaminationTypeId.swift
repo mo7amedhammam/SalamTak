@@ -11,7 +11,8 @@ import SwiftUI
 import Alamofire
 
 class ViewModelExaminationTypeId: ObservableObject {
-    
+    var language = LocalizationService.shared.language
+
     let passthroughSubject = PassthroughSubject<String, Error>()
     let ModelExTypeId = PassthroughSubject<ModelExaminationTypeId, Error>()
     
@@ -114,7 +115,8 @@ class ViewModelExaminationTypeId: ObservableObject {
                 }
                     else{
                     //case of Empty model (unauthorized)
-                    message = err ?? "unauthorized"
+//                    message = err ?? "unauthorized"
+                        message = "Session_expired\nlogin_again".localized(language)
                     activeAlert = .unauthorized
 
                 }
@@ -125,9 +127,9 @@ class ViewModelExaminationTypeId: ObservableObject {
             
         }else{
             //case of no internet connection
-            isAlert = true
             activeAlert = .NetworkError
-            message = ""
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
         }
         
     }

@@ -131,12 +131,12 @@ class ViewModelGetAppointmentInfo: ObservableObject {
                     print(self.iscancelled)
                     
                     self.isAlert = true
-                    self.activeAlert = .cancel
+                    self.activeAlert = .success
                 }
             }else{
                 if model != nil{
                 self.isAlert = true
-                self.activeAlert = .cancel
+                self.activeAlert = .success
                 self.isLoading = false
 
                 self.errorMsg = err ?? "cannot get history appointment"

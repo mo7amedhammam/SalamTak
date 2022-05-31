@@ -590,7 +590,7 @@ struct UpdatePersonalDataView: View {
 
                     }))
                     
-                case .cancel :
+                case .success :
                         return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                             patientUpdatedVM.isAlert = false
 

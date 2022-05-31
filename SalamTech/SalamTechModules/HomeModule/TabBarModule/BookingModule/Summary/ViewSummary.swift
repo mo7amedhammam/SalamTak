@@ -447,7 +447,7 @@ struct ViewSummary:View{
 
                     }))
                     
-                case .cancel :
+                case .success :
                     return Alert(title: Text(CreateAppointment.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                         CreateAppointment.isAlert = false
                  

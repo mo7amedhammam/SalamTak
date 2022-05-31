@@ -131,7 +131,7 @@ struct ScheduleView: View {
 
                     }))
                     
-                case .cancel :
+                case .success :
                     return Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                     scheduleVM.isAlert = false
                    if !scheduleVM.errorMsg.contains("error") && (!scheduleVM.errorMsg.contains("خطأ") || !scheduleVM.errorMsg.contains("خطا")) {
@@ -162,5 +162,5 @@ struct ScheduleView_Previews: PreviewProvider {
 }
 
 enum ActiveAlert {
-    case NetworkError, serverError, cancel, unauthorized
+    case NetworkError, serverError, success, unauthorized
 }
