@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import SwiftUI
-import Alamofire
 
 class ViewModelExaminationTypeId: ObservableObject {
     var language = LocalizationService.shared.language
@@ -43,56 +42,6 @@ class ViewModelExaminationTypeId: ObservableObject {
             self.publishedModelExaminationTypeId = modeldata.data ?? []
         }.store(in: &cancellables)
     }
-    
-    
-    
-   
-    
-    
-//    func GetExaminationTypeId() {
-//        if Helper.isConnectedToNetwork(){
-//            self.isLoading = true
-//            let url = URLs().GetMedicalExaminationType
-//            let header : HTTPHeaders = [:]
-//            let Parameters : [String:Any] = [:]
-//
-//
-//            NetworkLayer.request(url: url, method: .get, parameters: Parameters, header: header, model: ModelExaminationTypeId.self) { [self] (success, model, err) in
-//                if success{
-//                    //case of success
-//                    DispatchQueue.main.async {
-//                        self.ModelExTypeId.send( model!  )
-//                    }
-//                    message = model?.message ?? "Bad Request"
-//
-//                }else{
-//                    if model != nil{
-//                        //case of model with error
-//                        message = model?.message ?? "Bad Request"
-//                        activeAlert = .serverError
-//                }
-//                    else{
-//                    //case of Empty model (unauthorized)
-//                        message = "Session_expired\nlogin_again".localized(language)
-//                    activeAlert = .unauthorized
-//
-//                }
-//                    isAlert = true
-//                }
-//                isLoading = false
-//            }
-//
-//        }else{
-//            //case of no internet connection
-//            activeAlert = .NetworkError
-//            message = "Check_Your_Internet_Connection".localized(language)
-//            isAlert = true
-//        }
-//
-//    }
-    
-
-    
     
 }
 
