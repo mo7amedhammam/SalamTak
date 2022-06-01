@@ -140,6 +140,9 @@
 		C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF35280C675C00B1B953 /* CustomSheet.swift */; };
 		C82E64E0283FC4B600B20354 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64DF283FC4B600B20354 /* AboutApp.swift */; };
 		C82E64E4283FC7FC00B20354 /* SalamtakWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */; };
+		C85BD539284770560056B046 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD538284770560056B046 /* TargetType.swift */; };
+		C85BD53B284780B70056B046 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD53A284780B70056B046 /* BaseResponse.swift */; };
+		C85BD53D28478E1B0056B046 /* BaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD53C28478E1B0056B046 /* BaseNetwork.swift */; };
 		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
@@ -324,6 +327,9 @@
 		C82AFF35280C675C00B1B953 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
 		C82E64DF283FC4B600B20354 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
 		C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamtakWebView.swift; sourceTree = "<group>"; };
+		C85BD538284770560056B046 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		C85BD53A284780B70056B046 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		C85BD53C28478E1B0056B046 /* BaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetwork.swift; sourceTree = "<group>"; };
 		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
@@ -406,6 +412,7 @@
 		00C8BF3327F3100F00571078 /* SalamTech */ = {
 			isa = PBXGroup;
 			children = (
+				C85BD536284770270056B046 /* Networking */,
 				00D86B922803132D00ABF9C9 /* Fonts */,
 				C82541F327F443CF005E0750 /* Info.plist */,
 				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
@@ -1109,6 +1116,24 @@
 			path = Summary;
 			sourceTree = "<group>";
 		};
+		C85BD536284770270056B046 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C85BD537284770380056B046 /* Core */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C85BD537284770380056B046 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C85BD538284770560056B046 /* TargetType.swift */,
+				C85BD53A284780B70056B046 /* BaseResponse.swift */,
+				C85BD53C28478E1B0056B046 /* BaseNetwork.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		C860837F2804529C001A0C39 /* DoctorDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1524,6 +1549,7 @@
 				0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */,
 				0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
+				C85BD539284770560056B046 /* TargetType.swift in Sources */,
 				0E9E0DCD27FB023600893ABF /* ViewModelGetCities.swift in Sources */,
 				0EC34CCC280D7C9100701344 /* ScheduleCellView.swift in Sources */,
 				0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */,
@@ -1560,11 +1586,13 @@
 				0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */,
 				0E62C54A27FC603000655D1A /* ChooseMedicineAllergy.swift in Sources */,
 				C800F83527FB585B00482151 /* ModelExaminationTypeId.swift in Sources */,
+				C85BD53B284780B70056B046 /* BaseResponse.swift in Sources */,
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
 				C800F83227FB585B00482151 /* GetSpecialistAPI.swift in Sources */,
 				C800F83727FB585B00482151 /* CountryView.swift in Sources */,
 				0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */,
+				C85BD53D28478E1B0056B046 /* BaseNetwork.swift in Sources */,
 				C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */,
 				0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
