@@ -20,11 +20,10 @@ class ViewModelSpecialist: ObservableObject {
 
     @Published var  publishedSpecialistModel :  [Speciality]?
     @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
-    @Published var UserCreated = false
-    @Published var isNetworkError = false
-    
+//    @Published var isError = false
+//    @Published var errorMsg = ""
+//    @Published var UserCreated = false
+//    @Published var isNetworkError = false
     
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError

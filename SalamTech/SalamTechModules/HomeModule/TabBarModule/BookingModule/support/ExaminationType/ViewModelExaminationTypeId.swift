@@ -29,13 +29,6 @@ class ViewModelExaminationTypeId: ObservableObject {
     
     
     @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
-    @Published var isDone = false
-    @Published var isNetworkError = false
-    @Published var SessionExpired = false
-
-    
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
@@ -52,42 +45,6 @@ class ViewModelExaminationTypeId: ObservableObject {
     }
     
     
-//    func GetExaminationTypeId() {
-//        if Helper.isConnectedToNetwork(){
-//            GetExaminationTypeIdApiServise.GetExaminationTypeIdApiServise(
-//                completion:  { (success, model, err) in
-//                    self.isLoading = true
-//                    if success{
-//                        DispatchQueue.main.async {
-//                            self.ModelExTypeId.send(model!)
-//                            self.isLoading = false
-//                            self.isDone = true
-//                            print(model!)
-//                        }
-//                    }else{
-//                        if model != nil{
-//                        self.isLoading = false
-//                        self.isError = true
-//                        print(model?.message ?? "")
-//
-//
-//                        self.errorMsg = err ?? "cannot get examnation Type Id "
-//                        }else{
-//                            if err == "unauthorized"{
-//                                self.SessionExpired = true
-//                                self.isLoading = false
-//                            }
-//                        }
-//                    }
-//                })
-//            self.isLoading = false
-//
-//        }else{
-//            // Alert with no internet connection
-//            self.isLoading = false
-//            isNetworkError = true
-//        }
-//    }
     
    
     

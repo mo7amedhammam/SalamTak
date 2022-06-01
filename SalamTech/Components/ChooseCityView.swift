@@ -13,7 +13,6 @@ struct ChooseCity : View {
 
     @ObservedObject private var patientCreatedVM = ViewModelCreatePatientProfile()
     @StateObject var cityVM = ViewModelGetCities()
-//    @ObservedObject var areaVM = ViewModelGetAreas()
 
     @State private var buttonSelected : Int?
 

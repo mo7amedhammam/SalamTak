@@ -23,9 +23,7 @@ class ViewModelGetCities: ObservableObject {
 //    //------- output
     @Published var publishedCityModel: [City] = []
     
-    @Published var isLoading:Bool? = false
-    @Published var IsDone = false
- 
+    @Published var isLoading:Bool? = false 
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""

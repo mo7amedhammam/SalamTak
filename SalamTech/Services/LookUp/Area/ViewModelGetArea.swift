@@ -15,17 +15,12 @@ class ViewModelGetAreas: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[Area]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
   
-    
     @Published var cityId: Int = 0
 
-//    //------- output
+        //------- output
 
     @Published var publishedAreaModel: [Area] = []
     @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
-    @Published var IsDone = false
-    @Published var isNetworkError = false
     
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
@@ -40,9 +35,7 @@ class ViewModelGetAreas: ObservableObject {
         }.store(in: &cancellables)
    
     }
-    
-
-    
+   
 }
 
 
