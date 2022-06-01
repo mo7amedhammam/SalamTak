@@ -13,7 +13,7 @@ import Alamofire
 class ViewModelGetCities: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelCities, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<[City]>, Error>()
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -34,7 +34,7 @@ class ViewModelGetCities: ObservableObject {
         
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
-            self.publishedCityModel = modeldata.Data ?? []
+            self.publishedCityModel = modeldata.data ?? []
             print(self.publishedCityModel)
            // print(self.publishedCityModel[0].Name ?? "" )
         }.store(in: &cancellables)
@@ -42,40 +42,62 @@ class ViewModelGetCities: ObservableObject {
         
     }
 
-    func startFetchCities() {
-        if Helper.isConnectedToNetwork(){
-            self.isLoading = true
-            let url = URLs().GetCities
-            let header : HTTPHeaders = [:]
-            let Parameters : [String:Any] = [:]
-            
-            let queryItems = [URLQueryItem(name:"CountryId",value:"\(CountryId)")]
+    
+}
+
+
+extension ViewModelGetCities:TargetType{
+    var url: String{
+        let url = URLs().GetCities
+        let queryItems = [URLQueryItem(name:"CountryId",value:"\(CountryId)")]
             var urlComponents = URLComponents(string: url)
             urlComponents?.queryItems = queryItems
             let convertedUrl = urlComponents?.url
             if let convertUrl = convertedUrl {
                 print(convertUrl)
             }
-            
-            NetworkLayer.request(url: "\(convertedUrl!)", method: .get, parameters: Parameters, header: header, model: ModelCities.self) { [self] (success, model, err) in
+        return  convertedUrl?.absoluteString ?? ""
+
+    }
+    
+    var method: httpMethod{
+        return .Get
+    }
+    
+    var parameter: parameterType{
+        return .plainRequest
+    }
+    
+    var header: [String : String]? {
+        return [:]
+    }
+
+    
+    func startFetchCities() {
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<[City]>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
                     }
-                    message = model?.Message ?? "Bad Request"
 
                 }else{
                     if model != nil{
                         //case of model with error
-                        message = model?.Message ?? "Bad Request"
+                        message = model?.message ?? "Bad Request"
                         activeAlert = .serverError
-                }
-                    else{
+                }else{
+                    if message == "Unauthorized"{
                     //case of Empty model (unauthorized)
                         message = "Session_expired\nlogin_again".localized(language)
                     activeAlert = .unauthorized
-
+                    }else{
+                        message = err ?? "there is an error"
+                        activeAlert = .serverError
+                    }
                 }
                     isAlert = true
                 }
@@ -90,9 +112,5 @@ class ViewModelGetCities: ObservableObject {
         }
         
     }
-    
-    
-    
 }
-
 
