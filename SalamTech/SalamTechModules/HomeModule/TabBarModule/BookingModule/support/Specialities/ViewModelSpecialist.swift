@@ -72,7 +72,7 @@ extension ViewModelSpecialist:TargetType{
                         message = model?.message ?? "Bad Request"
                         activeAlert = .serverError
                 }else{
-                    if message == "Unauthorized"{
+                    if err == "Unauthorized"{
                     //case of Empty model (unauthorized)
                         message = "Session_expired\nlogin_again".localized(language)
                     activeAlert = .unauthorized

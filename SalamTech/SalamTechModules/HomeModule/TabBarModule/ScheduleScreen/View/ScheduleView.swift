@@ -32,7 +32,6 @@ struct ScheduleView: View {
                                     
                                     withAnimation{
                                         self.index = type.id ?? 1
-                                        print(index)
                                     }
                                     }, label: {
                                     HStack(alignment: .center){
@@ -90,13 +89,13 @@ struct ScheduleView: View {
         .onAppear(perform: {
             medicalType.GetExaminationTypeId()
             scheduleVM.exmodelId = index
-            scheduleVM.startFetchAppointmentInfo()
-
+            scheduleVM.execute(operation: .getappointments)
+        
         })
             .onChange(of: index){newval in
                 scheduleVM.exmodelId = newval
-                scheduleVM.publishedDoctorCreatedModel.removeAll()
-                scheduleVM.startFetchAppointmentInfo()
+                scheduleVM.AppointmentsArr.removeAll()
+                scheduleVM.execute(operation: .getappointments)
             }
         
 
@@ -118,36 +117,38 @@ struct ScheduleView: View {
         // Alert with no internet connection
             .alert(isPresented: $scheduleVM.isAlert, content: {
                 
-                switch scheduleVM.activeAlert{
-                case .NetworkError :
-                    return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                switch scheduleVM.activeAlert{
+//                case .NetworkError :
+//                    return
+//                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                        scheduleVM.isAlert = false
+//
+//                    }))
+                    
+//                case .serverError :
+//                    return
+                Alert(title: Text(scheduleVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                         scheduleVM.isAlert = false
 
                     }))
-                    
-                case .serverError :
-                    return  Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                        scheduleVM.isAlert = false
-
-                    }))
-                    
-                case .success :
-                    return Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    scheduleVM.isAlert = false
-                   if !scheduleVM.errorMsg.contains("error") && (!scheduleVM.errorMsg.contains("خطأ") || !scheduleVM.errorMsg.contains("خطا")) {
-                    scheduleVM.publishedDoctorCreatedModel.removeAll()
-                    scheduleVM.startFetchAppointmentInfo()
-                    }
-                }))
-                case .unauthorized:
-                    return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                         scheduleVM.isAlert = false
-                        self.goToLogin = true
-
-                      
-                     }))
-                
-                }
+//
+//                case .success :
+//                    return Alert(title: Text(scheduleVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    scheduleVM.isAlert = false
+//                   if !scheduleVM.errorMsg.contains("error") && (!scheduleVM.errorMsg.contains("خطأ") || !scheduleVM.errorMsg.contains("خطا")) {
+//                    scheduleVM.publishedDoctorCreatedModel.removeAll()
+//                    scheduleVM.startFetchAppointmentInfo()
+//                    }
+//                }))
+//                case .unauthorized:
+//                    return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                         scheduleVM.isAlert = false
+//                        self.goToLogin = true
+//
+//
+//                     }))
+//
+//                }
                 })
         
 

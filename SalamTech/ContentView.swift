@@ -21,7 +21,8 @@ struct ContentView: View {
         .onAppear(perform: {
 //            Helper.setUserData(Id: 25, PhoneNumber: "01101201322", patientName: "mohamed hammam")
 //            Helper.setLanguage(currentLanguage: "en")
-            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjU2NDQ4YmM5LThkMzEtNDQwZi05Y2NiLWFlNzBhZjVhZjM1OCIsImV4cCI6MTY1MzU1NjA5MiwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.RX0wAj9YvuxXsmwwFoR3o5wBhrmuV4_7mC6V1_IBwkU")
+//            Helper.setAccessToken(access_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjAxMTEwMDAwMDAwIiwibmFtZWlkIjoiMzU5MiIsImp0aSI6IjU2NDQ4YmM5LThkMzEtNDQwZi05Y2NiLWFlNzBhZjVhZjM1OCIsImV4cCI6MTY1MzU1NjA5MiwiaXNzIjoiU2FsYW1UZWNoQDIwMjEiLCJhdWQiOiJTYWxhbVRlY2hAMjAyMSJ9.RX0wAj9YvuxXsmwwFoR3o5wBhrmuV4_7mC6V1_IBwkU")
+            
         })
 
         .onChange(of: scenePhase, perform: { newPhase in

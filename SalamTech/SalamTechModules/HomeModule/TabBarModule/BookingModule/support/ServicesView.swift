@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ServicesView: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
-//    @StateObject var specialityvm = ViewModelSpecialist()
     @StateObject var searchDoc = VMSearchDoc()
 
     @State private var image = UIImage()
@@ -22,36 +21,24 @@ struct ServicesView: View {
     @State var gotoSpec = false
     @State var selectedTypeId = 0
 
-    
-    
     var body: some View {
 //        NavigationView{
         ZStack{
-          
             ScrollView {
                 VStack{
-                    
                     Spacer().frame(height:30)
-
-                 
                             AsyncImage(url: URL(string:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR05Cf6YGBs9SAvvEwW22wHVjeLTm9HmVJEWd0KjyiSySHuLDQCH5VVc0wvxtHCJvVOKSY&usqp=CAU" )) { image in
 
                                 image.resizable()
-
                             } placeholder: {
                                 Image("logo")
                                     .resizable()
-                                   
                             }
-    //                                    .clipShape(Circle())
                             .foregroundColor(.black)
-    //                                        .background(.blue)
-                            
-                     
-                        .frame( height: 115)
-                        .cornerRadius(8)
-                        .scaledToFit()
-                        .padding(.horizontal)
+                            .frame( height: 115)
+                            .cornerRadius(8)
+                            .scaledToFit()
+                            .padding(.horizontal)
 
                     
                     Spacer().frame(height:20)
@@ -69,7 +56,6 @@ struct ServicesView: View {
                                 ZStack {
                                     Button(action: {
                                         selectedTypeId = exType.id ?? 11212121212121
-                                        
                                         gotoSpec=true
                                         
                                     }, label: {
@@ -81,22 +67,16 @@ struct ServicesView: View {
                                             } placeholder: {
                                                 Image("logo")
                                                     .resizable()
-                                                   
                                             }
-        //                                    .clipShape(Circle())
                                             .frame(width: 60, height: 60)
                                             .foregroundColor(.black)
-        //                                        .background(.blue)
-                                            
 
-                                            
                                             Text(exType.Name ?? "")
                                                 .padding(.vertical,10)
                                                 .foregroundColor(.black)
                                         }
                                     })
                                         .frame(width: (UIScreen.main.bounds.width/3)-20, height: 120)
-        //                                .aspectRatio( contentMode: .fill)
                                         .background(Color.white)
                                         .cornerRadius(8)
                                         .shadow(color: .black.opacity(0.099), radius: 5)

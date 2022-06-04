@@ -256,6 +256,10 @@
 "Search_a_doctor..." = "Search a doctor...";
 "Sorry,\nNo_Doctors_Found_🤷‍♂️" = "Sorry,\nNo Doctors Found 🤷‍♂️";
 "Sorry,\nNo_Scheduales_Found_🤷‍♂️" = "Sorry,\nNo Scheduales Found 🤷‍♂️";
+"Sorry,\nYou_have_to_login_again_🤷‍♂️" = "Sorry,\nYou have to login again 🤷‍♂️";
+"Sorry,\nYou_have_to_login_🤷‍♂️" = "Sorry,\nthere are no scheuals if patient
+is not loged in 🤷‍♂️";
+
 
 "Dr/ " = "Dr/ ";
 "Patientsـ)" = "Patients )";

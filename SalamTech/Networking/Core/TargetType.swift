@@ -15,15 +15,11 @@ enum httpMethod:String{
 }
 enum parameterType{
     case plainRequest
-    
     case parameterRequest(Parameters:[String:Any],Encoding:ParameterEncoding)
 }
 protocol TargetType{
-//    var baseUrl : String {get}
     var url : String {get}
     var method : httpMethod {get}
     var parameter : parameterType {get}
     var header : [String:String]? {get}
-//    var responseModel : Codable {get}
-
 }

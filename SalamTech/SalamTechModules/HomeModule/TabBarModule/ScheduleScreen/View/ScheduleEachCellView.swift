@@ -554,14 +554,11 @@ struct ViewCancelAppointmentPopUp: View {
                             Spacer().frame(width:2)
 
                             Text("Popup_Cencel_Appointment_Close".localized(language))
-                                .foregroundColor(Color("blueColor"))
-//                                .foregroundColor(.white)
+                            .foregroundColor(Color("blueColor"))
                             .bold()
                             .frame( height: 45 )
-//                                        .frame(  width: .infinity )
                             .padding([.leading,.trailing],40)
                             .background(Color(uiColor: .lightGray).opacity(0.3) )
-                            
                             .cornerRadius(8)
                             Spacer().frame(width:2)
                     }
@@ -570,8 +567,8 @@ struct ViewCancelAppointmentPopUp: View {
                     Spacer()
                     Button(action: {
                         
-                        scheduleVM.startFetchCancelAppointment()
 
+                        scheduleVM.execute(operation: .cancelappointment)
                     }, label: {
                         HStack{
                             Spacer().frame(width:2)

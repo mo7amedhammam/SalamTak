@@ -17,15 +17,8 @@ class ViewModelExaminationTypeId: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    
-    // ------- input
-    
-    
     //------- output
-    @Published var isValid = false
-    @Published var inlineErrorPassword = ""
     @Published var publishedModelExaminationTypeId: [ExaminationType] = []
-    
     
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -34,8 +27,6 @@ class ViewModelExaminationTypeId: ObservableObject {
 
     
     init() {
-        
-//        GetExaminationTypeId()
         
         ModelExTypeId.sink { (completion) in
         } receiveValue: { [self] (modeldata) in
@@ -82,7 +73,7 @@ extension ViewModelExaminationTypeId:TargetType{
                         message = model?.message ?? "Bad Request"
                         activeAlert = .serverError
                 }else{
-                    if message == "Unauthorized"{
+                    if err == "Unauthorized"{
                     //case of Empty model (unauthorized)
                         message = "Session_expired\nlogin_again".localized(language)
                     activeAlert = .unauthorized

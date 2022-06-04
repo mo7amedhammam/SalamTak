@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+
 final class BaseNetwork<T:TargetType>{
 
     static func request<M:Codable>(Target:T,responseModel:M.Type,completion: @escaping ( Bool , M?, String?) -> ()) {
@@ -17,10 +18,8 @@ final class BaseNetwork<T:TargetType>{
         
         AF.request(Target.url, method: method ,parameters: parameters.0, encoding: parameters.1, headers: headers)
             .responseDecodable(completionHandler: { ( response : DataResponse<M?, AFError>) in
-                    
                     switch response.result{
                     case .success(let model):
-
                         if response.response?.statusCode == 200{ // success
                             guard model != nil else {return}
                             completion(true, model , "success")
@@ -29,6 +28,8 @@ final class BaseNetwork<T:TargetType>{
                             guard model != nil else {return}
                         completion(false,model,"Bad Request" )
 
+                        }else{
+                            completion(false, nil, "serialization error" )
                         }
 
                     case .failure(let err):
@@ -37,12 +38,10 @@ final class BaseNetwork<T:TargetType>{
 
                         }else{
                             completion(false, nil, err.localizedDescription)
+                            print(err)
                         }
-                        
                     }
-
-        })
-
+            })
     }
     
     
