@@ -13,16 +13,17 @@ struct ScheduleCellView: View {
     var body: some View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false){
-              
-                VStack(spacing:0){
+                Spacer().frame(height: 20)
+
+                VStack(spacing:10){
                     ForEach( 0..<(scheduleVM.AppointmentsArr.count ), id:\.self) { index in
                         ScheduleEachCellView(schedule: scheduleVM.AppointmentsArr[index]).environmentObject(scheduleVM)
-                            .padding(.bottom,20)
+                            .padding(.horizontal)
                             }
-                        }
+                }
                 
 
-                    }
+            }
             
             if scheduleVM.noschedules == true{
                 Text("Sorry,\nNo_Scheduales_Found_🤷‍♂️".localized(language))
@@ -41,6 +42,7 @@ struct ScheduleCellView: View {
             
                     
         }
+//        .frame(width: UIScreen.main.bounds.width)
 
         }
 }
