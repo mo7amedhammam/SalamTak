@@ -2,7 +2,7 @@
 //  AreaView.swift
 //  SalamTech
 //
-//  Created by wecancity on 09/04/2022.
+//  Created by Mohamed Hammam on 09/04/2022.
 //
 import SwiftUI
 

@@ -2,7 +2,7 @@
 //  ViewModelExaminationTypeId.swift
 //  SalamTech
 //
-//  Created by wecancity on 02/04/2022.
+//  Created by Mohamed Hammam on 02/04/2022.
 //  
 
 import Foundation

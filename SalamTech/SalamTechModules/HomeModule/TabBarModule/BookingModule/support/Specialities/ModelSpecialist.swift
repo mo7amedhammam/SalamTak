@@ -2,28 +2,11 @@
 //  ModelSpecialist.swift
 //  SalamTech
 //
-//  Created by wecancity on 02/04/2022.
+//  Created by Mohamed hammam on 02/04/2022.
 //
 
 
 import Foundation
-
-
-// MARK: - ModelSpecialist
-struct ModelSpecialist: Codable {
-    let message: String?
-    let messageCode: Int?
-    let data: [Speciality]?
-    let success: Bool?
-  
-    enum CodingKeys: String, CodingKey {
-        case message = "Message"
-        case messageCode = "MessageCode"
-        case data = "Data"
-        case success = "Success"
-
-    }
-}
 
 // MARK: - Datum
 struct Speciality: Codable ,Identifiable, Hashable {
@@ -35,5 +18,11 @@ struct Speciality: Codable ,Identifiable, Hashable {
         case Name = "Name"
         case image = "Image"
         case Inactive = "Inactive"
+    }
+    init(){
+        self.id = 0
+        self.Name = ""
+        self.image = ""
+        self.Inactive = false
     }
 }

@@ -4,7 +4,7 @@
 //  TabBarGenericView.swift
 //  SalamTech-DR
 //
-//  Created by wecancity agency on 2/13/22.
+//  Created by Mohamed Hammam on 2/13/22.
 //
 
 import SwiftUI
@@ -24,7 +24,6 @@ struct TabBarView: View {
     @State var selectedTab1 = "TabBar_home"
     @StateObject var selectedTab = selectedtapNum()
 
-//    @ObservedObject var GetAppointments = VMGetAppointment()
     @State var filterShowing=false
     @State var ConsultationShowing=false
     @State var DatesShowing=false
@@ -73,8 +72,6 @@ struct TabBarView: View {
                         
                     }
                     .ignoresSafeArea()
-//                    .environmentObject(selectedtapNum)
-                    
                     
                 }
                 .blur(radius:filterShowing || ConsultationShowing || ClinicShowing || DatesShowing ? 10 : 0)

@@ -2,7 +2,7 @@
 //  ServicesView.swift
 //  SalamTech
 //
-//  Created by wecancity on 04/04/2022.
+//  Created by Mohamed Hammam on 04/04/2022.
 //
 
 import SwiftUI
@@ -10,19 +10,12 @@ import SwiftUI
 
 struct ServicesView: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
-    @StateObject var searchDoc = VMSearchDoc()
-
-    @State private var image = UIImage()
-    @State private var radius: CGFloat = .zero
-    @State var loginAgain = false
     var language = LocalizationService.shared.language
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 20) ]
-    @State var counter = 0
     @State var gotoSpec = false
     @State var selectedTypeId = 0
 
     var body: some View {
-//        NavigationView{
         ZStack{
             ScrollView {
                 VStack{
@@ -52,18 +45,14 @@ struct ServicesView: View {
                         
                         LazyVGrid(columns: vGridLayout){
                             ForEach(medicalType.publishedModelExaminationTypeId, id:\.self) { exType in
-                                
                                 ZStack {
                                     Button(action: {
                                         selectedTypeId = exType.id ?? 11212121212121
                                         gotoSpec=true
-                                        
                                     }, label: {
                                         VStack{
                                             AsyncImage(url: URL(string:   URLs.BaseUrl + "\(exType.image ?? "")" )) { image in
-
                                                 image.resizable()
-
                                             } placeholder: {
                                                 Image("logo")
                                                     .resizable()
@@ -90,14 +79,14 @@ struct ServicesView: View {
                                                 
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         .padding(.horizontal,13)
-                        
 
                     }.background(Color.clear)
                         .padding([.horizontal])
                 }
                 .padding(.top,100)
             }
-           
+            
+//  -----  MARK: Top View Title -----
             VStack{
             AppBarLogoView(imageName: "barlogo")
             Spacer()
@@ -110,20 +99,15 @@ struct ServicesView: View {
         .edgesIgnoringSafeArea(.top)
         .background(Color("CLVBG"))
         .onAppear(perform: {
-//            medicalType.isLoading = true
             medicalType.GetExaminationTypeId()
-            
         })
-        
-           
-//        }
+                   
        //  go to clinic info
         NavigationLink(destination:SpecialityView( selectedTypeId: $selectedTypeId),isActive: $gotoSpec) {
              }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
-
         
         .alert(isPresented: $medicalType.isAlert, content: {
             Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
@@ -133,41 +117,8 @@ struct ServicesView: View {
 
         })
         
-        // Alert with no internet connection
-//            .alert(isPresented: $medicalType.isAlert, content: {
-//
-//                switch medicalType.activeAlert{
-//                case .NetworkError :
-//                    return   Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        medicalType.isAlert = false
-//
-//                    }))
-//
-//                case .serverError :
-//                    return  Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        medicalType.isAlert = false
-//
-//                    }))
-//
-//                case .success :
-//                    return Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        medicalType.isAlert = false
-//
-//                }))
-//                case .unauthorized:
-//                    return Alert(title: Text(medicalType.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        medicalType.isAlert = false
-//
-//
-//                     }))
-//
-//                }
-//                })
-
     }
-    
 
-    
 }
 
 struct ServicesView_Previews: PreviewProvider {

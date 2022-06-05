@@ -2,7 +2,7 @@
 //  SpecialityView.swift
 //  SalamTech
 //
-//  Created by wecancity on 04/04/2022.
+//  Created by Mohamed Hammam on 04/04/2022.
 //
 
 import Foundation
@@ -11,10 +11,6 @@ import SwiftUI
 
 struct SpecialityView: View {
     @StateObject var specialityvm = ViewModelSpecialist()
-    @StateObject var searchDoc = VMSearchDoc()
-
-    @State private var image = UIImage()
-    @State var loginAgain = false
     var language = LocalizationService.shared.language
     @State var gotocity = false
     
@@ -31,75 +27,22 @@ struct SpecialityView: View {
                         .font(Font.SalamtechFonts.Bold18)
                     Spacer()
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-
                 ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
                             Button(action: {
                                 selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
                                 gotocity=true
-
                             }, label: {
-                                
-                                ZStack {
-
-                                    HStack{
-                                        Spacer().frame(width:80)
-                                            Text(specialityvm.publishedSpecialistModel?[speciality].Name ?? "")
-                                                .frame(height:35)
-                                                .font(Font.SalamtechFonts.Reg18)
-                                                .foregroundColor(.black)
-                                        Spacer()
-                                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-                                        
-                                        .frame(width: (UIScreen.main.bounds.width)-33, height: 55)
-                                        .background(Color.white)
-                                        .cornerRadius(25)
-                                        .shadow(color: .black.opacity(0.099), radius: 5)
-
-                                    
-                                    HStack {
-                                        AsyncImage(url: URL(string:   URLs.BaseUrl + "\(specialityvm.publishedSpecialistModel?[speciality].image ?? "")" )) { image in
-
-                                            image.resizable()
-
-                                        } placeholder: {
-                                            Image("heart")
-                                                .resizable()
-                                        }
-                                        .clipShape(Circle())
-                                        .frame(width: 60, height: 60)
-                                        Spacer()
-                                    }.padding(.leading,5)
-                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-
-
-                                    
-                                }
+                                SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
                             }) .frame(width: (UIScreen.main.bounds.width)-10)
                                 .background(Color.clear)
                                 .cornerRadius(8)
                                 .shadow(color: .black.opacity(0.099), radius: 5)
-                        
-
-            
-
-
                     }
-
-
             }.background(Color.clear)
                 .padding([.horizontal])
-            
-            
+
             Spacer()
         }
-            
-            
-            
-            
-            
             
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.vertical)
@@ -120,7 +63,6 @@ struct SpecialityView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
-//            specialityvm.isLoading = true
             specialityvm.startFetchSpecialist()
         })
 
@@ -137,43 +79,7 @@ struct SpecialityView: View {
 
         })
 
-
-        // Alert with no internet connection
-//            .alert(isPresented: $specialityvm.isAlert, content: {
-//                
-//                switch specialityvm.activeAlert{
-//                case .NetworkError :
-//                    return   Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        specialityvm.isAlert = false
-//
-//                    }))
-//                    
-//                case .serverError :
-//                    return  Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        specialityvm.isAlert = false
-//
-//                    }))
-//                    
-//                case .success :
-//                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        specialityvm.isAlert = false
-//                 
-//                }))
-//                case .unauthorized:
-//                    return Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                        specialityvm.isAlert = false
-//
-//                      
-//                     }))
-//                
-//                }
-//                })
-        
-
     }
-    
-
-    
 }
 
 struct SpecialityView_Previews: PreviewProvider {
@@ -183,3 +89,5 @@ struct SpecialityView_Previews: PreviewProvider {
         }.navigationBarHidden(true)
     }
 }
+
+

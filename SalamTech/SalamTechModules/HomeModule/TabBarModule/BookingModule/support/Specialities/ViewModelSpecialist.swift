@@ -2,7 +2,7 @@
 //  ViewModelSpecialist.swift
 //  SalamTech
 //
-//  Created by wecancity on 02/04/2022.
+//  Created by Mohamed Hammam on 02/04/2022.
 //
 
 
@@ -15,8 +15,7 @@ class ViewModelSpecialist: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[Speciality]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-//    // ------- input
-
+//       ------- input
     @Published var  publishedSpecialistModel :  [Speciality]?
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -25,7 +24,6 @@ class ViewModelSpecialist: ObservableObject {
  
     init() {
         
-//        startFetchSpecialist()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedSpecialistModel = modeldata.data ?? []
