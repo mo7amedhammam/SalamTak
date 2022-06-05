@@ -13,8 +13,9 @@ struct CityView: View {
     var CountryId : Int?
     
     @State var gotoArea = false
-    @State var selectedCityId = 0
     @State var gotoSearchdoctor = false
+
+    @State var selectedCityId = 0
     @Binding var SelectedSpeciality : Int
     @Binding var extypeid : Int
     

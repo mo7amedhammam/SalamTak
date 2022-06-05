@@ -35,11 +35,8 @@ class ViewModelGetCities: ObservableObject {
             print(self.publishedCityModel)
            // print(self.publishedCityModel[0].Name ?? "" )
         }.store(in: &cancellables)
-        
-        
-    }
 
-    
+    }    
 }
 
 
