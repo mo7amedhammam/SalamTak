@@ -68,7 +68,7 @@ struct SpecialityView: View {
 
         
         //  go to clinic info
-        NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extype: $selectedTypeId),isActive: $gotocity) {
+        NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extypeid: $selectedTypeId),isActive: $gotocity) {
               }
         
         .alert(isPresented: $specialityvm.isAlert, content: {

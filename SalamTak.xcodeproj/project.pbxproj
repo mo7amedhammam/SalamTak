@@ -125,7 +125,6 @@
 		C800F83327FB585B00482151 /* ViewModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82527FB585B00482151 /* ViewModelExaminationTypeId.swift */; };
 		C800F83527FB585B00482151 /* ModelExaminationTypeId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82727FB585B00482151 /* ModelExaminationTypeId.swift */; };
 		C800F83627FB585B00482151 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82827FB585B00482151 /* CityView.swift */; };
-		C800F83727FB585B00482151 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82927FB585B00482151 /* CountryView.swift */; };
 		C814EA5C2816D04600D7730E /* CreatePtAppointmentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814EA5B2816D04600D7730E /* CreatePtAppointmentApi.swift */; };
 		C814EA5E2816D10200D7730E /* ModelCreateAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814EA5D2816D10200D7730E /* ModelCreateAppointment.swift */; };
 		C814EA602816D19D00D7730E /* VMCreateAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */; };
@@ -310,7 +309,6 @@
 		C800F82527FB585B00482151 /* ViewModelExaminationTypeId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelExaminationTypeId.swift; sourceTree = "<group>"; };
 		C800F82727FB585B00482151 /* ModelExaminationTypeId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelExaminationTypeId.swift; sourceTree = "<group>"; };
 		C800F82827FB585B00482151 /* CityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
-		C800F82927FB585B00482151 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 		C814EA5B2816D04600D7730E /* CreatePtAppointmentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePtAppointmentApi.swift; sourceTree = "<group>"; };
 		C814EA5D2816D10200D7730E /* ModelCreateAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCreateAppointment.swift; sourceTree = "<group>"; };
 		C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMCreateAppointment.swift; sourceTree = "<group>"; };
@@ -1060,7 +1058,6 @@
 				C800F82427FB585B00482151 /* ExaminationType */,
 				C87B9A0F280194B9002DAF4E /* AreaView.swift */,
 				C800F82827FB585B00482151 /* CityView.swift */,
-				C800F82927FB585B00482151 /* CountryView.swift */,
 				C800F81F27FB585B00482151 /* ServicesView.swift */,
 			);
 			path = support;
@@ -1594,7 +1591,6 @@
 				C85BD53B284780B70056B046 /* BaseResponse.swift in Sources */,
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
-				C800F83727FB585B00482151 /* CountryView.swift in Sources */,
 				0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */,
 				C85BD53D28478E1B0056B046 /* BaseNetwork.swift in Sources */,
 				C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */,
