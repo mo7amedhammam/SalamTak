@@ -70,7 +70,6 @@ struct ScheduleView: View {
 
                         ScheduleCellView( )
                     }
-//                    .padding(.top)
                
                
             }
@@ -100,12 +99,8 @@ struct ScheduleView: View {
                 scheduleVM.execute(operation: .getappointments)
             }
         
-
-        
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading:  BackButtonView())
-     
         .popup(isPresented: $scheduleVM.showcncel){
             BottomPopupView{
                 ViewCancelAppointmentPopUp(showCancePopUp: $scheduleVM.showcncel, cancelReason: $scheduleVM.AppointmentCancelReason)
@@ -113,9 +108,6 @@ struct ScheduleView: View {
             }.environmentObject(scheduleVM)
 
         }
-        
-    
-        
         // Alert with no internet connection
             .alert(isPresented: $scheduleVM.isAlert, content: {
                 Alert(title: Text(scheduleVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

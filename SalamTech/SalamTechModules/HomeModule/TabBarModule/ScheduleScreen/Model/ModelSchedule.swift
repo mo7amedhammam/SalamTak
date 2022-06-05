@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: - DataClass
 struct AppointmentInfo: Codable,Identifiable , Hashable {
     var id,medicalTypeId:Int?

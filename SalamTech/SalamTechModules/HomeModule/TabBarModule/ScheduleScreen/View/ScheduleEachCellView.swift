@@ -57,7 +57,6 @@ struct ScheduleEachCellView: View {
                                                 .background(Color.clear)
                                             
                                         })
-                                        
                                     }
                                     .frame(width: 55, height: 65, alignment: .center)
                                     .background(Image(systemName: "camera")
@@ -84,7 +83,6 @@ struct ScheduleEachCellView: View {
                                         Text(schedule.clinicName ?? "")
                                             .foregroundColor(Color("lightGray"))
                                     }
-                                
                             }
                             Spacer()
                         }
@@ -105,7 +103,6 @@ struct ScheduleEachCellView: View {
                                             .foregroundColor(Color("blueColor"))
                                             .font(.system(size: 12))
                                     }
-
                                 })
 
                                 }
@@ -122,9 +119,10 @@ struct ScheduleEachCellView: View {
                                                 .foregroundColor(.white)
                                         }
                                     })
-
+                                        .frame( height: 40 )
+                                        .frame(minWidth:100,maxWidth: 300 )
+                                        .background( Color("darkGreen").cornerRadius(9))
                                 }
-                                
                                 
                                 Button(action: {
                                     goingToHelp = true
@@ -138,12 +136,7 @@ struct ScheduleEachCellView: View {
                                             .foregroundColor(Color("blueColor"))
                                             .font(.system(size: 12))
                                     }
-                                    
-
                                 })
-
-
-
 
                                 if schedule.isCancel == false && schedule.canRate == false {
                                 Button(action: {
@@ -161,14 +154,13 @@ struct ScheduleEachCellView: View {
                                             .font(.system(size: 12))
                                     }
                                 })
-
                             }
                             
                         }
                         .frame( height: 40 )
                                 .frame(minWidth:100,maxWidth: 300 )
                                 .background( Color("lightGray").opacity(0.3)
-                                                .cornerRadius(5))
+                                                .cornerRadius(9))
                             
                         }
                         .frame(height:40)
@@ -179,7 +171,6 @@ struct ScheduleEachCellView: View {
             .background(Color.white)
 
         }
-//                .frame(width: screenWidth)
                 .font(.system(size: 15))
                 .foregroundColor(Color.white)
                     .cornerRadius(10)
