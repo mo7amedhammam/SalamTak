@@ -1061,7 +1061,6 @@
 				C87B9A0F280194B9002DAF4E /* AreaView.swift */,
 				C800F82827FB585B00482151 /* CityView.swift */,
 				C800F82927FB585B00482151 /* CountryView.swift */,
-				C896512D284CD091000EAFF7 /* SpecialityView */,
 				C800F81F27FB585B00482151 /* ServicesView.swift */,
 			);
 			path = support;
@@ -1070,6 +1069,7 @@
 		C800F82027FB585B00482151 /* Specialities */ = {
 			isa = PBXGroup;
 			children = (
+				C896512D284CD091000EAFF7 /* SpecialityView */,
 				C800F82127FB585B00482151 /* ViewModelSpecialist.swift */,
 				C800F82227FB585B00482151 /* ModelSpecialist.swift */,
 			);
@@ -1150,6 +1150,7 @@
 				C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */,
 			);
 			name = SpecialityView;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
