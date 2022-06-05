@@ -1084,6 +1084,7 @@
 		C800F81D27FB585B00482151 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				C8965130284CD6E4000EAFF7 /* otherViews */,
 				C800F82027FB585B00482151 /* Specialities */,
 				C800F82427FB585B00482151 /* ExaminationType */,
 				C87B9A0F280194B9002DAF4E /* AreaView.swift */,
@@ -1243,7 +1244,7 @@
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
 			isa = PBXGroup;
 			children = (
-				C8965130284CD6E4000EAFF7 /* otherViews */,
+				C8965136284CD816000EAFF7 /* doctorView */,
 				C8F970A9281ACD4C006630A7 /* Filter */,
 				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
 				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
@@ -1287,7 +1288,6 @@
 		C8F970A9281ACD4C006630A7 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				C8965136284CD816000EAFF7 /* doctorView */,
 				C8965133284CD75D000EAFF7 /* filteringViews */,
 				C8D93260282BD98B0089C520 /* MinMaxFee */,
 				C8F970AD281ACFDD006630A7 /* ViewModel */,
