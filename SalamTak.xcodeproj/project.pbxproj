@@ -99,15 +99,12 @@
 		0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */; };
 		0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */; };
 		0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */; };
-		0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */; };
 		0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */; };
 		0E9E0DC627FAF9ED00893ABF /* ViewModelGetCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */; };
 		0E9E0DCB27FB022700893ABF /* ModelCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DCA27FB022700893ABF /* ModelCities.swift */; };
 		0E9E0DCD27FB023600893ABF /* ViewModelGetCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DCC27FB023600893ABF /* ViewModelGetCities.swift */; };
-		0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DCE27FB024700893ABF /* CitiesApiService.swift */; };
 		0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD027FB091500893ABF /* ChooseCityView.swift */; };
 		0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD227FB103400893ABF /* ModelArea.swift */; };
-		0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD427FB104B00893ABF /* AreaApiService.swift */; };
 		0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */; };
 		0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */; };
 		0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */; };
@@ -118,7 +115,6 @@
 		0EC34CCE280ED63000701344 /* ScheduleEachCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC34CCD280ED63000701344 /* ScheduleEachCellView.swift */; };
 		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
-		C800F82E27FB585B00482151 /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F81E27FB585B00482151 /* SpecialityView.swift */; };
 		C800F82F27FB585B00482151 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F81F27FB585B00482151 /* ServicesView.swift */; };
 		C800F83027FB585B00482151 /* ViewModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82127FB585B00482151 /* ViewModelSpecialist.swift */; };
 		C800F83127FB585B00482151 /* ModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82227FB585B00482151 /* ModelSpecialist.swift */; };
@@ -134,6 +130,11 @@
 		C8282CB02831601A005DD9BE /* ExModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8282CAF2831601A005DD9BE /* ExModel.swift */; };
 		C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF33280C53FB00B1B953 /* ViewSummary.swift */; };
 		C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82AFF35280C675C00B1B953 /* CustomSheet.swift */; };
+		C82C79BC284E085900BCE508 /* ModelSeniority.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82C79BB284E085900BCE508 /* ModelSeniority.swift */; };
+		C82C79BE284E09B900BCE508 /* ViewModelSeniority.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82C79BD284E09B900BCE508 /* ViewModelSeniority.swift */; };
+		C82C79C2284E0DFB00BCE508 /* ModelSubspeciality.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82C79C1284E0DFB00BCE508 /* ModelSubspeciality.swift */; };
+		C82C79C4284E0E3200BCE508 /* ViewModelSubspeciality.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82C79C3284E0E3200BCE508 /* ViewModelSubspeciality.swift */; };
+		C82C79CD284E28C200BCE508 /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82C79CC284E28C200BCE508 /* SpecialityView.swift */; };
 		C82E64E0283FC4B600B20354 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64DF283FC4B600B20354 /* AboutApp.swift */; };
 		C82E64E4283FC7FC00B20354 /* SalamtakWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */; };
 		C85BD539284770560056B046 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD538284770560056B046 /* TargetType.swift */; };
@@ -165,20 +166,17 @@
 		C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */; };
 		C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */; };
 		C8B3E17027FC47580040DAFD /* APISearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */; };
-		C8B3E17427FC4B310040DAFD /* oldViewSearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B3E17327FC4B310040DAFD /* oldViewSearchDoc.swift */; };
 		C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BC928355BB3009A89AC /* ViewAddReview.swift */; };
 		C8B52BCC28355BD0009A89AC /* VMAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCB28355BD0009A89AC /* VMAddReview.swift */; };
 		C8B52BCE28355BE6009A89AC /* MAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCD28355BE6009A89AC /* MAddReview.swift */; };
 		C8B52BD028355C18009A89AC /* APIAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCF28355C18009A89AC /* APIAddReview.swift */; };
-		C8D93262282BD9C30089C520 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93261282BD9C30089C520 /* ApiService.swift */; };
+		C8D93262282BD9C30089C520 /* ViewModelFees.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93261282BD9C30089C520 /* ViewModelFees.swift */; };
 		C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */; };
 		C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93266282C28A30089C520 /* ReviewsView.swift */; };
 		C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93268282C28BC0089C520 /* ReviewsVM.swift */; };
 		C8D9326B282C28D40089C520 /* ReviewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326A282C28D40089C520 /* ReviewsApi.swift */; };
 		C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */; };
 		C8E28158282FF09D00BDF6F7 /* BottomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */; };
-		C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */; };
-		C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,15 +292,12 @@
 		0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
 		0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMapWithPin.swift; sourceTree = "<group>"; };
 		0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNationalityView.swift; sourceTree = "<group>"; };
-		0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryApiService.swift; sourceTree = "<group>"; };
 		0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCountries.swift; sourceTree = "<group>"; };
 		0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetCountries.swift; sourceTree = "<group>"; };
 		0E9E0DCA27FB022700893ABF /* ModelCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCities.swift; sourceTree = "<group>"; };
 		0E9E0DCC27FB023600893ABF /* ViewModelGetCities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetCities.swift; sourceTree = "<group>"; };
-		0E9E0DCE27FB024700893ABF /* CitiesApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesApiService.swift; sourceTree = "<group>"; };
 		0E9E0DD027FB091500893ABF /* ChooseCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityView.swift; sourceTree = "<group>"; };
 		0E9E0DD227FB103400893ABF /* ModelArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelArea.swift; sourceTree = "<group>"; };
-		0E9E0DD427FB104B00893ABF /* AreaApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaApiService.swift; sourceTree = "<group>"; };
 		0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetArea.swift; sourceTree = "<group>"; };
 		0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAreaView.swift; sourceTree = "<group>"; };
 		0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupationApiService.swift; sourceTree = "<group>"; };
@@ -317,7 +312,6 @@
 		57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.release.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.release.xcconfig"; sourceTree = "<group>"; };
 		65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.release.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C800F81E27FB585B00482151 /* SpecialityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
 		C800F81F27FB585B00482151 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		C800F82127FB585B00482151 /* ViewModelSpecialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelSpecialist.swift; sourceTree = "<group>"; };
 		C800F82227FB585B00482151 /* ModelSpecialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpecialist.swift; sourceTree = "<group>"; };
@@ -334,6 +328,11 @@
 		C8282CAF2831601A005DD9BE /* ExModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExModel.swift; sourceTree = "<group>"; };
 		C82AFF33280C53FB00B1B953 /* ViewSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSummary.swift; sourceTree = "<group>"; };
 		C82AFF35280C675C00B1B953 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
+		C82C79BB284E085900BCE508 /* ModelSeniority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSeniority.swift; sourceTree = "<group>"; };
+		C82C79BD284E09B900BCE508 /* ViewModelSeniority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSeniority.swift; sourceTree = "<group>"; };
+		C82C79C1284E0DFB00BCE508 /* ModelSubspeciality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSubspeciality.swift; sourceTree = "<group>"; };
+		C82C79C3284E0E3200BCE508 /* ViewModelSubspeciality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSubspeciality.swift; sourceTree = "<group>"; };
+		C82C79CC284E28C200BCE508 /* SpecialityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
 		C82E64DF283FC4B600B20354 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
 		C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamtakWebView.swift; sourceTree = "<group>"; };
 		C85BD538284770560056B046 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
@@ -363,20 +362,17 @@
 		C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMSearchDoc.swift; sourceTree = "<group>"; };
 		C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchDoc.swift; sourceTree = "<group>"; };
-		C8B3E17327FC4B310040DAFD /* oldViewSearchDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oldViewSearchDoc.swift; sourceTree = "<group>"; };
 		C8B52BC928355BB3009A89AC /* ViewAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddReview.swift; sourceTree = "<group>"; };
 		C8B52BCB28355BD0009A89AC /* VMAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMAddReview.swift; sourceTree = "<group>"; };
 		C8B52BCD28355BE6009A89AC /* MAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAddReview.swift; sourceTree = "<group>"; };
 		C8B52BCF28355C18009A89AC /* APIAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAddReview.swift; sourceTree = "<group>"; };
-		C8D93261282BD9C30089C520 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		C8D93261282BD9C30089C520 /* ViewModelFees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFees.swift; sourceTree = "<group>"; };
 		C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMinMaxFee.swift; sourceTree = "<group>"; };
 		C8D93266282C28A30089C520 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		C8D93268282C28BC0089C520 /* ReviewsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVM.swift; sourceTree = "<group>"; };
 		C8D9326A282C28D40089C520 /* ReviewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsApi.swift; sourceTree = "<group>"; };
 		C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
 		C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopupView.swift; sourceTree = "<group>"; };
-		C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-Sub.swift"; sourceTree = "<group>"; };
-		C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sen-Spec-subspecVM.swift"; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
@@ -516,6 +512,8 @@
 		00C8BF7327F32B4500571078 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C896513D284CDBB7000EAFF7 /* SearchBarView.swift */,
+				C8965131284CD70A000EAFF7 /* RatingView.swift */,
 				C8282CAE28315FE4005DD9BE /* ExTypeNameandImage */,
 				00C8BF7D27F33F3600571078 /* ButtonView.swift */,
 				0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */,
@@ -993,9 +991,14 @@
 				0E9E0DE427FB28DD00893ABF /* MedicineAllergy */,
 				0E9E0DE327FB28C600893ABF /* Blood */,
 				0E9E0DDA27FB156900893ABF /* Occupation */,
-				0E9E0DC927FB020D00893ABF /* Area */,
-				0E9E0DC827FB020600893ABF /* Cities */,
+				C800F82427FB585B00482151 /* ExaminationType */,
+				C82C79BA284E078A00BCE508 /* Seniority */,
+				C82C79BF284E0D7C00BCE508 /* Speciality */,
+				C82C79C0284E0DDA00BCE508 /* Subspeciality */,
 				0E9E0DC027FAF98600893ABF /* Countries */,
+				0E9E0DC827FB020600893ABF /* Cities */,
+				0E9E0DC927FB020D00893ABF /* Area */,
+				C8D93260282BD98B0089C520 /* MinMaxFee */,
 			);
 			path = LookUp;
 			sourceTree = "<group>";
@@ -1003,7 +1006,6 @@
 		0E9E0DC027FAF98600893ABF /* Countries */ = {
 			isa = PBXGroup;
 			children = (
-				0E9E0DC127FAF99E00893ABF /* CountryApiService.swift */,
 				0E9E0DC327FAF9C500893ABF /* ModelCountries.swift */,
 				0E9E0DC527FAF9ED00893ABF /* ViewModelGetCountries.swift */,
 			);
@@ -1015,7 +1017,6 @@
 			children = (
 				0E9E0DCA27FB022700893ABF /* ModelCities.swift */,
 				0E9E0DCC27FB023600893ABF /* ViewModelGetCities.swift */,
-				0E9E0DCE27FB024700893ABF /* CitiesApiService.swift */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -1024,7 +1025,6 @@
 			isa = PBXGroup;
 			children = (
 				0E9E0DD227FB103400893ABF /* ModelArea.swift */,
-				0E9E0DD427FB104B00893ABF /* AreaApiService.swift */,
 				0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */,
 			);
 			path = Area;
@@ -1076,32 +1076,19 @@
 				C82AFF32280C53BF00B1B953 /* Summary */,
 				C860837F2804529C001A0C39 /* DoctorDetails */,
 				C8B3E16A27FC46EB0040DAFD /* SearchDoctor */,
-				C800F81D27FB585B00482151 /* support */,
+				C800F81D27FB585B00482151 /* Selections */,
 			);
 			path = BookingModule;
 			sourceTree = "<group>";
 		};
-		C800F81D27FB585B00482151 /* support */ = {
+		C800F81D27FB585B00482151 /* Selections */ = {
 			isa = PBXGroup;
 			children = (
-				C8965130284CD6E4000EAFF7 /* otherViews */,
-				C800F82027FB585B00482151 /* Specialities */,
-				C800F82427FB585B00482151 /* ExaminationType */,
-				C87B9A0F280194B9002DAF4E /* AreaView.swift */,
-				C800F82827FB585B00482151 /* CityView.swift */,
-				C800F81F27FB585B00482151 /* ServicesView.swift */,
+				C896512D284CD091000EAFF7 /* selectSpeciality */,
+				C82C79CF284E2E0500BCE508 /* selectPlace */,
+				C82C79CE284E2DE800BCE508 /* selectServiceType */,
 			);
-			path = support;
-			sourceTree = "<group>";
-		};
-		C800F82027FB585B00482151 /* Specialities */ = {
-			isa = PBXGroup;
-			children = (
-				C896512D284CD091000EAFF7 /* SpecialityView */,
-				C800F82127FB585B00482151 /* ViewModelSpecialist.swift */,
-				C800F82227FB585B00482151 /* ModelSpecialist.swift */,
-			);
-			path = Specialities;
+			path = Selections;
 			sourceTree = "<group>";
 		};
 		C800F82427FB585B00482151 /* ExaminationType */ = {
@@ -1130,6 +1117,108 @@
 				C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */,
 			);
 			path = Summary;
+			sourceTree = "<group>";
+		};
+		C82C79BA284E078A00BCE508 /* Seniority */ = {
+			isa = PBXGroup;
+			children = (
+				C82C79BB284E085900BCE508 /* ModelSeniority.swift */,
+				C82C79BD284E09B900BCE508 /* ViewModelSeniority.swift */,
+			);
+			path = Seniority;
+			sourceTree = "<group>";
+		};
+		C82C79BF284E0D7C00BCE508 /* Speciality */ = {
+			isa = PBXGroup;
+			children = (
+				C800F82227FB585B00482151 /* ModelSpecialist.swift */,
+				C800F82127FB585B00482151 /* ViewModelSpecialist.swift */,
+			);
+			path = Speciality;
+			sourceTree = "<group>";
+		};
+		C82C79C0284E0DDA00BCE508 /* Subspeciality */ = {
+			isa = PBXGroup;
+			children = (
+				C82C79C1284E0DFB00BCE508 /* ModelSubspeciality.swift */,
+				C82C79C3284E0E3200BCE508 /* ViewModelSubspeciality.swift */,
+			);
+			path = Subspeciality;
+			sourceTree = "<group>";
+		};
+		C82C79C5284E174800BCE508 /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				C8965148284D0FF4000EAFF7 /* TitleFilterList.swift */,
+				C8965134284CD7A2000EAFF7 /* seniorityBuView.swift */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		C82C79C6284E179700BCE508 /* Speciality */ = {
+			isa = PBXGroup;
+			children = (
+				C8965146284D0F74000EAFF7 /* SpecialityFilterList.swift */,
+			);
+			path = Speciality;
+			sourceTree = "<group>";
+		};
+		C82C79C7284E17A200BCE508 /* SubSpeciality */ = {
+			isa = PBXGroup;
+			children = (
+				C896514A284D102F000EAFF7 /* SubSpecialityFilterList.swift */,
+			);
+			path = SubSpeciality;
+			sourceTree = "<group>";
+		};
+		C82C79C8284E17AE00BCE508 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				C896514C284D105C000EAFF7 /* CityFilterList.swift */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		C82C79C9284E17B800BCE508 /* Area */ = {
+			isa = PBXGroup;
+			children = (
+				C896514E284D1082000EAFF7 /* AreaFilterList.swift */,
+			);
+			path = Area;
+			sourceTree = "<group>";
+		};
+		C82C79CA284E17C400BCE508 /* Fees */ = {
+			isa = PBXGroup;
+			children = (
+				C8965150284D10A6000EAFF7 /* FeesFilterView.swift */,
+			);
+			path = Fees;
+			sourceTree = "<group>";
+		};
+		C82C79CB284E1A9900BCE508 /* FilterMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C8965144284CF5F9000EAFF7 /* MainFilterView.swift */,
+				C8965152284D114D000EAFF7 /* FilterMenu.swift */,
+			);
+			path = FilterMenu;
+			sourceTree = "<group>";
+		};
+		C82C79CE284E2DE800BCE508 /* selectServiceType */ = {
+			isa = PBXGroup;
+			children = (
+				C800F81F27FB585B00482151 /* ServicesView.swift */,
+			);
+			name = selectServiceType;
+			sourceTree = "<group>";
+		};
+		C82C79CF284E2E0500BCE508 /* selectPlace */ = {
+			isa = PBXGroup;
+			children = (
+				C87B9A0F280194B9002DAF4E /* AreaView.swift */,
+				C800F82827FB585B00482151 /* CityView.swift */,
+			);
+			name = selectPlace;
 			sourceTree = "<group>";
 		};
 		C85BD536284770270056B046 /* Networking */ = {
@@ -1171,30 +1260,19 @@
 			path = CancelAppointment;
 			sourceTree = "<group>";
 		};
-		C896512D284CD091000EAFF7 /* SpecialityView */ = {
+		C896512D284CD091000EAFF7 /* selectSpeciality */ = {
 			isa = PBXGroup;
 			children = (
-				C800F81E27FB585B00482151 /* SpecialityView.swift */,
 				C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */,
+				C82C79CC284E28C200BCE508 /* SpecialityView.swift */,
 			);
-			name = SpecialityView;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		C8965130284CD6E4000EAFF7 /* otherViews */ = {
-			isa = PBXGroup;
-			children = (
-				C8965131284CD70A000EAFF7 /* RatingView.swift */,
-				C896513D284CDBB7000EAFF7 /* SearchBarView.swift */,
-			);
-			path = otherViews;
+			name = selectSpeciality;
 			sourceTree = "<group>";
 		};
 		C8965133284CD75D000EAFF7 /* filteringViews */ = {
 			isa = PBXGroup;
 			children = (
 				C8965143284CF5D5000EAFF7 /* MainFilterList */,
-				C8965134284CD7A2000EAFF7 /* seniorityBuView.swift */,
 			);
 			path = filteringViews;
 			sourceTree = "<group>";
@@ -1229,14 +1307,13 @@
 		C8965143284CF5D5000EAFF7 /* MainFilterList */ = {
 			isa = PBXGroup;
 			children = (
-				C8965144284CF5F9000EAFF7 /* MainFilterView.swift */,
-				C8965152284D114D000EAFF7 /* FilterMenu.swift */,
-				C8965148284D0FF4000EAFF7 /* TitleFilterList.swift */,
-				C8965146284D0F74000EAFF7 /* SpecialityFilterList.swift */,
-				C896514A284D102F000EAFF7 /* SubSpecialityFilterList.swift */,
-				C896514C284D105C000EAFF7 /* CityFilterList.swift */,
-				C896514E284D1082000EAFF7 /* AreaFilterList.swift */,
-				C8965150284D10A6000EAFF7 /* FeesFilterView.swift */,
+				C82C79CB284E1A9900BCE508 /* FilterMenu */,
+				C82C79C5284E174800BCE508 /* Title */,
+				C82C79C6284E179700BCE508 /* Speciality */,
+				C82C79C7284E17A200BCE508 /* SubSpeciality */,
+				C82C79C8284E17AE00BCE508 /* City */,
+				C82C79C9284E17B800BCE508 /* Area */,
+				C82C79CA284E17C400BCE508 /* Fees */,
 			);
 			path = MainFilterList;
 			sourceTree = "<group>";
@@ -1249,7 +1326,6 @@
 				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
 				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
 				C8B3E16F27FC47580040DAFD /* APISearchDoc.swift */,
-				C8B3E17327FC4B310040DAFD /* oldViewSearchDoc.swift */,
 			);
 			path = SearchDoctor;
 			sourceTree = "<group>";
@@ -1268,8 +1344,8 @@
 		C8D93260282BD98B0089C520 /* MinMaxFee */ = {
 			isa = PBXGroup;
 			children = (
-				C8D93261282BD9C30089C520 /* ApiService.swift */,
 				C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */,
+				C8D93261282BD9C30089C520 /* ViewModelFees.swift */,
 			);
 			path = MinMaxFee;
 			sourceTree = "<group>";
@@ -1289,27 +1365,8 @@
 			isa = PBXGroup;
 			children = (
 				C8965133284CD75D000EAFF7 /* filteringViews */,
-				C8D93260282BD98B0089C520 /* MinMaxFee */,
-				C8F970AD281ACFDD006630A7 /* ViewModel */,
-				C8F970AA281ACD6B006630A7 /* Model */,
 			);
 			path = Filter;
-			sourceTree = "<group>";
-		};
-		C8F970AA281ACD6B006630A7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C8F970AB281ACD8D006630A7 /* Sen-Spec-Sub.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C8F970AD281ACFDD006630A7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				C8F970AE281AD012006630A7 /* Sen-Spec-subspecVM.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
@@ -1643,8 +1700,9 @@
 				0E586D2427F5B6CD00944F21 /* ModelSchedule.swift in Sources */,
 				0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */,
 				00D86B992803132D00ABF9C9 /* fontsExt.swift in Sources */,
+				C82C79BC284E085900BCE508 /* ModelSeniority.swift in Sources */,
 				0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */,
-				0E9E0DCF27FB024700893ABF /* CitiesApiService.swift in Sources */,
+				C82C79C4284E0E3200BCE508 /* ViewModelSubspeciality.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
 				C85BD539284770560056B046 /* TargetType.swift in Sources */,
 				C896514F284D1082000EAFF7 /* AreaFilterList.swift in Sources */,
@@ -1661,13 +1719,11 @@
 				0E9E0DB227FAEFD100893ABF /* GenderView.swift in Sources */,
 				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
 				C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */,
-				C800F82E27FB585B00482151 /* SpecialityView.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,
 				C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */,
 				C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */,
 				0E9E0DB427FAF1FE00893ABF /* PickLocationView.swift in Sources */,
-				C8F970AC281ACD8D006630A7 /* Sen-Spec-Sub.swift in Sources */,
 				0E9E0DD127FB091500893ABF /* ChooseCityView.swift in Sources */,
 				0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */,
 				C8965151284D10A6000EAFF7 /* FeesFilterView.swift in Sources */,
@@ -1680,12 +1736,14 @@
 				0E26EA6E27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift in Sources */,
 				0E62C55C27FD946500655D1A /* ChangePasswordView.swift in Sources */,
 				C8D9326B282C28D40089C520 /* ReviewsApi.swift in Sources */,
+				C82C79BE284E09B900BCE508 /* ViewModelSeniority.swift in Sources */,
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
-				C8D93262282BD9C30089C520 /* ApiService.swift in Sources */,
+				C8D93262282BD9C30089C520 /* ViewModelFees.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */,
 				C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */,
+				C82C79C2284E0DFB00BCE508 /* ModelSubspeciality.swift in Sources */,
 				C896513E284CDBB7000EAFF7 /* SearchBarView.swift in Sources */,
 				0E586D1227F5B60600944F21 /* PersonalDataView.swift in Sources */,
 				0E68CDA8280192F700327EBF /* UpdatePersonalDataApiService.swift in Sources */,
@@ -1705,7 +1763,6 @@
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
 				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
-				C8F970AF281AD012006630A7 /* Sen-Spec-subspecVM.swift in Sources */,
 				00C8BF6327F319B100571078 /* Config.swift in Sources */,
 				0E26EA6A27FB2EF800E3D9B8 /* ModelMedicineAllergy.swift in Sources */,
 				0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */,
@@ -1742,9 +1799,7 @@
 				0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */,
 				C896513A284CD8F8000EAFF7 /* doctorCellTopSection.swift in Sources */,
 				0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */,
-				0E9E0DC227FAF99E00893ABF /* CountryApiService.swift in Sources */,
 				C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */,
-				C8B3E17427FC4B310040DAFD /* oldViewSearchDoc.swift in Sources */,
 				C814EA602816D19D00D7730E /* VMCreateAppointment.swift in Sources */,
 				C8B52BCC28355BD0009A89AC /* VMAddReview.swift in Sources */,
 				C826D93F280D90B90072754B /* ApiDocDetails.swift in Sources */,
@@ -1762,7 +1817,7 @@
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
 				0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */,
 				0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */,
-				0E9E0DD527FB104B00893ABF /* AreaApiService.swift in Sources */,
+				C82C79CD284E28C200BCE508 /* SpecialityView.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
 				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
 				0E68CD9D27FEF73900327EBF /* UpdatePersonalDataView.swift in Sources */,

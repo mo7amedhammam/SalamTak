@@ -43,11 +43,12 @@ struct ViewSearchDoc: View {
     
     @State var FilterTag : FilterCases = .Menu
     @State var showFilter = false
-    @StateObject var seniorityVM = ViewModelSeniorityLevel()
+    @StateObject var seniorityVM = ViewModelSeniority()
     @StateObject var specialityvm = ViewModelSpecialist()
-    @StateObject var SubSpecialityVM = ViewModelSubSpecialist()
+    @StateObject var SubSpecialityVM = ViewModelSubspeciality()
     @StateObject var CitiesVM = ViewModelGetCities()
     @StateObject var AreasVM = ViewModelGetAreas()
+    @StateObject var FeesVM = ViewModelFees()
 
     @State var selectedSeniorityLvlName :String?
     @State var selectedSeniorityLvlId :Int?
@@ -161,7 +162,6 @@ struct ViewSearchDoc: View {
                 Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
- 
             if showFilter == true {
                 MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, SpecialistId: $SpecialistId,CityId:$CityId,AreaId:$AreaId,selectedSeniorityLvlName:$selectedSeniorityLvlName,selectedSeniorityLvlId:$selectedSeniorityLvlId,SenbuttonSelected:$SenbuttonSelected,selectedSpecLvlName:$selectedSpecLvlName,selectedSpecLvlId:$selectedSpecLvlId,SpecbuttonSelected:$SpecbuttonSelected,selectedSubSpecLvlNames:$selectedSubSpecLvlNames,selectedSubSpecLvlIds:$selectedSubSpecLvlIds,selectedFee:$selectedFee, selectedFilterCityName:$selectedFilterCityName, selectedFilterCityId:$selectedFilterCityId, CitybuttonSelected:$CitybuttonSelected, selectedFilterAreaName:$selectedFilterAreaName, selectedFilterAreaId:$selectedFilterAreaId, AreabuttonSelected:$AreabuttonSelected,searchTxt:$searchTxt)
                     .environmentObject(searchDoc)
@@ -170,6 +170,8 @@ struct ViewSearchDoc: View {
                     .environmentObject(SubSpecialityVM)
                     .environmentObject(CitiesVM)
                     .environmentObject(AreasVM)
+                    .environmentObject(FeesVM)
+
             }
             
             // showing loading indicator

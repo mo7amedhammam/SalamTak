@@ -16,12 +16,13 @@ enum FilterCases{
 
 struct MainDoctorFilterView: View {
     @EnvironmentObject var searchDoc : VMSearchDoc
-    @EnvironmentObject var seniorityVM : ViewModelSeniorityLevel
+    @EnvironmentObject var seniorityVM : ViewModelSeniority
     @EnvironmentObject var specialityvm : ViewModelSpecialist
-    @EnvironmentObject var SubSpecialityVM : ViewModelSubSpecialist
+    @EnvironmentObject var SubSpecialityVM : ViewModelSubspeciality
     @EnvironmentObject var CitiesVM : ViewModelGetCities
     @EnvironmentObject var AreasVM : ViewModelGetAreas
-    
+    @EnvironmentObject var FeesVM : ViewModelFees
+
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
 
@@ -56,6 +57,8 @@ struct MainDoctorFilterView: View {
             case .Menu:
                 FilterMenu(FilterTag: $FilterTag, showFilter: $showFilter, selectedSeniorityLvlName: $selectedSeniorityLvlName,selectedSeniorityLvlId:$selectedSeniorityLvlId, selectedSpecLvlName: $selectedSpecLvlName, selectedSpecLvlId: $selectedSpecLvlId, selectedSubSpecLvlNames: $selectedSubSpecLvlNames,selectedSubSpecLvlIds:$selectedSubSpecLvlIds, selectedFee: $selectedFee, selectedFilterCityName: $selectedFilterCityName,selectedFilterCityId:$selectedFilterCityId, selectedFilterAreaName: $selectedFilterAreaName,selectedFilterAreaId:$selectedFilterAreaId,searchTxt:$searchTxt)
                     .environmentObject(searchDoc)
+                    .environmentObject(FeesVM)
+
                 
             case .Speciality:
                 SpecialityFilterList( FilterTag: $FilterTag, SpecialistId: $SpecialistId, selectedSpecLvlName: $selectedSpecLvlName, selectedSpecLvlId: $selectedSpecLvlId, SpecbuttonSelected: $SpecbuttonSelected)
@@ -76,7 +79,7 @@ struct MainDoctorFilterView: View {
                                  .environmentObject(AreasVM)
             case .Fees:
                 FeesFilterView( FilterTag: $FilterTag, selectedFee: $selectedFee)
-                                 .environmentObject(searchDoc)
+                                 .environmentObject(FeesVM)
             }
             
             

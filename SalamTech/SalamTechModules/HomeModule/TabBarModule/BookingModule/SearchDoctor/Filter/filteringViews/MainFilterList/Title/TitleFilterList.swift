@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct TitleFilterList:View{
-    @EnvironmentObject var seniorityVM : ViewModelSeniorityLevel
+    @EnvironmentObject var seniorityVM : ViewModelSeniority
     
     @Binding var FilterTag:FilterCases
     @Binding var selectedSeniorityLvlName :String?

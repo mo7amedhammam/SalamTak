@@ -1,59 +1,49 @@
 //
-//  ViewModelGetAreas.swift
-//  SalamTech-DR
+//  ViewModelFees.swift
+//  SalamTak
 //
-//  Created by Mohamed Hammam on 27/01/2022.
+//  Created by Mohamed Hammam on 06/06/2022.
 //
 
 import Foundation
 import Combine
 
-class ViewModelGetAreas: ObservableObject {
+class ViewModelFees: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<[Area]>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<MinMaxFee>, Error>()
     private var cancellables: Set<AnyCancellable> = []
-  
-    @Published var cityId: Int = 0
-
-        //------- output
-
-    @Published var publishedAreaModel: [Area] = []
-    @Published var isLoading:Bool? = false
     
+    //    //------- output
+    
+    @Published var  publishedMinMaxFee: MinMaxFee?
+    
+    @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
- 
+    
+    
     init() {
+        startFetchFees()
         
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
-            self.publishedAreaModel = modeldata.data ?? []
-            
+            self.publishedMinMaxFee = modeldata.data ?? MinMaxFee.init()
+            print(self.publishedMinMaxFee ?? MinMaxFee.init())
         }.store(in: &cancellables)
-   
+        
     }
-   
+    
 }
 
-
-extension ViewModelGetAreas:TargetType{
+extension ViewModelFees:TargetType{
     var url: String{
-        let url = URLs().GetAreas
-        let queryItems = [URLQueryItem(name:"cityId",value:"\(cityId)")]
-            var urlComponents = URLComponents(string: url)
-            urlComponents?.queryItems = queryItems
-            let convertedUrl = urlComponents?.url
-            if let convertUrl = convertedUrl {
-                print(convertUrl)
-            }
-        return  convertedUrl?.absoluteString ?? ""
-
+        return URLs().FilteredFees
     }
     
     var method: httpMethod{
-        return .Get
+        return .Post
     }
     
     var parameter: parameterType{
@@ -63,34 +53,34 @@ extension ViewModelGetAreas:TargetType{
     var header: [String : String]? {
         return [:]
     }
-
     
-    func startFetchAreas() {
+    
+    func startFetchFees() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<[Area]>.self) { [self] (success, model, err) in
+            
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<MinMaxFee>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
                     }
-
+                    
                 }else{
                     if model != nil{
                         //case of model with error
                         message = model?.message ?? "Bad Request"
                         activeAlert = .serverError
-                }else{
-                    if err == "Unauthorized"{
-                    //case of Empty model (unauthorized)
-                        message = "Session_expired\nlogin_again".localized(language)
-                    activeAlert = .unauthorized
                     }else{
-                        message = err ?? "there is an error"
-                        activeAlert = .serverError
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                            activeAlert = .unauthorized
+                        }else{
+                            message = err ?? "there is an error"
+                            activeAlert = .serverError
+                        }
                     }
-                }
                     isAlert = true
                 }
                 isLoading = false

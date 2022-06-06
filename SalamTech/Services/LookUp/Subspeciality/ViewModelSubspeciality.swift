@@ -1,49 +1,48 @@
 //
-//  ViewModelGetCities.swift
-//  SalamTech-DR
+//  ViewModelSubspeciality.swift
+//  SalamTak
 //
-//  Created by Mohamed Hammam on 27/01/2022.
+//  Created by wecancity on 06/06/2022.
 //
 
 import Foundation
 import Combine
-import SwiftUI
 
-class ViewModelGetCities: ObservableObject {
+class ViewModelSubspeciality: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<[City]>, Error>()
-
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<[subspeciality]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
+    
+//    // ------- input
+    @Published  var SpecialistId: Int = 0
 
-    @Published var CountryId: Int = 1
-    @Published var CityId: Int = 0
-    
-//    //------- output
-    @Published var publishedCityModel: [City] = []
-    
-    @Published var isLoading:Bool? = false 
-    @Published var isAlert = false
-    @Published var activeAlert: ActiveAlert = .NetworkError
-    @Published var message = ""
-    
+    @Published  var  publishedSubSpecialistModel: [subspeciality] = []
+
+        @Published var isLoading:Bool? = false
+        @Published var isAlert = false
+        @Published var activeAlert: ActiveAlert = .NetworkError
+        @Published var message = ""
+ 
     init() {
-        
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
-            self.publishedCityModel = modeldata.data ?? []
-            print(self.publishedCityModel)
-           // print(self.publishedCityModel[0].Name ?? "" )
+            
+            self.publishedSubSpecialistModel = modeldata.data ?? []
         }.store(in: &cancellables)
-
-    }    
+ 
+        
+    }
+    
+    
+    
 }
 
 
-extension ViewModelGetCities:TargetType{
+extension ViewModelSubspeciality:TargetType{
     var url: String{
-        let url = URLs().GetCities
-        let queryItems = [URLQueryItem(name:"CountryId",value:"\(CountryId)")]
+        let url = URLs().GetSubSpecialist
+        let queryItems = [URLQueryItem(name:"specialListId",value:"\(SpecialistId)")]
             var urlComponents = URLComponents(string: url)
             urlComponents?.queryItems = queryItems
             let convertedUrl = urlComponents?.url
@@ -67,11 +66,11 @@ extension ViewModelGetCities:TargetType{
     }
 
     
-    func startFetchCities() {
+    func startFetchSubSpecialist() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<[City]>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<[subspeciality]>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
@@ -107,4 +106,3 @@ extension ViewModelGetCities:TargetType{
         
     }
 }
-

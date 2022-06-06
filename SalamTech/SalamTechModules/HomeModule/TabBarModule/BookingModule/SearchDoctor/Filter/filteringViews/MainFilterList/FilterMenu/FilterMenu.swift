@@ -11,6 +11,7 @@ import Combine
 
 struct FilterMenu:View{
     @EnvironmentObject var searchDoc : VMSearchDoc
+    @EnvironmentObject var FeesVM : ViewModelFees
 
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
@@ -207,7 +208,7 @@ struct FilterMenu:View{
                             .font(.system(size: 16))
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
-                        Text("From".localized(language) + " \(String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( Float(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + selectedFee))) "+"EGP".localized(language))
+                        Text("From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + selectedFee))) "+"EGP".localized(language))
                             .font(.system(size: 12))
                             .fontWeight(.medium)
                             .foregroundColor(.gray)
@@ -288,7 +289,7 @@ struct FilterMenu:View{
         searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds
         searchDoc.FilterCityId = selectedFilterCityId
         searchDoc.FilterAreaId = selectedFilterAreaId
-        searchDoc.FilterFees = selectedFee > 0 ?  Int(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + Int(selectedFee):0
+        searchDoc.FilterFees = selectedFee > 0 ?  Int(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + Int(selectedFee):0
         getAllDoctors()
     }
     

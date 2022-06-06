@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 import Combine
+
 struct FeesFilterView:View {
-    @EnvironmentObject var searchDoc : VMSearchDoc
-    
+    @EnvironmentObject var FeesVM : ViewModelFees
     @Binding var FilterTag:FilterCases
 
     @Binding var selectedFee :Float
@@ -22,15 +22,15 @@ struct FeesFilterView:View {
             
             VStack{
                 HStack{
-                    FeesFilterTextField1(text: String( searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0), title: "Minimum".localized(language))
+                    FeesFilterTextField1(text: String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0), title: "Minimum".localized(language))
                         .frame(width:(UIScreen.main.bounds.width - 50)/2)
                         .disabled(true)
-                    FeesFilterTextField1(text:  String(Int( Float(searchDoc.publishedModelMinMaxFee?.MinimumFees ?? 0) + selectedFee)) , title: "Maximum".localized(language))
+                    FeesFilterTextField1(text:  String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + selectedFee)) , title: "Maximum".localized(language))
                         .frame(width:(UIScreen.main.bounds.width - 50)/2)
                         .disabled(true)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 
-                CustomView(percentage: $selectedFee, range: Int( searchDoc.publishedModelMinMaxFee?.MaximumFees ?? 0) - Int(  0) )
+                CustomView(percentage: $selectedFee, range: Int( FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) - Int( 0) )
                 
             }.padding()
             

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SpecialityBuBody: View {
+    
     var speciality:Speciality
     var body: some View {
         ZStack {

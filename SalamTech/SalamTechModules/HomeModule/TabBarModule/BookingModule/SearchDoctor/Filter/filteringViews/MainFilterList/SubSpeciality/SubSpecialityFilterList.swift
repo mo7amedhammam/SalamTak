@@ -10,9 +10,8 @@ import SwiftUI
 import Combine
 struct SubSpecialityFilterList:View{
 
-    @EnvironmentObject var SubSpecialityVM : ViewModelSubSpecialist
+    @EnvironmentObject var SubSpecialityVM : ViewModelSubspeciality
 
-    
     @Binding var FilterTag:FilterCases
 
     @Binding var SpecialistId:Int
@@ -65,7 +64,8 @@ struct SubSpecialityFilterList:View{
                 .padding(.bottom,10)
         }
         .onAppear(perform: {
-            SubSpecialityVM.startFetchSubSpecialist(id: selectedSpecLvlId ?? SpecialistId)
+            SubSpecialityVM.SpecialistId = selectedSpecLvlId ?? SpecialistId
+            SubSpecialityVM.startFetchSubSpecialist()
         })
 
     }

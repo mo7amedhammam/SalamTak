@@ -119,7 +119,6 @@ struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             AreaView( selectedCityId: .constant(48455151), SelectedSpeciality: .constant(48455151), examinationTypeId: .constant(48455151),  selectedAreaId: 48455151)
-            
         }.navigationBarHidden(true)
     }
 }
