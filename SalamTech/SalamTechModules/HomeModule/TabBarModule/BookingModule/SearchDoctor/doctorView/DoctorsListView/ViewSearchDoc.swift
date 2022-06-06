@@ -138,7 +138,7 @@ struct ViewSearchDoc: View {
                         .onAppear(perform: {
                             if searchDoc.publishedModelSearchDoc.count > searchDoc.SkipCount{
                             searchDoc.SkipCount += searchDoc.MaxResultCount
-                            searchDoc.FetchMoreDoctors()
+                                searchDoc.FetchDoctors(operation: .fetchMoreDoctors)
                             }
                         })
 
@@ -220,11 +220,18 @@ struct ViewSearchDoc: View {
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
         }
         
+//        // Alert with no internet connection
+//            .alert(isPresented: $searchDoc.isNetworkError, content: {
+//                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
+//        })
+        
         // Alert with no internet connection
-            .alert(isPresented: $searchDoc.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-        })
+            .alert(isPresented: $searchDoc.isAlert, content: {
+                Alert(title: Text(searchDoc.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    searchDoc.isAlert = false
 
+                    }))
+            })
         
     }
     
@@ -233,7 +240,7 @@ struct ViewSearchDoc: View {
         searchDoc.isLoading = true
         searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
-        searchDoc.FetchDoctors()
+        searchDoc.FetchDoctors(operation: .fetchDoctors)
     }
 }
 

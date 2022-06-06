@@ -7,33 +7,15 @@
 
 import Foundation
 
-struct ModelSearchDoc : Codable {
-  
-    let message: String?
-        let messageCode: Int?
-        let data: ModelDoc?
-        let success: Bool?
-
-        enum CodingKeys: String, CodingKey {
-            case message = "Message"
-            case messageCode = "MessageCode"
-            case data = "Data"
-            case success = "Success"
-        }
-}
-
-struct ModelDoc:Codable{
+struct ModelDoc<T:Codable>:Codable{
     var TotalCount: Int?
-    var Items: [Doc]?
+    var Items: T?
     enum CodingKeys: String, CodingKey {
         case TotalCount = "TotalCount"
         case Items = "Items"
     }
     
 }
-
-
-
 
 // MARK: - DataClass
 struct Doc: Codable, Identifiable, Hashable{

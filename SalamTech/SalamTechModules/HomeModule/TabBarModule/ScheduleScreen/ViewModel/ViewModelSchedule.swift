@@ -33,7 +33,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    @Published var appmethod : appointmentsReq = .getappointments
+    @Published var appointmentMethod : appointmentsReq = .getappointments
     
      init() {
          
@@ -56,10 +56,18 @@ class ViewModelGetAppointmentInfo: ObservableObject {
 }
 
 
+
+
+enum appointmentsReq{
+    case getappointments
+    case cancelappointment
+}
+
+
 extension ViewModelGetAppointmentInfo:TargetType{
 
     var url: String{
-        switch appmethod{
+        switch appointmentMethod{
         case .getappointments:
         let url = URLs().GetPatientAppointment
         let queryItems = [URLQueryItem(name:"medicalExaminationTypeId",value:"\(exmodelId)")]
@@ -88,7 +96,7 @@ extension ViewModelGetAppointmentInfo:TargetType{
     }
     
     var method: httpMethod{
-        switch appmethod{
+        switch appointmentMethod{
         case .getappointments:
             return .Get
         case .cancelappointment:
@@ -98,7 +106,7 @@ extension ViewModelGetAppointmentInfo:TargetType{
     }
     
     var parameter: parameterType{
-        switch appmethod{
+        switch appointmentMethod{
         case .getappointments:
             return .plainRequest
         case .cancelappointment:
@@ -107,7 +115,7 @@ extension ViewModelGetAppointmentInfo:TargetType{
     }
     
     var header: [String : String]? {
-        switch appmethod{
+        switch appointmentMethod{
         case .getappointments:
             return ["Authorization":Helper.getAccessToken()]
 
@@ -117,7 +125,7 @@ extension ViewModelGetAppointmentInfo:TargetType{
     }
     
     func execute(operation:appointmentsReq){
-        appmethod = operation
+        appointmentMethod = operation
         switch operation{
         case .getappointments:
             startFetchAppointmentInfo()
@@ -211,8 +219,5 @@ func startFetchCancelAppointment() {
 
 }
 
-enum appointmentsReq{
-    case getappointments
-    case cancelappointment
-}
+
 

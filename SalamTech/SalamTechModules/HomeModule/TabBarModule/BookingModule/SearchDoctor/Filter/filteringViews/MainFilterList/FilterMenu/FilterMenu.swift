@@ -275,11 +275,11 @@ struct FilterMenu:View{
     
     //MARK: --- Functions ----
     func getAllDoctors(){
-        searchDoc.isLoading = true
         
         searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
-        searchDoc.FetchDoctors()
+        searchDoc.publishedModelSearchDoc.removeAll()
+        searchDoc.FetchDoctors(operation: .fetchDoctors)
     }
 
     func applyFilter(){
