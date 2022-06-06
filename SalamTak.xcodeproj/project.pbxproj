@@ -1219,6 +1219,31 @@
 			name = selectPlace;
 			sourceTree = "<group>";
 		};
+		C82C79D0284E596C00BCE508 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8965140284CDCB3000EAFF7 /* DoctorsListView */,
+				C896513F284CDCA1000EAFF7 /* DoctorCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C82C79D1284E597500BCE508 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C82C79D2284E597F00BCE508 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C85BD536284770270056B046 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1267,21 +1292,14 @@
 			name = selectSpeciality;
 			sourceTree = "<group>";
 		};
-		C8965133284CD75D000EAFF7 /* filteringViews */ = {
+		C8965136284CD816000EAFF7 /* doctor */ = {
 			isa = PBXGroup;
 			children = (
-				C8965143284CF5D5000EAFF7 /* MainFilterList */,
+				C82C79D2284E597F00BCE508 /* ViewModel */,
+				C82C79D1284E597500BCE508 /* Model */,
+				C82C79D0284E596C00BCE508 /* View */,
 			);
-			path = filteringViews;
-			sourceTree = "<group>";
-		};
-		C8965136284CD816000EAFF7 /* doctorView */ = {
-			isa = PBXGroup;
-			children = (
-				C8965140284CDCB3000EAFF7 /* DoctorsListView */,
-				C896513F284CDCA1000EAFF7 /* DoctorCell */,
-			);
-			path = doctorView;
+			path = doctor;
 			sourceTree = "<group>";
 		};
 		C896513F284CDCA1000EAFF7 /* DoctorCell */ = {
@@ -1302,27 +1320,11 @@
 			path = DoctorsListView;
 			sourceTree = "<group>";
 		};
-		C8965143284CF5D5000EAFF7 /* MainFilterList */ = {
-			isa = PBXGroup;
-			children = (
-				C82C79CB284E1A9900BCE508 /* FilterMenu */,
-				C82C79C5284E174800BCE508 /* Title */,
-				C82C79C6284E179700BCE508 /* Speciality */,
-				C82C79C7284E17A200BCE508 /* SubSpeciality */,
-				C82C79C8284E17AE00BCE508 /* City */,
-				C82C79C9284E17B800BCE508 /* Area */,
-				C82C79CA284E17C400BCE508 /* Fees */,
-			);
-			path = MainFilterList;
-			sourceTree = "<group>";
-		};
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {
 			isa = PBXGroup;
 			children = (
-				C8965136284CD816000EAFF7 /* doctorView */,
+				C8965136284CD816000EAFF7 /* doctor */,
 				C8F970A9281ACD4C006630A7 /* Filter */,
-				C8B3E16B27FC472B0040DAFD /* ModelSearchDoc.swift */,
-				C8B3E16D27FC473F0040DAFD /* VMSearchDoc.swift */,
 			);
 			path = SearchDoctor;
 			sourceTree = "<group>";
@@ -1361,7 +1363,13 @@
 		C8F970A9281ACD4C006630A7 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				C8965133284CD75D000EAFF7 /* filteringViews */,
+				C82C79CB284E1A9900BCE508 /* FilterMenu */,
+				C82C79C5284E174800BCE508 /* Title */,
+				C82C79C6284E179700BCE508 /* Speciality */,
+				C82C79C7284E17A200BCE508 /* SubSpeciality */,
+				C82C79C8284E17AE00BCE508 /* City */,
+				C82C79C9284E17B800BCE508 /* Area */,
+				C82C79CA284E17C400BCE508 /* Fees */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
