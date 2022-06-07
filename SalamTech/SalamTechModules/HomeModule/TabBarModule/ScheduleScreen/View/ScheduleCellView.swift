@@ -32,7 +32,7 @@ struct ScheduleCellView: View {
                     .multilineTextAlignment(.center)
                     .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
             } else if scheduleVM.activeAlert == .unauthorized {
-                Text("Sorry,\nYou_have_to_Login_again_🤷‍♂️".localized(language))
+                Text("Sorry,\nYou_have_to_login_again_🤷‍♂️".localized(language))
                     .multilineTextAlignment(.center)
                     .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
                 

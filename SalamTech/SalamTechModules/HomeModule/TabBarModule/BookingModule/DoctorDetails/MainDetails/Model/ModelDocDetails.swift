@@ -8,20 +8,6 @@
 
 import Foundation
 import SwiftUI
-struct ModelDocDetails : Codable {
-  
-    let message: String?
-        let messageCode: Int?
-        let data: DocDetails?
-        let success: Bool?
-
-        enum CodingKeys: String, CodingKey {
-            case message = "Message"
-            case messageCode = "MessageCode"
-            case data = "Data"
-            case success = "Success"
-        }
-}
 
 // MARK: - DataClass
 struct DocDetails: Codable{

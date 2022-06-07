@@ -47,19 +47,12 @@ struct ScheduleView: View {
                                                     .cornerRadius(3))
                                     .clipShape(Rectangle())
                                     })
-                                   
                                 }
-
-                                
-                                
                             }.frame( height: 80, alignment: .center)
                                 .padding()
                                 .offset(y: 25)
-                        
                         }
-                            
-                        
-                        
+                    
                     }.offset(y: 80)
                     AppBarView(Title:"Schedule".localized(language))
                         .offset(y:-10)
@@ -70,13 +63,10 @@ struct ScheduleView: View {
 
                         ScheduleCellView( )
                     }
-               
-               
-            }
+                }
             .edgesIgnoringSafeArea(.bottom)
             .ignoresSafeArea()
             .background(Color("CLVBG"))
-           
          
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
@@ -115,9 +105,6 @@ struct ScheduleView: View {
 
                     }))
             })
-        
-
-
     }
 }
 
