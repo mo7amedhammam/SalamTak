@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "FSCalendar",
-        "repositoryURL": "https://github.com/WenchaoD/FSCalendar.git",
-        "state": {
-          "branch": null,
-          "revision": "0fbdec5172fccb90f707472eeaea4ffe095278f6",
-          "version": "2.8.4"
-        }
-      },
-      {
         "package": "SwiftUIImageViewer",
         "repositoryURL": "https://github.com/Jake-Short/swiftui-image-viewer.git",
         "state": {
