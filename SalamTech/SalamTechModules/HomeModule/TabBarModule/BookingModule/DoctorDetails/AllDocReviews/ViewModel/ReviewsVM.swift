@@ -1,66 +1,65 @@
 //
-//  ViewModelDocDetails.swift
+//  ReviewsVM.swift
 //  SalamTech
 //
-//  Created by Mohamed Hammam on 18/04/2022.
+//  Created by Mohamed Hammam on 11/05/2022.
 //
-
 
 import Foundation
 import Combine
-import Alamofire
-import SwiftUI
 
-class ViewModelDocDetails: ObservableObject {
+class ReviewsVM: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let GetModelDocDetails = PassthroughSubject<BaseResponse<DocDetails> , Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<[DocReview]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-    // ------- input
-    @Published var DoctorId                            :Int = 0
-    @Published var MedicalExaminationTypeId              :Int = 0
-    @Published var ClinicId                               :Int = 0
-    @Published var SchedualDate                      : Date = Date()
-
-    //------- output
-    @Published var publishedModelSearchDoc: DocDetails?
-
+    @Published var doctorId = 0
+    @Published var publishedReviewsModel: [DocReview] = []
+    @Published var noReviews = false
+    
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-
     
+ 
     init() {
-   
-        GetModelDocDetails.sink { (completion) in
-            //            print(completion)
-        } receiveValue: { [self] (modeldata) in
-            self.publishedModelSearchDoc = modeldata.data
+        
+        passthroughModelSubject.sink { (completion) in
+        } receiveValue: { [self]  (modeldata) in
+            noReviews = false
+            publishedReviewsModel = modeldata.data ?? []
+            if publishedReviewsModel.count == 0 || publishedReviewsModel == [] {
+                noReviews = true
+            }
         }.store(in: &cancellables)
+   
     }
+    
 }
 
 
-extension ViewModelDocDetails:TargetType{
+extension ReviewsVM:TargetType{
     var url: String{
-        return URLs().DoctorDetails
+        let url = URLs().DoctorRate
+        let queryItems = [URLQueryItem(name:"doctorId",value:"\(doctorId)")]
+            var urlComponents = URLComponents(string: url)
+            urlComponents?.queryItems = queryItems
+            let convertedUrl = urlComponents?.url
+            if let convertUrl = convertedUrl {
+                print(convertUrl)
+            }
+        return  convertedUrl?.absoluteString ?? ""
+
     }
     
     var method: httpMethod{
-        return .Post
+        return .Get
     }
     
     var parameter: parameterType{
-        let Parameters : [String:Any] = [
-        // required
-            "DoctorId": DoctorId ,
-            "MedicalExaminationTypeId":MedicalExaminationTypeId,
-            "ClinicId":ClinicId ,
-            "SchedualDate":Filterdatef.string(from: SchedualDate)
-    ]
-        return .parameterRequest(Parameters: Parameters, Encoding: JSONEncoding.default)
+        return .plainRequest
     }
     
     var header: [String : String]? {
@@ -68,15 +67,15 @@ extension ViewModelDocDetails:TargetType{
     }
 
     
-    func FetchDoctorDetails() {
+    func startFetchReviews() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<DocDetails>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel:BaseResponse<[DocReview]>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.GetModelDocDetails.send( model!  )
+                        self.passthroughModelSubject.send( model!  )
                     }
 
                 }else{

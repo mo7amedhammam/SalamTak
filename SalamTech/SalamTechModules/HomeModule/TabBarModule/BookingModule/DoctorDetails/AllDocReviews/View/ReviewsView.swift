@@ -2,7 +2,7 @@
 //  ReviewsView.swift
 //  SalamTech
 //
-//  Created by wecancity on 11/05/2022.
+//  Created by Mohamed Hammam on 11/05/2022.
 //
 
 import SwiftUI
@@ -18,9 +18,15 @@ struct ReviewsView: View {
         ZStack{
             VStack{
                 
+              
                 List( ){
+                    if DocReviews.noReviews == true{
+                        Text("Sorry,\nNo_Reviews_Found_🤷‍♂️".localized(language))
+                            .multilineTextAlignment(.center)
+                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                    }
                     
-                    ForEach(DocReviews.publishedReviewsModel ?? [] , id:\.self){Rate in
+                    ForEach(DocReviews.publishedReviewsModel , id:\.self){Rate in
                         ZStack{
                             ZStack {
                                 
@@ -46,11 +52,8 @@ struct ReviewsView: View {
                                     
                                         VStack(spacing:0){
                                             Text("Rate.PatientName" ).padding(.bottom,8)
-//                                            .font(Font.SalamtechFonts.Bold18)
                                             .font(.system(size: 20))
-                                        
-//                                StarsView(rating: Float("Rate.Rate" ?? 00) )
-                                            
+                                
 
                                         }
                                         .padding(.top, 10)
@@ -59,58 +62,37 @@ struct ReviewsView: View {
                                     }
                                 }
                                 .padding()
-                                //                                    .padding(.top,-10)
                                 
                                 VStack(alignment:.leading, spacing:0){
                                     
-//                                    Text("Thank you very much! Great clinic! The dog was limping, X-rayed, prescribed quality treatment. Dog of fights! Excellent specialists! more" )
                                     Text("Rate.Comment" )
 
                                     .foregroundColor(.gray)
                                         .font(Font.SalamtechFonts.Reg14)
-//
-//                                    HStack{
-//                                        Spacer()
-//                                        Text("26.02.2019" )
-//                                            .foregroundColor(.gray.opacity(0.3))
-//                                            .font(Font.SalamtechFonts.Reg14)
-//                                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                                        .padding(.trailing)
-                                    
-//                                    Spacer()
-                                    
                                 }.padding(.leading)
                                     .frame(height: 100)
                                 
                             }//V
-
                             .background(Color.clear)
 
                         }//Z
                         .frame(width: (UIScreen.main.bounds.width/1)-40)
-                        //                        .offset(y:40)
                         .background(.clear)
                         .cornerRadius(9)
                         .shadow(color: .black.opacity(0.1), radius: 9)
-                        
                     }
-    
                 }.refreshable(action: {
-//                    getAllReviews()
                 })
                     .listStyle(.plain)
                     .padding(.vertical,0)
-                //            .background(Color.red)
-                //                Spacer()
+                    .padding(.top, 110)
             }
-            
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
             
             VStack{
                 AppBarView(Title: "Reviews".localized(language))
-                //                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Spacer()
             }
@@ -118,6 +100,7 @@ struct ReviewsView: View {
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $DocReviews.isLoading)
+            
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {

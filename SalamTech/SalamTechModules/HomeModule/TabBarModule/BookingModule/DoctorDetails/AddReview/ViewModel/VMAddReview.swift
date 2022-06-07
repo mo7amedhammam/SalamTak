@@ -1,51 +1,48 @@
 //
-//  ViewModelDocDetails.swift
+//  VMAddReview.swift
 //  SalamTech
 //
-//  Created by Mohamed Hammam on 18/04/2022.
+//  Created by Mohamed Hammam on 18/05/2022.
 //
-
 
 import Foundation
 import Combine
 import Alamofire
-import SwiftUI
 
-class ViewModelDocDetails: ObservableObject {
+class VMAddReview: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let GetModelDocDetails = PassthroughSubject<BaseResponse<DocDetails> , Error>()
-    private var cancellables: Set<AnyCancellable> = []
-    
-    // ------- input
-    @Published var DoctorId                            :Int = 0
-    @Published var MedicalExaminationTypeId              :Int = 0
-    @Published var ClinicId                               :Int = 0
-    @Published var SchedualDate                      : Date = Date()
+    let ModelFetchDoctors = PassthroughSubject<BaseResponse<rateSt> , Error>()
 
-    //------- output
-    @Published var publishedModelSearchDoc: DocDetails?
+    private var cancellables: Set<AnyCancellable> = []
+    // ------- input
+
+    @Published var DoctorId                    :Int = 0
+    @Published var Rate                         :Int = 0
+    @Published var Comment                      :String = ""
+
+    @Published var publishedModelAddReview : rateSt? = rateSt.init()
 
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-
     
     init() {
-   
-        GetModelDocDetails.sink { (completion) in
+        
+        ModelFetchDoctors.sink { (completion) in
             //            print(completion)
-        } receiveValue: { [self] (modeldata) in
-            self.publishedModelSearchDoc = modeldata.data
+        } receiveValue: { [weak self]  (modeldata) in
+            self?.publishedModelAddReview = modeldata.data
+            print(self?.publishedModelAddReview ?? rateSt.init())
         }.store(in: &cancellables)
     }
 }
 
 
-extension ViewModelDocDetails:TargetType{
+extension VMAddReview:TargetType{
     var url: String{
-        return URLs().DoctorDetails
+        return URLs().CreateDoctorRate
     }
     
     var method: httpMethod{
@@ -54,30 +51,33 @@ extension ViewModelDocDetails:TargetType{
     
     var parameter: parameterType{
         let Parameters : [String:Any] = [
-        // required
+            // required
             "DoctorId": DoctorId ,
-            "MedicalExaminationTypeId":MedicalExaminationTypeId,
-            "ClinicId":ClinicId ,
-            "SchedualDate":Filterdatef.string(from: SchedualDate)
-    ]
+            "Rate":Rate,
+            "Comment":Comment
+        ]
         return .parameterRequest(Parameters: Parameters, Encoding: JSONEncoding.default)
     }
     
     var header: [String : String]? {
-        return [:]
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
     }
 
     
-    func FetchDoctorDetails() {
+    func AddDocRate() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<DocDetails>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<rateSt>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.GetModelDocDetails.send( model!  )
+                        self.ModelFetchDoctors.send( model!  )
                     }
+                    isAlert = true
+                    activeAlert = .success
+                    message = publishedModelAddReview?.Statues ?? "Success"
 
                 }else{
                     if model != nil{

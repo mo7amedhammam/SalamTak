@@ -2,7 +2,7 @@
 //  ViewAddReview.swift
 //  SalamTech
 //
-//  Created by wecancity on 18/05/2022.
+//  Created by Mohamed Hammam on 18/05/2022.
 //
 
 import SwiftUI
@@ -20,12 +20,10 @@ struct ViewAddReview: View {
 
     var body: some View {
         ZStack{
-            
             VStack {
                 ScrollView{
                     VStack{
                     ZStack{
-                                
                                 VStack( spacing:0){
                                     
                                     VStack( ) {
@@ -188,7 +186,6 @@ struct ViewAddReview: View {
 
             
             CustomSheet(IsPresented: .constant(true), content: {
-       
                     Button(action: {
                         // add review
                         addReview()
@@ -222,18 +219,19 @@ struct ViewAddReview: View {
         .onAppear(perform: {
         })
    
-        
+ 
         // Alert with no internet connection
-            .alert(isPresented: $addRate.isNetworkError, content: {
-                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-        })
-        // Alert with no internet connection
-            .alert(addRate.errorMsg, isPresented: $addRate.isDone) {
-                Button("OK".localized(language), role: .cancel) {
-                            self.presentationMode.wrappedValue.dismiss()
-
-                        }
+            .alert(isPresented: $addRate.isAlert, content: {
+                Alert(title: Text(addRate.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    if addRate.activeAlert == .success{
+                    self.presentationMode.wrappedValue.dismiss()
+                        addRate.isAlert = false
+                    }else{
+                    addRate.isAlert = false
                     }
+                    }))
+            })
+
       
 
         

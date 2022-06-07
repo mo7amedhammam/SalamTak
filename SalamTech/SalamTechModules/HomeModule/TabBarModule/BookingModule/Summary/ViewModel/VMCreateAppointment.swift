@@ -1,51 +1,50 @@
 //
-//  ViewModelDocDetails.swift
+//  VMCreateAppointment.swift
 //  SalamTech
 //
-//  Created by Mohamed Hammam on 18/04/2022.
+//  Created by wecancity on 25/04/2022.
 //
-
 
 import Foundation
 import Combine
 import Alamofire
 import SwiftUI
 
-class ViewModelDocDetails: ObservableObject {
+class VMCreateAppointment: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let GetModelDocDetails = PassthroughSubject<BaseResponse<DocDetails> , Error>()
+    let GetModelCreateAppointment = PassthroughSubject<BaseResponse<Statusmodel> , Error>()
     private var cancellables: Set<AnyCancellable> = []
-    
+
     // ------- input
     @Published var DoctorId                            :Int = 0
-    @Published var MedicalExaminationTypeId              :Int = 0
-    @Published var ClinicId                               :Int = 0
-    @Published var SchedualDate                      : Date = Date()
+    @Published var DoctorWorkingDayTimeId              :Int = 0
+    @Published var AppointmentDate                       :String = ""
+    @Published var Fees                      : Double = 0.0
+    @Published var Comment                      : String = ""
+
+    @Published var publishedCreateAppointment: Statusmodel?
 
     //------- output
-    @Published var publishedModelSearchDoc: DocDetails?
-
+    @Published var isDone:Bool = false
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-
     
     init() {
-   
-        GetModelDocDetails.sink { (completion) in
+        GetModelCreateAppointment.sink { (completion) in
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
-            self.publishedModelSearchDoc = modeldata.data
+            self.publishedCreateAppointment = modeldata.data
         }.store(in: &cancellables)
     }
+ 
 }
 
-
-extension ViewModelDocDetails:TargetType{
+extension VMCreateAppointment:TargetType{
     var url: String{
-        return URLs().DoctorDetails
+        return URLs().CreatePatientAppointment
     }
     
     var method: httpMethod{
@@ -56,29 +55,34 @@ extension ViewModelDocDetails:TargetType{
         let Parameters : [String:Any] = [
         // required
             "DoctorId": DoctorId ,
-            "MedicalExaminationTypeId":MedicalExaminationTypeId,
-            "ClinicId":ClinicId ,
-            "SchedualDate":Filterdatef.string(from: SchedualDate)
+            "DoctorWorkingDayTimeId":DoctorWorkingDayTimeId,
+            "AppointmentDate":AppointmentDate ,
+            "Fees":Fees,
+            "Comment":Comment
     ]
+
         return .parameterRequest(Parameters: Parameters, Encoding: JSONEncoding.default)
     }
     
     var header: [String : String]? {
-        return [:]
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
     }
 
     
-    func FetchDoctorDetails() {
+    func CreatePatientAppointment() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<DocDetails>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<Statusmodel>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.GetModelDocDetails.send( model!  )
+                        self.GetModelCreateAppointment.send( model!  )
                     }
-
+                    isDone = true
+                    activeAlert = .success
+                    message = publishedCreateAppointment?.Statues ?? "Success"
                 }else{
                     if model != nil{
                         //case of model with error
