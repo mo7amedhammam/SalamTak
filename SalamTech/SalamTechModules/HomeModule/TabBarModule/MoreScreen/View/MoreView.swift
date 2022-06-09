@@ -15,7 +15,6 @@ struct MoreView: View {
     @State var aboutApp = false
     @State var TermsAndConditions = false
 
-    let screenWidth = UIScreen.main.bounds.size.width - 50
     @StateObject  var patientCreatedVM = ViewModelCreatePatientProfile()
 
     @AppStorage("language")
@@ -180,7 +179,6 @@ struct MoreView: View {
                             }
                         })
                     }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                        .frame(width: screenWidth)
                         .font(.system(size: 13))
                         .padding(12)
                         .disableAutocorrection(true)
