@@ -79,6 +79,7 @@ struct ServicesView: View {
                                                 
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         .padding(.horizontal,13)
+                        .padding(.vertical)
 
                     }.background(Color.clear)
                         .padding([.horizontal])
@@ -86,7 +87,7 @@ struct ServicesView: View {
                 .padding(.top,100)
             }
             
-//  -----  MARK: Top View Title -----
+//MARK: ----- Top View Title -----
             VStack{
             AppBarLogoView(imageName: "barlogo")
             Spacer()

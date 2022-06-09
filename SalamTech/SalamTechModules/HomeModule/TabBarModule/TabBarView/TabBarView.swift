@@ -18,7 +18,7 @@ struct TabBarView: View {
         NavigationView {
             GeometryReader{ bounds in
                 ZStack{
-                    VStack(spacing: 15){
+                    VStack(spacing: 0){
                         if selectedTab == TabBarVM.tabs[0] {
                             ServicesView()
 
@@ -28,7 +28,6 @@ struct TabBarView: View {
                         } else if selectedTab == TabBarVM.tabs[2] {
                             MoreView()
                         }
-                        Spacer()
                         HStack(spacing: 0){
                             Spacer()
                             ForEach(TabBarVM.tabs.indices ){tab in

@@ -40,11 +40,9 @@ struct ScheduleView: View {
                                             .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
                                         
                                     }
-                                    .padding(10)
-                                    .padding(.bottom,1)
-                                    .frame(width: 110, height: 30)
+                                    .frame(width: 110, height: 40)
                                     .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id  ? 1 : 0.3)
-                                                    .cornerRadius(3))
+                                                    .cornerRadius(8))
                                     .clipShape(Rectangle())
                                     })
                                 }

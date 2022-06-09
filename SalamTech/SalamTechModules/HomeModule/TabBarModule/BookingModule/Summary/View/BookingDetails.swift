@@ -24,7 +24,7 @@ struct BookingDetails: View {
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             
             HStack(){
-                Image("Appointments")
+                Image("TabBar_schedual")
                     .resizable()
                     .foregroundColor(Color("darkGreen"))
                     .frame(width: 25, height: 25)

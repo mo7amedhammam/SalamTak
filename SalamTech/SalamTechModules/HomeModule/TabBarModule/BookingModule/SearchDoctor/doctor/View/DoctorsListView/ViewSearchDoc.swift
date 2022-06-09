@@ -94,7 +94,6 @@ struct ViewSearchDoc: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack( spacing: 10) {
-                        // Swipe TabView
                         ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in
                             if type.id==0{ }else{
                                 Button(action: {
@@ -104,16 +103,15 @@ struct ViewSearchDoc: View {
                                 }, label: {
                                     HStack(alignment: .center){
                                         Text(type.Name ?? "")
-                                            .font(Font.SalamtechFonts.Reg14)
+                                            .font(Font.SalamtechFonts.Reg16)
                                             .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
                                         
                                     }
                                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                     .frame(minWidth: 100, maxWidth: 350)
-                                        .padding(10)
-                                        .padding(.bottom,1)
+                                    .frame(height: 40)
                                         .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
-                                                        .cornerRadius(5))
+                                                        .cornerRadius(8))
                                         .clipShape(Rectangle())
                                 })
 

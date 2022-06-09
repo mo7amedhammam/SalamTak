@@ -61,7 +61,7 @@ struct ViewDateAndTime: View {
                         ShowCalendar = true
                     }, label: {
                         HStack{
-                            Image("Appointments")
+                            Image("TabBar_schedual")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                             

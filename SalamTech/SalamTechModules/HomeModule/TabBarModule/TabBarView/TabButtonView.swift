@@ -18,7 +18,7 @@ struct TabButton: View{
             selectedTab = title
         }, label: {
             VStack(spacing: 6){
-                Image(title.localized(language))
+                Image(title)
                     .renderingMode(.template)
                     .resizable()
                     .foregroundColor(selectedTab == title ? Color("blueColor") : Color.black.opacity(0.2))
