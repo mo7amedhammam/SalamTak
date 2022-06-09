@@ -140,6 +140,7 @@
 		C85BD53D28478E1B0056B046 /* BaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD53C28478E1B0056B046 /* BaseNetwork.swift */; };
 		C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860838028045318001A0C39 /* ViewDocDetails.swift */; };
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
+		C86375C52850D3EB000687A9 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86375C42850D3EB000687A9 /* TabButtonView.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
 		C884E42E284BED52001382AC /* CancelAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884E42D284BED52001382AC /* CancelAppointmentView.swift */; };
 		C896512F284CD0C0000EAFF7 /* SpecialityBuBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */; };
@@ -343,6 +344,7 @@
 		C85BD53C28478E1B0056B046 /* BaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetwork.swift; sourceTree = "<group>"; };
 		C860838028045318001A0C39 /* ViewDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDocDetails.swift; sourceTree = "<group>"; };
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		C86375C42850D3EB000687A9 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		C884E42D284BED52001382AC /* CancelAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAppointmentView.swift; sourceTree = "<group>"; };
 		C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityBuBody.swift; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 			isa = PBXGroup;
 			children = (
 				0E586D3327F5B7BC00944F21 /* TabBarView.swift */,
+				C86375C42850D3EB000687A9 /* TabButtonView.swift */,
 			);
 			path = TabBarView;
 			sourceTree = "<group>";
@@ -1916,6 +1919,7 @@
 				C8B52BCE28355BE6009A89AC /* MAddReview.swift in Sources */,
 				0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */,
 				C8965138284CD856000EAFF7 /* doctorCellView.swift in Sources */,
+				C86375C52850D3EB000687A9 /* TabButtonView.swift in Sources */,
 				C89A6BAD284FCAC100BF37C9 /* PatientDetails.swift in Sources */,
 				0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */,
 				0E33B26C280599E600CF35E5 /* UpdateMedicalStateApiService.swift in Sources */,

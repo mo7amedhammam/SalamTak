@@ -2,7 +2,7 @@
 //  ViewSummary.swift
 //  SalamTech
 //
-//  Created by wecancity on 17/04/2022.
+//  Created by Mohamed Hammam on 17/04/2022.
 //
 
 
@@ -98,7 +98,7 @@ struct ViewSummary:View{
             
             
             //      go to clinic info
-            NavigationLink(destination:TabBarView(selectedTab1:"TabBar_schedual"),isActive: $GotoSchedual) {
+            NavigationLink(destination:TabBarView(selectedTab:"TabBar_schedual"),isActive: $GotoSchedual) {
             }
             
             //      go to clinic info

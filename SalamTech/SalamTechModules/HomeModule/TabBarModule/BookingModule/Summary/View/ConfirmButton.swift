@@ -2,7 +2,7 @@
 //  ConfirmButton.swift
 //  SalamTak
 //
-//  Created by wecancity on 07/06/2022.
+//  Created by Mohamed Hammam on 07/06/2022.
 //
 
 import Foundation
@@ -15,7 +15,8 @@ struct ConfirmButton: View {
     var body: some View {
         HStack{
             ZStack() {
-                Text("\(String(Doctor.FeesFrom ?? 0.0))")                                .font(.system(size: 18))
+                Text("\(String(Doctor.FeesFrom ?? 0.0))")
+                    .font(.system(size: 18))
                     .padding(.top,-20)
                 
                 Text("\n"+"EGP".localized(language))
@@ -27,7 +28,6 @@ struct ConfirmButton: View {
             .padding(.leading)
             Button(action: {
                 // Create patient appointment
-                //                        CreateAppointment.isLoading = true
                 DispatchQueue.main.async{
                     CreateAppointment.CreatePatientAppointment()
                 }

@@ -2,7 +2,7 @@
 //  BookingDetails.swift
 //  SalamTak
 //
-//  Created by wecancity on 07/06/2022.
+//  Created by Mohamed Hammam on 07/06/2022.
 //
 
 import Foundation
