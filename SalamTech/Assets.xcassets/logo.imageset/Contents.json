@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "logo.png",
+      "filename" : "Salamtech-Final-Logo-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Group 512531_6@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Group 512531_6@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

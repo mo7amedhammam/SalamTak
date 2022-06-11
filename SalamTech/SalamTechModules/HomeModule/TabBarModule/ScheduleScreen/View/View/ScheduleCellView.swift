@@ -22,6 +22,7 @@ struct ScheduleCellView: View {
                     }
                 }
             }
+
             
             if scheduleVM.noschedules == true{
                 Text("Sorry,\nNo_Scheduales_Found_🤷‍♂️".localized(language))
@@ -44,6 +45,6 @@ struct ScheduleCellView: View {
 
 struct ScheduleCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleCellView()
+        ScheduleCellView().environmentObject(ViewModelGetAppointmentInfo())
     }
 }

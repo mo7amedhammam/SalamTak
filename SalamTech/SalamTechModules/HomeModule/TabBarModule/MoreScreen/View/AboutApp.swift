@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  AboutApp.swift
 //  SalamTak
 //
-//  Created by wecancity on 26/05/2022.
+//  Created by Mohamed Hammam on 26/05/2022.
 //
 
 import Foundation
@@ -20,14 +20,11 @@ struct AboutApp: View {
             ScrollView{
                 Text(abouttext.localized(language))
                     .foregroundColor(Color("blueColor"))                    .multilineTextAlignment(.center)
-//                    .frame(height: UIScreen.main.bounds.height)4
-            }                    .padding([.vertical,.horizontal],20)
-
+            }
+            .padding([.vertical,.horizontal],20)
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
-
-//        .edgesIgnoringSafeArea(.all)
      
     }
 }

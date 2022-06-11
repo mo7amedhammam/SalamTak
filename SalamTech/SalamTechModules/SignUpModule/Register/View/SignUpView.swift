@@ -31,7 +31,7 @@ struct ViewSignUp: View {
 //                                .navigationBarItems(leading: BackButtonView())
                                 .navigationBarHidden(true)
                                 .navigationBarBackButtonHidden(true)
-                            Image("logoWelcome")
+                            Image("logo")
                                     .resizable()
                                     .frame(width: 110, height: 110, alignment: .center)
                                     .padding(.top, 30)

@@ -13,8 +13,9 @@ struct ChooseNationality : View {
     //    @StateObject var checkModel = CheckBoxViewModel()
     @ObservedObject private var patientCreatedVM = ViewModelCreatePatientProfile()
 
-    @StateObject var NationalityVM = ViewModelCountries()
-    
+//    @StateObject var NationalityVM = ViewModelCountries()
+    @EnvironmentObject var NationalityVM : ViewModelCountries
+
     @Binding var IsPresented: Bool
     @State public var buttonSelected: Int?
     

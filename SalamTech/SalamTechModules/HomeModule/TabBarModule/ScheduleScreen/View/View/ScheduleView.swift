@@ -24,12 +24,10 @@ struct ScheduleView: View {
                             .frame(height: 150)
                             .padding(.bottom, -40)
                         
-                       
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack( spacing: 20){
                                 ForEach(medicalType.publishedModelExaminationTypeId){ type in
                                     Button(action: {
-                                    
                                     withAnimation{
                                         self.index = type.id ?? 1
                                     }

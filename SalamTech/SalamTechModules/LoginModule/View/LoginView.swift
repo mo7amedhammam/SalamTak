@@ -46,7 +46,7 @@ struct ViewLogin: View {
                         .navigationBarHidden(true)
                     Spacer()
 
-                    Image("logoWelcome")
+                    Image("logo")
                             .foregroundColor(.black)
 
                     if language.rawValue == "en" {

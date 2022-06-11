@@ -36,6 +36,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     @Published var appointmentMethod : appointmentsReq = .getappointments
     
      init() {
+         execute(operation: .getappointments)
          
          passthroughModelGetSubject.sink { (completion) in
         } receiveValue: { [self] (modeldata) in

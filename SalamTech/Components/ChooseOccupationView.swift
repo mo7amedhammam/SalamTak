@@ -13,7 +13,9 @@ struct ChooseOccupation : View {
     //    @StateObject var checkModel = CheckBoxViewModel()
     @ObservedObject private var patientCreatedVM = ViewModelCreatePatientProfile()
 
-    @StateObject var OccupationVM = ViewModelOccupation()
+//    @StateObject var OccupationVM = ViewModelOccupation()
+    @EnvironmentObject var OccupationVM : ViewModelOccupation
+
     
     @Binding var IsPresented: Bool
     @State public var buttonSelected: Int?

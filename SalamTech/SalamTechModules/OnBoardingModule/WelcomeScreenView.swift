@@ -60,7 +60,7 @@ struct WelcomeScreenView: View {
 //
             Spacer()
             VStack{
-                Image("logoWelcome")
+                Image("logo")
                         .resizable()
                         .frame(width: 180, height: 180, alignment: .center)
                         .padding(.top, 50)

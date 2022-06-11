@@ -1,7 +1,7 @@
 //  SalamtakWebView.swift
 //  Salamtak-DR
 //
-//  Created by wecancity on 26/05/2022.
+//  Created by Mohmed Hammam on 26/05/2022.
 //
 import UIKit
 import SwiftUI
