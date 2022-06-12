@@ -39,50 +39,50 @@ struct UpdatePersonalDataView: View {
     @StateObject var OccupationVM = ViewModelOccupation()
     var body: some View {
         ZStack{
-                ZStack{
-                    VStack{
-                        ZStack{
-                            VStack{
-                                
-                                ScrollView(.vertical, showsIndicators: false) {
-                                    VStack{
+            ZStack{
+                VStack{
+                    ZStack{
+                        VStack{
+                            
+                            ScrollView(.vertical, showsIndicators: false) {
+                                VStack{
+                                    ZStack {
                                         ZStack {
-                                            ZStack {
-                                                Button(action: {
-                                                    
-                                                }, label: {
-                                                    if patientUpdatedVM.ImageUrl != "" {
-                                                        KFImage(URL(string: URLs.BaseUrl + "\(patientUpdatedVM.ImageUrl)"))
-                                                            .resizable()
-                                                            .scaledToFill()
-                                                            .background(Color.clear)
-                                                    } else {
-                                                        Image(uiImage: patientUpdatedVM.profileImage )
-                                                            .resizable()
-                                                            .foregroundColor(Color("blueColor"))
-                                                            .clipShape(Rectangle())
-                                                    }
-                                                })
-                                            }
-                                            .frame(width: 70, height: 70, alignment: .center)
-                                            .background(Image(systemName: "camera")
-                                                            .resizable()
-                                                            .foregroundColor(Color("blueColor").opacity(0.4))
-                                                            .frame(width: 25, height: 25)
-                                                            .background(Rectangle()
-                                                                            .frame(width:70,height:70)
-                                                                            .foregroundColor(Color("lightGray")).opacity(0.3)
-                                                                            .cornerRadius(4))
-                                            )
-                                            .cornerRadius(10)
-
-                                        } .frame(width: 90, height: 90, alignment: .center)
-                                            .background(Color.clear)
-                                        Spacer().frame(height: 20)
+                                            Button(action: {
+                                                
+                                            }, label: {
+                                                if patientUpdatedVM.ImageUrl != "" {
+                                                    KFImage(URL(string: URLs.BaseUrl + "\(patientUpdatedVM.ImageUrl)"))
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .background(Color.clear)
+                                                } else {
+                                                    Image(uiImage: patientUpdatedVM.profileImage )
+                                                        .resizable()
+                                                        .foregroundColor(Color("blueColor"))
+                                                        .clipShape(Rectangle())
+                                                }
+                                            })
+                                        }
+                                        .frame(width: 70, height: 70, alignment: .center)
+                                        .background(Image(systemName: "camera")
+                                                        .resizable()
+                                                        .foregroundColor(Color("blueColor").opacity(0.4))
+                                                        .frame(width: 25, height: 25)
+                                                        .background(Rectangle()
+                                                                        .frame(width:70,height:70)
+                                                                        .foregroundColor(Color("lightGray")).opacity(0.3)
+                                                                        .cornerRadius(4))
+                                        )
+                                        .cornerRadius(10)
                                         
-                                        VStack{
-                                            HStack(spacing: 10){
-                                                Group{
+                                    } .frame(width: 90, height: 90, alignment: .center)
+                                        .background(Color.clear)
+                                    Spacer().frame(height: 20)
+                                    
+                                    VStack{
+                                        HStack(spacing: 10){
+                                            Group{
                                                 if !patientUpdatedVM.errorFirstName.isEmpty{
                                                     Text(patientUpdatedVM.errorFirstName)
                                                 }
@@ -93,268 +93,257 @@ struct UpdatePersonalDataView: View {
                                                     Text(patientUpdatedVM.errorMiddelName)
                                                 }
                                                 
-                                                }    .font(.system(size: 13))
-                                                    .padding(.horizontal,20)
-                                                    .foregroundColor(.red)
-                                                    .frame(maxWidth:screenWidth, alignment: .leading)
-                                                
-                                            }
+                                            }    .font(.system(size: 13))
+                                                .padding(.horizontal,20)
+                                                .foregroundColor(.red)
+                                                .frame(maxWidth:screenWidth, alignment: .leading)
                                             
-                                            HStack (spacing: 10){
-                                                Group{
+                                        }
+                                        
+                                        HStack (spacing: 10){
+                                            Group{
                                                 InputTextFieldInfo( text: $patientUpdatedVM.FirstName,title: "First Name(*)")
                                                 InputTextFieldInfo( text: $patientUpdatedVM.MiddelName,title: "Middle Name(*)")
                                                 InputTextFieldInfo( text: $patientUpdatedVM.FamilyName,title: "Last Name(*)")
                                             }
-                                                .focused($isfocused)
-                                            }
-                                        }
-                                        Spacer().frame(height: 20)
-                                        
-                                        VStack{
-                                            HStack(spacing: 10){
-                                                Group{
-                                                if !patientUpdatedVM.errorFirstNameAr.isEmpty{
-                                                    Text(patientUpdatedVM.errorFirstNameAr)
-                                                }
-                                                    
-                                                if !patientUpdatedVM.errorMiddelNameAr.isEmpty{
-                                                    Text(patientUpdatedVM.errorMiddelNameAr)
-                                                }
-                                                    
-                                                if !patientUpdatedVM.errorLastNameAr.isEmpty{
-                                                    Text(patientUpdatedVM.errorLastNameAr)
-                                                }
-                                                    
-                                                }.font(.system(size: 13))
-                                                    .padding(.horizontal,20)
-                                                    .foregroundColor(.red)
-                                                    .frame(maxWidth:screenWidth, alignment: .leading)
-                                            }
-                                            
-                                            HStack (spacing: 10){
-                                                Group{
-                                                InputTextFieldInfoArabic( text: $patientUpdatedVM.FamilyNameAr,title: "الاسم الاخير(*)")
-                                       
-                                                InputTextFieldInfoArabic( text: $patientUpdatedVM.MiddelNameAr,title: "الاسم الأوسط(*)")
-                                             
-                                                InputTextFieldInfoArabic( text: $patientUpdatedVM.FirstNameAr,title: "الاسم الأول(*)")
-                                                 
-                                                }   .focused($isfocused)
-                                                    .autocapitalization(.none)
-                                                
-                                            }
+                                            .focused($isfocused)
                                         }
                                     }
                                     Spacer().frame(height: 20)
+                                    
                                     VStack{
-                                        DateOfBirthView(date: $patientUpdatedVM.date)
-                                        
-                                        Spacer().frame(height: 20)
-                                        
-                                        VStack{
-                                            Button {
-                                                withAnimation {
-                                                    ShowNationality.toggle()
-                                                }
-                                            } label: {
-                                                HStack{
-                                                    Text(patientUpdatedVM.NationalityName)
-                                                        .foregroundColor(Color("lightGray"))
-                                                    
-                                                    Spacer()
-                                                    Image(systemName: "staroflife.fill")
-                                                        .font(.system(size: 10))
-                                                        .foregroundColor(patientUpdatedVM.NationalityName == "" ? Color.red : Color.white)
-                                                    Image(systemName: "chevron.forward")
-                                                        .foregroundColor(Color("lightGray"))
-                                                }
-                                                .frame(width: screenWidth, height: 30)
-                                                .font(.system(size: 13))
-                                                .padding(12)
-                                                .disableAutocorrection(true)
-                                                .background(
-                                                    Color.white
-                                                ).foregroundColor(Color("blueColor"))
-                                                    .cornerRadius(5)
-                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
-                                            }
-                                            Button {
-                                                withAnimation {
-                                                    ShowCity.toggle()
-                                                }
-                                                
-                                            } label: {
-                                                HStack{
-                                                    Text(patientUpdatedVM.cityName == "" ? "Clinic_Screen_city".localized(language): patientUpdatedVM.cityName) // needs to handle get country by id
-                                                        .foregroundColor(patientUpdatedVM.cityName == "" ?  Color("lightGray") : Color("blueColor"))
-                                                    
-                                                    Spacer()
-                                                    Image(systemName: "staroflife.fill")
-                                                        .font(.system(size: 10))
-                                                        .foregroundColor(patientUpdatedVM.cityName == "" ? Color.red : Color.white)
-                                                    Image(systemName: "chevron.forward")
-                                                        .foregroundColor(Color("lightGray"))
-                                                }
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .frame(width: screenWidth, height: 30)
-                                                .font(.system(size: 13))
-                                                .padding(12)
-                                                .disableAutocorrection(true)
-                                                .background(
-                                                    Color.white
-                                                ).foregroundColor(Color("blueColor"))
-                                                    .cornerRadius(5)
-                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
-                                            }
-
-                                            Button {
-                                                withAnimation {
-                                                    ShowArea.toggle()
-                                                }
-                                            } label: {
-                                                HStack{
-                                                    Text(patientUpdatedVM.areaName == "" ? "Clinic_Screen_area".localized(language):patientUpdatedVM.areaName) // needs to handle get country by id
-                                                        .foregroundColor(patientUpdatedVM.areaName == "" ? Color("lightGray"):Color("blueColor"))
-                                                    
-                                                    Spacer()
-                                                    Image(systemName: "staroflife.fill")
-                                                        .font(.system(size: 10))
-                                                        .foregroundColor(patientUpdatedVM.areaName == "" ? Color.red : Color.white)
-                                                    Image(systemName: "chevron.forward")
-                                                        .foregroundColor(Color("lightGray"))
-                                                }
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .frame(width: screenWidth, height: 30)
-                                                .font(.system(size: 13))
-                                                .padding(12)
-                                                .disableAutocorrection(true)
-                                                .background(
-                                                    Color.white
-                                                ).foregroundColor(Color("blueColor"))
-                                                    .cornerRadius(5)
-                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
-                                            }
-                                        }
-                                        Spacer().frame(height: 20)
-                                        InputTextField(text: $patientUpdatedVM.EmergencyContact, title: "Emergency Contact (Required)")
-                                            .focused($isfocused)
-                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                            .autocapitalization(.none)
-                                            .keyboardType(.numberPad)
-                                            .textInputAutocapitalization(.never)
-                                        Spacer().frame(height: 20)
-                                        GenderView(selection: $patientUpdatedVM.GenderId)
-                                        Spacer().frame(height: 20)
-                                        TrackingView()
-                                            .environmentObject(locationViewModel)
-                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                            .onTapGesture(perform: {
-                                                ShowingMap = true
-                                                if patientUpdatedVM.Longitude == 0.0 {
-                                                    patientUpdatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
-                                                }
-                                                if patientUpdatedVM.Latitude == 0.0 {
-                                                    patientUpdatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
-                                                }
-                                            })
-                                        VStack{
-                                            Button {
-                                                withAnimation {
-                                                    ShowOccupation.toggle()
-                                                }
-                                                
-                                            } label: {
-                                                HStack{
-                                                    Text(patientUpdatedVM.occupationName)
-                                                        .foregroundColor(Color("lightGray"))
-                                                    
-                                                    Spacer()
-                                                    Image(systemName: "staroflife.fill")
-                                                        .font(.system(size: 10))
-                                                        .foregroundColor(patientUpdatedVM.occupationName == "" ? Color.red : Color.white)
-                                                    Image(systemName: "chevron.forward")
-                                                        .foregroundColor(Color("lightGray"))
-                                                }
-                                                .frame(width: screenWidth, height: 30)
-                                                .font(.system(size: 13))
-                                                .padding(12)
-                                                .disableAutocorrection(true)
-                                                .background(
-                                                    Color.white
-                                                ).foregroundColor(Color("blueColor"))
-                                                    .cornerRadius(5)
-                                                    .shadow(color: Color.black.opacity(0.099), radius: 3)
-                                            }
-                                            
+                                        HStack(spacing: 10){
                                             Group{
-                                            InputTextField(text: $patientUpdatedVM.Address, title: "Clinic_Screen_street".localized(language))
-                                            
-                                            InputTextField(text: $patientUpdatedVM.BlockNo, title: "Clinic_Screen_building".localized(language))
-
-                                            InputTextField(text: $patientUpdatedVM.FloorNo.string(), title: "Clinic_Screen_floor".localized(language))
-                                                .keyboardType(.numberPad)
-                                             
-                                            InputTextField(text: $patientUpdatedVM.ApartmentNo, title: "Apartment Number".localized(language))
+                                                if !patientUpdatedVM.errorFirstNameAr.isEmpty{
+                                                    Text(patientUpdatedVM.errorFirstNameAr)
+                                                }
                                                 
-                                            }
-                                            .focused($isfocused)
-                                            .autocapitalization(.none)
-                                            .textInputAutocapitalization(.never)
-                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                                if !patientUpdatedVM.errorMiddelNameAr.isEmpty{
+                                                    Text(patientUpdatedVM.errorMiddelNameAr)
+                                                }
+                                                
+                                                if !patientUpdatedVM.errorLastNameAr.isEmpty{
+                                                    Text(patientUpdatedVM.errorLastNameAr)
+                                                }
+                                                
+                                            }.font(.system(size: 13))
+                                                .padding(.horizontal,20)
+                                                .foregroundColor(.red)
+                                                .frame(maxWidth:screenWidth, alignment: .leading)
+                                        }
+                                        
+                                        HStack (spacing: 10){
+                                            Group{
+                                                InputTextFieldInfoArabic( text: $patientUpdatedVM.FamilyNameAr,title: "الاسم الاخير(*)")
+                                                
+                                                InputTextFieldInfoArabic( text: $patientUpdatedVM.MiddelNameAr,title: "الاسم الأوسط(*)")
+                                                
+                                                InputTextFieldInfoArabic( text: $patientUpdatedVM.FirstNameAr,title: "الاسم الأول(*)")
+                                                
+                                            }   .focused($isfocused)
+                                                .autocapitalization(.none)
+                                            
                                         }
                                     }
                                 }
-                                
-                                Spacer()
-                                ButtonView(text: "Update Profile", action: {
-                                    patientUpdatedVM.startUpdatePatientProfile()
-                                })
+                                Spacer().frame(height: 20)
+                                VStack{
+                                    DateOfBirthView(date: $patientUpdatedVM.date)
+                                    
+                                    Spacer().frame(height: 20)
+                                    
+                                    VStack{
+                                        Button {
+                                            withAnimation {
+                                                ShowNationality.toggle()
+                                            }
+                                        } label: {
+                                            HStack{
+                                                Text(patientUpdatedVM.NationalityName)
+                                                    .foregroundColor(Color("lightGray"))
+                                                
+                                                Spacer()
+                                                Image(systemName: "staroflife.fill")
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(patientUpdatedVM.NationalityName == "" ? Color.red : Color.white)
+                                                Image(systemName: "chevron.forward")
+                                                    .foregroundColor(Color("lightGray"))
+                                            }
+                                            .frame(width: screenWidth, height: 30)
+                                            .font(.system(size: 13))
+                                            .padding(12)
+                                            .disableAutocorrection(true)
+                                            .background(
+                                                Color.white
+                                            ).foregroundColor(Color("blueColor"))
+                                                .cornerRadius(5)
+                                                .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                        }
+                                        Button {
+                                            withAnimation {
+                                                ShowCity.toggle()
+                                            }
+                                            
+                                        } label: {
+                                            HStack{
+                                                Text(patientUpdatedVM.cityName == "" ? "Clinic_Screen_city".localized(language): patientUpdatedVM.cityName) // needs to handle get country by id
+                                                    .foregroundColor(patientUpdatedVM.cityName == "" ?  Color("lightGray") : Color("blueColor"))
+                                                
+                                                Spacer()
+                                                Image(systemName: "staroflife.fill")
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(patientUpdatedVM.cityName == "" ? Color.red : Color.white)
+                                                Image(systemName: "chevron.forward")
+                                                    .foregroundColor(Color("lightGray"))
+                                            }
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                            .frame(width: screenWidth, height: 30)
+                                            .font(.system(size: 13))
+                                            .padding(12)
+                                            .disableAutocorrection(true)
+                                            .background(
+                                                Color.white
+                                            ).foregroundColor(Color("blueColor"))
+                                                .cornerRadius(5)
+                                                .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                        }
+                                        
+                                        Button {
+                                            withAnimation {
+                                                ShowArea.toggle()
+                                            }
+                                        } label: {
+                                            HStack{
+                                                Text(patientUpdatedVM.areaName == "" ? "Clinic_Screen_area".localized(language):patientUpdatedVM.areaName) // needs to handle get country by id
+                                                    .foregroundColor(patientUpdatedVM.areaName == "" ? Color("lightGray"):Color("blueColor"))
+                                                
+                                                Spacer()
+                                                Image(systemName: "staroflife.fill")
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(patientUpdatedVM.areaName == "" ? Color.red : Color.white)
+                                                Image(systemName: "chevron.forward")
+                                                    .foregroundColor(Color("lightGray"))
+                                            }
+                                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                            .frame(width: screenWidth, height: 30)
+                                            .font(.system(size: 13))
+                                            .padding(12)
+                                            .disableAutocorrection(true)
+                                            .background(
+                                                Color.white
+                                            ).foregroundColor(Color("blueColor"))
+                                                .cornerRadius(5)
+                                                .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                        }
+                                    }
+                                    Spacer().frame(height: 20)
+                                    InputTextField(text: $patientUpdatedVM.EmergencyContact, title: "Emergency Contact (Required)")
+                                        .focused($isfocused)
+                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                        .autocapitalization(.none)
+                                        .keyboardType(.numberPad)
+                                        .textInputAutocapitalization(.never)
+                                    Spacer().frame(height: 20)
+                                    GenderView(selection: $patientUpdatedVM.GenderId)
+                                    Spacer().frame(height: 20)
+                                    TrackingView()
+                                        .environmentObject(locationViewModel)
+                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                        .onTapGesture(perform: {
+                                            ShowingMap = true
+                                            if patientUpdatedVM.Longitude == 0.0 {
+                                                patientUpdatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
+                                            }
+                                            if patientUpdatedVM.Latitude == 0.0 {
+                                                patientUpdatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
+                                            }
+                                        })
+                                    VStack{
+                                        Button {
+                                            withAnimation {
+                                                ShowOccupation.toggle()
+                                            }
+                                            
+                                        } label: {
+                                            HStack{
+                                                Text(patientUpdatedVM.occupationName)
+                                                    .foregroundColor(Color("lightGray"))
+                                                
+                                                Spacer()
+                                                Image(systemName: "staroflife.fill")
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(patientUpdatedVM.occupationName == "" ? Color.red : Color.white)
+                                                Image(systemName: "chevron.forward")
+                                                    .foregroundColor(Color("lightGray"))
+                                            }
+                                            .frame(width: screenWidth, height: 30)
+                                            .font(.system(size: 13))
+                                            .padding(12)
+                                            .disableAutocorrection(true)
+                                            .background(
+                                                Color.white
+                                            ).foregroundColor(Color("blueColor"))
+                                                .cornerRadius(5)
+                                                .shadow(color: Color.black.opacity(0.099), radius: 3)
+                                        }
+                                        
+                                        Group{
+                                            InputTextField(text: $patientUpdatedVM.Address, title: "Clinic_Screen_street".localized(language))
+                                            
+                                            InputTextField(text: $patientUpdatedVM.BlockNo, title: "Clinic_Screen_building".localized(language))
+                                            
+                                            InputTextField(text: $patientUpdatedVM.FloorNo.string(), title: "Clinic_Screen_floor".localized(language))
+                                                .keyboardType(.numberPad)
+                                            
+                                            InputTextField(text: $patientUpdatedVM.ApartmentNo, title: "Apartment Number".localized(language))
+                                            
+                                        }
+                                        .focused($isfocused)
+                                        .autocapitalization(.none)
+                                        .textInputAutocapitalization(.never)
+                                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                    }
+                                }
                             }
+                            
+                            Spacer()
+                            ButtonView(text: "Update Profile", action: {
+                                patientUpdatedVM.startUpdatePatientProfile()
+                            })
                         }
                     }
-                    .ignoresSafeArea()
-                    .background(Color("CLVBG"))
-                    .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 10 : 0)
-//                    .onTapGesture(perform: {
-//                       ShowNationality = false
-//                        ShowCity = false
-//                        ShowArea = false
-//                        ShowOccupation = false
-//                    })
-                    .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
-
-                    if ShowNationality {
-                        ShowUpdateNationalityList(ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
-                            .environmentObject(patientUpdatedVM)
-                            .environmentObject(NationalityVM)
-
-                    }
-                    else if ShowCity{
-                        ShowUpdateCityList( ShowCity: $ShowCity , bounds: $bounds, offset: $offset)
-                            .environmentObject(patientUpdatedVM)
-
-                    }
-                    else if ShowArea {
-                        ShowUpdateAreaList(ShowArea:$ShowArea,bounds: $bounds, offset: $offset)
-                            .environmentObject(patientUpdatedVM)
-                   
-
-                    }
-                    else if ShowOccupation {
-                        ShowUpdateOccupationList(ShowOccupation:$ShowOccupation,bounds: $bounds, offset: $offset)
-                            .environmentObject(patientUpdatedVM)
-                            .environmentObject(OccupationVM)
-
-                    }
-                                        
                 }
-                .onAppear(perform: {
-                    NationalityVM.startFetchCountries()
-                    OccupationVM.startFetchOccupation()
-                    patientUpdatedVM.startFetchPatientProfile()
-                })
+                .ignoresSafeArea()
+                .background(Color("CLVBG"))
+                .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 10 : 0)
+                .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
                 
+                if ShowNationality {
+                    ShowUpdateNationalityList(ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
+                        .environmentObject(patientUpdatedVM)
+                        .environmentObject(NationalityVM)
+                    
+                }
+                else if ShowCity{
+                    ShowUpdateCityList( ShowCity: $ShowCity , bounds: $bounds, offset: $offset)
+                        .environmentObject(patientUpdatedVM)
+                    
+                }
+                else if ShowArea {
+                    ShowUpdateAreaList(ShowArea:$ShowArea,bounds: $bounds, offset: $offset)
+                        .environmentObject(patientUpdatedVM)
+                    
+                    
+                }
+                else if ShowOccupation {
+                    ShowUpdateOccupationList(ShowOccupation:$ShowOccupation,bounds: $bounds, offset: $offset)
+                        .environmentObject(patientUpdatedVM)
+                        .environmentObject(OccupationVM)
+                    
+                }
+                
+            }
+            
             .toolbar{
                 ToolbarItemGroup(placement: .keyboard ){
                     Spacer()
@@ -389,6 +378,12 @@ struct UpdatePersonalDataView: View {
             // showing loading indicator
             ActivityIndicatorView(isPresented: $patientUpdatedVM.isLoading)
         }
+        .onAppear(perform: {
+            NationalityVM.startFetchCountries()
+            OccupationVM.startFetchOccupation()
+            patientUpdatedVM.startFetchPatientProfile()
+        })
+        
         .navigationViewStyle(StackNavigationViewStyle())
         
         // Alert with no internet connection
@@ -440,12 +435,12 @@ struct ShowUpdateNationalityList: View {
     @Binding var ShowNationality:Bool
     @Binding var bounds : CGRect
     @Binding var offset:CGSize
-
+    
     var body: some View {
         ZStack {
             ChooseNationality( IsPresented: $ShowNationality, SelectedNationalityName: $patientUpdatedVM.NationalityName, SelectedNationalityId: $patientUpdatedVM.NationalityId, width: bounds.size.width)
                 .environmentObject(NationalityVM)
-
+            
         }
         .transition(.move(edge: .bottom))
         .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
@@ -455,7 +450,7 @@ struct ShowUpdateNationalityList: View {
                     self.offset.height = gesture.translation.height
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowNationality.toggle()
                         }
@@ -473,7 +468,7 @@ struct ShowUpdateCityList: View {
     @Binding var ShowCity:Bool
     @Binding var bounds : CGRect
     @Binding var offset:CGSize
-
+    
     var body: some View {
         ZStack {
             // needs to handle get country by id
@@ -487,7 +482,7 @@ struct ShowUpdateCityList: View {
                     self.offset.height = gesture.translation.height
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowCity = false
                         }
@@ -497,7 +492,7 @@ struct ShowUpdateCityList: View {
                     }
                 }
         )
-
+        
     }
 }
 
@@ -506,9 +501,9 @@ struct ShowUpdateAreaList: View {
     @Binding var ShowArea:Bool
     @Binding var bounds : CGRect
     @Binding var offset:CGSize
-
+    
     var body: some View {
-           ZStack {
+        ZStack {
             // needs to handle get country by id
             ChooseArea(IsPresented:$ShowArea,SelectedAreaName:$patientUpdatedVM.areaName, SelectedAreaId: $patientUpdatedVM.AreaId,SelectedCityId: $patientUpdatedVM.CityId , width: bounds.size.width )
             
@@ -522,7 +517,7 @@ struct ShowUpdateAreaList: View {
                     
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowArea = false
                         }
@@ -533,21 +528,21 @@ struct ShowUpdateAreaList: View {
                 }
             
         )
-
-
+        
+        
     }
 }
 
 struct ShowUpdateOccupationList: View {
     @EnvironmentObject var patientUpdatedVM : ViewModelUpdatePatientProfile
     @EnvironmentObject var OccupationVM : ViewModelOccupation
-
+    
     @Binding var ShowOccupation:Bool
     @Binding var bounds : CGRect
     @Binding var offset:CGSize
-
+    
     var body: some View {
- 
+        
         ZStack {
             // needs to handle get country by id
             ChooseOccupation(IsPresented: $ShowOccupation, SelectedOccupationName: $patientUpdatedVM.occupationName, SelectedOccupationId: $patientUpdatedVM.OccupationId, width: bounds.size.width).environmentObject(OccupationVM)
@@ -562,7 +557,7 @@ struct ShowUpdateOccupationList: View {
                     
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowOccupation = false
                         }
@@ -573,8 +568,8 @@ struct ShowUpdateOccupationList: View {
                 }
             
         )
-
-
+        
+        
     }
 }
 

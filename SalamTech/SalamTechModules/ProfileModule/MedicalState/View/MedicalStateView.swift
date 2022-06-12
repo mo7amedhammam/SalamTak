@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicalStateView: View {
     var language = LocalizationService.shared.language
-   
+    @State var bounds = UIScreen.main.bounds
     @State var offset = CGSize.zero
     @FocusState private var isfocused : Bool
     let screenWidth = UIScreen.main.bounds.size.width - 55
@@ -46,21 +46,20 @@ struct MedicalStateView: View {
                                     VStack{
                                         Spacer().frame(height: 30)
                                         HStack(spacing: 40){
+                                            Group{
                                             InputTextFieldMedicalInfo(text: $medicalCreatedVM.Height.string(), title: "Height")
-                                                .focused($isfocused)
-                                                .keyboardType(.numberPad)
+                                     
                                             InputTextFieldMedicalInfo(text: $medicalCreatedVM.Weight.string(), title: "Weight")
-                                                .focused($isfocused)
+                                        }  .focused($isfocused)
                                                 .keyboardType(.numberPad)
                                         }
                                         Spacer().frame(height: 20)
-                                        
+                                        Group{
                                         MedicalTextFieldInfo(text: $medicalCreatedVM.Pressure, text1: $normalPressure, title: "Pressure(MM/HG)")
-                                            .focused($isfocused)
-                                            .keyboardType(.numberPad)
+                                          
                                         Spacer().frame(height: 20)
                                         MedicalTextFieldInfo(text: $medicalCreatedVM.SugarLevel, text1: $normalSugar, title: "Sugar Level(MG/DL)")
-                                            .focused($isfocused)
+                                    }  .focused($isfocused)
                                             .keyboardType(.numberPad)
                                         
                                         Spacer().frame(height: 20)
@@ -73,7 +72,6 @@ struct MedicalStateView: View {
                                                 }
                                                 withAnimation {
                                                     ShowBloodType.toggle()
-                                                    
                                                 }
                                                 
                                             } label: {
@@ -88,7 +86,6 @@ struct MedicalStateView: View {
                                                     Image(systemName: "chevron.forward")
                                                         .foregroundColor(Color("lightGray"))
                                                 }
-                                                .animation(.default)
                                                 .frame(width: screenWidth, height: 30)
                                                 .font(.system(size: 13))
                                                 .padding(12)
@@ -110,11 +107,9 @@ struct MedicalStateView: View {
                                                 }else {
                                                     isValid = false
                                                 }
-                                                
                                                 withAnimation {
                                                     ShowFoodAllergy.toggle()
                                                 }
-                                                
                                             } label: {
                                                 HStack{
                                                     Text( medicalCreatedVM.PatientFoodAllergiesName.isEmpty ? "Food Allergies" : medicalCreatedVM.PatientFoodAllergiesName.joined(separator: ",")) .font(Font.SalamtechFonts.Reg14)
@@ -125,8 +120,6 @@ struct MedicalStateView: View {
                                                         .foregroundColor(Color("lightGray"))
                                                 }
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-    //                                            .animation(.default)
-                                                .animation(.default)
                                                 .frame(width: screenWidth, height: 30)
                                                 .font(.system(size: 13))
                                                 .padding(12)
@@ -139,11 +132,9 @@ struct MedicalStateView: View {
                                             }
                                             
                                             Button {
-                                                
                                                 withAnimation {
                                                     ShowMedicineAllergy.toggle()
                                                 }
-                                                
                                             } label: {
                                                 HStack{
                                                     Text( medicalCreatedVM.PatientMedicineAllergiesName.isEmpty ? "Medicine Allergies" : medicalCreatedVM.PatientMedicineAllergiesName.joined(separator: ",")) .font(Font.SalamtechFonts.Reg14)
@@ -154,8 +145,6 @@ struct MedicalStateView: View {
                                                         .foregroundColor(Color("lightGray"))
                                                 }
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-    //                                            .animation(.default)
-                                                .animation(.default)
                                                 .frame(width: screenWidth, height: 30)
                                                 .font(.system(size: 13))
                                                 .padding(12)
@@ -167,104 +156,47 @@ struct MedicalStateView: View {
                                                     .shadow(color: Color.black.opacity(0.099), radius: 3)
                                             }
                                             Spacer().frame(height: 20)
+                                            Group{
                                             InputTextField(text: $medicalCreatedVM.OtherAllergies, title: "Other Allergies")
-                                                .focused($isfocused)
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .autocapitalization(.none)
-                                                
-                                                .textInputAutocapitalization(.never)
-                                            
+                                   
                                             Spacer().frame(height: 20)
                                             InputTextField(text: $medicalCreatedVM.Prescriptions, title: "Prescriptions")
-                                                .focused($isfocused)
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .autocapitalization(.none)
-                                                
-                                                .textInputAutocapitalization(.never)
-                                            
+                                           
                                             Spacer().frame(height: 20)
                                             InputTextField(text: $medicalCreatedVM.CurrentMedication, title: "CurrentMedication")
-                                                .focused($isfocused)
+                                                
+                                            }.focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
                                                
                                                 .textInputAutocapitalization(.never)
-                                            
-                                            
                                         }
                                         VStack{
                                             Spacer().frame(height: 20)
+                                            Group{
                                             InputTextField(text: $medicalCreatedVM.PastMedication, title: "PastMedication")
-                                                .focused($isfocused)
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .autocapitalization(.none)
-                                                
-                                                .textInputAutocapitalization(.never)
                                             
                                             Spacer().frame(height: 20)
                                             InputTextField(text: $medicalCreatedVM.ChronicDiseases, title: "ChronicDiseases")
-                                                .focused($isfocused)
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .autocapitalization(.none)
-                                                
-                                                .textInputAutocapitalization(.never)
                                             
                                             Spacer().frame(height: 20)
                                             InputTextField(text: $medicalCreatedVM.Iinjuries, title: "Iinjuries")
-                                                .focused($isfocused)
-                                                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                                .autocapitalization(.none)
-                                                
-                                                .textInputAutocapitalization(.never)
+                                              
                                             Spacer().frame(height: 20)
                                             InputTextField(text: $medicalCreatedVM.Surgeries, title: "Surgeries")
-                                                .focused($isfocused)
+                                                
+                                            }.focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                                 .autocapitalization(.none)
-                                               
                                                 .textInputAutocapitalization(.never)
                                         }
                                         
-                                        
-                                       
                                     }
                                 }
                                
                                 Spacer()
                                 CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
-//                                    patientCreatedVM.DoctorSubSpecialist = self.SubSpecIDArr
-//                                    print(SubSpecIDArr)
-//                                    print(patientCreatedVM.DoctorSubSpecialist)
                                     DispatchQueue.main.async {
-
-
-                                        print("let's create profiles")
-
-                                        print(medicalCreatedVM.Height)
-                                        print(medicalCreatedVM.Weight)
-                                        print(medicalCreatedVM.Pressure)
-                                        print(medicalCreatedVM.SugarLevel)
-                                        print(medicalCreatedVM.PatientFoodAllergiesDto)
-                                        print(medicalCreatedVM.PatientMedicineAllergiesDto)
-//                                        print(medicalCreatedVM.NationalityId)
-////                                        print(medicalCreatedVM.Birthday ?? Date())
-////                                        print(datef.string(from: patientCreatedVM.Birthday ?? Date()) )
-//                                        //                                    print(patientCreatedVM.Birthday?.dateformatter)
-//
-//                                        print(patientCreatedVM.GenderId ?? 0)
-//                                        print(patientCreatedVM.CityId)
-//                                        print(patientCreatedVM.AreaId)
-//                                        print(patientCreatedVM.OccupationId)
-//                                        print(patientCreatedVM.Latitude )
-//                                        print(patientCreatedVM.Longitude )
-//                                        print(patientCreatedVM.BlockNo )
-//                                        print(patientCreatedVM.Address )
-//                                        print(patientCreatedVM.FloorNo )
-//                                        print(patientCreatedVM.ApartmentNo )
-//                                        print(patientCreatedVM.EmergencyContact )
-
-//                                            patientCreatedVM.isLoading = true
-//                                        patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
                                         
                                         if medicalCreatedVM.Pressure == "" {
                                             medicalCreatedVM.Pressure = self.normalPressure
@@ -289,86 +221,23 @@ struct MedicalStateView: View {
                     .blur(radius: ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy ? 10 : 0)
                     .disabled(ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy)
                     if ShowBloodType {
-                        ZStack {
-                            
-                            ChooseBloodType( BloodTypeVM: BloodTypeVM, IsPresented:$ShowBloodType ,  SelectedBloodName: $medicalCreatedVM.BloodTypeName, SelectedBloodId: $medicalCreatedVM.BloodTypeId, width: bounds.size.width)
-                        }
-                        .animation(.easeInOut)
-                        .transition(.move(edge: .bottom))
-                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-                        .gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    self.offset.height = gesture.translation.height
-                                }
-                                .onEnded { _ in
-                                    if self.offset.height > bounds.size.height / 2 {
-                                        withAnimation {
-                                            ShowBloodType.toggle()
-                                        }
-                                        self.offset = .zero
-                                    } else {
-                                        self.offset = .zero
-                                    }
-                                }
-                        )
+                        
+                        ShowBloodTypeList( ShowBloodType: $ShowBloodType, bounds: $bounds, offset: $offset).environmentObject(BloodTypeVM)
+                            .environmentObject(medicalCreatedVM)
+                 
                     } else if ShowFoodAllergy{
-                        ZStack {
-                            ChooseFoodAllergy(IsPresented: $ShowFoodAllergy, selectedServiceName: $medicalCreatedVM.PatientFoodAllergiesName, selectedServiceId: $medicalCreatedVM.PatientFoodAllergiesDto,  width: UIScreen.main.bounds.size.width)
-                        }
-//                                .animation(.easeInOut)
-                        .transition(.move(edge: .bottom))
-                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-                        .gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    self.offset.height = gesture.translation.height
+                        ShowFoodAllergyList( ShowFoodAllergy: $ShowFoodAllergy, bounds: $bounds, offset: $offset)
+                            .environmentObject(medicalCreatedVM)
 
-                                }
-                                .onEnded { _ in
-                                    if self.offset.height > bounds.size.height / 2 {
-                                        withAnimation {
-                                            ShowFoodAllergy = false
-                                        }
-                                        self.offset = .zero
-                                    } else {
-                                        self.offset = .zero
-                                    }
-                                }
-
-                        )
+                        
                     } else if ShowMedicineAllergy{
-                        ZStack {
-                            ChooseMedicineAllergy(IsPresented: $ShowMedicineAllergy, selectedServiceName: $medicalCreatedVM.PatientMedicineAllergiesName, selectedServiceId: $medicalCreatedVM.PatientMedicineAllergiesDto,  width: UIScreen.main.bounds.size.width)
-                        }
-//                                .animation(.easeInOut)
-                        .transition(.move(edge: .bottom))
-                        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-                        .gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    self.offset.height = gesture.translation.height
+                        
+                        ShowMedicineAllergyList( ShowMedicineAllergy: $ShowMedicineAllergy, bounds: $bounds, offset: $offset)                            .environmentObject(medicalCreatedVM)
 
-                                }
-                                .onEnded { _ in
-                                    if self.offset.height > bounds.size.height / 2 {
-                                        withAnimation {
-                                            ShowFoodAllergy = false
-                                        }
-                                        self.offset = .zero
-                                    } else {
-                                        self.offset = .zero
-                                    }
-                                }
-
-                        )
-                    } 
-                    
-                   
+                        
+                    }
                 }
                 .onAppear(perform: {
-//                    NationalityVM.startFetchCountries()
-//                    OccupationVM.startFetchOccupation()
                     BloodTypeVM.startFetchBloodTypes()
                     print(Helper.getAccessToken())
                 })
@@ -384,9 +253,7 @@ struct MedicalStateView: View {
                         }else {
                             isValid = false
                         }
-//                        if medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0 && medicalCreatedVM.BloodTypeId != 0 && medicalCreatedVM.PatientMedicineAllergiesDto != [] && medicalCreatedVM.PatientMedicineAllergiesDto != []{
-//                            isValid = true
-//                        }
+
                     }
                 }
             }
@@ -413,5 +280,107 @@ struct MedicalStateView: View {
 struct MedicalStateView_Previews: PreviewProvider {
     static var previews: some View {
         MedicalStateView()
+    }
+}
+
+
+struct ShowMedicineAllergyList: View {
+    @EnvironmentObject var medicalCreatedVM : ViewModelCreateMedicalProfile
+
+    @Binding var ShowMedicineAllergy:Bool
+    @Binding var bounds : CGRect
+    @Binding var offset:CGSize
+
+    var body: some View {
+        ZStack {
+            ChooseMedicineAllergy(IsPresented: $ShowMedicineAllergy, selectedServiceName: $medicalCreatedVM.PatientMedicineAllergiesName, selectedServiceId: $medicalCreatedVM.PatientMedicineAllergiesDto,  width: UIScreen.main.bounds.size.width)
+        }
+        .transition(.move(edge: .bottom))
+        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    self.offset.height = gesture.translation.height
+
+                }
+                .onEnded { _ in
+                    if self.offset.height > bounds.size.height / 8 {
+                        withAnimation {
+                            ShowMedicineAllergy = false
+                        }
+                        self.offset = .zero
+                    } else {
+                        self.offset = .zero
+                    }
+                }
+        )
+    }
+}
+
+struct ShowFoodAllergyList: View {
+    @EnvironmentObject var medicalCreatedVM : ViewModelCreateMedicalProfile
+
+    @Binding var ShowFoodAllergy:Bool
+    @Binding var bounds : CGRect
+    @Binding var offset:CGSize
+
+    var body: some View {
+        ZStack {
+            ChooseFoodAllergy(IsPresented: $ShowFoodAllergy, selectedServiceName: $medicalCreatedVM.PatientFoodAllergiesName, selectedServiceId: $medicalCreatedVM.PatientFoodAllergiesDto,  width: UIScreen.main.bounds.size.width)
+        }
+        .transition(.move(edge: .bottom))
+        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    self.offset.height = gesture.translation.height
+                }
+                .onEnded { _ in
+                    if self.offset.height > bounds.size.height / 8 {
+                        withAnimation {
+                            ShowFoodAllergy = false
+                        }
+                        self.offset = .zero
+                    } else {
+                        self.offset = .zero
+                    }
+                }
+
+        )
+    }
+}
+
+struct ShowBloodTypeList: View {
+    @EnvironmentObject var medicalCreatedVM : ViewModelCreateMedicalProfile
+    @EnvironmentObject var BloodTypeVM : ViewModelBloodType
+
+    @Binding var ShowBloodType:Bool
+    @Binding var bounds : CGRect
+    @Binding var offset:CGSize
+
+    var body: some View {
+        ZStack {
+            
+            ChooseBloodType(  IsPresented:$ShowBloodType ,  SelectedBloodName: $medicalCreatedVM.BloodTypeName, SelectedBloodId: $medicalCreatedVM.BloodTypeId, width: bounds.size.width).environmentObject(BloodTypeVM)
+        }
+        .transition(.move(edge: .bottom))
+        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    self.offset.height = gesture.translation.height
+                }
+                .onEnded { _ in
+                    if self.offset.height > bounds.size.height / 8 {
+                        withAnimation {
+                            ShowBloodType.toggle()
+                        }
+                        self.offset = .zero
+                    } else {
+                        self.offset = .zero
+                    }
+                }
+        )
+
     }
 }

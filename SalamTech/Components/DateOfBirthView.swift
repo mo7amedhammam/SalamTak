@@ -28,7 +28,6 @@ struct DateOfBirthView: View {
                 .frame(width: 25, height: 25)
                 .foregroundColor(Color("lightGray"))
             }
-            .animation(.default)
             .frame(width: screenWidth, height: 30)
             .font(.system(size: 13))
             .padding(12)

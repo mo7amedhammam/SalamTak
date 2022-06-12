@@ -13,8 +13,9 @@ struct ChooseBloodType : View {
     //    @StateObject var checkModel = CheckBoxViewModel()
     @ObservedObject private var medicalCreatedVM = ViewModelCreateMedicalProfile()
 
-    @StateObject var BloodTypeVM = ViewModelBloodType()
-    
+//    @StateObject var BloodTypeVM = ViewModelBloodType()
+    @EnvironmentObject var BloodTypeVM : ViewModelBloodType
+
     @Binding var IsPresented: Bool
     @State public var buttonSelected: Int?
     

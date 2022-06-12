@@ -359,14 +359,22 @@ func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String
  return newdate
   }
 
+func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
+    var newdate = Date()
+        let formatter = DateFormatter()
+    let date = formatter.string(from: inp )
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = FormatTo
+        newdate = formatter.date(from: date) ?? Date()
+    
+ return newdate
+  }
 
 func ConvertDateFormateToStr(inp:Date, FormatTo:String) -> String {
 
  var summarydatef:DateFormatter{
     let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
     df.dateFormat = FormatTo
-//    df.dateFormat = "MM/dd/yyyy"
 
     df.locale = Locale(identifier: "en_US_POSIX")
     return df
@@ -375,6 +383,17 @@ func ConvertDateFormateToStr(inp:Date, FormatTo:String) -> String {
     return String( summarydatef.string(from: inp))
 }
 
+func ConvertStringFormateToDate(inp:String, FormatFrom:String) -> Date {
+
+ var summarydatef:DateFormatter{
+    let df = DateFormatter()
+    df.dateFormat = FormatFrom
+    df.locale = Locale(identifier: "en_US_POSIX")
+    return df
+}
+    
+    return summarydatef.date(from: inp) ?? Date()
+}
 
 
 
@@ -388,36 +407,5 @@ func LogoType(MedicalExaminationTypeId: Int) -> String {
 
     return logoname
 }
-
-
-//extension Binding where Value == Int {
-//    public func string() -> Binding<String> {
-//        return Binding<String>(get:{ String(self.wrappedValue) },
-//            set: { self.wrappedValue = String($0)})
-//    }
-//}
-//extension Binding where Value == Int {
-//    public func string() -> Binding<String> {
-//        return Binding<String>(get:{ "\(self.wrappedValue)" },
-//                               set: {
-//                                guard $0.count > 0 else { return }
-//            self.wrappedValue = Int(Double($0) ?? 0)
-//                               })
-//    }
-//}
-
-
-//func GetExaminationValueByTypeId(typeId:Int, sourcearr:[Duration])->Int {
-//
-//    var value = 0
-////        ForEach(self.publishedModelExaminationTypeId , id:\.id){ item in
-//    for item in sourcearr{
-//        if typeId == item.id {
-//            value = item.duration ?? 01212
-//        }
-//    }
-//    return value
-//}
-
 
 

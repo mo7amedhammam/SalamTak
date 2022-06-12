@@ -55,5 +55,32 @@ import Foundation
             case cityName = "CityName"
             case areaName = "AreaName"
         }
+        init(){
+            self.id = 0
+            self.image = "Image"
+            self.firstName = "FirstName"
+            self.firstNameAr = "FirstNameAr"
+            self.genderId = 0
+            self.occupationId = 0
+            self.nationalityId = 0
+            self.countryId = 0
+            self.cityId = 0
+            self.areaId = 0
+            self.floorNo = 0
+            self.middleName = "MiddelName"
+            self.familyName = "FamilyName"
+            self.middleNameAr = "MiddelNameAr"
+            self.familyNameAr = "FamilyNameAr"
+            self.emergencyContact = "EmergencyContact"
+            self.birthdate = "Birthdate"
+            self.address = "Address"
+            self.longitude = "Longitude"
+            self.latitude = "Latitude"
+            self.apartNo = "ApartmentNo"
+            self.blockNo = "BlockNo"
+            self.nationalityName = "NationalityName"
+            self.cityName = "CityName"
+            self.areaName = "AreaName"
+        }
     }
 

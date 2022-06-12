@@ -427,7 +427,7 @@ struct ShowNationalityList: View {
                     self.offset.height = gesture.translation.height
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowNationality.toggle()
                         }
@@ -459,7 +459,7 @@ struct ShowCityList: View {
                     self.offset.height = gesture.translation.height
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowCity = false
                         }
@@ -494,7 +494,7 @@ struct ShowAreaList: View {
                     
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowArea = false
                         }
@@ -534,7 +534,7 @@ struct ShowOccupationList: View {
                     
                 }
                 .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 2 {
+                    if self.offset.height > bounds.size.height / 8 {
                         withAnimation {
                             ShowOccupation = false
                         }
