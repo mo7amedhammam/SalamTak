@@ -30,29 +30,7 @@ class ViewModelOccupation: ObservableObject {
             print(self.publishedCountryModel[0].Name ?? "" )
             
         }.store(in: &cancellables)
-        
-        //-----------------------------------------------------------------
-        //        passthroughSubject
-        //            .dropFirst(2)
-        //            .filter({ (value) -> Bool in
-        //                value != "5"
-        //            })
-        //            .map { value in
-        //                return value + " seconds"
-        //            }
-        //            .sink { (completion) in
-        //                switch completion {
-        //                case .finished:
-        //                    self.time = "Finished"
-        //                case .failure(let err):
-        //                    self.time = err.localizedDescription
-        //                }
-        //            } receiveValue: { (value) in
-        //                self.time = value
-        //            }
-        //            .store(in: &cancellables)
-        //
-        //-------------------------------------------------------
+ 
         
     }
     

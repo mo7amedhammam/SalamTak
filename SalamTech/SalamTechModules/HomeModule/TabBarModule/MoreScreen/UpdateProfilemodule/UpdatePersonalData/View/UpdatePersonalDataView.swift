@@ -14,6 +14,7 @@ extension DateFormatter {
         return dateFormatter
     }
 }
+
 struct UpdatePersonalDataView: View {
     var language = LocalizationService.shared.language
     
@@ -37,6 +38,16 @@ struct UpdatePersonalDataView: View {
     @StateObject var locationViewModel = LocationViewModel()
     @StateObject var NationalityVM = ViewModelCountries()
     @StateObject var OccupationVM = ViewModelOccupation()
+    func getOcupationNameById(id:Int)->String{
+        var occname = ""
+        for occupation in OccupationVM.publishedCountryModel{
+            if occupation.Id == id{
+                occname = occupation.Name ?? ""
+            }
+        }
+        return occname
+    }
+    
     var body: some View {
         ZStack{
             ZStack{
@@ -101,12 +112,12 @@ struct UpdatePersonalDataView: View {
                                         }
                                         
                                         HStack (spacing: 10){
-                                            Group{
+//                                            Group{
                                                 InputTextFieldInfo( text: $patientUpdatedVM.FirstName,title: "First Name(*)")
                                                 InputTextFieldInfo( text: $patientUpdatedVM.MiddelName,title: "Middle Name(*)")
                                                 InputTextFieldInfo( text: $patientUpdatedVM.FamilyName,title: "Last Name(*)")
-                                            }
-                                            .focused($isfocused)
+//                                            }
+//                                            .focused($isfocused)
                                         }
                                     }
                                     Spacer().frame(height: 20)
@@ -160,7 +171,7 @@ struct UpdatePersonalDataView: View {
                                         } label: {
                                             HStack{
                                                 Text(patientUpdatedVM.NationalityName)
-                                                    .foregroundColor(Color("lightGray"))
+                                                    .foregroundColor(patientUpdatedVM.NationalityName == "" ?  Color("lightGray") : Color("blueColor"))
                                                 
                                                 Spacer()
                                                 Image(systemName: "staroflife.fill")
@@ -308,7 +319,7 @@ struct UpdatePersonalDataView: View {
                             
                             Spacer()
                             ButtonView(text: "Update Profile", action: {
-                                patientUpdatedVM.startUpdatePatientProfile()
+                                patientUpdatedVM.updatePersonalInfo(operation: .updatePersonalInfo)
                             })
                         }
                     }
@@ -339,11 +350,8 @@ struct UpdatePersonalDataView: View {
                     ShowUpdateOccupationList(ShowOccupation:$ShowOccupation,bounds: $bounds, offset: $offset)
                         .environmentObject(patientUpdatedVM)
                         .environmentObject(OccupationVM)
-                    
                 }
-                
             }
-            
             .toolbar{
                 ToolbarItemGroup(placement: .keyboard ){
                     Spacer()
@@ -381,43 +389,53 @@ struct UpdatePersonalDataView: View {
         .onAppear(perform: {
             NationalityVM.startFetchCountries()
             OccupationVM.startFetchOccupation()
-            patientUpdatedVM.startFetchPatientProfile()
+            patientUpdatedVM.updatePersonalInfo(operation: .getPersonalInfo)
+           
         })
+//        .onChange(of: patientUpdatedVM.OccupationId){newval in
+//            patientUpdatedVM.occupationName = getOcupationNameById(id: newval)
+//        }
         
         .navigationViewStyle(StackNavigationViewStyle())
         
         // Alert with no internet connection
         .alert(isPresented: $patientUpdatedVM.isAlert, content: {
-            
-            switch patientUpdatedVM.activeAlert{
-            case .NetworkError :
-                return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    patientUpdatedVM.isAlert = false
-                    
-                }))
+            Alert(title: Text(patientUpdatedVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                patientUpdatedVM.isAlert = false
                 
-            case .serverError :
-                return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    patientUpdatedVM.isAlert = false
-                    
-                }))
-                
-            case .success :
-                return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    patientUpdatedVM.isAlert = false
-                    
-                }))
-                
-            case .unauthorized:
-                return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    patientUpdatedVM.isAlert = false
-                    //                        self.goToLogin = true
-                    
-                    
-                }))
-                
-            }
+            }))
         })
+            
+//
+//            switch patientUpdatedVM.activeAlert{
+//            case .NetworkError :
+//                return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    patientUpdatedVM.isAlert = false
+//
+//                }))
+//
+//            case .serverError :
+//                return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    patientUpdatedVM.isAlert = false
+//
+//                }))
+//
+//            case .success :
+//                return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    patientUpdatedVM.isAlert = false
+//
+//                }))
+//
+//            case .unauthorized:
+//                return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+//                    patientUpdatedVM.isAlert = false
+//                    //                        self.goToLogin = true
+//
+//
+//                }))
+//
+//            }
+//        })
         
         
     }

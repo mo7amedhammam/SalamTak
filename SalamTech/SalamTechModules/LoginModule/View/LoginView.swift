@@ -38,7 +38,6 @@ struct ViewLogin: View {
         
 //        NavigationView{
             ZStack {
-             
                 VStack {
                     AppBarView(Title: "SignIn_Screen_title".localized(language))
 //                        .navigationBarItems(leading: BackButtonView())
@@ -47,6 +46,8 @@ struct ViewLogin: View {
                     Spacer()
 
                     Image("logo")
+                        .resizable()
+                        .frame(width: 200, height: 200)
                             .foregroundColor(.black)
 
                     if language.rawValue == "en" {

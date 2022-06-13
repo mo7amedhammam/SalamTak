@@ -331,12 +331,7 @@ struct PersonalDataView: View {
                 }
                 
             }
-            .onAppear(perform: {
-                NationalityVM.startFetchCountries()
-                OccupationVM.startFetchOccupation()
-                print(Helper.getAccessToken())
-            })
-            
+                        
             .toolbar{
                 ToolbarItemGroup(placement: .keyboard ){
                     Spacer()
@@ -367,19 +362,20 @@ struct PersonalDataView: View {
                     ImagePicker(sourceType: .camera, selectedImage: self.$patientCreatedVM.profileImage)
                 }
             }
-            // Alert with no internet connection
-            .alert(isPresented: $patientCreatedVM.isNetworkError, content: {
-                Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
-            })
             
-            // alert with no ierror message
-            .alert(patientCreatedVM.errorMsg, isPresented: $patientCreatedVM.isError) {
+//            // alert with no ierror message
+            .alert(patientCreatedVM.message, isPresented: $patientCreatedVM.isAlert) {
                 Button("OK", role: .cancel) { }
             }
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $patientCreatedVM.isLoading)
         }
+        .onAppear(perform: {
+            NationalityVM.startFetchCountries()
+            OccupationVM.startFetchOccupation()
+        })
+
         .navigationViewStyle(StackNavigationViewStyle())
         
         NavigationLink(destination:MedicalStateView(),isActive: $patientCreatedVM.UserCreated , label: {

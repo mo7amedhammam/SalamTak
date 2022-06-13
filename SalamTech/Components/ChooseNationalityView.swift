@@ -11,7 +11,7 @@ struct ChooseNationality : View {
     var language = LocalizationService.shared.language
     //@ObservedObject var dataModel: DataModel
     //    @StateObject var checkModel = CheckBoxViewModel()
-    @ObservedObject private var patientCreatedVM = ViewModelCreatePatientProfile()
+    @EnvironmentObject var patientCreatedVM : ViewModelCreatePatientProfile
 
 //    @StateObject var NationalityVM = ViewModelCountries()
     @EnvironmentObject var NationalityVM : ViewModelCountries

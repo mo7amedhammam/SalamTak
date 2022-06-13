@@ -12,7 +12,7 @@ import Alamofire
 class ViewModelCreatePatientProfile: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelCreatePatientProfile, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<PatientInfo>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
@@ -117,12 +117,13 @@ class ViewModelCreatePatientProfile: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedDoctorCreatedModel: ModelCreatePatientProfile? = nil
-    @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
+    @Published var publishedDoctorCreatedModel: PatientInfo? = nil
+
     @Published var UserCreated = false
-    @Published var isNetworkError = false
+    @Published var isLoading:Bool? = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
     
     
     init() {
@@ -131,40 +132,76 @@ class ViewModelCreatePatientProfile: ObservableObject {
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { (modeldata) in
-            self.publishedDoctorCreatedModel = modeldata
+            self.publishedDoctorCreatedModel = modeldata.data
 
         }.store(in: &cancellables)
-        
-        //-----------------------------------------------------------------
-        //        passthroughSubject
-        //            .dropFirst(2)
-        //            .filter({ (value) -> Bool in
-        //                value != "5"
-        //            })
-        //            .map { value in
-        //                return value + " seconds"
-        //            }
-        //            .sink { (completion) in
-        //                switch completion {
-        //                case .finished:
-        //                    self.time = "Finished"
-        //                case .failure(let err):
-        //                    self.time = err.localizedDescription
-        //                }
-        //            } receiveValue: { (value) in
-        //                self.time = value
-        //            }
-        //            .store(in: &cancellables)
-        //
-        //-------------------------------------------------------
         
     }
     
 
     
-    func startCreatePatientProfile(  profileImage:  UIImage?) {
+//    func startCreatePatientProfile(  profileImage:  UIImage?) {
+//
+//
+//        let parametersarr : [String : Any]  = ["FirstName" : FirstName ,"FirstNameAr" : FirstNameAr,
+//                          "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
+//                          "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
+//                          "GenderId" : GenderId ?? 1 ,
+//                           "Birthdate" : datef.string(from: self.Birthday ?? Date()) ,
+//                           "NationalityId" : NationalityId, "CountryId" : NationalityId,
+//                           "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
+//                                               "CityId": CityId, "AreaId" : AreaId,"Address": Address,
+//                                               "Latitude": String(Latitude), "Longitude": String(Longitude),
+//                                               "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo
+//
+//
+//                          ]
+//
+//        if Helper.isConnectedToNetwork(){
+////        if isValid == true {
+//
+//            ApiService.CreatePatientProfile(passedparameters : parametersarr , profileImage: profileImage,completion: { (success, model, err) in
+//                print(parametersarr)
+//                self.isLoading = true
+//            if success{
+//                DispatchQueue.main.async {
+//                    self.UserCreated = true
+//                    self.isLoading = false
+//                    self.passthroughModelSubject.send(model!)
+//                }
+//            }else{
+//                self.isLoading = false
+//                self.isAlert = true
+//                self.message = err ?? "You Must Compelete Your Data"
+//            }
+////print(err ?? "")
+//        })
+//            self.isLoading = false
+//
+////        }else{
+////            print("not validated")
+////        }
+//        }else{
+//                   // Alert with no internet connection
+//            self.isLoading = false
+//          isAlert = true
+//               }
+//    }
+    
+    
+}
 
-        
+
+extension ViewModelCreatePatientProfile:TargetType{
+    var url: String {
+        return URLs().PatientCreateProfile
+    }
+    
+    var method: httpMethod {
+        return .Post
+    }
+    
+    var parameter: parameterType {
         let parametersarr : [String : Any]  = ["FirstName" : FirstName ,"FirstNameAr" : FirstNameAr,
                           "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
                           "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
@@ -175,40 +212,53 @@ class ViewModelCreatePatientProfile: ObservableObject {
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
                                                "Latitude": String(Latitude), "Longitude": String(Longitude),
                                                "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo
-                            
-                                               
-                          ]
-        
-        if Helper.isConnectedToNetwork(){
-//        if isValid == true {
-            
-            ApiService.CreatePatientProfile(passedparameters : parametersarr , profileImage: profileImage,completion: { (success, model, err) in
-                print(parametersarr)
-                self.isLoading = true
-            if success{
-                DispatchQueue.main.async {
-                    self.UserCreated = true
-                    self.isLoading = false
-                    self.passthroughModelSubject.send(model!)
-                }
-            }else{
-                self.isLoading = false
-                self.isError = true
-                self.errorMsg = err ?? "You Must Compelete Your Data"
-            }
-//print(err ?? "")
-        })
-            self.isLoading = false
 
-//        }else{
-//            print("not validated")
-//        }
-        }else{
-                   // Alert with no internet connection
-            self.isLoading = false
-          isNetworkError = true
-               }
+                          ]
+        return .parameterRequest(Parameters: parametersarr, Encoding: String.Encoding.utf8.rawValue as! ParameterEncoding)
     }
     
+    var header: [String : String]? {
+        let header = ["Content-Type":"multipart/form-data" ,
+                                  "Authorization":Helper.getAccessToken()]
+        return header
+    }
+    
+    
+    func startCreatePatientProfile(profileImage:  UIImage?){
+        print(parameter)
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork.multipartRequest(Target: self, image: profileImage, responseModel: BaseResponse<PatientInfo>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send( model!  )
+                        print(model!)
+                    }
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                                    isAlert = true
+                }
+                isLoading = false
+            }
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
+    }
     
 }

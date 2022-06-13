@@ -8,25 +8,10 @@
 
 import Foundation
 
-    struct ModelUpdatePatientProfile : Codable {
-      
-        let message: String?
-            let messageCode: Int?
-            let data: Patient?
-            let success: Bool?
-
-            enum CodingKeys: String, CodingKey {
-                case message = "Message"
-                case messageCode = "MessageCode"
-                case data = "Data"
-                case success = "Success"
-            }
-    }
-
     // MARK: - DataClass
     struct Patient: Codable {
         let id, genderId,occupationId,nationalityId,countryId,cityId,areaId,floorNo: Int?
-        let image,firstName,middleName,familyName,firstNameAr,middleNameAr,familyNameAr,emergencyContact,birthdate,address,longitude,latitude,apartNo,blockNo,nationalityName,cityName,areaName:String?
+        let image,firstName,middleName,familyName,firstNameAr,middleNameAr,familyNameAr,emergencyContact,birthdate,address,longitude,latitude,apartNo,blockNo,nationalityName,cityName,areaName,OccupationName:String?
 
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -54,6 +39,7 @@ import Foundation
             case nationalityName = "NationalityName"
             case cityName = "CityName"
             case areaName = "AreaName"
+            case OccupationName = "OccupationName"
         }
         init(){
             self.id = 0
@@ -81,6 +67,8 @@ import Foundation
             self.nationalityName = "NationalityName"
             self.cityName = "CityName"
             self.areaName = "AreaName"
+            self.OccupationName = "OccupationName"
+
         }
     }
 

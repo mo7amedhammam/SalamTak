@@ -12,12 +12,14 @@ import Alamofire
 class ViewModelUpdatePatientProfile: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelUpdatePatientProfile, Error>()
-    let passthroughModelGetSubject = PassthroughSubject<ModelUpdatePatientProfile, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<Patient>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
+    @Published var updatePersonalInfoOperation : UpdatePersonalInfoOp = .getPersonalInfo
+
     // ------- input
-    @Published  var FirstName : String = ""{
+    @Published  var FirstName : String = ""
+    {
         didSet{
             if self.FirstName.isEmpty{
                 self.errorFirstName = "*"
@@ -26,7 +28,8 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             }
         }
     }
-    @Published  var FirstNameAr: String = "" {
+    @Published  var FirstNameAr: String = ""
+    {
         didSet{
             if self.FirstNameAr.isEmpty{
                 self.errorFirstNameAr = "*"
@@ -35,7 +38,8 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             }
         }
     }
-    @Published  var MiddelName: String = ""{
+    @Published  var MiddelName: String = ""
+    {
         didSet{
             if self.MiddelName.isEmpty{
                 self.errorMiddelName = "*"
@@ -44,7 +48,8 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             }
         }
     }
-    @Published  var MiddelNameAr: String = "" {
+    @Published  var MiddelNameAr: String = ""
+    {
         didSet{
             if self.MiddelNameAr.isEmpty{
                 self.errorMiddelNameAr = "*"
@@ -53,7 +58,8 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             }
         }
     }
-    @Published  var FamilyName: String = "" {
+    @Published  var FamilyName: String = ""
+    {
         didSet{
             if self.FamilyName.isEmpty{
                 self.errorLastName = "*"
@@ -62,7 +68,8 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             }
         }
     }
-    @Published  var FamilyNameAr: String = "" {
+    @Published  var FamilyNameAr: String = ""
+    {
         didSet{
             if self.FamilyNameAr.isEmpty{
                 self.errorLastNameAr = "*"
@@ -115,19 +122,19 @@ class ViewModelUpdatePatientProfile: ObservableObject {
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
     @Published var publishedPatientGetModel: Patient?
-    @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
+
     @Published var UserCreated = false
-    @Published var isNetworkError = false
-    
+
+    @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
+
     
     init() {
         
         self.date = DateFormatter.formate.date(from: Birthday) ?? Date()
-        passthroughModelGetSubject.sink { (completion) in
+        passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
             self.publishedPatientGetModel = modeldata.data
@@ -138,6 +145,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.MiddelNameAr = publishedPatientGetModel?.middleNameAr ?? ""
             self.FamilyName = publishedPatientGetModel?.familyName ?? ""
             self.FamilyNameAr = publishedPatientGetModel?.familyNameAr ?? ""
+        
             self.EmergencyContact = publishedPatientGetModel?.emergencyContact ?? ""
             self.GenderId = publishedPatientGetModel?.genderId ?? 0
             self.NationalityId = publishedPatientGetModel?.nationalityId ?? 0
@@ -145,6 +153,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.AreaId = publishedPatientGetModel?.areaId ?? 0
             self.CountryId = publishedPatientGetModel?.nationalityId ?? 0
             self.OccupationId = publishedPatientGetModel?.occupationId ?? 0
+            self.occupationName = publishedPatientGetModel?.OccupationName ?? ""
             self.ImageUrl = publishedPatientGetModel?.image ?? ""
             self.Birthday = publishedPatientGetModel?.birthdate ?? ""
             self.date = Fulldatef1.date(from: self.Birthday)
@@ -153,106 +162,112 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.NationalityName = publishedPatientGetModel?.nationalityName ?? "Nationality"
             self.cityName = publishedPatientGetModel?.cityName ?? "City"
             self.areaName = publishedPatientGetModel?.areaName ?? "Area"
+            self.FloorNo = publishedPatientGetModel?.floorNo ?? 0
+            self.BlockNo = publishedPatientGetModel?.blockNo ?? ""
+            self.ApartmentNo = publishedPatientGetModel?.apartNo ?? ""
+
             
         }.store(in: &cancellables)
         
     }
     
+}
+
+enum UpdatePersonalInfoOp{
+    case getPersonalInfo, updatePersonalInfo
+}
+
+extension ViewModelUpdatePatientProfile:TargetType{
+    var url: String {
+        switch updatePersonalInfoOperation{
+        case .getPersonalInfo:
+           return  URLs().PatientGetProfile
+        case .updatePersonalInfo:
+            return  URLs().PatientUpdateProfile
+        }
+    }
     
+    var method: httpMethod {
+        switch updatePersonalInfoOperation{
+    case .getPersonalInfo:
+            return .Get
+    case .updatePersonalInfo:
+            return .Post
+    }
+    }
     
-    func startUpdatePatientProfile() {
-        let parametersarr : [String : Any]  = ["FirstName" : FirstName ,"FirstNameAr" : FirstNameAr,
-                                               "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
-                                               "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
-                                               "GenderId" : GenderId ?? 1 ,
-                                               "Birthdate" :  Fulldatef1.string(from: self.date ?? Date() ) ,
-                                               "NationalityId" : NationalityId, "CountryId" : NationalityId,
-                                               "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
-                                               "CityId": CityId, "AreaId" : AreaId,"Address": Address,
-                                               "Latitude": String(Latitude), "Longitude": String(Longitude),
-                                               "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo, "Id":Id ?? 0
-                                               
-                                               
-        ]
-        
-        if Helper.isConnectedToNetwork(){
-            //        if isValid == true {
+    var parameter: parameterType {
+        switch updatePersonalInfoOperation{
+    case .getPersonalInfo:
+            return .plainRequest
+    case .updatePersonalInfo:
+            let parametersarr : [String : Any]  = ["FirstName" : FirstName ,
+                                                   "FirstNameAr" : FirstNameAr,
+                                                   "MiddelName" : MiddelName ,
+                                                   "MiddelNameAr" : MiddelNameAr,
+                                                   "FamilyName" : FamilyName ,
+                                                   "FamilyNameAr" : FamilyNameAr,
+                                                   "GenderId" : GenderId ?? 1 ,
+                                                   "Birthdate" :  Fulldatef1.string(from: self.date ?? Date() ) ,
+                                                   "NationalityId" : NationalityId,
+                                                   "CountryId" : NationalityId,
+                                                   "EmergencyContact": EmergencyContact,
+                                                   "OccupationId" : OccupationId,
+                                                   "CityId": CityId, "AreaId" : AreaId,
+                                                   "Address": Address, "Latitude": String(Latitude),
+                                                   "Longitude": String(Longitude),
+                                                   "BlockNo": BlockNo, "FloorNo": FloorNo,
+                                                   "ApartmentNo": ApartmentNo, "Id":Id ?? 0
+                                                    ]
             
-            UpdatePersonalApiService.UpdatePatientProfile(passedparameters : parametersarr , completion: { (success, model, err) in
-                print(parametersarr)
-                self.isLoading = true
+            return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
+    }
+    }
+    
+    var header: [String : String]? {
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
+    }
+    
+    
+    func updatePersonalInfo(operation:UpdatePersonalInfoOp){
+        updatePersonalInfoOperation = operation
+        print(parameter)
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<Patient>.self   ) { [self] (success, model, err) in
                 if success{
+                    //case of success
                     DispatchQueue.main.async {
-                        self.UserCreated = true
-                        self.isLoading = false
-                        self.passthroughModelSubject.send(model!)
+                        self.passthroughModelSubject.send( model!  )
+                        print(model!)
                     }
                 }else{
                     if model != nil{
-                        self.isLoading = false
-                        self.isAlert = true
-                        self.activeAlert = .serverError
-                        self.errorMsg = err ?? "You Must Compelete Your Data"
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
                     }else{
-                        if err == "unauthorized"{
-                            self.isAlert = true
-                            self.activeAlert = .unauthorized
-                            self.isLoading = false
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
                         }
                     }
+                                    isAlert = true
                 }
-                //print(err ?? "")
-            })
-            self.isLoading = false
+                isLoading = false
+            }
             
-            //        }else{
-            //            print("not validated")
-            //        }
         }else{
-            // Alert with no internet connection
-            self.isLoading = false
-            self.isAlert = true
-            self.activeAlert = .NetworkError
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
         }
     }
     
-    func startFetchPatientProfile() {
-        
-        if Helper.isConnectedToNetwork(){
-            UpdatePersonalApiService.GetPatientProfile(
-                completion:  { (success, model, err) in
-                    
-                    self.isLoading = true
-                    if success{
-                        DispatchQueue.main.async {
-                            self.UserCreated = true
-                            self.isLoading = false
-                            self.passthroughModelGetSubject.send(model!)
-                            //                    print(model!)
-                        }
-                    }else{
-                        if model != nil {
-                            self.isLoading = false
-                            self.isAlert = true
-                            self.activeAlert = .serverError
-                            print(model?.message ?? "")
-                            self.errorMsg = err ?? ""
-                        }else{
-                            if err == "unauthorized"{
-                                self.isAlert = true
-                                self.activeAlert = .unauthorized
-                                self.isLoading = false
-                            }              }
-                    }
-                })
-            
-        }else{
-            // Alert with no internet connection
-            self.isLoading = false
-            self.isAlert = true
-            self.activeAlert = .NetworkError
-        }
-    }
     
     
 }

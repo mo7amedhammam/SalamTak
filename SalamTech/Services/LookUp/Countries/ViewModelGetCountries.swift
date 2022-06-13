@@ -14,7 +14,7 @@ class ViewModelCountries: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[Country]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-    @Published private(set) var publishedCountryModel: [Country] = []
+    @Published var publishedCountryModel: [Country] = []
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
@@ -22,6 +22,7 @@ class ViewModelCountries: ObservableObject {
 
  
     init() {
+        
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []
@@ -49,7 +50,9 @@ extension ViewModelCountries:TargetType{
     }
     
     var header: [String : String]? {
-        return [:]
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
+        
     }
 
     func startFetchCountries() {

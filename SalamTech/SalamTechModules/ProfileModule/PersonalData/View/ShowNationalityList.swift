@@ -18,6 +18,7 @@ struct ShowNationalityList: View {
     var body: some View {
         ZStack {
             ChooseNationality( IsPresented: $ShowNationality, SelectedNationalityName: $patientCreatedVM.NationalityName, SelectedNationalityId: $patientCreatedVM.NationalityId, width: bounds.size.width)
+                .environmentObject(patientCreatedVM)
                 .environmentObject(NationalityVM)
             
         }
