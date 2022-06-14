@@ -6,20 +6,20 @@
 //
 
 import Foundation
-struct ModelResetPassword : Codable {
-  
-        let message: String?
-        let messageCode: Int?
-        let data: ResetPassword?
-        let success: Bool?
-
-        enum CodingKeys: String, CodingKey {
-            case message = "Message"
-            case messageCode = "MessageCode"
-            case data = "Data"
-            case success = "Success"
-        }
-}
+//struct ModelResetPassword : Codable {
+//  
+//        let message: String?
+//        let messageCode: Int?
+//        let data: ResetPassword?
+//        let success: Bool?
+//
+//        enum CodingKeys: String, CodingKey {
+//            case message = "Message"
+//            case messageCode = "MessageCode"
+//            case data = "Data"
+//            case success = "Success"
+//        }
+//}
 
 // MARK: - DataClass
 struct ResetPassword: Codable {

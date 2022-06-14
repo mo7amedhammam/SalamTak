@@ -13,7 +13,7 @@ import Alamofire
 class ViewModelUpdatePassword: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelUpdatePassword, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<UpdatePassword>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
    
@@ -30,91 +30,31 @@ class ViewModelUpdatePassword: ObservableObject {
     @Published var phoneErrorMessage = ""
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedUserRegisteredModel: ModelUpdatePassword? = nil
+    @Published var publishedUserRegisteredModel: UpdatePassword? = nil
     @Published var isRegistered = false
-    @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
     @Published private var UserCreated = false
-    @Published var isNetworkError = false
-    
-    
-    
 
-    //    @Published var receivededmodel: registerModel? = nil
-    
-//    @Published var receivededmodel = registerModel(Data: userData(Code: 0, ReSendCounter: 0, UserId: 0) , MessageCode: 0, Success: false, Message: "")
-  
+    @Published var isLoading:Bool? = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
    
     init() {
         
       
      validations()
-        //-----------------------------------------------------------------
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { (modeldata) in
-            self.publishedUserRegisteredModel = modeldata
-//            self.verify.passedOTP = modeldata.Data?.Code ?? 000
-//            createUserWith.init(name: self.fullName, email: self.email, Phone: self.phoneNumber, password: self.password, OTP: modeldata.Data?.Code ?? 0)
+            self.publishedUserRegisteredModel = modeldata.data
+
         }.store(in: &cancellables)
-        
-        //-----------------------------------------------------------------
-        //        passthroughSubject
-        //            .dropFirst(2)
-        //            .filter({ (value) -> Bool in
-        //                value != "5"
-        //            })
-        //            .map { value in
-        //                return value + " seconds"
-        //            }
-        //            .sink { (completion) in
-        //                switch completion {
-        //                case .finished:
-        //                    self.time = "Finished"
-        //                case .failure(let err):
-        //                    self.time = err.localizedDescription
-        //                }
-        //            } receiveValue: { (value) in
-        //                self.time = value
-        //            }
-        //            .store(in: &cancellables)
-        //
-        //-------------------------------------------------------
-        
-        
-        
+   
     }
     
   
     
     func validations(){
-        
-//        var isEmailValidPublisher: AnyPublisher<Bool,Never>{
-//               $email
-//                   .removeDuplicates()
-//                   .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).count >= 10}
-//                   .handleEvents(receiveOutput: { [weak self] in $0 ? (self?.emailMessage = "") : (self?.emailMessage = "Invalid email")})
-//                   .eraseToAnyPublisher()
-//           }
-        
-      
-//        var isEmailValidPublisher: AnyPublisher<Bool,Never> {
-//           $email
-//               .debounce(for: 0.8, scheduler: RunLoop.main)
-//               .removeDuplicates()
-////               .map{
-////                   input in
-////                                  guard !input.isEmpty else {
-////                                      return "Email cannot be left empty"
-////                                  }
-////                                  guard input.isValidEmail() else {
-////                                      return "Email is not valid"
-////                                  }
-////               }
-//               .eraseToAnyPublisher()
-//       }
-        
        
          var isPasswordEmptyPublisher: AnyPublisher<Bool,Never> {
             $password
@@ -173,116 +113,134 @@ class ViewModelUpdatePassword: ObservableObject {
         
     }
     
-    func startFetchUpdatePassword(userId:Int, password:String) {
-        if Helper.isConnectedToNetwork(){
-//        if isValid == true {
-            self.isLoading = true
-            ApiService.updatePassword(userId: userId, password: password, completion: { (success, modeldata, err) in
-            
-            if success{
-                DispatchQueue.main.async {
-                    self.passthroughModelSubject.send(modeldata!)
-                    self.isRegistered = true
-                    self.isLoading = false
-                }
-                print(modeldata?.Data?.Id ?? 0000)
-            }else{
-                self.isLoading = false
-                print(err ?? "error here from registeruserViewmodel")
-                self.isError = true
-                self.errorMsg = err ?? "Error"
-            }
-            self.isLoading = false
-            self.errorMsg = err ?? "Error msg sign up "
-            print(self.errorMsg )
-
-        })
-            
+//    func startFetchUpdatePassword(userId:Int, password:String) {
+//        if Helper.isConnectedToNetwork(){
+////        if isValid == true {
+//            self.isLoading = true
+//            ApiService.updatePassword(userId: userId, password: password, completion: { (success, modeldata, err) in
+//
+//            if success{
+//                DispatchQueue.main.async {
+//                    self.passthroughModelSubject.send(modeldata!)
+//                    self.isRegistered = true
+//                    self.isLoading = false
+//                }
+//                print(modeldata?.Data?.Id ?? 0000)
+//            }else{
+//                self.isLoading = false
+//                print(err ?? "error here from registeruserViewmodel")
+//                self.isError = true
+//                self.errorMsg = err ?? "Error"
+//            }
+//            self.isLoading = false
+//            self.errorMsg = err ?? "Error msg sign up "
+//            print(self.errorMsg )
+//
+//        })
+//
+////        }else{
+////            print("not validated")
+////        }
 //        }else{
-//            print("not validated")
-//        }
-        }else{
-                   // Alert with no internet connection
-          isNetworkError = true
-            self.isLoading = false
-
-               }
-    }
+//                   // Alert with no internet connection
+//          isNetworkError = true
+//            self.isLoading = false
+//
+//               }
+//    }
     
-    func startFetchUpdatePassword1( password:String) {
-        if Helper.isConnectedToNetwork(){
-//        if isValid == true {
-            self.isLoading = true
-            ApiService.updatePassword1(password: password, completion: { (success, modeldata, err) in
-            
-            if success{
-                DispatchQueue.main.async {
-                    self.passthroughModelSubject.send(modeldata!)
-                    self.isRegistered = true
-                    self.isLoading = false
-                }
-                print(modeldata?.Data?.Id ?? 0000)
-            }else{
-                self.isLoading = false
-                print(modeldata?.Message ?? "")
-                self.isError = true
-                self.errorMsg = modeldata?.Message ?? ""
-            }
-            self.isLoading = false
-            self.errorMsg = err ?? "Error msg sign up "
-            print(self.errorMsg )
-
-        })
-            
+//    func startFetchUpdatePassword1( password:String) {
+//        if Helper.isConnectedToNetwork(){
+////        if isValid == true {
+//            self.isLoading = true
+//            ApiService.updatePassword1(password: password, completion: { (success, modeldata, err) in
+//
+//            if success{
+//                DispatchQueue.main.async {
+//                    self.passthroughModelSubject.send(modeldata!)
+//                    self.isRegistered = true
+//                    self.isLoading = false
+//                }
+//                print(modeldata?.Data?.Id ?? 0000)
+//            }else{
+//                self.isLoading = false
+//                print(modeldata?.Message ?? "")
+//                self.isError = true
+//                self.errorMsg = modeldata?.Message ?? ""
+//            }
+//            self.isLoading = false
+//            self.errorMsg = err ?? "Error msg sign up "
+//            print(self.errorMsg )
+//
+//        })
+//
+////        }else{
+////            print("not validated")
+////        }
 //        }else{
-//            print("not validated")
-//        }
-        }else{
-                   // Alert with no internet connection
-          isNetworkError = true
-            self.isLoading = false
-
-               }
-    }
-    
-    
-    //****************
-    //    func newfetch(){
-    //        let header:HTTPHeaders = ["Content-Type":"application/json" , "Accept":"application/json"]
-    //        let parameters : [String : Any] = ["Email" : "mood@mdlvb.cpm" ,"Phone" : "01252525254" ,"Password" : "123456" ,"Name" : "mostafa" ,"UserTypeId" : 2 ]
-    //
-    //        AF.request("https://salamtech.azurewebsites.net/api/en/User/Register", method: .post,parameters: parameters ,headers: header ).publishDecodable(type: registerModel.self).sink { (Completion) in
-    //              switch Completion {
-    //              case .finished:
-    //                ()
-    //              case .failure(let err):
-    //                  print(err.localizedDescription)
-    //              }
-    //        } receiveValue: { (response) in
-    //            switch response.result {
-    //            case .success(let model):
-    ////                self.message = model.Message ?? ""
-    ////                self.status = model.Success ?? false
-    ////                self.code = model.Data?.Code ?? 0
-    //
-    //                print(model.Message ?? "")
-    //
-    //                print(model.Success ?? "")
-    //
-    //                self.publishedUserRegisteredModel = model
-    //
-    //                print(self.publishedUserRegisteredModel?.Success ?? false)
-    //
-    //            case .failure(let err):
-    //                print(err.localizedDescription)
-    //            }
-    //
-    //        }.store(in: &cancellables)
-    //
-    //    }
-    
-    
+//                   // Alert with no internet connection
+//          isNetworkError = true
+//            self.isLoading = false
+//
+//               }
+//    }
     
     
 }
 
+extension ViewModelUpdatePassword:TargetType{
+    var url: String {
+        return  URLs().UpdatePassword
+    }
+    
+    var method: httpMethod {
+        return .Post
+    }
+    
+    var parameter: parameterType {
+        let parametersarr : [String : Any] =  ["Password" : password ,"UserId" : UserId ]
+        return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
+    }
+    
+    var header: [String : String]? {
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
+    }
+    
+    func startFetchUpdatePassword(){
+        print(parameter)
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<UpdatePassword>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send( model!  )
+                    }
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                    isAlert = true
+                }
+                isLoading = false
+            }
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
+    }
+    
+}

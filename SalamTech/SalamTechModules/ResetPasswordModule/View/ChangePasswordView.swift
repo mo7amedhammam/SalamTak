@@ -30,7 +30,6 @@ struct ChangePasswordView: View {
                                 .padding(.top, 30)
 
                         VStack (spacing: 15){
-                            if language.rawValue == "en" {
                                 SecureInputView("ChangePass_Screen_enter_pass".localized(language), text: $UpdatePassVM.password)
                                     .focused($isfocused)
                                     .textInputAutocapitalization(.never)
@@ -38,23 +37,12 @@ struct ChangePasswordView: View {
                                 SecureInputView("ChangePass_Screen_confirm_pass".localized(language), text: $UpdatePassVM.password1)
                                     .focused($isfocused)
                                     .textInputAutocapitalization(.never)
-                            } else if language.rawValue == "ar" {
-                                SecureInputArabicView("ChangePass_Screen_enter_pass".localized(language), text: $UpdatePassVM.password)
-                                    .focused($isfocused)
-                                    .textInputAutocapitalization(.never)
-                                
-                                SecureInputArabicView("ChangePass_Screen_enter_pass".localized(language), text: $UpdatePassVM.password1)
-                                    .focused($isfocused)
-                                    .textInputAutocapitalization(.never)
-                            }
-                           
-                          
                            
                             Text(UpdatePassVM.inlineErrorPassword)
                                 .font(Font.SalamtechFonts.Reg14)
 
                                 .foregroundColor(.red)
-                            }
+                            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         Spacer().frame(height: 50)
                         
                         
@@ -64,39 +52,13 @@ struct ChangePasswordView: View {
 
                         Spacer()
                         ButtonView(text: "ChangePass_Screen_confirm_pass_button".localized(language), backgroundColor:  UpdatePassVM.password != "" && UpdatePassVM.password1 == UpdatePassVM.password ? Color("blueColor") :  Color(uiColor: .lightGray)){
-//                            RegisterVM.isLoading = true
-                            UpdatePassVM.startFetchUpdatePassword(userId: userId, password: UpdatePassVM.password)
+                            UpdatePassVM.UserId = userId
+                            UpdatePassVM.startFetchUpdatePassword()
                         }.disabled(  UpdatePassVM.password == "" || UpdatePassVM.password1 != UpdatePassVM.password  )
-                    
-//                        HStack (spacing: -10){
-//                            Text("Already Have Account?")
-//                                .padding()
-//                                .font(.system(size: 14))
-//                                .foregroundColor(.gray)
-//                            Button("Sign In") {
-//                                print ("sign in ")
-//
-//                                //  present sign in
-//                                if self.ispresented == true {
-//                                    print ("sign in ")
-////                                    ispresented = false
-//                                    presentationMode.wrappedValue.dismiss()
-//
-//                                }else {
-//                                    self.haveAccount = true
-//                            }
-//                            }
-//
-//                            .font(.system(size: 13, weight: .bold))
-//                            .foregroundColor(Color("blueColor"))
-//                        }.padding(.bottom,25)
                     
                     }
 
                 }
-
-                        
-    //           Spacer()
                 // showing loading indicator
                 ActivityIndicatorView(isPresented: $UpdatePassVM.isLoading)
                 
@@ -118,35 +80,21 @@ struct ChangePasswordView: View {
                     }
                 }
 
-//                .sheet(isPresented: $haveAccount ,onDismiss: {
-//                    print("dismiss")
-//                }, content: {ViewLogin(ispresented: $haveAccount)})
-        
-//        //phone verification
-//            NavigationLink(destination: ViewLogin(ispresented: $haveAccount),isActive: $haveAccount, label: {
-//            })
-//
-
-            
-            // Alert with no internet connection
-                .alert(isPresented: $UpdatePassVM.isNetworkError, content: {
-            Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
-            })
-        
-            // Alert with Error message
-                .alert(UpdatePassVM.errorMsg, isPresented: $UpdatePassVM.isError) {
-                                    Button("OK", role: .cancel) { }
-            }
-            
-            
-        
-
         //phone verification
             NavigationLink(destination:  TabBarView(),isActive: $UpdatePassVM.isRegistered, label: {
             })
+        
+        
+        
+    // Alert with no internet connection
+        .alert(isPresented: $UpdatePassVM.isAlert, content: {
+            Alert(title: Text(UpdatePassVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                UpdatePassVM.isAlert = false
+                }))
+        })
+
+
     }
-    
-       
 }
 
 struct ChangePasswordView_Previews: PreviewProvider {

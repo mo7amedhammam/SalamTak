@@ -13,7 +13,7 @@ import Alamofire
 class ViewModelResetPassword: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelResetPassword, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<ResetPassword>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
@@ -30,47 +30,28 @@ class ViewModelResetPassword: ObservableObject {
         }
     }
     
-
-
-    
     //------- output
     @Published var nameErrorMessage = ""
     @Published var emailErrorMessage = ""
     @Published var phoneErrorMessage = ""
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedUserResetModel: ModelResetPassword? = nil
+    @Published var publishedUserResetModel: ResetPassword? = nil
     @Published var isRegistered = false
-    @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
     @Published private var UserCreated = false
-    @Published var isNetworkError = false
+       
+    @Published var isLoading:Bool? = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
     
-    
-    
-
-    //    @Published var receivededmodel: registerModel? = nil
-    
-//    @Published var receivededmodel = registerModel(Data: userData(Code: 0, ReSendCounter: 0, UserId: 0) , MessageCode: 0, Success: false, Message: "")
-  
-   
     init() {
-        
-      
-    
-        //-----------------------------------------------------------------
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { (modeldata) in
-            self.publishedUserResetModel = modeldata
-//            self.verify.passedOTP = modeldata.Data?.Code ?? 000
-//            createUserWith.init(name: self.fullName, email: self.email, Phone: self.phoneNumber, password: self.password, OTP: modeldata.Data?.Code ?? 0)
+            self.publishedUserResetModel = modeldata.data
         }.store(in: &cancellables)
-        
-       
-        
-        
+
     }
     
     func isValidPhone(phone: String) -> Bool {
@@ -84,54 +65,98 @@ class ViewModelResetPassword: ObservableObject {
             let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
             return emailTest.evaluate(with: email)
         }
-//    func isValidEmail(testStr:String) -> Bool {
-//                print("validate emilId: \(testStr)")
-//                let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
-//                let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-//                let result = emailTest.evaluate(with: testStr)
-//                return result
+
+//    func startFetchResetPassword( email: String) {
+//        if Helper.isConnectedToNetwork(){
+////        if isValid == true {
+//            self.isLoading = true
+//        ApiService.resetPassword( email: email, completion: { (success, modeldata, err) in
+//            
+//            if success{
+//                DispatchQueue.main.async {
+//                    self.passthroughModelSubject.send(modeldata!)
+//                    self.isRegistered = true
+//                    self.isLoading = false
+//                }
+//                print(modeldata?.data?.code ?? 0000)
+//            }else{
+//                self.isLoading = false
+//                print(err ?? "error here from registeruserViewmodel")
+//                self.isError = true
+//                self.errorMsg = err ?? "Error"
 //            }
-    
-    
-    
-    func startFetchResetPassword( email: String) {
-        if Helper.isConnectedToNetwork(){
-//        if isValid == true {
-            self.isLoading = true
-        ApiService.resetPassword( email: email, completion: { (success, modeldata, err) in
-            
-            if success{
-                DispatchQueue.main.async {
-                    self.passthroughModelSubject.send(modeldata!)
-                    self.isRegistered = true
-                    self.isLoading = false
-                }
-                print(modeldata?.data?.code ?? 0000)
-            }else{
-                self.isLoading = false
-                print(err ?? "error here from registeruserViewmodel")
-                self.isError = true
-                self.errorMsg = err ?? "Error"
-            }
-            self.isLoading = false
-            self.errorMsg = err ?? "Error msg sign up "
-            print(self.errorMsg )
-
-        })
-            
+//            self.isLoading = false
+//            self.errorMsg = err ?? "Error msg sign up "
+//            print(self.errorMsg )
+//
+//        })
+//            
+////        }else{
+////            print("not validated")
+////        }
 //        }else{
-//            print("not validated")
-//        }
-        }else{
-                   // Alert with no internet connection
-          isNetworkError = true
-            self.isLoading = false
+//                   // Alert with no internet connection
+//          isNetworkError = true
+//            self.isLoading = false
+//
+//               }
+//    }
 
-               }
-    }
-    
-    
-    
-    
 }
 
+extension ViewModelResetPassword:TargetType{
+    var url: String {
+        return  URLs().ResetPassword
+    }
+    
+    var method: httpMethod {
+        return .Post
+    }
+    
+    var parameter: parameterType {
+        let parametersarr : [String : Any]  = ["Email" : email ,"UserTypeId" : 3]
+        return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
+    }
+    
+    var header: [String : String]? {
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
+    }
+    
+    func startFetchResetPassword(){
+        print(parameter)
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<ResetPassword>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send( model!  )
+                    }
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                    isAlert = true
+                }
+                isLoading = false
+            }
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
+    }
+    
+}
