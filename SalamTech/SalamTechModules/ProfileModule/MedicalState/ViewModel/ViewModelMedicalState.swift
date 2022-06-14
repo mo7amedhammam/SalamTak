@@ -12,12 +12,9 @@ import Alamofire
 class ViewModelCreateMedicalProfile: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelCreateMedicalState, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<MedicalInfo>, Error>()
     private var cancellables: Set<AnyCancellable> = []
-    
-    
-    
-    
+  
     @Published  var Height: Int = 0
     @Published  var Weight: Int = 0
     @Published  var Pressure: String = ""              // 1 for male  2 for female
@@ -37,22 +34,12 @@ class ViewModelCreateMedicalProfile: ObservableObject {
     @Published  var PatientFoodAllergiesDto     : [Int] = []
     @Published  var PatientMedicineAllergiesName     : [String] = []
     @Published  var PatientMedicineAllergiesDto     : [Int] = []
-    
-   
 
-
-    
     @Published  var NationalityName: String = "Nationality"
     @Published  var cityName             : String = ""
     @Published  var areaName             : String = ""
     @Published  var occupationName       : String = "Occupation"
-    
-//    @Published  var SpecialityName: String = "CompeleteProfile_Screen_Speciality"
-//    @Published  var SubSpecialityName: [String] = []
-//    @Published  var SeniorityName: String = "CompeleteProfile_Screen_Seniority"
-
-    
-    
+  
     //------- validation
     @Published  var errorFirstName : String = ""
     @Published  var errorFirstNameAr: String = ""
@@ -71,122 +58,94 @@ class ViewModelCreateMedicalProfile: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedDoctorCreatedModel: ModelCreateMedicalState? = nil
-    @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
+    @Published var publishedDoctorCreatedModel: MedicalInfo? = nil
     @Published var UserCreated = false
-    @Published var isNetworkError = false
     
+    @Published var isLoading:Bool? = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
     
     init() {
-//     validations()
         //-----------------------------------------------------------------
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
-        } receiveValue: { (modeldata) in
-            self.publishedDoctorCreatedModel = modeldata
+        } receiveValue: {[self] (modeldata) in
+            self.publishedDoctorCreatedModel = modeldata.data
+            if publishedDoctorCreatedModel != nil{
+                UserCreated = true
+                
+            }
 
         }.store(in: &cancellables)
-        
-        //-----------------------------------------------------------------
-        //        passthroughSubject
-        //            .dropFirst(2)
-        //            .filter({ (value) -> Bool in
-        //                value != "5"
-        //            })
-        //            .map { value in
-        //                return value + " seconds"
-        //            }
-        //            .sink { (completion) in
-        //                switch completion {
-        //                case .finished:
-        //                    self.time = "Finished"
-        //                case .failure(let err):
-        //                    self.time = err.localizedDescription
-        //                }
-        //            } receiveValue: { (value) in
-        //                self.time = value
-        //            }
-        //            .store(in: &cancellables)
-        //
-        //-------------------------------------------------------
-        
+            
     }
-    
-    
-    
 
     
-    func startCreateMedicalProfile( ) {
-        
-//        {
-//          "Height": 12,
-//          "Weight": 12,
-//          "Pressure": "string",
-//          "SugarLevel": "string",
-//          "BloodTypeId": 1,
-//          "OtherAllergies": "string",
-//          "Prescriptions": "string",
-//          "CurrentMedication": "string",
-//          "PastMedication": "string",
-//          "ChronicDiseases": "string",
-//          "Iinjuries": "string",
-//          "Surgeries": "string",
-//          "PatientFoodAllergiesDto": [
-//            0
-//          ],
-//          "PatientMedicineAllergiesDto": [
-//            0
-//          ]
-//        }
-        
-        let parametersarr : [String : Any]  = ["Height" : Height ,"Weight" : Weight,
-                          "Pressure" : Pressure ,"SugarLevel" : SugarLevel,
-                          "BloodTypeId" : BloodTypeId
-                                               ,"OtherAllergies" : OtherAllergies,
-                          "Prescriptions" : Prescriptions ,
-                           "CurrentMedication" : CurrentMedication ,
+}
+ 
+
+extension ViewModelCreateMedicalProfile:TargetType{
+    var url: String {
+        return URLs().PatientCreateMedicalInfo
+    }
+    
+    var method: httpMethod {
+        return .Post
+    }
+    
+    var parameter: parameterType {
+        let parametersarr : [String : Any]  = ["Height" : Height, "Weight" : Weight,
+                          "Pressure" : Pressure, "SugarLevel" : SugarLevel,
+                          "BloodTypeId" : BloodTypeId, "OtherAllergies" : OtherAllergies,
+                          "Prescriptions" : Prescriptions, "CurrentMedication" : CurrentMedication,
                            "PastMedication" : PastMedication, "ChronicDiseases" : ChronicDiseases,
                            "Iinjuries": Iinjuries, "Surgeries" : Surgeries,
-                            "PatientFoodAllergiesDto": PatientFoodAllergiesDto, "PatientMedicineAllergiesDto" : PatientMedicineAllergiesDto,
-                            
-                                               
-                          ]
-        
-        if Helper.isConnectedToNetwork(){
-//        if isValid == true {
-            
-            ApiService.CreatePatientMedicalState(passedparameters: parametersarr, completion: {(success, model, err) in
-                print("data")
-                print(parametersarr)
-                self.isLoading = true
-            if success{
-                DispatchQueue.main.async {
-                    self.UserCreated = true
-                    self.isLoading = false
-                    self.passthroughModelSubject.send(model!)
-                    print(model?.message ?? "")
-                }
-            }else{
-                print(model?.message ?? "")
-                self.isLoading = false
-                self.isError = true
-                self.errorMsg = model?.message ?? "Please Compelete Your Data"
-            }
-//print(err ?? "")
-        })
-            self.isLoading = false
-
-//        }else{
-//            print("not validated")
-//        }
-        }else{
-                   // Alert with no internet connection
-            self.isLoading = false
-          isNetworkError = true
-               }
+                            "PatientFoodAllergiesDto": PatientFoodAllergiesDto,
+                            "PatientMedicineAllergiesDto" : PatientMedicineAllergiesDto,
+                            ]
+        return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
     }
     
+    var header: [String : String]? {
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
+    }
+    
+    func startCreateMedicalProfile(){
+        print(parameter)
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<MedicalInfo>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send( model!  )
+                    }
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                    isAlert = true
+                }
+                isLoading = false
+            }
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
+    }
     
 }

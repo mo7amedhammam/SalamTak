@@ -239,7 +239,7 @@ struct MedicalStateView: View {
                 }
                 .onAppear(perform: {
                     BloodTypeVM.startFetchBloodTypes()
-                    print(Helper.getAccessToken())
+//                    print(Helper.getAccessToken())
                 })
                 
             }
@@ -253,19 +253,8 @@ struct MedicalStateView: View {
                         }else {
                             isValid = false
                         }
-
                     }
                 }
-            }
-            
-            // Alert with no internet connection
-            .alert(isPresented: $medicalCreatedVM.isNetworkError, content: {
-                Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
-            })
-            
-            // alert with no ierror message
-            .alert(medicalCreatedVM.errorMsg, isPresented: $medicalCreatedVM.isError) {
-                Button("OK", role: .cancel) { }
             }
             
             // showing loading indicator
@@ -274,6 +263,13 @@ struct MedicalStateView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         NavigationLink(destination:TabBarView(),isActive: $medicalCreatedVM.UserCreated , label: {
         })
+        
+        // Alert with no internet connection
+            .alert(isPresented: $medicalCreatedVM.isAlert, content: {
+                Alert(title: Text(medicalCreatedVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    medicalCreatedVM.isAlert = false
+                    }))
+            })
     }
 }
 

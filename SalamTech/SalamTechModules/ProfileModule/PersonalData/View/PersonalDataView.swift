@@ -313,7 +313,8 @@ struct PersonalDataView: View {
                 .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 10 : 0)
                 .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
                 if ShowNationality {
-                    ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
+                    ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
+                        .environmentObject(patientCreatedVM)
                         .environmentObject(NationalityVM)
                     
                 }

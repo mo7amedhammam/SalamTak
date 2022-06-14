@@ -7,21 +7,6 @@
 
 import Foundation
 
-struct ModelGetMedicalState : Codable {
-  
-        let message: String?
-        let messageCode: Int?
-        let data: MedicalState?
-        let success: Bool?
-
-        enum CodingKeys: String, CodingKey {
-            case message = "Message"
-            case messageCode = "MessageCode"
-            case data = "Data"
-            case success = "Success"
-        }
-}
-
 // MARK: - DataClass
 struct MedicalState: Codable {
     let height, weight,id,bloodTypeId,patientId: Int?

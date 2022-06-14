@@ -18,7 +18,7 @@ struct ShowFoodAllergyList: View {
         ZStack {
             ChooseFoodAllergy(IsPresented: $ShowFoodAllergy, selectedServiceName: $medicalCreatedVM.PatientFoodAllergiesName, selectedServiceId: $medicalCreatedVM.PatientFoodAllergiesDto,  width: UIScreen.main.bounds.size.width)
         }
-        .transition(.move(edge: .bottom))
+//        .transition(.move(edge: .bottom))
         .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
         .gesture(
             DragGesture()

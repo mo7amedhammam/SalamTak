@@ -25,10 +25,10 @@ struct MoreView: View {
             VStack{
                 ZStack{
                     AppBarView(Title:"")
-                    Spacer().frame( height: 30)
-                    ZStack {
+                    ZStack (alignment: .bottom){
+                        Spacer().frame( height: 100)
                         Button(action: {
-                            print("\(Helper.getUserimage())")
+                            // here if you want to preview image
                         }, label: {
                             AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
                                 image.resizable()
@@ -37,9 +37,9 @@ struct MoreView: View {
                             }
                         })
                             .clipShape(Rectangle())
-                            .frame(width: 60, height: 60, alignment: .center)
+                            .frame(width: 66, height: 66, alignment: .center)
                             .cornerRadius(10)
-                            .padding()
+                            .padding(.top)
                     }
                 }
                 Spacer().frame( height: 30)

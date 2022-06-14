@@ -188,7 +188,7 @@ struct UpdateMedicalStateView: View {
                                
                                 Spacer()
                                 ButtonView(text: "Update Profile", action: {
-                                    medicalUpdatedVM.startUpdateMedicalProfile()
+                                    medicalUpdatedVM.updateMedicalInfo(operation: .updateMedicalInfo)
                                 })
                             }
                         }
@@ -210,7 +210,7 @@ struct UpdateMedicalStateView: View {
                     }
                 }
                 .onAppear(perform: {
-                    medicalUpdatedVM.startFetchPatientMedicalState()
+                    medicalUpdatedVM.updateMedicalInfo(operation: .getMedicalInfo)
                     BloodTypeVM.startFetchBloodTypes()
                 })
                 
@@ -223,21 +223,19 @@ struct UpdateMedicalStateView: View {
                     }
                 }
             }
-            
-            // Alert with no internet connection
-            .alert(isPresented: $medicalUpdatedVM.isNetworkError, content: {
-                Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
-            })
-            
-            // alert with no ierror message
-            .alert(medicalUpdatedVM.errorMsg, isPresented: $medicalUpdatedVM.isError) {
-                Button("OK", role: .cancel) { }
-            }
-            
             // showing loading indicator
             ActivityIndicatorView(isPresented: $medicalUpdatedVM.isLoading)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        
+        // Alert with no internet connection
+        .alert(isPresented: $medicalUpdatedVM.isAlert, content: {
+            Alert(title: Text(medicalUpdatedVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                medicalUpdatedVM.isAlert = false
+                
+            }))
+        })
+
     }
 }
 

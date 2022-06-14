@@ -2,7 +2,7 @@
 //  ViewModelPersonalData.swift
 //  SalamTech
 //
-//  Created by Mostafa Morsy on 31/03/2022.
+//  Created by Mohamed Hammam on 31/03/2022.
 //
 
 import Foundation
@@ -145,7 +145,6 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             self.MiddelNameAr = publishedPatientGetModel?.middleNameAr ?? ""
             self.FamilyName = publishedPatientGetModel?.familyName ?? ""
             self.FamilyNameAr = publishedPatientGetModel?.familyNameAr ?? ""
-        
             self.EmergencyContact = publishedPatientGetModel?.emergencyContact ?? ""
             self.GenderId = publishedPatientGetModel?.genderId ?? 0
             self.NationalityId = publishedPatientGetModel?.nationalityId ?? 0

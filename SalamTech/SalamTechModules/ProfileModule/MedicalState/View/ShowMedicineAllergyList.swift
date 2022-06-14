@@ -18,8 +18,9 @@ struct ShowMedicineAllergyList: View {
     var body: some View {
         ZStack {
             ChooseMedicineAllergy(IsPresented: $ShowMedicineAllergy, selectedServiceName: $medicalCreatedVM.PatientMedicineAllergiesName, selectedServiceId: $medicalCreatedVM.PatientMedicineAllergiesDto,  width: UIScreen.main.bounds.size.width)
+            
         }
-        .transition(.move(edge: .bottom))
+//        .transition(.move(edge: .bottom))
         .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
         .gesture(
             DragGesture()

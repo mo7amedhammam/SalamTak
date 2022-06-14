@@ -18,10 +18,9 @@ struct ShowBloodTypeList: View {
 
 var body: some View {
     ZStack {
-        
         ChooseBloodType(  IsPresented:$ShowBloodType ,  SelectedBloodName: $medicalCreatedVM.BloodTypeName, SelectedBloodId: $medicalCreatedVM.BloodTypeId, width: bounds.size.width).environmentObject(BloodTypeVM)
     }
-    .transition(.move(edge: .bottom))
+//    .transition(.move(edge: .bottom))
     .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
     .gesture(
         DragGesture()

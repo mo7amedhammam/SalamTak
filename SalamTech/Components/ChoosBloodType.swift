@@ -9,15 +9,12 @@ import SwiftUI
 
 struct ChooseBloodType : View {
     var language = LocalizationService.shared.language
-    //@ObservedObject var dataModel: DataModel
-    //    @StateObject var checkModel = CheckBoxViewModel()
-    @ObservedObject private var medicalCreatedVM = ViewModelCreateMedicalProfile()
 
-//    @StateObject var BloodTypeVM = ViewModelBloodType()
+    @ObservedObject private var medicalCreatedVM = ViewModelCreateMedicalProfile()
     @EnvironmentObject var BloodTypeVM : ViewModelBloodType
 
     @Binding var IsPresented: Bool
-    @State public var buttonSelected: Int?
+    @State var buttonSelected: Int?
     
     @Binding var SelectedBloodName: String
     @Binding var SelectedBloodId: Int
@@ -73,8 +70,6 @@ struct ChooseBloodType : View {
                                 }
                             }
                         }
-                    
-                    
                     
                     HStack {
                         ButtonView(text: "CompeleteProfile_Screen_ConfirmButton".localized(language), action: {

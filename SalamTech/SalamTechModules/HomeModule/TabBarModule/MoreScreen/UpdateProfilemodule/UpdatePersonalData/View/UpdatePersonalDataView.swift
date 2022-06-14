@@ -112,12 +112,12 @@ struct UpdatePersonalDataView: View {
                                         }
                                         
                                         HStack (spacing: 10){
-//                                            Group{
-                                                InputTextFieldInfo( text: $patientUpdatedVM.FirstName,title: "First Name(*)")
-                                                InputTextFieldInfo( text: $patientUpdatedVM.MiddelName,title: "Middle Name(*)")
-                                                InputTextFieldInfo( text: $patientUpdatedVM.FamilyName,title: "Last Name(*)")
-//                                            }
-//                                            .focused($isfocused)
+                                            //                                            Group{
+                                            InputTextFieldInfo( text: $patientUpdatedVM.FirstName,title: "First Name(*)")
+                                            InputTextFieldInfo( text: $patientUpdatedVM.MiddelName,title: "Middle Name(*)")
+                                            InputTextFieldInfo( text: $patientUpdatedVM.FamilyName,title: "Last Name(*)")
+                                            //                                            }
+                                            //                                            .focused($isfocused)
                                         }
                                     }
                                     Spacer().frame(height: 20)
@@ -390,11 +390,8 @@ struct UpdatePersonalDataView: View {
             NationalityVM.startFetchCountries()
             OccupationVM.startFetchOccupation()
             patientUpdatedVM.updatePersonalInfo(operation: .getPersonalInfo)
-           
+            
         })
-//        .onChange(of: patientUpdatedVM.OccupationId){newval in
-//            patientUpdatedVM.occupationName = getOcupationNameById(id: newval)
-//        }
         
         .navigationViewStyle(StackNavigationViewStyle())
         
@@ -405,37 +402,6 @@ struct UpdatePersonalDataView: View {
                 
             }))
         })
-            
-//
-//            switch patientUpdatedVM.activeAlert{
-//            case .NetworkError :
-//                return   Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                    patientUpdatedVM.isAlert = false
-//
-//                }))
-//
-//            case .serverError :
-//                return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                    patientUpdatedVM.isAlert = false
-//
-//                }))
-//
-//            case .success :
-//                return  Alert(title: Text(patientUpdatedVM.errorMsg), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                    patientUpdatedVM.isAlert = false
-//
-//                }))
-//
-//            case .unauthorized:
-//                return Alert(title: Text("Session_expired\nlogin_again".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-//                    patientUpdatedVM.isAlert = false
-//                    //                        self.goToLogin = true
-//
-//
-//                }))
-//
-//            }
-//        })
         
         
     }

@@ -2,7 +2,7 @@
 //  ViewModelPersonalData.swift
 //  SalamTech
 //
-//  Created by Mostafa Morsy on 31/03/2022.
+//  Created by Mohamed Hammam on 31/03/2022.
 //
 
 import Foundation
@@ -12,12 +12,11 @@ import Alamofire
 class ViewModelUpdateMedicalProfile: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelGetSubject = PassthroughSubject<ModelGetMedicalState, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelGetMedicalState, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<MedicalState>, Error>()
     
     private var cancellables: Set<AnyCancellable> = []
-    
-    
+ 
+    @Published var updateMedicalInfoOperation : UpdateMedicalInfoOp = .getMedicalInfo
     
     @Published  var Id: Int = 0
     @Published  var Height: Int = 0
@@ -39,22 +38,12 @@ class ViewModelUpdateMedicalProfile: ObservableObject {
     @Published  var PatientFoodAllergiesDto     : [Int] = []
     @Published  var PatientMedicineAllergiesName     : [String] = []
     @Published  var PatientMedicineAllergiesDto     : [Int] = []
-    
-   
-
-
-    
+ 
     @Published  var NationalityName: String = "Nationality"
     @Published  var cityName             : String = ""
     @Published  var areaName             : String = ""
     @Published  var occupationName       : String = "Occupation"
-    
-//    @Published  var SpecialityName: String = "CompeleteProfile_Screen_Speciality"
-//    @Published  var SubSpecialityName: [String] = []
-//    @Published  var SeniorityName: String = "CompeleteProfile_Screen_Seniority"
 
-    
-    
     //------- validation
     @Published  var errorFirstName : String = ""
     @Published  var errorFirstNameAr: String = ""
@@ -73,178 +62,130 @@ class ViewModelUpdateMedicalProfile: ObservableObject {
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedDoctorCreatedModel: ModelGetMedicalState? = nil
-    @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
+    @Published var publishedDoctorCreatedModel: MedicalState? = nil
     @Published var UserCreated = false
-    @Published var isNetworkError = false
+
+    @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
-    
+    @Published var message = ""
     init() {
-//     validations()
-        //-----------------------------------------------------------------
-        
+ 
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
-        } receiveValue: { (modeldata) in
-            self.publishedDoctorCreatedModel = modeldata
-
-        }.store(in: &cancellables)
-        
-        passthroughModelGetSubject.sink { (completion) in
-            //            print(completion)
         } receiveValue: { [self] (modeldata) in
-            self.publishedDoctorCreatedModel = modeldata
-            self.Height = publishedDoctorCreatedModel?.data?.height ?? 0
-            self.Weight = publishedDoctorCreatedModel?.data?.weight ?? 0
-            self.Pressure = publishedDoctorCreatedModel?.data?.pressure ?? ""
-            self.SugarLevel = publishedDoctorCreatedModel?.data?.sugarLevel ?? ""
-            self.PatientFoodAllergiesDto = publishedDoctorCreatedModel?.data?.PatientFoodAllergiesDto ?? []
-            self.PatientMedicineAllergiesDto = publishedDoctorCreatedModel?.data?.PatientMedicineAllergiesDto ?? []
-            self.PatientFoodAllergiesName = publishedDoctorCreatedModel?.data?.PatientFoodAllergiesName ?? []
-            self.PatientMedicineAllergiesName = publishedDoctorCreatedModel?.data?.PatientMedicineAllergiesName ?? []
-            self.BloodTypeName = publishedDoctorCreatedModel?.data?.bloodName ?? "Blood Group"
-            self.OtherAllergies = publishedDoctorCreatedModel?.data?.otherAllergyies ?? ""
-            self.Prescriptions = publishedDoctorCreatedModel?.data?.prescriptions ?? ""
-            self.CurrentMedication = publishedDoctorCreatedModel?.data?.currentMedication ?? ""
-            self.PastMedication = publishedDoctorCreatedModel?.data?.pastMedication ?? ""
-            self.ChronicDiseases = publishedDoctorCreatedModel?.data?.chronicDiseases ?? ""
-            self.Iinjuries = publishedDoctorCreatedModel?.data?.injuires ?? ""
-            self.Surgeries = publishedDoctorCreatedModel?.data?.surgries ?? ""
-            self.Id = publishedDoctorCreatedModel?.data?.id ?? 0
+            self.publishedDoctorCreatedModel = modeldata.data
+            self.Height = publishedDoctorCreatedModel?.height ?? 0
+            self.Weight = publishedDoctorCreatedModel?.weight ?? 0
+            self.Pressure = publishedDoctorCreatedModel?.pressure ?? ""
+            self.SugarLevel = publishedDoctorCreatedModel?.sugarLevel ?? ""
+            self.PatientFoodAllergiesDto = publishedDoctorCreatedModel?.PatientFoodAllergiesDto ?? []
+            self.PatientMedicineAllergiesDto = publishedDoctorCreatedModel?.PatientMedicineAllergiesDto ?? []
+            self.PatientFoodAllergiesName = publishedDoctorCreatedModel?.PatientFoodAllergiesName ?? []
+            self.PatientMedicineAllergiesName = publishedDoctorCreatedModel?.PatientMedicineAllergiesName ?? []
+            self.BloodTypeName = publishedDoctorCreatedModel?.bloodName ?? "Blood Group"
+            self.OtherAllergies = publishedDoctorCreatedModel?.otherAllergyies ?? ""
+            self.Prescriptions = publishedDoctorCreatedModel?.prescriptions ?? ""
+            self.CurrentMedication = publishedDoctorCreatedModel?.currentMedication ?? ""
+            self.PastMedication = publishedDoctorCreatedModel?.pastMedication ?? ""
+            self.ChronicDiseases = publishedDoctorCreatedModel?.chronicDiseases ?? ""
+            self.Iinjuries = publishedDoctorCreatedModel?.injuires ?? ""
+            self.Surgeries = publishedDoctorCreatedModel?.surgries ?? ""
+            self.Id = publishedDoctorCreatedModel?.id ?? 0
         }.store(in: &cancellables)
         
-        //-----------------------------------------------------------------
-        //        passthroughSubject
-        //            .dropFirst(2)
-        //            .filter({ (value) -> Bool in
-        //                value != "5"
-        //            })
-        //            .map { value in
-        //                return value + " seconds"
-        //            }
-        //            .sink { (completion) in
-        //                switch completion {
-        //                case .finished:
-        //                    self.time = "Finished"
-        //                case .failure(let err):
-        //                    self.time = err.localizedDescription
-        //                }
-        //            } receiveValue: { (value) in
-        //                self.time = value
-        //            }
-        //            .store(in: &cancellables)
-        //
-        //-------------------------------------------------------
-        
+    }
+
+}
+
+enum UpdateMedicalInfoOp{
+    case getMedicalInfo, updateMedicalInfo
+}
+
+extension ViewModelUpdateMedicalProfile:TargetType{
+    var url: String {
+        switch updateMedicalInfoOperation{
+        case .getMedicalInfo:
+           return  URLs().PatientGetMedicalInfo
+        case .updateMedicalInfo:
+            return  URLs().PatientUpdateMedicalInfo
+        }
+    }
+    
+    var method: httpMethod {
+        switch updateMedicalInfoOperation{
+    case .getMedicalInfo:
+            return .Get
+    case .updateMedicalInfo:
+            return .Post
+    }
+    }
+    
+    var parameter: parameterType {
+        switch updateMedicalInfoOperation{
+    case .getMedicalInfo:
+            return .plainRequest
+    case .updateMedicalInfo:
+            let parametersarr : [String : Any]  = ["Height" : Height ,"Weight" : Weight,
+                              "Pressure" : Pressure ,"SugarLevel" : SugarLevel,
+                              "BloodTypeId" : BloodTypeId
+                                                   ,"OtherAllergies" : OtherAllergies,
+                              "Prescriptions" : Prescriptions ,
+                               "CurrentMedication" : CurrentMedication ,
+                               "PastMedication" : PastMedication, "ChronicDiseases" : ChronicDiseases,
+                               "Iinjuries": Iinjuries, "Surgeries" : Surgeries,
+                                "PatientFoodAllergiesDto": PatientFoodAllergiesDto, "PatientMedicineAllergiesDto" : PatientMedicineAllergiesDto,
+                                                   "Id" : Id
+
+                              ]
+            return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
+    }
+    }
+    
+    var header: [String : String]? {
+        let header = ["Authorization":Helper.getAccessToken()]
+        return header
     }
     
     
-    
-
-    
-    func startUpdateMedicalProfile( ) {
-
-
-
-        let parametersarr : [String : Any]  = ["Height" : Height ,"Weight" : Weight,
-                          "Pressure" : Pressure ,"SugarLevel" : SugarLevel,
-                          "BloodTypeId" : BloodTypeId
-                                               ,"OtherAllergies" : OtherAllergies,
-                          "Prescriptions" : Prescriptions ,
-                           "CurrentMedication" : CurrentMedication ,
-                           "PastMedication" : PastMedication, "ChronicDiseases" : ChronicDiseases,
-                           "Iinjuries": Iinjuries, "Surgeries" : Surgeries,
-                            "PatientFoodAllergiesDto": PatientFoodAllergiesDto, "PatientMedicineAllergiesDto" : PatientMedicineAllergiesDto,
-                                               "Id" : Id
-
-                          ]
-
+    func updateMedicalInfo(operation:UpdateMedicalInfoOp){
+        updateMedicalInfoOperation = operation
+        print(parameter)
         if Helper.isConnectedToNetwork(){
-//        if isValid == true {
-
-            UpdateMedicalStateApiService.UpdatePatientMedicalState(passedparameters: parametersarr, completion: {(success, model, err) in
-                print("data")
-                print(parametersarr)
-                self.isLoading = true
-            if success{
-                DispatchQueue.main.async {
-                    self.UserCreated = true
-                    self.isLoading = false
-                    self.passthroughModelSubject.send(model!)
-                    print(model?.message ?? "")
-                }
-            }else{
-                if model != nil{
-                print(model?.message ?? "")
-                self.isLoading = false
-                    self.isAlert = true
-                    self.activeAlert = .serverError
-                self.errorMsg = model?.message ?? "Please Compelete Your Data"
-                }else{
-                    if err == "unauthorized"{
-                        self.isAlert = true
-                        self.activeAlert = .unauthorized
-                        self.isLoading = false
+            self.isLoading = true
+            BaseNetwork.request(Target: self, responseModel:BaseResponse<MedicalState>.self   ) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send( model!  )
+                        print(model!)
                     }
-                }
-            }
-//print(err ?? "")
-        })
-            self.isLoading = false
-
-//        }else{
-//            print("not validated")
-//        }
-        }else{
-                   // Alert with no internet connection
-            self.isLoading = false
-            self.isAlert = true
-            self.activeAlert = .NetworkError
-               }
-    }
- 
-    func startFetchPatientMedicalState() {
-
-        if Helper.isConnectedToNetwork(){
-            UpdateMedicalStateApiService.GetPatientMedicalState(
-                completion:  { (success, model, err) in
-                
-            
-                self.isLoading = true
-            if success{
-                DispatchQueue.main.async {
-                    self.UserCreated = true
-                    self.isLoading = false
-                    self.passthroughModelGetSubject.send(model!)
-//                    print(model!)
-                }
-            }else{
-                if model != nil{
-                self.isLoading = false
-                    self.isAlert = true
-                    self.activeAlert = .serverError
-                print(model?.message ?? "")
-                self.errorMsg = err ?? ""
                 }else{
-                  if err == "unauthorized"{
-                      self.isAlert = true
-                      self.activeAlert = .unauthorized
-                      self.isLoading = false
-
-                  }
-              }
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                                    isAlert = true
+                }
+                isLoading = false
             }
-        })
-
+            
         }else{
-                   // Alert with no internet connection
-            self.isLoading = false
-            self.isAlert = true
-            self.activeAlert = .NetworkError
-               }
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
     }
+    
+    
     
 }

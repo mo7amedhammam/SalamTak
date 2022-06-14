@@ -40,6 +40,9 @@ struct ShowNationalityList: View {
                     }
                 }
         )
+        .onAppear(perform: {
+            NationalityVM.startFetchCountries()
+        })
     }
 }
 
