@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class URLs {
-
      static let BaseUrl = "https://salamtakapitest.azurewebsites.net"
     
     // MARK: -------- Patient ------

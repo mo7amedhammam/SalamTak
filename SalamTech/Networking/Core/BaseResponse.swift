@@ -2,13 +2,12 @@
 //  BaseResponse.swift
 //  SalamTak
 //
-//  Created by wecancity on 01/06/2022.
+//  Created by Mohamed Hammam on 01/06/2022.
 //
 
 import Foundation
 
 struct BaseResponse<T:Codable> : Codable {
-  
         let message: String?
         let messageCode: Int?
         let data: T?
@@ -19,8 +18,7 @@ struct BaseResponse<T:Codable> : Codable {
             case messageCode = "MessageCode"
             case data = "Data"
             case success = "Success"
-        }
-    
+        }    
     
     init() {
         self.message = ""
