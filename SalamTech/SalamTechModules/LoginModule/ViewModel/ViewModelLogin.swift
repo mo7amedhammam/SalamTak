@@ -14,7 +14,7 @@ import Combine
 class ViewModelLogin: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelLogin, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<DataClass>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     let characterLimit: Int
     
@@ -41,12 +41,13 @@ class ViewModelLogin: ObservableObject {
     @Published var phoneErrorMessage = ""
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
-    @Published var publishedUserLogedInModel: ModelLogin? = nil
+    @Published var publishedUserLogedInModel: DataClass? = nil
     @Published var isLogedin = false
+
     @Published var isLoading:Bool? = false
-    @Published var isError = false
-    @Published var errorMsg = ""
-    @Published var isNetworkError = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
 
     
     @Published var destination = AnyView(TabBarView())
@@ -56,124 +57,82 @@ class ViewModelLogin: ObservableObject {
         //-----------------------------------------------------------------
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
-        } receiveValue: { (modeldata) in
-            self.publishedUserLogedInModel = modeldata
-            if self.publishedUserLogedInModel?.Data?.ProfileStatus == 0 {
-                self.destination = AnyView(PersonalDataView())
-            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 1{
-                self.destination = AnyView(MedicalStateView())
+        } receiveValue: { [self](modeldata) in
+            publishedUserLogedInModel = modeldata.data
+            if publishedUserLogedInModel?.ProfileStatus == 0 {
+                destination = AnyView(PersonalDataView())
+            }else if publishedUserLogedInModel?.ProfileStatus == 1{
+                destination = AnyView(MedicalStateView())
             
-            }else if self.publishedUserLogedInModel?.Data?.ProfileStatus == 2{
-                self.destination = AnyView(TabBarView())
+            }else if self.publishedUserLogedInModel?.ProfileStatus == 2{
+                destination = AnyView(TabBarView())
             }
+            
+            Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
+            Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
+            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.Token ?? "")" )
         }.store(in: &cancellables)
         
     }
     
-    //    func validations(){
-    //
-    //         var isPhoneNumberValidPublisher: AnyPublisher<Bool,Never> {
-    //            $phoneNumber
-    //                .debounce(for: 0.8, scheduler: RunLoop.main)
-    //                .removeDuplicates()
-    //                .map{ $0.count >= 10}
-    //                .eraseToAnyPublisher()
-    //        }
-    //         var isPasswordEmptyPublisher: AnyPublisher<Bool,Never> {
-    //            $password
-    //                .debounce(for: 0.8, scheduler: RunLoop.main)
-    //                .removeDuplicates()
-    //                .map{ $0.isEmpty}
-    //                .eraseToAnyPublisher()
-    //        }
-    //
-    //         var isPasswordsValidPublisher: AnyPublisher<PasswordStatus,Never> {
-    //            Publishers.CombineLatest(isPasswordEmptyPublisher, arePasswordsEqualPublisher)
-    //                .map{
-    //                    if $0 {return PasswordStatus.empty}
-    //                    if !$1 {return PasswordStatus.repeatedPasswordWrong}
-    //                    return PasswordStatus.valid
-    //                }
-    //                .eraseToAnyPublisher()
-    //        }
-    //
-    //         var isFormValidPublisher: AnyPublisher<Bool,Never> {
-    //            Publishers.CombineLatest3(isPasswordsValidPublisher,isFullNameValidPublisher,isPhoneNumberValidPublisher)
-    //                .map{ $0 == .valid && $1 && $2}
-    //                .eraseToAnyPublisher()
-    //        }
-    //
-    //        enum PasswordStatus {
-    //            case empty
-    //            case repeatedPasswordWrong
-    //            case valid
-    //        }
-    //
-    //        //----------
-    //        isFormValidPublisher
-    //            .receive(on: RunLoop.main)
-    //            .assign(to: \.isValid, on: self)
-    //            .store(in: &cancellables)
-    //
-    //        isPasswordsValidPublisher
-    //            .dropFirst()
-    //            .receive(on: RunLoop.main)
-    //            .map{ passwordStatus in
-    //                switch passwordStatus {
-    //                case .empty:
-    //                    return "Password cannot be Empty"
-    //                case .repeatedPasswordWrong:
-    //                    return "Passwords do not match"
-    //                case .valid:
-    //                    return ""
-    //                }
-    //            }
-    //            .assign(to: \.inlineErrorPassword, on: self)
-    //            .store(in: &cancellables)
-    //
-    //    }
+}
+
+
+extension ViewModelLogin:TargetType    {
+  
+    var url: String {
+        return  URLs().LoginUser
+    }
     
-    func startLoginApi(phone: String, password: String) {
-        //        if isValid == true {
-//        self.isLogedin = true
-        
+    var method: httpMethod {
+        return .Post
+    }
+    
+    var parameter: parameterType {
+        let parametersarr : [String : Any] =  ["Phone" : phoneNumber ,"Password" : password,"UserTypeId" : 3 ]
+        return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
+    }
+    
+    var header: [String : String]? {
+        let header = ["Content-Type":"application/json" , "Accept":"application/json"]
+        return header
+    }
+    
+    func startLoginApi(){
+        print(parameter)
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-        ApiService.LoginUser(phone: phone, password: password, completion: { (success, model, err) in
-            
-            if success {
-                
-                DispatchQueue.main.async {
-                    //                    print(model!)
-                    self.passthroughModelSubject.send(model!)
-                    self.isLogedin = true
-                    self.isLoading = false
-                    
-                   // self.passthroughModelSubject.send(model!)
-                    Helper.setUserData(Id: model?.Data?.Id ?? 0, PhoneNumber: model?.Data?.Phone ?? "", patientName: model?.Data?.Name ?? "" )
-                    Helper.setUserimage(userImage: URLs.BaseUrl+"\(model?.Data?.Image ?? "")")
-                    Helper.setAccessToken(access_token: "Bearer " + "\(model?.Data?.Token ?? "")" )
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<DataClass>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send(model!)
+                        self.isLogedin = true
+                    }
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                    isAlert = true
                 }
-                //                print(modeldata)
-            }else{
-                self.isLoading = false
-                print(err ?? "error here from LoginViewmodel")
-                self.errorMsg = err ?? "Error msg login vm"
-                self.isError = true
-
+                isLoading = false
             }
-        })
-        }else{
-                   // Alert with no internet connection
-          isNetworkError = true
-            self.isLoading = false
-
-               }
             
-        
-        //        }else{
-        //            print("not validated")
-        //        }
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
     }
     
 }

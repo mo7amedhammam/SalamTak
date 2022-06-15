@@ -7,13 +7,13 @@
 
 import Foundation
 
-// MARK: - ModelLogin
-struct ModelLogin: Codable {
-    let Message: String?
-    let MessageCode: Int?
-    let Data: DataClass?
-    let Success: Bool?
-}
+//// MARK: - ModelLogin
+//struct ModelLogin: Codable {
+//    let Message: String?
+//    let MessageCode: Int?
+//    let Data: DataClass?
+//    let Success: Bool?
+//}
 
 // MARK: - DataClass
 struct DataClass: Codable {
