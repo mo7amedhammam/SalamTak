@@ -14,8 +14,7 @@
 		00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4527F3101100571078 /* SalamTechTests.swift */; };
 		00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4F27F3101100571078 /* SalamTechUITests.swift */; };
 		00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */; };
-		00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6027F3182B00571078 /* ApiServices.swift */; };
-		00C8BF6327F319B100571078 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6227F319B100571078 /* Config.swift */; };
+		00C8BF6327F319B100571078 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6227F319B100571078 /* Constants.swift */; };
 		00C8BF6527F319BC00571078 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6427F319BC00571078 /* Helper.swift */; };
 		00C8BF6727F31AE500571078 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6627F31AE500571078 /* Language.swift */; };
 		00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6827F31AF200571078 /* LocalizationService.swift */; };
@@ -225,8 +224,7 @@
 		00C8BF4B27F3101100571078 /* SalamTakUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTakUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C8BF4F27F3101100571078 /* SalamTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITests.swift; sourceTree = "<group>"; };
 		00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		00C8BF6027F3182B00571078 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
-		00C8BF6227F319B100571078 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		00C8BF6227F319B100571078 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00C8BF6427F319BC00571078 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		00C8BF6627F31AE500571078 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		00C8BF6827F31AF200571078 /* LocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
@@ -514,8 +512,6 @@
 			isa = PBXGroup;
 			children = (
 				0E9E0DBF27FAF96600893ABF /* LookUp */,
-				00C8BF6027F3182B00571078 /* ApiServices.swift */,
-				00C8BF6227F319B100571078 /* Config.swift */,
 				00C8BF6427F319BC00571078 /* Helper.swift */,
 			);
 			path = Services;
@@ -1290,6 +1286,7 @@
 			children = (
 				C85BD538284770560056B046 /* TargetType.swift */,
 				C85BD53A284780B70056B046 /* BaseResponse.swift */,
+				00C8BF6227F319B100571078 /* Constants.swift */,
 				C85BD53C28478E1B0056B046 /* BaseNetwork.swift */,
 			);
 			path = Core;
@@ -1883,7 +1880,6 @@
 				C8965149284D0FF4000EAFF7 /* TitleFilterList.swift in Sources */,
 				C8965142284CDCE8000EAFF7 /* ViewSearchDoc.swift in Sources */,
 				C800F83627FB585B00482151 /* CityView.swift in Sources */,
-				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
 				0E586D1427F5B62C00944F21 /* ModelPersonal.swift in Sources */,
 				0E9E0DB227FAEFD100893ABF /* GenderView.swift in Sources */,
 				0E586CEE27F5A7EC00944F21 /* ActivityIndicatorView.swift in Sources */,
@@ -1935,7 +1931,7 @@
 				0E9E0DC427FAF9C500893ABF /* ModelCountries.swift in Sources */,
 				00C8BF7A27F33E6100571078 /* OnBoardingView.swift in Sources */,
 				C89A6BB5284FCBC800BF37C9 /* GenericPopupContent.swift in Sources */,
-				00C8BF6327F319B100571078 /* Config.swift in Sources */,
+				00C8BF6327F319B100571078 /* Constants.swift in Sources */,
 				0E26EA6A27FB2EF800E3D9B8 /* ModelMedicineAllergy.swift in Sources */,
 				0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */,
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
