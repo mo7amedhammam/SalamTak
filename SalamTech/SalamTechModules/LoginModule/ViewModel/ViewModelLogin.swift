@@ -10,11 +10,10 @@ import SwiftUI
 import Alamofire
 import Combine
 
-
 class ViewModelLogin: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<BaseResponse<DataClass>, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<LoginModel>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     let characterLimit: Int
     
@@ -39,9 +38,8 @@ class ViewModelLogin: ObservableObject {
     
     //------- output
     @Published var phoneErrorMessage = ""
-    @Published var isValid = false
-    @Published var inlineErrorPassword = ""
-    @Published var publishedUserLogedInModel: DataClass? = nil
+//    @Published var inlineErrorPassword = ""
+    @Published var publishedUserLogedInModel: LoginModel? = nil
     @Published var isLogedin = false
 
     @Published var isLoading:Bool? = false
@@ -53,8 +51,7 @@ class ViewModelLogin: ObservableObject {
     @Published var destination = AnyView(TabBarView())
     init(limit: Int = 11) {
         characterLimit = limit
-        //     validations()
-        //-----------------------------------------------------------------
+
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { [self](modeldata) in
@@ -102,7 +99,7 @@ extension ViewModelLogin:TargetType    {
         print(parameter)
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<DataClass>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<LoginModel>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {

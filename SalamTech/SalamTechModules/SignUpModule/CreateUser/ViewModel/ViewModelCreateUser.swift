@@ -2,7 +2,7 @@
 //  ViewModelCreateUser.swift
 //  Salamtech-Dr
 //
-//  Created by wecancity on 08/01/2022.
+//  Created by Mohamed Hammam on 08/01/2022.
 //
 
 import Foundation
@@ -12,78 +12,95 @@ import Alamofire
 class ViewModelCreateUser: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passthroughModelSubject = PassthroughSubject<ModelCreateUser, Error>()
+    let passthroughModelSubject = PassthroughSubject<BaseResponse<CreateUserModel>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
     @Published  var fullName: String = ""
     @Published  var email: String = ""
     @Published  var phoneNumber: String = ""
-    @Published  var phoneNumber1: String = "+20 | "
     @Published  var password = ""
-    @Published  var password1 = ""
-
     
     //------- output
-    @Published var isValid = false
-    @Published var inlineErrorPassword = ""
-    @Published var publishedUserCreatededModel: ModelCreateUser? = nil
+    @Published var publishedUserCreatededModel: CreateUserModel? = nil
     @Published var isRegistered = false
-    @Published var isError = false
-    @Published var errorMsg = ""
-    @Published private var UserCreated = false
-    @Published var isNetworkError = false
-
+    @Published var isLoading:Bool? = false
+    @Published var isAlert = false
+    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var message = ""
 
     init() {
       
-//     validations()
-        //-----------------------------------------------------------------
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
-        } receiveValue: { (modeldata) in
-            self.publishedUserCreatededModel = modeldata
+        } receiveValue: {[self] (modeldata) in
+            publishedUserCreatededModel = modeldata.data
+            
+            isRegistered = true
+                           Helper.setUserData(Id: publishedUserCreatededModel?.Id ?? 0, PhoneNumber: publishedUserCreatededModel?.Phone ?? "", patientName: "model?.Data?.Name" )
+                           Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatededModel?.Token ?? "")")
+                           Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserCreatededModel?.Image ?? "")")
         }.store(in: &cancellables)
         
     }
-    
+}
 
-    
-  
-    func startFetchUserCreation(name:String, email: String, phone:String, password:String) {
-        
-        if Helper.isConnectedToNetwork(){
-            ApiService.CreateUser(Name: name, Email: email, Phone: phone, Password: password,completion: { (success, model, err) in
-            
-            if success{
-                print("user created from viewmodel create user")
 
-                DispatchQueue.main.async {
-                    self.passthroughModelSubject.send(model!)
-                    self.isRegistered = true
-//
-//                    print(model?.Message ?? "")
-//                    print(model?.Data?.Phone ?? "")
-//                    print(model?.Data?.Token ?? "")
-
-                    Helper.setUserData(Id: model?.Data?.Id ?? 0, PhoneNumber: model?.Data?.Phone ?? "", patientName: "model?.Data?.Name" )
-                    Helper.setAccessToken(access_token: "Bearer " + "\(model?.Data?.Token ?? "")")
-                    Helper.setUserimage(userImage: URLs.BaseUrl+"\(model?.Data?.Image ?? "")")
-
-                }
-                //                print(modeldata)
-            }else{
-                print(err ?? "error here from create userViewmodel")
-                self.isError = true
-                self.errorMsg = err ?? "Error"
-            }
-        })
-        }else{
-                   // Alert with no internet connection
-          isNetworkError = true
-               }
-       
+extension ViewModelCreateUser:TargetType{
+   
+    var url: String {
+            return  URLs().CreateUser
     }
     
- 
+    var method: httpMethod {
+        return .Post
+    }
+
+    var parameter: parameterType {
+        let parametersarr : [String : Any] =  ["Name" : fullName ,"Email" : email ,"Phone" : phoneNumber ,"Password" : password ,"UserTypeId" : 3 ]
+        return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
+    }
+    
+    var header: [String : String]? {
+        let header = ["Content-Type":"application/json" , "Accept":"application/json"]
+        return header
+    }
+    
+    func startFetchUserCreation(){
+        
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<CreateUserModel>.self ) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelSubject.send(model!)
+                        self.isRegistered = true
+                    }
+                }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        isAlert = true
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                        }
+                    }
+                    isAlert = true
+                }
+                isLoading = false
+            }
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+        }
+    }
+    
 }

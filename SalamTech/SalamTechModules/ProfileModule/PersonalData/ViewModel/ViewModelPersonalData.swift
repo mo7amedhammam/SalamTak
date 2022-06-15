@@ -168,7 +168,6 @@ extension ViewModelCreatePatientProfile:TargetType{
     }
     
     func startCreatePatientProfile(profileImage:  UIImage?){
-        print(parameter)
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
             BaseNetwork.multipartRequest(Target: self, image: profileImage, responseModel: BaseResponse<PatientInfo>.self) { [self] (success, model, err) in
@@ -176,7 +175,6 @@ extension ViewModelCreatePatientProfile:TargetType{
                     //case of success
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
-                        //                        print(model!)
                     }
                 }else{
                     if model != nil{
@@ -187,6 +185,8 @@ extension ViewModelCreatePatientProfile:TargetType{
                         if err == "Unauthorized"{
                             //case of Empty model (unauthorized)
                             message = "Session_expired\nlogin_again".localized(language)
+                        }else if err == "imageError"{
+                            message = "can't get image data"
                         }else{
                             isAlert = true
                             message = err ?? "there is an error"

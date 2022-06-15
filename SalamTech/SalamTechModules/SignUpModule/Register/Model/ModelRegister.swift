@@ -7,21 +7,9 @@
 
 import Foundation
 
-//--------------------------------------
 
-struct ModelRegister : Codable {
-    var Data : userData?
-    var MessageCode : Int?
-    var Success : Bool?
-    var Message : String?
-    
-    
-}
-
-struct userData : Codable{
+struct RegisterModel : Codable{
     var Code : Int?
     var ReSendCounter : Int?
     var UserId : Int?
 }
-
-//---------------------------------------

@@ -2,7 +2,7 @@
 //  ViewLogin.swift
 //  Salamtech-Dr
 //
-//  Created by wecancity on 27/12/2021.
+//  Created by Mohamed Hammam on 27/12/2021.
 //
 
 import SwiftUI

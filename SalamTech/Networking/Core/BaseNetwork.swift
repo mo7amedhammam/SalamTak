@@ -49,9 +49,7 @@ final class BaseNetwork<T:TargetType>{
         let parameters = buildparameters(paramaters: Target.parameter)
         let headers = Alamofire.HTTPHeaders(Target.header ?? [:])
         
-        
         AF.upload(multipartFormData: { (multipartFormData) in
-            
             for (key , value) in parameters.0{
                 
                 if let temp = value as? String {
@@ -76,11 +74,10 @@ final class BaseNetwork<T:TargetType>{
                 if let data = image?.jpegData(compressionQuality: 0.8), image != nil {
                     //be carefull and put file name in withName parmeter
                     multipartFormData.append(data, withName: "profileImage" , fileName: "file.jpeg", mimeType: "image/jpeg")
-
-                }else{ print("cant get image data")
-                    completion(false, nil,"cant get image data")
+                }else{
+                    print("cant get image data")
+                    completion(false, nil,"imageError")
                 }
-            
             
         },     to: Target.url,
                   method: method,

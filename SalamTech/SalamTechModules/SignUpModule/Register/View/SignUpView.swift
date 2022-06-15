@@ -19,64 +19,62 @@ struct ViewSignUp: View {
     @Environment(\.presentationMode) var presentationMode
     func editingChanged(_ value: String) {
         RegisterVM.phoneNumber = String(value.prefix(RegisterVM.characterLimit))
-       }
-
+    }
+    
     var body: some View {
-//        NavigationView {
-            ZStack {
-                    VStack{
-                        ScrollView(showsIndicators: false) {
-                        VStack {
-                            AppBarView(Title: "SignUp_Screen_title".localized(language))
-//                                .navigationBarItems(leading: BackButtonView())
-                                .navigationBarHidden(true)
-                                .navigationBarBackButtonHidden(true)
-                            Image("logo")
-                                    .resizable()
-                                    .frame(width: 110, height: 110, alignment: .center)
-                                    .padding(.top, 30)
-
-                            VStack (spacing: 15){
-                                if language.rawValue == "en" {
-                                    InputTextField( text: $RegisterVM.fullName,title: "SignUp_Screen_enterfullName".localized(language))
-                                        .keyboardType(.namePhonePad)
-                                        .textInputAutocapitalization(.never)
-                                        .focused($isfocused)
-                                    if !RegisterVM.nameErrorMessage.isEmpty{
-                                        Text(RegisterVM.nameErrorMessage)
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
-                                    
-                                    InputTextField( text: $RegisterVM.email,title: "SignUp_Screen_enterEmail".localized(language))
-                                        .keyboardType(.emailAddress)
-                                        .textInputAutocapitalization(.never)
-                                        .focused($isfocused)
-                                    if !RegisterVM.emailErrorMessage.isEmpty{
-                                        Text(RegisterVM.emailErrorMessage)
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
-                                    
-                                    
-                                    InputTextField( text: $RegisterVM.phoneNumber,title: "SignUp_Screen_enterPhone".localized(language))
-                                        .keyboardType(.numberPad)
-                                        .textInputAutocapitalization(.never)
-                                        .focused($isfocused)
-                                        .onChange(of: RegisterVM.phoneNumber, perform: editingChanged)
-                                    if !RegisterVM.phoneErrorMessage.isEmpty{
-                                        Text(RegisterVM.phoneErrorMessage)
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
-
-                                    if quickSignup == false{
+        ZStack {
+            VStack{
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        AppBarView(Title: "SignUp_Screen_title".localized(language))
+                        //                                .navigationBarItems(leading: BackButtonView())
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                        Image("logo")
+                            .resizable()
+                            .frame(width: 110, height: 110, alignment: .center)
+                            .padding(.top, 30)
+                        
+                        VStack (spacing: 15){
+                                InputTextField( text: $RegisterVM.fullName,title: "SignUp_Screen_enterfullName".localized(language))
+                                    .keyboardType(.namePhonePad)
+                                    .textInputAutocapitalization(.never)
+                                    .focused($isfocused)
+                                if !RegisterVM.nameErrorMessage.isEmpty{
+                                    Text(RegisterVM.nameErrorMessage)
+                                        .font(.system(size: 13))
+                                        .padding(.horizontal,20)
+                                        .foregroundColor(.red)
+                                        .frame(maxWidth:.infinity, alignment: .leading)
+                                }
+                                
+                                InputTextField( text: $RegisterVM.email,title: "SignUp_Screen_enterEmail".localized(language))
+                                    .keyboardType(.emailAddress)
+                                    .textInputAutocapitalization(.never)
+                                    .focused($isfocused)
+                                if !RegisterVM.emailErrorMessage.isEmpty{
+                                    Text(RegisterVM.emailErrorMessage)
+                                        .font(.system(size: 13))
+                                        .padding(.horizontal,20)
+                                        .foregroundColor(.red)
+                                        .frame(maxWidth:.infinity, alignment: .leading)
+                                }
+                                
+                                
+                                InputTextField( text: $RegisterVM.phoneNumber,title: "SignUp_Screen_enterPhone".localized(language))
+                                    .keyboardType(.numberPad)
+                                    .textInputAutocapitalization(.never)
+                                    .focused($isfocused)
+                                    .onChange(of: RegisterVM.phoneNumber, perform: editingChanged)
+                                if !RegisterVM.phoneErrorMessage.isEmpty{
+                                    Text(RegisterVM.phoneErrorMessage)
+                                        .font(.system(size: 13))
+                                        .padding(.horizontal,20)
+                                        .foregroundColor(.red)
+                                        .frame(maxWidth:.infinity, alignment: .leading)
+                                }
+                                
+                                if quickSignup == false{
                                     SecureInputView("SignUp_Screen_enterPassword".localized(language), text: $RegisterVM.password)
                                         .focused($isfocused)
                                         .textInputAutocapitalization(.never)
@@ -84,177 +82,96 @@ struct ViewSignUp: View {
                                     SecureInputView("SignUp_Screen_enterconfirmPassword".localized(language), text: $RegisterVM.password1)
                                         .focused($isfocused)
                                         .textInputAutocapitalization(.never)
-                                    }
-                                } else if language.rawValue == "ar" {
-                                    
-                                    InputTextFieldArabic( text: $RegisterVM.fullName,title: "SignUp_Screen_enterfullName".localized(language))
-                                        .keyboardType(.namePhonePad)
-                                        .textInputAutocapitalization(.never)
-                                        .focused($isfocused)
-                                    if !RegisterVM.nameErrorMessage.isEmpty{
-                                        Text(RegisterVM.nameErrorMessage)
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
-                                    
-                                
-                                    InputTextFieldArabic( text: $RegisterVM.email,title: "SignUp_Screen_enterEmail".localized(language))
-                                        .keyboardType(.emailAddress)
-                                        .textInputAutocapitalization(.never)
-                                        .focused($isfocused)
-                                    if !RegisterVM.emailErrorMessage.isEmpty{
-                                        Text(RegisterVM.emailErrorMessage)
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
-                                    
-                                    
-                                    InputTextFieldArabic( text: $RegisterVM.phoneNumber,title: "SignUp_Screen_enterPhone".localized(language))
-                                        .keyboardType(.numberPad)
-                                        .textInputAutocapitalization(.never)
-                                        .focused($isfocused)
-                                        .onChange(of: RegisterVM.phoneNumber, perform: editingChanged)
-                                    if !RegisterVM.phoneErrorMessage.isEmpty{
-                                        Text(RegisterVM.phoneErrorMessage)
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
-
-                                    if quickSignup == false{
-                                    SecureInputArabicView("SignUp_Screen_enterPassword".localized(language), text: $RegisterVM.password)
-                                        .focused($isfocused)
-                                        .textInputAutocapitalization(.never)
-                                    
-                                    SecureInputArabicView("SignUp_Screen_enterconfirmPassword".localized(language), text: $RegisterVM.password1)
-                                        .focused($isfocused)
-                                        .textInputAutocapitalization(.never)
-                                    }
                                 }
-                               
-                               
-                                Text(RegisterVM.inlineErrorPassword)
-                                    .foregroundColor(.red)
-                                }
-                            
-                            
-                            }
-                            
-                       
-
-                            Spacer()
-                            ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && (( RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password ) || quickSignup == true) && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
-    //                            RegisterVM.isLoading = true
-                                RegisterVM.startFetchUserRegisteration(fullname: RegisterVM.fullName, email: RegisterVM.email, phone: RegisterVM.phoneNumber, password: RegisterVM.password)
-                            }.disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || (( RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  ) && quickSignup == false ) || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
-                        
-                            if quickSignup == false{
-                            HStack (spacing: -10){
-                                Text("SignUp_Screen_haveAccount".localized(language))
-                                    .padding()
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.gray)
-                                Button("SignIn_Button".localized(language)) {
-                                    print ("sign in ")
-
-                                    //  present sign in
-                                    if self.ispresented == true {
-                                        print ("sign in ")
-    //                                    ispresented = false
-                                        presentationMode.wrappedValue.dismiss()
-
-                                    }else {
-                                        self.haveAccount = true
-                                }
-                                }
-
-                                .font(.system(size: 13, weight: .bold))
-                                .foregroundColor(Color("mainColor"))
-                            }
-                            }
-                            Spacer().frame(height:25)
-                        }
-
+                            Text(RegisterVM.inlineErrorPassword)
+                                .foregroundColor(.red)
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     }
-
-                            
-        //           Spacer()
-                    // showing loading indicator
-                    ActivityIndicatorView(isPresented: $RegisterVM.isLoading)
+                    Spacer()
+                    ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && (( RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password ) || quickSignup == true) && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
+                        RegisterVM.startFetchUserRegisteration()
+                    }
+                    .disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || (( RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  ) && quickSignup == false ) || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
                     
-                
-                
-                
-            //            phone verification
-                        NavigationLink(destination: ViewLogin(ispresented: $haveAccount, QuickLogin: .constant(false)),isActive: $haveAccount, label: {
-                            })
-
-            //phone verification
-                NavigationLink(destination: PhoneVerificationView(passedmodel: RegisterVM),isActive: $RegisterVM.isRegistered, label: {
-                })
+                    if quickSignup == false{
+                        HStack (spacing: -10){
+                            Text("SignUp_Screen_haveAccount".localized(language))
+                                .padding()
+                                .font(.system(size: 14))
+                                .foregroundColor(.gray)
+                            Button("SignIn_Button".localized(language)) {
+                                print ("sign in ")
+                                
+                                //  present sign in
+                                if self.ispresented == true {
+                                    presentationMode.wrappedValue.dismiss()
+                                }else {
+                                    self.haveAccount = true
+                                }
+                            }
+                            
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(Color("mainColor"))
+                        }
+                    }
+                    Spacer().frame(height:25)
                 }
-            .navigationViewStyle(StackNavigationViewStyle())
-
-                .background(Color("CLVBG"))
+                
+            }
             
-                    .adaptsToKeyboard()
-                    .ignoresSafeArea()
-                    .onTapGesture(perform: {
-                        hideKeyboard()
-                    })
             
-            //Quick Login
-                    .onChange(of: RegisterVM.isRegistered ){newval in
-                if newval==true{
-                    self.quickSignup=false
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $RegisterVM.isLoading)
+            
+            //            phone verification
+            NavigationLink(destination: ViewLogin(ispresented: $haveAccount, QuickLogin: .constant(false)),isActive: $haveAccount, label: {
+            })
+            
+            //phone verification
+            NavigationLink(destination: PhoneVerificationView().environmentObject(RegisterVM),isActive: $RegisterVM.isRegistered, label: {
+            })
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        
+        .background(Color("CLVBG"))
+        
+        .adaptsToKeyboard()
+        .ignoresSafeArea()
+        .onTapGesture(perform: {
+            hideKeyboard()
+        })
+        
+        //Quick Login
+        .onChange(of: RegisterVM.isRegistered ){newval in
+            if newval==true{
+                self.quickSignup=false
+            }
+        }
+        .toolbar{
+            ToolbarItemGroup(placement: .keyboard ){
+                Spacer()
+                Button("Done"){
+                    isfocused = false
                 }
             }
-                    .toolbar{
-                        ToolbarItemGroup(placement: .keyboard ){
-                            Spacer()
-                            Button("Done"){
-                                isfocused = false
-                            }
-                        }
-                    }
+        }
+        
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                BackButtonView()
+            }
+        }
+        // Alert with no internet connection
+            .alert(isPresented: $RegisterVM.isAlert, content: {
+                Alert(title: Text(RegisterVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                    RegisterVM.isAlert = false
+                    }))
+            })
 
-    //                .sheet(isPresented: $haveAccount ,onDismiss: {
-    //                    print("dismiss")
-    //                }, content: {ViewLogin(ispresented: $haveAccount)})
-            
-
-               
-
-                
-                // Alert with no internet connection
-                    .alert(isPresented: $RegisterVM.isNetworkError, content: {
-                Alert(title: Text("Check Your Internet Connection"), message: nil, dismissButton: .cancel())
-                })
-            
-                // Alert with Error message
-                    .alert(RegisterVM.errorMsg, isPresented: $RegisterVM.isError) {
-                                        Button("OK", role: .cancel) { }
-                }
-//        }
-////        .navigationBarHidden(true)
-//            .navigationBarBackButtonHidden(true)
-         
-            .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                          BackButtonView()
-                        }
-                    }
-
-     
+        
     }
     
-       
-    }
+}
 
 
 struct ViewSignUp_Previews: PreviewProvider {
@@ -262,6 +179,8 @@ struct ViewSignUp_Previews: PreviewProvider {
         ViewSignUp(ispresented: .constant(false), quickSignup: .constant(false))
     }
 }
+
+
 
 struct SecureInputView: View {
     
@@ -278,7 +197,7 @@ struct SecureInputView: View {
     var body: some View {
         ZStack(alignment: .trailing) {
             if isSecured {
-             //   PasswordView(text: text, placeHolder: title)
+                //   PasswordView(text: text, placeHolder: title)
                 SecureField(title, text: $text)
                     .autocapitalization(.none)
                     .frame(width: screenWidth, height: 30 , alignment: .trailing)
@@ -288,8 +207,8 @@ struct SecureInputView: View {
                     .background(
                         Color.white
                     ).foregroundColor(Color("mainColor"))
-                        .cornerRadius(5)
-                        .shadow(color: Color.gray.opacity(0.099), radius: 3)
+                    .cornerRadius(5)
+                    .shadow(color: Color.gray.opacity(0.099), radius: 3)
             } else {
                 TextField(title, text: $text)
                     .autocapitalization(.none)
@@ -300,8 +219,8 @@ struct SecureInputView: View {
                     .background(
                         Color.white
                     ).foregroundColor(Color("mainColor"))
-                        .cornerRadius(5)
-                        .shadow(color: Color.black.opacity(0.099), radius: 3)
+                    .cornerRadius(5)
+                    .shadow(color: Color.black.opacity(0.099), radius: 3)
                 
             }
             Button(action: {
@@ -314,7 +233,6 @@ struct SecureInputView: View {
         }
     }
 }
-
 struct SecureInputArabicView: View {
     
     @Binding private var text: String
@@ -331,7 +249,7 @@ struct SecureInputArabicView: View {
         ZStack(alignment: .leading) {
             
             if isSecured {
-             //   PasswordView(text: text, placeHolder: title)
+                //   PasswordView(text: text, placeHolder: title)
                 SecureField(title, text: $text)
                     .autocapitalization(.none)
                     .multilineTextAlignment(.trailing)
@@ -342,8 +260,8 @@ struct SecureInputArabicView: View {
                     .background(
                         Color.white
                     ).foregroundColor(Color("mainColor"))
-                        .cornerRadius(5)
-                        .shadow(color: Color.gray.opacity(0.099), radius: 3)
+                    .cornerRadius(5)
+                    .shadow(color: Color.gray.opacity(0.099), radius: 3)
             } else {
                 TextField(title, text: $text)
                     .autocapitalization(.none)
@@ -355,8 +273,8 @@ struct SecureInputArabicView: View {
                     .background(
                         Color.white
                     ).foregroundColor(Color("mainColor"))
-                        .cornerRadius(5)
-                        .shadow(color: Color.black.opacity(0.099), radius: 3)
+                    .cornerRadius(5)
+                    .shadow(color: Color.black.opacity(0.099), radius: 3)
                 
             }
             Button(action: {
@@ -367,7 +285,7 @@ struct SecureInputArabicView: View {
                     .padding()
             }
             
-           
+            
         }
         
         
@@ -380,11 +298,11 @@ struct InputTextField: View {
     var body: some View {
         ZStack (alignment:.leading){
             
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
             
             TextField("",text:$text)
                 .autocapitalization(.none)
@@ -410,16 +328,16 @@ struct InputTextField1: View {
     var body: some View {
         ZStack (alignment:.leading){
             
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-                        
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+            
             TextField("",text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
-   
+            
         }
         .frame(width: screenWidth, height: 30)
         .font(.system(size: 13))
@@ -440,18 +358,18 @@ struct InputTextField2: View {
     var body: some View {
         ZStack (alignment:.leading){
             
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
             
             
             TextField("",text:$text)
-                
+            
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
-
+            
         }
         .frame(width: 300, height: 30)
         .font(.system(size: 13))
@@ -472,18 +390,18 @@ struct InputTextFieldArabic: View {
     var body: some View {
         ZStack (alignment:.trailing){
             
-                Text(title)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .trailing)
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .trailing)
             
             
             TextField("",text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
                 .multilineTextAlignment(.trailing)
-     
+            
         }
         .frame(width: screenWidth, height: 30)
         .font(.system(size: 13))
@@ -505,22 +423,22 @@ struct EMRInputTextField: View {
         ZStack (alignment:.leading){
             
             Text(title).padding(.leading,10)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-   
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+            
             TextField("",text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
                 .padding(12)
-
+            
             
         }
-
+        
         .frame( minHeight: 45 , maxHeight: .infinity)
         .font(.system(size: 13))
-//        .padding(12)
+        //        .padding(12)
         .disableAutocorrection(true)
         .background(
             Color.white
@@ -538,20 +456,19 @@ struct EMRInputTextField1: View {
         ZStack (alignment:.leading){
             
             Text(title).padding(.leading,10)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .offset(y: text.isEmpty ? 0 : -20)
-                    .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+                .font(.caption)
+                .foregroundColor(.gray)
+                .offset(y: text.isEmpty ? 0 : -20)
+                .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
             
-                TextField("",text:$text)
+            TextField("",text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
                 .padding(12)
         }
-
+        
         .frame( minHeight: 45 , maxHeight: .infinity)
         .font(.system(size: 13))
-//        .padding(12)
         .disableAutocorrection(true)
         .background(
             Color.white

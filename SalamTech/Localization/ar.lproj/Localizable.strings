@@ -47,8 +47,8 @@
 "PhoneVerfication_Screen_resendCode" = "اعادة ارسال الكود";
 "PhoneVerfication_Screen_sendCode_Button" = "ارسال الكود";
 "CompeleteProfile_Screen_title" = "انهاء الملف الشخصي";
-"CompeleteProfile_Screen_subtitle" = "معلومات عن الطبيب";
-"CompeleteProfile_Screen_secondSubTitle" = "الشهادات";
+"CompeleteProfile_Screen_subtitle" = "معلومات عن المريض";
+"CompeleteProfile_Screen_secondSubTitle" = "الملف الطبى";
 "CompeleteProfile_Screen_firstName" = "الاسم الأول";
 "CompeleteProfile_Screen_middleName" = "الاسم الثاني";
 "CompeleteProfile_Screen_lastName" = "الاسم الأخير";

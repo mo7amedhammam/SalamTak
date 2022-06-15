@@ -45,6 +45,7 @@ struct TabBarView: View {
                         )
                     }
                     .ignoresSafeArea()
+                    
                 }
             }
         }
