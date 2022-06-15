@@ -138,7 +138,7 @@ struct ViewLogin: View {
                   NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount, quickSignup: .constant(false)),isActive: $dontHaveAccount) {
                                 }
         //         go to verify account to resset
-                NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive: $resetPassword) {
+                NavigationLink(destination: ResetPasswordView(),isActive: $resetPassword) {
                                 }
                 // go to complete profile after login
                 NavigationLink(destination: LoginVM.destination ,isActive: $LoginVM.isLogedin, label: {

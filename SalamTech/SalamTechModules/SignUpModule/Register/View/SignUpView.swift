@@ -281,7 +281,6 @@ struct SecureInputView: View {
              //   PasswordView(text: text, placeHolder: title)
                 SecureField(title, text: $text)
                     .autocapitalization(.none)
-                    .animation(.default)
                     .frame(width: screenWidth, height: 30 , alignment: .trailing)
                     .font(.system(size: 13))
                     .padding(12)
@@ -294,7 +293,6 @@ struct SecureInputView: View {
             } else {
                 TextField(title, text: $text)
                     .autocapitalization(.none)
-                    .animation(.default)
                     .frame(width: screenWidth, height: 30)
                     .font(.system(size: 13))
                     .padding(12)
@@ -337,7 +335,6 @@ struct SecureInputArabicView: View {
                 SecureField(title, text: $text)
                     .autocapitalization(.none)
                     .multilineTextAlignment(.trailing)
-                    .animation(.default)
                     .frame(width: screenWidth, height: 30)
                     .font(.system(size: 13))
                     .padding(12)
@@ -351,7 +348,6 @@ struct SecureInputArabicView: View {
                 TextField(title, text: $text)
                     .autocapitalization(.none)
                     .multilineTextAlignment(.trailing)
-                    .animation(.default)
                     .frame(width: screenWidth, height: 30)
                     .font(.system(size: 13))
                     .padding(12)
@@ -390,17 +386,11 @@ struct InputTextField: View {
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
             
-            
             TextField("",text:$text)
-                
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
-                
-//                .padding(12)
-
             
         }
-        .animation(.default)
         .frame(width: screenWidth, height: 30)
         .font(.system(size: 13))
         .padding(12)
@@ -425,16 +415,12 @@ struct InputTextField1: View {
                     .foregroundColor(.gray)
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-            
-            
+                        
             TextField("",text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
-//                .padding(12)
-
-            
+   
         }
-        .animation(.default)
         .frame(width: screenWidth, height: 30)
         .font(.system(size: 13))
         .padding(12)
@@ -465,12 +451,8 @@ struct InputTextField2: View {
                 
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
-                
-//                .padding(12)
 
-            
         }
-        .animation(.default)
         .frame(width: 300, height: 30)
         .font(.system(size: 13))
         .padding(12)
@@ -501,11 +483,8 @@ struct InputTextFieldArabic: View {
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
                 .multilineTextAlignment(.trailing)
-//                .padding(12)
-
-            
+     
         }
-        .animation(.default)
         .frame(width: screenWidth, height: 30)
         .font(.system(size: 13))
         .padding(12)
@@ -530,19 +509,15 @@ struct EMRInputTextField: View {
                     .foregroundColor(.gray)
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-            
-            
-//            TextEditor(text: $text)
+   
             TextField("",text:$text)
-
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
                 .padding(12)
 
             
         }
-        .animation(.default)
-//        .frame( maxWidth: .infinity)
+
         .frame( minHeight: 45 , maxHeight: .infinity)
         .font(.system(size: 13))
 //        .padding(12)
@@ -568,18 +543,12 @@ struct EMRInputTextField1: View {
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
             
-            
-//            TextEditor(text: $text)
-            TextField("",text:$text)
-
+                TextField("",text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
                 .padding(12)
-
-            
         }
-        .animation(.default)
-//        .frame( maxWidth: .infinity)
+
         .frame( minHeight: 45 , maxHeight: .infinity)
         .font(.system(size: 13))
 //        .padding(12)

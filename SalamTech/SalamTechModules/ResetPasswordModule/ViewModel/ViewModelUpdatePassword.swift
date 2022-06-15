@@ -2,7 +2,7 @@
 //  ViewModelUpdatePassword.swift
 //  SalamTech-DR
 //
-//  Created by Mostafa Morsy on 03/03/2022.
+//  Created by Mohamed Hammam on 03/03/2022.
 //
 
 import Foundation
@@ -15,23 +15,15 @@ class ViewModelUpdatePassword: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelSubject = PassthroughSubject<BaseResponse<UpdatePassword>, Error>()
     private var cancellables: Set<AnyCancellable> = []
-    
    
     @Published  var password = ""
     @Published  var password1 = ""
     @Published  var UserId = 0
-    
-
-
-    
+ 
     //------- output
-    @Published var nameErrorMessage = ""
-    @Published var emailErrorMessage = ""
-    @Published var phoneErrorMessage = ""
-    @Published var isValid = false
     @Published var inlineErrorPassword = ""
     @Published var publishedUserRegisteredModel: UpdatePassword? = nil
-    @Published var isRegistered = false
+    @Published var isUpdated = false
     @Published private var UserCreated = false
 
     @Published var isLoading:Bool? = false
@@ -40,22 +32,15 @@ class ViewModelUpdatePassword: ObservableObject {
     @Published var message = ""
    
     init() {
-        
-      
      validations()
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { (modeldata) in
             self.publishedUserRegisteredModel = modeldata.data
-
         }.store(in: &cancellables)
-   
     }
-    
-  
-    
+
     func validations(){
-       
          var isPasswordEmptyPublisher: AnyPublisher<Bool,Never> {
             $password
                 .debounce(for: 0.8, scheduler: RunLoop.main)
@@ -87,9 +72,7 @@ class ViewModelUpdatePassword: ObservableObject {
             case repeatedPasswordWrong
             case valid
         }
-        
-        //----------
-       
+               
         
         isPasswordsValidPublisher
             .dropFirst()
@@ -108,84 +91,7 @@ class ViewModelUpdatePassword: ObservableObject {
             }
             .assign(to: \.inlineErrorPassword, on: self)
             .store(in: &cancellables)
-        
-        
-        
     }
-    
-//    func startFetchUpdatePassword(userId:Int, password:String) {
-//        if Helper.isConnectedToNetwork(){
-////        if isValid == true {
-//            self.isLoading = true
-//            ApiService.updatePassword(userId: userId, password: password, completion: { (success, modeldata, err) in
-//
-//            if success{
-//                DispatchQueue.main.async {
-//                    self.passthroughModelSubject.send(modeldata!)
-//                    self.isRegistered = true
-//                    self.isLoading = false
-//                }
-//                print(modeldata?.Data?.Id ?? 0000)
-//            }else{
-//                self.isLoading = false
-//                print(err ?? "error here from registeruserViewmodel")
-//                self.isError = true
-//                self.errorMsg = err ?? "Error"
-//            }
-//            self.isLoading = false
-//            self.errorMsg = err ?? "Error msg sign up "
-//            print(self.errorMsg )
-//
-//        })
-//
-////        }else{
-////            print("not validated")
-////        }
-//        }else{
-//                   // Alert with no internet connection
-//          isNetworkError = true
-//            self.isLoading = false
-//
-//               }
-//    }
-    
-//    func startFetchUpdatePassword1( password:String) {
-//        if Helper.isConnectedToNetwork(){
-////        if isValid == true {
-//            self.isLoading = true
-//            ApiService.updatePassword1(password: password, completion: { (success, modeldata, err) in
-//
-//            if success{
-//                DispatchQueue.main.async {
-//                    self.passthroughModelSubject.send(modeldata!)
-//                    self.isRegistered = true
-//                    self.isLoading = false
-//                }
-//                print(modeldata?.Data?.Id ?? 0000)
-//            }else{
-//                self.isLoading = false
-//                print(modeldata?.Message ?? "")
-//                self.isError = true
-//                self.errorMsg = modeldata?.Message ?? ""
-//            }
-//            self.isLoading = false
-//            self.errorMsg = err ?? "Error msg sign up "
-//            print(self.errorMsg )
-//
-//        })
-//
-////        }else{
-////            print("not validated")
-////        }
-//        }else{
-//                   // Alert with no internet connection
-//          isNetworkError = true
-//            self.isLoading = false
-//
-//               }
-//    }
-    
-    
 }
 
 extension ViewModelUpdatePassword:TargetType{
@@ -216,6 +122,8 @@ extension ViewModelUpdatePassword:TargetType{
                     //case of success
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
+                        self.isUpdated = true
+
                     }
                 }else{
                     if model != nil{

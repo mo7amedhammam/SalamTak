@@ -24,7 +24,6 @@ struct InputTextFieldInfo: View {
                 .textInputAutocapitalization(.never)
             
         }
-        .animation(.default)
         .frame(width: screenWidth / 3, height: 25)
         .font(.system(size: 13))
         .padding(12)
@@ -54,7 +53,6 @@ struct InputTextFieldInfoArabic: View {
                 .multilineTextAlignment(.trailing)
             
         }
-        .animation(.default)
         .frame(width: screenWidth / 3, height: 25)
         .font(.system(size: 13))
         .padding(12)
@@ -102,7 +100,6 @@ struct MedicalTextFieldInfo: View {
             }
             
         }
-        .animation(.default)
         .frame(width: screenWidth , height: 25)
         .font(.system(size: 13))
         .padding(12)
@@ -133,7 +130,6 @@ struct InputTextFieldMedicalInfo: View {
                 .textInputAutocapitalization(.never)
             
         }
-        .animation(.default)
         .frame(width: screenWidth / 2, height: 25)
         .font(.system(size: 13))
         .padding(12)

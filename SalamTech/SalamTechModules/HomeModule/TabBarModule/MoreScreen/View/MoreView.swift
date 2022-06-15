@@ -202,7 +202,7 @@ struct MoreView: View {
 
         NavigationLink(destination: PatientProfile(),isActive:$goingToPatientUpdate , label: {
         })
-        NavigationLink(destination: ResetPasswordView(ispresented: .constant(false)),isActive:$goingToResetPassword , label: {
+        NavigationLink(destination: ResetPasswordView(),isActive:$goingToResetPassword , label: {
         })
 
         NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$goToLogin , label: {

@@ -63,7 +63,6 @@ struct DateOfBirthViewArabic: View {
             Spacer().frame(width:200)
                 DatePickerTextField(placeholder: "birthdate".localized(language), date: self.$date)
             }
-            .animation(.default)
             .frame(width: screenWidth, height: 30)
             .font(.system(size: 13))
             .padding(12)
@@ -73,13 +72,7 @@ struct DateOfBirthViewArabic: View {
             ).foregroundColor(Color("blueColor"))
                 .cornerRadius(5)
                 .shadow(color: Color.black.opacity(0.099), radius: 3)
-            .onAppear(perform: {
-//                DoctorCreatedVM.Birthday = "\(date , datef: datef )"
-
-            })
-            
          
-            
     }
 }
 

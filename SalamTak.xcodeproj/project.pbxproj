@@ -47,7 +47,7 @@
 		0E586CE827F5A6FB00944F21 /* ModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE727F5A6FB00944F21 /* ModelRegister.swift */; };
 		0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */; };
 		0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEB27F5A72700944F21 /* SignUpView.swift */; };
-		0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */; };
+		0E586CEE27F5A7EC00944F21 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CED27F5A7EC00944F21 /* ActivityIndicatorView.swift */; };
 		0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CEF27F5A86E00944F21 /* AppBarView.swift */; };
 		0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF127F5A88E00944F21 /* CurvedSideView.swift */; };
 		0E586CF427F5A8FD00944F21 /* AdaptiveKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */; };
@@ -258,7 +258,7 @@
 		0E586CE727F5A6FB00944F21 /* ModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRegister.swift; sourceTree = "<group>"; };
 		0E586CE927F5A70C00944F21 /* ViewModelRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelRegister.swift; sourceTree = "<group>"; };
 		0E586CEB27F5A72700944F21 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsAndAlerts.swift; sourceTree = "<group>"; };
+		0E586CED27F5A7EC00944F21 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		0E586CEF27F5A86E00944F21 /* AppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarView.swift; sourceTree = "<group>"; };
 		0E586CF127F5A88E00944F21 /* CurvedSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedSideView.swift; sourceTree = "<group>"; };
 		0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveKeyBoard.swift; sourceTree = "<group>"; };
@@ -551,9 +551,9 @@
 				C896513D284CDBB7000EAFF7 /* SearchBarView.swift */,
 				C8965131284CD70A000EAFF7 /* RatingView.swift */,
 				C89A6BB4284FCBC800BF37C9 /* GenericPopupContent.swift */,
+				0E586CED27F5A7EC00944F21 /* ActivityIndicatorView.swift */,
 				C8282CAE28315FE4005DD9BE /* ExTypeNameandImage */,
 				00C8BF7D27F33F3600571078 /* ButtonView.swift */,
-				0E586CED27F5A7EC00944F21 /* AnimationsAndAlerts.swift */,
 				0E586CEF27F5A86E00944F21 /* AppBarView.swift */,
 				0E586CF127F5A88E00944F21 /* CurvedSideView.swift */,
 				0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */,
@@ -1886,7 +1886,7 @@
 				00C8BF6127F3182B00571078 /* ApiServices.swift in Sources */,
 				0E586D1427F5B62C00944F21 /* ModelPersonal.swift in Sources */,
 				0E9E0DB227FAEFD100893ABF /* GenderView.swift in Sources */,
-				0E586CEE27F5A7EC00944F21 /* AnimationsAndAlerts.swift in Sources */,
+				0E586CEE27F5A7EC00944F21 /* ActivityIndicatorView.swift in Sources */,
 				C8B3E16E27FC473F0040DAFD /* VMSearchDoc.swift in Sources */,
 				00C8BF6B27F31AFB00571078 /* Strings.swift in Sources */,
 				0E586CEA27F5A70C00944F21 /* ViewModelRegister.swift in Sources */,

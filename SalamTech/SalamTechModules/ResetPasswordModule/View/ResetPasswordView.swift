@@ -11,7 +11,6 @@ struct ResetPasswordView: View {
          var language = LocalizationService.shared.language
         @ObservedObject private var ResetVM = ViewModelResetPassword()
         @State private var haveAccount = false
-        @Binding var ispresented: Bool
         @FocusState private var isfocused : Bool
         @Environment(\.presentationMode) var presentationMode
 
@@ -76,7 +75,7 @@ struct ResetPasswordView: View {
                 })
 
             //phone verification
-                NavigationLink(destination: PhoneVerificationResetView(passedmodel: ResetVM),isActive: $ResetVM.isRegistered, label: {
+                NavigationLink(destination: PhoneVerificationResetView(passedmodel: ResetVM),isActive: $ResetVM.isReset, label: {
                 })
             
             // Alert with no internet connection
@@ -91,6 +90,6 @@ struct ResetPasswordView: View {
 
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ResetPasswordView(ispresented: .constant(false))
+        ResetPasswordView()
     }
 }

@@ -10,9 +10,7 @@ import SwiftUI
 struct ChangePasswordView: View {
     var language = LocalizationService.shared.language
     @StateObject private var UpdatePassVM = ViewModelUpdatePassword()
-    @State private var haveAccount = false
     @Binding var userId: Int
-    @Binding var ispresented: Bool
     @FocusState private var isfocused : Bool
     @Environment(\.presentationMode) var presentationMode
 
@@ -44,11 +42,7 @@ struct ChangePasswordView: View {
                                 .foregroundColor(.red)
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         Spacer().frame(height: 50)
-                        
-                        
                         }
-                        
-                   
 
                         Spacer()
                         ButtonView(text: "ChangePass_Screen_confirm_pass_button".localized(language), backgroundColor:  UpdatePassVM.password != "" && UpdatePassVM.password1 == UpdatePassVM.password ? Color("blueColor") :  Color(uiColor: .lightGray)){
@@ -81,10 +75,8 @@ struct ChangePasswordView: View {
                 }
 
         //phone verification
-            NavigationLink(destination:  TabBarView(),isActive: $UpdatePassVM.isRegistered, label: {
+            NavigationLink(destination:  TabBarView(),isActive: $UpdatePassVM.isUpdated, label: {
             })
-        
-        
         
     // Alert with no internet connection
         .alert(isPresented: $UpdatePassVM.isAlert, content: {
@@ -99,6 +91,6 @@ struct ChangePasswordView: View {
 
 struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ChangePasswordView(userId: .constant(0),ispresented: .constant(false))
+        ChangePasswordView(userId: .constant(0))
     }
 }

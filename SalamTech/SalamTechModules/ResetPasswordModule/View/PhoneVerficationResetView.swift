@@ -48,13 +48,12 @@ struct PhoneVerificationResetView: View {
                     .padding(.top, 35)
                     .multilineTextAlignment(.center)
                 
-                
                 ZStack {
-                    HStack (spacing: spaceBetweenBoxes){                        otpText(text: viewModel.otp1)
+                    HStack (spacing: spaceBetweenBoxes){
+                        otpText(text: viewModel.otp1)
                         otpText(text: viewModel.otp2)
                         otpText(text: viewModel.otp3)
                         otpText(text: viewModel.otp4)
-                        
                     }
                     
                     TextField("", text: $viewModel.otpField)
@@ -133,7 +132,7 @@ struct PhoneVerificationResetView: View {
                 }).padding(.top, 120)
                     .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
                 
-                NavigationLink(destination: ChangePasswordView(userId: $userId,ispresented: .constant(false)),isActive: $matchedOTP, label: {
+                NavigationLink(destination: ChangePasswordView(userId: $userId),isActive: $matchedOTP, label: {
                 })
                 
                 // Alert with no internet connection
@@ -161,10 +160,7 @@ struct PhoneVerificationResetView: View {
                 }
             }
         }
-        
-    }
-    
-    
+}
     
 private func otpText(text: String) -> some View {
                 return Text(text)
@@ -197,7 +193,6 @@ private func otpText(text: String) -> some View {
             return false
         }
     }
-    
     
 }
 
