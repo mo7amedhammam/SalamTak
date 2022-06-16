@@ -84,7 +84,7 @@ struct ViewSummary:View{
             }
             .edgesIgnoringSafeArea(.top)
 
-            ConfirmBooking(IsPresented: .constant(true), content: {
+            PopUpView(IsPresented: .constant(true), content: {
                 ConfirmButton( Doctor: Doctor).environmentObject(CreateAppointment)
                 
             })

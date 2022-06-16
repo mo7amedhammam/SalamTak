@@ -32,13 +32,10 @@
 		00D86B9E2803132D00ABF9C9 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */; };
 		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
 		0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */; };
-		0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6527FB2EDE00E3D9B8 /* FoodAllergyApiService.swift */; };
 		0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */; };
 		0E26EA6A27FB2EF800E3D9B8 /* ModelMedicineAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6927FB2EF800E3D9B8 /* ModelMedicineAllergy.swift */; };
-		0E26EA6C27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6B27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift */; };
 		0E26EA6E27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6D27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift */; };
 		0E26EA7027FB2F1F00E3D9B8 /* ModelBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6F27FB2F1F00E3D9B8 /* ModelBloodType.swift */; };
-		0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */; };
 		0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */; };
 		0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */; };
 		0E33B26E28059A0900CF35E5 /* ModelGetMedicalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */; };
@@ -84,7 +81,7 @@
 		0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA3280191FE00327EBF /* ModelUpdatePersonal.swift */; };
 		0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */; };
 		0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */; };
-		0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */; };
+		0E9E0DA627F9EB0900893ABF /* ConfirmAndCancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA527F9EB0900893ABF /* ConfirmAndCancel.swift */; };
 		0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */; };
 		0E9E0DAA27F9F0DA00893ABF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */; };
 		0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DAB27F9F28200893ABF /* InfoTextFieldView.swift */; };
@@ -104,7 +101,6 @@
 		0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD227FB103400893ABF /* ModelArea.swift */; };
 		0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */; };
 		0E9E0DD927FB109A00893ABF /* ChooseAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */; };
-		0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */; };
 		0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDD27FB15A700893ABF /* ModelOccupation.swift */; };
 		0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DDF27FB15BE00893ABF /* ViewModelGetOccupation.swift */; };
 		0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */; };
@@ -188,6 +184,9 @@
 		C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BC928355BB3009A89AC /* ViewAddReview.swift */; };
 		C8B52BCC28355BD0009A89AC /* VMAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCB28355BD0009A89AC /* VMAddReview.swift */; };
 		C8B52BCE28355BE6009A89AC /* MAddReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B52BCD28355BE6009A89AC /* MAddReview.swift */; };
+		C8CC121B285B64FB0008209B /* sliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CC121A285B64FB0008209B /* sliderView.swift */; };
+		C8CC121E285B6A3E0008209B /* FilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CC121D285B6A3E0008209B /* FilterButtonView.swift */; };
+		C8CC1220285B6A6E0008209B /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CC121F285B6A6E0008209B /* BackButtonView.swift */; };
 		C8D93262282BD9C30089C520 /* ViewModelFees.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93261282BD9C30089C520 /* ViewModelFees.swift */; };
 		C8D93264282BDA9D0089C520 /* ModelMinMaxFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */; };
 		C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93266282C28A30089C520 /* ReviewsView.swift */; };
@@ -242,13 +241,10 @@
 		00D86B972803132D00ABF9C9 /* urlshort.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = urlshort.url; sourceTree = "<group>"; };
 		00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArbFONTS-STC-Light.otf"; sourceTree = "<group>"; };
 		0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFoodAllergy.swift; sourceTree = "<group>"; };
-		0E26EA6527FB2EDE00E3D9B8 /* FoodAllergyApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodAllergyApiService.swift; sourceTree = "<group>"; };
 		0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFoodAllergy.swift; sourceTree = "<group>"; };
 		0E26EA6927FB2EF800E3D9B8 /* ModelMedicineAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMedicineAllergy.swift; sourceTree = "<group>"; };
-		0E26EA6B27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineAllergyApiService.swift; sourceTree = "<group>"; };
 		0E26EA6D27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMedicineAllergy.swift; sourceTree = "<group>"; };
 		0E26EA6F27FB2F1F00E3D9B8 /* ModelBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBloodType.swift; sourceTree = "<group>"; };
-		0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeApiService.swift; sourceTree = "<group>"; };
 		0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBloodType.swift; sourceTree = "<group>"; };
 		0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosBloodType.swift; sourceTree = "<group>"; };
 		0E33B26D28059A0900CF35E5 /* ModelGetMedicalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGetMedicalState.swift; sourceTree = "<group>"; };
@@ -294,7 +290,7 @@
 		0E68CDA3280191FE00327EBF /* ModelUpdatePersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUpdatePersonal.swift; sourceTree = "<group>"; };
 		0E68CDA52801921400327EBF /* ViewModelUpdatePersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelUpdatePersonalData.swift; sourceTree = "<group>"; };
 		0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAppBarView.swift; sourceTree = "<group>"; };
-		0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
+		0E9E0DA527F9EB0900893ABF /* ConfirmAndCancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAndCancel.swift; sourceTree = "<group>"; };
 		0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0E9E0DAB27F9F28200893ABF /* InfoTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTextFieldView.swift; sourceTree = "<group>"; };
@@ -314,7 +310,6 @@
 		0E9E0DD227FB103400893ABF /* ModelArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelArea.swift; sourceTree = "<group>"; };
 		0E9E0DD627FB105A00893ABF /* ViewModelGetArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetArea.swift; sourceTree = "<group>"; };
 		0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAreaView.swift; sourceTree = "<group>"; };
-		0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccupationApiService.swift; sourceTree = "<group>"; };
 		0E9E0DDD27FB15A700893ABF /* ModelOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOccupation.swift; sourceTree = "<group>"; };
 		0E9E0DDF27FB15BE00893ABF /* ViewModelGetOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelGetOccupation.swift; sourceTree = "<group>"; };
 		0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOccupationView.swift; sourceTree = "<group>"; };
@@ -348,7 +343,7 @@
 		C814BC4528575ED300FBA9EA /* ShowBloodTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBloodTypeList.swift; sourceTree = "<group>"; };
 		C814EA5D2816D10200D7730E /* ModelCreateAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCreateAppointment.swift; sourceTree = "<group>"; };
 		C814EA5F2816D19D00D7730E /* VMCreateAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMCreateAppointment.swift; sourceTree = "<group>"; };
-		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C82541F327F443CF005E0750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C826D93A280D906A0072754B /* ModelDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDocDetails.swift; sourceTree = "<group>"; };
 		C826D93C280D90950072754B /* ViewModelDocDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDocDetails.swift; sourceTree = "<group>"; };
 		C8282CAF2831601A005DD9BE /* ExModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExModel.swift; sourceTree = "<group>"; };
@@ -402,6 +397,9 @@
 		C8B52BC928355BB3009A89AC /* ViewAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddReview.swift; sourceTree = "<group>"; };
 		C8B52BCB28355BD0009A89AC /* VMAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMAddReview.swift; sourceTree = "<group>"; };
 		C8B52BCD28355BE6009A89AC /* MAddReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAddReview.swift; sourceTree = "<group>"; };
+		C8CC121A285B64FB0008209B /* sliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sliderView.swift; sourceTree = "<group>"; };
+		C8CC121D285B6A3E0008209B /* FilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonView.swift; sourceTree = "<group>"; };
+		C8CC121F285B6A6E0008209B /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		C8D93261282BD9C30089C520 /* ViewModelFees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFees.swift; sourceTree = "<group>"; };
 		C8D93263282BDA9D0089C520 /* ModelMinMaxFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMinMaxFee.swift; sourceTree = "<group>"; };
 		C8D93266282C28A30089C520 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
@@ -468,14 +466,10 @@
 		00C8BF3327F3100F00571078 /* SalamTech */ = {
 			isa = PBXGroup;
 			children = (
-				C85BD536284770270056B046 /* Networking */,
-				00D86B922803132D00ABF9C9 /* Fonts */,
 				C82541F327F443CF005E0750 /* Info.plist */,
 				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
 				00C8BF3627F3100F00571078 /* ContentView.swift */,
-				00C8BF5F27F3180A00571078 /* Localization */,
-				00C8BF5E27F317FF00571078 /* Services */,
-				00C8BF7327F32B4500571078 /* Components */,
+				00C8BF5E27F317FF00571078 /* Support */,
 				00C8BF7227F32B2700571078 /* SalamTechModules */,
 				00C8BF3827F3101100571078 /* Assets.xcassets */,
 				00C8BF3A27F3101100571078 /* Preview Content */,
@@ -508,13 +502,17 @@
 			path = SalamTechUITests;
 			sourceTree = "<group>";
 		};
-		00C8BF5E27F317FF00571078 /* Services */ = {
+		00C8BF5E27F317FF00571078 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				0E9E0DBF27FAF96600893ABF /* LookUp */,
 				00C8BF6427F319BC00571078 /* Helper.swift */,
+				C85BD536284770270056B046 /* Networking */,
+				00C8BF7327F32B4500571078 /* Components */,
+				0E9E0DBF27FAF96600893ABF /* LookUp */,
+				00C8BF5F27F3180A00571078 /* Localization */,
+				00D86B922803132D00ABF9C9 /* Fonts */,
 			);
-			path = Services;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		00C8BF5F27F3180A00571078 /* Localization */ = {
@@ -544,39 +542,25 @@
 		00C8BF7327F32B4500571078 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C8CC1219285B64E80008209B /* SliderView */,
+				C8282CAE28315FE4005DD9BE /* ExTypeNameandImage */,
+				C8CC121C285B69050008209B /* SheetAndPopUps */,
+				C8CC1215285B5DDC0008209B /* DatePicker */,
+				C8CC1216285B5E6B0008209B /* Location */,
+				C8CC1217285B611A0008209B /* LookupsView */,
+				C8CC1218285B61380008209B /* customCalendar */,
+				C8CC1221285B6AC80008209B /* ButtonView */,
 				C896513D284CDBB7000EAFF7 /* SearchBarView.swift */,
 				C8965131284CD70A000EAFF7 /* RatingView.swift */,
-				C89A6BB4284FCBC800BF37C9 /* GenericPopupContent.swift */,
 				0E586CED27F5A7EC00944F21 /* ActivityIndicatorView.swift */,
-				C8282CAE28315FE4005DD9BE /* ExTypeNameandImage */,
-				00C8BF7D27F33F3600571078 /* ButtonView.swift */,
 				0E586CEF27F5A86E00944F21 /* AppBarView.swift */,
 				0E586CF127F5A88E00944F21 /* CurvedSideView.swift */,
-				0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */,
 				0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */,
-				0E9E0DA527F9EB0900893ABF /* CustomSheetView.swift */,
-				0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */,
+				0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */,
 				0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */,
 				0E9E0DAB27F9F28200893ABF /* InfoTextFieldView.swift */,
-				0E9E0DAD27FAEF2D00893ABF /* DateOfBirthView.swift */,
-				0E9E0DAF27FAEF6400893ABF /* DatePickerTextField.swift */,
 				0E9E0DB127FAEFD100893ABF /* GenderView.swift */,
-				0E9E0DB327FAF1FE00893ABF /* PickLocationView.swift */,
-				0E9E0DB527FAF26B00893ABF /* LocationViewModel.swift */,
-				0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */,
-				0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */,
-				0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */,
-				0E9E0DD027FB091500893ABF /* ChooseCityView.swift */,
-				0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */,
-				0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */,
-				0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */,
-				0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */,
-				0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */,
 				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
-				C861C12B2805C38400211018 /* CalendarHelper.swift */,
-				C82AFF35280C675C00B1B953 /* CustomSheet.swift */,
-				C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */,
-				C89A6B8C284F7E1C00BF37C9 /* calendarpopup.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1061,7 +1045,6 @@
 		0E9E0DDA27FB156900893ABF /* Occupation */ = {
 			isa = PBXGroup;
 			children = (
-				0E9E0DDB27FB159A00893ABF /* OccupationApiService.swift */,
 				0E9E0DDD27FB15A700893ABF /* ModelOccupation.swift */,
 				0E9E0DDF27FB15BE00893ABF /* ViewModelGetOccupation.swift */,
 			);
@@ -1072,7 +1055,6 @@
 			isa = PBXGroup;
 			children = (
 				0E26EA6F27FB2F1F00E3D9B8 /* ModelBloodType.swift */,
-				0E26EA7127FB2F3000E3D9B8 /* BloodTypeApiService.swift */,
 				0E26EA7327FB2F4200E3D9B8 /* ViewModelBloodType.swift */,
 			);
 			path = Blood;
@@ -1082,7 +1064,6 @@
 			isa = PBXGroup;
 			children = (
 				0E26EA6927FB2EF800E3D9B8 /* ModelMedicineAllergy.swift */,
-				0E26EA6B27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift */,
 				0E26EA6D27FB2F1200E3D9B8 /* ViewModelMedicineAllergy.swift */,
 			);
 			path = MedicineAllergy;
@@ -1092,7 +1073,6 @@
 			isa = PBXGroup;
 			children = (
 				0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */,
-				0E26EA6527FB2EDE00E3D9B8 /* FoodAllergyApiService.swift */,
 				0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */,
 			);
 			path = FoodAllergy;
@@ -1500,6 +1480,79 @@
 			path = AddReview;
 			sourceTree = "<group>";
 		};
+		C8CC1215285B5DDC0008209B /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DAD27FAEF2D00893ABF /* DateOfBirthView.swift */,
+				0E9E0DAF27FAEF6400893ABF /* DatePickerTextField.swift */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		C8CC1216285B5E6B0008209B /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DB327FAF1FE00893ABF /* PickLocationView.swift */,
+				0E9E0DB527FAF26B00893ABF /* LocationViewModel.swift */,
+				0E9E0DB727FAF39900893ABF /* GoogleMapsView.swift */,
+				0E9E0DB927FAF42A00893ABF /* ViewMapWithPin.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		C8CC1217285B611A0008209B /* LookupsView */ = {
+			isa = PBXGroup;
+			children = (
+				0E9E0DBD27FAF93500893ABF /* ChooseNationalityView.swift */,
+				0E9E0DD027FB091500893ABF /* ChooseCityView.swift */,
+				0E9E0DD827FB109A00893ABF /* ChooseAreaView.swift */,
+				0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */,
+				0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */,
+				0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */,
+				0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */,
+			);
+			path = LookupsView;
+			sourceTree = "<group>";
+		};
+		C8CC1218285B61380008209B /* customCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				C861C12B2805C38400211018 /* CalendarHelper.swift */,
+				C89A6B8C284F7E1C00BF37C9 /* calendarpopup.swift */,
+			);
+			path = customCalendar;
+			sourceTree = "<group>";
+		};
+		C8CC1219285B64E80008209B /* SliderView */ = {
+			isa = PBXGroup;
+			children = (
+				C8CC121A285B64FB0008209B /* sliderView.swift */,
+			);
+			path = SliderView;
+			sourceTree = "<group>";
+		};
+		C8CC121C285B69050008209B /* SheetAndPopUps */ = {
+			isa = PBXGroup;
+			children = (
+				C89A6BB4284FCBC800BF37C9 /* GenericPopupContent.swift */,
+				0E9E0DA527F9EB0900893ABF /* ConfirmAndCancel.swift */,
+				C82AFF35280C675C00B1B953 /* CustomSheet.swift */,
+				C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */,
+			);
+			path = SheetAndPopUps;
+			sourceTree = "<group>";
+		};
+		C8CC1221285B6AC80008209B /* ButtonView */ = {
+			isa = PBXGroup;
+			children = (
+				00C8BF7D27F33F3600571078 /* ButtonView.swift */,
+				C8CC121F285B6A6E0008209B /* BackButtonView.swift */,
+				C8CC121D285B6A3E0008209B /* FilterButtonView.swift */,
+				0E9E0DA727F9F09300893ABF /* CircleButtonView.swift */,
+			);
+			path = ButtonView;
+			sourceTree = "<group>";
+		};
 		C8D93260282BD98B0089C520 /* MinMaxFee */ = {
 			isa = PBXGroup;
 			children = (
@@ -1849,7 +1902,6 @@
 				0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */,
 				0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
-				0E26EA6C27FB2F0600E3D9B8 /* MedicineAllergyApiService.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
 				C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */,
 				0E9E0DAA27F9F0DA00893ABF /* ImagePicker.swift in Sources */,
@@ -1869,6 +1921,7 @@
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
 				C85BD539284770560056B046 /* TargetType.swift in Sources */,
 				C896514F284D1082000EAFF7 /* AreaFilterList.swift in Sources */,
+				C8CC121B285B64FB0008209B /* sliderView.swift in Sources */,
 				0E9E0DCD27FB023600893ABF /* ViewModelGetCities.swift in Sources */,
 				C814BC3028575D1800FBA9EA /* ShowUpdateAreaList.swift in Sources */,
 				C896512F284CD0C0000EAFF7 /* SpecialityBuBody.swift in Sources */,
@@ -1895,7 +1948,7 @@
 				0E68CD9027FEF04400327EBF /* LanguageView.swift in Sources */,
 				C8965151284D10A6000EAFF7 /* FeesFilterView.swift in Sources */,
 				0E9E0DA827F9F09300893ABF /* CircleButtonView.swift in Sources */,
-				0E26EA6627FB2EDE00E3D9B8 /* FoodAllergyApiService.swift in Sources */,
+				C8CC121E285B6A3E0008209B /* FilterButtonView.swift in Sources */,
 				C89A6B9C284F8DA600BF37C9 /* slotView.swift in Sources */,
 				C896514B284D102F000EAFF7 /* SubSpecialityFilterList.swift in Sources */,
 				C8965147284D0F74000EAFF7 /* SpecialityFilterList.swift in Sources */,
@@ -1924,7 +1977,6 @@
 				0E9E0DE027FB15BE00893ABF /* ViewModelGetOccupation.swift in Sources */,
 				0E9E0DB827FAF39900893ABF /* GoogleMapsView.swift in Sources */,
 				C814BC2E28575D0900FBA9EA /* ShowUpdateCityList.swift in Sources */,
-				0E9E0DDC27FB159A00893ABF /* OccupationApiService.swift in Sources */,
 				C800F83127FB585B00482151 /* ModelSpecialist.swift in Sources */,
 				C8965132284CD70A000EAFF7 /* RatingView.swift in Sources */,
 				0E586CF227F5A88E00944F21 /* CurvedSideView.swift in Sources */,
@@ -1940,7 +1992,6 @@
 				C8965138284CD856000EAFF7 /* doctorCellView.swift in Sources */,
 				C86375C52850D3EB000687A9 /* TabButtonView.swift in Sources */,
 				C89A6BAD284FCAC100BF37C9 /* PatientDetails.swift in Sources */,
-				0E26EA7227FB2F3000E3D9B8 /* BloodTypeApiService.swift in Sources */,
 				0E586CFE27F5B19F00944F21 /* ModelLogin.swift in Sources */,
 				0EC34CCE280ED63000701344 /* ScheduleEachCellView.swift in Sources */,
 				0E586D1627F5B63A00944F21 /* ViewModelPersonalData.swift in Sources */,
@@ -1979,7 +2030,7 @@
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,
-				0E9E0DA627F9EB0900893ABF /* CustomSheetView.swift in Sources */,
+				0E9E0DA627F9EB0900893ABF /* ConfirmAndCancel.swift in Sources */,
 				0E33B27028059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift in Sources */,
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
 				C814BC4628575ED400FBA9EA /* ShowBloodTypeList.swift in Sources */,
@@ -2003,6 +2054,7 @@
 				C8282CB02831601A005DD9BE /* ExModel.swift in Sources */,
 				C814BC4228575EBA00FBA9EA /* ShowMedicineAllergyList.swift in Sources */,
 				C814BC4428575ECA00FBA9EA /* ShowFoodAllergyList.swift in Sources */,
+				C8CC1220285B6A6E0008209B /* BackButtonView.swift in Sources */,
 				0E586D2227F5B6BC00944F21 /* MoreView.swift in Sources */,
 				0E586CF027F5A86E00944F21 /* AppBarView.swift in Sources */,
 				0E68CDA4280191FE00327EBF /* ModelUpdatePersonal.swift in Sources */,

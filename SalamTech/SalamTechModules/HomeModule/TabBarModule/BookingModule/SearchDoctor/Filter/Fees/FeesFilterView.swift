@@ -22,10 +22,10 @@ struct FeesFilterView:View {
             
             VStack{
                 HStack{
-                    FeesFilterTextField1(text: String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0), title: "Minimum".localized(language))
+                    FeesFilterTextField(text:.constant("\(String(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))")  , title: "Minimum".localized(language))
                         .frame(width:(UIScreen.main.bounds.width - 50)/2)
                         .disabled(true)
-                    FeesFilterTextField1(text:  String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + selectedFee)) , title: "Maximum".localized(language))
+                    FeesFilterTextField(text: .constant("\( String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + selectedFee)) )")  , title: "Maximum".localized(language))
                         .frame(width:(UIScreen.main.bounds.width - 50)/2)
                         .disabled(true)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)

@@ -26,11 +26,13 @@ struct ScheduleCellView: View {
                 Text("Sorry,\nNo_Scheduales_Found_🤷‍♂️".localized(language))
                     .multilineTextAlignment(.center)
                     .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
-            }else if !Helper.userExist() {
+            }
+            else if !Helper.userExist() {
                 Text("Sorry,\nYou_have_to_login_🤷‍♂️".localized(language))
                     .multilineTextAlignment(.center)
                     .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
-            } else if scheduleVM.activeAlert == .unauthorized {
+            }
+            else if scheduleVM.activeAlert == .unauthorized {
                 Text("Sorry,\nYou_have_to_login_again_🤷‍♂️".localized(language))
                     .multilineTextAlignment(.center)
                     .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
