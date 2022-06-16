@@ -58,7 +58,8 @@ extension ViewModelDocDetails:TargetType{
             "DoctorId": DoctorId ,
             "MedicalExaminationTypeId":MedicalExaminationTypeId,
             "ClinicId":ClinicId ,
-            "SchedualDate":Filterdatef.string(from: SchedualDate)
+            "SchedualDate":ChangeFormate(NewFormat: "yyyy-MM-dd").string(from: SchedualDate)
+            
     ]
         return .parameterRequest(Parameters: Parameters, Encoding: JSONEncoding.default)
     }

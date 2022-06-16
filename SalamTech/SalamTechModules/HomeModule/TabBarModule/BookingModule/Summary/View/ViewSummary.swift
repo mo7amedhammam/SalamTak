@@ -112,7 +112,8 @@ struct ViewSummary:View{
         .onAppear(perform: {
             CreateAppointment.DoctorId = Doctor.id ?? 0
             CreateAppointment.DoctorWorkingDayTimeId = BookingscedualId
-            CreateAppointment.AppointmentDate = "\(Filterdatef.string(from: BookiDate))T\(BookiTime)"
+            
+            CreateAppointment.AppointmentDate = "\(ChangeFormate(NewFormat: "yyyy-MM-dd").string(from: BookiDate))T\(BookiTime)"
             CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
         })
         .toolbar {

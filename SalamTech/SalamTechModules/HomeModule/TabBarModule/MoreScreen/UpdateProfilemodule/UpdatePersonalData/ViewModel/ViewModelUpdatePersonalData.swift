@@ -132,44 +132,41 @@ class ViewModelUpdatePatientProfile: ObservableObject {
 
     
     init() {
-        
-        self.date = DateFormatter.formate.date(from: Birthday) ?? Date()
+                
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
-            self.publishedPatientGetModel = modeldata.data
+            publishedPatientGetModel = modeldata.data
             
-            self.FirstName = publishedPatientGetModel?.firstName ?? ""
-            self.FirstNameAr = publishedPatientGetModel?.firstNameAr ?? ""
-            self.MiddelName = publishedPatientGetModel?.middleName ?? ""
-            self.MiddelNameAr = publishedPatientGetModel?.middleNameAr ?? ""
-            self.FamilyName = publishedPatientGetModel?.familyName ?? ""
-            self.FamilyNameAr = publishedPatientGetModel?.familyNameAr ?? ""
-            self.EmergencyContact = publishedPatientGetModel?.emergencyContact ?? ""
-            self.GenderId = publishedPatientGetModel?.genderId ?? 0
-            self.NationalityId = publishedPatientGetModel?.nationalityId ?? 0
-            self.CityId = publishedPatientGetModel?.cityId ?? 0
-            self.AreaId = publishedPatientGetModel?.areaId ?? 0
-            self.CountryId = publishedPatientGetModel?.nationalityId ?? 0
-            self.OccupationId = publishedPatientGetModel?.occupationId ?? 0
-            self.occupationName = publishedPatientGetModel?.OccupationName ?? ""
-            self.ImageUrl = publishedPatientGetModel?.image ?? ""
-            self.Birthday = publishedPatientGetModel?.birthdate ?? ""
-            self.date = Fulldatef1.date(from: self.Birthday)
-            self.Id = publishedPatientGetModel?.id
-            self.Address = publishedPatientGetModel?.address ?? ""
-            self.NationalityName = publishedPatientGetModel?.nationalityName ?? "Nationality"
-            self.cityName = publishedPatientGetModel?.cityName ?? "City"
-            self.areaName = publishedPatientGetModel?.areaName ?? "Area"
-            self.FloorNo = publishedPatientGetModel?.floorNo ?? 0
-            self.BlockNo = publishedPatientGetModel?.blockNo ?? ""
-            self.ApartmentNo = publishedPatientGetModel?.apartNo ?? ""
+            FirstName = publishedPatientGetModel?.firstName ?? ""
+            FirstNameAr = publishedPatientGetModel?.firstNameAr ?? ""
+            MiddelName = publishedPatientGetModel?.middleName ?? ""
+            MiddelNameAr = publishedPatientGetModel?.middleNameAr ?? ""
+            FamilyName = publishedPatientGetModel?.familyName ?? ""
+            FamilyNameAr = publishedPatientGetModel?.familyNameAr ?? ""
+            EmergencyContact = publishedPatientGetModel?.emergencyContact ?? ""
+            GenderId = publishedPatientGetModel?.genderId ?? 0
+            NationalityId = publishedPatientGetModel?.nationalityId ?? 0
+            CityId = publishedPatientGetModel?.cityId ?? 0
+            AreaId = publishedPatientGetModel?.areaId ?? 0
+            CountryId = publishedPatientGetModel?.nationalityId ?? 0
+            OccupationId = publishedPatientGetModel?.occupationId ?? 0
+            occupationName = publishedPatientGetModel?.OccupationName ?? ""
+            ImageUrl = publishedPatientGetModel?.image ?? ""
+            Birthday = publishedPatientGetModel?.birthdate ?? ""
+            date = ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss").date(from: Birthday)
+            Id = publishedPatientGetModel?.id
+            Address = publishedPatientGetModel?.address ?? ""
+            NationalityName = publishedPatientGetModel?.nationalityName ?? "Nationality"
+            cityName = publishedPatientGetModel?.cityName ?? "City"
+            areaName = publishedPatientGetModel?.areaName ?? "Area"
+            FloorNo = publishedPatientGetModel?.floorNo ?? 0
+            BlockNo = publishedPatientGetModel?.blockNo ?? ""
+            ApartmentNo = publishedPatientGetModel?.apartNo ?? ""
 
-            
         }.store(in: &cancellables)
         
     }
-    
 }
 
 enum UpdatePersonalInfoOp{
@@ -207,7 +204,8 @@ extension ViewModelUpdatePatientProfile:TargetType{
                                                    "FamilyName" : FamilyName ,
                                                    "FamilyNameAr" : FamilyNameAr,
                                                    "GenderId" : GenderId ?? 1 ,
-                                                   "Birthdate" :  Fulldatef1.string(from: self.date ?? Date() ) ,
+                                                   "Birthdate" : ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss").string(from: date ?? Date()),
+//                                                    ConvertDateFormateToStr(inp: date ?? Date(), FormatTo: "yyyy-MM-dd'T'HH:mm:ss") ,
                                                    "NationalityId" : NationalityId,
                                                    "CountryId" : NationalityId,
                                                    "EmergencyContact": EmergencyContact,

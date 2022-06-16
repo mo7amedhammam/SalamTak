@@ -31,14 +31,11 @@ final class Helper{
         PhoneNumber : String,
         patientName : String
     ){
-        
-//        userDef.set(clinicId, forKey: "clinicId")
         userDef.set(  Id             , forKey:  "Id" )
         userDef.set(  PhoneNumber         , forKey: "PhoneNumber"  )
         userDef.set(  patientName         , forKey: "patientName"  )
 
         userDef.synchronize()
-        //        restartApp()
     }
     
     
@@ -103,7 +100,6 @@ final class Helper{
         userDef.removeObject(forKey:"currentLanguage"  )
        
     }
-    
 
     class func setUserLocation(
                 CurrentLatitude : String,
@@ -134,9 +130,9 @@ final class Helper{
         userDef.removeObject(forKey:"CurrentLatitude"  )
         userDef.removeObject(forKey:"CurrentLongtude"  )
         userDef.removeObject(forKey:"CurrentAddress"  )
-
-   
     }
+    
+    // navigate to google maps with lond & lat
     class func openGoogleMap(longitude: Double, latitude: Double) {
             let appURL = NSURL(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
             let webURL = NSURL(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving")!
@@ -150,8 +146,7 @@ final class Helper{
                 application.open(webURL as URL)
             }
            }
-    
-    
+        
     // Checking internet connection
     class func isConnectedToNetwork() -> Bool {
         
@@ -175,9 +170,8 @@ final class Helper{
         
     }
     
-    
+    // Starting Phone call
     class func MakePhoneCall(PhoneNumber:String){
-        
         let phone = "tel://"
         let phoneFormatted = phone + PhoneNumber
         guard let url = URL(string: phoneFormatted) else {return}
@@ -186,166 +180,16 @@ final class Helper{
     }
         
 }
-public var datef:DateFormatter{
-    let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
-//    df.dateFormat = "dd/MM/yyyy'T'HH:mm:ss"
-    df.dateFormat = "dd/MM/yyyy"
 
+func ChangeFormate( NewFormat:String) -> DateFormatter {
+
+    let df = DateFormatter()
+    df.dateFormat = NewFormat
     df.locale = Locale(identifier: "en_US_POSIX")
     return df
 }
 
-public var timef:DateFormatter{
-    let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
-    df.dateFormat = "HH:mm"
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-
-public var Fulldatef:DateFormatter{
-    let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
-    df.dateFormat = "dd/MM/yyyy'T'HH:mm:ss"
-//    df.dateFormat = "MM/dd/yyyy"
-
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-public var Fulldatef1:DateFormatter{
-    let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
-    df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//    df.dateFormat = "MM/dd/yyyy"
-
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-public var Filterdatef:DateFormatter{
-    let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
-    df.dateFormat = "yyyy-MM-dd"
-//    df.dateFormat = "MM/dd/yyyy"
-
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-public var summarydatef:DateFormatter{
-    let df = DateFormatter()
-//    df.dateFormat = "yyyy/MM/dd"
-    df.dateFormat = "dd  MMM. yyyy"
-//    df.dateFormat = "MM/dd/yyyy"
-
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-
-func TimeStringToDate(time: String) -> Date {
-    var newdate = Date()
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-    if let newDate = dateFormatter.date(from: time) {
-    print(newDate)
-newdate = newDate
-    } else{
-           print(" can't convert ")
-        }
-    return newdate
-//        dateFormatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
-//    print(dateFormatter.string(from: newDate))
-//        return dateFormatter.string(from: newDate)
-}
-
-func formatStringDate(date: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy'T'HH:mm:ss"
-    guard let newDate = dateFormatter.date(from: date) else { return "" }
-    print(newDate)
-//    return newDate
-        dateFormatter.setLocalizedDateFormatFromTemplate("dd/MM/yyyy")
-    print(dateFormatter.string(from: newDate))
-        return dateFormatter.string(from: newDate)
-}
-
-
-func getDateString(inp:String) -> String {
-    var newdate = ""
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-    if let date = formatter.date(from: inp) {
-//        print(date)
-        formatter.dateFormat = "dd/MM/yyyy"
-        newdate = formatter.string(from: date)
-    }
- return newdate
-  }
-func getTimeString(inp:String) -> String {
-    var newdate = ""
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-    if let date = formatter.date(from: inp) {
-//        print(date)
-        formatter.dateFormat = "HH:mm a"
-        newdate = formatter.string(from: date)
-    }
- return newdate
-  }
-
-func getEMRTimeString(inp:String) -> String {
-    var newdate = ""
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    if let date = formatter.date(from: inp) {
-//        print(date)
-        formatter.dateFormat = "HH:mm a"
-        newdate = formatter.string(from: date)
-    }
- return newdate
-  }
-func getEMRDateString(inp:String) -> String {
-    var newdate = ""
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    if let date = formatter.date(from: inp) {
-//        print(date)
-        formatter.dateFormat = "dd/MM/yyyy"
-        newdate = formatter.string(from: date)
-    }
- return newdate
-  }
-
-
-func getAVFTimeString(inp:String) -> String {
-    var newdate = ""
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "dd-MM-yyyy HH:mm"
-    if let date = formatter.date(from: inp) {
-//        print(date)
-        formatter.dateFormat = "HH:mm"
-        newdate = formatter.string(from: date)
-    }
- return newdate
-  }
-func getAVFDateString(inp:String) -> String {
-    var newdate = ""
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "dd-MM-yyyy HH:mm"
-    if let date = formatter.date(from: inp) {
-//        print(date)
-        formatter.dateFormat = "dd-MM-yyyy"
-        newdate = formatter.string(from: date)
-    }
- return newdate
-  }
-
+// change Format From String to String
 func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String {
     var newdate = ""
     let formatter = DateFormatter()
@@ -359,6 +203,7 @@ func ConvertStringDate(inp:String, FormatFrom:String, FormatTo:String) -> String
  return newdate
   }
 
+// change Format From date to date
 func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
     var newdate = Date()
         let formatter = DateFormatter()
@@ -369,32 +214,6 @@ func ConvertDateFormat(inp:Date, FormatTo:String) -> Date {
     
  return newdate
   }
-
-func ConvertDateFormateToStr(inp:Date, FormatTo:String) -> String {
-
- var summarydatef:DateFormatter{
-    let df = DateFormatter()
-    df.dateFormat = FormatTo
-
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-    
-    return String( summarydatef.string(from: inp))
-}
-
-func ConvertStringFormateToDate(inp:String, FormatFrom:String) -> Date {
-
- var summarydatef:DateFormatter{
-    let df = DateFormatter()
-    df.dateFormat = FormatFrom
-    df.locale = Locale(identifier: "en_US_POSIX")
-    return df
-}
-    
-    return summarydatef.date(from: inp) ?? Date()
-}
-
 
 
 func LogoType(MedicalExaminationTypeId: Int) -> String {

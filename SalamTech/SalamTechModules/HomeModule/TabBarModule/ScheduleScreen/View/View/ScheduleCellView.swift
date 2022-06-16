@@ -13,17 +13,15 @@ struct ScheduleCellView: View {
     var body: some View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false){
-                Spacer().frame(height: 20)
                 
                 VStack(spacing:10){
                     ForEach( 0..<(scheduleVM.AppointmentsArr.count ), id:\.self) { index in
                         ScheduleEachCellView(schedule: scheduleVM.AppointmentsArr[index]).environmentObject(scheduleVM)
                             .padding(.horizontal)
                     }
-                }
+                }.padding(.vertical,20)
             }
 
-            
             if scheduleVM.noschedules == true{
                 Text("Sorry,\nNo_Scheduales_Found_🤷‍♂️".localized(language))
                     .multilineTextAlignment(.center)

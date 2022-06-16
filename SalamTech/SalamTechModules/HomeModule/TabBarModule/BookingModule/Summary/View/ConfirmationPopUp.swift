@@ -27,7 +27,8 @@ struct ConfirmationPopUp: View {
                     .font(.system(size: 24, weight: .bold))
                     .padding()
                 
-                Text("Your_appointment_is".localized(language) + "\n \(ConvertDateFormateToStr(inp: BookiDate, FormatTo: "dd MMM. yyyy") + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )")")
+                
+                Text("Your_appointment_is".localized(language) + "\n \(ChangeFormate(NewFormat: "dd MMM. yyyy").string(from: BookiDate) + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )")")
                     .font(.system(size: 18))
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("subText"))

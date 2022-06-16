@@ -151,7 +151,7 @@ extension ViewModelCreatePatientProfile:TargetType{
                                                "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
                                                "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
                                                "GenderId" : GenderId ?? 1 ,
-                                               "Birthdate" : datef.string(from: self.Birthday ?? Date()) ,
+                                               "Birthdate" : ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: Birthday ?? Date()) ,
                                                "NationalityId" : NationalityId, "CountryId" : NationalityId,
                                                "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,

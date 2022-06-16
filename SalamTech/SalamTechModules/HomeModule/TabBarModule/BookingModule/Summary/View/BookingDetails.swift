@@ -34,7 +34,7 @@ struct BookingDetails: View {
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
                     
-                    Text(ConvertDateFormateToStr(inp: BookiDate, FormatTo: "dd MMM. yyyy") + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )" )
+                    Text(ChangeFormate(NewFormat: "dd MMM. yyyy").string(from: BookiDate) + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )" )
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     

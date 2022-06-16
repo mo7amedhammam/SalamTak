@@ -2,7 +2,7 @@
 //  PickLocationView.swift
 //  SalamTech-DR
 //
-//  Created by wecancity agency on 1/25/22.
+//  Created by Mohamed Hammam agency on 1/25/22.
 //
 
 import SwiftUI
@@ -35,19 +35,10 @@ struct RequestLocationView: View {
 //    @Binding var latitiude: String
     var body: some View {
         VStack {
-//            Image(systemName: "location.circle")
-//                .resizable()
-//                .frame(width: 100, height: 100, alignment: .center)
-//                .foregroundColor(Color("blueColor"))
             Button(action: {
                 locationViewModel.requestPermission()
                 self.clinicLocation.Longitude = coordinate?.longitude ?? 0.0
                 self.clinicLocation.Latitude = coordinate?.latitude ?? 0.0
-//                self.longtiude = String(coordinate?.longitude ?? 0.0)
-//                self.latitiude = String(coordinate?.latitude ?? 0.0)
-//                print(clinicLocation.Latitude)
-//                print(clinicLocation.Longitude)
-
             }, label: {
                 Label("Pick Location", systemImage: "location")
             })
@@ -90,19 +81,11 @@ struct TrackingView: View {
         
         VStack{
             HStack{
-//                Text(locationViewModel.currentPlacemark?.country ?? "")
-                    
-//                Text(locationViewModel.currentPlacemark?.administrativeArea ?? "")
                 Text( Helper.getUserAddress())
-                
-//                Text(Helper.getUserLongtude())
-//                Text(String(coordinate?.longitude ?? 0))
-                    
                 Spacer()
                 Image(systemName: "location")
                     .foregroundColor(Color("lightGray"))
             }
-            .animation(.default)
             .frame(width: screenWidth, height: 30)
             .font(.system(size: 13))
             .padding(12)
@@ -113,39 +96,7 @@ struct TrackingView: View {
                 .cornerRadius(5)
                 .shadow(color: Color.black.opacity(0.099), radius: 3)
         }
-        .onAppear(perform: {
-//        print( coordinate?.latitude ?? 0 )
-////            clinicLocation.Longitude = coordinate?.longitude ?? 0
-//            print(clinicLocation.Longitude)
-//            print(clinicLocation.Latitude)
-        })
-//        VStack {
-//            VStack {
-//                PairView(
-//                    leftText: "Latitude:",
-//                    rightText: String(coordinate?.latitude ?? 0)
-//                )
-//                PairView(
-//                    leftText: "Longitude:",
-//                    rightText: String(coordinate?.longitude ?? 0)
-//                )
-//                PairView(
-//                    leftText: "Altitude",
-//                    rightText: String(locationViewModel.lastSeenLocation?.altitude ?? 0)
-//                )
-//                PairView(
-//                    leftText: "Speed",
-//                    rightText: String(locationViewModel.lastSeenLocation?.speed ?? 0)
-//                )
-//                PairView(
-//                    leftText: "Country",
-//                    rightText: locationViewModel.currentPlacemark?.country ?? ""
-//                )
-//                PairView(leftText: "City", rightText: locationViewModel.currentPlacemark?.administrativeArea ?? ""
-//                )
-//            }
-//            .padding()
-//        }
+ 
     }
     
     var coordinate: CLLocationCoordinate2D? {
