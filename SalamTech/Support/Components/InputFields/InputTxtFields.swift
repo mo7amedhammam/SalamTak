@@ -59,6 +59,16 @@ struct SecureInputView: View {
         }
     }
 }
+struct SecureInputView_Previews: PreviewProvider {
+    static var previews: some View {
+        SecureInputView("", text: .constant(""))
+        
+    }
+}
+
+
+
+
 struct InputTextField: View {
     @Binding var text: String
     var title : String
@@ -89,7 +99,16 @@ struct InputTextField: View {
 
     }
 }
-struct EMRInputTextField: View {
+struct InputTextField_Previews: PreviewProvider {
+    static var previews: some View {
+        InputTextField(text: .constant(""), title: "title")
+        
+    }
+}
+
+
+
+struct ExpandableTxtField: View {
     @Binding var text: String
     var title : String
     let screenWidth = UIScreen.main.bounds.size.width - 50
@@ -115,5 +134,11 @@ struct EMRInputTextField: View {
         ).foregroundColor(Color("mainColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
+    }
+}
+struct ExpandableTxtField_Previews: PreviewProvider {
+    static var previews: some View {
+        ExpandableTxtField(text: .constant(""), title: "expandable text field")
+        
     }
 }

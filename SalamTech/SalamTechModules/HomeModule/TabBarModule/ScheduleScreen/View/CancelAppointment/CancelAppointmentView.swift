@@ -34,7 +34,7 @@ struct ViewCancelAppointmentPopUp: View {
                     .frame( height:60)
                     .foregroundColor(Color("subText"))
                 
-                EMRInputTextField(text: $scheduleVM.AppointmentCancelReason , title: "Popup_Cencel_Appointment_reason".localized(language) )
+                ExpandableTxtField(text: $scheduleVM.AppointmentCancelReason , title: "Popup_Cencel_Appointment_reason".localized(language) )
                     .padding([.leading,.trailing])
                 
                 HStack{
@@ -80,7 +80,6 @@ struct ViewCancelAppointmentPopUp: View {
                     
                         .onChange(of: scheduleVM.isAlert){newval in
                             scheduleVM.showcncel = !newval
-//                            scheduleVM.startFetchAppointmentInfo()
                     }
 
                 }
