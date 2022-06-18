@@ -199,7 +199,9 @@ private func otpText(text: String) -> some View {
 
 struct PhoneVerificationResetView_Previews: PreviewProvider {
     static var previews: some View {
+        ZStack{
         PhoneVerificationResetView()
+    }
     }
 }
 

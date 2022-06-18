@@ -52,3 +52,8 @@ struct ConfirmButton: View {
     }
 }
 
+struct ConfirmButton_Previews: PreviewProvider {
+    static var previews: some View {
+        ConfirmButton( Doctor: Doc.init()).environmentObject(VMCreateAppointment())
+    }
+}

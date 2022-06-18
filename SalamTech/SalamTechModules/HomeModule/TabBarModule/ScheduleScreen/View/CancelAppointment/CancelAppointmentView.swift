@@ -107,6 +107,6 @@ struct ViewCancelAppointmentPopUp: View {
 
 struct ViewCancelAppointmentPopUp_Previews: PreviewProvider {
     static var previews: some View {
-        ViewCancelAppointmentPopUp( showCancePopUp: .constant(false), cancelReason: .constant(""))
+        ViewCancelAppointmentPopUp( showCancePopUp: .constant(false), cancelReason: .constant("")).environmentObject(ViewModelGetAppointmentInfo())
     }
 }

@@ -35,3 +35,9 @@ struct slotView:View{
         
     }
 }
+
+struct slotView_Previews: PreviewProvider {
+    static var previews: some View {
+        slotView(slots: [Sched.init()], selectedTime: .constant("2:30 am"))
+    }
+}

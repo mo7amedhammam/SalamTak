@@ -76,3 +76,10 @@ struct SpecialityFilterList: View {
         })
     }
 }
+
+struct SpecialityFilterList_Previews: PreviewProvider {
+    static var previews: some View {
+        SpecialityFilterList( FilterTag: .constant(.Speciality), SpecialistId: .constant(1), selectedSpecLvlName: .constant(""), selectedSpecLvlId: .constant(2), SpecbuttonSelected: .constant(4))
+            .environmentObject(ViewModelSpecialist())
+    }
+}

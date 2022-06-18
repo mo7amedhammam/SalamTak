@@ -16,11 +16,8 @@ struct SeniorityBtn: View {
     @State var isTapped : Bool? = false
     
     var body: some View {
-        
-        
         Button(action: {
             isTapped?.toggle()
-            
             if selectedSenLvlId == []{
                 self.selectedSenLvlId.insert(seniorityLvl.id ?? 0, at: 0)
                 self.selectedSenLvlName.insert(seniorityLvl.Name ?? "", at: 0)
@@ -50,11 +47,9 @@ struct SeniorityBtn: View {
                     Spacer()
                     
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
                 
                 .padding([.top,.bottom],5)
-                .padding([.leading,.trailing],10)
-           
+                .padding([.leading,.trailing],10)           
 
         })
             .onAppear(perform: {
@@ -64,5 +59,10 @@ struct SeniorityBtn: View {
                 }
                 }
             })
+    }
+}
+struct SeniorityBtn_Previews: PreviewProvider {
+    static var previews: some View {
+        SeniorityBtn(seniorityLvl: subspeciality.init(id: 1, Name: "title"), selectedSenLvlName: .constant([""]), selectedSenLvlId: .constant([0]))
     }
 }

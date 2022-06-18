@@ -13,12 +13,7 @@ struct PhoneVerificationView: View {
     @EnvironmentObject var RegisterUserVM : ViewModelRegister
     // for creating user after confirming OTP
     @StateObject  var CreateUserVM = ViewModelCreateUser()
-    
     @State private var matchedOTP = false
-    
-    
-    //    @State private var timeRemaining = 120
-    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var minutes: Int = 00
     @State private var seconds: Int = 00
@@ -27,11 +22,8 @@ struct PhoneVerificationView: View {
     @State private var fieldTwo   = ""
     @State private var fieldThree = ""
     @State private var fieldFour  = ""
-    
     @State private var hideIncorrectCode = true
-    
     @StateObject var viewModel = OTPViewModel()
-    //    @State var isFocused = false
     @State var isErrorCode = false
     
     let textBoxWidth = UIScreen.main.bounds.width / 8
@@ -41,11 +33,7 @@ struct PhoneVerificationView: View {
     var textFieldOriginalWidth: CGFloat {
         (textBoxWidth*4)+(spaceBetweenBoxes*3)+((paddingOfBox*2)*3)
     }
-    
-    
-    
     @FocusState  var isfocused : Bool
-    
     
     var body: some View {
         
@@ -233,7 +221,9 @@ struct PhoneVerificationView: View {
 
 struct PhoneVerificationView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneVerificationView()
+        ZStack {
+            PhoneVerificationView().environmentObject(ViewModelRegister())
+        }
     }
 }
 

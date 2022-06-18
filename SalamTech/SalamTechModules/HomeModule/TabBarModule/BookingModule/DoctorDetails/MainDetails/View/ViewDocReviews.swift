@@ -140,3 +140,9 @@ struct ViewDocReviews: View {
         }
     }
 }
+
+struct ViewDocReviews_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewDocReviews(Doctor: Doc.init(), GotoReviews: .constant(false), GotoAddReview: .constant(false))
+    }
+}

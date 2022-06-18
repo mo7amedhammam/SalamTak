@@ -66,7 +66,7 @@ struct ChooseFoodAllergy: View {
             FoodAlgVM.Name = selectedServiceName
             medicalCreatedVM.PatientFoodAllergiesDto = FoodAlgVM.Id
         }
-        .offset(y: (UIScreen.main.bounds.size.height / 2) - 300)
+        .offset(y: (UIScreen.main.bounds.size.height / 2) - 200)
     }
 }
 

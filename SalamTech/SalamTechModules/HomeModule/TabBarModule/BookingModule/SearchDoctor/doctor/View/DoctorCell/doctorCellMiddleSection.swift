@@ -49,7 +49,6 @@ struct ViewMiddelSection: View {
             }.padding(.leading)
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
-            
             //MARK: --- Fees ---
             HStack{
                 Image("FilterFees")
@@ -78,9 +77,12 @@ struct ViewMiddelSection: View {
                 Spacer()
             }.padding(.leading)
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-            
-            
         }
+    }
+}
+
+struct ViewMiddelSection_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewMiddelSection(Doctor: Doc.init())
     }
 }

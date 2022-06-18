@@ -58,3 +58,9 @@ struct ConfirmationPopUp: View {
     }
 }
 
+struct ConfirmationPopUp_Previews: PreviewProvider {
+    static var previews: some View {
+        ConfirmationPopUp( BookiDate: .constant(Date()), BookiTime: .constant(""), GotoSchedual: .constant(false))
+            .environmentObject(VMCreateAppointment())
+    }
+}

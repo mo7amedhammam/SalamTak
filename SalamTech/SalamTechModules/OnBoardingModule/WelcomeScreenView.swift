@@ -15,62 +15,48 @@ struct WelcomeScreenView: View {
     @State var isSignup : Bool = false
     
     var body: some View {
-//        NavigationView{
         VStack {
-            
-                VStack (alignment:.leading){
-                    HStack {
+            VStack (alignment:.leading){
+                HStack {
+                    Menu {
+                        Button {
+                            LocalizationService.shared.language = .arabic
+                            Helper.setLanguage(currentLanguage: "ar")
+                        } label: {
+                            Text("العربية")
+                            flagBy(countryCode: "EG")
+                        }
                         
-                        Menu {
-                            Button {
-                                
-                                LocalizationService.shared.language = .arabic
-                                Helper.setLanguage(currentLanguage: "ar")
-                                print(Helper.getLanguage())
-                            } label: {
-                                Text("العربية")
-                                flagBy(countryCode: "EG")
-                            }
-                            
-                            Button {
-                                
-                                LocalizationService.shared.language = .english_us
-    //                            URLs.add(lang: "en")
-                                Helper.setLanguage(currentLanguage: "en")
-                                print(Helper.getLanguage())
-                                
-    //                            print(URLs.language)
-                            } label: {
+                        Button {
+                            LocalizationService.shared.language = .english_us
+                            Helper.setLanguage(currentLanguage: "en")                            } label: {
                                 Text("English (US)")
                                 flagBy(countryCode: "US")
                             }
-                            
-                        } label: {
-                            Spacer()
-                            flagBy(countryCode: language.userSymbol.uppercased())
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                        }
-                        .padding()
                         
+                    } label: {
+                        Spacer()
+                        flagBy(countryCode: language.userSymbol.uppercased())
+                            .resizable()
+                            .frame(width: 40, height: 40)
                     }
-                    
-                    //Spacer()
+                    .padding()
                 }
-//
+                
+            }
             Spacer()
             VStack{
                 Image("logo")
-                        .resizable()
-                        .frame(width: 180, height: 180, alignment: .center)
-                        .padding(.top, 50)
+                    .resizable()
+                    .frame(width: 180, height: 180, alignment: .center)
+                    .padding(.top, 50)
                 
                 Text("welcome_screen_title".localized(language))
                     .font(.system(size: 30, weight: .bold))
                     .foregroundColor(Color("mainColor"))
                     .bold()
-                    
-                    
+                
+                
                 Text("Welcome_Screen_subtitle".localized(language))
                     .font(.custom("SFUIText", size: 16))
                     .fontWeight(.semibold)
@@ -79,40 +65,33 @@ struct WelcomeScreenView: View {
                     .padding()
             }
             .offset( y: -80)
-                
             Spacer()
+                    
+            ButtonView(text: "SignIn_Button".localized(language)){
+                self.isLogin = true
+            }
             
-         
-                        ButtonView(text: "SignIn_Button".localized(language)){
-                               self.isLogin = true
-                           }
-
-                       
-                       ButtonView(text: "SignUp_Button".localized(language), backgroundColor: .white){
-                               self.isSignup = true
-                       }
-                           
-                           .border(Color("mainColor"), width: 2)
-                           .cornerRadius(4)
-                           .padding(.bottom,10)
-  
+            ButtonView(text: "SignUp_Button".localized(language), backgroundColor: .white){
+                self.isSignup = true
+            }
+            
+            .border(Color("mainColor"), width: 2)
+            .cornerRadius(4)
+            .padding(.bottom,10)
+            
         }
-
         .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
         
-            // go to complete Certs after completing first view
+        // go to complete Certs after completing first view
         NavigationLink(destination: ViewLogin(ispresented: .constant(false), QuickLogin: .constant(false)),isActive: $isLogin , label: {
-            })
-
-            // go to complete Certs after completing first view
+        })
+        
+        // go to complete Certs after completing first view
         NavigationLink(destination: ViewSignUp(ispresented: .constant(false), quickSignup: .constant(false)),isActive: $isSignup , label: {
-            })
+        })
             .navigationViewStyle(StackNavigationViewStyle())
-
-
     }
-    
 }
 private extension WelcomeScreenView {
     
@@ -126,10 +105,10 @@ private extension WelcomeScreenView {
 
 struct WelcomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
-
-            WelcomeScreenView()
-        .edgesIgnoringSafeArea(.top)
-
+        
+        WelcomeScreenView()
+            .edgesIgnoringSafeArea(.top)
+        
         
         
     }

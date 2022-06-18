@@ -62,11 +62,8 @@ struct MoreView: View {
                                 
                                 Text("More_Screen_myprofile".localized(language))
                                     .font(Font.SalamtechFonts.Reg16)
-
-                                   
                                     .foregroundColor(Color("lightGray"))
                                 Spacer()
-                                
                             }
                         })
 
@@ -133,7 +130,6 @@ struct MoreView: View {
                                 Spacer()
                             }
                         })
-//                        Spacer().frame(height: 20)
                         VStack{
                             HStack(spacing: 10){
                                 Image(systemName: "network")
@@ -153,9 +149,6 @@ struct MoreView: View {
                                     
                             }
                         }
-
-                        
-                       
                         Button(action: {
                             if Helper.userExist(){
                             Helper.logout()

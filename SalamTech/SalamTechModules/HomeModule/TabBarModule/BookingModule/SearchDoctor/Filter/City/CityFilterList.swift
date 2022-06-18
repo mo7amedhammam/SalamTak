@@ -10,9 +10,7 @@ import SwiftUI
 import Combine
 struct CityFilterList:View{
     @EnvironmentObject var CitiesVM : ViewModelGetCities
-    
     @Binding var FilterTag:FilterCases
-
     @Binding var selectedFilterCityName :String?
     @Binding var selectedFilterCityId :Int?
     @Binding var CitybuttonSelected: Int?
@@ -80,3 +78,9 @@ struct CityFilterList:View{
     }
 }
 
+struct CityFilterList_Previews: PreviewProvider {
+    static var previews: some View {
+        CityFilterList( FilterTag: .constant(.City), selectedFilterCityName: .constant(""), selectedFilterCityId: .constant(0), CitybuttonSelected: .constant(0))
+            .environmentObject(ViewModelGetCities())
+    }
+}

@@ -239,7 +239,6 @@ struct MedicalStateView: View {
                 }
                 .onAppear(perform: {
                     BloodTypeVM.startFetchBloodTypes()
-//                    print(Helper.getAccessToken())
                 })
                 
             }
@@ -275,7 +274,9 @@ struct MedicalStateView: View {
 
 struct MedicalStateView_Previews: PreviewProvider {
     static var previews: some View {
+        ZStack{
         MedicalStateView()
+        }
     }
 }
 

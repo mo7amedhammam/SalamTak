@@ -17,8 +17,6 @@ struct ReviewsView: View {
     var body: some View {
         ZStack{
             VStack{
-                
-              
                 List( ){
                     if DocReviews.noReviews == true{
                         Text("Sorry,\nNo_Reviews_Found_🤷‍♂️".localized(language))

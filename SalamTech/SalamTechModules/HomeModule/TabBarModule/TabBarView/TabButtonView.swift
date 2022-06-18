@@ -33,3 +33,9 @@ struct TabButton: View{
         })
     }
 }
+
+struct TabButton_Previews: PreviewProvider {
+    static var previews: some View {
+        TabButton(title: "Home", selectedTab: .constant("Button"))        
+    }
+}

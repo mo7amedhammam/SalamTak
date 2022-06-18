@@ -45,3 +45,14 @@ struct ShowAreaList: View {
     }
 }
 
+struct ShowAreaList_Previews: PreviewProvider {
+    static var previews: some View {
+        let bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let offset = CGSize(width: 100, height: 100)
+        let environmentobject = ViewModelCreatePatientProfile()
+
+        ShowAreaList(ShowArea: .constant(true), bounds: .constant(bounds), offset: .constant(offset))
+                .environmentObject(environmentobject)
+        
+    }
+}

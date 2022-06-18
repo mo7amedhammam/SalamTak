@@ -111,11 +111,6 @@ struct ViewDocMainInfo: View {
             .background(.clear)
             .cornerRadius(9)
             .shadow(color: .black.opacity(0.1), radius: 9)
-            
-            
-            
-            
-            
             ZStack {
                 HStack(){
                     Image("FilterFees")
@@ -179,5 +174,11 @@ struct ViewDocMainInfo: View {
             .cornerRadius(9)
             .shadow(color: .black.opacity(0.1), radius: 9)
         }
+    }
+}
+
+struct ViewDocMainInfo_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewDocMainInfo(Doctor: Doc.init(), ispreviewImage: .constant(false), previewImageurl: .constant(""))
     }
 }

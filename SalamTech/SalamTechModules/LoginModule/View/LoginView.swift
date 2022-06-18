@@ -105,12 +105,8 @@ struct ViewLogin: View {
             NavigationLink(destination: LoginVM.destination ,isActive: $LoginVM.isLogedin, label: {
             })
             
-            
-            
         }
-        
         .navigationViewStyle(StackNavigationViewStyle())
-        
         .background(Color("CLVBG"))
         .ignoresSafeArea()
         .onTapGesture(perform: {
@@ -131,21 +127,11 @@ struct ViewLogin: View {
                 self.QuickLogin=false
             }
         }
-        
- 
-        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButtonView()
             }
         }
-        
-        
-        
-        //            .sheet(isPresented: $dontHaveAccount,onDismiss: {
-        //                print("dismiss")
-        //            }, content: {ViewSignUp(ispresented: $dontHaveAccount)})
-        
         // Alert with no internet connection
             .alert(isPresented: $LoginVM.isAlert, content: {
                 Alert(title: Text(LoginVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
@@ -159,7 +145,9 @@ struct ViewLogin: View {
 
 struct ViewLogin_Previews: PreviewProvider {
     static var previews: some View {
-        ViewLogin(ispresented: .constant(false), QuickLogin: .constant(false))
+        ZStack {
+            ViewLogin(ispresented: .constant(false), QuickLogin: .constant(false))
+        }
     }
 }
 

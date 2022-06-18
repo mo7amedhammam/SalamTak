@@ -59,3 +59,9 @@ struct FeesFilterView:View {
     }
 }
 
+struct FeesFilterView_Previews: PreviewProvider {
+    static var previews: some View {
+        FeesFilterView( FilterTag: .constant(.Fees), selectedFee: .constant(22))
+            .environmentObject(ViewModelFees())
+    }
+}

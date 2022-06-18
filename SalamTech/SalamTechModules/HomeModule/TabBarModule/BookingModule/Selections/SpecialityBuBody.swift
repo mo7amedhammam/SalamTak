@@ -44,3 +44,9 @@ struct SpecialityBuBody: View {
         }
     }
 }
+
+struct SpecialityBuBody_Previews: PreviewProvider {
+    static var previews: some View {
+        SpecialityBuBody(speciality: Speciality.init())
+    }
+}

@@ -13,7 +13,7 @@ struct ViewDocCell: View {
     var language = LocalizationService.shared.language
 
     var Doctor : Doc
-    var searchDoc : VMSearchDoc
+   @EnvironmentObject var searchDoc : VMSearchDoc
     @Binding var gotodoctorDetails : Bool
     @Binding var SelectedDoctor : Doc
     
@@ -81,5 +81,11 @@ struct ViewDocCell: View {
         .shadow(color: .black.opacity(0.1), radius: 9)
         .listRowSeparator(.hidden)
         .listRowBackground(Color.clear)
+    }
+}
+
+struct ViewDocCell_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewDocCell(Doctor: Doc.init(), gotodoctorDetails: .constant(false), SelectedDoctor:.constant(Doc.init()), ispreviewImage: .constant(false), previewImageurl: .constant("")).environmentObject(VMSearchDoc())
     }
 }

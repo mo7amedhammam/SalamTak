@@ -96,3 +96,8 @@ struct BookingDetails: View {
     }
 }
 
+struct BookingDetails_Previews: PreviewProvider {
+    static var previews: some View {
+        BookingDetails(Doctor: Doc.init(), ExType: .constant(1), BookiDate: .constant(Date()), BookiTime: .constant("2:25"))
+    }
+}

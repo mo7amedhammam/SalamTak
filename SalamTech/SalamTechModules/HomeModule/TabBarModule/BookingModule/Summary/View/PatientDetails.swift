@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Combine
 struct PatientDetails: View {
     
     var body: some View {
@@ -85,3 +84,9 @@ struct PatientDetails: View {
     }
 }
 
+
+struct PatientDetails_Previews: PreviewProvider {
+    static var previews: some View {
+        PatientDetails()
+    }
+}

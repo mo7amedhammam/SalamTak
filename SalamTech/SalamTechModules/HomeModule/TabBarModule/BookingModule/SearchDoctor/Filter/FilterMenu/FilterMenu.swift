@@ -117,9 +117,8 @@ struct FilterMenu:View{
                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
             })
-            //                                .buttonStyle(.plain)
 
-
+// in case we wanted to add Gender to filter
             //                            Button(action: {
             //                                FilterTag = "Gender"
             //                            }, label: {
@@ -144,7 +143,6 @@ struct FilterMenu:View{
             //                                }.padding()
             //                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             //                            })
-            //                                .buttonStyle(.plain)
 
 
             Button(action: {

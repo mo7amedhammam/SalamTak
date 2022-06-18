@@ -128,7 +128,7 @@ struct ViewSearchDoc: View {
                     }
                     
                     ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
-                        ViewDocCell(Doctor: Doctor,searchDoc: searchDoc,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor , ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl)
+                        ViewDocCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor , ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl).environmentObject(searchDoc)
                     }
                         ZStack{}
                         .frame( maxHeight: 2)
@@ -217,12 +217,6 @@ struct ViewSearchDoc: View {
         //  go to clinic info
         NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
         }
-        
-//        // Alert with no internet connection
-//            .alert(isPresented: $searchDoc.isNetworkError, content: {
-//                Alert(title: Text("Check_Your_Internet_Connection".localized(language)), message: nil, dismissButton: .cancel())
-//        })
-        
         // Alert with no internet connection
             .alert(isPresented: $searchDoc.isAlert, content: {
                 Alert(title: Text(searchDoc.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

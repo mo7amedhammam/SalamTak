@@ -32,7 +32,6 @@ struct ViewTopSection: View {
                 ispreviewImage = true
                 previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
             })
-
             
             VStack(alignment:.leading){
                 //MARK:  --- Name ---
@@ -43,7 +42,6 @@ struct ViewTopSection: View {
                         .font(Font.SalamtechFonts.Bold18)
                     
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
                 
                 //MARK:  --- Seniority  ---
                 HStack{
@@ -52,7 +50,6 @@ struct ViewTopSection: View {
                         .font(Font.SalamtechFonts.Reg14)
 
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
                 
                 //MARK:  --- Rate ---
                 HStack{
@@ -62,16 +59,17 @@ struct ViewTopSection: View {
                         .foregroundColor(.black.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
             }
-            
-            
             Spacer()
             
         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-
         .padding(10)
         .frame(height:115)
+    }
+}
+
+struct ViewTopSection_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewTopSection(Doctor: Doc.init(), ispreviewImage: .constant(false), previewImageurl: .constant(""))
     }
 }

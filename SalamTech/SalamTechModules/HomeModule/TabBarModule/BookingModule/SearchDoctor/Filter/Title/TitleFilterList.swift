@@ -19,23 +19,17 @@ struct TitleFilterList:View{
     
     var body : some View{
         VStack{
-        //                    HStack {
         Text("Title".localized(language))
             .font(.system(size: 18))
             .fontWeight(.bold)
-        //                    }
         ScrollView {
             ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
                 HStack {
                     Spacer().frame(width:30)
                     Button(action: {
                         self.SenbuttonSelected = button
-                        print("SelectedID is \(self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0)")
-
                         self.selectedSeniorityLvlId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
                         self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
-                        //                                        doctorCreatedVM.SeniorityLevelId = selectedSeniorityId
-                        //                                        doctorCreatedVM.SeniorityName = selectedSeniorityName
                     }, label: {
                         HStack{
                             Image(systemName:  self.SenbuttonSelected == button ? "checkmark.circle.fill" :"circle" )
@@ -47,10 +41,7 @@ struct TitleFilterList:View{
 
 
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
                     })
-
-                    //                                    SeniorityBtn(seniorityLvl: seniorityVM.publishedSeniorityLevelModel[button], selectedSenLvlName: $selectedSenLvlName, selectedSenLvlId: $selectedSenLvlId)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
 
             }
@@ -82,5 +73,12 @@ struct TitleFilterList:View{
         }.onAppear(perform: {
             seniorityVM.startFetchSenioritylevel()
         })
+    }
+}
+
+struct TitleFilterList_Previews: PreviewProvider {
+    static var previews: some View {
+        TitleFilterList(FilterTag: .constant(.Title), selectedSeniorityLvlName: .constant(""), selectedSeniorityLvlId: .constant(1), SenbuttonSelected: .constant(2))
+            .environmentObject(ViewModelSeniority())
     }
 }

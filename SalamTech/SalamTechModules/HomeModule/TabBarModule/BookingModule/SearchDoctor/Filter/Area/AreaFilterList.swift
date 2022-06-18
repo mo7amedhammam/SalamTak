@@ -14,10 +14,7 @@ struct AreaFilterList:View{
     
     @Binding var FilterTag:FilterCases
     @Binding var CityId:Int
-//    @Binding var AreaId:Int
-
     @Binding var selectedFilterCityId :Int?
-
     @Binding var selectedFilterAreaName :String?
     @Binding var selectedFilterAreaId :Int?
     @Binding var AreabuttonSelected: Int?
@@ -27,7 +24,6 @@ struct AreaFilterList:View{
             Text("Area".localized(language))
                 .font(.system(size: 18))
                 .fontWeight(.bold)
-            //                    }
             ScrollView {
                 ForEach(0..<AreasVM.publishedAreaModel.count, id:\.self) { button in
                     HStack {
@@ -88,3 +84,9 @@ struct AreaFilterList:View{
     }
 }
 
+struct AreaFilterList_Previews: PreviewProvider {
+    static var previews: some View {
+        AreaFilterList( FilterTag: .constant(.Area), CityId: .constant(2), selectedFilterCityId: .constant(1), selectedFilterAreaName: .constant(""), selectedFilterAreaId: .constant(2), AreabuttonSelected: .constant(2))
+            .environmentObject(ViewModelGetAreas())
+    }
+}

@@ -6,7 +6,7 @@
 import UIKit
 import SwiftUI
 import WebKit
-    import Combine
+import Combine
 
 struct SalamtakWebView: UIViewControllerRepresentable {
     let url: URL

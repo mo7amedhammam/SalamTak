@@ -71,3 +71,9 @@ struct quickLoginSheet : View {
         
     }
 }
+
+struct quickLoginSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        quickLoginSheet(IsPresented: .constant(true), QuickLogin: .constant(false), QuickReservation: .constant(false), width: 333)
+    }
+}

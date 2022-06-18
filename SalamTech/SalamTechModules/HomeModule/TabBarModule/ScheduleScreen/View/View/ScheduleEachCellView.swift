@@ -16,7 +16,6 @@ struct ScheduleEachCellView: View {
     var language = LocalizationService.shared.language
     
     @State var schedule: AppointmentInfo
-    //    let screenWidth = UIScreen.main.bounds.size.width - 50
     @State var goingToRate = false
     @State var goingToHelp = false
     

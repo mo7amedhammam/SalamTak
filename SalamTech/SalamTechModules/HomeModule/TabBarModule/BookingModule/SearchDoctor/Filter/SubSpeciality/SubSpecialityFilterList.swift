@@ -71,3 +71,9 @@ struct SubSpecialityFilterList:View{
     }
 }
 
+struct SubSpecialityFilterList_Previews: PreviewProvider {
+    static var previews: some View {
+        SubSpecialityFilterList( FilterTag: .constant(.SubSpeciality), SpecialistId: .constant(2), selectedSpecLvlId: .constant(1), selectedSubSpecLvlNames: .constant([""]), selectedSubSpecLvlIds: .constant([]))
+            .environmentObject(ViewModelSubspeciality())
+    }
+}

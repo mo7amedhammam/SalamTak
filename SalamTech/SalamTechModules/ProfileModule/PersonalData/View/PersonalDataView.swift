@@ -387,7 +387,9 @@ struct PersonalDataView: View {
 
 struct PersonalDataView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalDataView()
+        ZStack {
+            PersonalDataView()
+        }
     }
 }
 

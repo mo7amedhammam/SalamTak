@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
-    var language = LocalizationService.shared.language
+     var language = LocalizationService.shared.language
     @StateObject private var UpdatePassVM = ViewModelUpdatePassword()
     @Binding var userId: Int
     @FocusState private var isfocused : Bool
@@ -88,9 +88,10 @@ struct ChangePasswordView: View {
 
     }
 }
-
 struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ChangePasswordView(userId: .constant(0))
+        ZStack {
+            ChangePasswordView( userId: .constant(0))
+        }
     }
 }

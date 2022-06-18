@@ -15,13 +15,11 @@ struct ViewDateAndTime: View {
     @EnvironmentObject var DocDetails : ViewModelDocDetails
     
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-    //    :["اثنين", "ثلاث", "اربع", "Fri", "خميس"]
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 30) ]
     
     @State var seldatenum = ""
     @State var openSlots = false
     @Binding var ShowCalendar : Bool
-//    @Binding var selectedDate : Date
     @Binding var selectedSchedualId :Int
     @Binding var selectedTime :String
     
@@ -32,7 +30,6 @@ struct ViewDateAndTime: View {
     
     init(ShowCalendar: Binding<Bool>, selectedSchedualId: Binding<Int>,selectedTime: Binding<String>,DoctorId: Binding<Int>,ClinicId: Binding<Int>,ExTypeId: Binding<Int>){
         self._ShowCalendar = ShowCalendar
-//        self._selectedDate = selectedDate
         self._selectedSchedualId = selectedSchedualId
         self._selectedTime = selectedTime
         self._DoctorId = DoctorId
@@ -46,10 +43,7 @@ struct ViewDateAndTime: View {
             Text("Choose_date_&_time".localized(language))
                 .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-            //            ZStack {
-            //                FSCalendarView(SelectedDate: $TappedDate)
-            //                    .frame( minHeight: 150)
-            //            }
+
             
             //MARK: ---- Days of Week --------
             ZStack{
@@ -211,5 +205,12 @@ struct ViewDateAndTime: View {
                     }))
             })
 
+    }
+}
+
+struct ViewDateAndTime_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewDateAndTime(ShowCalendar: .constant(false), selectedSchedualId: .constant(55), selectedTime: .constant(""), DoctorId: .constant(125), ClinicId: .constant(125), ExTypeId: .constant(3))
+            .environmentObject(ViewModelDocDetails())
     }
 }
