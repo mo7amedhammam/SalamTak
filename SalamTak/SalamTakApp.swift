@@ -10,7 +10,7 @@ import GoogleMaps
 let APIKey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
 
 @main
-struct SalamTechApp: App {
+struct SalamTakApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF3427F3100F00571078 /* SalamTechApp.swift */; };
+		00C8BF3527F3100F00571078 /* SalamTakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF3427F3100F00571078 /* SalamTakApp.swift */; };
 		00C8BF3727F3100F00571078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF3627F3100F00571078 /* ContentView.swift */; };
 		00C8BF3927F3101100571078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF3827F3101100571078 /* Assets.xcassets */; };
 		00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF3B27F3101100571078 /* Preview Assets.xcassets */; };
@@ -215,7 +215,7 @@
 
 /* Begin PBXFileReference section */
 		00C8BF3127F3100F00571078 /* SalamTak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalamTak.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		00C8BF3427F3100F00571078 /* SalamTechApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechApp.swift; sourceTree = "<group>"; };
+		00C8BF3427F3100F00571078 /* SalamTakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTakApp.swift; sourceTree = "<group>"; };
 		00C8BF3627F3100F00571078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		00C8BF3827F3101100571078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00C8BF3B27F3101100571078 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -446,7 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				00C8BF7727F32CF200571078 /* Launch Screen.storyboard */,
-				00C8BF3327F3100F00571078 /* SalamTech */,
+				00C8BF3327F3100F00571078 /* SalamTak */,
 				00C8BF4427F3101100571078 /* SalamTechTests */,
 				00C8BF4E27F3101100571078 /* SalamTechUITests */,
 				00C8BF3227F3100F00571078 /* Products */,
@@ -465,18 +465,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00C8BF3327F3100F00571078 /* SalamTech */ = {
+		00C8BF3327F3100F00571078 /* SalamTak */ = {
 			isa = PBXGroup;
 			children = (
 				C82541F327F443CF005E0750 /* Info.plist */,
-				00C8BF3427F3100F00571078 /* SalamTechApp.swift */,
+				00C8BF3427F3100F00571078 /* SalamTakApp.swift */,
 				00C8BF3627F3100F00571078 /* ContentView.swift */,
 				00C8BF5E27F317FF00571078 /* Support */,
-				00C8BF7227F32B2700571078 /* SalamTechModules */,
+				00C8BF7227F32B2700571078 /* SalamTakModules */,
 				00C8BF3827F3101100571078 /* Assets.xcassets */,
 				00C8BF3A27F3101100571078 /* Preview Content */,
 			);
-			path = SalamTech;
+			path = SalamTak;
 			sourceTree = "<group>";
 		};
 		00C8BF3A27F3101100571078 /* Preview Content */ = {
@@ -528,7 +528,7 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
-		00C8BF7227F32B2700571078 /* SalamTechModules */ = {
+		00C8BF7227F32B2700571078 /* SalamTakModules */ = {
 			isa = PBXGroup;
 			children = (
 				0E62C54B27FD936E00655D1A /* ResetPasswordModule */,
@@ -538,7 +538,7 @@
 				00C8BF7527F32B7F00571078 /* SignUpModule */,
 				00C8BF7427F32B6E00571078 /* OnBoardingModule */,
 			);
-			path = SalamTechModules;
+			path = SalamTakModules;
 			sourceTree = "<group>";
 		};
 		00C8BF7327F32B4500571078 /* Components */ = {
@@ -2053,7 +2053,7 @@
 				C814BC2C28575CEA00FBA9EA /* ShowUpdateNationalityList.swift in Sources */,
 				C89A6B96284F8D2500BF37C9 /* ViewAboutDoctor.swift in Sources */,
 				C82C79CD284E28C200BCE508 /* SpecialityView.swift in Sources */,
-				00C8BF3527F3100F00571078 /* SalamTechApp.swift in Sources */,
+				00C8BF3527F3100F00571078 /* SalamTakApp.swift in Sources */,
 				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
 				C89A6B9F284F8E0F00BF37C9 /* ViewDocMainInfo.swift in Sources */,
 				C814BC3828575DEB00FBA9EA /* ShowUpdateBloodTypeList.swift in Sources */,
@@ -2259,11 +2259,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SalamTak/Preview Content\"";
 				DEVELOPMENT_TEAM = 2K7WVT9HR2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SalamTech/Info.plist;
+				INFOPLIST_FILE = SalamTak/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Use Media to pick image";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use Camera in Upload";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Use Location";
@@ -2297,11 +2297,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_ASSET_PATHS = "\"SalamTech/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SalamTak/Preview Content\"";
 				DEVELOPMENT_TEAM = 2K7WVT9HR2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SalamTech/Info.plist;
+				INFOPLIST_FILE = SalamTak/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Use Media to pick image";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use Camera in Upload";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Use Location";

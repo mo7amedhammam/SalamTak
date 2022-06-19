@@ -19,7 +19,6 @@ struct SpecialityView: View {
     
     var body: some View {
         ZStack{
-        VStack{
             ScrollView( showsIndicators: false){
                 Spacer().frame(height:120)
                 HStack {
@@ -28,36 +27,30 @@ struct SpecialityView: View {
                     Spacer()
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
-                            Button(action: {
-                                selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
-                                gotocity=true
-                            }, label: {
-                                SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
-                            }) .frame(width: (UIScreen.main.bounds.width)-10)
-                                .background(Color.clear)
-                                .cornerRadius(8)
-                                .shadow(color: .black.opacity(0.099), radius: 5)
-                    }
+                    Button(action: {
+                        selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
+                        gotocity=true
+                    }, label: {
+                        SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
+                    }) .frame(width: (UIScreen.main.bounds.width)-10)
+                        .background(Color.clear)
+                        .cornerRadius(8)
+                        .shadow(color: .black.opacity(0.099), radius: 5)
+                }
             }.background(Color.clear)
                 .padding([.horizontal])
-
-            Spacer()
-        }
+                .frame(width: UIScreen.main.bounds.width)
+                .edgesIgnoringSafeArea(.vertical)
+                .background(Color("CLVBG"))
             
-        .frame(width: UIScreen.main.bounds.width)
-        .edgesIgnoringSafeArea(.vertical)
-        .background(Color("CLVBG"))
-        .onAppear(perform: {
-        })
-        
             VStack{
                 AppBarView(Title: "Choose_Speciality".localized(language))
                     .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
-                    Spacer()
+                Spacer()
             }
             .edgesIgnoringSafeArea(.vertical)
-
+            
             // showing loading indicator
             ActivityIndicatorView(isPresented: $specialityvm.isLoading)
         }
@@ -65,20 +58,15 @@ struct SpecialityView: View {
         .onAppear(perform: {
             specialityvm.startFetchSpecialist()
         })
-
         
         //  go to clinic info
         NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extypeid: $selectedTypeId),isActive: $gotocity) {
-              }
-        
+        }
         .alert(isPresented: $specialityvm.isAlert, content: {
             Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                 specialityvm.isAlert = false
-
             }))
-
         })
-
     }
 }
 

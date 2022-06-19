@@ -33,6 +33,7 @@ struct InputTextFieldInfo: View {
             .shadow(color: Color.black.opacity(0.099), radius: 3)
     }
 }
+
 struct InputTextFieldInfoArabic: View {
     @Binding var text: String
     var title : String
@@ -139,7 +140,6 @@ struct InputTextFieldMedicalInfo: View {
             .shadow(color: Color.black.opacity(0.099), radius: 3)
     }
 }
-
 
 struct FeesFilterTextField: View {
     @Binding var text: String
