@@ -7,7 +7,7 @@ PODS:
   - GoogleMaps/Maps (6.0.1):
     - GoogleMaps/Base
   - Kingfisher (7.0.0)
-  - SwiftLint (0.46.5)
+  - SwiftLint (0.47.1)
 
 DEPENDENCIES:
   - Alamofire (= 5.3)
@@ -29,8 +29,8 @@ SPEC CHECKSUMS:
   FlagKit: eca7dc89064b0c986302ba9acefad1bf80a435b1
   GoogleMaps: c213fc2334b7374144cede914da779b99be0ab74
   Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
-  SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+  SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 
-PODFILE CHECKSUM: bd476591c993c417f02afa6ca8020059ebe96010
+PODFILE CHECKSUM: 89ae28f6cd225c9c7a333617afe1d587d019fa5f
 
 COCOAPODS: 1.11.2

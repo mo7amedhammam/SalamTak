@@ -20,6 +20,9 @@ struct ChooseNationality : View {
     var width: CGFloat
 
     var body: some View {
+        
+        
+        
         ZStack {
             RoundedRectangle(cornerRadius: 40.0)
                 .foregroundColor(.white)

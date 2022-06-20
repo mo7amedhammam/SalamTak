@@ -37,9 +37,9 @@ class ViewModelCreateUser: ObservableObject {
             publishedUserCreatededModel = modeldata.data
             
             isRegistered = true
-                           Helper.setUserData(Id: publishedUserCreatededModel?.Id ?? 0, PhoneNumber: publishedUserCreatededModel?.Phone ?? "", patientName: "model?.Data?.Name" )
-                           Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatededModel?.Token ?? "")")
-                           Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserCreatededModel?.Image ?? "")")
+            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatededModel?.Token ?? "")")
+            Helper.setUserData(Id: publishedUserCreatededModel?.Id ?? 0, PhoneNumber: publishedUserCreatededModel?.Phone ?? "", patientName: "model?.Data?.Name" )
+            Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserCreatededModel?.Image ?? "")")
         }.store(in: &cancellables)
         
     }

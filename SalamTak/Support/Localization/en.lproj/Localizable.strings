@@ -106,6 +106,8 @@
 "Clinic_Screen_country" = "Country";
 "Clinic_Screen_city" = "City";
 "Clinic_Screen_area" = "Area";
+"Clinic_Screen_occupation" = "occupation";
+
 "Clinic_Screen_street" = "Street name (Required) ";
 "Clinic_Screen_building" = "Building Number";
 "Clinic_Screen_floor" = "floor Number";
@@ -287,7 +289,7 @@
 "Area" = "Area";
 "Examination_Fee" = "Examination Fee";
 "Minimum" = "Minimum";
-"Maximum" = "Minimum";
+"Maximum" = "Maximun";
 
 "Search_Filter" = "Search Filter";
 
@@ -332,6 +334,11 @@
 "Your_appointment_is" = "Your appointment is";
 "Myـschedule" = "My schedule";
 
+"Pop_note_terms" = "Note !";
+"Pop_Subnote_terms" = "By Signing Up you approve our";
+"Pop_terms" = "Terms & Conditions";
+"Pop_approve_terms" = "Approve";
+"Pop_cancel_terms" = "Cancel";
 
 
 "Popup_Cencel_Appointment" = "Cencel \n Appointment";

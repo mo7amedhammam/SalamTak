@@ -9,10 +9,7 @@ import SwiftUI
 
 struct PersonalDataView: View {
     var language = LocalizationService.shared.language
-    //    @State var showNationailty = false
-    //    @State var showCity = false
-    //    @State var showArea = false
-    
+ 
     @State private var image = UIImage()
     @State private var showImageSheet = false
     @State private var startPicking = false
@@ -24,6 +21,8 @@ struct PersonalDataView: View {
     @State var isValid = false
     @State var ShowingMap = false
     @State var ShowNationality = false
+    @State var  buttonSelected = 0
+    
     @State var ShowCity = false
     @State var ShowArea = false
     @State var ShowOccupation = false
@@ -39,7 +38,7 @@ struct PersonalDataView: View {
                 VStack{
                     ZStack{
                         VStack{
-                            InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "CompeleteProfile_Screen_subtitle".localized(language), Nexttext: "CompeleteProfile_Screen_secondSubTitle".localized(language),image: "1-3")
+                            InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "CompeleteProfile_Screen_subtitle".localized(language), Nexttext: "CompeleteProfile_Screen_secondSubTitle".localized(language),image: "1-3",navBarHidden:true)
                                 .offset(y: -10)
                             
                             Spacer().frame(height: 90)
@@ -151,8 +150,8 @@ struct PersonalDataView: View {
                                             }
                                         } label: {
                                             HStack{
-                                                Text(patientCreatedVM.NationalityName)
-                                                    .foregroundColor(Color("lightGray"))
+                                                Text(patientCreatedVM.NationalityName == "" ? "Clinic_Screen_country".localized(language): patientCreatedVM.NationalityName)
+                                                    .foregroundColor(patientCreatedVM.NationalityName == "" ?  Color("lightGray") : Color("blueColor"))
                                                 
                                                 Spacer()
                                                 Image(systemName: "staroflife.fill")
@@ -167,8 +166,7 @@ struct PersonalDataView: View {
                                             .disableAutocorrection(true)
                                             .background(
                                                 Color.white
-                                            ).foregroundColor(Color("blueColor"))
-                                                .cornerRadius(5)
+                                            )                                                .cornerRadius(5)
                                                 .shadow(color: Color.black.opacity(0.099), radius: 3)
                                         }
                                         Button {
@@ -177,7 +175,7 @@ struct PersonalDataView: View {
                                             }
                                         } label: {
                                             HStack{
-                                                Text(patientCreatedVM.cityName == "" ? "Clinic_Screen_city".localized(language): patientCreatedVM.cityName) // needs to handle get country by id
+                                                Text(patientCreatedVM.cityName == "" ? "Clinic_Screen_city".localized(language): patientCreatedVM.cityName)
                                                     .foregroundColor(patientCreatedVM.cityName == "" ?  Color("lightGray") : Color("blueColor"))
                                                 
                                                 Spacer()
@@ -257,8 +255,8 @@ struct PersonalDataView: View {
                                             
                                         } label: {
                                             HStack{
-                                                Text(patientCreatedVM.occupationName)
-                                                    .foregroundColor(Color("lightGray"))
+                                                Text(patientCreatedVM.occupationName == "" ? "Clinic_Screen_occupation".localized(language): patientCreatedVM.occupationName)
+                                                    .foregroundColor(patientCreatedVM.occupationName == "" ? Color("lightGray"):Color("blueColor"))
                                                 
                                                 Spacer()
                                                 Image(systemName: "staroflife.fill")
@@ -310,12 +308,65 @@ struct PersonalDataView: View {
                 }
                 .ignoresSafeArea()
                 .background(Color("CLVBG"))
-                .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 10 : 0)
+                .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 5 : 0)
                 .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
                 if ShowNationality {
-                    ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
-                        .environmentObject(patientCreatedVM)
-                        .environmentObject(NationalityVM)
+                        ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
+                            .environmentObject(patientCreatedVM)
+                            .environmentObject(NationalityVM)
+                    
+//                    CustomSheet(IsPresented: $ShowNationality, content: {
+//                            VStack{
+//                                Text("Nationality")
+//                                    .font(.system(size: 18))
+//                                    .fontWeight(.bold)
+//
+//                                    ScrollView {
+//                                    ForEach(NationalityVM.publishedCountryModel, id:\.self) { button in
+//                                        HStack {
+//                                            Button(action: {
+//                                                self.buttonSelected = button.Id ?? 0
+//
+//                                                patientCreatedVM.NationalityName = button.Name ?? ""
+//                                                patientCreatedVM.NationalityId = button.Id ?? 0
+//                                                ShowNationality =  false
+//                                            }, label: {
+//                                                HStack{
+//                                                    Image(systemName:  self.buttonSelected == button.Id ? "checkmark.circle.fill" :"circle" )
+//                                                        .font(.system(size: 20))
+//                                                        .foregroundColor(self.buttonSelected == button.Id ? Color("blueColor") : Color("lightGray"))
+//                                                    Text(button.Name ?? "")  .padding()
+//                                                        .foregroundColor(self.buttonSelected == button.Id ? Color("blueColor") : Color("lightGray"))
+//                                                    Spacer()
+//                                                }
+//                                            })
+//                                        }.padding(.leading)
+//                                    }
+//                                    }.frame(height: (UIScreen.main.bounds.height/2)-100 )
+//
+//                                Button(action: {
+//                                    // add review
+//                                    print("Confirm Title")
+//                                    ShowNationality = false
+//                                }, label: {
+//                                    HStack {
+//                                        Text("Confirm".localized(language))
+//                                            .fontWeight(.semibold)
+//                                            .font(.title3)
+//                                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//
+//                                        .frame(minWidth: 0, maxWidth: .infinity)
+//                                        .padding()
+//                                        .foregroundColor(.white)
+//                                        .background(Color("blueColor"))
+//                                        .cornerRadius(12)
+//                                        .padding(.horizontal, 12)
+//                                })
+//                                    .frame( height: 60)
+//                                    .padding(.horizontal)
+//                                    .padding(.bottom,10)
+//                        }
+//                    })
                     
                 }
                 else if ShowCity{

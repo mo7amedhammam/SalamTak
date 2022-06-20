@@ -12,6 +12,7 @@ struct InfoAppBarView: View {
     @State var text: String?
     @State var Nexttext: String?
     @State var image: String?
+    @State var navBarHidden: Bool?
 
     var body: some View {
         ZStack{
@@ -41,6 +42,7 @@ struct InfoAppBarView: View {
             AppBarView(Title: Maintext ?? "")
                 .navigationBarItems(leading: BackButtonView())
                 .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(navBarHidden ?? false)
 //                .ignoresSafeArea()
             //Spacer()
         }.ignoresSafeArea()

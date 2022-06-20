@@ -106,6 +106,8 @@
 "Clinic_Screen_country" = "الدولة";
 "Clinic_Screen_city" = "المدينة";
 "Clinic_Screen_area" = "المنطقة";
+"Clinic_Screen_occupation" = "الوظيفة";
+
 "Clinic_Screen_street" = "اسم الشارع (Required) ";
 "Clinic_Screen_building" = "رقم العقار";
 "Clinic_Screen_floor" = "رقم الدور";
@@ -333,6 +335,11 @@
 "Your_appointment_is" = "موعدك هو" ;
 "Myـschedule" = "مواعيدى";
 
+"Pop_note_terms" = "انتبه !";
+"Pop_Subnote_terms" = "بالضغط على موافق يعنى انك قرأت وتوافق على";
+"Pop_terms" = "الشروط والاحكام";
+"Pop_approve_terms" = "موافق";
+"Pop_cancel_terms" = "الغاء";
 
 "Popup_Cencel_Appointment" = "الغاء \nالمقابلة؟ ";
 "Popup_Cencel_Appointment_msg" = "هل انت متأكد انك تريد \nالغاء هذه المقابلة؟";

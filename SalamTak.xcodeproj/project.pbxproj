@@ -11,9 +11,9 @@
 		00C8BF3727F3100F00571078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF3627F3100F00571078 /* ContentView.swift */; };
 		00C8BF3927F3101100571078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF3827F3101100571078 /* Assets.xcassets */; };
 		00C8BF3C27F3101100571078 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF3B27F3101100571078 /* Preview Assets.xcassets */; };
-		00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4527F3101100571078 /* SalamTechTests.swift */; };
-		00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4F27F3101100571078 /* SalamTechUITests.swift */; };
-		00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */; };
+		00C8BF4627F3101100571078 /* SalamTakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4527F3101100571078 /* SalamTakTests.swift */; };
+		00C8BF5027F3101100571078 /* SalamTakUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF4F27F3101100571078 /* SalamTakUITests.swift */; };
+		00C8BF5227F3101100571078 /* SalamTakUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF5127F3101100571078 /* SalamTakUITestsLaunchTests.swift */; };
 		00C8BF6327F319B100571078 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6227F319B100571078 /* Constants.swift */; };
 		00C8BF6527F319BC00571078 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6427F319BC00571078 /* Helper.swift */; };
 		00C8BF6727F31AE500571078 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF6627F31AE500571078 /* Language.swift */; };
@@ -30,7 +30,7 @@
 		00D86B9C2803132D00ABF9C9 /* arbfonts.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B962803132D00ABF9C9 /* arbfonts.txt */; };
 		00D86B9D2803132D00ABF9C9 /* urlshort.url in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B972803132D00ABF9C9 /* urlshort.url */; };
 		00D86B9E2803132D00ABF9C9 /* ArbFONTS-STC-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */; };
-		04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */; };
+		04BB0A1BD42329BC2831F500 /* Pods_SalamTak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65479B042497C5DFC5A832A1 /* Pods_SalamTak.framework */; };
 		0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */; };
 		0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */; };
 		0E26EA6A27FB2EF800E3D9B8 /* ModelMedicineAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E26EA6927FB2EF800E3D9B8 /* ModelMedicineAllergy.swift */; };
@@ -106,8 +106,8 @@
 		0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */; };
 		0EC34CCC280D7C9100701344 /* ScheduleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC34CCB280D7C9100701344 /* ScheduleCellView.swift */; };
 		0EC34CCE280ED63000701344 /* ScheduleEachCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC34CCD280ED63000701344 /* ScheduleEachCellView.swift */; };
-		1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */; };
-		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */; };
+		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTakTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTakTests.framework */; };
+		7D36B4AE5D35DFF375BA0EB9 /* Pods_SalamTak_SalamTakUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75FE6EDCA7773FF07A4F5F3 /* Pods_SalamTak_SalamTakUITests.framework */; };
 		C800F82F27FB585B00482151 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F81F27FB585B00482151 /* ServicesView.swift */; };
 		C800F83027FB585B00482151 /* ViewModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82127FB585B00482151 /* ViewModelSpecialist.swift */; };
 		C800F83127FB585B00482151 /* ModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82227FB585B00482151 /* ModelSpecialist.swift */; };
@@ -142,6 +142,7 @@
 		C82C79CD284E28C200BCE508 /* SpecialityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82C79CC284E28C200BCE508 /* SpecialityView.swift */; };
 		C82E64E0283FC4B600B20354 /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64DF283FC4B600B20354 /* AboutApp.swift */; };
 		C82E64E4283FC7FC00B20354 /* SalamtakWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */; };
+		C83968BC2860A2BF00DE266B /* TermsAndConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83968BB2860A2BF00DE266B /* TermsAndConditions.swift */; };
 		C85BD539284770560056B046 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD538284770560056B046 /* TargetType.swift */; };
 		C85BD53B284780B70056B046 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD53A284780B70056B046 /* BaseResponse.swift */; };
 		C85BD53D28478E1B0056B046 /* BaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85BD53C28478E1B0056B046 /* BaseNetwork.swift */; };
@@ -220,10 +221,10 @@
 		00C8BF3827F3101100571078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00C8BF3B27F3101100571078 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		00C8BF4127F3101100571078 /* SalamTakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00C8BF4527F3101100571078 /* SalamTechTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechTests.swift; sourceTree = "<group>"; };
+		00C8BF4527F3101100571078 /* SalamTakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTakTests.swift; sourceTree = "<group>"; };
 		00C8BF4B27F3101100571078 /* SalamTakUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalamTakUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00C8BF4F27F3101100571078 /* SalamTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITests.swift; sourceTree = "<group>"; };
-		00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTechUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		00C8BF4F27F3101100571078 /* SalamTakUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTakUITests.swift; sourceTree = "<group>"; };
+		00C8BF5127F3101100571078 /* SalamTakUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamTakUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		00C8BF6227F319B100571078 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00C8BF6427F319BC00571078 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		00C8BF6627F31AE500571078 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
@@ -241,6 +242,7 @@
 		00D86B962803132D00ABF9C9 /* arbfonts.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = arbfonts.txt; sourceTree = "<group>"; };
 		00D86B972803132D00ABF9C9 /* urlshort.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = urlshort.url; sourceTree = "<group>"; };
 		00D86B982803132D00ABF9C9 /* ArbFONTS-STC-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArbFONTS-STC-Light.otf"; sourceTree = "<group>"; };
+		079C1850AF68B0FC69EF1169 /* Pods-SalamTakTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTakTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTakTests/Pods-SalamTakTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0E26EA6327FB2EC700E3D9B8 /* ModelFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFoodAllergy.swift; sourceTree = "<group>"; };
 		0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFoodAllergy.swift; sourceTree = "<group>"; };
 		0E26EA6927FB2EF800E3D9B8 /* ModelMedicineAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMedicineAllergy.swift; sourceTree = "<group>"; };
@@ -316,12 +318,12 @@
 		0E9E0DE127FB16A400893ABF /* ChooseOccupationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOccupationView.swift; sourceTree = "<group>"; };
 		0EC34CCB280D7C9100701344 /* ScheduleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellView.swift; sourceTree = "<group>"; };
 		0EC34CCD280ED63000701344 /* ScheduleEachCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEachCellView.swift; sourceTree = "<group>"; };
-		24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.debug.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.debug.xcconfig"; sourceTree = "<group>"; };
-		32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech_SalamTechUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.release.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.release.xcconfig"; sourceTree = "<group>"; };
-		65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech-SalamTechUITests.release.xcconfig"; path = "Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests.release.xcconfig"; sourceTree = "<group>"; };
+		392597A03DFACA80A08EB269 /* Pods-SalamTak-SalamTakUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak-SalamTakUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		47BCAA92B1EC4730FDF7228C /* Pods-SalamTak-SalamTakUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak-SalamTakUITests.release.xcconfig"; path = "Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests.release.xcconfig"; sourceTree = "<group>"; };
+		61943262C3A6F6DEAE1AA09E /* Pods-SalamTakTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTakTests.release.xcconfig"; path = "Target Support Files/Pods-SalamTakTests/Pods-SalamTakTests.release.xcconfig"; sourceTree = "<group>"; };
+		65479B042497C5DFC5A832A1 /* Pods_SalamTak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C23B21A6C420A611E6F24C36 /* Pods-SalamTak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak.debug.xcconfig"; path = "Target Support Files/Pods-SalamTak/Pods-SalamTak.debug.xcconfig"; sourceTree = "<group>"; };
+		C75FE6EDCA7773FF07A4F5F3 /* Pods_SalamTak_SalamTakUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTak_SalamTakUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C800F81F27FB585B00482151 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		C800F82127FB585B00482151 /* ViewModelSpecialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelSpecialist.swift; sourceTree = "<group>"; };
 		C800F82227FB585B00482151 /* ModelSpecialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpecialist.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 		C82C79CC284E28C200BCE508 /* SpecialityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityView.swift; sourceTree = "<group>"; };
 		C82E64DF283FC4B600B20354 /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
 		C82E64E3283FC7FC00B20354 /* SalamtakWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalamtakWebView.swift; sourceTree = "<group>"; };
+		C83968BB2860A2BF00DE266B /* TermsAndConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditions.swift; sourceTree = "<group>"; };
 		C85BD538284770560056B046 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		C85BD53A284780B70056B046 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		C85BD53C28478E1B0056B046 /* BaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetwork.swift; sourceTree = "<group>"; };
@@ -408,9 +411,8 @@
 		C8D93268282C28BC0089C520 /* ReviewsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVM.swift; sourceTree = "<group>"; };
 		C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
 		C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopupView.swift; sourceTree = "<group>"; };
-		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTechTests.debug.xcconfig"; path = "Target Support Files/Pods-SalamTechTests/Pods-SalamTechTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTech.release.xcconfig"; path = "Target Support Files/Pods-SalamTech/Pods-SalamTech.release.xcconfig"; sourceTree = "<group>"; };
+		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTakTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTakTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB387FB17DDAFC06F94333C3 /* Pods-SalamTak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak.release.xcconfig"; path = "Target Support Files/Pods-SalamTak/Pods-SalamTak.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,7 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04BB0A1BD42329BC2831F500 /* Pods_SalamTech.framework in Frameworks */,
+				04BB0A1BD42329BC2831F500 /* Pods_SalamTak.framework in Frameworks */,
 				C8A825E128393DF300FB8D76 /* ImageViewerRemote in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +429,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTechTests.framework in Frameworks */,
+				7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTakTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,7 +437,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1918DFA207A0CC6FF94AF63D /* Pods_SalamTech_SalamTechUITests.framework in Frameworks */,
+				7D36B4AE5D35DFF375BA0EB9 /* Pods_SalamTak_SalamTakUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,8 +449,8 @@
 			children = (
 				00C8BF7727F32CF200571078 /* Launch Screen.storyboard */,
 				00C8BF3327F3100F00571078 /* SalamTak */,
-				00C8BF4427F3101100571078 /* SalamTechTests */,
-				00C8BF4E27F3101100571078 /* SalamTechUITests */,
+				00C8BF4427F3101100571078 /* SalamTakTests */,
+				00C8BF4E27F3101100571078 /* SalamTakUITests */,
 				00C8BF3227F3100F00571078 /* Products */,
 				D7F4A9B52D71670893547C28 /* Pods */,
 				CD569FB038916C84D66F14AB /* Frameworks */,
@@ -487,21 +489,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		00C8BF4427F3101100571078 /* SalamTechTests */ = {
+		00C8BF4427F3101100571078 /* SalamTakTests */ = {
 			isa = PBXGroup;
 			children = (
-				00C8BF4527F3101100571078 /* SalamTechTests.swift */,
+				00C8BF4527F3101100571078 /* SalamTakTests.swift */,
 			);
-			path = SalamTechTests;
+			path = SalamTakTests;
 			sourceTree = "<group>";
 		};
-		00C8BF4E27F3101100571078 /* SalamTechUITests */ = {
+		00C8BF4E27F3101100571078 /* SalamTakUITests */ = {
 			isa = PBXGroup;
 			children = (
-				00C8BF4F27F3101100571078 /* SalamTechUITests.swift */,
-				00C8BF5127F3101100571078 /* SalamTechUITestsLaunchTests.swift */,
+				00C8BF4F27F3101100571078 /* SalamTakUITests.swift */,
+				00C8BF5127F3101100571078 /* SalamTakUITestsLaunchTests.swift */,
 			);
-			path = SalamTechUITests;
+			path = SalamTakUITests;
 			sourceTree = "<group>";
 		};
 		00C8BF5E27F317FF00571078 /* Support */ = {
@@ -531,12 +533,12 @@
 		00C8BF7227F32B2700571078 /* SalamTakModules */ = {
 			isa = PBXGroup;
 			children = (
+				00C8BF7427F32B6E00571078 /* OnBoardingModule */,
+				00C8BF7527F32B7F00571078 /* SignUpModule */,
+				00C8BF7627F32B8D00571078 /* LoginModule */,
 				0E62C54B27FD936E00655D1A /* ResetPasswordModule */,
 				0E586D0827F5B4DE00944F21 /* ProfileModule */,
 				0E586D0327F5B42300944F21 /* HomeModule */,
-				00C8BF7627F32B8D00571078 /* LoginModule */,
-				00C8BF7527F32B7F00571078 /* SignUpModule */,
-				00C8BF7427F32B6E00571078 /* OnBoardingModule */,
 			);
 			path = SalamTakModules;
 			sourceTree = "<group>";
@@ -579,8 +581,8 @@
 		00C8BF7527F32B7F00571078 /* SignUpModule */ = {
 			isa = PBXGroup;
 			children = (
-				0E586CE027F5A57E00944F21 /* CreateUser */,
 				0E586CDF27F5A57400944F21 /* Register */,
+				0E586CE027F5A57E00944F21 /* CreateUser */,
 			);
 			path = SignUpModule;
 			sourceTree = "<group>";
@@ -656,6 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				0E586CEB27F5A72700944F21 /* SignUpView.swift */,
+				C83968BB2860A2BF00DE266B /* TermsAndConditions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -742,8 +745,8 @@
 		0E586D0827F5B4DE00944F21 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
-				0E586D0A27F5B50400944F21 /* MedicalState */,
 				0E586D0927F5B4F000944F21 /* PersonalData */,
+				0E586D0A27F5B50400944F21 /* MedicalState */,
 			);
 			path = ProfileModule;
 			sourceTree = "<group>";
@@ -1600,9 +1603,9 @@
 		CD569FB038916C84D66F14AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65479B042497C5DFC5A832A1 /* Pods_SalamTech.framework */,
-				32A2170404AA096A4A74F173 /* Pods_SalamTech_SalamTechUITests.framework */,
-				CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTechTests.framework */,
+				65479B042497C5DFC5A832A1 /* Pods_SalamTak.framework */,
+				CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTakTests.framework */,
+				C75FE6EDCA7773FF07A4F5F3 /* Pods_SalamTak_SalamTakUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1610,12 +1613,12 @@
 		D7F4A9B52D71670893547C28 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */,
-				F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */,
-				24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */,
-				C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */,
-				E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */,
-				57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */,
+				C23B21A6C420A611E6F24C36 /* Pods-SalamTak.debug.xcconfig */,
+				CB387FB17DDAFC06F94333C3 /* Pods-SalamTak.release.xcconfig */,
+				392597A03DFACA80A08EB269 /* Pods-SalamTak-SalamTakUITests.debug.xcconfig */,
+				47BCAA92B1EC4730FDF7228C /* Pods-SalamTak-SalamTakUITests.release.xcconfig */,
+				079C1850AF68B0FC69EF1169 /* Pods-SalamTakTests.debug.xcconfig */,
+				61943262C3A6F6DEAE1AA09E /* Pods-SalamTakTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1782,7 +1785,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SalamTech-SalamTechUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SalamTak-SalamTakUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1795,15 +1798,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak/Pods-SalamTak-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak/Pods-SalamTak-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTak/Pods-SalamTak-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B6C54AA9556A81DB2B9A3F2C /* [CP] Embed Pods Frameworks */ = {
@@ -1812,15 +1815,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C3E364A011E6D697DDD2D344 /* [CP] Copy Pods Resources */ = {
@@ -1829,15 +1832,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech-SalamTechUITests/Pods-SalamTech-SalamTechUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTak-SalamTakUITests/Pods-SalamTak-SalamTakUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CF7ED32AD2367364915B3A30 /* [CP] Embed Pods Frameworks */ = {
@@ -1846,15 +1849,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak/Pods-SalamTak-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-SalamTak/Pods-SalamTak-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTech/Pods-SalamTech-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalamTak/Pods-SalamTak-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E452BD0978B423F66B93F762 /* [CP] Check Pods Manifest.lock */ = {
@@ -1872,7 +1875,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SalamTechTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SalamTakTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1894,7 +1897,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SalamTech-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SalamTak-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2039,6 +2042,7 @@
 				00C8BF6727F31AE500571078 /* Language.swift in Sources */,
 				0E26EA6827FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift in Sources */,
 				C814EA5E2816D10200D7730E /* ModelCreateAppointment.swift in Sources */,
+				C83968BC2860A2BF00DE266B /* TermsAndConditions.swift in Sources */,
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,
@@ -2086,7 +2090,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C8BF4627F3101100571078 /* SalamTechTests.swift in Sources */,
+				00C8BF4627F3101100571078 /* SalamTakTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2094,8 +2098,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C8BF5027F3101100571078 /* SalamTechUITests.swift in Sources */,
-				00C8BF5227F3101100571078 /* SalamTechUITestsLaunchTests.swift in Sources */,
+				00C8BF5027F3101100571078 /* SalamTakUITests.swift in Sources */,
+				00C8BF5227F3101100571078 /* SalamTakUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2253,7 +2257,7 @@
 		};
 		00C8BF5627F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3039284D91CEB8FE62401BF1 /* Pods-SalamTech.debug.xcconfig */;
+			baseConfigurationReference = C23B21A6C420A611E6F24C36 /* Pods-SalamTak.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2290,7 +2294,7 @@
 		};
 		00C8BF5727F3101100571078 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F946DBB628833504E3FBA622 /* Pods-SalamTech.release.xcconfig */;
+			baseConfigurationReference = CB387FB17DDAFC06F94333C3 /* Pods-SalamTak.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2329,7 +2333,7 @@
 		};
 		00C8BF5927F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9D7F5ECDA5BCB64B1A92F60 /* Pods-SalamTechTests.debug.xcconfig */;
+			baseConfigurationReference = 079C1850AF68B0FC69EF1169 /* Pods-SalamTakTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2350,7 +2354,7 @@
 		};
 		00C8BF5A27F3101100571078 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57C78CE11DBABDA2067C6D67 /* Pods-SalamTechTests.release.xcconfig */;
+			baseConfigurationReference = 61943262C3A6F6DEAE1AA09E /* Pods-SalamTakTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2371,7 +2375,7 @@
 		};
 		00C8BF5C27F3101100571078 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24DE8F3F0A5F0F7DD4165F49 /* Pods-SalamTech-SalamTechUITests.debug.xcconfig */;
+			baseConfigurationReference = 392597A03DFACA80A08EB269 /* Pods-SalamTak-SalamTakUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2390,7 +2394,7 @@
 		};
 		00C8BF5D27F3101100571078 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C145927D956D714580D8CBE3 /* Pods-SalamTech-SalamTechUITests.release.xcconfig */;
+			baseConfigurationReference = 47BCAA92B1EC4730FDF7228C /* Pods-SalamTak-SalamTakUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

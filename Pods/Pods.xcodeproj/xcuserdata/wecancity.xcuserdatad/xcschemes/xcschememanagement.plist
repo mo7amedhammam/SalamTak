@@ -4,105 +4,48 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Alamofire.xcscheme_^#shared#^_</key>
+		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<false/>
 		</dict>
-		<key>FlagKit.xcscheme_^#shared#^_</key>
+		<key>FlagKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<false/>
 		</dict>
-		<key>GoogleMaps.xcscheme_^#shared#^_</key>
+		<key>GoogleMaps.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<false/>
 		</dict>
-		<key>Kingfisher.xcscheme_^#shared#^_</key>
+		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<false/>
 		</dict>
-		<key>Pods-SalamTech-SalamTechUITests.xcscheme_^#shared#^_</key>
+		<key>Pods-SalamTak-SalamTakUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<false/>
 		</dict>
-		<key>Pods-SalamTech.xcscheme_^#shared#^_</key>
+		<key>Pods-SalamTak.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<false/>
 		</dict>
-		<key>Pods-SalamTechTests.xcscheme_^#shared#^_</key>
+		<key>Pods-SalamTakTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<false/>
 		</dict>
-		<key>SwiftLint.xcscheme_^#shared#^_</key>
+		<key>SwiftLint.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>28344F3D698B1DE3B5B4009273E6B43B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>30D45C2D970430A44809C9F8C2D2789A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>52B60EC2A583F24ACBB69C113F5488B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D7C1CD4BD86779BC50DA28D23CB8BC08</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E5B4BBC6DD552AC8943C7E22772FC1D3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E8022D22FAA6690B5E1C379C1BCE1491</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E810DEF17E09CD644244F998B4E938C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EAAA1AD3A8A1B59AB91319EE40752C6D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

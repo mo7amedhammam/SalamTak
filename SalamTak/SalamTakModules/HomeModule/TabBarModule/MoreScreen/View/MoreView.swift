@@ -47,7 +47,6 @@ struct MoreView: View {
                         .foregroundColor(Color("lightGray"))
                         .font(Font.SalamtechFonts.Reg16)
                 
-                Spacer().frame( height: 20)
                 ScrollView( showsIndicators: false){
                     VStack(alignment: .leading){
                         Group{
@@ -184,6 +183,7 @@ struct MoreView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
                 }
+                .padding(.bottom,20)
             }
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))

@@ -21,6 +21,13 @@ struct ViewSignUp: View {
         RegisterVM.phoneNumber = String(value.prefix(RegisterVM.characterLimit))
     }
     
+    @State var ShowPopup = false
+    @State var TermsAndConditions = false
+    @State var Approve = false
+    @State var cancel = false
+
+    @State var GotoPhoneVerification = false
+
     var body: some View {
         ZStack {
             VStack{
@@ -40,6 +47,7 @@ struct ViewSignUp: View {
                                     .keyboardType(.namePhonePad)
                                     .textInputAutocapitalization(.never)
                                     .focused($isfocused)
+                                    .padding(.horizontal)
                                 if !RegisterVM.nameErrorMessage.isEmpty{
                                     Text(RegisterVM.nameErrorMessage)
                                         .font(.system(size: 13))
@@ -89,7 +97,11 @@ struct ViewSignUp: View {
                     }
                     Spacer()
                     ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && (( RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password ) || quickSignup == true) && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
+                        if RegisterVM.isRegistered{
+                            ShowPopup = true
+                        }else{
                         RegisterVM.startFetchUserRegisteration()
+                        }
                     }
                     .disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || (( RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  ) && quickSignup == false ) || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
                     
@@ -128,13 +140,11 @@ struct ViewSignUp: View {
             })
             
             //phone verification
-            NavigationLink(destination: PhoneVerificationView().environmentObject(RegisterVM),isActive: $RegisterVM.isRegistered, label: {
+            NavigationLink(destination: PhoneVerificationView().environmentObject(RegisterVM),isActive: $Approve, label: {
             })
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        
         .background(Color("CLVBG"))
-        
         .adaptsToKeyboard()
         .ignoresSafeArea()
         .onTapGesture(perform: {
@@ -144,9 +154,11 @@ struct ViewSignUp: View {
         //Quick Login
         .onChange(of: RegisterVM.isRegistered ){newval in
             if newval==true{
+                ShowPopup = true
                 self.quickSignup=false
             }
         }
+        
         .toolbar{
             ToolbarItemGroup(placement: .keyboard ){
                 Spacer()
@@ -162,11 +174,45 @@ struct ViewSignUp: View {
             }
         }
         // Alert with no internet connection
-            .alert(isPresented: $RegisterVM.isAlert, content: {
-                Alert(title: Text(RegisterVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                    RegisterVM.isAlert = false
-                    }))
-            })
+        .alert(isPresented: $RegisterVM.isAlert, content: {
+            Alert(title: Text(RegisterVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
+                RegisterVM.isAlert = false
+                }))
+        })
+        
+        .popup(isPresented: $ShowPopup){
+            BottomPopupView{
+                ApproveTermsPopUp(showPopUp: $ShowPopup,letsgo:$Approve,Skip:$cancel,TermsAndConditions:$TermsAndConditions, action: {
+                }
+)
+            }
+        }
+        
+        .sheet(isPresented: $TermsAndConditions , content: {
+            ZStack {
+                SalamtakWebView(url: URL(string: URLs().TermsAndConditionsURL )!   , isPresented: $TermsAndConditions)
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        // add review
+                        TermsAndConditions = false
+                    }, label: {
+                        HStack {
+                            Text("OK".localized(language))
+                                .fontWeight(.semibold)
+                                .font(.title3)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(.green)
+                        .cornerRadius(12)
+                        .padding(.horizontal, 20)
+                    })
+                }
+            }
+        })
+        
     }
 }
 

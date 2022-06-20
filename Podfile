@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'SalamTech' do
+target 'SalamTak' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -14,12 +14,12 @@ target 'SalamTech' do
   pod 'FlagKit'
   pod 'SwiftLint'
 
-  target 'SalamTechTests' do
+  target 'SalamTakTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'SalamTechUITests' do
+  target 'SalamTakUITests' do
     # Pods for testing
   end
 

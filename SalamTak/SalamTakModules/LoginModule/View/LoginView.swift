@@ -85,10 +85,11 @@ struct ViewLogin: View {
                     }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 }
                 
-                Spacer().frame(height:25)
+                Spacer()
             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                    .adaptsToKeyboard()
+
             
-            .adaptsToKeyboard()
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $LoginVM.isLoading)

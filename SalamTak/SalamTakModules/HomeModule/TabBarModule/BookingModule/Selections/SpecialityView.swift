@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct SpecialityView: View {
     @StateObject var specialityvm = ViewModelSpecialist()
     var language = LocalizationService.shared.language
@@ -18,47 +17,48 @@ struct SpecialityView: View {
     @State var selectedSpecialityId  = 0
     
     var body: some View {
-        ZStack{
-            ScrollView( showsIndicators: false){
-                Spacer().frame(height:120)
-                HStack {
-                    Text("SpecialitiesـSubTitle".localized(language))
-                        .font(Font.SalamtechFonts.Bold18)
+            ZStack{
+                ScrollView( showsIndicators: false){
+                    Spacer().frame(height:120)
+                    HStack {
+                        Text("SpecialitiesـSubTitle".localized(language))
+                            .font(Font.SalamtechFonts.Bold18)
+                        Spacer()
+                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                    ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
+                        Button(action: {
+                            selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
+                            gotocity=true
+                        }, label: {
+                            SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
+                        }) .frame(width: (UIScreen.main.bounds.width)-10)
+                            .background(Color.clear)
+                            .cornerRadius(8)
+                            .shadow(color: .black.opacity(0.099), radius: 5)
+                    }
+                }.background(Color.clear)
+                    .padding([.horizontal])
+                    .frame(width: UIScreen.main.bounds.width)
+                    .edgesIgnoringSafeArea(.vertical)
+                    .background(Color("CLVBG"))
+                
+                VStack{
+                    AppBarView(Title: "Choose_Speciality".localized(language))
+                    
+                        .navigationBarItems(leading: BackButtonView())
+                        .navigationBarBackButtonHidden(true)
                     Spacer()
-                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
-                    Button(action: {
-                        selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
-                        gotocity=true
-                    }, label: {
-                        SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
-                    }) .frame(width: (UIScreen.main.bounds.width)-10)
-                        .background(Color.clear)
-                        .cornerRadius(8)
-                        .shadow(color: .black.opacity(0.099), radius: 5)
                 }
-            }.background(Color.clear)
-                .padding([.horizontal])
-                .frame(width: UIScreen.main.bounds.width)
                 .edgesIgnoringSafeArea(.vertical)
-                .background(Color("CLVBG"))
-            
-            VStack{
-                AppBarView(Title: "Choose_Speciality".localized(language))
-                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
-                Spacer()
+                
+                // showing loading indicator
+                ActivityIndicatorView(isPresented: $specialityvm.isLoading)
             }
-            .edgesIgnoringSafeArea(.vertical)
-            
-            // showing loading indicator
-            ActivityIndicatorView(isPresented: $specialityvm.isLoading)
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear(perform: {
-            specialityvm.startFetchSpecialist()
+            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear(perform: {
+                specialityvm.startFetchSpecialist()
         })
-        
+
         //  go to clinic info
         NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extypeid: $selectedTypeId),isActive: $gotocity) {
         }

@@ -40,7 +40,7 @@ struct PhoneVerificationView: View {
         ZStack {
             VStack( spacing: 1){
                 AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
-                    .navigationBarItems(leading: BackButtonView())
+//                    .navigationBarItems(leading: BackButtonView())
                     .navigationBarBackButtonHidden(true)
                 Text("PhoneVerfication_Screen_subtitle".localized(language) + " (\(RegisterUserVM.publishedUserRegisteredModel?.Code ?? 0))").font(.custom("SF UI Text", size: 16))
                     .foregroundColor(Color("subTitle"))

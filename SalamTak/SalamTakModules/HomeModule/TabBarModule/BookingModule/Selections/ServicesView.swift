@@ -17,7 +17,6 @@ struct ServicesView: View {
 
     var body: some View {
         ZStack{
-            ScrollView {
                 VStack{
                     Spacer().frame(height:30)
                             AsyncImage(url: URL(string:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR05Cf6YGBs9SAvvEwW22wHVjeLTm9HmVJEWd0KjyiSySHuLDQCH5VVc0wvxtHCJvVOKSY&usqp=CAU" )) { image in
@@ -31,8 +30,6 @@ struct ServicesView: View {
                             .frame( height: 115)
                             .cornerRadius(8)
                             .scaledToFit()
-                            .padding(.horizontal)
-
                     
                     Spacer().frame(height:20)
                     
@@ -40,6 +37,7 @@ struct ServicesView: View {
                         HStack {
                             Text("Our_Services".localized(language))
                                 .font(Font.SalamtechFonts.Bold18)
+                                .frame(alignment: .bottom)
                             Spacer()
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         
@@ -78,14 +76,14 @@ struct ServicesView: View {
                             }
                                                 
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                        .padding(.horizontal,13)
-                        .padding(.vertical)
+                        .padding(.horizontal)
 
                     }.background(Color.clear)
-                        .padding([.horizontal])
+                        .padding(.bottom,20)
+
                 }
+                .padding(.horizontal)
                 .padding(.top,100)
-            }
             
 //MARK: ----- Top View Title -----
             VStack{

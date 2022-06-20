@@ -145,7 +145,6 @@ struct ViewSearchDoc: View {
                 })
                     .listStyle(.plain)
                     .padding(.vertical,0)
-               
                     .edgesIgnoringSafeArea(.bottom)
             }
             

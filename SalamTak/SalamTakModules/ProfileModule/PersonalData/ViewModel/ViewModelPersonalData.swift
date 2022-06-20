@@ -87,10 +87,10 @@ class ViewModelCreatePatientProfile: ObservableObject {
     
     @Published  var profileImage = UIImage()
     
-    @Published  var NationalityName: String = "Nationality"
+    @Published  var NationalityName: String = ""
     @Published  var cityName             : String = ""
     @Published  var areaName             : String = ""
-    @Published  var occupationName       : String = "Occupation"
+    @Published  var occupationName       : String = ""
     
     //------- validation
     @Published  var errorFirstName : String = ""
