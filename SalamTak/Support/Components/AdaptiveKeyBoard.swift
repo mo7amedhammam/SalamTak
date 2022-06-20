@@ -2,11 +2,10 @@
 //  AdaptiveKeayboard.swift
 //  SalamTech-DR
 //
-//  Created by wecancity on 06/02/2022.
+//  Created by Mohamed Hammam on 06/02/2022.
 //
 import SwiftUI
 import Combine
-
 
 extension Notification {
     var keyboardHeight: CGFloat {
@@ -115,7 +114,7 @@ class KeyboardSpace: ObservableObject {
     private let keyboardWillOpen = NotificationCenter.default
         .publisher(for: UIResponder.keyboardWillShowNotification)
         .map { $0.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect }
-        .map { $0.height - (UIWindow.keyWindow?.safeAreaInsets.bottom ?? 0) - 60 }
+        .map { $0.height - (UIWindow.keyWindow?.safeAreaInsets.bottom ?? 0) - 80 }
     
     private let keyboardWillHide =  NotificationCenter.default
         .publisher(for: UIResponder.keyboardWillHideNotification)

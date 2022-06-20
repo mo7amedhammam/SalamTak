@@ -39,14 +39,7 @@ struct PersonalDataView: View {
     
     var body: some View {
         ZStack{
-            //            Spacer().frame(height: 130)
-            
-            
-            
-            
-            //            ZStack{
             ZStack{
-                
                 VStack {
                     Spacer().frame(height:180)
                     ScrollView(.vertical, showsIndicators: false) {
@@ -104,10 +97,13 @@ struct PersonalDataView: View {
                                 HStack (spacing: 10){
                                     Group{
                                         InputTextFieldInfo( text: $patientCreatedVM.FirstName,title: "First Name(*)")
+                                            .focused($focusedInput, equals: .firstName)
                                         InputTextFieldInfo( text: $patientCreatedVM.MiddelName,title: "Middle Name(*)")
+                                            .focused($focusedInput, equals: .middleName)
                                         InputTextFieldInfo( text: $patientCreatedVM.FamilyName,title: "Last Name(*)")
+                                            .focused($focusedInput, equals: .lastName)
+
                                     }
-    //                                .focused($isfocused)
                                     
                                 }
                             }
@@ -134,13 +130,15 @@ struct PersonalDataView: View {
                                 HStack (spacing: 10){
                                     Group{
                                         InputTextFieldInfoArabic( text: $patientCreatedVM.FamilyNameAr,title: "الاسم الاخير(*)")
-                                        
+                                            .focused($focusedInput, equals: .lastNameAr)
+
                                         InputTextFieldInfoArabic( text: $patientCreatedVM.MiddelNameAr,title: "الاسم الأوسط(*)")
-                                        
+                                            .focused($focusedInput, equals: .middleNameAr)
+
                                         InputTextFieldInfoArabic( text: $patientCreatedVM.FirstNameAr,title: "الاسم الأول(*)")
-                                        
+                                            .focused($focusedInput, equals: .firstNameAr)
+
                                     }
-    //                                .focused($isfocused)
                                         .autocapitalization(.none)
                                     
                                 }
@@ -234,7 +232,7 @@ struct PersonalDataView: View {
                             }
                             Spacer().frame(height: 20)
                             InputTextField(text: $patientCreatedVM.EmergencyContact, title: "Emergency Contact (Required)")
-    //                            .focused($isfocused)
+                                .focused($focusedInput, equals: .emergancyContact)
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .autocapitalization(.none)
                                 .keyboardType(.numberPad)
@@ -285,16 +283,18 @@ struct PersonalDataView: View {
                                 
                                 Group{
                                     InputTextField(text: $patientCreatedVM.Address, title: "Clinic_Screen_street".localized(language))
-                                    
+                                        .focused($focusedInput, equals: .streetName)
+
                                     InputTextField(text: $patientCreatedVM.BlockNo, title: "Clinic_Screen_building".localized(language))
-                                    
+                                        .focused($focusedInput, equals: .buildingNumber)
+
                                     InputTextField(text: $patientCreatedVM.FloorNo.string(), title: "Clinic_Screen_floor".localized(language))
                                         .keyboardType(.numberPad)
-                                    
+                                        .focused($focusedInput, equals: .floorNumber)
+
                                     InputTextField(text: $patientCreatedVM.ApartmentNo, title: "Apartment Number".localized(language))
-                                    
+                                        .focused($focusedInput, equals: .apartmentNumber)
                                 }
-    //                            .focused($isfocused)
                                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                     .autocapitalization(.none)
                                     .textInputAutocapitalization(.never)
@@ -443,7 +443,7 @@ extension Binding where Value == Int {
 extension PersonalDataView{
     enum Field: Int, Hashable, CaseIterable {
         case firstName
-        case middlename
+        case middleName
         case lastName
         case firstNameAr
         case middleNameAr
