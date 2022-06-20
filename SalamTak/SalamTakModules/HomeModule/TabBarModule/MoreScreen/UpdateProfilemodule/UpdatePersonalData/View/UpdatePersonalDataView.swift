@@ -257,7 +257,7 @@ struct UpdatePersonalDataView: View {
                                     Spacer().frame(height: 20)
                                     GenderView(selection: $patientUpdatedVM.GenderId)
                                     Spacer().frame(height: 20)
-                                    TrackingView()
+                                    TrackingView(longtiude: $patientUpdatedVM.Longitude, latitiude: $patientUpdatedVM.Latitude)
                                         .environmentObject(locationViewModel)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                         .onTapGesture(perform: {

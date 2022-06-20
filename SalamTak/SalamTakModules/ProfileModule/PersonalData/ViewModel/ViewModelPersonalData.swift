@@ -107,6 +107,7 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published  var errorWebsite : String = ""
     @Published  var errorDoctorInfo : String = ""
     @Published  var errorDoctorInfoAr : String = ""
+    
     //------- output
     @Published var isValid = false
     @Published var inlineErrorPassword = ""
@@ -117,7 +118,6 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-    
     
     init() {
         //     validations()

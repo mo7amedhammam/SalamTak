@@ -16,8 +16,8 @@ struct ViewMapWithPin: View {
     @State var subtitle:String
     @Binding var longtude:Double
     @Binding var latitude:Double
-    @StateObject var patientLocation = ViewModelCreatePatientProfile()
-    
+//    @StateObject var patientLocation = ViewModelCreatePatientProfile()
+    @EnvironmentObject var locationManager1 : LocationViewModel
     var body: some View {
         
         VStack{
@@ -36,7 +36,7 @@ struct ViewMapWithPin: View {
             
             
             ZStack(alignment: .bottom){
-                GoogleMapsView(long: $longtude, lat: $latitude)
+                GoogleMapsView(long: $longtude, lat: $latitude).environmentObject(locationManager1)
                 
                 if self.title != "" {
                     HStack(spacing:20){

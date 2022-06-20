@@ -9,36 +9,58 @@ import SwiftUI
 import CoreLocation
 
 struct PickLocationView: View {
-    @StateObject var locationViewModel = LocationViewModel()
-        
+    @EnvironmentObject var locationViewModel: LocationViewModel
+    @Binding var longtiude: Double
+    @Binding var latitiude: Double
+
+    
         var body: some View {
             switch locationViewModel.authorizationStatus {
             case .notDetermined:
-                AnyView(RequestLocationView())
+//                AnyView(RequestLocationView(longtiude: $longtiude, latitiude: $latitiude))
+//                    .environmentObject(locationViewModel)
+
+                TrackingView(longtiude: $longtiude, latitiude: $latitiude)
                     .environmentObject(locationViewModel)
+
             case .restricted:
                 ErrorView(errorText: "Location use is restricted.")
             case .denied:
                 ErrorView(errorText: "The app does not have location permissions. Please enable them in settings.")
             case .authorizedAlways, .authorizedWhenInUse:
-                TrackingView()
+                TrackingView(longtiude: $longtiude, latitiude: $latitiude)
                     .environmentObject(locationViewModel)
             default:
                 Text("Unexpected status")
             }
         }
 }
+struct PickLocationView_Previews: PreviewProvider {
+    static var previews: some View {
+        PickLocationView( longtiude: .constant(0.0), latitiude: .constant(0.0))
+            .environmentObject(LocationViewModel())
+
+    }
+}
+
+struct RequestLocationView_Previews: PreviewProvider {
+    static var previews: some View {
+        RequestLocationView( longtiude: .constant(0.0), latitiude: .constant(0.0))
+            .environmentObject(LocationViewModel())
+
+    }
+}
 struct RequestLocationView: View {
     @EnvironmentObject var locationViewModel: LocationViewModel
-    @StateObject var clinicLocation = ViewModelCreatePatientProfile()
-//    @Binding var longtiude: String
-//    @Binding var latitiude: String
+//    @StateObject var clinicLocation = ViewModelCreatePatientProfile()
+    @Binding var longtiude: Double
+    @Binding var latitiude: Double
     var body: some View {
         VStack {
             Button(action: {
                 locationViewModel.requestPermission()
-                self.clinicLocation.Longitude = coordinate?.longitude ?? 0.0
-                self.clinicLocation.Latitude = coordinate?.latitude ?? 0.0
+                self.longtiude = coordinate?.longitude ?? 0.0
+                self.latitiude = coordinate?.latitude ?? 0.0
             }, label: {
                 Label("Pick Location", systemImage: "location")
             })
@@ -54,6 +76,7 @@ struct RequestLocationView: View {
         locationViewModel.lastSeenLocation?.coordinate
     }
 }
+
 
 struct ErrorView: View {
     var errorText: String
@@ -73,12 +96,12 @@ struct ErrorView: View {
 
 struct TrackingView: View {
     @EnvironmentObject var locationViewModel: LocationViewModel
-    @ObservedObject var clinicLocation = ViewModelCreatePatientProfile()
+//    @EnvironmentObject var clinicLocation : ViewModelCreatePatientProfile
     let screenWidth = UIScreen.main.bounds.size.width - 50
+    @Binding var longtiude: Double
+    @Binding var latitiude: Double
     
     var body: some View {
-        
-        
         VStack{
             HStack{
                 Text( Helper.getUserAddress())
@@ -113,13 +136,6 @@ struct PairView: View {
             Spacer()
             Text(rightText)
         }
-    }
-}
-
-
-struct PickLocationView_Previews: PreviewProvider {
-    static var previews: some View {
-        PickLocationView()
     }
 }
 

@@ -123,7 +123,7 @@ final class Helper{
         return userDef.string(forKey: "CurrentLongtude") ?? "default CurrentLongtude"
     }
     class func getUserAddress() ->String {
-        return userDef.string(forKey: "CurrentAddress") ?? "default CurrentAddress"
+        return userDef.string(forKey: "CurrentAddress") ?? "address"
     }
     //remove data then logout
     class func removeUserLocation() {

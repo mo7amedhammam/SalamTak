@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import UIKit
+import CoreLocation
 
 struct PersonalDataView: View {
     
@@ -240,17 +241,11 @@ struct PersonalDataView: View {
                             Spacer().frame(height: 20)
                             GenderView(selection: $patientCreatedVM.GenderId)
                             Spacer().frame(height: 20)
-                            TrackingView()
+                            PickLocationView(longtiude: $patientCreatedVM.Longitude, latitiude: $patientCreatedVM.Latitude)
                                 .environmentObject(locationViewModel)
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .onTapGesture(perform: {
                                     ShowingMap = true
-                                    if patientCreatedVM.Longitude == 0.0 {
-                                        patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
-                                    }
-                                    if patientCreatedVM.Latitude == 0.0 {
-                                        patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
-                                    }
                                 })
                             VStack{
                                 Button {
@@ -378,7 +373,7 @@ struct PersonalDataView: View {
             }
         }
         .sheet(isPresented: $ShowingMap) {
-            ViewMapWithPin(showmap: $ShowingMap, title: "", subtitle: "", longtude: $patientCreatedVM.Longitude   , latitude: $patientCreatedVM.Latitude  )
+            ViewMapWithPin(showmap: $ShowingMap, title: "", subtitle: "", longtude: $patientCreatedVM.Longitude , latitude: $patientCreatedVM.Latitude ).environmentObject(locationViewModel)
         }
         //MARK: -------- imagePicker From Camera and Library ------
         .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
@@ -408,6 +403,18 @@ struct PersonalDataView: View {
             .onAppear(perform: {
                 NationalityVM.startFetchCountries()
                 OccupationVM.startFetchOccupation()
+                
+                locationViewModel.requestPermission()
+//                var coordinate: CLLocationCoordinate2D? {
+//                    locationViewModel.lastSeenLocation?.coordinate
+//                }
+                
+                if patientCreatedVM.Longitude == 0.0 {
+                    patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
+                }
+                if patientCreatedVM.Latitude == 0.0 {
+                    patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
+                }
             })
         
             .navigationViewStyle(StackNavigationViewStyle())
