@@ -17,37 +17,54 @@ struct CustomActionBottomSheet: View {
     @Binding var isValid :Bool
 
     var body: some View {
-        VStack{
+        VStack {
+            Spacer()
             
-            HStack  {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text(CancelTitle)
-                        .font(.system(size: 18))
-                        .padding(.horizontal,15)
-                        .foregroundColor(Color("lightGray"))
-                })
-                Spacer()
-                Button(action: Confirmaction, label: {
-                    Text(ConfirmTitle)
-                })
-                    .foregroundColor(Color.white)
-                    .padding(.vertical, 16)
-                    .frame(width: 230, height: 53)
-                    .background(isValid ? Color("blueColor") : Color("lightGray"))
-                    .cornerRadius(5)
-                    .disabled(
-                         isValid == false
-                    )
+            VStack{
+                
+                HStack  {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text(CancelTitle)
+                            .font(.system(size: 18))
+                            .padding(.horizontal,15)
+                            .foregroundColor(Color("lightGray"))
+                    })
+                    Spacer()
+                    Button(action: Confirmaction, label: {
+                        Text(ConfirmTitle)
+                    })
+                        .foregroundColor(Color.white)
+                        .padding(.vertical, 16)
+                        .frame(width: 230, height: 53)
+                        .background(isValid ? Color("blueColor") : Color("lightGray"))
+                        .cornerRadius(5)
+                        .disabled(
+                             isValid == false
+                        )
+                }
             }
+            
+            .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
+            .padding(.horizontal)
+            .padding(.top,20)
+           .background(
+                RoundedCornersShape(radius: 25, corners: [.topLeft,.topRight])
+                    .fill(Color.gray.opacity(0.2))
+            )
+            
+        }
+        .edgesIgnoringSafeArea(.bottom)
+    }
+}
+
+struct CustomActionBottomSheet_Previews: PreviewProvider {
+    static var previews: some View {
+
+        ZStack {
+            CustomActionBottomSheet( ConfirmTitle: "confirm", CancelTitle: "cancel", Confirmaction: {}, Cancelaction: {}, isValid: .constant(true))
         }
         
-        .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
-        .padding(.horizontal)
-        .padding(.top,20)
-        .background(Color.gray.opacity(0.2))
-        .cornerRadius(25)
-//        .edgesIgnoringSafeArea(.bottom)
     }
 }
