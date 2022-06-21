@@ -13,7 +13,6 @@ struct CityFilterList:View{
     @Binding var FilterTag:FilterCases
     @Binding var selectedFilterCityName :String?
     @Binding var selectedFilterCityId :Int?
-    @Binding var CitybuttonSelected: Int?
     
     var body: some View{
         VStack {
@@ -34,23 +33,20 @@ struct CityFilterList:View{
                             .padding()
                 )
             ScrollView {
-                ForEach(0..<CitiesVM.publishedCityModel.count, id:\.self) { button in
+                ForEach(CitiesVM.publishedCityModel , id:\.self) { button in
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.CitybuttonSelected = button
-                            print("SelectedID is \(self.CitiesVM.publishedCityModel[button].Id ?? 0)")
-                            
-                            self.selectedFilterCityId = self.CitiesVM.publishedCityModel[button].Id ?? 0
-                            self.selectedFilterCityName = self.CitiesVM.publishedCityModel[button].Name ?? ""
+                            self.selectedFilterCityId = button.Id ?? 0
+                            self.selectedFilterCityName = button.Name ?? ""
                             
                         }, label: {
                             HStack{
-                                Image(systemName:  self.CitybuttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.selectedFilterCityId == button.Id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.CitybuttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                Text(self.CitiesVM.publishedCityModel[button].Name ?? "")  .padding()
-                                    .foregroundColor(self.CitybuttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.selectedFilterCityId == button.Id ? Color("blueColor") : Color("lightGray"))
+                                Text(button.Name ?? "")  .padding()
+                                    .foregroundColor(self.selectedFilterCityId == button.Id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                                 
                                 
@@ -93,7 +89,7 @@ struct CityFilterList:View{
 
 struct CityFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        CityFilterList( FilterTag: .constant(.City), selectedFilterCityName: .constant(""), selectedFilterCityId: .constant(0), CitybuttonSelected: .constant(0))
+        CityFilterList( FilterTag: .constant(.City), selectedFilterCityName: .constant(""), selectedFilterCityId: .constant(0))
             .environmentObject(ViewModelGetCities())
     }
 }

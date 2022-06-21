@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Datum
-struct seniority: Codable {
+struct seniority: Codable, Hashable {
     let id: Int?
     let Name: String?
     enum CodingKeys: String, CodingKey {

@@ -17,7 +17,7 @@ struct AreaFilterList:View{
     @Binding var selectedFilterCityId :Int?
     @Binding var selectedFilterAreaName :String?
     @Binding var selectedFilterAreaId :Int?
-    @Binding var AreabuttonSelected: Int?
+//    @Binding var AreabuttonSelected: Int?
     
     var body: some View{
         VStack {
@@ -38,23 +38,20 @@ struct AreaFilterList:View{
                             .padding()
                 )
             ScrollView {
-                ForEach(0..<AreasVM.publishedAreaModel.count, id:\.self) { button in
+                ForEach(AreasVM.publishedAreaModel, id:\.self) { button in
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.AreabuttonSelected = button
-                            print("SelectedID is \(self.AreasVM.publishedAreaModel[button].id ?? 0)")
-                            
-                            self.selectedFilterAreaId = self.AreasVM.publishedAreaModel[button].id ?? 0
-                            self.selectedFilterAreaName = self.AreasVM.publishedAreaModel[button].Name ?? ""
+                            self.selectedFilterAreaId = button.id ?? 0
+                            self.selectedFilterAreaName = button.Name ?? ""
                             
                         }, label: {
                             HStack{
-                                Image(systemName:  self.AreabuttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.selectedFilterAreaId == button.id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.AreabuttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                Text(self.AreasVM.publishedAreaModel[button].Name ?? "")  .padding()
-                                    .foregroundColor(self.AreabuttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.selectedFilterAreaId == button.id ? Color("blueColor") : Color("lightGray"))
+                                Text(button.Name ?? "")  .padding()
+                                    .foregroundColor(self.selectedFilterAreaId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                                 
                                 
@@ -97,7 +94,7 @@ struct AreaFilterList:View{
 
 struct AreaFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        AreaFilterList( FilterTag: .constant(.Area), CityId: .constant(2), selectedFilterCityId: .constant(1), selectedFilterAreaName: .constant(""), selectedFilterAreaId: .constant(2), AreabuttonSelected: .constant(2))
+        AreaFilterList( FilterTag: .constant(.Area), CityId: .constant(2), selectedFilterCityId: .constant(1), selectedFilterAreaName: .constant(""), selectedFilterAreaId: .constant(2))
             .environmentObject(ViewModelGetAreas())
     }
 }

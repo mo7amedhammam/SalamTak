@@ -19,15 +19,26 @@ struct FilterMenu:View{
     @Binding var selectedSeniorityLvlName :String?
     @Binding var selectedSeniorityLvlId :Int?
     @Binding var selectedSpecLvlName :String?
+    @Binding var OldselectedSpecLvlName :String
+
     @Binding var selectedSpecLvlId :Int?
+    @Binding var OldselectedSpecLvlId :Int
+
     @Binding var selectedSubSpecLvlNames : [String]
     @Binding var selectedSubSpecLvlIds : [Int]
     @Binding var selectedFee :Float
     @Binding var selectedFilterCityName :String?
+    @Binding var OldselectedFilterCityName :String
+
     @Binding var selectedFilterCityId :Int?
+    @Binding var OldselectedFilterCityId :Int
+
     @Binding var selectedFilterAreaName :String?
+    @Binding var OldselectedFilterAreaName :String
+
     @Binding var selectedFilterAreaId :Int?
-    
+    @Binding var OldselectedFilterAreaId :Int
+
     @Binding  var searchTxt : String
     
     var body: some View{
@@ -277,15 +288,19 @@ struct FilterMenu:View{
             .padding(.horizontal)
             .padding(.bottom,10)
         }
-        .onChange(of: selectedFilterCityId){newval in
+        .onChange(of: selectedFilterCityName){newval in
+            if newval != OldselectedFilterCityName{
             selectedFilterAreaId = 0
             selectedFilterAreaName = ""
+            }else{
+                selectedFilterAreaId = OldselectedFilterAreaId
+                selectedFilterAreaName = OldselectedFilterAreaName
+            }
         }
         .onChange(of: selectedSpecLvlId){newval in
             selectedSubSpecLvlIds = []
             selectedSubSpecLvlNames = []
         }
-        
     }
     
     
@@ -311,16 +326,18 @@ struct FilterMenu:View{
     
     func resetFilter(){
         selectedSeniorityLvlId = 0
-        selectedSpecLvlId = 0
+        selectedSpecLvlId = OldselectedSpecLvlId
+        selectedSpecLvlName = OldselectedSpecLvlName
+
         selectedSubSpecLvlIds = []
-        selectedFilterCityId = 0
-        selectedFilterAreaId = 0
+        selectedFilterCityId = OldselectedFilterCityId
+        selectedFilterCityName = OldselectedFilterCityName
+
+        selectedFilterAreaId = OldselectedFilterAreaId
+        selectedFilterAreaName = OldselectedFilterAreaName
+
         selectedFee  = 0
-        selectedSeniorityLvlId = 0
-        selectedSpecLvlId = 0
         selectedSubSpecLvlIds = []
-        selectedFilterCityId = 0
-        selectedFilterAreaId = 0
         getAllDoctors()
     }
     
@@ -329,7 +346,7 @@ struct FilterMenu:View{
 struct FilterMenu_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), selectedSeniorityLvlName: .constant(""),selectedSeniorityLvlId:.constant(0), selectedSpecLvlName: .constant(""), selectedSpecLvlId: .constant(0), selectedSubSpecLvlNames: .constant([]),selectedSubSpecLvlIds:.constant([]), selectedFee: .constant(0), selectedFilterCityName: .constant(""),selectedFilterCityId:.constant(0), selectedFilterAreaName: .constant(""),selectedFilterAreaId:.constant(0),searchTxt:.constant(""))
+            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), selectedSeniorityLvlName: .constant(""),selectedSeniorityLvlId:.constant(0), selectedSpecLvlName: .constant(""),OldselectedSpecLvlName: .constant(""), selectedSpecLvlId: .constant(0),OldselectedSpecLvlId: .constant(0), selectedSubSpecLvlNames: .constant([]),selectedSubSpecLvlIds:.constant([]), selectedFee: .constant(0), selectedFilterCityName: .constant(""),OldselectedFilterCityName: .constant(""),selectedFilterCityId:.constant(0),OldselectedFilterCityId:.constant(0), selectedFilterAreaName: .constant(""),OldselectedFilterAreaName: .constant(""),selectedFilterAreaId:.constant(0),OldselectedFilterAreaId:.constant(0),searchTxt:.constant(""))
                 .environmentObject(VMSearchDoc())
                 .environmentObject(ViewModelFees())
         }

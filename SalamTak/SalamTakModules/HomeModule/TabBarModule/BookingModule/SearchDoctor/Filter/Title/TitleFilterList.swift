@@ -15,7 +15,6 @@ struct TitleFilterList:View{
     @Binding var FilterTag:FilterCases
     @Binding var selectedSeniorityLvlName :String?
     @Binding var selectedSeniorityLvlId :Int?
-    @Binding var SenbuttonSelected: Int?
     
     var body : some View{
         VStack{
@@ -36,20 +35,19 @@ struct TitleFilterList:View{
                             .padding()
                 )
             ScrollView {
-                ForEach(0..<seniorityVM.publishedSeniorityLevelModel.count, id:\.self) { button in
+                ForEach(seniorityVM.publishedSeniorityLevelModel, id:\.self) { button in
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.SenbuttonSelected = button
-                            self.selectedSeniorityLvlId = self.seniorityVM.publishedSeniorityLevelModel[button].id ?? 0
-                            self.selectedSeniorityLvlName = self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? ""
+                            self.selectedSeniorityLvlId = button.id ?? 0
+                            self.selectedSeniorityLvlName = button.Name ?? ""
                         }, label: {
                             HStack{
-                                Image(systemName:  self.SenbuttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.selectedSeniorityLvlId == button.id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.SenbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                Text(self.seniorityVM.publishedSeniorityLevelModel[button].Name ?? "")  .padding()
-                                    .foregroundColor(self.SenbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.selectedSeniorityLvlId == button.id ? Color("blueColor") : Color("lightGray"))
+                                Text(button.Name ?? "")  .padding()
+                                    .foregroundColor(self.selectedSeniorityLvlId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                                 
                                 
@@ -91,7 +89,7 @@ struct TitleFilterList:View{
 
 struct TitleFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        TitleFilterList(FilterTag: .constant(.Title), selectedSeniorityLvlName: .constant(""), selectedSeniorityLvlId: .constant(1), SenbuttonSelected: .constant(2))
+        TitleFilterList(FilterTag: .constant(.Title), selectedSeniorityLvlName: .constant(""), selectedSeniorityLvlId: .constant(1))
             .environmentObject(ViewModelSeniority())
     }
 }
