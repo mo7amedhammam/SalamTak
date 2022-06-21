@@ -37,23 +37,23 @@ struct SpecialityFilterList: View {
                             .padding()
                 )
             ScrollView {
-                ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0), id:\.self) { button in
+                ForEach(specialityvm.publishedSpecialistModel ?? [], id:\.self) { button in
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.SpecbuttonSelected = button
-                            print("SelectedID is \(self.specialityvm.publishedSpecialistModel?[button].id ?? 0)")
+//                            self.SpecbuttonSelected = button
+                            print("SelectedID is \(button.id ?? 0)")
                             
-                            self.selectedSpecLvlId = self.specialityvm.publishedSpecialistModel?[button].id ?? 0
-                            self.selectedSpecLvlName = self.specialityvm.publishedSpecialistModel?[button].Name ?? ""
+                            self.selectedSpecLvlId = button.id ?? 0
+                            self.selectedSpecLvlName = button.Name ?? ""
                             
                         }, label: {
                             HStack{
-                                Image(systemName:  self.SpecbuttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.selectedSpecLvlId == button.id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.SpecbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                Text(self.specialityvm.publishedSpecialistModel?[button].Name ?? "")  .padding()
-                                    .foregroundColor(self.SpecbuttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.selectedSpecLvlId == button.id ? Color("blueColor") : Color("lightGray"))
+                                Text(button.Name ?? "")  .padding()
+                                    .foregroundColor(self.selectedSpecLvlId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         })

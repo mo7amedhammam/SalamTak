@@ -32,7 +32,6 @@ struct ViewSearchDoc: View {
     @State var imgs : [Img] = []
     @State var SelectedDoctor = Doc()
     
-    
     init(ExTpe: Binding<Int>,SpecialistId: Binding<Int> ,CityId: Binding<Int>,AreaId: Binding<Int> ) {
         UITableView.appearance().showsVerticalScrollIndicator = false
         self._ExTpe = ExTpe
@@ -73,7 +72,6 @@ struct ViewSearchDoc: View {
     @State var ispreviewImage=false
     @State var previewImageurl=""
 
-
     var body: some View {
         ZStack{
             VStack{
@@ -90,7 +88,6 @@ struct ViewSearchDoc: View {
                     }
                     .shadow(color: .black.opacity(0.2), radius: 15)
                 }
-                
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack( spacing: 10) {
@@ -186,6 +183,7 @@ struct ViewSearchDoc: View {
             searchDoc.CityId = CityId
             searchDoc.AreaId = AreaId
             getAllDoctors()
+            setFirstselections()
         })
         .onChange(of: index){newval in
             self.ExTpe = newval
@@ -226,13 +224,7 @@ struct ViewSearchDoc: View {
         
     }
     
-    //MARK: --- Functions ----
-    func getAllDoctors(){
-        searchDoc.isLoading = true
-        searchDoc.DoctorName = searchTxt
-        searchDoc.SkipCount = 0
-        searchDoc.FetchDoctors(operation: .fetchDoctors)
-    }
+
 }
 
 struct ViewSearchDoc_Previews: PreviewProvider {
@@ -243,6 +235,23 @@ struct ViewSearchDoc_Previews: PreviewProvider {
     }
 }
 
+
+extension ViewSearchDoc{
+    func setFirstselections(){
+        selectedSpecLvlId = SpecialistId
+        selectedFilterCityId = CityId
+        selectedFilterAreaId = AreaId
+        
+    }
+    
+    //MARK: --- Functions ----
+    func getAllDoctors(){
+        searchDoc.isLoading = true
+        searchDoc.DoctorName = searchTxt
+        searchDoc.SkipCount = 0
+        searchDoc.FetchDoctors(operation: .fetchDoctors)
+    }
+}
 
 extension UIApplication {
     func dismissKeyboard() {
