@@ -13,7 +13,7 @@ import SwiftUI
 class VMCreateAppointment: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let GetModelCreateAppointment = PassthroughSubject<BaseResponse<Statusmodel> , Error>()
+    let GetModelCreateAppointment = PassthroughSubject<BaseResponse<ModelCreateAppointment> , Error>()
     private var cancellables: Set<AnyCancellable> = []
 
     // ------- input
@@ -23,7 +23,7 @@ class VMCreateAppointment: ObservableObject {
     @Published var Fees                      : Double = 0.0
     @Published var Comment                      : String = ""
 
-    @Published var publishedCreateAppointment: Statusmodel?
+    @Published var publishedCreateAppointment: ModelCreateAppointment?
 
     //------- output
     @Published var isDone:Bool = false
@@ -37,6 +37,10 @@ class VMCreateAppointment: ObservableObject {
             //            print(completion)
         } receiveValue: { [self] (modeldata) in
             self.publishedCreateAppointment = modeldata.data
+            if publishedCreateAppointment != nil{
+                isDone = true
+            }
+            print(publishedCreateAppointment!)
         }.store(in: &cancellables)
     }
  
@@ -72,17 +76,18 @@ extension VMCreateAppointment:TargetType{
     
     func CreatePatientAppointment() {
         if Helper.isConnectedToNetwork(){
+            print(parameter)
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<Statusmodel>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<ModelCreateAppointment>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.GetModelCreateAppointment.send( model!  )
+                        self.GetModelCreateAppointment.send( model! )
                     }
-                    isDone = true
+//                    isDone = true
                     activeAlert = .success
-                    message = publishedCreateAppointment?.Statues ?? "Success"
+//                    message = publishedCreateAppointment?.Statues ?? "Success"
                 }else{
                     if model != nil{
                         //case of model with error

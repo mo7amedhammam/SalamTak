@@ -41,7 +41,7 @@ struct ViewDocMainInfo: View {
                                     .resizable()
                             }
                             .scaledToFill()
-                            .frame(width:60)
+                            .frame(width:60,height: 60)
                             .background(Color.gray)
                             .cornerRadius(9)
                             .onTapGesture(perform: {

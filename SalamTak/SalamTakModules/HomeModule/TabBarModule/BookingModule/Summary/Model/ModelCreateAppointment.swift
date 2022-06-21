@@ -9,9 +9,20 @@ import Foundation
 import SwiftUI
 
 // MARK: - DataClass
-struct Statusmodel: Codable{
-    var Statues : String?
+struct ModelCreateAppointment: Codable{
+    var DoctorName,PatientName,PatientNumber,HealthentityName,AppointmentDate,HealthentityAddress : String?
+    var Fees, DurationMedicalExaminationId : Int?
+    var HealthEntityPhoneDtos:[String]?
+    
     enum CodingKeys: String, CodingKey {
-        case Statues = "Statues"
+        case DoctorName = "DoctorName"
+        case PatientName = "PatientName"
+        case PatientNumber = "PatientNumber"
+        case HealthentityName = "HealthentityName"
+        case AppointmentDate = "AppointmentDate"
+        case HealthentityAddress = "HealthentityAddress"
+        case Fees = "Fees"
+        case DurationMedicalExaminationId = "DurationMedicalExaminationId"
+        case HealthEntityPhoneDtos = "HealthEntityPhoneDtos"
     }
 }
