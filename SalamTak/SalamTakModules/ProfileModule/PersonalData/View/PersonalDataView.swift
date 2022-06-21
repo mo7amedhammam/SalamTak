@@ -246,6 +246,12 @@ struct PersonalDataView: View {
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .onTapGesture(perform: {
                                     ShowingMap = true
+                                    if patientCreatedVM.Longitude == 0.0 {
+                                        patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
+                                    }
+                                    if patientCreatedVM.Latitude == 0.0 {
+                                        patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
+                                    }
                                 })
                             VStack{
                                 Button {
@@ -342,7 +348,9 @@ struct PersonalDataView: View {
                 ShowOccupationList( ShowOccupation: $ShowOccupation, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
                     .environmentObject(OccupationVM)
             }
-            
+            // showing loading indicator
+            ActivityIndicatorView(isPresented: $patientCreatedVM.isLoading)
+
         }
         
         .toolbar{
@@ -397,24 +405,17 @@ struct PersonalDataView: View {
             Button("OK", role: .cancel) { }
         }
         
-        // showing loading indicator
-        ActivityIndicatorView(isPresented: $patientCreatedVM.isLoading)
         //        }
             .onAppear(perform: {
                 NationalityVM.startFetchCountries()
                 OccupationVM.startFetchOccupation()
                 
                 locationViewModel.requestPermission()
-//                var coordinate: CLLocationCoordinate2D? {
-//                    locationViewModel.lastSeenLocation?.coordinate
-//                }
+                var coordinate: CLLocationCoordinate2D? {
+                    locationViewModel.lastSeenLocation?.coordinate
+                }
                 
-                if patientCreatedVM.Longitude == 0.0 {
-                    patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
-                }
-                if patientCreatedVM.Latitude == 0.0 {
-                    patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
-                }
+                getAddressFromLatLon(pdblLatitude: "\(coordinate?.latitude ?? 0.0)", withLongitude: "\(coordinate?.longitude ?? 0.0)")
             })
         
             .navigationViewStyle(StackNavigationViewStyle())

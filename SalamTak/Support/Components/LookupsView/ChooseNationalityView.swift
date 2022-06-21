@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChooseNationality : View {
     var language = LocalizationService.shared.language
-    @EnvironmentObject var patientCreatedVM : ViewModelCreatePatientProfile
+    @ObservedObject var patientCreatedVM = ViewModelCreatePatientProfile()
     @EnvironmentObject var NationalityVM : ViewModelCountries
 
     @Binding var IsPresented: Bool
@@ -20,9 +20,7 @@ struct ChooseNationality : View {
     var width: CGFloat
 
     var body: some View {
-        
-        
-        
+    
         ZStack {
             RoundedRectangle(cornerRadius: 40.0)
                 .foregroundColor(.white)

@@ -19,6 +19,7 @@ struct ShowUpdateNationalityList: View {
         ZStack {
             ChooseNationality( IsPresented: $ShowNationality, SelectedNationalityName: $patientUpdatedVM.NationalityName, SelectedNationalityId: $patientUpdatedVM.NationalityId, width: bounds.size.width)
                 .environmentObject(NationalityVM)
+                .environmentObject(patientUpdatedVM)
             
         }
         .transition(.move(edge: .bottom))

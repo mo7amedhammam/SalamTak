@@ -156,6 +156,10 @@ class ViewModelUpdatePatientProfile: ObservableObject {
             Birthday = publishedPatientGetModel?.birthdate ?? ""
             date = ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss").date(from: Birthday)
             Id = publishedPatientGetModel?.id
+
+            Longitude = Double(publishedPatientGetModel?.longitude ?? "0") ?? 0.0
+            Latitude = Double(publishedPatientGetModel?.latitude ?? "0") ?? 0.0
+
             Address = publishedPatientGetModel?.address ?? ""
             NationalityName = publishedPatientGetModel?.nationalityName ?? "Nationality"
             cityName = publishedPatientGetModel?.cityName ?? "City"

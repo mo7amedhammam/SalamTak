@@ -15,7 +15,7 @@ struct GoogleMapsView: UIViewRepresentable {
     
     @Binding var long:Double
     @Binding var lat:Double
-    @EnvironmentObject var locationManager1 : LocationViewModel
+    @EnvironmentObject var locationManager : LocationViewModel
    
 //    var coordinateRegion: MKCoordinateRegion
 //    var coordinateRegion: CLLocationCoordinate
@@ -27,7 +27,22 @@ struct GoogleMapsView: UIViewRepresentable {
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
 //        let camera = GMSCameraPosition.camera(withLatitude: 12.830700372413512, longitude: 1.9390798732638361, zoom: 8.0)
-        let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D(latitude : locationManager1.lastSeenLocation?.coordinate.latitude ?? 0202      , longitude : locationManager1.lastSeenLocation?.coordinate.longitude  ?? 0.0 ), zoom: 15.0)
+        
+            print("g maps : helper")
+            print(Helper.getUserLongtude())
+            print(Helper.getUserLatitude())
+            
+            print("onappear : vm ")
+            print(long)
+            print(lat)
+            
+            print("onappear :  lom vm ")
+            print(locationManager.lastSeenLocation?.coordinate.longitude ?? 00)
+            print(locationManager.lastSeenLocation?.coordinate.latitude ?? 00)
+        
+        
+        
+        let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D(latitude : lat, longitude :long  ), zoom: 15.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.animate(to: camera)
@@ -36,7 +51,7 @@ struct GoogleMapsView: UIViewRepresentable {
         
    
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude : locationManager1.lastSeenLocation?.coordinate.latitude ?? 0202      , longitude : locationManager1.lastSeenLocation?.coordinate.longitude  ?? 0.0 )
+        marker.position = CLLocationCoordinate2D(latitude : lat , longitude :long)
 //        marker.appearAnimation = .pop
                     marker.isDraggable = true
                     marker.map = mapView
@@ -65,16 +80,16 @@ struct GoogleMapsView: UIViewRepresentable {
                     if err != nil{
                         print(err?.localizedDescription ?? "")
                     }
-                    print( place?.first?.name  ?? "Egypt" )
-                    print( place?.first?.country  ?? "postalCode")
-                    print( place?.first?.subAdministrativeArea  ?? "postalCode")
-                    print( place?.first?.locality  ?? "postalCode")
-                    print( place?.first?.subLocality  ?? "postalCode")
-                    print( place?.first?.thoroughfare  ?? "postalCode")
-                    print( place?.first?.subThoroughfare  ?? "postalCode")
+//                    print( place?.first?.name  ?? "Egypt" )
+//                    print( place?.first?.country  ?? "postalCode")
+//                    print( place?.first?.subAdministrativeArea  ?? "postalCode")
+//                    print( place?.first?.locality  ?? "postalCode")
+//                    print( place?.first?.subLocality  ?? "postalCode")
+//                    print( place?.first?.thoroughfare  ?? "postalCode")
+//                    print( place?.first?.subThoroughfare  ?? "postalCode")
 
-                    Helper.removeUserLocation()
-                    Helper.setUseraddress(CurrentAddress:"\(place?.first?.subLocality ?? "area" ) , \( place?.first?.country ?? "Egypt")" )
+//                    Helper.removeUserLocation()
+//                    Helper.setUseraddress(CurrentAddress:"\(place?.first?.subLocality ?? "area" ) , \( place?.first?.country ?? "Egypt")" )
                     Helper.setUserLocation(CurrentLatitude: String(didEndDraggingMarker.position.latitude), CurrentLongtude: String(didEndDraggingMarker.position.longitude))
                 }
             }

@@ -257,7 +257,7 @@ struct UpdatePersonalDataView: View {
                                     Spacer().frame(height: 20)
                                     GenderView(selection: $patientUpdatedVM.GenderId)
                                     Spacer().frame(height: 20)
-                                    TrackingView(longtiude: $patientUpdatedVM.Longitude, latitiude: $patientUpdatedVM.Latitude)
+                                    PickLocationView(longtiude: $patientUpdatedVM.Longitude, latitiude: $patientUpdatedVM.Latitude)
                                         .environmentObject(locationViewModel)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                         .onTapGesture(perform: {
@@ -278,7 +278,7 @@ struct UpdatePersonalDataView: View {
                                         } label: {
                                             HStack{
                                                 Text(patientUpdatedVM.occupationName)
-                                                    .foregroundColor(Color("lightGray"))
+                                                    .foregroundColor(patientUpdatedVM.occupationName == "" ?  Color("lightGray") : Color("blueColor"))
                                                 
                                                 Spacer()
                                                 Image(systemName: "staroflife.fill")
@@ -364,7 +364,7 @@ struct UpdatePersonalDataView: View {
                 }
             }
             .sheet(isPresented: $ShowingMap) {
-                ViewMapWithPin(showmap: $ShowingMap, title: "", subtitle: "", longtude: $patientUpdatedVM.Longitude   , latitude: $patientUpdatedVM.Latitude  )
+                ViewMapWithPin(showmap: $ShowingMap, title: "", subtitle: "", longtude: $patientUpdatedVM.Longitude , latitude: $patientUpdatedVM.Latitude ).environmentObject(locationViewModel)
             }
             //MARK: -------- imagePicker From Camera and Library ------
             .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
@@ -390,7 +390,8 @@ struct UpdatePersonalDataView: View {
             NationalityVM.startFetchCountries()
             OccupationVM.startFetchOccupation()
             patientUpdatedVM.updatePersonalInfo(operation: .getPersonalInfo)
-            
+                Helper.setUserLocation(CurrentLatitude: "\(patientUpdatedVM.Latitude)", CurrentLongtude: "\(patientUpdatedVM.Longitude)")
+
         })
         
         .navigationViewStyle(StackNavigationViewStyle())

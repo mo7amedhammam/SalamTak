@@ -17,7 +17,7 @@ struct ViewMapWithPin: View {
     @Binding var longtude:Double
     @Binding var latitude:Double
 //    @StateObject var patientLocation = ViewModelCreatePatientProfile()
-    @EnvironmentObject var locationManager1 : LocationViewModel
+    @EnvironmentObject var locationManager : LocationViewModel
     var body: some View {
         
         VStack{
@@ -36,7 +36,7 @@ struct ViewMapWithPin: View {
             
             
             ZStack(alignment: .bottom){
-                GoogleMapsView(long: $longtude, lat: $latitude).environmentObject(locationManager1)
+                GoogleMapsView(long: $longtude, lat: $latitude).environmentObject(locationManager)
                 
                 if self.title != "" {
                     HStack(spacing:20){
@@ -51,6 +51,20 @@ struct ViewMapWithPin: View {
                 }
             }
         }
+        .onAppear(perform: {
+            print("g map pin : helper")
+            print(Helper.getUserLongtude())
+            print(Helper.getUserLatitude())
+            
+            print("onappear : vm ")
+            print(longtude)
+            print(latitude)
+            
+            print("onappear :  lom vm ")
+            print(locationManager.lastSeenLocation?.coordinate.longitude ?? 00)
+            print(locationManager.lastSeenLocation?.coordinate.latitude ?? 00)
+        })
+     
         
     }
 }
