@@ -174,7 +174,6 @@ struct FilterMenu:View{
                 FilterTag = .Area
             }, label: {
                 HStack{
-
                     Image("FilterLocation")
                     VStack(alignment:.leading){
                         Text("Area".localized(language))
@@ -264,8 +263,6 @@ struct FilterMenu:View{
         .frame( height: 60)
         .padding(.horizontal)
         .padding(.bottom,10)
-
-
         }
 
     }
@@ -307,3 +304,17 @@ struct FilterMenu:View{
     }
     
 }
+
+struct FilterMenu_Previews: PreviewProvider {
+    static var previews: some View {
+        ZStack {
+            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), selectedSeniorityLvlName: .constant(""),selectedSeniorityLvlId:.constant(0), selectedSpecLvlName: .constant(""), selectedSpecLvlId: .constant(0), selectedSubSpecLvlNames: .constant([]),selectedSubSpecLvlIds:.constant([]), selectedFee: .constant(0), selectedFilterCityName: .constant(""),selectedFilterCityId:.constant(0), selectedFilterAreaName: .constant(""),selectedFilterAreaId:.constant(0),searchTxt:.constant(""))
+                .environmentObject(VMSearchDoc())
+            .environmentObject(ViewModelFees())
+        }
+
+        
+    }
+}
+
+

@@ -19,7 +19,19 @@ struct FeesFilterView:View {
             Text("Examination_Fee".localized(language))
                 .font(.system(size: 18))
                 .fontWeight(.bold)
-            
+                .frame(width:UIScreen.main.bounds.width)
+                .overlay(HStack{
+                    Spacer()
+                    Button(action: {
+                        FilterTag = .Menu
+                    }, label: {
+                        Image(systemName: "x.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.gray.opacity(0.6))
+                    })
+                }
+                            .padding()
+                )
             VStack{
                 HStack{
                     FeesFilterTextField(text:.constant("\(String(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))")  , title: "Minimum".localized(language))

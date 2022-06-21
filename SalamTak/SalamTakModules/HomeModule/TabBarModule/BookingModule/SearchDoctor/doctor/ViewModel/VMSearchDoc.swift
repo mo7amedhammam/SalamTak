@@ -99,9 +99,9 @@ extension VMSearchDoc:TargetType{
     var parameter: parameterType{
         var Parameters : [String:Any] = [
             // required
-            "MaxResultCount": MaxResultCount ,
+            "MaxResultCount": MaxResultCount,
             "SkipCount":SkipCount,
-            "SpecialistId":FilterSpecialistId == 0 ? SpecialistId:FilterSpecialistId ?? true ,
+            "SpecialistId":FilterSpecialistId == 0 ? SpecialistId:FilterSpecialistId ?? true,
             "MedicalExaminationTypeId":MedicalExaminationTypeId
         ]
         // optional
@@ -154,6 +154,7 @@ extension VMSearchDoc:TargetType{
     func FetchDoctors(operation:searchDocType){
         searchDocOperation = operation
         if Helper.isConnectedToNetwork(){
+//            print(parameter)
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<ModelDoc<[Doc]>>.self) { [self] (success, model, err) in
                 if success{
@@ -184,7 +185,6 @@ extension VMSearchDoc:TargetType{
             
         }else{
             //case of no internet connection
-            //        activeAlert = .NetworkError
             message = "Check_Your_Internet_Connection".localized(language)
             isAlert = true
         }

@@ -23,6 +23,19 @@ struct SpecialityFilterList: View {
             Text("Speciality".localized(language))
                 .font(.system(size: 18))
                 .fontWeight(.bold)
+                .frame(width:UIScreen.main.bounds.width)
+                .overlay(HStack{
+                    Spacer()
+                    Button(action: {
+                        FilterTag = .Menu
+                    }, label: {
+                        Image(systemName: "x.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.gray.opacity(0.6))
+                    })
+                }
+                            .padding()
+                )
             ScrollView {
                 ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0), id:\.self) { button in
                     HStack {
@@ -66,7 +79,6 @@ struct SpecialityFilterList: View {
                     .cornerRadius(12)
                     .padding(.horizontal, 12)
             })
-            
                 .frame( height: 60)
                 .padding(.horizontal)
                 .padding(.bottom,10)

@@ -76,7 +76,6 @@ extension VMCreateAppointment:TargetType{
     
     func CreatePatientAppointment() {
         if Helper.isConnectedToNetwork(){
-            print(parameter)
             self.isLoading = true
 
             BaseNetwork.request(Target: self, responseModel: BaseResponse<ModelCreateAppointment>.self) { [self] (success, model, err) in
@@ -85,9 +84,7 @@ extension VMCreateAppointment:TargetType{
                     DispatchQueue.main.async {
                         self.GetModelCreateAppointment.send( model! )
                     }
-//                    isDone = true
                     activeAlert = .success
-//                    message = publishedCreateAppointment?.Statues ?? "Success"
                 }else{
                     if model != nil{
                         //case of model with error

@@ -13,10 +13,12 @@ struct CustomSheet <Content: View>: View {
     let content: Content
     var language : Language
     var IsPresented: Binding<Bool>
-    
-    init(  IsPresented:Binding<Bool>, @ViewBuilder content: () -> Content) {
+    var TapToDismiss: Binding<Bool>
+
+    init(  IsPresented:Binding<Bool>,TapToDismiss:Binding<Bool>, @ViewBuilder content: () -> Content) {
         self.language = LocalizationService.shared.language
         self.IsPresented = IsPresented
+        self.TapToDismiss = TapToDismiss
         self.content = content()
     }
     var body: some View {
@@ -48,7 +50,9 @@ struct CustomSheet <Content: View>: View {
             Color.clear
         )
         .onTapGesture(perform: {
+            if TapToDismiss.wrappedValue == true {
             IsPresented.wrappedValue.toggle()
+            }
         })
         
     }
@@ -56,7 +60,7 @@ struct CustomSheet <Content: View>: View {
 
 struct CustomSheet_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSheet(IsPresented: .constant(true), content: {})
+        CustomSheet(IsPresented: .constant(true), TapToDismiss: .constant(false), content: {})
     }
 }
 

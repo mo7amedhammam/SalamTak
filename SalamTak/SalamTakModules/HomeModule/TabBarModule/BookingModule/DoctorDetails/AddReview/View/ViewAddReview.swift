@@ -164,7 +164,7 @@ struct ViewAddReview: View {
                 Spacer()
             }
             
-            CustomSheet(IsPresented: .constant(true), content: {
+            CustomSheet(IsPresented: .constant(true), TapToDismiss: .constant(false), content: {
                 Button(action: {
                     // add review
                     addReview()

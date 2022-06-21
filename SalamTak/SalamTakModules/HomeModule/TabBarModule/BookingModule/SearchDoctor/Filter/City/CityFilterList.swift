@@ -20,6 +20,19 @@ struct CityFilterList:View{
             Text("City".localized(language))
                 .font(.system(size: 18))
                 .fontWeight(.bold)
+                .frame(width:UIScreen.main.bounds.width)
+                .overlay(HStack{
+                    Spacer()
+                    Button(action: {
+                        FilterTag = .Menu
+                    }, label: {
+                        Image(systemName: "x.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.gray.opacity(0.6))
+                    })
+                }
+                            .padding()
+                )
             ScrollView {
                 ForEach(0..<CitiesVM.publishedCityModel.count, id:\.self) { button in
                     HStack {

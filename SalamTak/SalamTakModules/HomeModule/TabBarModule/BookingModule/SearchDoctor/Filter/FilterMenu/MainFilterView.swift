@@ -52,7 +52,7 @@ struct MainDoctorFilterView: View {
     @Binding  var searchTxt : String
  
     var body: some View {
-        CustomSheet(IsPresented: $showFilter, content: {
+        CustomSheet(IsPresented: $showFilter, TapToDismiss: .constant(false), content: {
             switch FilterTag{
             case .Menu:
                 FilterMenu(FilterTag: $FilterTag, showFilter: $showFilter, selectedSeniorityLvlName: $selectedSeniorityLvlName,selectedSeniorityLvlId:$selectedSeniorityLvlId, selectedSpecLvlName: $selectedSpecLvlName, selectedSpecLvlId: $selectedSpecLvlId, selectedSubSpecLvlNames: $selectedSubSpecLvlNames,selectedSubSpecLvlIds:$selectedSubSpecLvlIds, selectedFee: $selectedFee, selectedFilterCityName: $selectedFilterCityName,selectedFilterCityId:$selectedFilterCityId, selectedFilterAreaName: $selectedFilterAreaName,selectedFilterAreaId:$selectedFilterAreaId,searchTxt:$searchTxt)
