@@ -77,7 +77,7 @@ struct MedicalStateView: View {
                                             } label: {
                                                 HStack{
                                                     Text(medicalCreatedVM.BloodTypeName)
-                                                        .foregroundColor(Color("lightGray"))
+                                                        .foregroundColor(medicalCreatedVM.BloodTypeName == "" ? Color("lightGray"):Color("blueColor"))
                                                     
                                                     Spacer()
                                                     Image(systemName: "staroflife.fill")
@@ -193,6 +193,7 @@ struct MedicalStateView: View {
                                         
                                     }
                                 }
+                                .keyboardSpace()
                                
                                 Spacer()
                                 CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {

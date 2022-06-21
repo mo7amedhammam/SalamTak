@@ -71,7 +71,7 @@ struct UpdateMedicalStateView: View {
                                             } label: {
                                                 HStack{
                                                     Text(medicalUpdatedVM.BloodTypeName)
-                                                        .foregroundColor(Color("lightGray"))
+                                                        .foregroundColor(medicalUpdatedVM.BloodTypeName == "" ? Color("lightGray"):Color("blueColor"))
                                                     
                                                     Spacer()
                                                     Image(systemName: "staroflife.fill")
@@ -185,7 +185,7 @@ struct UpdateMedicalStateView: View {
                                         }
                                     }
                                 }
-                               
+                                .keyboardSpace()
                                 Spacer()
                                 ButtonView(text: "Update Profile", action: {
                                     medicalUpdatedVM.updateMedicalInfo(operation: .updateMedicalInfo)

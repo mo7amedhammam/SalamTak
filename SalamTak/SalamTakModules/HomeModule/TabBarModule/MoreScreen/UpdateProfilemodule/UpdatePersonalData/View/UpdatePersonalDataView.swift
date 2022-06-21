@@ -316,6 +316,7 @@ struct UpdatePersonalDataView: View {
                                     }
                                 }
                             }
+                            .keyboardSpace()
                             
                             Spacer()
                             ButtonView(text: "Update Profile", action: {
