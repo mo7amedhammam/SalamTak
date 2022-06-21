@@ -16,7 +16,10 @@ struct CityView: View {
     @State var gotoSearchdoctor = false
 
     @State var selectedCityId = 0
+    @State var selectedCityName = ""
     @Binding var SelectedSpeciality : Int
+    @Binding var SelectedSpecialityName : String
+
     @Binding var extypeid : Int
     
     var body: some View {
@@ -32,6 +35,7 @@ struct CityView: View {
                     
                     Button(action: {
                         selectedCityId = 0
+                        selectedCityName = "All_cities".localized(language)
                         gotoSearchdoctor=true
                     }, label: {
                         ZStack {
@@ -58,6 +62,7 @@ struct CityView: View {
                     ForEach(CitiesVM.publishedCityModel , id:\.self){ city in
                         Button(action: {
                             selectedCityId = city.Id ?? 8787878
+                            selectedCityName = city.Name ?? ""
                             gotoArea = true
                         }, label: {
                             ZStack {
@@ -114,11 +119,11 @@ struct CityView: View {
         
         
         //  go to clinic info
-        NavigationLink(destination:AreaView(selectedCityId: $selectedCityId, SelectedSpeciality: $SelectedSpeciality, examinationTypeId: $extypeid)
+        NavigationLink(destination:AreaView(selectedCityId: $selectedCityId,selectedCityName: $selectedCityName, SelectedSpeciality: $SelectedSpeciality,SelectedSpecialityName:$SelectedSpecialityName , examinationTypeId: $extypeid)
                        ,isActive: $gotoArea) {
         }
         //  go to clinic info
-        NavigationLink(destination:ViewSearchDoc(ExTpe: $extypeid, SpecialistId: $SelectedSpeciality, CityId: .constant(0), AreaId: .constant(0)),isActive: $gotoSearchdoctor) {
+        NavigationLink(destination:ViewSearchDoc(ExTpe: $extypeid, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName:$selectedCityName , AreaId: .constant(0),AreaName: .constant("All_Areas".localized(language))),isActive: $gotoSearchdoctor) {
         }
         
         // Alert with no internet connection
@@ -135,7 +140,7 @@ struct CityView: View {
 struct CityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            CityView(SelectedSpeciality: .constant(45454545454), extypeid: .constant(454545454))
+            CityView(SelectedSpeciality: .constant(45454545454), SelectedSpecialityName: .constant(""), extypeid: .constant(454545454))
         }.navigationBarHidden(true)
     }
 }

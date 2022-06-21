@@ -11,12 +11,17 @@ struct AreaView: View {
     
     var language = LocalizationService.shared.language
     @Binding var selectedCityId : Int
+    @Binding var selectedCityName : String
+
     @Binding var SelectedSpeciality : Int
+    @Binding var SelectedSpecialityName : String
+
     @Binding var examinationTypeId : Int
     
     @State var gotoSearchdoctor = false
     @State var selectedAreaId = 0
-    
+    @State var selectedAreaName = ""
+
     var body: some View {
         ZStack{
             VStack{
@@ -30,6 +35,7 @@ struct AreaView: View {
                     
                     Button(action: {
                         selectedAreaId = 0
+                        selectedAreaName = "All_Areas".localized(language)
                         gotoSearchdoctor=true
                     }, label: {
                         ZStack {
@@ -55,6 +61,7 @@ struct AreaView: View {
                     ForEach(AreasVM.publishedAreaModel , id:\.self){ city in
                         Button(action: {
                             selectedAreaId =  city.id ?? 454545454
+                            selectedAreaName = city.Name ?? ""
                             gotoSearchdoctor = true
                         }, label: {
                             ZStack {
@@ -104,7 +111,7 @@ struct AreaView: View {
         })
         
         //  go to clinic info
-        NavigationLink(destination:ViewSearchDoc(ExTpe: $examinationTypeId, SpecialistId: $SelectedSpeciality, CityId: $selectedCityId, AreaId: $selectedAreaId),isActive: $gotoSearchdoctor) {
+        NavigationLink(destination:ViewSearchDoc(ExTpe: $examinationTypeId, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName: $selectedCityName, AreaId: $selectedAreaId,AreaName: $selectedAreaName),isActive: $gotoSearchdoctor) {
         }
         
         // Alert with no internet connection
@@ -118,7 +125,7 @@ struct AreaView: View {
 struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            AreaView( selectedCityId: .constant(48455151), SelectedSpeciality: .constant(48455151), examinationTypeId: .constant(48455151),  selectedAreaId: 48455151)
+            AreaView( selectedCityId: .constant(48455151), selectedCityName: .constant(""), SelectedSpeciality: .constant(48455151),SelectedSpecialityName:.constant(""), examinationTypeId: .constant(48455151),  selectedAreaId: 48455151)
         }.navigationBarHidden(true)
     }
 }

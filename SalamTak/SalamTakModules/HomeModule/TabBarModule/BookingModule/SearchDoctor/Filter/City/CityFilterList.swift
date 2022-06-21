@@ -14,7 +14,7 @@ struct CityFilterList:View{
     @Binding var selectedFilterCityName :String?
     @Binding var selectedFilterCityId :Int?
     @Binding var CitybuttonSelected: Int?
- 
+    
     var body: some View{
         VStack {
             Text("City".localized(language))

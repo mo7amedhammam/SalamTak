@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 struct AreaFilterList:View{
-
+    
     @EnvironmentObject var AreasVM : ViewModelGetAreas
     
     @Binding var FilterTag:FilterCases
@@ -65,12 +65,10 @@ struct AreaFilterList:View{
                 }
             }
             
-            
             Button(action: {
                 // add review
                 print("Confirm Title")
                 FilterTag = .Menu
-                //                                showFilter.toggle()
             }, label: {
                 HStack {
                     Text("Confirm".localized(language))
@@ -93,7 +91,7 @@ struct AreaFilterList:View{
             AreasVM.cityId = selectedFilterCityId ?? CityId
             AreasVM.startFetchAreas()
         })
-
+        
     }
 }
 

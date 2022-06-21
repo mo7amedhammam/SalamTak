@@ -15,7 +15,8 @@ struct SpecialityView: View {
     
     @Binding var selectedTypeId : Int
     @State var selectedSpecialityId  = 0
-    
+    @State var selectedSpecialityName  = ""
+
     var body: some View {
             ZStack{
                 ScrollView( showsIndicators: false){
@@ -28,6 +29,8 @@ struct SpecialityView: View {
                     ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
                         Button(action: {
                             selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
+                            selectedSpecialityName = specialityvm.publishedSpecialistModel?[speciality].Name ?? ""
+
                             gotocity=true
                         }, label: {
                             SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
@@ -60,7 +63,7 @@ struct SpecialityView: View {
         })
 
         //  go to clinic info
-        NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, extypeid: $selectedTypeId),isActive: $gotocity) {
+        NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, SelectedSpecialityName: $selectedSpecialityName, extypeid: $selectedTypeId),isActive: $gotocity) {
         }
         .alert(isPresented: $specialityvm.isAlert, content: {
             Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

@@ -16,9 +16,14 @@ struct ViewSearchDoc: View {
     
     @Binding var ExTpe:Int
     @Binding var SpecialistId:Int
+    @Binding var SpecialistName:String
+
     @Binding var CityId:Int
+    @Binding var CityName:String
+
     @Binding var AreaId:Int
-    
+    @Binding var AreaName:String
+
     @State  var isSearch = false
     @State  var searchTxt = ""
     
@@ -32,12 +37,15 @@ struct ViewSearchDoc: View {
     @State var imgs : [Img] = []
     @State var SelectedDoctor = Doc()
     
-    init(ExTpe: Binding<Int>,SpecialistId: Binding<Int> ,CityId: Binding<Int>,AreaId: Binding<Int> ) {
+    init(ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String> ) {
         UITableView.appearance().showsVerticalScrollIndicator = false
         self._ExTpe = ExTpe
         self._SpecialistId = SpecialistId
+        self._SpecialistName = SpecialistName
         self._CityId = CityId
+        self._CityName = CityName
         self._AreaId = AreaId
+        self._AreaName = AreaName
     }
     
     @State var FilterTag : FilterCases = .Menu
@@ -230,7 +238,7 @@ struct ViewSearchDoc: View {
 struct ViewSearchDoc_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSearchDoc(ExTpe: .constant(2), SpecialistId: .constant(2), CityId: .constant(2), AreaId: .constant(2))
+            ViewSearchDoc(ExTpe: .constant(2), SpecialistId: .constant(2),SpecialistName: .constant(""), CityId: .constant(2),CityName: .constant(""), AreaId: .constant(2),AreaName: .constant(""))
         }.navigationBarHidden(true)
     }
 }
@@ -239,9 +247,11 @@ struct ViewSearchDoc_Previews: PreviewProvider {
 extension ViewSearchDoc{
     func setFirstselections(){
         selectedSpecLvlId = SpecialistId
+        selectedSpecLvlName = SpecialistName
         selectedFilterCityId = CityId
+        selectedFilterCityName = CityName
         selectedFilterAreaId = AreaId
-        
+        selectedFilterAreaName = AreaName
     }
     
     //MARK: --- Functions ----

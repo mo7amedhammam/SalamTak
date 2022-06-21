@@ -41,9 +41,6 @@ struct SpecialityFilterList: View {
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-//                            self.SpecbuttonSelected = button
-                            print("SelectedID is \(button.id ?? 0)")
-                            
                             self.selectedSpecLvlId = button.id ?? 0
                             self.selectedSpecLvlName = button.Name ?? ""
                             

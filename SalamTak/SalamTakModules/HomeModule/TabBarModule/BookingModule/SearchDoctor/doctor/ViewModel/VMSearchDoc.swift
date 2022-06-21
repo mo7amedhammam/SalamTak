@@ -154,7 +154,7 @@ extension VMSearchDoc:TargetType{
     func FetchDoctors(operation:searchDocType){
         searchDocOperation = operation
         if Helper.isConnectedToNetwork(){
-//            print(parameter)
+            print(parameter)
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<ModelDoc<[Doc]>>.self) { [self] (success, model, err) in
                 if success{

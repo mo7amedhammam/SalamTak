@@ -12,7 +12,7 @@ import Combine
 struct FeesFilterView:View {
     @EnvironmentObject var FeesVM : ViewModelFees
     @Binding var FilterTag:FilterCases
-
+    
     @Binding var selectedFee :Float
     var body: some View{
         VStack{
@@ -42,7 +42,7 @@ struct FeesFilterView:View {
                         .disabled(true)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 
-                CustomView(percentage: $selectedFee, range: Int( FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) - Int( 0) )
+                CustomView(percentage: $selectedFee, range: Int( FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) - Int(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) )
                 
             }.padding()
             

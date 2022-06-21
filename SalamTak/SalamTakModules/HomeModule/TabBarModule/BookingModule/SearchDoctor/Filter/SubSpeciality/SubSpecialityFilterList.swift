@@ -9,17 +9,17 @@ import Foundation
 import SwiftUI
 import Combine
 struct SubSpecialityFilterList:View{
-
+    
     @EnvironmentObject var SubSpecialityVM : ViewModelSubspeciality
-
+    
     @Binding var FilterTag:FilterCases
-
+    
     @Binding var SpecialistId:Int
     @Binding var selectedSpecLvlId :Int?
     @Binding var selectedSubSpecLvlNames : [String]
     @Binding var selectedSubSpecLvlIds : [Int]
-
-
+    
+    
     var body:some View{
         VStack {
             Text("Sub_Specialities".localized(language))
@@ -79,7 +79,7 @@ struct SubSpecialityFilterList:View{
             SubSpecialityVM.SpecialistId = selectedSpecLvlId ?? SpecialistId
             SubSpecialityVM.startFetchSubSpecialist()
         })
-
+        
     }
 }
 
