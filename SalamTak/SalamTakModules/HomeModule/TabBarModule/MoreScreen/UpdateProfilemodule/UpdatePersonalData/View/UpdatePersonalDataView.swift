@@ -112,12 +112,12 @@ struct UpdatePersonalDataView: View {
                                         }
                                         
                                         HStack (spacing: 10){
-                                            //                                            Group{
+                                                                                        Group{
                                             InputTextFieldInfo( text: $patientUpdatedVM.FirstName,title: "First Name(*)")
                                             InputTextFieldInfo( text: $patientUpdatedVM.MiddelName,title: "Middle Name(*)")
                                             InputTextFieldInfo( text: $patientUpdatedVM.FamilyName,title: "Last Name(*)")
-                                            //                                            }
-                                            //                                            .focused($isfocused)
+                                                                                        }
+                                                                                        .focused($isfocused)
                                         }
                                     }
                                     Spacer().frame(height: 20)
@@ -358,9 +358,6 @@ struct UpdatePersonalDataView: View {
                     Spacer()
                     Button("Done"){
                         isfocused = false
-                        if patientUpdatedVM.FirstName != "" && patientUpdatedVM.FirstNameAr != "" && patientUpdatedVM.MiddelName != "" && patientUpdatedVM.MiddelNameAr != "" && patientUpdatedVM.FamilyName != "" && patientUpdatedVM.FamilyNameAr != "" &&  patientUpdatedVM.NationalityId != 0 && patientUpdatedVM.CityId != 0 && patientUpdatedVM.AreaId != 0 && patientUpdatedVM.EmergencyContact != "" && patientUpdatedVM.OccupationId != 0 && patientUpdatedVM.Address != "" && patientUpdatedVM.GenderId != 0{
-                            isValid = true
-                        }
                     }
                 }
             }

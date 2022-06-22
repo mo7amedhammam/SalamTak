@@ -89,15 +89,18 @@ struct ScheduleView: View {
         .navigationBarBackButtonHidden(true)
         .popup(isPresented: $scheduleVM.showcncel){
             BottomPopupView{
-                ViewCancelAppointmentPopUp(showCancePopUp: $scheduleVM.showcncel, cancelReason: $scheduleVM.AppointmentCancelReason)
+                ViewCancelAppointmentPopUp(showCancePopUp: $scheduleVM.showcncel, cancelReason: $scheduleVM.AppointmentCancelReason).environmentObject(scheduleVM)
                 
-            }.environmentObject(scheduleVM)
+            }
 
         }
         // Alert with no internet connection
             .alert(isPresented: $scheduleVM.isAlert, content: {
                 Alert(title: Text(scheduleVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                         scheduleVM.isAlert = false
+                    if scheduleVM.activeAlert == .success{
+                        scheduleVM.showcncel = false
+                    }
 
                     }))
             })

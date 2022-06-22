@@ -14,7 +14,6 @@ struct MoreView: View {
     @State var goingToResetPassword = false
     @State var aboutApp = false
     @State var TermsAndConditions = false
-
     @StateObject  var patientCreatedVM = ViewModelCreatePatientProfile()
 
     @AppStorage("language")

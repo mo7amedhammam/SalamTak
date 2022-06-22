@@ -134,6 +134,12 @@ class ViewModelCreatePatientProfile: ObservableObject {
         
     }
     
+    
+//    func readyToCreate(){
+//        if FirstName != "" && FirstNameAr != "" && MiddelName != "" && MiddelNameAr != "" && FamilyName != "" && FamilyNameAr != "" &&  NationalityId != 0 && CityId != 0 && AreaId != 0 && EmergencyContact != "" && OccupationId != 0 && Address != "" && GenderId != 0{
+//            isValid = true
+//        }
+//    }
 }
 
 

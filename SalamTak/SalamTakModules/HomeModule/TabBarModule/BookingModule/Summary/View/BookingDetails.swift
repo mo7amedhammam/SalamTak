@@ -53,10 +53,10 @@ struct BookingDetails: View {
                     .padding(.leading)
                 
                 VStack(alignment:.leading){
-                    Text("\(getEx(id: ExType).name ?? "") " + "Appointment".localized(language) + ":")
+                    Text("\(getEx(id: ExType).name?.localized(language) ?? "") " + "Appointment".localized(language) + ":")
                         .foregroundColor(Color("darkGreen"))
                         .font(Font.SalamtechFonts.Reg14)
-                    Text(getEx(id: ExType).Comment ?? "")
+                    Text(getEx(id: ExType).Comment?.localized(language) ?? "")
                         .foregroundColor(.secondary)
                         .font(Font.SalamtechFonts.Reg14)
                     

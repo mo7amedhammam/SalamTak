@@ -364,4 +364,14 @@ Organized appointment and better time management.";
 
 "Error_Code" = "Error Code";
 
+"Book_Appointment_at_the_clinic" = "Book Appointment at the clinic";
+"Doctor_will_visit_you_at_home" = "Doctor will visit you at home";
+"Video_Chat_call_with_the_doctor" = "Video Chat call with the doctor";
+"Doctor_will_call_you_on_time" = "Doctor will call you on time";
+"text_chat_with_the_doctor" = "text chat with the doctor";
 
+"Clinic" = "Clinic ";
+"Home_visit" = "Home visit";
+"Video" = "Video ";
+"Call" = "Call ";
+"Chat" = "Chat ";

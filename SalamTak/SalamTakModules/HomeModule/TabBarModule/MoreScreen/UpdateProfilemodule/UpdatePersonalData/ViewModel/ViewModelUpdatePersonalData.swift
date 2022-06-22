@@ -171,6 +171,7 @@ class ViewModelUpdatePatientProfile: ObservableObject {
         }.store(in: &cancellables)
         
     }
+    
 }
 
 enum UpdatePersonalInfoOp{

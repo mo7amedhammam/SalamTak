@@ -52,7 +52,6 @@ struct RequestLocationView_Previews: PreviewProvider {
 }
 struct RequestLocationView: View {
     @EnvironmentObject var locationViewModel: LocationViewModel
-//    @StateObject var clinicLocation = ViewModelCreatePatientProfile()
     @Binding var longtiude: Double
     @Binding var latitiude: Double
     var body: some View {
@@ -67,9 +66,7 @@ struct RequestLocationView: View {
             .padding(10)
             .foregroundColor(.white)
             .background(Color("blueColor"))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            
-            
+            .clipShape(RoundedRectangle(cornerRadius: 8))            
         }
     }
     var coordinate: CLLocationCoordinate2D? {
@@ -96,7 +93,6 @@ struct ErrorView: View {
 
 struct TrackingView: View {
     @EnvironmentObject var locationViewModel: LocationViewModel
-//    @EnvironmentObject var clinicLocation : ViewModelCreatePatientProfile
     let screenWidth = UIScreen.main.bounds.size.width - 50
     @Binding var longtiude: Double
     @Binding var latitiude: Double
@@ -105,7 +101,6 @@ struct TrackingView: View {
         VStack{
             HStack{
                 Text( Helper.getUserAddress())
-//                Text(getAddressFromLatLon(pdblLatitude: Helper.getUserLatitude(), withLongitude: Helper.getUserLongtude()))
                 Spacer()
                 Image(systemName: "location")
                     .foregroundColor(Color("lightGray"))
@@ -126,8 +121,6 @@ struct TrackingView: View {
         .onChange(of: latitiude){newval in
             getAddressFromLatLon(pdblLatitude: "\(newval)", withLongitude: "\(longtiude)")
         }
-
-       
     }
     
     var coordinate: CLLocationCoordinate2D? {
@@ -147,7 +140,6 @@ struct PairView: View {
     }
 }
 
-
 func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = Double("\(pdblLatitude)")!
@@ -159,7 +151,6 @@ func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: Str
         center.longitude = lon
 
         let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-
 
         ceo.reverseGeocodeLocation(loc, completionHandler:
             {(placemarks, error) in

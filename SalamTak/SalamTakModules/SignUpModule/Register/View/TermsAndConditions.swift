@@ -10,12 +10,12 @@ import SwiftUI
 
 struct ApproveTermsPopUp: View {
     var language = LocalizationService.shared.language
-
+    
     @Binding var showPopUp:Bool
     @Binding var letsgo:Bool
     @Binding var Skip:Bool
     @Binding var TermsAndConditions:Bool
-
+    
     var action: () -> Void
     var body: some View {
         ZStack{
@@ -24,13 +24,13 @@ struct ApproveTermsPopUp: View {
                     .resizable()
                     .frame(width: 100, height: 55   , alignment: .center)
                     .padding(.top)
-                    
+                
                 Text("Pop_note_terms".localized(language))
                     .font(.system(size: 24, weight: .bold))
                     .multilineTextAlignment(.center)
                     .frame(width:.infinity, height:35)
                     .foregroundColor(Color("blueColor"))
-
+                
                 Text("Pop_Subnote_terms".localized(language))
                     .font(.system(size: 16))
                     .multilineTextAlignment(.center)
@@ -55,64 +55,58 @@ struct ApproveTermsPopUp: View {
                     }, label: {
                         HStack{
                             Spacer().frame(width:2)
-
+                            
                             Text("Pop_cancel_terms".localized(language))
                                 .foregroundColor(Color("blueColor"))
-                            .bold()
-                            .frame( height: 45 )
-                            .padding([.leading,.trailing],30)
-                            .background(Color(uiColor: .lightGray).opacity(0.3) )
-                            .cornerRadius(8)
+                                .bold()
+                                .frame( height: 45 )
+                                .padding([.leading,.trailing],30)
+                                .background(Color(uiColor: .lightGray).opacity(0.3) )
+                                .cornerRadius(8)
                             Spacer().frame(width:2)
-                    }
+                        }
                     }
                     )
                     Spacer()
                     Button(action: {
                         action()
-
+                        
                         self.showPopUp = false
                         self.letsgo = true
                     }, label: {
                         HStack{
                             Spacer().frame(width:2)
-
+                            
                             Text("Pop_approve_terms".localized(language))
                                 .foregroundColor(.white)
-                            .bold()
-                            .frame( height: 45 )
-                            .padding([.leading,.trailing],30)
-                            .background(Color("blueColor"))
+                                .bold()
+                                .frame( height: 45 )
+                                .padding([.leading,.trailing],30)
+                                .background(Color("blueColor"))
                             
-                            .cornerRadius(8)
+                                .cornerRadius(8)
                             Spacer().frame(width:2)
-                    }
+                        }
                     }
                     )
                     Spacer().frame(width:5)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-
-                .frame( height: 45 )
+                
+                    .frame( height: 45 )
                     .padding([.leading,.trailing],10)
                     .padding(.bottom,20)
-
-                
             }
             
             .frame(width:UIScreen.main.bounds.width - 60 , height: 250 )
             .background(Color.white)
             .cornerRadius(12)
-            
-        
-        
         }
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height,alignment: .center )
         .padding([.leading,.trailing],0)
         .edgesIgnoringSafeArea(.all)
         .background(Color.black.opacity(0.2))
         .navigationViewStyle(StackNavigationViewStyle())
-
-                         
+        
     }
 }
 

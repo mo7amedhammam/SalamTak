@@ -364,3 +364,15 @@
 
 
 "Error_Code" = "كود خطأ";
+
+"Book_Appointment_at_the_clinic" = "حجز موعد فى العيادة";
+"Doctor_will_visit_you_at_home" = "الدكتور سوف يزورك فى المنزل";
+"Video_Chat_call_with_the_doctor" = "استعد لمكالمة فيديو فى الموعد";
+"Doctor_will_call_you_on_time" = "استعد لمكالمة صوتية فى الموعد";
+"text_chat_with_the_doctor" = "استعد لمحادثة نصيه فى الموعد";
+
+"Clinic" = "عيادة ";
+"Home_visit" = "زيارة منزلية";
+"Video" = "فيديو ";
+"Call" = "مكالمة ";
+"Chat" = "محادثة نصية ";

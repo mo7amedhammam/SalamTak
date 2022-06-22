@@ -9,15 +9,15 @@ import Foundation
 
 // MARK: - DataClass
 struct AppointmentInfo: Codable,Identifiable , Hashable {
-    var id,medicalTypeId:Int?
+    var id,medicalTypeId,DoctorId:Int?
     var doctorName,doctorImage,seniorityName,specialistName,
         medicalTypeName,appointmentDate,clinicName,clinicLatitude,
         clinicLongitude:String?
     var isCancel,canRate:Bool?
     
     enum CodingKeys:String, CodingKey {
-       
-        case id = "DoctorId"
+        case id = "AppointmentId"
+        case DoctorId = "DoctorId"
         case medicalTypeId = "MedicalExaminationTypeId"
         case doctorName = "DoctorName"
         case doctorImage = "DoctorImage"
@@ -30,7 +30,6 @@ struct AppointmentInfo: Codable,Identifiable , Hashable {
         case clinicLongitude = "ClinicLongitude"
         case isCancel = "IsCancel"
         case canRate = "CanRate"
-
     }
 }
 

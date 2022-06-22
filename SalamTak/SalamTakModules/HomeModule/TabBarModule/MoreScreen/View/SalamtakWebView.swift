@@ -30,16 +30,15 @@ class WebviewController: UIViewController, WKNavigationDelegate {
     lazy var progressbar: UIProgressView = UIProgressView()
     var webViewURLObserver: NSKeyValueObservation?          // Observer for URL
     var newUrl : String = ""
- 
-    
+
     deinit {
         self.webview.removeObserver(self, forKeyPath: "estimatedProgress")
         self.webview.scrollView.removeObserver(self, forKeyPath: "contentOffset")
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.webview.navigationDelegate = self
         self.view.addSubview(self.webview)
         print(webview.url ?? "url")
@@ -56,28 +55,28 @@ class WebviewController: UIViewController, WKNavigationDelegate {
         self.setProgressBarPosition()
 
         webview.scrollView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
-
         self.progressbar.progress = 0.1
         webview.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-        
-        
-//        // OBSERVER: WebView URL
-         webViewURLObserver = webview.observe(\.url, options: .new) { [weak self] webView, change in
-             let url = "\(String(describing: change.newValue))"
-             self?.urlDidChange(urlString: url)
-         }
 
+
+        //        // OBSERVER: WebView URL
+         webViewURLObserver = webview.observe(\.url, options: .new) { [weak self] webView, change in
+             let newurl = "\(String(describing: change.newValue))"
+             self?.urlDidChange(urlString: newurl)
+         }
     }
     
     func urlDidChange(urlString: String) {
         if let url = urlString as? String {
             print(url)
-            self.newUrl = url
             if url.contains("404") {
                 print("Error 404: Page not found")
             }
             
         }
+        print("new url")
+        print(urlString)
+    
     }
 
     func setProgressBarPosition() {
@@ -108,7 +107,6 @@ class WebviewController: UIViewController, WKNavigationDelegate {
 
         case "contentOffset":
             self.setProgressBarPosition()
- 
 
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)

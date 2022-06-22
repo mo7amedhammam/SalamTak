@@ -142,7 +142,6 @@ struct ScheduleEachCellView: View {
                             Button(action: {
                                 scheduleVM.AppointmentCancelID = schedule.id ?? 1
                                 scheduleVM.showcncel = true
-                                
                             }, label: {
                                 HStack{
                                     Image(systemName: "multiply.circle")

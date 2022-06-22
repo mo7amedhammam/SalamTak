@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             TabBarView()
-//                Person1alDataView()
+//                PersonalDataView()
         }
 
         .onChange(of: scenePhase, perform: { newPhase in

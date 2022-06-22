@@ -58,7 +58,7 @@ class URLs {
     var GetPatientAppointment =  BaseUrl + "/api/\(Helper.getLanguage())/PatientAppointment/GetPatientAppointmentes"
     var CancelAppointmen = BaseUrl + "/api/\(Helper.getLanguage())/DoctorAppointment/CancelAppointment"
 
-    var TermsAndConditionsURL =  "https://salamtechfront.azurewebsites.net/Terms"
+    var TermsAndConditionsURL =  "https://salamtakdoctor.azurewebsites.net/terms"
 
     
 }

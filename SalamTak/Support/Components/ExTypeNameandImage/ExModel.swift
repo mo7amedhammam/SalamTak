@@ -20,26 +20,29 @@ func getEx(id:Int) -> ExModel{
     
     switch id{
     case 1:
-        modelFil.name = "Clinic "
+        modelFil.name = "Clinic"
         modelFil.image = "building"
-        
+        modelFil.Comment = "Book_Appointment_at_the_clinic"
         
     case 2:
-        modelFil.name = "Home visit"
+        modelFil.name = "Home_visit"
         modelFil.image = "house"
+        modelFil.Comment = "Doctor_will_visit_you_at_home"
         
     case 3:
-        modelFil.name = "Video "
+        modelFil.name = "Video"
         modelFil.image = "video.bubble.left"
+        modelFil.Comment = "Video_Chat_call_with_the_doctor"
         
     case 4:
-        modelFil.name = "Call "
+        modelFil.name = "Call"
         modelFil.image = "phone.bubble.left"
-        modelFil.Comment = "Doctor will call you on time"
+        modelFil.Comment = "Doctor_will_call_you_on_time"
         
     default:
-        modelFil.name = "Chat "
+        modelFil.name = "Chat"
         modelFil.image = "ellipsis.bubble"
+        modelFil.Comment = "text_chat_with_the_doctor"
         
     }
     

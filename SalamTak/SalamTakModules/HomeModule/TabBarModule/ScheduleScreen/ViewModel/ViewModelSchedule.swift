@@ -47,6 +47,9 @@ class ViewModelGetAppointmentInfo: ObservableObject {
         passCancelModel.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.AppointmentCancelObj = modeldata
+            if self.AppointmentCancelObj?.message == "Success"{
+                self.showcncel = false
+            }
         }.store(in: &cancellables)
     }
 }
@@ -158,7 +161,10 @@ extension ViewModelGetAppointmentInfo:TargetType{
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.passCancelModel.send( model!  )
+                        self.passCancelModel.send( model! )
+                        message = model?.message ?? "Bad Request"
+                        activeAlert = .success
+//                        isAlert = true
                     }
                 }else{
                     if model != nil{
