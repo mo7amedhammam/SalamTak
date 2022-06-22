@@ -18,10 +18,11 @@ class VMCreateAppointment: ObservableObject {
 
     // ------- input
     @Published var DoctorId                            :Int = 0
-    @Published var DoctorWorkingDayTimeId              :Int = 0
-    @Published var AppointmentDate                       :String = ""
-    @Published var Fees                      : Double = 0.0
-    @Published var Comment                      : String = ""
+    @Published var DoctorWorkingDayTimeId            :Int = 0
+    @Published var AppointmentDate                    :String = ""
+    @Published var Fees                                 : Double = 0.0
+    @Published var Comment                              : String = ""
+    @Published var IsBook                               : Bool = true
 
     @Published var publishedCreateAppointment: ModelCreateAppointment?
 
@@ -62,7 +63,8 @@ extension VMCreateAppointment:TargetType{
             "DoctorWorkingDayTimeId":DoctorWorkingDayTimeId,
             "AppointmentDate":AppointmentDate ,
             "Fees":Fees,
-            "Comment":Comment
+            "Comment":Comment,
+            "IsBook":IsBook
     ]
 
         return .parameterRequest(Parameters: Parameters, Encoding: JSONEncoding.default)

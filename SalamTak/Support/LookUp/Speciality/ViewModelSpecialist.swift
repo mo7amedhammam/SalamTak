@@ -29,8 +29,7 @@ class ViewModelSpecialist: ObservableObject {
             self.publishedSpecialistModel = modeldata.data ?? []
         }.store(in: &cancellables)      
         
-    }
-    
+    }    
 }
 
 

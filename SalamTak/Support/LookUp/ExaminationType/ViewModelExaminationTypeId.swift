@@ -14,8 +14,7 @@ class ViewModelExaminationTypeId: ObservableObject {
 
     let passthroughSubject = PassthroughSubject<String, Error>()
     let ModelExTypeId = PassthroughSubject<BaseResponse<[ExaminationType]>, Error>()
-    
-    private var cancellables: Set<AnyCancellable> = []
+        private var cancellables: Set<AnyCancellable> = []
     
     //------- output
     @Published var publishedModelExaminationTypeId: [ExaminationType] = []

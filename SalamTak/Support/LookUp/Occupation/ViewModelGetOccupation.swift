@@ -14,7 +14,7 @@ class ViewModelOccupation: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[Occupation]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-
+    //------- output
     @Published private(set) var publishedCountryModel: [Occupation] = []
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -26,10 +26,7 @@ class ViewModelOccupation: ObservableObject {
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []
         }.store(in: &cancellables)
-
     }
-    
-    
 }
 
 

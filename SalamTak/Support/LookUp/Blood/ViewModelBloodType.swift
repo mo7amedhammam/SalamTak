@@ -13,8 +13,8 @@ class ViewModelBloodType: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[BloodTYpe]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
-    
 
+    //------- output
     @Published private(set) var publishedCountryModel: [BloodTYpe] = []
     @Published var isLoading:Bool? = false
     @Published var isAlert = false

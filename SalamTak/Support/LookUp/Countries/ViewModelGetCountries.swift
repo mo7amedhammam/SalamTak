@@ -26,16 +26,11 @@ class ViewModelCountries: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []
-            print(self.publishedCountryModel)
-            print(self.publishedCountryModel[0].Name ?? "" )
-            
         }.store(in: &cancellables)
-
         
     }
-    
-    
 }
+
 extension ViewModelCountries:TargetType{
     var url: String{
         return URLs().GetCountries

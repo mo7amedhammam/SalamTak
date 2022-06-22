@@ -13,9 +13,11 @@ class ViewModelMedicineAllergy: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[MedicineAllergy]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
+   
     @Published  var Id : [Int] = []
     @Published  var Name: [String] = []
 
+    //------- output
     @Published private(set) var publishedCountryModel: [MedicineAllergy] = []
     @Published var isLoading:Bool? = false
     @Published var isAlert = false

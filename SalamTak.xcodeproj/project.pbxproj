@@ -555,16 +555,7 @@
 				C8CC1217285B611A0008209B /* LookupsView */,
 				C8CC1218285B61380008209B /* customCalendar */,
 				C8CC1221285B6AC80008209B /* ButtonView */,
-				C896513D284CDBB7000EAFF7 /* SearchBarView.swift */,
-				C8965131284CD70A000EAFF7 /* RatingView.swift */,
-				0E586CED27F5A7EC00944F21 /* ActivityIndicatorView.swift */,
-				0E586CEF27F5A86E00944F21 /* AppBarView.swift */,
-				0E586CF127F5A88E00944F21 /* CurvedSideView.swift */,
-				0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */,
-				0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */,
-				0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */,
-				0E9E0DB127FAEFD100893ABF /* GenderView.swift */,
-				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
+				C8B08FE22863151B00B0DA72 /* Others */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1464,6 +1455,23 @@
 				C89A6BB0284FCAE100BF37C9 /* ConfirmButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C8B08FE22863151B00B0DA72 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				C896513D284CDBB7000EAFF7 /* SearchBarView.swift */,
+				C8965131284CD70A000EAFF7 /* RatingView.swift */,
+				0E586CED27F5A7EC00944F21 /* ActivityIndicatorView.swift */,
+				0E586CEF27F5A86E00944F21 /* AppBarView.swift */,
+				0E586CF127F5A88E00944F21 /* CurvedSideView.swift */,
+				0E7B9DEB27F9AD6800688EBF /* InfoAppBarView.swift */,
+				0E586CF327F5A8FD00944F21 /* AdaptiveKeyBoard.swift */,
+				0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */,
+				0E9E0DB127FAEFD100893ABF /* GenderView.swift */,
+				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		C8B3E16A27FC46EB0040DAFD /* SearchDoctor */ = {

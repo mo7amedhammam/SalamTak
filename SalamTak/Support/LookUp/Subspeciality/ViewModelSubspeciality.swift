@@ -14,7 +14,7 @@ class ViewModelSubspeciality: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[subspeciality]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-//    // ------- input
+//     ------- input
     @Published  var SpecialistId: Int = 0
 
     @Published  var  publishedSubSpecialistModel: [subspeciality] = []
@@ -27,15 +27,9 @@ class ViewModelSubspeciality: ObservableObject {
     init() {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
-            
             self.publishedSubSpecialistModel = modeldata.data ?? []
         }.store(in: &cancellables)
- 
-        
     }
-    
-    
-    
 }
 
 

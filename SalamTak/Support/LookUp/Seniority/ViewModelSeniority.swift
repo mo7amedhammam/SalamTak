@@ -14,8 +14,7 @@ class ViewModelSeniority: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[seniority]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-    //    //------- output
-    
+    //    ------- output
     @Published private(set) var  publishedSeniorityLevelModel: [seniority] = []
     
     @Published var isLoading:Bool? = false

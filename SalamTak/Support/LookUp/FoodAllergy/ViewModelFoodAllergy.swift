@@ -13,9 +13,11 @@ class ViewModelFoodAllergy: ObservableObject {
     let passthroughSubject = PassthroughSubject<String, Error>()
     let passthroughModelSubject = PassthroughSubject<BaseResponse<[FoodAllergy]>, Error>()
     private var cancellables: Set<AnyCancellable> = []
+ 
     @Published  var Id : [Int] = []
     @Published  var Name: [String] = []
 
+    //------- output
     @Published private(set) var publishedCountryModel: [FoodAllergy] = []
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -25,11 +27,9 @@ class ViewModelFoodAllergy: ObservableObject {
     init() {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
-            self.publishedCountryModel = modeldata.data ?? []
-            
+            self.publishedCountryModel = modeldata.data ?? []            
         }.store(in: &cancellables)
     }
-    
 }
 
 

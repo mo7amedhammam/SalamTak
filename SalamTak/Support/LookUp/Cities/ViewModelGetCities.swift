@@ -32,8 +32,6 @@ class ViewModelGetCities: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCityModel = modeldata.data ?? []
-            print(self.publishedCityModel)
-           // print(self.publishedCityModel[0].Name ?? "" )
         }.store(in: &cancellables)
 
     }    

@@ -14,8 +14,7 @@ class ViewModelFees: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<MinMaxFee>, Error>()
     private var cancellables: Set<AnyCancellable> = []
     
-    //    //------- output
-    
+    //    ------- output
     @Published var  publishedMinMaxFee: MinMaxFee?
     
     @Published var isLoading:Bool? = false
@@ -30,11 +29,8 @@ class ViewModelFees: ObservableObject {
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedMinMaxFee = modeldata.data ?? MinMaxFee.init()
-            print(self.publishedMinMaxFee ?? MinMaxFee.init())
         }.store(in: &cancellables)
-        
     }
-    
 }
 
 extension ViewModelFees:TargetType{
@@ -92,6 +88,5 @@ extension ViewModelFees:TargetType{
             message = "Check_Your_Internet_Connection".localized(language)
             isAlert = true
         }
-        
     }
 }

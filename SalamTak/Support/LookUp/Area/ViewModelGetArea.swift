@@ -17,7 +17,6 @@ class ViewModelGetAreas: ObservableObject {
     @Published var cityId: Int = 0
 
         //------- output
-
     @Published var publishedAreaModel: [Area] = []
     @Published var isLoading:Bool? = false
     
@@ -26,13 +25,11 @@ class ViewModelGetAreas: ObservableObject {
     @Published var message = ""
  
     init() {
-        
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedAreaModel = modeldata.data ?? []
             
         }.store(in: &cancellables)
-   
     }
    
 }
@@ -49,7 +46,6 @@ extension ViewModelGetAreas:TargetType{
                 print(convertUrl)
             }
         return  convertedUrl?.absoluteString ?? ""
-
     }
     
     var method: httpMethod{

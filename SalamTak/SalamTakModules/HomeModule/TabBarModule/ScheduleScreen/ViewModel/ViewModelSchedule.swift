@@ -15,17 +15,16 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     let passthroughModelGetSubject = PassthroughSubject<BaseResponse<[AppointmentInfo]>, Error>()
     let passCancelModel = PassthroughSubject<BaseResponse<CancelBody>, Error>()
     private var cancellables: Set<AnyCancellable> = []
- 
+    
     @Published var exmodelId  = 0
     @Published var AppointmentCancelID  = 0
     @Published var AppointmentCancelReason  = ""
-
+    
     @Published var AppointmentsArr: [AppointmentInfo] = []
     @Published var AppointmentCancelObj: BaseResponse<CancelBody>?
-
+    
     //------- output
     @Published var showcncel = false
-
     @Published var noschedules = false
     
     @Published var isLoading:Bool? = false
@@ -35,10 +34,8 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     
     @Published var appointmentMethod : appointmentsReq = .getappointments
     
-     init() {
-         execute(operation: .getappointments)
-         
-         passthroughModelGetSubject.sink { (completion) in
+    init() {
+        passthroughModelGetSubject.sink { (completion) in
         } receiveValue: { [self] (modeldata) in
             noschedules = false
             self.AppointmentsArr = modeldata.data ?? []
@@ -50,14 +47,9 @@ class ViewModelGetAppointmentInfo: ObservableObject {
         passCancelModel.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.AppointmentCancelObj = modeldata
-            
         }.store(in: &cancellables)
     }
-        
 }
-
-
-
 
 enum appointmentsReq{
     case getappointments
@@ -66,63 +58,46 @@ enum appointmentsReq{
 
 
 extension ViewModelGetAppointmentInfo:TargetType{
-
+    
     var url: String{
         switch appointmentMethod{
         case .getappointments:
-        let url = URLs().GetPatientAppointment
-        let queryItems = [URLQueryItem(name:"medicalExaminationTypeId",value:"\(exmodelId)")]
-        var urlComponents = URLComponents(string: url)
-        urlComponents?.queryItems = queryItems
-        let convertedUrl = urlComponents?.url
-        if let convertUrl = convertedUrl {
-            print(convertUrl)
-        }
-        return  convertedUrl?.absoluteString ?? ""
-
+            let url = URLs().GetPatientAppointment
+            let queryItems = [URLQueryItem(name:"medicalExaminationTypeId",value:"\(exmodelId)")]
+            var urlComponents = URLComponents(string: url)
+            urlComponents?.queryItems = queryItems
+            let convertedUrl = urlComponents?.url
+            if let convertUrl = convertedUrl {
+                print(convertUrl)
+            }
+            return  convertedUrl?.absoluteString ?? ""
+            
         case .cancelappointment:
             let url = URLs().CancelAppointmen
             let queryItems = [
                 URLQueryItem(name:"AppointmentId",value:"\(AppointmentCancelID)"),
                 URLQueryItem(name:"CancelReason",value:"\(AppointmentCancelReason)")
-                            ]
+            ]
             var urlComponents = URLComponents(string: url)
-                urlComponents?.queryItems = queryItems
-                let convertedUrl = urlComponents?.url
-                if let convertUrl = convertedUrl {
-                    print(convertUrl)
-                }
+            urlComponents?.queryItems = queryItems
+            let convertedUrl = urlComponents?.url
+            if let convertUrl = convertedUrl {
+                print(convertUrl)
+            }
             return  convertedUrl?.absoluteString ?? ""
         }
     }
     
     var method: httpMethod{
-        switch appointmentMethod{
-        case .getappointments:
-            return .Get
-        case .cancelappointment:
-            return .Get
-
-        }
+        return .Get
     }
     
     var parameter: parameterType{
-        switch appointmentMethod{
-        case .getappointments:
-            return .plainRequest
-        case .cancelappointment:
-            return .plainRequest
-        }
+        return .plainRequest
     }
     
     var header: [String : String]? {
-        switch appointmentMethod{
-        case .getappointments:
-            return ["Authorization":Helper.getAccessToken()]
-
-        case .cancelappointment:
-            return ["Authorization":Helper.getAccessToken()]
-        }
+        return ["Authorization":Helper.getAccessToken()]
     }
     
     func execute(operation:appointmentsReq){
@@ -130,94 +105,89 @@ extension ViewModelGetAppointmentInfo:TargetType{
         switch operation{
         case .getappointments:
             startFetchAppointmentInfo()
-
+            
         case .cancelappointment:
             startFetchCancelAppointment()
-
         }
     }
-
-func startFetchAppointmentInfo() {
-    if Helper.isConnectedToNetwork(){
-        self.isLoading = true
-
-        BaseNetwork.request(Target: self, responseModel: BaseResponse<[AppointmentInfo]>.self) { [self] (success, model, err) in
-            if success{
-                //case of success
-                DispatchQueue.main.async {
-                    self.passthroughModelGetSubject.send( model!  )
-                }
-
-            }else{
-                if model != nil{
-                    //case of model with error
-                    message = model?.message ?? "Bad Request"
-                    isAlert = true
+    
+    func startFetchAppointmentInfo() {
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<[AppointmentInfo]>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passthroughModelGetSubject.send( model!  )
+                    }
+                    
                 }else{
-                    if err == "Unauthorized"{
-                        //case of Empty model (unauthorized)
-                       message = "Session_expired\nlogin_again".localized(language)
-                                activeAlert = .unauthorized
-                    }else{
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
                         isAlert = true
-                        message = err ?? "there is an error"
-                                activeAlert = .serverError
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                            activeAlert = .unauthorized
+                        }else{
+                            isAlert = true
+                            message = err ?? "there is an error"
+                            activeAlert = .serverError
+                        }
                     }
                 }
-//                isAlert = true
+                isLoading = false
             }
-            isLoading = false
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
         }
-
-    }else{
-        //case of no internet connection
-//        activeAlert = .NetworkError
-        message = "Check_Your_Internet_Connection".localized(language)
-        isAlert = true
+        
     }
-
-}
-
-func startFetchCancelAppointment() {
-    if Helper.isConnectedToNetwork(){
-        self.isLoading = true
-
-        BaseNetwork.request(Target: self, responseModel: BaseResponse<CancelBody>.self) { [self] (success, model, err) in
-            if success{
-                //case of success
-                DispatchQueue.main.async {
-                    self.passCancelModel.send( model!  )
-                }
-
-            }else{
-                if model != nil{
-                    //case of model with error
-                    message = model?.message ?? "Bad Request"
-                    activeAlert = .serverError
-            }else{
-                if err == "Unauthorized"{
-                //case of Empty model (unauthorized)
-                    message = "Session_expired\nlogin_again".localized(language)
-                activeAlert = .unauthorized
+    
+    func startFetchCancelAppointment() {
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<CancelBody>.self) { [self] (success, model, err) in
+                if success{
+                    //case of success
+                    DispatchQueue.main.async {
+                        self.passCancelModel.send( model!  )
+                    }
                 }else{
-                    message = err ?? "there is an error"
-                    activeAlert = .serverError
+                    if model != nil{
+                        //case of model with error
+                        message = model?.message ?? "Bad Request"
+                        activeAlert = .serverError
+                    }else{
+                        if err == "Unauthorized"{
+                            //case of Empty model (unauthorized)
+                            message = "Session_expired\nlogin_again".localized(language)
+                            activeAlert = .unauthorized
+                        }else{
+                            message = err ?? "there is an error"
+                            activeAlert = .serverError
+                        }
+                    }
+                    isAlert = true
                 }
+                isLoading = false
             }
-                isAlert = true
-            }
-            isLoading = false
+        }else{
+            //case of no internet connection
+            activeAlert = .NetworkError
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
         }
-
-    }else{
-        //case of no internet connection
-        activeAlert = .NetworkError
-        message = "Check_Your_Internet_Connection".localized(language)
-        isAlert = true
+        
     }
-
-}
-
+    
 }
 
 

@@ -14,12 +14,6 @@ struct ExModel  {
 }
 
 
-// Our observable object class
-class GetExModel: ObservableObject {
-    @Published var exModel = ExModel()
-    
-}
-
 func getEx(id:Int) -> ExModel{
     let id = id
     var modelFil = ExModel()
