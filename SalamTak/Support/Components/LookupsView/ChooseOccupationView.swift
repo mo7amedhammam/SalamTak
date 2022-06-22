@@ -84,6 +84,6 @@ struct ChooseOccupation : View {
         }.onAppear(perform: {
             OccupationVM.startFetchOccupation()
         })
-        .offset(y: (UIScreen.main.bounds.size.height / 2)  - 200)
+        .offset(y: (UIScreen.main.bounds.size.height / 2)  - 120)
     }
 }

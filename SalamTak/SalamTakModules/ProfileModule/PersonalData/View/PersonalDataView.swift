@@ -316,7 +316,7 @@ struct PersonalDataView: View {
                     }
                 }, Cancelaction:  {
                     //                                        self.presentationMode.wrappedValue.dismiss()
-                }, isValid: $patientCreatedVM.isValid)
+                }, isValid: $isValid)
             }
             
             

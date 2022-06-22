@@ -128,7 +128,7 @@ struct ViewSignUp: View {
                     }
                     Spacer().frame(height:25)
                 }
-                
+                .keyboardSpace()
             }
             
             
@@ -145,7 +145,6 @@ struct ViewSignUp: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .background(Color("CLVBG"))
-        .adaptsToKeyboard()
         .ignoresSafeArea()
         .onTapGesture(perform: {
             hideKeyboard()

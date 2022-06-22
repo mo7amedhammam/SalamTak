@@ -88,6 +88,6 @@ struct ChooseBloodType : View {
         }.onAppear(perform: {
             BloodTypeVM.startFetchBloodTypes()
         })
-            .offset(y: (UIScreen.main.bounds.size.height / 2)  - 200)
+            .offset(y: (UIScreen.main.bounds.size.height / 2)  - 120)
     }
 }

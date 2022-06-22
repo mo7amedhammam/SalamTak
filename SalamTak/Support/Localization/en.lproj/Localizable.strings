@@ -50,6 +50,8 @@
 "CompeleteProfile_Screen_title" = "Complete Profile";
 "CompeleteProfile_Screen_subtitle" = "Personal Data";
 "CompeleteProfile_Screen_secondSubTitle" = "Medical State";
+"CompeleteMedical_Screen_secondSubTitle" = "Home";
+
 "CompeleteProfile_Screen_firstName" = "First Name (*)";
 "CompeleteProfile_Screen_middleName" = "Middle Name (*)";
 "CompeleteProfile_Screen_lastName" = "Last Name (*)";

@@ -85,6 +85,12 @@ struct ChooseNationality : View {
         }.onAppear(perform: {
             NationalityVM.startFetchCountries()
         })
-        .offset(y: (UIScreen.main.bounds.size.height / 2)  - 200)
+        .offset(y: (UIScreen.main.bounds.size.height / 2)  - 120)
+    }
+}
+
+struct ChooseNationality_Previews: PreviewProvider {
+    static var previews: some View {
+        ChooseNationality( IsPresented: .constant(true), SelectedNationalityName: .constant(""), SelectedNationalityId: .constant(0), width: CGFloat(150) ).environmentObject(ViewModelCountries())
     }
 }

@@ -90,12 +90,18 @@ struct ChooseCity : View {
             }
             
         }
-        .offset(y: (UIScreen.main.bounds.size.height / 2) - 200)
+        .offset(y: (UIScreen.main.bounds.size.height / 2) - 120)
         .onAppear{
             cityVM.CountryId = SelectedCountryId
             cityVM.startFetchCities() // 1
 
         }
 
+    }
+}
+
+struct ChooseCity_Previews: PreviewProvider {
+    static var previews: some View {
+        ChooseCity( IsPresented: .constant(true), SelectedCityName: .constant(""), SelectedCityId: .constant(0),SelectedCountryId:.constant(1), width: CGFloat(150) ).environmentObject(ViewModelGetCities())
     }
 }

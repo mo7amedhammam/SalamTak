@@ -49,6 +49,8 @@
 "CompeleteProfile_Screen_title" = "انهاء الملف الشخصي";
 "CompeleteProfile_Screen_subtitle" = "معلومات عن المريض";
 "CompeleteProfile_Screen_secondSubTitle" = "الملف الطبى";
+"CompeleteMedical_Screen_secondSubTitle" = "الرئيسية";
+
 "CompeleteProfile_Screen_firstName" = "الاسم الأول";
 "CompeleteProfile_Screen_middleName" = "الاسم الثاني";
 "CompeleteProfile_Screen_lastName" = "الاسم الأخير";
