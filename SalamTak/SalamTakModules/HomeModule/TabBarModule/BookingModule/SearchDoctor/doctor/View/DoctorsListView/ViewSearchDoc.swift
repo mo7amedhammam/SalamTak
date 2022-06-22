@@ -141,7 +141,7 @@ struct ViewSearchDoc: View {
                         .onAppear(perform: {
                             if searchDoc.publishedModelSearchDoc.count > searchDoc.SkipCount{
                             searchDoc.SkipCount += searchDoc.MaxResultCount
-                                searchDoc.FetchDoctors(operation: .fetchMoreDoctors)
+                            searchDoc.FetchDoctors(operation: .fetchMoreDoctors)
                             }
                         })
 

@@ -79,7 +79,7 @@ extension VMCreateAppointment:TargetType{
     func CreatePatientAppointment() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-
+print(parameter)
             BaseNetwork.request(Target: self, responseModel: BaseResponse<ModelCreateAppointment>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
