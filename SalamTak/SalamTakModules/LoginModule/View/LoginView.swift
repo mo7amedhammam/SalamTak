@@ -27,13 +27,16 @@ struct ViewLogin: View {
         ZStack {
                 VStack {
                     Spacer().frame(height:80)
+                    Spacer()
+
                     ScrollView {
                     Image("logo")
                         .resizable()
                         .frame(width: 150, height: 130)
                         .foregroundColor(.black)
-                    
+
                         VStack {
+                            Spacer()
                             InputTextField(text: $LoginVM.phoneNumber, title:"SignIn_Screen_phoneNumber".localized(language))
                                 .focused($isfocused)
                                 .keyboardType(.numberPad)

@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ScheduleView: View {
     var language = LocalizationService.shared.language
-    @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
+    @EnvironmentObject var scheduleVM : ViewModelGetAppointmentInfo
     @StateObject var medicalType = ViewModelExaminationTypeId()
-    @State var goToLogin = false
 
     @State var index = 1
     var body: some View {
@@ -22,7 +21,6 @@ struct ScheduleView: View {
                             .resizable()
                             .frame(height: 150)
                             .padding(.bottom, -40)
-                        
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack( spacing: 20){
                                 ForEach(medicalType.publishedModelExaminationTypeId){ type in
@@ -47,30 +45,22 @@ struct ScheduleView: View {
                                 .padding()
                                 .offset(y: 25)
                         }
-                    
                     }.offset(y: 80)
                 
                 Spacer().frame(height: 90)
                     ZStack{
                         Spacer().frame(height: 40)
 
-                        ScheduleCellView( )
+                        ScheduleCellView().environmentObject(scheduleVM)
                     }
                 }
             .edgesIgnoringSafeArea(.bottom)
             .ignoresSafeArea()
             .background(Color("CLVBG"))
-         
-            
             AppBarView(Title:"Schedule".localized(language))
-
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
-        
-            NavigationLink(destination: WelcomeScreenView().navigationBarBackButtonHidden(true),isActive:$goToLogin , label: {
-            })
-            
-        }.environmentObject(scheduleVM)
+        }
             .navigationViewStyle(StackNavigationViewStyle())
             .ignoresSafeArea()
             .disabled(scheduleVM.showcncel)
@@ -89,13 +79,7 @@ struct ScheduleView: View {
         
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        .popup(isPresented: $scheduleVM.showcncel){
-            BottomPopupView{
-                ViewCancelAppointmentPopUp(showCancePopUp: $scheduleVM.showcncel, cancelReason: $scheduleVM.AppointmentCancelReason).environmentObject(scheduleVM)
-                
-            }
 
-        }
         // Alert with no internet connection
             .alert(isPresented: $scheduleVM.isAlert, content: {
                 Alert(title: Text(scheduleVM.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

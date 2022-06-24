@@ -25,6 +25,7 @@ class ViewModelGetAppointmentInfo: ObservableObject {
     
     //------- output
     @Published var showcncel = false
+    @Published var IsCancelled = false
     @Published var noschedules = false
     
     @Published var isLoading:Bool? = false
@@ -45,10 +46,11 @@ class ViewModelGetAppointmentInfo: ObservableObject {
         }.store(in: &cancellables)
         
         passCancelModel.sink { (completion) in
-        } receiveValue: { (modeldata) in
-            self.AppointmentCancelObj = modeldata
-            if self.AppointmentCancelObj?.message == "Success"{
-                self.showcncel = false
+        } receiveValue: {[self] (modeldata) in
+            AppointmentCancelObj = modeldata
+            if AppointmentCancelObj?.message == "Success"{
+                showcncel = false
+                execute(operation: .getappointments)
             }
         }.store(in: &cancellables)
     }

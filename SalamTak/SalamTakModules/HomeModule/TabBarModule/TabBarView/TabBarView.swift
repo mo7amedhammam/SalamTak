@@ -12,6 +12,7 @@ var language = LocalizationService.shared.language
 struct TabBarView: View {
     @StateObject var TabBarVM = tabbar()
     @State var selectedTab = "TabBar_home"
+    @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
 
     var body: some View {
         ZStack{
@@ -23,7 +24,7 @@ struct TabBarView: View {
                             ServicesView()
 
                         } else if selectedTab == TabBarVM.tabs[1] {
-                            ScheduleView()
+                            ScheduleView().environmentObject(scheduleVM)
 
                         } else if selectedTab == TabBarVM.tabs[2] {
                             MoreView()
@@ -52,6 +53,13 @@ struct TabBarView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
+        }
+        .popup(isPresented: $scheduleVM.showcncel){
+            BottomPopupView{
+                ViewCancelAppointmentPopUp(showCancePopUp: $scheduleVM.showcncel, cancelReason: $scheduleVM.AppointmentCancelReason).environmentObject(scheduleVM)
+                
+            }
+
         }
     }
 }

@@ -38,10 +38,8 @@ struct PhoneVerificationView: View {
     var body: some View {
         
         ZStack {
-            VStack( spacing: 1){
-                AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
-//                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
+            ScrollView(){
+                Spacer().frame(height:120)
                 Text("PhoneVerfication_Screen_subtitle".localized(language) + " (\(RegisterUserVM.publishedUserRegisteredModel?.Code ?? 0))").font(.custom("SF UI Text", size: 16))
                     .foregroundColor(Color("subTitle"))
                     .padding(.top, 35)
@@ -68,7 +66,7 @@ struct PhoneVerificationView: View {
                         .background(Color.clear)
                         .keyboardType(.numberPad)
                 }.padding(.top, 25)
-                
+
                 if hideIncorrectCode == false || (minutes == 0 && seconds == 0 ) {
                     Text("PhoneVerfication_Screen_codeMessage".localized(language)).font(.custom("SF UI Text", size: 14)).fontWeight(.light)
                         .foregroundColor(.red)
@@ -111,6 +109,8 @@ struct PhoneVerificationView: View {
                         .foregroundColor( (minutes == 00 && seconds == 00) ? Color("darkGreen") : Color(uiColor: .lightGray))
                     
                 }).disabled(minutes != 00 && seconds != 00)
+                
+                
                 Button(action: {
                     // send code action
                     let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
@@ -145,11 +145,14 @@ struct PhoneVerificationView: View {
                 
                 Spacer()
             }  .edgesIgnoringSafeArea(.all)
-            
+                .keyboardSpace()
+            AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
+//                    .navigationBarItems(leading: BackButtonView())
+                .navigationBarBackButtonHidden(true)
+
         }
         .navigationViewStyle(StackNavigationViewStyle())
         
-        .adaptsToKeyboard()
         .ignoresSafeArea()
         .onTapGesture(perform: {
             hideKeyboard()

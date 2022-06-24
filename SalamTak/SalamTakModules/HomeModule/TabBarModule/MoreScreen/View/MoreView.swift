@@ -23,149 +23,154 @@ struct MoreView: View {
         NavigationView {
             ZStack{
 
-                ScrollView( showsIndicators: false){
-                    VStack(alignment: .leading){
-                        Group{
-                        Button(action: {
-                            self.goingToPatientUpdate.toggle()
-                        }, label: {
-                            HStack(spacing: 10){
-                                Image(systemName: "person.circle")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                                
-                                Text("More_Screen_myprofile".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                            }
-                        })
-
-                        Button(action: {
-                            self.goingToResetPassword.toggle()
-                        }, label: {
-                            HStack(spacing: 10){
-                                Image(systemName: "lock.shield")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                               
-                                Text("More_Screen_resetPassword".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                                
-                            }
-                        })
-                        Button(action: {
-                            aboutApp = true
-                        }, label: {
-                            HStack(spacing: 10){
-                                Image(systemName: "info.circle")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                                
-                                Text("More_Screen_aboutApp".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                                
-                            }
-                        })
-                        
-                        Button(action: {
-                            TermsAndConditions = true
-                        }, label: {
-                            HStack(spacing: 10){
-                                Image(systemName: "doc.circle")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                                
-                                Text("More_Screen_termsAndCondition".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                            }
-                        })
-                        Button(action: {
-                            Helper.MakePhoneCall(PhoneNumber: "0221256299")
-                        }, label: {
-                            HStack(spacing: 10){
-                                Image(systemName: "phone.circle")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                                
-                                Text("More_Screen_callUs".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                            }
-                        })
-                        VStack{
-                            HStack(spacing: 10){
-                                Image(systemName: "network")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                                
-                                Text("More_Screen_Language".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                                
-                            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                           
-                            HStack{
-                            LanguageView(selection: $patientCreatedVM.GenderId)
+                VStack(spacing:1) {
+                    Text(Helper.getpatientName())
+                            .foregroundColor(.black)
+                            .font(Font.SalamtechFonts.Reg16)
+                            .padding(.top,-10)
+                    
+                    ScrollView( showsIndicators: false){
+                        VStack(alignment: .leading){
+                            Group{
+                            Button(action: {
+                                self.goingToPatientUpdate.toggle()
+                            }, label: {
+                                HStack(spacing: 10){
+                                    Image(systemName: "person.circle")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
                                     
-                            }
-                        }
-                        Button(action: {
-                            if Helper.userExist(){
-                            Helper.logout()
-                                islogout = true
-                            }else{
-                                goToLogin = true
-                            }
-                        }, label: {
-                            HStack(spacing: 10){
-                                Image(systemName: "arrow.left.square.fill")
-                                    .resizable()
-                                    .foregroundColor(Color("darkGreen"))
-                                    .frame(width: 30, height: 30)
-                                
-                                Text( Helper.userExist() ? "More_Screen_SignOut".localized(language):"SignIn_Button".localized(language))
-                                    .font(Font.SalamtechFonts.Reg16)
+                                    Text("More_Screen_myprofile".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                }
+                            })
 
-                                    .foregroundColor(Color("lightGray"))
-                                Spacer()
-                                
+                            Button(action: {
+                                self.goingToResetPassword.toggle()
+                            }, label: {
+                                HStack(spacing: 10){
+                                    Image(systemName: "lock.shield")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
+                                   
+                                    Text("More_Screen_resetPassword".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                    
+                                }
+                            })
+                            Button(action: {
+                                aboutApp = true
+                            }, label: {
+                                HStack(spacing: 10){
+                                    Image(systemName: "info.circle")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Text("More_Screen_aboutApp".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                    
+                                }
+                            })
+                            
+                            Button(action: {
+                                TermsAndConditions = true
+                            }, label: {
+                                HStack(spacing: 10){
+                                    Image(systemName: "doc.circle")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Text("More_Screen_termsAndCondition".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                }
+                            })
+                            Button(action: {
+                                Helper.MakePhoneCall(PhoneNumber: "0221256299")
+                            }, label: {
+                                HStack(spacing: 10){
+                                    Image(systemName: "phone.circle")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Text("More_Screen_callUs".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                }
+                            })
+                            VStack{
+                                HStack(spacing: 10){
+                                    Image(systemName: "network")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Text("More_Screen_Language".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                    
+                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                               
+                                HStack{
+                                LanguageView(selection: $patientCreatedVM.GenderId)
+                                }
                             }
-                        })
-                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                        .font(.system(size: 13))
-                        .padding(12)
-                        .disableAutocorrection(true)
-                        .background(
-                            Color.white
-                        ).foregroundColor(Color("blueColor"))
-                            .cornerRadius(5)
-                            .shadow(color: Color.black.opacity(0.099), radius: 3)
+                            Button(action: {
+                                if Helper.userExist(){
+                                Helper.logout()
+                                    islogout = true
+                                }else{
+                                    goToLogin = true
+                                }
+                            }, label: {
+                                HStack(spacing: 10){
+                                    Image(systemName: "arrow.left.square.fill")
+                                        .resizable()
+                                        .foregroundColor(Color("darkGreen"))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Text( Helper.userExist() ? "More_Screen_SignOut".localized(language):"SignIn_Button".localized(language))
+                                        .font(Font.SalamtechFonts.Reg16)
+
+                                        .foregroundColor(Color("lightGray"))
+                                    Spacer()
+                                }
+                            })
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                            .font(.system(size: 13))
+                            .padding(12)
+                            .disableAutocorrection(true)
+                            .background(
+                                Color.white
+                            ).foregroundColor(Color("blueColor"))
+                                .cornerRadius(5)
+                                .shadow(color: Color.black.opacity(0.099), radius: 3)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
                 }
                 .padding(.bottom,20)
-                .padding(.top,120)
-            
+                .padding(.top,140)
                 ZStack{
                     AppBarView(Title:"")
                     VStack (){
-//                        Spacer().frame( height: 100)
+                        Spacer().frame( height: 20)
+                        
                         Button(action: {
                             // here if you want to preview image
                         }, label: {
@@ -175,17 +180,11 @@ struct MoreView: View {
                                 Color("lightGray").opacity(0.2)
                             }
                         })
-                            .clipShape(Rectangle())
+                            .clipShape(Circle())
                             .frame(width: 66, height: 66, alignment: .center)
                             .cornerRadius(10)
                             .padding(.top)
                        
-                        Spacer().frame( height: 10)
-                            Text("More_Screen_updateProfile".localized(language))
-                            .foregroundColor(.white)
-                                .font(Font.SalamtechFonts.Reg16)
-
-                        
                         Spacer()
                     }
                 }

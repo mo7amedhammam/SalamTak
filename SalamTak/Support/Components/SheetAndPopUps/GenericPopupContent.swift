@@ -34,7 +34,7 @@ struct PopUpView <Content: View>: View {
                         self.content
                     }
                     }.background(
-                    RoundedRectangle(cornerRadius: 40.0)
+                    RoundedCornersShape(radius: 40, corners: [.topLeft,.topRight])
                         .foregroundColor(.white)
                         .ignoresSafeArea()
                         .opacity(1.5)
@@ -52,6 +52,10 @@ struct PopUpView <Content: View>: View {
     }
 }
 
-
+struct PopUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        PopUpView(IsPresented: .constant(true), content: {})
+    }
+}
 
 

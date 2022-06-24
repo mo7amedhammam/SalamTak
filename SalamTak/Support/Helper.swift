@@ -52,7 +52,7 @@ final class Helper{
         return userDef.string(forKey: "PhoneNumber") ?? "default phone number"
     }
     class func getpatientName() ->String {
-        return userDef.string(forKey: "patientName") ?? "default patient Name"
+        return userDef.string(forKey: "patientName") ?? "patient Name"
     }
     
     class func setUserimage(userImage : String) {

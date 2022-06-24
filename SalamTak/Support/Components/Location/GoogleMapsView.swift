@@ -27,21 +27,7 @@ struct GoogleMapsView: UIViewRepresentable {
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
 //        let camera = GMSCameraPosition.camera(withLatitude: 12.830700372413512, longitude: 1.9390798732638361, zoom: 8.0)
-        
-            print("g maps : helper")
-            print(Helper.getUserLongtude())
-            print(Helper.getUserLatitude())
-            
-            print("onappear : vm ")
-            print(long)
-            print(lat)
-            
-            print("onappear :  lom vm ")
-            print(locationManager.lastSeenLocation?.coordinate.longitude ?? 00)
-            print(locationManager.lastSeenLocation?.coordinate.latitude ?? 00)
-        
-        
-        
+
         let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D(latitude : lat, longitude :long  ), zoom: 15.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true

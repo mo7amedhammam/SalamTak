@@ -37,9 +37,12 @@ class ViewModelCreateUser: ObservableObject {
             publishedUserCreatededModel = modeldata.data
             
             isRegistered = true
-            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatededModel?.Token ?? "")")
-            Helper.setUserData(Id: publishedUserCreatededModel?.Id ?? 0, PhoneNumber: publishedUserCreatededModel?.Phone ?? "", patientName: "model?.Data?.Name" )
-            Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserCreatededModel?.Image ?? "")")
+            DispatchQueue.main.async {
+                Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserCreatededModel?.Token ?? "")")
+                Helper.setUserData(Id: publishedUserCreatededModel?.Id ?? 0, PhoneNumber: publishedUserCreatededModel?.Phone ?? "", patientName: fullName )
+                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserCreatededModel?.Image ?? "")")
+
+            }
         }.store(in: &cancellables)
         
     }

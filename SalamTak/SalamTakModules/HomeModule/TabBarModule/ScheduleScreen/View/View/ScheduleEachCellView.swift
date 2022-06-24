@@ -15,7 +15,7 @@ extension String {
 struct ScheduleEachCellView: View {
     var language = LocalizationService.shared.language
     
-    @State var schedule: AppointmentInfo
+    @Binding var schedule: AppointmentInfo
     @State var goingToRate = false
     @State var goingToHelp = false
     
@@ -187,6 +187,6 @@ struct ScheduleEachCellView: View {
 
 struct ScheduleEachCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleEachCellView(schedule: AppointmentInfo.init(id: 1, medicalTypeId: 2, doctorName: "mostafa") )
+        ScheduleEachCellView(schedule:.constant( AppointmentInfo.init(id: 1, medicalTypeId: 2, doctorName: "mostafa")) )
     }
 }

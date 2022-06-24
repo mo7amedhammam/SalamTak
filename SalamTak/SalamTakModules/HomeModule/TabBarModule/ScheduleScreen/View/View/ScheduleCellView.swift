@@ -15,8 +15,8 @@ struct ScheduleCellView: View {
             ScrollView(.vertical, showsIndicators: false){
                 
                 VStack(spacing:10){
-                    ForEach( 0..<(scheduleVM.AppointmentsArr.count ), id:\.self) { index in
-                        ScheduleEachCellView(schedule: scheduleVM.AppointmentsArr[index]).environmentObject(scheduleVM)
+                    ForEach($scheduleVM.AppointmentsArr , id:\.self) { index in
+                        ScheduleEachCellView(schedule:index).environmentObject(scheduleVM)
                             .padding(.horizontal)
                     }
                 }.padding(.vertical,20)

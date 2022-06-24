@@ -15,8 +15,9 @@ struct ContentView: View {
 
     var body: some View {
         ZStack{
-//            TabBarView()
-                PersonalDataView()
+            TabBarView()
+//                PersonalDataView()
+//            PhoneVerificationView().environmentObject(ViewModelRegister())
         }
 
         .onChange(of: scenePhase, perform: { newPhase in
@@ -42,12 +43,12 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-@MainActor class imagView: ObservableObject {
-    @Published var ShowImage: Bool
-    @Published var ImageURL: String
-    
-    init(){
-        ShowImage = false
-        ImageURL = ""
-    }
-}
+//@MainActor class imagView: ObservableObject {
+//    @Published var ShowImage: Bool
+//    @Published var ImageURL: String
+//
+//    init(){
+//        ShowImage = false
+//        ImageURL = ""
+//    }
+//}

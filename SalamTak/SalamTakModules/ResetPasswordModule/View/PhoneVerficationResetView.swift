@@ -39,10 +39,8 @@ struct PhoneVerificationResetView: View {
     var body: some View {
         
         ZStack {
-            VStack( spacing: 1){
-                AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
-                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
+            ScrollView( ){
+                Spacer().frame(height:120)
                 Text("PhoneVerfication_Screen_subtitle".localized(language)).font(.custom("SF UI Text", size: 16))
                     .foregroundColor(Color("subText"))
                     .padding(.top, 35)
@@ -144,10 +142,14 @@ struct PhoneVerificationResetView: View {
                 
                 Spacer()
             }  .edgesIgnoringSafeArea(.all)
-            
+                .keyboardSpace()
+        
+            AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
+                .navigationBarItems(leading: BackButtonView())
+                .navigationBarBackButtonHidden(true)
+
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .adaptsToKeyboard()
         .ignoresSafeArea()
         .onTapGesture(perform: {
             hideKeyboard()

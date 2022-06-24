@@ -10,30 +10,31 @@ import SwiftUI
 import MapKit
 
 struct ViewMapWithPin: View {
-    
+    var language = LocalizationService.shared.language
+
     @Binding var showmap:Bool
     @State var title:String
     @State var subtitle:String
     @Binding var longtude:Double
     @Binding var latitude:Double
-//    @StateObject var patientLocation = ViewModelCreatePatientProfile()
     @EnvironmentObject var locationManager : LocationViewModel
     var body: some View {
         
         VStack{
-            HStack {
-                Spacer()
-                Text("long press on pin to drag ")
-                Spacer()
-                Button(action: {
-                    showmap = false
-                }, label: {
-                    Text("OK").font(.title)
-                        .foregroundColor(.blue)
-                }).frame(width:50)
-                
-            }.frame(height:40)
-            
+            Text("long_press_on_pin_to_drag".localized(language))
+                .frame(width:UIScreen.main.bounds.width,height:40)
+                .overlay(
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            showmap = false
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .font(.title)
+                                .foregroundColor(.blue)
+                        }).frame(width:50)
+                    }
+                )
             
             ZStack(alignment: .bottom){
                 GoogleMapsView(long: $longtude, lat: $latitude).environmentObject(locationManager)
@@ -50,28 +51,14 @@ struct ViewMapWithPin: View {
                         .cornerRadius(15)
                 }
             }
-        }
-        .onAppear(perform: {
-            print("g map pin : helper")
-            print(Helper.getUserLongtude())
-            print(Helper.getUserLatitude())
-            
-            print("onappear : vm ")
-            print(longtude)
-            print(latitude)
-            
-            print("onappear :  lom vm ")
-            print(locationManager.lastSeenLocation?.coordinate.longitude ?? 00)
-            print(locationManager.lastSeenLocation?.coordinate.latitude ?? 00)
-        })
-     
+        }.edgesIgnoringSafeArea(.bottom)
         
     }
 }
 
 struct ViewMapWithPin_Previews: PreviewProvider {
     static var previews: some View {
-        ViewMapWithPin(showmap: .constant(false), title: "", subtitle: "",longtude: .constant(30.5624707), latitude:.constant(31.1545537))
+        ViewMapWithPin(showmap: .constant(false), title: "", subtitle: "",longtude: .constant(30.5624707), latitude:.constant(31.1545537)).environmentObject(LocationViewModel())
     }
 }
 extension Binding where Value == String {

@@ -62,16 +62,15 @@ class ViewModelLogin: ObservableObject {
                 destination = AnyView(MedicalStateView())
             
             }else if self.publishedUserLogedInModel?.ProfileStatus == 2{
+                Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
+                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
                 destination = AnyView(TabBarView())
             }
-            
-            Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
-            Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
             Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.Token ?? "")" )
+            
         }.store(in: &cancellables)
         
     }
-    
 }
 
 
@@ -96,7 +95,6 @@ extension ViewModelLogin:TargetType    {
     }
     
     func startLoginApi(){
-        print(parameter)
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<LoginModel>.self) { [self] (success, model, err) in

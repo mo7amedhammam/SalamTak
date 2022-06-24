@@ -72,7 +72,6 @@ struct MedicalTextFieldInfo: View {
     let screenWidth = UIScreen.main.bounds.size.width - 55
     var body: some View {
         ZStack (alignment:.leading){
-            
             HStack{
                 ZStack(alignment:.leading){
                     Text(title)
@@ -80,7 +79,6 @@ struct MedicalTextFieldInfo: View {
                         .foregroundColor(.gray)
                         .offset(y:  -20)
                         .scaleEffect( 0.8, anchor: .leading)
-                    
                     
                     TextField(isActive ? "120" : "--/--",text:isActive ? $text1 : $text)
                         .disabled(isActive)
@@ -108,6 +106,13 @@ struct MedicalTextFieldInfo: View {
         ).foregroundColor(Color("blueColor"))
             .cornerRadius(5)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
+        
+            .onChange(of: text){ newval in
+                if newval==text1{
+                    isActive = true
+                }
+            }
+        
     }
 }
 
@@ -154,7 +159,7 @@ struct FeesFilterTextField: View {
                     .offset(y: text.isEmpty ? 0 : -20)
                     .scaleEffect(text.isEmpty ? 1 : 0.9, anchor: .leading)
             }
-
+            
             TextField(title,text:$text)
                 .autocapitalization(.none)
                 .textInputAutocapitalization(.none)
@@ -169,7 +174,7 @@ struct FeesFilterTextField: View {
         ).foregroundColor(.black)
             .cornerRadius(12)
             .shadow(color: Color.black.opacity(0.099), radius: 3)
-
+        
     }
 }
 

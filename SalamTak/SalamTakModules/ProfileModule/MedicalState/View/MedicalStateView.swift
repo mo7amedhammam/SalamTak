@@ -190,9 +190,10 @@ struct MedicalStateView: View {
                             }
                         }
                         .keyboardSpace()
-                        Spacer().frame(height:75)
+                        Spacer().frame(height:120)
                     }
                     .padding(.horizontal)
+//                    .padding(.bottom,55)
 
                     InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "Certificates_Screen_subtitle".localized(language),Nexttext: "CompeleteMedical_Screen_secondSubTitle".localized(language),image: "2-3",navBarHidden:true)
                         .offset(y: -10)

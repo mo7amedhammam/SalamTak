@@ -91,10 +91,12 @@ struct ViewCancelAppointmentPopUp: View {
         .padding([.leading,.trailing],20)
         .edgesIgnoringSafeArea(.all)
         .background(Color.black.opacity(0.2))
-        .onDisappear(perform: {
-            scheduleVM.AppointmentsArr.removeAll()
-            scheduleVM.execute(operation: .getappointments)
-        })
+//        .onDisappear(perform: {
+//            if scheduleVM.IsCancelled == true{
+//            scheduleVM.AppointmentsArr.removeAll()
+//            scheduleVM.execute(operation: .getappointments)
+//            }
+//        })
         
     }
 }

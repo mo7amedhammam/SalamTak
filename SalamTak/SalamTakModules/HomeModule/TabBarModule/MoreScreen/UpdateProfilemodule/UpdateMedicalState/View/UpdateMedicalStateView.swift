@@ -240,7 +240,9 @@ struct UpdateMedicalStateView: View {
 
 struct UpdateMedicalStateView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateMedicalStateView()
+        ZStack {
+            UpdateMedicalStateView()
+        }
     }
 }
 

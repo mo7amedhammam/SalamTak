@@ -24,7 +24,8 @@ struct CustomActionBottomSheet: View {
                 
                 HStack  {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+//                        presentationMode.wrappedValue.dismiss()
+                        Cancelaction()
                     }, label: {
                         Text(CancelTitle)
                             .font(.system(size: 18))

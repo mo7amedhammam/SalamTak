@@ -74,6 +74,7 @@ struct ViewSummary:View{
                     }
                     .padding(.horizontal,15)
                 }
+                .padding(.bottom,130)
                 .background(Color("CLVBG"))
             }.disabled(CreateAppointment.isDone)
             

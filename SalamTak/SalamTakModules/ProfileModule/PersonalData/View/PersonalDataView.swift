@@ -247,12 +247,12 @@ struct PersonalDataView: View {
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .onTapGesture(perform: {
                                     ShowingMap = true
-                                    if patientCreatedVM.Longitude == 0.0 {
-                                        patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
-                                    }
-                                    if patientCreatedVM.Latitude == 0.0 {
-                                        patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
-                                    }
+//                                    if patientCreatedVM.Longitude == 0.0 {
+//                                        patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
+//                                    }
+//                                    if patientCreatedVM.Latitude == 0.0 {
+//                                        patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
+//                                    }
                                 })
                             VStack{
                                 Button {
@@ -309,30 +309,7 @@ struct PersonalDataView: View {
                 InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "CompeleteProfile_Screen_subtitle".localized(language), Nexttext: "CompeleteProfile_Screen_secondSubTitle".localized(language),image: "1-3",navBarHidden:true)
                     .offset(y: -10)
                     .edgesIgnoringSafeArea(.top)
-                
-//                VStack{
-//                    Spacer()
-//                    Button(action: {
-//                        DispatchQueue.main.async {
-//                            patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
-//                        }
-//                    }, label: {
-//                        HStack {
-//                            Text("CompeleteProfile_Screen_Next_Button".localized(language))
-//                                .fontWeight(.semibold)
-//                                .font(.title3)
-//                        }.frame(minWidth: 0, maxWidth: .infinity)
-//                            .padding()
-//                            .foregroundColor(.white)
-//                            .background((patientCreatedVM.FirstName != "" && patientCreatedVM.FirstNameAr != "" && patientCreatedVM.MiddelName != "" && patientCreatedVM.MiddelNameAr != "" && patientCreatedVM.FamilyName != "" && patientCreatedVM.FamilyNameAr != "" &&  patientCreatedVM.NationalityId != 0 && patientCreatedVM.CityId
-//                                         != 0 && patientCreatedVM.AreaId != 0 && patientCreatedVM.EmergencyContact != "" && patientCreatedVM.OccupationId != 0 && patientCreatedVM.Address != "" && patientCreatedVM.GenderId != 0) || (patientCreatedVM.isLoading != true) ?  Color("lightGray"):Color("blueColor"))
-//                            .cornerRadius(12)
-//                            .padding(.horizontal, 20)
-//                    }) .disabled((patientCreatedVM.FirstName == "" || patientCreatedVM.FirstNameAr == "" || patientCreatedVM.MiddelName == "" || patientCreatedVM.MiddelNameAr == "" ||  patientCreatedVM.FamilyName == "" || patientCreatedVM.FamilyNameAr == "" ||  patientCreatedVM.NationalityId == 0 || patientCreatedVM.CityId == 0 || patientCreatedVM.AreaId == 0 || patientCreatedVM.EmergencyContact == "" || patientCreatedVM.OccupationId == 0 || patientCreatedVM.Address == "" || patientCreatedVM.GenderId == 0) || (patientCreatedVM.isLoading == true))
-//                        .padding(.bottom)
-//                }
-//                .background(.clear).shadow(color: .gray, radius: 9)
-                
+
                 CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
                     DispatchQueue.main.async {
                         patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
@@ -375,12 +352,17 @@ struct PersonalDataView: View {
             NationalityVM.startFetchCountries()
             OccupationVM.startFetchOccupation()
             
-            locationViewModel.requestPermission()
-            var coordinate: CLLocationCoordinate2D? {
-                locationViewModel.lastSeenLocation?.coordinate
-            }
+           
             DispatchQueue.main.async {
-            getAddressFromLatLon(pdblLatitude: "\(coordinate?.latitude ?? 0.0)", withLongitude: "\(coordinate?.longitude ?? 0.0)")
+                locationViewModel.requestPermission()
+
+                if patientCreatedVM.Longitude == 0.0 {
+                    patientCreatedVM.Longitude = locationViewModel.lastSeenLocation?.coordinate.longitude ?? 5.5
+                }
+                if patientCreatedVM.Latitude == 0.0 {
+                    patientCreatedVM.Latitude = locationViewModel.lastSeenLocation?.coordinate.latitude ?? 5.5
+                }
+                getAddressFromLatLon(pdblLatitude: "\(locationViewModel.lastSeenLocation?.coordinate.latitude ?? 0.0)", withLongitude: "\(locationViewModel.lastSeenLocation?.coordinate.longitude ?? 0.0)")
             }
         })
         .onChange(of: focusedInput) {_ in
