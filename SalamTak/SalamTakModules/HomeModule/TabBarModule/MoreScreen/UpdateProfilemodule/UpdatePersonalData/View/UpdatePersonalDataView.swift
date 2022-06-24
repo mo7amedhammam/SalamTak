@@ -319,7 +319,7 @@ struct UpdatePersonalDataView: View {
                             .keyboardSpace()
                             
                             Spacer()
-                            ButtonView(text: "Update Profile", action: {
+                            ButtonView(text: "UpdateProfile".localized(language), action: {
                                 patientUpdatedVM.updatePersonalInfo(operation: .updatePersonalInfo)
                             })
                         }
@@ -408,7 +408,9 @@ struct UpdatePersonalDataView: View {
 
 struct UpdatePersonalDataView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdatePersonalDataView()
+        ZStack {
+            UpdatePersonalDataView()
+        }
     }
 }
 

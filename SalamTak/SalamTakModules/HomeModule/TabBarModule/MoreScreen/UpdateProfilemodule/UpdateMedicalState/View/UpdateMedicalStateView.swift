@@ -198,7 +198,6 @@ struct UpdateMedicalStateView: View {
                     .blur(radius: ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy ? 10 : 0)
                     .disabled(ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy)
                     if ShowBloodType {
-                        
                         ShowUpdateBloodTypeList(ShowBloodType: $ShowBloodType, bounds: $bounds, offset: $offset).environmentObject(medicalUpdatedVM)
                             .environmentObject(BloodTypeVM)
                         

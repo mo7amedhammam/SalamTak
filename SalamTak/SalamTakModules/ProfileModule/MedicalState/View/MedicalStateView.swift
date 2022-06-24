@@ -34,7 +34,6 @@ struct MedicalStateView: View {
         ZStack{
             ZStack{
                 ZStack{
-                    
                     VStack{
                         Spacer().frame(height:180)
                         ScrollView(.vertical, showsIndicators: false) {
@@ -71,13 +70,13 @@ struct MedicalStateView: View {
                                         
                                     } label: {
                                         HStack{
-                                            Text(medicalCreatedVM.BloodTypeName)
-                                                .foregroundColor(medicalCreatedVM.BloodTypeName == "" ? Color("lightGray"):Color("blueColor"))
+                                            Text(medicalCreatedVM.BloodTypeName.isEmpty ? "Blood Group":medicalCreatedVM.BloodTypeName)
+                                                .foregroundColor(medicalCreatedVM.BloodTypeName.isEmpty ? Color("lightGray"):Color("blueColor"))
                                             
                                             Spacer()
                                             Image(systemName: "staroflife.fill")
                                                 .font(.system(size: 10))
-                                                .foregroundColor(medicalCreatedVM.BloodTypeName == "" ? Color.red : Color.white)
+                                                .foregroundColor(medicalCreatedVM.BloodTypeName.isEmpty ? Color.red : Color.white)
                                             Image(systemName: "chevron.forward")
                                                 .foregroundColor(Color("lightGray"))
                                         }
@@ -87,7 +86,8 @@ struct MedicalStateView: View {
                                         .disableAutocorrection(true)
                                         .background(
                                             Color.white
-                                        ).foregroundColor(Color("blueColor"))
+                                        )
+                                        .foregroundColor(Color("blueColor"))
                                             .cornerRadius(5)
                                             .shadow(color: Color.black.opacity(0.099), radius: 3)
                                     }
@@ -165,6 +165,7 @@ struct MedicalStateView: View {
                                         .autocapitalization(.none)
                                     
                                         .textInputAutocapitalization(.never)
+                                    
                                 }
                                 VStack{
                                     Spacer().frame(height: 20)
@@ -189,28 +190,60 @@ struct MedicalStateView: View {
                             }
                         }
                         .keyboardSpace()
-                        Spacer().frame(height:120)
+                        Spacer().frame(height:75)
                     }
+                    .padding(.horizontal)
+
                     InfoAppBarView(Maintext: "CompeleteProfile_Screen_title".localized(language), text: "Certificates_Screen_subtitle".localized(language),Nexttext: "CompeleteMedical_Screen_secondSubTitle".localized(language),image: "2-3",navBarHidden:true)
                         .offset(y: -10)
                     
+//                    VStack{
+//                        Spacer()
+//                        Button(action: {
+//                            DispatchQueue.main.async {
+//
+//                                if medicalCreatedVM.Pressure == "" {
+//                                    medicalCreatedVM.Pressure = self.normalPressure
+//                                }
+//                                if medicalCreatedVM.SugarLevel == "" {
+//                                    medicalCreatedVM.SugarLevel = self.normalSugar
+//                                }
+//                                print("pressure")
+//                                print(medicalCreatedVM.Pressure)
+//                                medicalCreatedVM.startCreateMedicalProfile()
+//                            }
+//
+//                        }, label: {
+//                            HStack {
+//                                Text("Finish".localized(language))
+//                                    .fontWeight(.semibold)
+//                                    .font(.title3)
+//                            }.frame(minWidth: 0, maxWidth: .infinity)
+//                                .padding()
+//                                .foregroundColor(.white)
+//                                .background((medicalCreatedVM.Height != 0 && medicalCreatedVM.Weight != 0  && medicalCreatedVM.BloodTypeId != 0) && (medicalCreatedVM.isLoading == false) ?  Color("blueColor"):Color("lightGray"))
+//                                .cornerRadius(12)
+//                                .padding(.horizontal, 20)
+//                        }) .disabled((medicalCreatedVM.Height == 0 || medicalCreatedVM.Weight == 0 || medicalCreatedVM.BloodTypeId == 0) || (medicalCreatedVM.isLoading == true))
+//                            .padding(.bottom)
+//                            .padding(.horizontal)
+//
+//                    }
                     
                     CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
                         DispatchQueue.main.async {
-                            
+
                             if medicalCreatedVM.Pressure == "" {
                                 medicalCreatedVM.Pressure = self.normalPressure
                             }
                             if medicalCreatedVM.SugarLevel == "" {
                                 medicalCreatedVM.SugarLevel = self.normalSugar
                             }
-                            print("pressure")
-                            print(medicalCreatedVM.Pressure)
                             medicalCreatedVM.startCreateMedicalProfile()
                         }
-                        
+
                     }, Cancelaction:  {
-                        //                                        self.presentationMode.wrappedValue.dismiss()
+//                                                                self.presentationMode.wrappedValue.dismiss()
                     }, isValid: $isValid)
                     
                     
@@ -221,20 +254,14 @@ struct MedicalStateView: View {
                 .blur(radius: ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy ? 10 : 0)
                 .disabled(ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy)
                 if ShowBloodType {
-                    
                     ShowBloodTypeList( ShowBloodType: $ShowBloodType, bounds: $bounds, offset: $offset).environmentObject(BloodTypeVM)
                         .environmentObject(medicalCreatedVM)
                     
                 } else if ShowFoodAllergy{
                     ShowFoodAllergyList( ShowFoodAllergy: $ShowFoodAllergy, bounds: $bounds, offset: $offset)
                         .environmentObject(medicalCreatedVM)
-                    
-                    
                 } else if ShowMedicineAllergy{
-                    
                     ShowMedicineAllergyList( ShowMedicineAllergy: $ShowMedicineAllergy, bounds: $bounds, offset: $offset)                            .environmentObject(medicalCreatedVM)
-                    
-                    
                 }
             }
             

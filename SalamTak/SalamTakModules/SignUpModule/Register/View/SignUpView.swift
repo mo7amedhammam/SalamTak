@@ -25,22 +25,17 @@ struct ViewSignUp: View {
     @State var TermsAndConditions = false
     @State var Approve = false
     @State var cancel = false
-
     @State var GotoPhoneVerification = false
 
     var body: some View {
         ZStack {
             VStack{
+                Spacer().frame(height:90)
                 ScrollView(showsIndicators: false) {
-                    VStack {
-                        AppBarView(Title: "SignUp_Screen_title".localized(language))
-                        //                                .navigationBarItems(leading: BackButtonView())
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
+//                    VStack {
                         Image("logo")
                             .resizable()
-                            .frame(width: 110, height: 110, alignment: .center)
-                            .padding(.top, 30)
+                            .frame(width: 150, height: 120, alignment: .center)
                         
                         VStack (spacing: 15){
                                 InputTextField( text: $RegisterVM.fullName,title: "SignUp_Screen_enterfullName".localized(language))
@@ -68,7 +63,6 @@ struct ViewSignUp: View {
                                         .frame(maxWidth:.infinity, alignment: .leading)
                                 }
                                 
-                                
                                 InputTextField( text: $RegisterVM.phoneNumber,title: "SignUp_Screen_enterPhone".localized(language))
                                     .keyboardType(.numberPad)
                                     .textInputAutocapitalization(.never)
@@ -95,15 +89,16 @@ struct ViewSignUp: View {
                                 .foregroundColor(.red)
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     }
+                .keyboardSpace()
                     Spacer()
-                    ButtonView(text: "SignUp_Button".localized(language), backgroundColor: RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && (( RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password ) || quickSignup == true) && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "" ? Color("mainColor") :  Color(uiColor: .lightGray)){
+                ButtonView(text: "SignUp_Button".localized(language), backgroundColor: (RegisterVM.fullName != "" && RegisterVM.email != "" && RegisterVM.phoneNumber != "" && (( RegisterVM.password != "" && RegisterVM.password1 == RegisterVM.password ) || quickSignup == true) && RegisterVM.emailErrorMessage == "" && RegisterVM.phoneErrorMessage == "" && RegisterVM.nameErrorMessage == "") && (RegisterVM.isLoading == false) ? Color("mainColor") :  Color(uiColor: .lightGray)){
                         if RegisterVM.isRegistered{
                             ShowPopup = true
                         }else{
                         RegisterVM.startFetchUserRegisteration()
                         }
                     }
-                    .disabled( RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || (( RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  ) && quickSignup == false ) || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "")
+                .disabled( (RegisterVM.fullName == "" || RegisterVM.email == "" || RegisterVM.phoneNumber == "" || (( RegisterVM.password == "" || RegisterVM.password1 != RegisterVM.password  ) && quickSignup == false ) || RegisterVM.emailErrorMessage != "" || RegisterVM.phoneErrorMessage != "" || RegisterVM.nameErrorMessage != "") || (RegisterVM.isLoading == true))
                     
                     if quickSignup == false{
                         HStack (spacing: -10){
@@ -126,12 +121,13 @@ struct ViewSignUp: View {
                             .foregroundColor(Color("mainColor"))
                         }
                     }
-                    Spacer().frame(height:25)
-                }
-                .keyboardSpace()
             }
             
-            
+            AppBarView(Title: "SignUp_Screen_title".localized(language))
+            //                                .navigationBarItems(leading: BackButtonView())
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+         
             // showing loading indicator
             ActivityIndicatorView(isPresented: $RegisterVM.isLoading)
             
@@ -142,7 +138,7 @@ struct ViewSignUp: View {
             //phone verification
             NavigationLink(destination: PhoneVerificationView().environmentObject(RegisterVM),isActive: $Approve, label: {
             })
-        }
+        }.disabled(ShowPopup)
         .navigationViewStyle(StackNavigationViewStyle())
         .background(Color("CLVBG"))
         .ignoresSafeArea()

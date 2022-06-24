@@ -24,8 +24,7 @@ struct ResetPasswordView: View {
                                 .navigationBarBackButtonHidden(true)
                             Image("logo")
                                     .resizable()
-                                    .frame(width: 110, height: 110, alignment: .center)
-                                    .padding(.top, 30)
+                                    .frame(width: 150, height: 120, alignment: .center)
 
                             VStack (spacing: 15){
 
@@ -47,7 +46,7 @@ struct ResetPasswordView: View {
                             ButtonView(text: "Reset_Screen_confirmEmail_Button".localized(language), backgroundColor:  ResetVM.email != "" &&  ResetVM.emailErrorMessage == ""  ? Color("blueColor") :  Color(uiColor: .lightGray)){
                                 ResetVM.startFetchResetPassword()
                             }.disabled(  ResetVM.email == "" || ResetVM.emailErrorMessage != "" )
-                        }
+                        }.keyboardSpace()
                     }
                     // showing loading indicator
                     ActivityIndicatorView(isPresented: $ResetVM.isLoading)
@@ -56,7 +55,7 @@ struct ResetPasswordView: View {
                 .navigationViewStyle(StackNavigationViewStyle())
                 .background(Color("CLVBG"))
             
-                    .adaptsToKeyboard()
+//                    .adaptsToKeyboard()
                     .ignoresSafeArea()
                     .onTapGesture(perform: {
                         hideKeyboard()

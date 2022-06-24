@@ -47,13 +47,12 @@ struct quickLoginSheet : View {
                     }
                     
                 }.background(
-                    RoundedRectangle(cornerRadius: 40.0)
+                    RoundedCornersShape(radius:40,corners:[.topLeft,.topRight])
                         .foregroundColor(.white)
                         .ignoresSafeArea()
-                        .opacity(1.5)
+//                        .opacity(1.5)
                         .shadow(radius: 15)
                         .frame(width: UIScreen.main.bounds.width)
-                    
                 )
                 
             }

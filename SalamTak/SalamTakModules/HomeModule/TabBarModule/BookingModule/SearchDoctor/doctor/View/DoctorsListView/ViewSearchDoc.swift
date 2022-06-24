@@ -152,7 +152,7 @@ struct ViewSearchDoc: View {
                     .padding(.vertical,0)
                     .edgesIgnoringSafeArea(.bottom)
             }
-            
+            .disabled(showFilter)
             .blur(radius: showFilter==true ? 9:0)
             .frame(width: UIScreen.main.bounds.width)
             .edgesIgnoringSafeArea(.vertical)

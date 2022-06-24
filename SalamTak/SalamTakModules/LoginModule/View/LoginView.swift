@@ -25,76 +25,82 @@ struct ViewLogin: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                AppBarView(Title: "SignIn_Screen_title".localized(language))
-                    .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(true)
-                Spacer()
-                
-                Image("logo")
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.black)
-                
                 VStack {
-                    InputTextField(text: $LoginVM.phoneNumber, title:"SignIn_Screen_phoneNumber".localized(language))
-                        .focused($isfocused)
-                        .keyboardType(.numberPad)
-                        .onChange(of: LoginVM.phoneNumber, perform: editingChanged)
-                    if !LoginVM.phoneErrorMessage.isEmpty{
-                        Text(LoginVM.phoneErrorMessage)
-                            .font(.system(size: 13))
-                            .padding(.horizontal,20)
-                            .foregroundColor(.red)
-                            .frame(maxWidth:.infinity, alignment: .leading)
-                    }
+                    Spacer().frame(height:80)
+                    ScrollView {
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 150, height: 130)
+                        .foregroundColor(.black)
                     
-                    SecureInputView("SignIn_Screen_password".localized(language), text: $LoginVM.password)
-                        .autocapitalization(.none)
-                        .textInputAutocapitalization(.never)
-                        .focused($isfocused)
-                }
+                        VStack {
+                            InputTextField(text: $LoginVM.phoneNumber, title:"SignIn_Screen_phoneNumber".localized(language))
+                                .focused($isfocused)
+                                .keyboardType(.numberPad)
+                                .onChange(of: LoginVM.phoneNumber, perform: editingChanged)
 
-                if QuickLogin == false{
-                    Button("SignIn_Screen_forgetPassword".localized(language), action: {
-                        self.resetPassword.toggle()
+                            if !LoginVM.phoneErrorMessage.isEmpty{
+                                Text(LoginVM.phoneErrorMessage)
+                                    .font(.system(size: 13))
+                                    .padding(.horizontal,20)
+                                    .foregroundColor(.red)
+                                    .frame(maxWidth:.infinity, alignment: .leading)
+                            }
+                            
+                            SecureInputView("SignIn_Screen_password".localized(language), text: $LoginVM.password)
+                                .autocapitalization(.none)
+                                .textInputAutocapitalization(.never)
+                                .focused($isfocused)
+                       
+                            if QuickLogin == false{
+                                Button("SignIn_Screen_forgetPassword".localized(language), action: {
+                                    self.resetPassword.toggle()
 
-                    }).frame( height: 45)
-                        .foregroundColor(Color("darkGreen"))
-                }
-
-                Spacer()
-                ButtonView(text: "SignIn_Button".localized(language),backgroundColor:  LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("mainColor") :                                 Color(uiColor: .lightGray) , action: {
-                    LoginVM.startLoginApi()
-                }).disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "")
-                
-                if QuickLogin == false{
-                    HStack {
-                        Text("SignIn_Screen_dont_haveAccount".localized(language)).foregroundColor(Color("subTitle"))
-                        
-                        Button("SignUp_Button".localized(language)) {
-                            if self.ispresented == true{
-                                presentationMode.wrappedValue.dismiss()
-                            }else {
-                                self.dontHaveAccount = true
+                                }).frame( height: 45)
+                                    .foregroundColor(Color("darkGreen"))
                             }
                         }
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundColor(Color("mainColor"))
-                        
-                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                }
-                
-                Spacer()
-            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                    .adaptsToKeyboard()
+                        .padding(.horizontal)
 
+                    }
+                    .keyboardSpace()
+                    
+                    Spacer()
+                    ButtonView(text: "SignIn_Button".localized(language),backgroundColor:  (LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "") && !(LoginVM.isLoading ?? false) ? Color("mainColor") :                                 Color(uiColor: .lightGray) , action: {
+                        LoginVM.startLoginApi()
+                    }).disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "" || (LoginVM.isLoading ?? false))
+                    
+                    if QuickLogin == false{
+                        HStack {
+                            Text("SignIn_Screen_dont_haveAccount".localized(language)).foregroundColor(Color("subTitle"))
+                            
+                            Button("SignUp_Button".localized(language)) {
+                                if self.ispresented == true{
+                                    presentationMode.wrappedValue.dismiss()
+                                }else {
+                                    self.dontHaveAccount = true
+                                }
+                            }
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(Color("mainColor"))
+                            
+                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                    }
+                    
+
+                }.padding(.vertical)
+                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                
             
+
+            AppBarView(Title: "SignIn_Screen_title".localized(language))
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
+
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $LoginVM.isLoading)
             
-            Spacer()
             
             // go to verify account to resset
             NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount, quickSignup: .constant(false)),isActive: $dontHaveAccount) {

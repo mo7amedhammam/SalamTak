@@ -17,7 +17,6 @@ struct ScheduleView: View {
     var body: some View {
         ZStack{
             VStack{
-                ZStack {
                     ZStack {
                         Image("underappbar")
                             .resizable()
@@ -50,9 +49,7 @@ struct ScheduleView: View {
                         }
                     
                     }.offset(y: 80)
-                    AppBarView(Title:"Schedule".localized(language))
-                        .offset(y:-10)
-                }
+                
                 Spacer().frame(height: 90)
                     ZStack{
                         Spacer().frame(height: 40)
@@ -64,6 +61,9 @@ struct ScheduleView: View {
             .ignoresSafeArea()
             .background(Color("CLVBG"))
          
+            
+            AppBarView(Title:"Schedule".localized(language))
+
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
         
@@ -72,6 +72,8 @@ struct ScheduleView: View {
             
         }.environmentObject(scheduleVM)
             .navigationViewStyle(StackNavigationViewStyle())
+            .ignoresSafeArea()
+            .disabled(scheduleVM.showcncel)
 
         .onAppear(perform: {
             medicalType.GetExaminationTypeId()

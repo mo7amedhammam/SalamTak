@@ -75,7 +75,7 @@ struct ViewSummary:View{
                     .padding(.horizontal,15)
                 }
                 .background(Color("CLVBG"))
-            }
+            }.disabled(CreateAppointment.isDone)
             
             VStack{
                 AppBarView(Title: "Summary".localized(language))

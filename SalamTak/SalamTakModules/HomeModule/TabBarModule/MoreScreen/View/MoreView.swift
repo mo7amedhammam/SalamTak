@@ -21,31 +21,8 @@ struct MoreView: View {
 
     var body: some View {
         NavigationView {
-            VStack{
-                ZStack{
-                    AppBarView(Title:"")
-                    ZStack (alignment: .bottom){
-                        Spacer().frame( height: 100)
-                        Button(action: {
-                            // here if you want to preview image
-                        }, label: {
-                            AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
-                                image.resizable()
-                            } placeholder: {
-                                Color("lightGray").opacity(0.2)
-                            }
-                        })
-                            .clipShape(Rectangle())
-                            .frame(width: 66, height: 66, alignment: .center)
-                            .cornerRadius(10)
-                            .padding(.top)
-                    }
-                }
-                Spacer().frame( height: 30)
-                    Text("More_Screen_updateProfile".localized(language))
-                        .foregroundColor(Color("lightGray"))
-                        .font(Font.SalamtechFonts.Reg16)
-                
+            ZStack{
+
                 ScrollView( showsIndicators: false){
                     VStack(alignment: .leading){
                         Group{
@@ -183,6 +160,35 @@ struct MoreView: View {
                     .padding()
                 }
                 .padding(.bottom,20)
+                .padding(.top,120)
+            
+                ZStack{
+                    AppBarView(Title:"")
+                    VStack (){
+//                        Spacer().frame( height: 100)
+                        Button(action: {
+                            // here if you want to preview image
+                        }, label: {
+                            AsyncImage(url: URL(string:  Helper.getUserimage())) { image in
+                                image.resizable()
+                            } placeholder: {
+                                Color("lightGray").opacity(0.2)
+                            }
+                        })
+                            .clipShape(Rectangle())
+                            .frame(width: 66, height: 66, alignment: .center)
+                            .cornerRadius(10)
+                            .padding(.top)
+                       
+                        Spacer().frame( height: 10)
+                            Text("More_Screen_updateProfile".localized(language))
+                            .foregroundColor(.white)
+                                .font(Font.SalamtechFonts.Reg16)
+
+                        
+                        Spacer()
+                    }
+                }
             }
             .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))

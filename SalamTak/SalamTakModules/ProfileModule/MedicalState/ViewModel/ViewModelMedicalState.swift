@@ -21,7 +21,7 @@ class ViewModelCreateMedicalProfile: ObservableObject {
     @Published  var SugarLevel: String = ""              //  date format "yyyy/mm/dd"
     @Published  var OtherAllergies : String = ""
     @Published  var BloodTypeId: Int = 0
-    @Published  var BloodTypeName: String = "Blood Group"
+    @Published  var BloodTypeName: String = ""
     @Published  var Prescriptions : String = ""
     
     @Published  var CurrentMedication : String = ""

@@ -310,6 +310,29 @@ struct PersonalDataView: View {
                     .offset(y: -10)
                     .edgesIgnoringSafeArea(.top)
                 
+//                VStack{
+//                    Spacer()
+//                    Button(action: {
+//                        DispatchQueue.main.async {
+//                            patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
+//                        }
+//                    }, label: {
+//                        HStack {
+//                            Text("CompeleteProfile_Screen_Next_Button".localized(language))
+//                                .fontWeight(.semibold)
+//                                .font(.title3)
+//                        }.frame(minWidth: 0, maxWidth: .infinity)
+//                            .padding()
+//                            .foregroundColor(.white)
+//                            .background((patientCreatedVM.FirstName != "" && patientCreatedVM.FirstNameAr != "" && patientCreatedVM.MiddelName != "" && patientCreatedVM.MiddelNameAr != "" && patientCreatedVM.FamilyName != "" && patientCreatedVM.FamilyNameAr != "" &&  patientCreatedVM.NationalityId != 0 && patientCreatedVM.CityId
+//                                         != 0 && patientCreatedVM.AreaId != 0 && patientCreatedVM.EmergencyContact != "" && patientCreatedVM.OccupationId != 0 && patientCreatedVM.Address != "" && patientCreatedVM.GenderId != 0) || (patientCreatedVM.isLoading != true) ?  Color("lightGray"):Color("blueColor"))
+//                            .cornerRadius(12)
+//                            .padding(.horizontal, 20)
+//                    }) .disabled((patientCreatedVM.FirstName == "" || patientCreatedVM.FirstNameAr == "" || patientCreatedVM.MiddelName == "" || patientCreatedVM.MiddelNameAr == "" ||  patientCreatedVM.FamilyName == "" || patientCreatedVM.FamilyNameAr == "" ||  patientCreatedVM.NationalityId == 0 || patientCreatedVM.CityId == 0 || patientCreatedVM.AreaId == 0 || patientCreatedVM.EmergencyContact == "" || patientCreatedVM.OccupationId == 0 || patientCreatedVM.Address == "" || patientCreatedVM.GenderId == 0) || (patientCreatedVM.isLoading == true))
+//                        .padding(.bottom)
+//                }
+//                .background(.clear).shadow(color: .gray, radius: 9)
+                
                 CustomActionBottomSheet( ConfirmTitle: "CompeleteProfile_Screen_Next_Button".localized(language), CancelTitle: "CompeleteProfile_Screen_Previos_Button".localized(language), Confirmaction:   {
                     DispatchQueue.main.async {
                         patientCreatedVM.startCreatePatientProfile(profileImage: patientCreatedVM.profileImage)
@@ -317,6 +340,7 @@ struct PersonalDataView: View {
                 }, Cancelaction:  {
                     //                                        self.presentationMode.wrappedValue.dismiss()
                 }, isValid: $isValid)
+                
             }
             
             
@@ -328,8 +352,6 @@ struct PersonalDataView: View {
                 ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
                     .environmentObject(patientCreatedVM)
                     .environmentObject(NationalityVM)
-                
-                
             }
             else if ShowCity{
                 ShowCityList( ShowCity: $ShowCity, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
@@ -364,7 +386,18 @@ struct PersonalDataView: View {
         .onChange(of: focusedInput) {_ in
             readyToGo()
         }
-
+        .onChange(of: patientCreatedVM.Address) {_ in
+            readyToGo()
+        }
+        .onChange(of: patientCreatedVM.FamilyNameAr) {_ in
+            readyToGo()
+        }
+        .onChange(of: patientCreatedVM.AreaId) {_ in
+            readyToGo()
+        }
+        .onChange(of: patientCreatedVM.OccupationId) {_ in
+            readyToGo()
+        }
         .toolbar{
             ToolbarItemGroup(placement: .keyboard ){
                 Button("Done"){
@@ -411,7 +444,7 @@ struct PersonalDataView: View {
         
         //            // alert with no ierror message
         .alert(patientCreatedVM.message, isPresented: $patientCreatedVM.isAlert) {
-            Button("OK", role: .cancel) { }
+            Button("OK".localized(language), role: .cancel) { }
         }
         
         NavigationLink(destination:MedicalStateView(),isActive: $patientCreatedVM.UserCreated , label: {
@@ -490,6 +523,8 @@ extension PersonalDataView{
     func readyToGo(){
         if patientCreatedVM.FirstName != "" && patientCreatedVM.FirstNameAr != "" && patientCreatedVM.MiddelName != "" && patientCreatedVM.MiddelNameAr != "" && patientCreatedVM.FamilyName != "" && patientCreatedVM.FamilyNameAr != "" &&  patientCreatedVM.NationalityId != 0 && patientCreatedVM.CityId != 0 && patientCreatedVM.AreaId != 0 && patientCreatedVM.EmergencyContact != "" && patientCreatedVM.OccupationId != 0 && patientCreatedVM.Address != "" && patientCreatedVM.GenderId != 0{
             isValid = true
+        }else{
+            isValid = false
         }
     }
 }

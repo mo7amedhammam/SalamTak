@@ -13,7 +13,6 @@ struct PatientProfile: View {
     var body: some View {
         ZStack{
             VStack{
-                ZStack {
                     ZStack {
                         Image("underappbar")
                             .resizable()
@@ -60,9 +59,7 @@ struct PatientProfile: View {
                             .offset(y: 25)
                         
                     }.offset(y: 80)
-                    AppBarView(Title:"Doctor_Profile".localized(language))
-                        .offset(y:-10)
-                }
+                
                 Spacer().frame(height: 90)
                 TabView (selection: self.$index){
                     ZStack{
@@ -83,6 +80,8 @@ struct PatientProfile: View {
             .ignoresSafeArea()
             .background(Color("CLVBG"))
             
+            AppBarView(Title:"Doctor_Profile".localized(language)).ignoresSafeArea()
+
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden(true)

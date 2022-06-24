@@ -10,33 +10,26 @@ import SwiftUI
 struct AppBarView: View {
     @State var Title: String
     var body: some View{
-        
+        VStack{
         CurvedSideRectangleView()
             .fill(Color("mainColor"))
             .frame(height: 100)
             .shadow(radius: 8)
             .overlay(
                 HStack {
-                    
-                    //                            BackButtonView()
                     Spacer()
                     Text(Title)
-//                        .font(.system(size: 24))
                         .font(Font.SalamtechFonts.Reg24)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame( alignment: .center)
                         .padding(.bottom, 15)
-                    
-                    
                     Spacer()
-                    //BackButtonView()
-                    
-                    
                 }
                     .padding(.bottom,-50)
             )
-        
+        Spacer()
+        }
     }
 }
 
