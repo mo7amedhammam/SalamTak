@@ -47,7 +47,6 @@ struct SecureInputView: View {
                     ).foregroundColor(Color("mainColor"))
                     .cornerRadius(5)
                     .shadow(color: Color.black.opacity(0.099), radius: 3)
-                
             }
             Button(action: {
                 isSecured.toggle()

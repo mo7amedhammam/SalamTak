@@ -21,17 +21,17 @@ struct OnBoardingView: View {
             VStack {
                 
                 TabView(selection: $currentStep) {
-                    ForEach(0 ..< OnBoardingSteps.count) { on in
+                    ForEach(0 ..< OnBoardingSteps.count) { item in
                         VStack {
-                            Image(OnBoardingSteps[on].image)
+                            Image(OnBoardingSteps[item].image)
                                 .resizable()
                                 .frame(width: 300, height: 300, alignment: .center)
-                            Text(OnBoardingSteps[on].title.localized(language))
+                            Text(OnBoardingSteps[item].title.localized(language))
                                 .font(.system(size: 30, weight: .bold))
                                 .foregroundColor(Color("mainColor"))
                                 .bold()
                             
-                            Text(OnBoardingSteps[on].description.localized(language))
+                            Text(OnBoardingSteps[item].description.localized(language))
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 16, weight: .semibold))
@@ -39,15 +39,15 @@ struct OnBoardingView: View {
                                 .padding(20)
                             
                         }
-                        .tag(on)
+                        .tag(item)
                     }
                     
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
                 HStack{
-                    ForEach(0 ..< OnBoardingSteps.count){ it in
-                        if it == currentStep {
+                    ForEach(0 ..< OnBoardingSteps.count){ item in
+                        if item == currentStep {
                             Circle()
                                 .frame(width: 10, height: 10)
                                 .foregroundColor(Color("darkGreen"))

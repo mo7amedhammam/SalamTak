@@ -11,17 +11,12 @@ import SwiftUI
 struct PhoneVerificationResetView: View {
     var language = LocalizationService.shared.language
     
-    var passedmodel : ViewModelResetPassword? = nil
+   @EnvironmentObject var ResetVM : ViewModelResetPassword
     @State private var matchedOTP = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var minutes: Int = 02
     @State private var seconds: Int = 00
-    
-    @State private var fieldOne = ""
-    @State private var fieldTwo   = ""
-    @State private var fieldThree = ""
-    @State private var fieldFour  = ""
-    
+
     @State private var hideIncorrectCode = true
     @State var userId = 0
     @StateObject var viewModel = OTPViewModel()
@@ -41,7 +36,8 @@ struct PhoneVerificationResetView: View {
         ZStack {
             ScrollView( ){
                 Spacer().frame(height:120)
-                Text("PhoneVerfication_Screen_subtitle".localized(language)).font(.custom("SF UI Text", size: 16))
+                Text(ResetVM.ResetMethod == 2 ? "PhoneVerfication_Screen_subtitle".localized(language):"PhoneVerfication_Screen_subtitleEmail".localized(language))
+                    .font(.custom("SF UI Text", size: 16))
                     .foregroundColor(Color("subText"))
                     .padding(.top, 35)
                     .multilineTextAlignment(.center)
@@ -74,7 +70,7 @@ struct PhoneVerificationResetView: View {
                         .multilineTextAlignment(.center)
                 }
                 
-                Text("Code \n\(passedmodel?.publishedUserResetModel?.code ?? 0)").font(.custom("SF UI Text", size: 16)).fontWeight(.light)
+                Text("Code \n\(ResetVM.publishedUserResetModel?.code ?? 0)").font(.custom("SF UI Text", size: 16)).fontWeight(.light)
                     .foregroundColor(.black)
                     .padding()
                     .frame( alignment: .center)
@@ -99,6 +95,7 @@ struct PhoneVerificationResetView: View {
                     // resend code action
                     minutes = 02
                     hideIncorrectCode =  true
+                    ResetVM.startFetchResetPassword()
                     
                 }, label: { Text("PhoneVerfication_Screen_resendCode".localized(language))
                         .font(.title3)
@@ -110,9 +107,9 @@ struct PhoneVerificationResetView: View {
                     // send code action
                     
                     let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
-                    if checkOTP(sentOTP: passedmodel?.publishedUserResetModel?.code ?? 1111, TypedOTP: Int(otp) ?? 0000){
+                    if checkOTP(sentOTP: ResetVM.publishedUserResetModel?.code ?? 1111, TypedOTP: Int(otp) ?? 0000){
                         self.matchedOTP.toggle()
-                        self.userId = passedmodel?.publishedUserResetModel?.userId ?? 0
+                        self.userId = ResetVM.publishedUserResetModel?.userId ?? 0
                     }else{
                         hideIncorrectCode =  false
                         print("not Matching")
@@ -202,7 +199,7 @@ private func otpText(text: String) -> some View {
 struct PhoneVerificationResetView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
-        PhoneVerificationResetView()
+            PhoneVerificationResetView().environmentObject(ViewModelResetPassword())
     }
     }
 }

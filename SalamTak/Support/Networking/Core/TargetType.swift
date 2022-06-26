@@ -17,6 +17,7 @@ enum parameterType{
     case plainRequest
     case parameterRequest(Parameters:[String:Any],Encoding:ParameterEncoding)
 }
+
 protocol TargetType{
     var url : String {get}
     var method : httpMethod {get}

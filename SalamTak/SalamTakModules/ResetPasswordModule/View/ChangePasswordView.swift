@@ -75,7 +75,7 @@ struct ChangePasswordView: View {
                 }
 
         //phone verification
-            NavigationLink(destination:  TabBarView(),isActive: $UpdatePassVM.isUpdated, label: {
+        NavigationLink(destination: ViewLogin(ispresented: .constant(false), QuickLogin: .constant(false))  ,isActive: $UpdatePassVM.isUpdated, label: {
             })
         
     // Alert with no internet connection

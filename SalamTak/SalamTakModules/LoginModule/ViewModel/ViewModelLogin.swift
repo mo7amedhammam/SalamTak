@@ -25,7 +25,7 @@ class ViewModelLogin: ObservableObject {
                 phoneNumber = filtered
             }
             if self.phoneNumber.count < 11 || self.phoneNumber.count > 11 {
-                self.phoneErrorMessage = "Phone Number Must Be 11 number"
+                self.phoneErrorMessage = "Phone Number Must be 11 number"
             } else if self.phoneNumber.isEmpty {
                 self.phoneErrorMessage = "*"
             } else if self.phoneNumber.count == 11 {
@@ -34,7 +34,6 @@ class ViewModelLogin: ObservableObject {
         }
     }
     @Published  var password = ""
-    
     
     //------- output
     @Published var phoneErrorMessage = ""
@@ -75,7 +74,7 @@ class ViewModelLogin: ObservableObject {
 
 
 extension ViewModelLogin:TargetType    {
-  
+
     var url: String {
         return  URLs().LoginUser
     }
@@ -95,6 +94,7 @@ extension ViewModelLogin:TargetType    {
     }
     
     func startLoginApi(){
+        
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<LoginModel>.self) { [self] (success, model, err) in

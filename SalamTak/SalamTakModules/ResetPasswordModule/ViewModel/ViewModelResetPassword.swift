@@ -16,6 +16,7 @@ class ViewModelResetPassword: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
+    @Published var ResetMethod : Int = 2
     
     @Published  var email: String = "" {
         didSet{
@@ -29,8 +30,26 @@ class ViewModelResetPassword: ObservableObject {
         }
     }
     
+    let characterLimit: Int
+    @Published  var phoneNumber: String = "" {
+        didSet{
+            let filtered = phoneNumber.filter {$0.isNumber}
+            if phoneNumber != filtered {
+                phoneNumber = filtered
+            }
+            if self.phoneNumber.count < 11 || self.phoneNumber.count > 11 {
+                self.phoneErrorMessage = "Phone Number Must be 11 number"
+            } else if self.phoneNumber.isEmpty {
+                self.phoneErrorMessage = "*"
+            } else if self.phoneNumber.count == 11 {
+                self.phoneErrorMessage = ""
+            }
+        }
+    }
+    
     //------- output
     @Published var emailErrorMessage = ""
+    @Published var phoneErrorMessage = ""
     @Published var publishedUserResetModel: ResetPassword? = nil
     @Published var isReset = false
     
@@ -39,7 +58,8 @@ class ViewModelResetPassword: ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-    init() {
+    init(limit: Int = 11){
+        characterLimit = limit
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedUserResetModel = modeldata.data
@@ -57,7 +77,13 @@ extension ViewModelResetPassword:TargetType{
     }
     
     var parameter: parameterType {
-        let parametersarr : [String : Any]  = ["Email" : email ,"UserTypeId" : 3]
+        var parametersarr : [String : Any]  = ["ResetMethod":ResetMethod,"UserTypeId" : 3]
+        if email != ""{
+            parametersarr["Email"] = email 
+        } else{
+            parametersarr["Phone"] = phoneNumber
+        }
+
         return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
     }
     

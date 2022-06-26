@@ -28,7 +28,11 @@
 "SignIn_Screen_dont_haveAccount" = "ليس لديك حساب؟";
 "Reset_Screen_title" = "إعادة تعيين كلمة المرور";
 "Reset_Screen_email" = "أدخل بريدك الإلكتروني";
+"Reset_Screen_phone" = "أدخل رقم موبايلك";
+
 "Reset_Screen_confirmEmail_Button" = "تأكيد عنوان البريد الإلكتروني";
+"Reset_Screen_confirmPhone_Button" = "تأكيد رقم الموبايل";
+
 "ChangePass_Screen_title" = "تغيير كلمة المرور";
 "ChangePass_Screen_enter_pass" = "أدخل كلمة المرور الجديدة";
 "ChangePass_Screen_confirm_pass" = "نأكيد كلمة المرور";
@@ -41,7 +45,9 @@
 "SignUp_Screen_enterconfirmPassword" = "تأكيد كلمة المرور";
 "SignUp_Screen_haveAccount" = "لديك حساب بالفعل؟";
 "PhoneVerfication_Screen_title" = "التحقق من الهاتف";
-"PhoneVerfication_Screen_subtitle" = "الرجاء إدخال رمز التحقق الذي أرسلناه إلى هاتفك المحمول أو استخدم";
+"PhoneVerfication_Screen_subtitle" = "الرجاء إدخال رمز التحقق الذي أرسلناه إلى هاتفك المحمول";
+"PhoneVerfication_Screen_subtitleEmail" = "الرجاء إدخال رمز التحقق الذي أرسلناه إلى بريدك الالكترونى";
+
 "PhoneVerfication_Screen_codeMessage" = "الكود غير صحيح برجاء المحاولة مرة اخرى";
 "Nationality"="الجنسية";
 "PhoneVerfication_Screen_resendCode" = "اعادة ارسال الكود";

@@ -29,7 +29,11 @@
 "SignIn_Screen_dont_haveAccount" = "Dont have an account?";
 "Reset_Screen_title" = "Reset Password";
 "Reset_Screen_email" = "Enter your email";
+"Reset_Screen_phone" = "Enter your phone number";
+
 "Reset_Screen_confirmEmail_Button" = "Confirm Email";
+"Reset_Screen_confirmPhone_Button" = "Confirm Phone Number";
+
 "ChangePass_Screen_title" = "Change Password";
 "ChangePass_Screen_enter_pass" = "Enter your new password";
 "ChangePass_Screen_confirm_pass" = "confirm your password";
@@ -42,7 +46,9 @@
 "SignUp_Screen_enterconfirmPassword" = "Confirm Your Password";
 "SignUp_Screen_haveAccount" = "Already Have Account?";
 "PhoneVerfication_Screen_title" = "Phone Verification";
-"PhoneVerfication_Screen_subtitle" = "Please enter the Verification Code\nwe sent to your mobile\nor use:()";
+"PhoneVerfication_Screen_subtitle" = "Please enter the Verification Code\nwe sent to your Mobile";
+"PhoneVerfication_Screen_subtitleEmail" = "Please enter the Verification Code\nwe sent to your Email";
+
 "PhoneVerfication_Screen_codeMessage" = "Time Out or Incorrect code. Please try again!";
 "Nationality"="Nationality";
 "PhoneVerfication_Screen_resendCode" = "Resend Code";

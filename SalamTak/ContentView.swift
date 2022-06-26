@@ -16,8 +16,6 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             TabBarView()
-//                PersonalDataView()
-//            PhoneVerificationView().environmentObject(ViewModelRegister())
         }
 
         .onChange(of: scenePhase, perform: { newPhase in

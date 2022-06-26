@@ -49,10 +49,10 @@ final class Helper{
     }
     
     class func getUserPhone() ->String {
-        return userDef.string(forKey: "PhoneNumber") ?? "default phone number"
+        return userDef.string(forKey: "PhoneNumber") ?? ""
     }
     class func getpatientName() ->String {
-        return userDef.string(forKey: "patientName") ?? "patient Name"
+        return userDef.string(forKey: "patientName") ?? ""
     }
     
     class func setUserimage(userImage : String) {
@@ -60,7 +60,7 @@ final class Helper{
         userDef.synchronize()
     }
     class func getUserimage() ->String {
-        return userDef.string(forKey: "Image") ?? "default Image"
+        return userDef.string(forKey: "Image") ?? ""
     }
     
         class func setClinicId(clinicId: Int) {
@@ -131,6 +131,7 @@ final class Helper{
         userDef.removeObject(forKey:"CurrentLongtude"  )
         userDef.removeObject(forKey:"CurrentAddress"  )
     }
+    
     
     // navigate to google maps with lond & lat
     class func openGoogleMap(longitude: Double, latitude: Double) {

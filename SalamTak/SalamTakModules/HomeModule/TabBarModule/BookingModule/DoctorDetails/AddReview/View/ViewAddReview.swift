@@ -137,7 +137,7 @@ struct ViewAddReview: View {
                 }
                 .frame(width: UIScreen.main.bounds.width)
                 .background(Color("CLVBG"))
-                .adaptsToKeyboard()
+                .keyboardSpace()
                 Spacer()
             }
             
