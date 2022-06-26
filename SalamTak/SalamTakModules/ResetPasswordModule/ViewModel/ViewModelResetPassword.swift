@@ -16,7 +16,7 @@ class ViewModelResetPassword: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // ------- input
-    @Published var ResetMethod : Int = 2
+    @Published var ResetMethod : Int = 1
     
     @Published  var email: String = "" {
         didSet{

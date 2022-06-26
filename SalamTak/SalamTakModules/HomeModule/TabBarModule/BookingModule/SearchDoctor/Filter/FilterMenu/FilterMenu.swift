@@ -230,7 +230,7 @@ struct FilterMenu:View{
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text("From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + selectedFee))) "+"EGP".localized(language))
+                            Text("From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( Float(FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) + selectedFee))) "+"EGP".localized(language))
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -338,7 +338,8 @@ struct FilterMenu:View{
 
         selectedFee  = 0
         selectedSubSpecLvlIds = []
-        getAllDoctors()
+//        getAllDoctors()
+        applyFilter()
     }
     
 }

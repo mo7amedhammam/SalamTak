@@ -10,7 +10,6 @@ import SwiftUI
 struct ResetPasswordView: View {
     var language = LocalizationService.shared.language
     @StateObject private var ResetVM = ViewModelResetPassword(limit: 11)
-//    @State var ResetMethodId = 2 // 1:by email, 2:by phone
     @FocusState private var isfocused : Bool
     @Environment(\.presentationMode) var presentationMode
     
@@ -31,31 +30,35 @@ struct ResetPasswordView: View {
                             .frame(width: 150, height: 120, alignment: .center)
                         
                         VStack (spacing: 15){
- 
-                          
-                           
                             
+                            Button(action: {
+                                ResetVM.ResetMethod = 1
+                            }, label: {
+                                HStack{
+                                    Image(systemName:ResetVM.ResetMethod == 1 ? "circle.fill":"circle")
+                                        Text("Reset By Email")
+                                Spacer()
+                                }.padding()
+                                    .foregroundColor(.black.opacity(ResetVM.ResetMethod == 1 ? 0.7:0.3))
+                            })
+                            
+                            Button(action: {
+                                ResetVM.ResetMethod = 2
+                            }, label: {
+                                HStack{
+                                    Image(systemName:ResetVM.ResetMethod == 2 ? "circle.fill":"circle")
+                                        Text("Reset By Phone")
+                                Spacer()
+                                }.padding()
+                                    .foregroundColor(.black.opacity(ResetVM.ResetMethod == 2 ? 0.7:0.3))
+                            })
+
                             InputTextField( text: ResetVM.ResetMethod == 1 ? $ResetVM.email:$ResetVM.phoneNumber ,title: ResetVM.ResetMethod == 1 ? "Reset_Screen_email".localized(language) : "Reset_Screen_phone".localized(language))
                                 .keyboardType( ResetVM.ResetMethod == 1 ? .emailAddress:.numberPad)
                                 .textInputAutocapitalization(.never)
                                 .focused($isfocused)
                                 .onChange(of: ResetVM.phoneNumber,perform: editingChanged)
-                                .overlay(
-                                    HStack{
-                                        Spacer()
-                                        Menu(content: {
-                                            Button("Reset By Email") {
-                                                ResetVM.ResetMethod = 1
-                                            }
-                                            Button("Reset By Phone") {
-                                                ResetVM.ResetMethod = 2
-                                            }
-                                        }, label: {
-                                            Image(systemName: "chevron.down")
-                                                .padding(.trailing)
-                                        })
-                                    }
-                                )
+                          
                             
                             if !ResetVM.emailErrorMessage.isEmpty || !ResetVM.phoneErrorMessage.isEmpty{
                                 Text(ResetVM.ResetMethod == 1 ? ResetVM.emailErrorMessage:ResetVM.phoneErrorMessage)

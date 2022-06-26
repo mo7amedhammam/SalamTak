@@ -183,6 +183,7 @@ struct ViewSearchDoc: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(ispreviewImage)
         .onAppear(perform: {
+            FeesVM.startFetchFees()
             medicalType.GetExaminationTypeId()
             searchDoc.MaxResultCount = 10
             index =  ExTpe

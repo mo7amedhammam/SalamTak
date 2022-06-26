@@ -62,13 +62,15 @@ class VMSearchDoc: ObservableObject {
                 }
                 
             case .fetchMoreDoctors:
+               
                 if modeldata.data?.Items?.count ?? 0 > 3{
                     self?.publishedModelSearchDoc.append( contentsOf: modeldata.data?.Items ?? [])
                 }
                 if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc.isEmpty == true {
                     self?.noDoctors = true
                 }
-                
+                print(self?.publishedModelSearchDoc.count ?? 0)
+                print(self?.publishedModelSearchDoc ?? [])
             case .none:
                 break
             }

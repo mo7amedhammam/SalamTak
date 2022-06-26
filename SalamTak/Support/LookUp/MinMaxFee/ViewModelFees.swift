@@ -15,7 +15,7 @@ class ViewModelFees: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     //    ------- output
-    @Published var  publishedMinMaxFee: MinMaxFee?
+    @Published var  publishedMinMaxFee: MinMaxFee? = MinMaxFee.init()
     
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -50,7 +50,6 @@ extension ViewModelFees:TargetType{
         return [:]
     }
     
-    
     func startFetchFees() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
@@ -61,7 +60,6 @@ extension ViewModelFees:TargetType{
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
                     }
-                    
                 }else{
                     if model != nil{
                         //case of model with error
