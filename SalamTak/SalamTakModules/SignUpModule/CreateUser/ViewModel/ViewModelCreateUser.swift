@@ -72,6 +72,7 @@ extension ViewModelCreateUser:TargetType{
     func startFetchUserCreation(){
         
         if Helper.isConnectedToNetwork(){
+            print(parameter)
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<CreateUserModel>.self ) { [self] (success, model, err) in
                 if success{

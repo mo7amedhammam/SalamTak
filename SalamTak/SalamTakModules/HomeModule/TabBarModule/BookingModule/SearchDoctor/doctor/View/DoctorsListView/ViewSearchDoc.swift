@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import ImageViewerRemote
 
-
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
     @StateObject var searchDoc = VMSearchDoc()
@@ -27,14 +26,11 @@ struct ViewSearchDoc: View {
     @State  var isSearch = false
     @State  var searchTxt = ""
     
-    @State private var image = UIImage()
     @State var loginAgain = false
     var language = LocalizationService.shared.language
     @State var index = 1
     
     @State var gotodoctorDetails = false
-    @State var selectedCityId = 0
-//    @State var imgs : [Img] = []
     @State var SelectedDoctor = Doc()
     
     init(ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String> ) {
@@ -57,26 +53,6 @@ struct ViewSearchDoc: View {
     @StateObject var AreasVM = ViewModelGetAreas()
     @StateObject var FeesVM = ViewModelFees()
 
-//    @State var selectedSeniorityLvlName :String?
-//    @State var selectedSeniorityLvlId :Int?
-//    @State var SenbuttonSelected: Int?
-
-//    @State var selectedSpecLvlName :String?
-//    @State var selectedSpecLvlId :Int?
-//    @State var SpecbuttonSelected: Int?
-//
-//    @State var selectedSubSpecLvlNames : [String] = []
-//    @State var selectedSubSpecLvlIds : [Int] = []
-
-    @State var selectedFee :Float = 0
-
-//    @State var selectedFilterCityName :String?
-//    @State var selectedFilterCityId :Int?
-//    @State var CitybuttonSelected: Int?
-//
-//    @State var selectedFilterAreaName :String?
-//    @State var selectedFilterAreaId :Int?
-//    @State var AreabuttonSelected: Int?
     @State var ispreviewImage=false
     @State var previewImageurl=""
 

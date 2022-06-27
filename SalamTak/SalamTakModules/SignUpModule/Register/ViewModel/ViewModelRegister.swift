@@ -93,7 +93,10 @@ class ViewModelRegister: ObservableObject {
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: { (modeldata) in
-            self.publishedUserRegisteredModel = modeldata.data
+            if modeldata.message == "Success"{
+                self.publishedUserRegisteredModel = modeldata.data
+                self.isRegistered = true
+            }
         }.store(in: &cancellables)
      
     }
@@ -213,13 +216,15 @@ extension ViewModelRegister:TargetType {
     func startFetchUserRegisteration(){
         
         if Helper.isConnectedToNetwork(){
+            print(parameter)
+
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<RegisterModel>.self ) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send(model!)
-                        self.isRegistered = true
+//                        self.isRegistered = true
                     }
                 }else{
                     if model != nil{

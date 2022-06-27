@@ -10,8 +10,8 @@ import Combine
 
 struct ViewSignUp: View {
     var language = LocalizationService.shared.language
-    @ObservedObject private var RegisterVM = ViewModelRegister(limit: 11)
-    @State private var haveAccount = false
+    @StateObject var RegisterVM = ViewModelRegister(limit: 11)
+    @State var haveAccount = false
     
     @Binding var ispresented: Bool
     @Binding var quickSignup: Bool
