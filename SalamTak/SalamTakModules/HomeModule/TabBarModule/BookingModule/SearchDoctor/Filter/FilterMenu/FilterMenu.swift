@@ -15,30 +15,7 @@ struct FilterMenu:View{
     
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
-    
-    @Binding var selectedSeniorityLvlName :String?
-    @Binding var selectedSeniorityLvlId :Int?
-    @Binding var selectedSpecLvlName :String?
-    @Binding var OldselectedSpecLvlName :String
-
-    @Binding var selectedSpecLvlId :Int?
-    @Binding var OldselectedSpecLvlId :Int
-
-    @Binding var selectedSubSpecLvlNames : [String]
-    @Binding var selectedSubSpecLvlIds : [Int]
     @Binding var selectedFee :Float
-    @Binding var selectedFilterCityName :String?
-    @Binding var OldselectedFilterCityName :String
-
-    @Binding var selectedFilterCityId :Int?
-    @Binding var OldselectedFilterCityId :Int
-
-    @Binding var selectedFilterAreaName :String?
-    @Binding var OldselectedFilterAreaName :String
-
-    @Binding var selectedFilterAreaId :Int?
-    @Binding var OldselectedFilterAreaId :Int
-
     @Binding  var searchTxt : String
     
     var body: some View{
@@ -75,7 +52,7 @@ struct FilterMenu:View{
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
                             
-                            Text(selectedSeniorityLvlName ?? "")
+                            Text(searchDoc.FilterSeniortyLevelName ?? "" == "" ? "All_Titles".localized(language):searchDoc.FilterSeniortyLevelName ?? "" )
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -103,7 +80,7 @@ struct FilterMenu:View{
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text(selectedSpecLvlName ?? "")
+                            Text(searchDoc.FilterSpecialistName ?? "")
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -121,26 +98,26 @@ struct FilterMenu:View{
                     FilterTag = .SubSpeciality
                 }, label: {
                     HStack{
-                        
+
                         Image("FilterSpec")
                         VStack(alignment:.leading){
                             Text("Sub_Specialities".localized(language))
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text(selectedSubSpecLvlNames.joined(separator: ", "))
+                            Text(searchDoc.FilterSubSpecialistName == [] ? "All_SubSpecs".localized(language): searchDoc.FilterSubSpecialistName.joined(separator: ", ") )
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
                         }
-                        
+
                         Spacer()
-                        
+
                         CircularButton(ButtonImage: Image(systemName: "chevron.forward"), forgroundColor: Color.gray, backgroundColor: Color("subText").opacity(0.22), Buttonwidth: 15, Buttonheight: 15){  }
-                        
+
                     }.padding()
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                    
+
                 })
                 
                 // in case we wanted to add Gender to filter
@@ -181,7 +158,7 @@ struct FilterMenu:View{
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text(selectedFilterCityName ?? "")
+                            Text(searchDoc.FilterCityName ?? "" == "" ? "All_Cities".localized(language):searchDoc.FilterCityName ?? "")
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -205,7 +182,7 @@ struct FilterMenu:View{
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text(selectedFilterAreaName ?? "")
+                            Text(searchDoc.FilterAreaName ?? "" == "" ? "All_Areas".localized(language):searchDoc.FilterAreaName ?? "")
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -230,7 +207,7 @@ struct FilterMenu:View{
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text("From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( Float(FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) + selectedFee))) "+"EGP".localized(language))
+                            Text( selectedFee > 0 ?  "From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( selectedFee))) "+"EGP".localized(language):"All_Prices".localized(language))
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -288,58 +265,35 @@ struct FilterMenu:View{
             .padding(.horizontal)
             .padding(.bottom,10)
         }
-        .onChange(of: selectedFilterCityName){newval in
-            if newval != OldselectedFilterCityName{
-            selectedFilterAreaId = 0
-            selectedFilterAreaName = ""
-            }else{
-                selectedFilterAreaId = OldselectedFilterAreaId
-                selectedFilterAreaName = OldselectedFilterAreaName
-            }
-        }
-        .onChange(of: selectedSpecLvlId){newval in
-            selectedSubSpecLvlIds = []
-            selectedSubSpecLvlNames = []
-        }
+
     }
-    
-    
     //MARK: --- Functions ----
     func getAllDoctors(){
-        
         searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
-        searchDoc.publishedModelSearchDoc.removeAll()
+        searchDoc.publishedModelSearchDoc?.removeAll()
         searchDoc.FetchDoctors(operation: .fetchDoctors)
     }
     
     func applyFilter(){
-        
-        searchDoc.FilterSeniortyLevelId = selectedSeniorityLvlId
-        searchDoc.FilterSpecialistId = selectedSpecLvlId ?? 115151
-        searchDoc.FilterSubSpecialistId = selectedSubSpecLvlIds
-        searchDoc.FilterCityId = selectedFilterCityId
-        searchDoc.FilterAreaId = selectedFilterAreaId
-        searchDoc.FilterFees = selectedFee > 0 ?  Int(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + Int(selectedFee):0
+        searchDoc.FilterFees = selectedFee > 0 ? Int(selectedFee):0
+        searchDoc.publishedModelSearchDoc?.removeAll()
         getAllDoctors()
     }
     
     func resetFilter(){
-        selectedSeniorityLvlId = 0
-        selectedSpecLvlId = OldselectedSpecLvlId
-        selectedSpecLvlName = OldselectedSpecLvlName
-
-        selectedSubSpecLvlIds = []
-        selectedFilterCityId = OldselectedFilterCityId
-        selectedFilterCityName = OldselectedFilterCityName
-
-        selectedFilterAreaId = OldselectedFilterAreaId
-        selectedFilterAreaName = OldselectedFilterAreaName
-
-        selectedFee  = 0
-        selectedSubSpecLvlIds = []
-//        getAllDoctors()
-        applyFilter()
+        searchDoc.FilterSeniortyLevelId = 0
+        searchDoc.FilterSpecialistId = searchDoc.SpecialistId
+        searchDoc.FilterSpecialistName = searchDoc.SpecialistName
+        searchDoc.FilterSubSpecialistId = []
+        searchDoc.FilterSubSpecialistName = []
+        searchDoc.FilterCityId = searchDoc.CityId
+        searchDoc.FilterCityName = searchDoc.CityName
+        searchDoc.FilterAreaId = searchDoc.AreaId
+        searchDoc.FilterAreaName = searchDoc.AreaName
+        selectedFee = 0
+        searchDoc.FilterFees = 0
+        getAllDoctors()
     }
     
 }
@@ -347,12 +301,10 @@ struct FilterMenu:View{
 struct FilterMenu_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), selectedSeniorityLvlName: .constant(""),selectedSeniorityLvlId:.constant(0), selectedSpecLvlName: .constant(""),OldselectedSpecLvlName: .constant(""), selectedSpecLvlId: .constant(0),OldselectedSpecLvlId: .constant(0), selectedSubSpecLvlNames: .constant([]),selectedSubSpecLvlIds:.constant([]), selectedFee: .constant(0), selectedFilterCityName: .constant(""),OldselectedFilterCityName: .constant(""),selectedFilterCityId:.constant(0),OldselectedFilterCityId:.constant(0), selectedFilterAreaName: .constant(""),OldselectedFilterAreaName: .constant(""),selectedFilterAreaId:.constant(0),OldselectedFilterAreaId:.constant(0),searchTxt:.constant(""))
+            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), selectedFee: .constant(0), searchTxt:.constant(""))
                 .environmentObject(VMSearchDoc())
                 .environmentObject(ViewModelFees())
         }
-        
-        
     }
 }
 

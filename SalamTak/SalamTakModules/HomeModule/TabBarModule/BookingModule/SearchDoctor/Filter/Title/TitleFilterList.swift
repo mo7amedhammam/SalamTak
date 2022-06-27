@@ -11,10 +11,11 @@ import Combine
 
 struct TitleFilterList:View{
     @EnvironmentObject var seniorityVM : ViewModelSeniority
-    
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var FilterTag:FilterCases
-    @Binding var selectedSeniorityLvlName :String?
-    @Binding var selectedSeniorityLvlId :Int?
+//    @Binding var selectedSeniorityLvlName :String?
+//    @Binding var selectedSeniorityLvlId :Int?
     
     var body : some View{
         VStack{
@@ -39,15 +40,15 @@ struct TitleFilterList:View{
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.selectedSeniorityLvlId = button.id ?? 0
-                            self.selectedSeniorityLvlName = button.Name ?? ""
+                            searchDoc.FilterSeniortyLevelId = button.id ?? 0
+                            searchDoc.FilterSeniortyLevelName = button.Name ?? ""
                         }, label: {
                             HStack{
-                                Image(systemName:  self.selectedSeniorityLvlId == button.id ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  searchDoc.FilterSeniortyLevelId == button.id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.selectedSeniorityLvlId == button.id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(searchDoc.FilterSeniortyLevelId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Text(button.Name ?? "")  .padding()
-                                    .foregroundColor(self.selectedSeniorityLvlId == button.id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(searchDoc.FilterSeniortyLevelId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                                 
                                 
@@ -89,7 +90,9 @@ struct TitleFilterList:View{
 
 struct TitleFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        TitleFilterList(FilterTag: .constant(.Title), selectedSeniorityLvlName: .constant(""), selectedSeniorityLvlId: .constant(1))
+        TitleFilterList(FilterTag: .constant(.Title))
             .environmentObject(ViewModelSeniority())
+            .environmentObject(VMSearchDoc())
+
     }
 }

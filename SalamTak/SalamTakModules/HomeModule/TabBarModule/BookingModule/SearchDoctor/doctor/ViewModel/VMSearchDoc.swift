@@ -17,30 +17,48 @@ class VMSearchDoc: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     @Published var searchDocOperation : searchDocType = .fetchDoctors
-    @Published var publishedModelSearchDoc: [Doc] = [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
+    @Published var publishedModelSearchDoc: [Doc]? = []
+//    [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
     
     //MARK: --- inputs ------
-    @Published var MaxResultCount                      :Int = 0
+    @Published var MaxResultCount                      :Int = 10
     @Published var SkipCount                            :Int = 0
     @Published var SpecialistId                         :Int = 0
+    @Published var SpecialistName                         :String = ""
+
     @Published var MedicalExaminationTypeId           :Int = 0
     @Published var DoctorName                           :String?
     @Published var CityId                                :Int? = 0
+    @Published var CityName                                :String? = ""
+
     @Published var AreaId                                :Int? = 0
+    @Published var AreaName                                :String? = ""
+
     @Published var GenderId                              :Int? = 0
     @Published var Fees                                   :Int? = 0
     @Published var SeniortyLevelId                      :Int? = 0
     @Published var SubSpecialistId                      :[Int]? = []
-    
+    @Published var SubSpecialistName                      :[String]? = []
+
     //MARK: --- Filter ------
-    @Published var FilterSpecialistId                        :Int? = 0
+    @Published var FilterSpecialistId                        :Int = 0
+    @Published var FilterSpecialistName                        :String? = ""
+
     @Published var FilterCityId                               :Int? = 0
+    @Published var FilterCityName                             :String? = ""
     @Published var FilterAreaId                               :Int? = 0
+    @Published var FilterAreaName                               :String? = ""
+
     @Published var FilterGenderId                             :Int? = 0
     @Published var FilterFees                                  :Int? = 0
     @Published var FilterSeniortyLevelId                     :Int? = 0
-    @Published var FilterSubSpecialistId                     :[Int]? = []
-    
+    @Published var FilterSeniortyLevelName                    :String? = ""
+
+    @Published var FilterSubSpecialistId                     :[Int] = []
+    @Published var FilterSubSpecialistName                     :[String] = []
+
+    @Published var isFiltering = false
+
     //------- output
     @Published var noDoctors = false
     @Published var isLoading:Bool? = false
@@ -57,20 +75,19 @@ class VMSearchDoc: ObservableObject {
                 
             case .fetchDoctors:
                 self?.publishedModelSearchDoc = modeldata.data?.Items ?? []
-                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc.isEmpty == true {
+                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc?.isEmpty == true {
                     self?.noDoctors = true
                 }
-                
+
             case .fetchMoreDoctors:
                
                 if modeldata.data?.Items?.count ?? 0 > 3{
-                    self?.publishedModelSearchDoc.append( contentsOf: modeldata.data?.Items ?? [])
+                    self?.publishedModelSearchDoc?.append( contentsOf: modeldata.data?.Items ?? [])
                 }
-                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc.isEmpty == true {
+                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc?.isEmpty == true {
                     self?.noDoctors = true
                 }
-                print(self?.publishedModelSearchDoc.count ?? 0)
-                print(self?.publishedModelSearchDoc ?? [])
+ 
             case .none:
                 break
             }
@@ -113,41 +130,53 @@ extension VMSearchDoc:TargetType{
             Parameters["DoctorName"] = DoctorName
         }
         
+//        if isFiltering{
         if FilterCityId != 0{
             Parameters["CityId"] = FilterCityId
-        }else if CityId != 0{
-            Parameters["CityId"] = CityId
+//        }
         }
+//        else if CityId != 0{
+//            Parameters["CityId"] = CityId
+//        }
         
+//        if isFiltering{
         if FilterAreaId != 0{
             Parameters["AreaId"] = FilterAreaId
-        }else  if AreaId != 0{
-            Parameters["AreaId"] = AreaId
+//        }
         }
+//        else if AreaId != 0{
+//            Parameters["AreaId"] = AreaId
+//        }
         
         if FilterFees != 0{
             Parameters["Fees"] = FilterFees
-        }else if Fees != 0{
-            Parameters["Fees"] = Fees
         }
+//        else if Fees != 0{
+//            Parameters["Fees"] = Fees
+//        }
         
         if FilterGenderId != 0{
             Parameters["GenderId"] = FilterGenderId
-        }else if GenderId != 0{
-            Parameters["GenderId"] = GenderId
         }
+//        else if GenderId != 0{
+//            Parameters["GenderId"] = GenderId
+//        }
         
         if FilterSeniortyLevelId != 0{
             Parameters["SeniortyLevelId"] = FilterSeniortyLevelId
-        }else if SeniortyLevelId != 0{
-            Parameters["SeniortyLevelId"] = SeniortyLevelId
         }
+//        else if SeniortyLevelId != 0{
+//            Parameters["SeniortyLevelId"] = SeniortyLevelId
+//        }
         
+//        if isFiltering{
         if FilterSubSpecialistId != []{
             Parameters["SubSpecialistId"] = FilterSubSpecialistId
-        }else if SubSpecialistId != []{
-            Parameters["SubSpecialistId"] = SubSpecialistId
+//        }
         }
+//        else if SubSpecialistId != []{
+//            Parameters["SubSpecialistId"] = SubSpecialistId
+//        }
         return .parameterRequest(Parameters: Parameters, Encoding: JSONEncoding.default)
     }
     

@@ -34,7 +34,7 @@ struct ViewSearchDoc: View {
     
     @State var gotodoctorDetails = false
     @State var selectedCityId = 0
-    @State var imgs : [Img] = []
+//    @State var imgs : [Img] = []
     @State var SelectedDoctor = Doc()
     
     init(ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String> ) {
@@ -57,26 +57,26 @@ struct ViewSearchDoc: View {
     @StateObject var AreasVM = ViewModelGetAreas()
     @StateObject var FeesVM = ViewModelFees()
 
-    @State var selectedSeniorityLvlName :String?
-    @State var selectedSeniorityLvlId :Int?
-    @State var SenbuttonSelected: Int?
+//    @State var selectedSeniorityLvlName :String?
+//    @State var selectedSeniorityLvlId :Int?
+//    @State var SenbuttonSelected: Int?
 
-    @State var selectedSpecLvlName :String?
-    @State var selectedSpecLvlId :Int?
-    @State var SpecbuttonSelected: Int?
-
-    @State var selectedSubSpecLvlNames : [String] = []
-    @State var selectedSubSpecLvlIds : [Int] = []
+//    @State var selectedSpecLvlName :String?
+//    @State var selectedSpecLvlId :Int?
+//    @State var SpecbuttonSelected: Int?
+//
+//    @State var selectedSubSpecLvlNames : [String] = []
+//    @State var selectedSubSpecLvlIds : [Int] = []
 
     @State var selectedFee :Float = 0
 
-    @State var selectedFilterCityName :String?
-    @State var selectedFilterCityId :Int?
-    @State var CitybuttonSelected: Int?
-
-    @State var selectedFilterAreaName :String?
-    @State var selectedFilterAreaId :Int?
-    @State var AreabuttonSelected: Int?
+//    @State var selectedFilterCityName :String?
+//    @State var selectedFilterCityId :Int?
+//    @State var CitybuttonSelected: Int?
+//
+//    @State var selectedFilterAreaName :String?
+//    @State var selectedFilterAreaId :Int?
+//    @State var AreabuttonSelected: Int?
     @State var ispreviewImage=false
     @State var previewImageurl=""
 
@@ -132,14 +132,14 @@ struct ViewSearchDoc: View {
                         .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
                     }
                     
-                    ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
+                    ForEach(searchDoc.publishedModelSearchDoc ?? [] , id:\.self){ Doctor in
                         ViewDocCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor , ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl).environmentObject(searchDoc)
                     }
                         ZStack{}
                         .frame( maxHeight: 2)
                         .foregroundColor(.black)
                         .onAppear(perform: {
-                            if searchDoc.publishedModelSearchDoc.count > searchDoc.SkipCount{
+                            if searchDoc.publishedModelSearchDoc?.count ?? 0 > searchDoc.SkipCount{
                             searchDoc.SkipCount += searchDoc.MaxResultCount
                             searchDoc.FetchDoctors(operation: .fetchMoreDoctors)
                             }
@@ -165,7 +165,7 @@ struct ViewSearchDoc: View {
             }
             .edgesIgnoringSafeArea(.vertical)
             if showFilter == true {
-                MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, SpecialistId: $SpecialistId,CityId:$CityId,AreaId:$AreaId,selectedSeniorityLvlName:$selectedSeniorityLvlName,selectedSeniorityLvlId:$selectedSeniorityLvlId,SenbuttonSelected:$SenbuttonSelected,selectedSpecLvlName:$selectedSpecLvlName,OldselectedSpecLvlName:$SpecialistName,selectedSpecLvlId:$selectedSpecLvlId,SpecbuttonSelected:$SpecbuttonSelected,selectedSubSpecLvlNames:$selectedSubSpecLvlNames,selectedSubSpecLvlIds:$selectedSubSpecLvlIds,selectedFee:$selectedFee,selectedFilterCityName:$selectedFilterCityName,OldselectedFilterCityName:$CityName ,selectedFilterCityId:$selectedFilterCityId, CitybuttonSelected:$CitybuttonSelected, selectedFilterAreaName:$selectedFilterAreaName, OldselectedFilterAreaName:$AreaName,selectedFilterAreaId:$selectedFilterAreaId, AreabuttonSelected:$AreabuttonSelected,searchTxt:$searchTxt)
+                MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, selectedFee:$selectedFee,searchTxt:$searchTxt)
                     .environmentObject(searchDoc)
                     .environmentObject(seniorityVM)
                     .environmentObject(specialityvm)
@@ -173,7 +173,6 @@ struct ViewSearchDoc: View {
                     .environmentObject(CitiesVM)
                     .environmentObject(AreasVM)
                     .environmentObject(FeesVM)
-
             }
             
             // showing loading indicator
@@ -183,24 +182,25 @@ struct ViewSearchDoc: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(ispreviewImage)
         .onAppear(perform: {
+            setFirstselections()
             FeesVM.startFetchFees()
             medicalType.GetExaminationTypeId()
-            searchDoc.MaxResultCount = 10
             index =  ExTpe
             searchDoc.MedicalExaminationTypeId = ExTpe
             searchDoc.SpecialistId = SpecialistId
+            searchDoc.SpecialistName = SpecialistName
             searchDoc.CityId = CityId
+            searchDoc.CityName = CityName
             searchDoc.AreaId = AreaId
+            searchDoc.AreaName = AreaName
             getAllDoctors()
-            setFirstselections()
+
         })
         .onChange(of: index){newval in
-            self.ExTpe = newval
-            searchDoc.isLoading = true
             searchDoc.MedicalExaminationTypeId = newval
-            searchDoc.publishedModelSearchDoc.removeAll()
             getAllDoctors()
         }
+
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 if !showFilter && !ispreviewImage{
@@ -246,18 +246,19 @@ struct ViewSearchDoc_Previews: PreviewProvider {
 
 
 extension ViewSearchDoc{
+
     func setFirstselections(){
-        selectedSpecLvlId = SpecialistId
-        selectedSpecLvlName = SpecialistName
-        selectedFilterCityId = CityId
-        selectedFilterCityName = CityName
-        selectedFilterAreaId = AreaId
-        selectedFilterAreaName = AreaName
+        searchDoc.FilterSpecialistId = SpecialistId
+        searchDoc.FilterSpecialistName = SpecialistName
+        searchDoc.FilterCityId = CityId
+        searchDoc.FilterCityName = CityName
+        searchDoc.FilterAreaId = AreaId
+        searchDoc.FilterAreaName = AreaName
+
     }
     
     //MARK: --- Functions ----
     func getAllDoctors(){
-        searchDoc.isLoading = true
         searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
         searchDoc.FetchDoctors(operation: .fetchDoctors)

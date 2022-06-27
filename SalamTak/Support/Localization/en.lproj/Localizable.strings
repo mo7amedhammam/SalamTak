@@ -254,9 +254,13 @@
 "Choose_Speciality" = "Choose Speciality";
 "SpecialitiesـSubTitle" = "Specialities";
 
+"All_Titles" = "All Titles";
 "Choose_City" = "Choose City";
 "Choose_your_City" = "Choose your City";
 "All_Cities" = "All Cities";
+"All_Prices" = "All Prices";
+"All_SubSpecs" = "All SubSpecialities";
+
 
 "Choose_Area" = "Choose Area";
 "Choose_your_Area" = "Choose your Area";

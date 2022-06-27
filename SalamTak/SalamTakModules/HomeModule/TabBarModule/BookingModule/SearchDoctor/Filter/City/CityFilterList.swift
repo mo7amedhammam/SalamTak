@@ -10,9 +10,11 @@ import SwiftUI
 import Combine
 struct CityFilterList:View{
     @EnvironmentObject var CitiesVM : ViewModelGetCities
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var FilterTag:FilterCases
-    @Binding var selectedFilterCityName :String?
-    @Binding var selectedFilterCityId :Int?
+//    @Binding var selectedFilterCityName :String?
+//    @Binding var selectedFilterCityId :Int?
     
     var body: some View{
         VStack {
@@ -37,18 +39,23 @@ struct CityFilterList:View{
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.selectedFilterCityId = button.Id ?? 0
-                            self.selectedFilterCityName = button.Name ?? ""
+//                            self.selectedFilterCityId = button.Id ?? 0
+//                            self.selectedFilterCityName = button.Name ?? ""
+                            searchDoc.FilterCityId = button.Id ?? 0
+                            searchDoc.FilterCityName = button.Name ?? ""
                             
+//                            searchDoc.isFiltering = true
+                            searchDoc.FilterAreaId =  0
+                            searchDoc.FilterAreaName =  ""
+
                         }, label: {
                             HStack{
-                                Image(systemName:  self.selectedFilterCityId == button.Id ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.searchDoc.FilterCityId == button.Id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.selectedFilterCityId == button.Id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.searchDoc.FilterCityId == button.Id ? Color("blueColor") : Color("lightGray"))
                                 Text(button.Name ?? "")  .padding()
-                                    .foregroundColor(self.selectedFilterCityId == button.Id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.searchDoc.FilterCityId == button.Id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
-                                
                                 
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         })
@@ -89,7 +96,9 @@ struct CityFilterList:View{
 
 struct CityFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        CityFilterList( FilterTag: .constant(.City), selectedFilterCityName: .constant(""), selectedFilterCityId: .constant(0))
+        CityFilterList( FilterTag: .constant(.City))
             .environmentObject(ViewModelGetCities())
+            .environmentObject(VMSearchDoc())
+
     }
 }

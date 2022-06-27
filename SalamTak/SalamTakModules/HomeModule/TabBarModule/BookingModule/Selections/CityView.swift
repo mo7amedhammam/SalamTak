@@ -35,7 +35,7 @@ struct CityView: View {
                     
                     Button(action: {
                         selectedCityId = 0
-                        selectedCityName = "All_cities".localized(language)
+                        selectedCityName = "All_Cities".localized(language)
                         gotoSearchdoctor=true
                     }, label: {
                         ZStack {

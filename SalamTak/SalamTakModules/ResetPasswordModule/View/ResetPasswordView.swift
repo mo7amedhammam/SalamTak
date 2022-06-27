@@ -71,11 +71,12 @@ struct ResetPasswordView: View {
                         }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         Spacer().frame(height: 50)
                     }
+                    .keyboardSpace()
                     Spacer()
                     ButtonView(text: ResetVM.ResetMethod == 1 ? "Reset_Screen_confirmEmail_Button".localized(language):"Reset_Screen_confirmPhone_Button".localized(language), backgroundColor:  ((ResetVM.email != "" &&  ResetVM.emailErrorMessage == "")||(ResetVM.phoneNumber != "" &&  ResetVM.phoneErrorMessage == ""))&&ResetVM.isLoading==false  ? Color("blueColor") :  Color(uiColor: .lightGray)){
                         ResetVM.startFetchResetPassword()
                     }.disabled(  ((ResetVM.email == "" && ResetVM.emailErrorMessage == "") && (ResetVM.phoneNumber == "" && ResetVM.phoneErrorMessage == ""))||ResetVM.isLoading==true)
-                }.keyboardSpace()
+                }
             }
             // showing loading indicator
             ActivityIndicatorView(isPresented: $ResetVM.isLoading)

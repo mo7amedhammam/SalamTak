@@ -11,13 +11,14 @@ import Combine
 struct SubSpecialityFilterList:View{
     
     @EnvironmentObject var SubSpecialityVM : ViewModelSubspeciality
-    
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var FilterTag:FilterCases
     
-    @Binding var SpecialistId:Int
-    @Binding var selectedSpecLvlId :Int?
-    @Binding var selectedSubSpecLvlNames : [String]
-    @Binding var selectedSubSpecLvlIds : [Int]
+//    @Binding var SpecialistId:Int
+//    @Binding var selectedSpecLvlId :Int?
+//    @Binding var selectedSubSpecLvlNames : [String]
+//    @Binding var selectedSubSpecLvlIds : [Int]
     
     
     var body:some View{
@@ -44,14 +45,15 @@ struct SubSpecialityFilterList:View{
                         Spacer().frame(width:30)
                         //
                         
-                        SeniorityBtn(seniorityLvl: SubSpecialityVM.publishedSubSpecialistModel[button], selectedSenLvlName: $selectedSubSpecLvlNames, selectedSenLvlId: $selectedSubSpecLvlIds)
+                        SeniorityBtn(seniorityLvl: SubSpecialityVM.publishedSubSpecialistModel[button], selectedSenLvlName: $searchDoc.FilterSubSpecialistName , selectedSenLvlId: $searchDoc.FilterSubSpecialistId)
+                            .environmentObject(searchDoc)
                         
                         
                     }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 }
             }
             
-            
+
             Button(action: {
                 // add review
                 print("Confirm Title")
@@ -76,7 +78,7 @@ struct SubSpecialityFilterList:View{
                 .padding(.bottom,10)
         }
         .onAppear(perform: {
-            SubSpecialityVM.SpecialistId = selectedSpecLvlId ?? SpecialistId
+            SubSpecialityVM.SpecialistId = searchDoc.FilterSpecialistId 
             SubSpecialityVM.startFetchSubSpecialist()
         })
         
@@ -85,7 +87,9 @@ struct SubSpecialityFilterList:View{
 
 struct SubSpecialityFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        SubSpecialityFilterList( FilterTag: .constant(.SubSpeciality), SpecialistId: .constant(2), selectedSpecLvlId: .constant(1), selectedSubSpecLvlNames: .constant([""]), selectedSubSpecLvlIds: .constant([]))
+        SubSpecialityFilterList( FilterTag: .constant(.SubSpeciality))
             .environmentObject(ViewModelSubspeciality())
+            .environmentObject(VMSearchDoc())
+
     }
 }

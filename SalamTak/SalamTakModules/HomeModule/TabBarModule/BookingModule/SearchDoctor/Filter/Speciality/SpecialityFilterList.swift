@@ -11,12 +11,14 @@ import Combine
 
 struct SpecialityFilterList: View {
     @EnvironmentObject var specialityvm : ViewModelSpecialist
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var FilterTag:FilterCases
     
-    @Binding var SpecialistId:Int
-    @Binding var selectedSpecLvlName :String?
-    @Binding var selectedSpecLvlId :Int?
-    @Binding var SpecbuttonSelected: Int?
+//    @Binding var SpecialistId:Int?
+//    @Binding var selectedSpecLvlName :String?
+//    @Binding var selectedSpecLvlId :Int?
+//    @Binding var SpecbuttonSelected: Int?
     
     var body: some View {
         VStack{
@@ -41,16 +43,23 @@ struct SpecialityFilterList: View {
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.selectedSpecLvlId = button.id ?? 0
-                            self.selectedSpecLvlName = button.Name ?? ""
+//                            self.selectedSpecLvlId = button.id ?? 0
+//                            self.selectedSpecLvlName = button.Name ?? ""
+                            searchDoc.FilterSpecialistId = button.id ?? 0
+                            searchDoc.FilterSpecialistName = button.Name ?? ""
+                            
+                            searchDoc.FilterSubSpecialistId = []
+                            searchDoc.FilterSubSpecialistName = []
+
+//                            searchDoc.isFiltering = false
                             
                         }, label: {
                             HStack{
-                                Image(systemName:  self.selectedSpecLvlId == button.id ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.searchDoc.FilterSpecialistId == button.id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.selectedSpecLvlId == button.id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.searchDoc.FilterSpecialistId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Text(button.Name ?? "")  .padding()
-                                    .foregroundColor(self.selectedSpecLvlId == button.id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.searchDoc.FilterSpecialistId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                             }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         })
@@ -88,7 +97,9 @@ struct SpecialityFilterList: View {
 
 struct SpecialityFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        SpecialityFilterList( FilterTag: .constant(.Speciality), SpecialistId: .constant(1), selectedSpecLvlName: .constant(""), selectedSpecLvlId: .constant(2), SpecbuttonSelected: .constant(4))
+        SpecialityFilterList( FilterTag: .constant(.Speciality))
             .environmentObject(ViewModelSpecialist())
+            .environmentObject(VMSearchDoc())
+
     }
 }

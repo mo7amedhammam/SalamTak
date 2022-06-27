@@ -25,68 +25,82 @@ struct MainDoctorFilterView: View {
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
     
-    @Binding var SpecialistId:Int
-    @Binding var CityId:Int
-    @Binding var AreaId:Int
-    @Binding var selectedSeniorityLvlName :String?
-    @Binding var selectedSeniorityLvlId :Int?
-    @Binding var SenbuttonSelected: Int?
-    
-    @Binding var selectedSpecLvlName :String?
-    @Binding var OldselectedSpecLvlName :String
+//    @Binding var SpecialistId:Int
+//    @Binding var CityId:Int
+//    @Binding var CityName:String
+//
+//    @Binding var AreaId:Int
+//    @Binding var AreaName:String
 
-    @Binding var selectedSpecLvlId :Int?
-//    @Binding var OldselectedSpecLvlId :Int?
-    @Binding var SpecbuttonSelected: Int?
-    
-    @Binding var selectedSubSpecLvlNames : [String]
-    @Binding var selectedSubSpecLvlIds : [Int]
-    
+//    @Binding var selectedSeniorityLvlName :String?
+//    @Binding var selectedSeniorityLvlId :Int?
+//    @Binding var SenbuttonSelected: Int?
+//
+//    @Binding var selectedSpecLvlName :String?
+//    @Binding var OldselectedSpecLvlName :String
+//
+//    @Binding var selectedSpecLvlId :Int?
+////    @Binding var OldselectedSpecLvlId :Int?
+//    @Binding var SpecbuttonSelected: Int?
+//
+//    @Binding var selectedSubSpecLvlNames : [String]
+//    @Binding var selectedSubSpecLvlIds : [Int]
+//
     @Binding var selectedFee :Float
     
-    @Binding var selectedFilterCityName :String?
-    @Binding var OldselectedFilterCityName :String
-
-    @Binding var selectedFilterCityId :Int?
-//    @Binding var OldselectedFilterCityId :Int?
-
-    @Binding var CitybuttonSelected: Int?
-    
-    @Binding var selectedFilterAreaName :String?
-    @Binding var OldselectedFilterAreaName :String
-
-    @Binding var selectedFilterAreaId :Int?
-//    @Binding var OldselectedFilterAreaId :Int?
-
-    @Binding var AreabuttonSelected: Int?
+//    @Binding var selectedFilterCityName :String?
+////    @Binding var OldselectedFilterCityName :String
+//
+//    @Binding var selectedFilterCityId :Int?
+////    @Binding var OldselectedFilterCityId :Int?
+//
+////    @Binding var CitybuttonSelected: Int?
+//
+//    @Binding var selectedFilterAreaName :String?
+////    @Binding var OldselectedFilterAreaName :String
+//
+//    @Binding var selectedFilterAreaId :Int?
+////    @Binding var OldselectedFilterAreaId :Int?
+//
+//    @Binding var AreabuttonSelected: Int?
     @Binding  var searchTxt : String
     
     var body: some View {
         CustomSheet(IsPresented: $showFilter, TapToDismiss: .constant(false), content: {
             switch FilterTag{
             case .Menu:
-                FilterMenu(FilterTag: $FilterTag, showFilter: $showFilter, selectedSeniorityLvlName: $selectedSeniorityLvlName,selectedSeniorityLvlId:$selectedSeniorityLvlId, selectedSpecLvlName: $selectedSpecLvlName,OldselectedSpecLvlName: $OldselectedSpecLvlName, selectedSpecLvlId: $selectedSpecLvlId,OldselectedSpecLvlId: $SpecialistId, selectedSubSpecLvlNames: $selectedSubSpecLvlNames,selectedSubSpecLvlIds:$selectedSubSpecLvlIds, selectedFee: $selectedFee, selectedFilterCityName: $selectedFilterCityName,OldselectedFilterCityName: $OldselectedFilterCityName,selectedFilterCityId:$selectedFilterCityId,OldselectedFilterCityId:$CityId, selectedFilterAreaName: $selectedFilterAreaName, OldselectedFilterAreaName: $OldselectedFilterAreaName,selectedFilterAreaId:$selectedFilterAreaId,OldselectedFilterAreaId:$AreaId,searchTxt:$searchTxt)
+                FilterMenu(FilterTag: $FilterTag, showFilter: $showFilter,
+                           selectedFee: $selectedFee,searchTxt:$searchTxt)
                     .environmentObject(searchDoc)
                     .environmentObject(FeesVM)
                 
                 
             case .Speciality:
-                SpecialityFilterList( FilterTag: $FilterTag, SpecialistId: $SpecialistId, selectedSpecLvlName: $selectedSpecLvlName, selectedSpecLvlId: $selectedSpecLvlId, SpecbuttonSelected: $SpecbuttonSelected)
+                SpecialityFilterList( FilterTag: $FilterTag)
                     .environmentObject(specialityvm)
+                    .environmentObject(searchDoc)
                 
             case .Title:
-                TitleFilterList(FilterTag: $FilterTag, selectedSeniorityLvlName: $selectedSeniorityLvlName, selectedSeniorityLvlId: $selectedSeniorityLvlId)
+                TitleFilterList(FilterTag: $FilterTag)
                     .environmentObject(seniorityVM)
                 
             case .SubSpeciality:
-                SubSpecialityFilterList( FilterTag: $FilterTag, SpecialistId: $SpecialistId, selectedSpecLvlId: $selectedSpecLvlId, selectedSubSpecLvlNames: $selectedSubSpecLvlNames, selectedSubSpecLvlIds: $selectedSubSpecLvlIds)
+                SubSpecialityFilterList( FilterTag: $FilterTag)
                     .environmentObject(SubSpecialityVM)
+                    .environmentObject(searchDoc)
+
+                
             case .City:
-                CityFilterList( FilterTag: $FilterTag, selectedFilterCityName: $selectedFilterCityName, selectedFilterCityId: $selectedFilterCityId)
+                CityFilterList( FilterTag: $FilterTag)
                     .environmentObject(CitiesVM)
+                    .environmentObject(searchDoc)
+
             case .Area:
-                AreaFilterList( FilterTag: $FilterTag, CityId: $CityId, selectedFilterCityId: $selectedFilterCityId, selectedFilterAreaName: $selectedFilterAreaName, selectedFilterAreaId: $selectedFilterAreaId)
+                AreaFilterList( FilterTag: $FilterTag)
                     .environmentObject(AreasVM)
+                    .environmentObject(searchDoc)
+
+                
             case .Fees:
                 FeesFilterView( FilterTag: $FilterTag, selectedFee: $selectedFee)
                     .environmentObject(FeesVM)

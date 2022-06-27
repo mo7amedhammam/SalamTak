@@ -12,8 +12,8 @@ import SwiftUI
 struct ViewDocCell: View {
     var language = LocalizationService.shared.language
 
-    var Doctor : Doc
-   @EnvironmentObject var searchDoc : VMSearchDoc
+     var Doctor : Doc
+    @EnvironmentObject var searchDoc : VMSearchDoc
     @Binding var gotodoctorDetails : Bool
     @Binding var SelectedDoctor : Doc
     

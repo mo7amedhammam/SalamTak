@@ -11,6 +11,8 @@ import SwiftUI
 struct SeniorityBtn: View {
     var language = LocalizationService.shared.language
     var seniorityLvl : subspeciality
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var selectedSenLvlName : [String]
     @Binding var selectedSenLvlId : [Int]
     @State var isTapped : Bool? = false
@@ -18,19 +20,19 @@ struct SeniorityBtn: View {
     var body: some View {
         Button(action: {
             isTapped?.toggle()
-            if selectedSenLvlId == []{
-                self.selectedSenLvlId.insert(seniorityLvl.id ?? 0, at: 0)
-                self.selectedSenLvlName.insert(seniorityLvl.Name ?? "", at: 0)
+            if searchDoc.FilterSubSpecialistId == []{
+                searchDoc.FilterSubSpecialistId.insert(seniorityLvl.id ?? 0, at: 0)
+                searchDoc.FilterSubSpecialistName.insert(seniorityLvl.Name ?? "", at: 0)
             } else{
                 
-                if self.selectedSenLvlId.contains(seniorityLvl.id ?? 0) && self.selectedSenLvlName.contains(seniorityLvl.Name ?? "") {
-                    self.selectedSenLvlId.removeAll(where: {$0 == seniorityLvl.id
+                if searchDoc.FilterSubSpecialistId.contains(seniorityLvl.id ?? 0) && searchDoc.FilterSubSpecialistName.contains(seniorityLvl.Name ?? "") {
+                    searchDoc.FilterSubSpecialistId.removeAll(where: {$0 == seniorityLvl.id
                     })
-                    self.selectedSenLvlName.removeAll(where: {$0 == seniorityLvl.Name
+                    searchDoc.FilterSubSpecialistName.removeAll(where: {$0 == seniorityLvl.Name
                     })
                 }else{
-                    self.selectedSenLvlId.append(seniorityLvl.id ?? 0)
-                    self.selectedSenLvlName.append(seniorityLvl.Name ?? "")
+                    searchDoc.FilterSubSpecialistId.append(seniorityLvl.id ?? 0)
+                    searchDoc.FilterSubSpecialistName.append(seniorityLvl.Name ?? "")
                 }
             }
          
@@ -53,7 +55,7 @@ struct SeniorityBtn: View {
 
         })
             .onAppear(perform: {
-                for id  in selectedSenLvlId {
+                for id  in searchDoc.FilterSubSpecialistId {
                     if seniorityLvl.id == id {
                     self.isTapped = true
                 }

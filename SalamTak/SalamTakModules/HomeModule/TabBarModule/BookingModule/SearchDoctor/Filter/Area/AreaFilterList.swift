@@ -11,12 +11,14 @@ import Combine
 struct AreaFilterList:View{
     
     @EnvironmentObject var AreasVM : ViewModelGetAreas
-    
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var FilterTag:FilterCases
-    @Binding var CityId:Int
-    @Binding var selectedFilterCityId :Int?
-    @Binding var selectedFilterAreaName :String?
-    @Binding var selectedFilterAreaId :Int?
+//    @Binding var CityId:Int
+//    @Binding var selectedFilterCityId :Int?
+//
+//    @Binding var selectedFilterAreaName :String?
+//    @Binding var selectedFilterAreaId :Int?
 //    @Binding var AreabuttonSelected: Int?
     
     var body: some View{
@@ -42,16 +44,17 @@ struct AreaFilterList:View{
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-                            self.selectedFilterAreaId = button.id ?? 0
-                            self.selectedFilterAreaName = button.Name ?? ""
+//                            searchDoc.isFiltering = true
+                            self.searchDoc.FilterAreaId = button.id ?? 0
+                            self.searchDoc.FilterAreaName = button.Name ?? ""
                             
                         }, label: {
                             HStack{
-                                Image(systemName:  self.selectedFilterAreaId == button.id ? "checkmark.circle.fill" :"circle" )
+                                Image(systemName:  self.searchDoc.FilterAreaId == button.id ? "checkmark.circle.fill" :"circle" )
                                     .font(.system(size: 20))
-                                    .foregroundColor(self.selectedFilterAreaId == button.id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.searchDoc.FilterAreaId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Text(button.Name ?? "")  .padding()
-                                    .foregroundColor(self.selectedFilterAreaId == button.id ? Color("blueColor") : Color("lightGray"))
+                                    .foregroundColor(self.searchDoc.FilterAreaId == button.id ? Color("blueColor") : Color("lightGray"))
                                 Spacer()
                                 
                                 
@@ -85,7 +88,7 @@ struct AreaFilterList:View{
                 .padding(.bottom,10)
         }
         .onAppear(perform: {
-            AreasVM.cityId = selectedFilterCityId ?? CityId
+            AreasVM.cityId = searchDoc.FilterSpecialistId
             AreasVM.startFetchAreas()
         })
         
@@ -94,7 +97,9 @@ struct AreaFilterList:View{
 
 struct AreaFilterList_Previews: PreviewProvider {
     static var previews: some View {
-        AreaFilterList( FilterTag: .constant(.Area), CityId: .constant(2), selectedFilterCityId: .constant(1), selectedFilterAreaName: .constant(""), selectedFilterAreaId: .constant(2))
+        AreaFilterList( FilterTag: .constant(.Area))
             .environmentObject(ViewModelGetAreas())
+            .environmentObject(VMSearchDoc())
+
     }
 }

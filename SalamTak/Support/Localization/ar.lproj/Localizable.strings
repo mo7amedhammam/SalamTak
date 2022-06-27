@@ -258,9 +258,12 @@
 "Choose_Speciality" = "تحديد التخصص";
 "SpecialitiesـSubTitle" = "التخصصات";
 
+"All_Titles" = "كل الخبرات";
 "Choose_City" = "تحديد المدينة";
 "Choose_your_City" = "اختر مدينتك";
 "All_Cities" = "كل المدن";
+"All_Prices" = "كل الاسعار";
+"All_SubSpecs" = "كل التخصصات الفرعية";
 
 "Choose_Area" = "تحديد المنطقة";
 "Choose_your_Area" = "اختر منطقتك";
