@@ -12,10 +12,7 @@ struct CityFilterList:View{
     @EnvironmentObject var CitiesVM : ViewModelGetCities
     @EnvironmentObject var searchDoc : VMSearchDoc
 
-    @Binding var FilterTag:FilterCases
-//    @Binding var selectedFilterCityName :String?
-//    @Binding var selectedFilterCityId :Int?
-    
+    @Binding var FilterTag:FilterCases    
     var body: some View{
         VStack {
             Text("City".localized(language))
@@ -39,12 +36,8 @@ struct CityFilterList:View{
                     HStack {
                         Spacer().frame(width:30)
                         Button(action: {
-//                            self.selectedFilterCityId = button.Id ?? 0
-//                            self.selectedFilterCityName = button.Name ?? ""
                             searchDoc.FilterCityId = button.Id ?? 0
                             searchDoc.FilterCityName = button.Name ?? ""
-                            
-//                            searchDoc.isFiltering = true
                             searchDoc.FilterAreaId =  0
                             searchDoc.FilterAreaName =  ""
 

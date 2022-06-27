@@ -165,7 +165,7 @@ struct ViewSearchDoc: View {
             }
             .edgesIgnoringSafeArea(.vertical)
             if showFilter == true {
-                MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, selectedFee:$selectedFee,searchTxt:$searchTxt)
+                MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, searchTxt:$searchTxt)
                     .environmentObject(searchDoc)
                     .environmentObject(seniorityVM)
                     .environmentObject(specialityvm)

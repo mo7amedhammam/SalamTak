@@ -11,9 +11,11 @@ import Combine
 
 struct FeesFilterView:View {
     @EnvironmentObject var FeesVM : ViewModelFees
+    @EnvironmentObject var searchDoc : VMSearchDoc
+
     @Binding var FilterTag:FilterCases
     
-    @Binding var selectedFee :Float
+//    @Binding var selectedFee :Float
     var body: some View{
         VStack{
             Text("Examination_Fee".localized(language))
@@ -37,12 +39,12 @@ struct FeesFilterView:View {
                     FeesFilterTextField(text:.constant("\(String(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))")  , title: "Minimum".localized(language))
                         .frame(width:(UIScreen.main.bounds.width - 50)/2)
                         .disabled(true)
-                    FeesFilterTextField(text: .constant("\( String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + selectedFee)) )")  , title: "Maximum".localized(language))
+                    FeesFilterTextField(text: .constant("\( String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + searchDoc.FilterFees)) )")  , title: "Maximum".localized(language))
                         .frame(width:(UIScreen.main.bounds.width - 50)/2)
                         .disabled(true)
                 }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 
-                CustomView(percentage: $selectedFee, range: Int( FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) - Int(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) )
+                CustomView(percentage: $searchDoc.FilterFees, range: Int( FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) - Int(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) )
                 
             }.padding()
             
@@ -73,7 +75,8 @@ struct FeesFilterView:View {
 
 struct FeesFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FeesFilterView( FilterTag: .constant(.Fees), selectedFee: .constant(22))
+        FeesFilterView( FilterTag: .constant(.Fees))
             .environmentObject(ViewModelFees())
+            .environmentObject(VMSearchDoc())
     }
 }

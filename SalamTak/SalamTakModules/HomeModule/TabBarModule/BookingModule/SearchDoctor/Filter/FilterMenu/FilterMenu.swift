@@ -15,7 +15,6 @@ struct FilterMenu:View{
     
     @Binding var FilterTag:FilterCases
     @Binding var showFilter:Bool
-    @Binding var selectedFee :Float
     @Binding  var searchTxt : String
     
     var body: some View{
@@ -207,7 +206,7 @@ struct FilterMenu:View{
                                 .font(.system(size: 16))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text( selectedFee > 0 ?  "From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( selectedFee))) "+"EGP".localized(language):"All_Prices".localized(language))
+                            Text( searchDoc.FilterFees > 0 ?  "From".localized(language) + " \(String( FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))" + " to".localized(language) + " \(String(Int( searchDoc.FilterFees))) "+"EGP".localized(language):"All_Prices".localized(language))
                                 .font(.system(size: 12))
                                 .fontWeight(.medium)
                                 .foregroundColor(.gray)
@@ -219,7 +218,6 @@ struct FilterMenu:View{
                         
                     }.padding()
                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                    
                 })
                 
             }
@@ -276,7 +274,7 @@ struct FilterMenu:View{
     }
     
     func applyFilter(){
-        searchDoc.FilterFees = selectedFee > 0 ? Int(selectedFee):0
+        searchDoc.FilterFees = Float(searchDoc.FilterFees > 0 ? Int(searchDoc.FilterFees):0)
         searchDoc.publishedModelSearchDoc?.removeAll()
         getAllDoctors()
     }
@@ -291,7 +289,6 @@ struct FilterMenu:View{
         searchDoc.FilterCityName = searchDoc.CityName
         searchDoc.FilterAreaId = searchDoc.AreaId
         searchDoc.FilterAreaName = searchDoc.AreaName
-        selectedFee = 0
         searchDoc.FilterFees = 0
         getAllDoctors()
     }
@@ -301,7 +298,7 @@ struct FilterMenu:View{
 struct FilterMenu_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), selectedFee: .constant(0), searchTxt:.constant(""))
+            FilterMenu(FilterTag: .constant(.Menu), showFilter: .constant(true), searchTxt:.constant(""))
                 .environmentObject(VMSearchDoc())
                 .environmentObject(ViewModelFees())
         }

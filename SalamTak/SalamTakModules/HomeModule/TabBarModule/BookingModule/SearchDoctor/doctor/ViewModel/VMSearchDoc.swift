@@ -50,7 +50,7 @@ class VMSearchDoc: ObservableObject {
     @Published var FilterAreaName                               :String? = ""
 
     @Published var FilterGenderId                             :Int? = 0
-    @Published var FilterFees                                  :Int? = 0
+    @Published var FilterFees                                  :Float = 0
     @Published var FilterSeniortyLevelId                     :Int? = 0
     @Published var FilterSeniortyLevelName                    :String? = ""
 
@@ -122,7 +122,7 @@ extension VMSearchDoc:TargetType{
             // required
             "MaxResultCount": MaxResultCount,
             "SkipCount":SkipCount,
-            "SpecialistId":FilterSpecialistId == 0 ? SpecialistId:FilterSpecialistId ?? true,
+            "SpecialistId":FilterSpecialistId == 0 ? SpecialistId:FilterSpecialistId ,
             "MedicalExaminationTypeId":MedicalExaminationTypeId
         ]
         // optional
@@ -149,7 +149,7 @@ extension VMSearchDoc:TargetType{
 //        }
         
         if FilterFees != 0{
-            Parameters["Fees"] = FilterFees
+            Parameters["Fees"] = Int(FilterFees)
         }
 //        else if Fees != 0{
 //            Parameters["Fees"] = Fees
