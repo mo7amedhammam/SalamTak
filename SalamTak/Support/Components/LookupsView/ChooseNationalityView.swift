@@ -42,24 +42,22 @@ struct ChooseNationality : View {
                                 .font(.title2)
                                 .bold()
                             ScrollView {
-                                ForEach(0..<NationalityVM.publishedCountryModel.count) { button in
+                                ForEach(NationalityVM.publishedCountryModel,id:\.self) { button in
                                     HStack {
                                         Spacer().frame(width:30)
                                         Button(action: {
-                                            self.buttonSelected = button
-                                            print("SelectedID is \(self.NationalityVM.publishedCountryModel[button].Id ?? 0)")
-                                            self.SelectedNationalityName = NationalityVM.publishedCountryModel[button].Name ?? ""
-                                            self.SelectedNationalityId = NationalityVM.publishedCountryModel[button].Id ?? 0
+                                            self.SelectedNationalityName = button.Name ?? ""
+                                            self.SelectedNationalityId = button.Id ?? 0
                                             patientCreatedVM.NationalityName = SelectedNationalityName
                                             patientCreatedVM.NationalityId = SelectedNationalityId
                                             IsPresented =  false
                                         }, label: {
                                             HStack{
-                                                Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                                Image(systemName:  self.SelectedNationalityId == button.Id ?? 0 ? "checkmark.circle.fill" :"circle" )
                                                     .font(.system(size: 20))
-                                                    .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                                Text(self.NationalityVM.publishedCountryModel[button].Name ?? "")  .padding()
-                                                    .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                    .foregroundColor(self.SelectedNationalityId == button.Id ?? 0 ? Color("blueColor") : Color("lightGray"))
+                                                Text(button.Name ?? "")  .padding()
+                                                    .foregroundColor(SelectedNationalityId == button.Id ? Color("blueColor") : Color("lightGray"))
                                                 Spacer()
                                             }
                                         })

@@ -24,7 +24,7 @@ struct MoreView: View {
             ZStack{
 
                 VStack(spacing:1) {
-                    Text(Helper.getpatientName())
+                    Text("More_Screen_myprofile".localized(language))
                             .foregroundColor(.black)
                             .font(Font.SalamtechFonts.Reg16)
                             .padding(.top,-10)

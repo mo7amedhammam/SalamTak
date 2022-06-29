@@ -14,7 +14,7 @@ struct ChooseCity : View {
     @ObservedObject private var patientCreatedVM = ViewModelCreatePatientProfile()
     @StateObject var cityVM = ViewModelGetCities()
 
-    @State private var buttonSelected : Int?
+//    @State private var buttonSelected : Int?
 
     @Binding var IsPresented: Bool
     @Binding var SelectedCityName: String
@@ -44,14 +44,12 @@ struct ChooseCity : View {
                             .font(.title2)
                             .bold()
                         ScrollView(showsIndicators: false) {
-                            ForEach(0..<cityVM.publishedCityModel.count , id:\.self) { button in
+                            ForEach(cityVM.publishedCityModel , id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:20)
                                     Button(action: {
-                                        self.buttonSelected = button
-                                        print("Selected City ID is \(self.cityVM.publishedCityModel[button].Id ?? 0)")
-                                        self.SelectedCityName = cityVM.publishedCityModel[button].Name ?? ""
-                                        self.SelectedCityId = cityVM.publishedCityModel[button].Id ?? 0
+                                        self.SelectedCityName = button.Name ?? ""
+                                        self.SelectedCityId = button.Id ?? 0
                                         patientCreatedVM.cityName = SelectedCityName
                                         patientCreatedVM.CityId = SelectedCityId
                                         cityVM.CityId = SelectedCityId
@@ -59,11 +57,11 @@ struct ChooseCity : View {
 
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  SelectedCityId == button.Id ?? 0 ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                            Text(self.cityVM.publishedCityModel[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(self.SelectedCityId == button.Id ? Color("blueColor") : Color("lightGray"))
+                                            Text(button.Name ?? "")  .padding()
+                                                .foregroundColor(self.SelectedCityId == button.Id ?? 0 ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
                                         }
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)

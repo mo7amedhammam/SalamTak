@@ -17,7 +17,6 @@ struct ScheduleEachCellView: View {
     
     @Binding var schedule: AppointmentInfo
     @State var goingToRate = false
-    @State var goingToHelp = false
     
     @EnvironmentObject var scheduleVM : ViewModelGetAppointmentInfo
     var body: some View {
@@ -29,20 +28,16 @@ struct ScheduleEachCellView: View {
                         .foregroundColor(schedule.isCancel==true ? .red:schedule.canRate==true ? Color("blueColor"):.black)
                     Group{
                         Text(schedule.medicalTypeName ?? "clinic")
-                        
                         Text(" | ")
-                        
                         Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"d/M/yyyy"))
-                        
                         Text(" | ")
-                        
                         Text(ConvertStringDate(inp:schedule.appointmentDate ?? "",FormatFrom:"yyyy-MM-dd'T'HH:mm:ss" ,FormatTo:"hh:mm a"))
                     }.foregroundColor(schedule.canRate==true||schedule.isCancel==true ? .black:.white)
                     Spacer()
                     
                 }
                 .frame( height: 40)
-
+                
                 .background(schedule.canRate==true ? Color("lightGray").opacity(0.2):Color("blueColor"))
                 
                 Spacer()
@@ -125,7 +120,7 @@ struct ScheduleEachCellView: View {
                         }
                         
                         Button(action: {
-                            goingToHelp = true
+                            Helper.MakePhoneCall(PhoneNumber: "17143")
                         }, label: {
                             HStack{
                                 Image(systemName: "headphones.circle")

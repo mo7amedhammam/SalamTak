@@ -24,7 +24,7 @@ struct ShowUpdateOccupationList: View {
             
         }
         .transition(.move(edge: .bottom))
-        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+        .offset(x: 0, y: offset.height > 0 ? offset.height : -160)
         .gesture(
             DragGesture()
                 .onChanged { gesture in

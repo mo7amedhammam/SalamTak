@@ -10,11 +10,11 @@ import SwiftUI
 struct ChooseBloodType : View {
     var language = LocalizationService.shared.language
     
-    @ObservedObject private var medicalCreatedVM = ViewModelCreateMedicalProfile()
+    @ObservedObject var medicalCreatedVM = ViewModelCreateMedicalProfile()
     @EnvironmentObject var BloodTypeVM : ViewModelBloodType
     
     @Binding var IsPresented: Bool
-    @State var buttonSelected: Int?
+//    @State var buttonSelected: Int?
     
     @Binding var SelectedBloodName: String
     @Binding var SelectedBloodId: Int
@@ -42,24 +42,24 @@ struct ChooseBloodType : View {
                             .font(.title2)
                             .bold()
                         ScrollView {
-                            ForEach(0..<BloodTypeVM.publishedCountryModel.count) { button in
+                            ForEach(BloodTypeVM.publishedCountryModel,id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:30)
                                     Button(action: {
-                                        self.buttonSelected = button
-                                        print("SelectedID is \(self.BloodTypeVM.publishedCountryModel[button].Id ?? 0)")
-                                        self.SelectedBloodName = BloodTypeVM.publishedCountryModel[button].Name ?? ""
-                                        self.SelectedBloodId = BloodTypeVM.publishedCountryModel[button].Id ?? 0
+//                                        self.buttonSelected = button
+//                                        print("SelectedID is \(self.BloodTypeVM.publishedCountryModel[button].Id ?? 0)")
+                                        self.SelectedBloodName = button.Name ?? ""
+                                        self.SelectedBloodId = button.Id ?? 0
                                         medicalCreatedVM.BloodTypeName = SelectedBloodName
                                         medicalCreatedVM.BloodTypeId = SelectedBloodId
                                         IsPresented = false
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  SelectedBloodId == button.Id ?? 0 ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                            Text(self.BloodTypeVM.publishedCountryModel[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(SelectedBloodId == button.Id ?? 0 ? Color("blueColor") : Color("lightGray"))
+                                            Text(button.Name ?? "")  .padding()
+                                                .foregroundColor(SelectedBloodId == button.Id ?? 0 ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
                                         }
                                     })

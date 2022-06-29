@@ -20,7 +20,7 @@ struct ShowUpdateMedicineAllergyList: View {
             ChooseMedicineAllergy(IsPresented: $ShowMedicineAllergy, selectedServiceName: $medicalUpdatedVM.PatientMedicineAllergiesName, selectedServiceId: $medicalUpdatedVM.PatientMedicineAllergiesDto,  width: UIScreen.main.bounds.size.width)
         }
         .transition(.move(edge: .bottom))
-        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+        .offset(x: 0, y: offset.height > 0 ? offset.height : -160)
         .gesture(
             DragGesture()
                 .onChanged { gesture in
@@ -37,7 +37,6 @@ struct ShowUpdateMedicineAllergyList: View {
                     }
                 }
         )
-
     }
 }
 

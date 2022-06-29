@@ -12,7 +12,7 @@ struct ChooseArea : View {
     @ObservedObject var patientCreatedVM = ViewModelCreatePatientProfile()
     @StateObject var areaVM = ViewModelGetAreas()
 
-    @State private var buttonSelected : Int?
+//    @State private var buttonSelected : Int?
 
     @Binding var IsPresented: Bool
     @Binding var SelectedAreaName: String
@@ -42,14 +42,14 @@ struct ChooseArea : View {
                             .font(.title2)
                             .bold()
                         ScrollView(showsIndicators: false) {
-                            ForEach(0..<areaVM.publishedAreaModel.count , id:\.self) { button in
+                            ForEach(areaVM.publishedAreaModel , id:\.self) { button in
                                 HStack {
                                     Spacer().frame(width:20)
                                     Button(action: {
-                                        self.buttonSelected = button
-                                        print("Selected area ID is \(self.areaVM.publishedAreaModel[button].id ?? 0)")
-                                        self.SelectedAreaName = areaVM.publishedAreaModel[button].Name ?? ""
-                                        self.SelectedAreaId = areaVM.publishedAreaModel[button].id ?? 0
+//                                        self.buttonSelected = button
+//                                        print("Selected area ID is \(self.areaVM.publishedAreaModel[button].id ?? 0)")
+                                        self.SelectedAreaName = button.Name ?? ""
+                                        self.SelectedAreaId = button.id ?? 0
                                         patientCreatedVM.areaName = SelectedAreaName
                                         patientCreatedVM.AreaId = SelectedAreaId
                                         
@@ -57,11 +57,11 @@ struct ChooseArea : View {
 
                                     }, label: {
                                         HStack{
-                                            Image(systemName:  self.buttonSelected == button ? "checkmark.circle.fill" :"circle" )
+                                            Image(systemName:  SelectedAreaId == button.id ?? 0 ? "checkmark.circle.fill" :"circle" )
                                                 .font(.system(size: 20))
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
-                                            Text(self.areaVM.publishedAreaModel[button].Name ?? "")  .padding()
-                                                .foregroundColor(self.buttonSelected == button ? Color("blueColor") : Color("lightGray"))
+                                                .foregroundColor(SelectedAreaId == button.id ?? 0 ? Color("blueColor") : Color("lightGray"))
+                                            Text(button.Name ?? "")  .padding()
+                                                .foregroundColor(SelectedAreaId == button.id ?? 0 ? Color("blueColor") : Color("lightGray"))
                                             Spacer()
                                         }
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)

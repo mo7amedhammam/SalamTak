@@ -20,7 +20,7 @@ struct ShowUpdateCityList: View {
             ChooseCity(IsPresented: $ShowCity , SelectedCityName: $patientUpdatedVM.cityName , SelectedCityId: $patientUpdatedVM.CityId ,SelectedCountryId: $patientUpdatedVM.NationalityId , width: bounds.size.width )
         }
         .transition(.move(edge: .bottom))
-        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+        .offset(x: 0, y: offset.height > 0 ? offset.height : -160)
         .gesture(
             DragGesture()
                 .onChanged { gesture in
@@ -41,3 +41,9 @@ struct ShowUpdateCityList: View {
     }
 }
 
+
+struct ShowUpdateCityList_Previews: PreviewProvider {
+    static var previews: some View {
+        ShowUpdateCityList( ShowCity: .constant(true), bounds: .constant(CGRect(x:0,y:0, width: 150, height: 150)), offset:.constant( CGSize(width: 150, height: 150))).environmentObject(ViewModelUpdatePatientProfile())
+    }
+}

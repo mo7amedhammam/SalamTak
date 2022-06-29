@@ -105,14 +105,12 @@ struct PhoneVerificationResetView: View {
                 
                 Button(action: {
                     // send code action
-                    
                     let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
                     if checkOTP(sentOTP: ResetVM.publishedUserResetModel?.code ?? 1111, TypedOTP: Int(otp) ?? 0000){
                         self.matchedOTP.toggle()
                         self.userId = ResetVM.publishedUserResetModel?.userId ?? 0
                     }else{
                         hideIncorrectCode =  false
-                        print("not Matching")
                         isErrorCode = true
                     }
                     
