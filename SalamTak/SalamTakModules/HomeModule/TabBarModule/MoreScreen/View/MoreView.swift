@@ -47,6 +47,8 @@ struct MoreView: View {
                                     Spacer()
                                 }
                             })
+                                    .opacity(Helper.userExist() ? 1 : 0.6)
+                                    .disabled(!Helper.userExist())
 
                             Button(action: {
                                 self.goingToResetPassword.toggle()
@@ -63,7 +65,9 @@ struct MoreView: View {
                                     Spacer()
                                     
                                 }
-                            })
+                            })                                    .opacity(Helper.userExist() ? 1 : 0.6)
+                                .disabled(!Helper.userExist())
+                                
                             Button(action: {
                                 aboutApp = true
                             }, label: {
