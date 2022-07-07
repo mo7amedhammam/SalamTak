@@ -2,7 +2,7 @@
 //  ResetPasswordView.swift
 //  SalamTech-DR
 //
-//  Created by Mostafa Morsy on 03/03/2022.
+//  Created by Mohamed hammam on 03/03/2022.
 //
 
 import SwiftUI

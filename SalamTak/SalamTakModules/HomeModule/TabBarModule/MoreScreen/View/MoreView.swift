@@ -127,7 +127,7 @@ struct MoreView: View {
                                         .foregroundColor(Color("lightGray"))
                                     Spacer()
                                     
-                                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                }
                                
                                 HStack{
                                 LanguageView(selection: $patientCreatedVM.GenderId)
@@ -154,7 +154,8 @@ struct MoreView: View {
                                     Spacer()
                                 }
                             })
-                        }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                        }
+                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                             .font(.system(size: 13))
                             .padding(12)
                             .disableAutocorrection(true)

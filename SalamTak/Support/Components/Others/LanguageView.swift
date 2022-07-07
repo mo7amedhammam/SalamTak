@@ -9,15 +9,13 @@ import SwiftUI
 
 
 struct LanguageView: View {
-    //@State private var isSelected = 1
-
     @Binding var selection: Int?
-        var body: some View {
-            VStack {
-                MyRadioButtons1(selection: $selection)
-            }
+    var body: some View {
+        VStack {
+            MyRadioButtons1(selection: $selection)
         }
-
+    }
+    
 }
 
 struct LanguageView_Previews: PreviewProvider {
@@ -30,15 +28,12 @@ struct MyRadioButton1: View {
     var id: Int
     @Binding var currentlySelectedId: Int?
     @State var text:String
-//    @ObservedObject var doctorCreatedVM = ViewModelCreateDoctorProfile()
     let screenWidth = UIScreen.main.bounds.size.width - 100
-
+    
     var body: some View {
         Button(action: {
             self.currentlySelectedId = self.id
-////            doctorCreatedVM.GenderId = self.currentlySelectedId ?? 0
-//            print(currentlySelectedId ?? 0)
-//            print(doctorCreatedVM.GenderId ?? 0)
+            
             if self.currentlySelectedId == 1 {
                 LocalizationService.shared.language = .english_us
                 Helper.setLanguage(currentLanguage: "en")
@@ -47,10 +42,9 @@ struct MyRadioButton1: View {
                 Helper.setLanguage(currentLanguage: "ar")
             }
             
-        }, label: { Text(text)
+        }, label: {
+            Text(text)
                 .font(Font.SalamtechFonts.Reg14)
-
-            
         })
             .foregroundColor(id == currentlySelectedId ? Color.white : .black)
             .frame(width: screenWidth / 2, height: 37)
@@ -70,11 +64,8 @@ struct MyRadioButton1: View {
 struct MyRadioButtons1: View {
     init(selection: Binding<Int?>) {
         self._currentlySelectedId = selection
-        
     }
     @Binding var currentlySelectedId: Int?
-//    @ObservedObject var doctorCreatedVM = ViewModelCreateDoctorProfile()
-
     var body: some View {
         HStack (spacing: 20){
             MyRadioButton1(id: 2, currentlySelectedId: $currentlySelectedId , text: "العربية")
