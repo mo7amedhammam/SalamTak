@@ -93,10 +93,7 @@ struct ViewSummary:View{
             // showing loading indicator
             ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
             
-            //                    .overlay(content: {
             ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
-            //                    })
-            
             
             //      go to clinic info
             NavigationLink(destination:TabBarView(selectedTab:"TabBar_schedual"),isActive: $GotoSchedual) {
@@ -107,13 +104,11 @@ struct ViewSummary:View{
             }
             
         }
-        //            .navigationBarHidden(ispreviewImage)
         .navigationViewStyle(StackNavigationViewStyle())
         .background(Color.red)
         .onAppear(perform: {
             CreateAppointment.DoctorId = Doctor.id ?? 0
             CreateAppointment.DoctorWorkingDayTimeId = BookingscedualId
-            
             CreateAppointment.AppointmentDate = "\(ChangeFormate(NewFormat: "yyyy-MM-dd").string(from: BookiDate))T\(BookiTime)"
             CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
         })

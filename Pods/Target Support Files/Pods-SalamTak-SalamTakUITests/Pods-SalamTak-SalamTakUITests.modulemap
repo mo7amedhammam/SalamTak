@@ -1,0 +1,6 @@
+framework module Pods_SalamTak_SalamTakUITests {
+  umbrella header "Pods-SalamTak-SalamTakUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

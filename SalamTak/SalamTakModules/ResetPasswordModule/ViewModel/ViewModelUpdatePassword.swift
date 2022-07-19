@@ -24,7 +24,7 @@ class ViewModelUpdatePassword: ObservableObject {
     @Published var inlineErrorPassword = ""
     @Published var publishedUserRegisteredModel: UpdatePassword? = nil
     @Published var isUpdated = false
-    @Published private var UserCreated = false
+//    @Published private var UserCreated = false
 
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -123,7 +123,6 @@ extension ViewModelUpdatePassword:TargetType{
                     DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
                         self.isUpdated = true
-
                     }
                 }else{
                     if model != nil{
