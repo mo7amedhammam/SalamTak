@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 
 class URLs {
-     static let BaseUrl = "https://salamtakapitest.azurewebsites.net"
     
+//     static let BaseUrl = "https://salamtakapitest.azurewebsites.net"
+    static let BaseUrl = "https://salamtechapi.azurewebsites.net"
+
     // MARK: -------- Patient ------
     var CreateUser = BaseUrl + "/api/\(Helper.getLanguage())/User/CreateUser"
      var RegisterUser = BaseUrl + "/api/\(Helper.getLanguage())/User/Register"

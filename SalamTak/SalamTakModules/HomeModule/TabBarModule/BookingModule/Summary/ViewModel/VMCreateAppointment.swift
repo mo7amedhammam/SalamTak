@@ -41,7 +41,6 @@ class VMCreateAppointment: ObservableObject {
             if publishedCreateAppointment != nil{
                 isDone = true
             }
-            print(publishedCreateAppointment!)
         }.store(in: &cancellables)
     }
  
@@ -79,12 +78,14 @@ extension VMCreateAppointment:TargetType{
     func CreatePatientAppointment() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-print(parameter)
             BaseNetwork.request(Target: self, responseModel: BaseResponse<ModelCreateAppointment>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
                         self.GetModelCreateAppointment.send( model! )
+//                        if model?.success == true {
+//                            self.isDone = true
+//                        }
                     }
                     activeAlert = .success
                 }else{
