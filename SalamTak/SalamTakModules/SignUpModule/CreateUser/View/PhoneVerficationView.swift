@@ -147,12 +147,10 @@ struct PhoneVerificationView: View {
             }  .edgesIgnoringSafeArea(.all)
                 .keyboardSpace()
             AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
-//                    .navigationBarItems(leading: BackButtonView())
                 .navigationBarBackButtonHidden(true)
 
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        
         .ignoresSafeArea()
         .onTapGesture(perform: {
             hideKeyboard()
@@ -180,8 +178,6 @@ struct PhoneVerificationView: View {
                 CreateUserVM.isAlert = false
             }))
         })
-        
-        
     }
     
     private func otpText(text: String) -> some View {
