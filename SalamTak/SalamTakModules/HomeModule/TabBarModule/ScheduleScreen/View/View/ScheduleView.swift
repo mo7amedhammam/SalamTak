@@ -100,5 +100,5 @@ struct ScheduleView_Previews: PreviewProvider {
 }
 
 enum ActiveAlert {
-    case NetworkError, serverError, success, unauthorized
+    case NetworkError, serverError, success, GovernmentID, PlateNumber, LicenseNumber
 }
