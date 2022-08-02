@@ -71,7 +71,8 @@ struct ViewLogin: View {
                     Spacer()
                     ButtonView(text: "SignIn_Button".localized(language),backgroundColor:  (LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "") && !(LoginVM.isLoading ?? false) ? Color("mainColor") :                                 Color(uiColor: .lightGray) , action: {
                         LoginVM.startLoginApi()
-                    }).disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "" || (LoginVM.isLoading ?? false))
+                    })
+                        .disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "" || (LoginVM.isLoading ?? false))
                     
                     if QuickLogin == false{
                         HStack {
