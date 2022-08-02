@@ -69,8 +69,8 @@ struct ScheduleView: View {
             medicalType.GetExaminationTypeId()
             scheduleVM.exmodelId = index
             scheduleVM.execute(operation: .getappointments)
+            })
         
-        })
             .onChange(of: index){newval in
                 scheduleVM.exmodelId = newval
                 scheduleVM.AppointmentsArr.removeAll()
@@ -100,5 +100,5 @@ struct ScheduleView_Previews: PreviewProvider {
 }
 
 enum ActiveAlert {
-    case NetworkError, serverError, success, GovernmentID, PlateNumber, LicenseNumber
+    case NetworkError, serverError, success, GovernmentID, PlateNumber, LicenseNumber, unauthorized
 }
