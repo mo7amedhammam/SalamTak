@@ -162,7 +162,6 @@ struct ViewSignUp: View {
                 }
             }
         }
-        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 BackButtonView()

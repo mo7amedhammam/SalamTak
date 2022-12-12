@@ -59,7 +59,6 @@ struct ViewSearchDoc: View {
     var body: some View {
         ZStack{
             VStack{
-                
                 Spacer().frame(height:100)
                 ZStack {
                     Image("WhiteCurve")
@@ -72,7 +71,6 @@ struct ViewSearchDoc: View {
                     }
                     .shadow(color: .black.opacity(0.2), radius: 15)
                 }
-                
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack( spacing: 10) {
                         ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in

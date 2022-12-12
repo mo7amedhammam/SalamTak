@@ -185,19 +185,15 @@ struct ViewAddReview: View {
                     .frame( height: 60)
                     .padding(.horizontal)
                     .padding(.bottom,10)
-                
             })
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $addRate.isLoading)
-            
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .edgesIgnoringSafeArea(.top)
-        .onAppear(perform: {
-        })
-        
+                
         // Alert with no internet connection
         .alert(isPresented: $addRate.isAlert, content: {
             Alert(title: Text(addRate.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
@@ -212,7 +208,6 @@ struct ViewAddReview: View {
     }
     func addReview(){
         addRate.isLoading = true
-        //        addRate.DoctorId = Doctor.id ?? 0
         addRate.DoctorId = schedule.id ?? 0
         addRate.Rate = rate
         addRate.Comment = reviewComment
