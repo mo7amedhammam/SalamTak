@@ -17,7 +17,8 @@
 "onBoarding_Next_Button" = "التالي";
 "onBoarding_GetStarted_Button" = "ابدأ التطبيق";
 "welcome_screen_title" = "مرحبا";
-"Welcome_Screen_subtitle" = "هنا يمكننا مساعدتك في توفير وقتك أثناء طلب المساعدة الطبية";
+"Welcome_Screen_subtitle" = "عزيزى المريض,
+هنا يمكننا مساعدتك في توفير وقتك أثناء طلب المساعدة الطبية";
 "SignIn_Button" = "الدخول";
 "SignUp_Button" = "التسجيل";
 "SignIn_Screen_title" = "الدخول";
@@ -391,3 +392,14 @@
 "Chat" = "محادثة نصية ";
 
 "long_press_on_pin_to_drag"="اضغط مطولا لتحريك المؤشر";
+
+//--------------------------
+"Powered_By" = "برعاية";
+"New_SignUp_Button" = "انشاء حساب جديد";
+"I_agree" = "أوافق على";
+"Terms_&_Conditions" = "الشروط و الأحكام";
+"You_must_approve_terms_&_conditions" = "يجب الموافقة على الشروط والأحكام";
+"For_Support_call" = "للمساعدة اتصل ب";
+"New_Forget_Screen_title" = "إعادة تعيين كلمة المرور";
+"By_E-mail" = "باستخدام البريد";
+"By_Phone" = "باستخدام الهاتف";

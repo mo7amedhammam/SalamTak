@@ -8,17 +8,26 @@
 
 
 "settings_language" = "Language";
-"OnBoarding_Screen1_title" = "Salamtech Booking";
-"OnBoarding_Screen1_subtitle" = "Salamtech Booking provides an easy way for the patient to book an appointment with his favourite doctor with the possobility of following up on the latest offers of doctors in all specialities";
-"OnBoarding_Screen2_title" = "Home Visit";
+"OnBoarding_Screen1_title" = "Salamtak Booking";
+"OnBoarding_Screen1_subtitle" = "is designed to accommodate an easy and
+professional tool to book reservations while
+furnishing all related information that would
+be of an interest for both patient and doctor.
+Nevertheless, reservations confirmation and
+reminder technique are also part of the
+features that Salamtak booking provides.";
+"OnBoarding_Screen2_title" = "Salamtak Home Visit";
 "OnBoarding_Screen2_subtitle" = "Salamtech Home Visit provides a radical solution to the problem of booking a home visit to the doctor so that it does not conflict with his clinic reservations";
-"OnBoarding_Screen3_title" = "Live Chat";
-"OnBoarding_Screen3_subtitle" = "Save your time and effort as Salamtech live chat allows you to provide the first and third visits for both the patient and the doctor";
+"OnBoarding_Screen3_title" = "Salamtak Connect";
+"OnBoarding_Screen3_subtitle" = "Salamtak provides a variety of communication tools between both doctor and patient by using any of the three venues (chat / call / video call) Moreover, in simple cases or in the case of patient is not able to visit doctor's clinic.
+Salamtak Connect will be the solution to conduct diagnosis.";
 "onBoarding_Skip_Button" = "Skip";
 "onBoarding_Next_Button" = "Next";
 "onBoarding_GetStarted_Button" = "Get Started";
 "welcome_screen_title" = "Welcome";
-"Welcome_Screen_subtitle" = "Here we can help you save your time while asking for a medical help";
+"Welcome_Screen_subtitle" = "Dear Patient,
+Here we will help you to save time
+while asking for the medical help";
 "SignIn_Button" = "Sign In";
 "SignUp_Button" = "Sign Up";
 "SignIn_Screen_title" = "Sign In";
@@ -390,3 +399,14 @@ Organized appointment and better time management.";
 "Chat" = "Chat ";
 
 "long_press_on_pin_to_drag"="long press on pin to drag";
+
+//-------------------
+"Powered_By" = "Powered By";
+"New_SignUp_Button" = "Create New Account";
+"I_agree" = "I agree";
+"Terms_&_Conditions" = "Terms & Conditions";
+"You_must_approve_terms_&_conditions" = "You must approve terms & conditions";
+"For_Support_call" = "For Support call";
+"New_Forget_Screen_title" = "Forget Password";
+"By_E-mail" = "By E-mail";
+"By_Phone" = "By Phone";

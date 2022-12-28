@@ -7,41 +7,93 @@
 
 import SwiftUI
 
+enum tapbarColor {
+case blue,clear,dark
+}
+
 struct AppBarView: View {
     @State var Title: String
+    @State var imageName: String = ""
+
+    @State var backColor: tapbarColor = .clear
+    @State var withbackButton: Bool  = false
+
     var body: some View{
-        VStack{
+        ZStack{
+        if backColor == .blue{
         CurvedSideRectangleView()
-            .fill(Color("mainColor"))
-            .frame(height: 100)
+            .fill(Color("blueColor"))
+            .frame(height: 120)
             .shadow(radius: 8)
+        }else{
+            ZStack{
+                Color.clear
+            }
+            .frame(height: 120)
+
+        }
+        }
             .overlay(
                 HStack {
                     Spacer()
+                    if imageName != ""{
+                    Spacer()
+                    .frame(width: 50, height: 50)
+                    }
                     Text(Title)
-                        .font(Font.SalamtechFonts.Reg24)
+                        .font(.salamtakBold(of: 24))
                         .fontWeight(.semibold)
-                        .foregroundColor(.white)
+                        .foregroundColor(backColor == .blue ? .white:backColor == .dark ? Color("blueColor") : Color("blueColor"))
                         .frame( alignment: .center)
-                        .padding(.bottom, 15)
+                        .multilineTextAlignment(.center)
+                    //BackButtonView()
+                    if imageName != ""{
+                        numberedImage(text:imageName)
+//                    Image(imageName)
+                        .frame(width: 50, height: 50)
+//                        .padding(.horizontal)
+                    }
                     Spacer()
                 }
-                    .padding(.bottom,-50)
+                    .overlay(
+                        HStack{
+                            if withbackButton{
+                            BackButtonView()
+                            Spacer()
+                            }
+                        }.frame(height:60)
+                    )
+                    .padding(.bottom,-30)
+                
             )
-        Spacer()
-        }
     }
 }
 
 struct AppBarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            AppBarView(Title: "Sign Up")
+            AppBarView(Title: "Sign Up", imageName: "1-3")
                 .edgesIgnoringSafeArea(.all)
             Spacer()
         }
     }
 }
+
+struct numberedImage: View {
+    var text:String=""
+    var body: some View {
+        Image("numberedimage")
+            .resizable()
+        //            .frame(width: 80, height: 80)
+            .overlay(
+                Text(text)
+                    .foregroundColor(.white)
+                //                    .font(Font.system(size: 25))
+                    .bold()
+            )
+    }
+}
+
 struct AppBarLogoView: View {
     @State var imageName: String
     var body: some View{

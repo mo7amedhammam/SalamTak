@@ -132,7 +132,7 @@ struct ViewDocDetails:View{
             })
         }
         ){
-            ViewLogin( ispresented: .constant(false), QuickLogin: $presentLogin)
+            ViewLogin( ispresented: .constant(false))
         }
         .sheet(isPresented: $presentReservation,
                onDismiss:{
@@ -143,7 +143,7 @@ struct ViewDocDetails:View{
             })
         }
         ){
-            ViewSignUp(ispresented: .constant(false), quickSignup: $presentReservation)
+            ViewSignUp(ispresented: .constant(false))
         }
     }
 }

@@ -66,7 +66,9 @@ class ViewModelRegister: ObservableObject {
     @Published  var phoneNumber1: String = "+20 | "
     @Published  var password = ""
     @Published  var password1 = ""
-    
+    @Published var IsTermsAgreed = false
+    @Published var termsErrorMessage = ""
+
 
 
     

@@ -11,12 +11,22 @@ import SwiftUI
 struct PhoneVerificationResetView: View {
     var language = LocalizationService.shared.language
     
-   @EnvironmentObject var ResetVM : ViewModelResetPassword
+    var passedmodel : ViewModelResetPassword? = nil
+
     @State private var matchedOTP = false
+    
+
+//    @State private var timeRemaining = 120
+
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var minutes: Int = 02
     @State private var seconds: Int = 00
 
+    @State private var fieldOne = ""
+    @State private var fieldTwo   = ""
+    @State private var fieldThree = ""
+    @State private var fieldFour  = ""
+    
     @State private var hideIncorrectCode = true
     @State var userId = 0
     @StateObject var viewModel = OTPViewModel()
@@ -31,16 +41,19 @@ struct PhoneVerificationResetView: View {
         (textBoxWidth*4)+(spaceBetweenBoxes*3)+((paddingOfBox*2)*3)
     }
     @FocusState private var isfocused : Bool
+
     var body: some View {
         
         ZStack {
-            ScrollView( ){
-                Spacer().frame(height:120)
-                Text(ResetVM.ResetMethod == 2 ? "PhoneVerfication_Screen_subtitle".localized(language):"PhoneVerfication_Screen_subtitleEmail".localized(language))
-                    .font(.custom("SF UI Text", size: 16))
+            VStack( spacing: 1){
+                AppBarView(Title: "PhoneVerfication_Screen_title".localized(language),withbackButton: true)
+                    .navigationBarItems(leading: BackButtonView())
+                    .navigationBarBackButtonHidden(true)
+                Text("PhoneVerfication_Screen_subtitle".localized(language)).font(.custom("SF UI Text", size: 16))
                     .foregroundColor(Color("subText"))
                     .padding(.top, 35)
                     .multilineTextAlignment(.center)
+                
                 
                 ZStack {
                     HStack (spacing: spaceBetweenBoxes){
@@ -62,20 +75,29 @@ struct PhoneVerificationResetView: View {
                         .keyboardType(.numberPad)
                 }.padding(.top, 25)
                 
-                if hideIncorrectCode == false {
+                if hideIncorrectCode == false || (minutes == 0 && seconds == 0 ) {
                     Text("PhoneVerfication_Screen_codeMessage".localized(language)).font(.custom("SF UI Text", size: 14)).fontWeight(.light)
                         .foregroundColor(.red)
-                        .padding()
+                        .padding(.top,20)
                         .frame( alignment: .center)
                         .multilineTextAlignment(.center)
+                    
                 }
-                
-                Text("Code \n\(ResetVM.publishedUserResetModel?.code ?? 0)").font(.custom("SF UI Text", size: 16)).fontWeight(.light)
+                Text("Code sent to \n+2\(passedmodel?.phoneNumber ?? "" )").font(.custom("SF UI Text", size: 16)).fontWeight(.light)
                     .foregroundColor(.black)
-                    .padding()
                     .frame( alignment: .center)
                     .multilineTextAlignment(.center)
+                    .padding(.top,20)
+                    .padding(.bottom,50)
                 
+                
+                Group{
+                    Text("The code will be expired within").font(.custom("SF UI Text", size: 16))
+                        .fontWeight(.light)
+                        .foregroundColor(Color("blueColor"))
+//                        .padding()
+                        .frame( alignment: .center)
+                        .multilineTextAlignment(.center)
                 Text("\(minutes):\(seconds)")
                     .font(.subheadline)
                     .onReceive(timer) { time in
@@ -89,98 +111,117 @@ struct PhoneVerificationResetView: View {
                             .fill(Color.black)
                             .opacity(0.2)
                     )
-                
-                
+                }
+                .padding(.bottom)
+                        
                 Button(action: {
                     // resend code action
-                    minutes = 02
+                    passedmodel?.startFetchResetPassword()
                     hideIncorrectCode =  true
-                    ResetVM.startFetchResetPassword()
+                    DynamicTimer(sentTimer: passedmodel?.publishedUserResetModel?.resendCounter ?? 60)
                     
                 }, label: { Text("PhoneVerfication_Screen_resendCode".localized(language))
                         .font(.title3)
-                        .foregroundColor( (minutes == 00 && seconds == 00) ? Color("darkGreen") : Color(uiColor: .lightGray))
-                    
+                        .foregroundColor( (minutes == 00 && seconds == 00) ? Color("darkGreen") : Color("blueColor"))
                 }).disabled(minutes != 00 && seconds != 00)
+                    .frame(height:40)
+                    .padding(.horizontal,40)
+                    .overlay(
+                                   RoundedRectangle(cornerRadius: 25)
+                                    .stroke(minutes != 00 && seconds != 00 ? Color("blueColor").opacity(0.5):Color("blueColor"), lineWidth: 1.5)
+                           )
+                    .padding(.top,15)
                 
-                Button(action: {
-                    // send code action
-                    let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
-                    if checkOTP(sentOTP: ResetVM.publishedUserResetModel?.code ?? 1111, TypedOTP: Int(otp) ?? 0000){
-                        self.matchedOTP.toggle()
-                        self.userId = ResetVM.publishedUserResetModel?.userId ?? 0
-                    }else{
-                        hideIncorrectCode =  false
-                        isErrorCode = true
-                    }
-                    
-                }, label: {
-                    Text("PhoneVerfication_Screen_sendCode_Button".localized(language))
-                        .fontWeight(.semibold)
-                        .frame(width: 220, height: 53)
-                        .foregroundColor( .white)
-                        .background( viewModel.otp4 != "" ? Color("blueColor") :                                 Color(uiColor: .lightGray) )
-                        .cornerRadius(6.0)
-                    
-                }).padding(.top, 120)
-                    .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
+//                        Button(action: {
+//                            let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
+//                            if checkOTP(sentOTP: passedmodel?.publishedUserResetModel?.code ?? 1111, TypedOTP: Int(otp) ?? 0000){
+//                                self.matchedOTP.toggle()
+//                                self.userId = passedmodel?.publishedUserResetModel?.userId ?? 0
+//                            }else{
+//                                hideIncorrectCode =  false
+//                                    print("not Matching")
+//                                }
+//
+//                        }, label: {
+//                            Text("PhoneVerfication_Screen_sendCode_Button".localized(language))
+//                                    .fontWeight(.semibold)
+//                                    .frame(width: 220, height: 53)
+//                                    .foregroundColor( .white)
+//                                    .background( viewModel.otp4 != "" ? Color("blueColor") :                                 Color(uiColor: .lightGray) )
+//                                    .cornerRadius(6.0)
+//
+//                        }).padding(.top, 120)
+//                    .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
                 
-                NavigationLink(destination: ChangePasswordView(userId: $userId),isActive: $matchedOTP, label: {
+                NavigationLink(destination: ChangePasswordView(),isActive: $matchedOTP, label: {
                 })
                 
                 // Alert with no internet connection
                     .alert(isPresented: $isErrorCode, content: {
-                        Alert(title: Text("Error_Code".localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
-                            isErrorCode = false
-                        }))
-                    })
+                Alert(title: Text("Error Code"), message: nil, dismissButton: .cancel())
+                })
                 
-                Spacer()
-            }  .edgesIgnoringSafeArea(.all)
-                .keyboardSpace()
+                        Spacer()
+            }
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarHidden(true)
+        }  .adaptsToKeyboard()
+            .ignoresSafeArea()
+            .onChange(of: viewModel.otp4, perform: { newval in
+//                    viewModel.otp4 = newval
+                let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+newval
+                if checkOTP(sentOTP: passedmodel?.publishedUserResetModel?.code ?? 1111, TypedOTP: Int(otp) ?? 0000){
+                    self.matchedOTP.toggle()
+                    self.userId = passedmodel?.publishedUserResetModel?.userId ?? 0
+                }else{
+                    hideIncorrectCode =  false
+                        print("not Matching")
+                    }
+            })
         
-            AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
-                .navigationBarItems(leading: BackButtonView())
-                .navigationBarBackButtonHidden(true)
+            .background(
+                newBackImage(backgroundcolor: .white, imageName: .image1)
+            )
 
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .ignoresSafeArea()
-        .onTapGesture(perform: {
-            hideKeyboard()
-        })
-        .toolbar{
-            ToolbarItemGroup(placement: .keyboard ){
-                Spacer()
-                Button("Done"){
-                    isfocused = false
+            .onTapGesture(perform: {
+                hideKeyboard()
+            })
+            .toolbar{
+                ToolbarItemGroup(placement: .keyboard ){
+                    Spacer()
+                    Button("Done"){
+                        isfocused = false
+                    }
                 }
             }
-        }
-}
-    
-private func otpText(text: String) -> some View {
-                return Text(text)
-            .font(.SalamtechOTPFont36)
-            .foregroundColor(Color("blueColor"))
-            .frame(width: textBoxWidth, height: textBoxHeight)
-            .background(
-                RoundedRectangle(cornerRadius: 6).frame(width: 55, height: 55, alignment: .center)
-                    .foregroundColor(Color(uiColor: .secondaryLabel ).opacity(0.2))
-            )
-            .padding(paddingOfBox)
+
     }
+        
+        
+        
+        private func otpText(text: String) -> some View {
+            
+            return Text(text)
+                .font(.salamtakRegular(of: 36))
+                .foregroundColor(Color("blueColor"))
+                .frame(width: textBoxWidth, height: textBoxHeight)
+                .background(
+                    RoundedRectangle(cornerRadius: 6).frame(width: 55, height: 55, alignment: .center)
+                        .foregroundColor(Color(uiColor: .secondaryLabel ).opacity(0.2))
+                )
+                .padding(paddingOfBox)
+        }
     
     func updateTimer(){
-        
-        if self.seconds > 0 {
-            self.seconds = self.seconds - 1
+      
+       if self.seconds > 0 {
+    self.seconds = self.seconds - 1
+}
+else if self.minutes > 0 && self.seconds == 0 {
+    self.minutes = self.minutes - 1
+    self.seconds = 59
+}
         }
-        else if self.minutes > 0 && self.seconds == 0 {
-            self.minutes = self.minutes - 1
-            self.seconds = 59
-        }
-    }
     
     //MARK: validOTP
     func checkOTP(sentOTP:Int, TypedOTP:Int ) -> Bool{
@@ -189,17 +230,34 @@ private func otpText(text: String) -> some View {
         }else{
             return false
         }
+        }
+    
+    //MARK: validOTP
+    func DynamicTimer(sentTimer:Int ){
+        self.minutes = sentTimer/60
+        
+    }
+
+    
+    }
+ 
+
+
+
+    struct PhoneVerificationResetView_Previews: PreviewProvider {
+        static var previews: some View {
+            VStack {
+//                AppBarView(Title: "Sign In")
+//                    .navigationBarItems(leading: BackButtonView())
+//                    .navigationBarBackButtonHidden(true)
+            PhoneVerificationResetView()
+                
+//                Spacer()
+//
+            }
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+        }
     }
     
-}
-
-
-struct PhoneVerificationResetView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack{
-            PhoneVerificationResetView().environmentObject(ViewModelResetPassword())
-    }
-    }
-}
 
 

@@ -25,6 +25,9 @@ final class Helper{
     var CurrentAddress = ""
     var currentLanguage = ""
 
+    private static let languageKey = "language"
+    private static let onBoardKey = "onBoard"
+    private static let logedinKey = "logedin"
     
     class func setUserData(
         Id : Int,
@@ -37,6 +40,30 @@ final class Helper{
 
         userDef.synchronize()
     }
+    
+    static func languageIsSet() {
+        UserDefaults.standard.set(true, forKey: languageKey)
+    }
+
+    static func checkLanguageSet() -> Bool {
+        return UserDefaults.standard.bool(forKey: languageKey)
+    }
+    
+    static func onBoardOpened() {
+        UserDefaults.standard.set(true, forKey: onBoardKey)
+    }
+
+    static func checkOnBoard() -> Bool {
+        return UserDefaults.standard.bool(forKey: onBoardKey)
+    }
+    static func userLogedIn(value:Bool) {
+        UserDefaults.standard.set(value, forKey: logedinKey)
+    }
+
+    static func checkIfLogedIn() -> Bool {
+        return UserDefaults.standard.bool(forKey: logedinKey)
+    }
+    
     
     
     //for checking if user exist
@@ -71,11 +98,11 @@ final class Helper{
         return userDef.integer(forKey: "clinicId")
     }
     class func setLanguage(currentLanguage: String) {
-    userDef.set(currentLanguage, forKey: "currentLanguage")
+    userDef.set(currentLanguage, forKey: "languageKey")
     userDef.synchronize()
     }
     class func getLanguage()->String{
-    return userDef.string(forKey: "currentLanguage") ?? "en"
+    return userDef.string(forKey: "languageKey") ?? "en"
     }
     
     //save access token
@@ -97,7 +124,7 @@ final class Helper{
         userDef.removeObject(forKey: "clinicId")
     }
     class func changeLang() {
-        userDef.removeObject(forKey:"currentLanguage"  )
+        userDef.removeObject(forKey:"languageKey"  )
        
     }
 
@@ -229,3 +256,18 @@ func LogoType(MedicalExaminationTypeId: Int) -> String {
 }
 
 
+
+//extension UIDevice {
+    var hasNotch: Bool
+    {
+        if #available(iOS 11.0, *)
+        {
+            let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+            return bottom > 0
+        } else
+        {
+            // Fallback on earlier versions
+            return false
+        }
+    }
+//}

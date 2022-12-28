@@ -12,9 +12,16 @@ let APIKey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
 @main
 struct SalamTakApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    @AppStorage("languageKey") // the key you stored language in
+    var language = LocalizationService.shared.language
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+            }
+            .navigationViewStyle(.stack)
         }
     }
 }

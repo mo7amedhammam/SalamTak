@@ -108,6 +108,8 @@
 		0EC34CCE280ED63000701344 /* ScheduleEachCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC34CCD280ED63000701344 /* ScheduleEachCellView.swift */; };
 		7CB4E5FB7B3B479FFD8B700D /* Pods_SalamTakTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTakTests.framework */; };
 		7D36B4AE5D35DFF375BA0EB9 /* Pods_SalamTak_SalamTakUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75FE6EDCA7773FF07A4F5F3 /* Pods_SalamTak_SalamTakUITests.framework */; };
+		C800B3E9294770C400A72ABF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800B3E8294770C400A72ABF /* SplashView.swift */; };
+		C800B3EB2947712700A72ABF /* newLanguagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800B3EA2947712700A72ABF /* newLanguagesView.swift */; };
 		C800F82F27FB585B00482151 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F81F27FB585B00482151 /* ServicesView.swift */; };
 		C800F83027FB585B00482151 /* ViewModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82127FB585B00482151 /* ViewModelSpecialist.swift */; };
 		C800F83127FB585B00482151 /* ModelSpecialist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C800F82227FB585B00482151 /* ModelSpecialist.swift */; };
@@ -324,6 +326,8 @@
 		65479B042497C5DFC5A832A1 /* Pods_SalamTak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23B21A6C420A611E6F24C36 /* Pods-SalamTak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak.debug.xcconfig"; path = "Target Support Files/Pods-SalamTak/Pods-SalamTak.debug.xcconfig"; sourceTree = "<group>"; };
 		C75FE6EDCA7773FF07A4F5F3 /* Pods_SalamTak_SalamTakUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTak_SalamTakUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C800B3E8294770C400A72ABF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		C800B3EA2947712700A72ABF /* newLanguagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newLanguagesView.swift; sourceTree = "<group>"; };
 		C800F81F27FB585B00482151 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		C800F82127FB585B00482151 /* ViewModelSpecialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelSpecialist.swift; sourceTree = "<group>"; };
 		C800F82227FB585B00482151 /* ModelSpecialist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpecialist.swift; sourceTree = "<group>"; };
@@ -533,6 +537,7 @@
 		00C8BF7227F32B2700571078 /* SalamTakModules */ = {
 			isa = PBXGroup;
 			children = (
+				C800B3E7294770AD00A72ABF /* Splash */,
 				00C8BF7427F32B6E00571078 /* OnBoardingModule */,
 				00C8BF7527F32B7F00571078 /* SignUpModule */,
 				00C8BF7627F32B8D00571078 /* LoginModule */,
@@ -565,6 +570,7 @@
 			children = (
 				00C8BF7927F33E6100571078 /* OnBoardingView.swift */,
 				00C8BF7B27F33EF900571078 /* WelcomeScreenView.swift */,
+				C800B3EA2947712700A72ABF /* newLanguagesView.swift */,
 			);
 			path = OnBoardingModule;
 			sourceTree = "<group>";
@@ -1072,6 +1078,14 @@
 				0E26EA6727FB2EEB00E3D9B8 /* ViewModelFoodAllergy.swift */,
 			);
 			path = FoodAllergy;
+			sourceTree = "<group>";
+		};
+		C800B3E7294770AD00A72ABF /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C800B3E8294770C400A72ABF /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		C800F81527FB585B00482151 /* BookingModule */ = {
@@ -1922,6 +1936,7 @@
 				C8D93267282C28A30089C520 /* ReviewsView.swift in Sources */,
 				C89A6B9A284F8D8500BF37C9 /* ViewDateAndTime.swift in Sources */,
 				0E9E0DD727FB105A00893ABF /* ViewModelGetArea.swift in Sources */,
+				C800B3EB2947712700A72ABF /* newLanguagesView.swift in Sources */,
 				0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
@@ -2026,6 +2041,7 @@
 				0E62C54827FC573000655D1A /* ChooseFoodAllergy.swift in Sources */,
 				0E586CF827F5AB8100944F21 /* ViewModelOtp.swift in Sources */,
 				C89A6B8D284F7E1C00BF37C9 /* calendarpopup.swift in Sources */,
+				C800B3E9294770C400A72ABF /* SplashView.swift in Sources */,
 				0E62C55A27FD945200655D1A /* PhoneVerficationResetView.swift in Sources */,
 				C884E42E284BED52001382AC /* CancelAppointmentView.swift in Sources */,
 				0E9E0DDE27FB15A700893ABF /* ModelOccupation.swift in Sources */,

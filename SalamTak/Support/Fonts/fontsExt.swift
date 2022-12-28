@@ -9,6 +9,15 @@
 import SwiftUI
 
 extension Font {
+    
+    static func salamtakBold(of size: CGFloat) -> Self {
+         Font.custom("STC-Bold", size: size)
+     }
+     
+     static func salamtakRegular(of size: CGFloat) -> Self {
+         Font.custom("STC-Regular", size: size)
+     }
+    
     struct salamFonts {
         let Reg14 = Font.custom("STC-Regular", size: 14)
         let Reg16 = Font.custom("STC-Regular", size: 16)
@@ -25,4 +34,5 @@ extension Font {
 
 //MARK: -- to use this custom font
 // ("your Text") .font(Font.SalamtechFonts.Bold16)
+
 

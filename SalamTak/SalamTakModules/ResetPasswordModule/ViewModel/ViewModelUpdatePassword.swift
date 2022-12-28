@@ -16,6 +16,8 @@ class ViewModelUpdatePassword: ObservableObject {
     let passthroughModelSubject = PassthroughSubject<BaseResponse<UpdatePassword>, Error>()
     private var cancellables: Set<AnyCancellable> = []
    
+    @Published  var isChangingInside = false
+    @Published  var OldPassword = ""
     @Published  var password = ""
     @Published  var password1 = ""
     @Published  var UserId = 0
