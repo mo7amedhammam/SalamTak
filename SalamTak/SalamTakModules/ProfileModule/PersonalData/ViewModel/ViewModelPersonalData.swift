@@ -119,8 +119,6 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
     
-
-    
     init() {
         passthroughModelSubject.sink { (completion) in
             //            print(completion)

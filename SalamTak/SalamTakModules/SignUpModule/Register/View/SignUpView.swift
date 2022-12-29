@@ -53,7 +53,7 @@ struct ViewSignUp: View {
                         
                         VStack (spacing: 5){
                             Group{
-                            InputTextField( text: $RegisterVM.fullName,title: "SignUp_Screen_enterfullName".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                                InputTextField( text: $RegisterVM.fullName, errorMsg: RegisterVM.nameErrorMessage,title: "SignUp_Screen_enterfullName".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                     .keyboardType(.namePhonePad)
                                     .textInputAutocapitalization(.never)
                                     .focused($isfocused)
@@ -82,30 +82,30 @@ struct ViewSignUp: View {
                                         }
                                     })
                                 
-                                if !RegisterVM.nameErrorMessage.isEmpty{
-                                    Text(RegisterVM.nameErrorMessage)
-                                        .font(.system(size: 13))
-                                        .padding(.horizontal,20)
-                                        .foregroundColor(.red)
-                                        .frame(maxWidth:.infinity, alignment: .leading)
-                                }
+//                                if !RegisterVM.nameErrorMessage.isEmpty{
+//                                    Text(RegisterVM.nameErrorMessage)
+//                                        .font(.system(size: 13))
+//                                        .padding(.horizontal,20)
+//                                        .foregroundColor(.red)
+//                                        .frame(maxWidth:.infinity, alignment: .leading)
+//                                }
                             }
                             Group{
-                            InputTextField( text: $RegisterVM.phoneNumber,title: "SignUp_Screen_enterPhone".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                                InputTextField( text: $RegisterVM.phoneNumber, errorMsg: RegisterVM.phoneErrorMessage,title: "SignUp_Screen_enterPhone".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                     .keyboardType(.asciiCapableNumberPad)
                                 .textInputAutocapitalization(.never)
                                 .focused($isfocused)
                                 .onChange(of: RegisterVM.phoneNumber, perform: editingChanged)
-                            if !RegisterVM.phoneErrorMessage.isEmpty{
-                                Text(RegisterVM.phoneErrorMessage)
-                                    .font(.system(size: 13))
-                                    .padding(.horizontal,20)
-                                    .foregroundColor(.red)
-                                    .frame(maxWidth:.infinity, alignment: .leading)
-                            }
+//                            if !RegisterVM.phoneErrorMessage.isEmpty{
+//                                Text(RegisterVM.phoneErrorMessage)
+//                                    .font(.system(size: 13))
+//                                    .padding(.horizontal,20)
+//                                    .foregroundColor(.red)
+//                                    .frame(maxWidth:.infinity, alignment: .leading)
+//                            }
                             }
                             Group{
-                                InputTextField( text: $RegisterVM.email,title: "SignUp_Screen_enterEmail".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                                InputTextField( text: $RegisterVM.email, errorMsg: RegisterVM.emailErrorMessage,title: "SignUp_Screen_enterEmail".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                     .keyboardType(.emailAddress)
                                     .textInputAutocapitalization(.never)
                                     .focused($isfocused)
@@ -125,13 +125,13 @@ struct ViewSignUp: View {
                                         }
                                         }
                                     })
-                                if !RegisterVM.emailErrorMessage.isEmpty{
-                                    Text(RegisterVM.emailErrorMessage)
-                                        .font(.system(size: 13))
-                                        .padding(.horizontal,20)
-                                        .foregroundColor(.red)
-                                        .frame(maxWidth:.infinity, alignment: .leading)
-                                }
+//                                if !RegisterVM.emailErrorMessage.isEmpty{
+//                                    Text(RegisterVM.emailErrorMessage)
+//                                        .font(.system(size: 13))
+//                                        .padding(.horizontal,20)
+//                                        .foregroundColor(.red)
+//                                        .frame(maxWidth:.infinity, alignment: .leading)
+//                                }
                             }
                             Group{
                                 SecureInputView( text: $RegisterVM.password, title: "SignUp_Screen_enterPassword".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)

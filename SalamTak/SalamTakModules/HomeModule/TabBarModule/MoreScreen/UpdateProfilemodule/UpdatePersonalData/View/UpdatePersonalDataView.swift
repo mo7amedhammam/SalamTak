@@ -248,7 +248,7 @@ struct UpdatePersonalDataView: View {
                                         }
                                     }
                                     Spacer().frame(height: 20)
-                                    InputTextField(text: $patientUpdatedVM.EmergencyContact, title: "Emergency Contact (Required)")
+                                    InputTextField(text: $patientUpdatedVM.EmergencyContact, errorMsg: "", title: "Emergency Contact (Required)")
                                         .focused($isfocused)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                         .autocapitalization(.none)
@@ -299,14 +299,14 @@ struct UpdatePersonalDataView: View {
                                         }
                                         
                                         Group{
-                                            InputTextField(text: $patientUpdatedVM.Address, title: "Clinic_Screen_street".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.Address, errorMsg: "", title: "Clinic_Screen_street".localized(language))
                                             
-                                            InputTextField(text: $patientUpdatedVM.BlockNo, title: "Clinic_Screen_building".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.BlockNo, errorMsg: "", title: "Clinic_Screen_building".localized(language))
                                             
-                                            InputTextField(text: $patientUpdatedVM.FloorNo.string(), title: "Clinic_Screen_floor".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.FloorNo.string(), errorMsg: "", title: "Clinic_Screen_floor".localized(language))
                                                 .keyboardType(.numberPad)
                                             
-                                            InputTextField(text: $patientUpdatedVM.ApartmentNo, title: "Apartment Number".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.ApartmentNo, errorMsg: "", title: "Apartment Number".localized(language))
                                             
                                         }
                                         .focused($isfocused)

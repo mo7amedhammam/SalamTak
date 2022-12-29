@@ -149,13 +149,13 @@ struct UpdateMedicalStateView: View {
                                             }
                                             Spacer().frame(height: 20)
                                             Group{
-                                            InputTextField(text: $medicalUpdatedVM.OtherAllergies, title: "Other Allergies")
+                                                InputTextField(text: $medicalUpdatedVM.OtherAllergies, errorMsg: "", title: "Other Allergies")
                                             
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalUpdatedVM.Prescriptions, title: "Prescriptions")
+                                                InputTextField(text: $medicalUpdatedVM.Prescriptions, errorMsg: "", title: "Prescriptions")
                                             
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalUpdatedVM.CurrentMedication, title: "CurrentMedication")
+                                                InputTextField(text: $medicalUpdatedVM.CurrentMedication, errorMsg: "", title: "CurrentMedication")
                                                 
                                             }.focused($isfocused)
                                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -167,16 +167,16 @@ struct UpdateMedicalStateView: View {
                                         VStack{
                                             Group{
                                             Spacer().frame(height: 20)
-                                            InputTextField(text: $medicalUpdatedVM.PastMedication, title: "PastMedication")
+                                                InputTextField(text: $medicalUpdatedVM.PastMedication, errorMsg: "", title: "PastMedication")
                                             Spacer().frame(height: 20)
                                                 
-                                            InputTextField(text: $medicalUpdatedVM.ChronicDiseases, title: "ChronicDiseases")
+                                                InputTextField(text: $medicalUpdatedVM.ChronicDiseases, errorMsg: "", title: "ChronicDiseases")
                                             Spacer().frame(height: 20)
                                                 
-                                            InputTextField(text: $medicalUpdatedVM.Iinjuries, title: "Iinjuries")
+                                                InputTextField(text: $medicalUpdatedVM.Iinjuries, errorMsg: "", title: "Iinjuries")
                                             Spacer().frame(height: 20)
                                                 
-                                            InputTextField(text: $medicalUpdatedVM.Surgeries, title: "Surgeries")
+                                                InputTextField(text: $medicalUpdatedVM.Surgeries, errorMsg: "", title: "Surgeries")
                                         }.focused($isfocused)
                                             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                             .autocapitalization(.none)

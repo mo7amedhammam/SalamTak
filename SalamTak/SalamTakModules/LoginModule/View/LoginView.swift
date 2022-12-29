@@ -63,18 +63,18 @@ struct ViewLogin: View {
 
                                 Spacer()
                                 Group{
-                                    InputTextField(text: $LoginVM.phoneNumber, title:"SignIn_Screen_phoneNumber".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                                    InputTextField(text: $LoginVM.phoneNumber, errorMsg: LoginVM.phoneErrorMessage, title:"SignIn_Screen_phoneNumber".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                         .focused($isfocused)
                                         .padding(.horizontal,40)
                                         .keyboardType(.asciiCapableNumberPad)
                                         .onChange(of: LoginVM.phoneNumber, perform: editingChanged)
-                                    if !LoginVM.phoneErrorMessage.isEmpty{
-                                        Text(LoginVM.phoneErrorMessage.localized(language))
-                                            .font(.system(size: 13))
-                                            .padding(.horizontal,20)
-                                            .foregroundColor(.red)
-                                            .frame(maxWidth:.infinity, alignment: .leading)
-                                    }
+//                                    if !LoginVM.phoneErrorMessage.isEmpty{
+//                                        Text(LoginVM.phoneErrorMessage.localized(language))
+//                                            .font(.system(size: 13))
+//                                            .padding(.horizontal,20)
+//                                            .foregroundColor(.red)
+//                                            .frame(maxWidth:.infinity, alignment: .leading)
+//                                    }
 
                                     SecureInputView( text: $LoginVM.password, title: "SignIn_Screen_password".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                         .focused($isfocused)

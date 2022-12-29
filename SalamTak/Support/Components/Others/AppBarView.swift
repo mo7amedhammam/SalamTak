@@ -23,13 +23,13 @@ struct AppBarView: View {
         if backColor == .blue{
         CurvedSideRectangleView()
             .fill(Color("blueColor"))
-            .frame(height: 120)
+//            .frame(height: 120)
             .shadow(radius: 8)
         }else{
             ZStack{
                 Color.clear
             }
-            .frame(height: 120)
+//            .frame(height: 120)
 
         }
         }
@@ -59,11 +59,13 @@ struct AppBarView: View {
                         HStack{
                             if withbackButton{
                             BackButtonView()
+                                    .frame(height:60)
+
                             Spacer()
                             }
-                        }.frame(height:60)
+                        }
                     )
-                    .padding(.bottom,-30)
+//                    .padding(.bottom,-30)
                 
             )
     }

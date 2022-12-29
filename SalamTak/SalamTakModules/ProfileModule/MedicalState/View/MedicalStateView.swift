@@ -152,13 +152,13 @@ struct MedicalStateView: View {
                                     }
                                     Spacer().frame(height: 20)
                                     Group{
-                                        InputTextField(text: $medicalCreatedVM.OtherAllergies, title: "Other Allergies")
+                                        InputTextField(text: $medicalCreatedVM.OtherAllergies, errorMsg: "", title: "Other Allergies")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.Prescriptions, title: "Prescriptions")
+                                        InputTextField(text: $medicalCreatedVM.Prescriptions, errorMsg: "", title: "Prescriptions")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.CurrentMedication, title: "CurrentMedication")
+                                        InputTextField(text: $medicalCreatedVM.CurrentMedication, errorMsg: "", title: "CurrentMedication")
                                         
                                     }.focused($isfocused)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -170,16 +170,16 @@ struct MedicalStateView: View {
                                 VStack{
                                     Spacer().frame(height: 20)
                                     Group{
-                                        InputTextField(text: $medicalCreatedVM.PastMedication, title: "PastMedication")
+                                        InputTextField(text: $medicalCreatedVM.PastMedication, errorMsg: "", title: "PastMedication")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.ChronicDiseases, title: "ChronicDiseases")
+                                        InputTextField(text: $medicalCreatedVM.ChronicDiseases, errorMsg: "", title: "ChronicDiseases")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.Iinjuries, title: "Iinjuries")
+                                        InputTextField(text: $medicalCreatedVM.Iinjuries, errorMsg: "", title: "Iinjuries")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.Surgeries, title: "Surgeries")
+                                        InputTextField(text: $medicalCreatedVM.Surgeries, errorMsg: "", title: "Surgeries")
                                         
                                     }.focused($isfocused)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)

@@ -152,6 +152,13 @@
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C86375C52850D3EB000687A9 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86375C42850D3EB000687A9 /* TabButtonView.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
+		C87F428E295DE3EC004F37AE /* PatientInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F428D295DE3EC004F37AE /* PatientInfoView.swift */; };
+		C87F4290295DE405004F37AE /* PatientMedicalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F428F295DE405004F37AE /* PatientMedicalInfoView.swift */; };
+		C87F4292295DE41A004F37AE /* PatientInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4291295DE41A004F37AE /* PatientInfoViewModel.swift */; };
+		C87F4294295DE430004F37AE /* PatientMedicalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4293295DE430004F37AE /* PatientMedicalInfoViewModel.swift */; };
+		C87F4296295DE445004F37AE /* PatientInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4295295DE445004F37AE /* PatientInfoModel.swift */; };
+		C87F4298295DE46C004F37AE /* PatientMedicalInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4297295DE46C004F37AE /* PatientMedicalInfoModel.swift */; };
+		C87F429A295E0671004F37AE /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4299295E0671004F37AE /* extension.swift */; };
 		C884E42E284BED52001382AC /* CancelAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884E42D284BED52001382AC /* CancelAppointmentView.swift */; };
 		C896512F284CD0C0000EAFF7 /* SpecialityBuBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */; };
 		C8965132284CD70A000EAFF7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8965131284CD70A000EAFF7 /* RatingView.swift */; };
@@ -371,6 +378,13 @@
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		C86375C42850D3EB000687A9 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
+		C87F428D295DE3EC004F37AE /* PatientInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoView.swift; sourceTree = "<group>"; };
+		C87F428F295DE405004F37AE /* PatientMedicalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicalInfoView.swift; sourceTree = "<group>"; };
+		C87F4291295DE41A004F37AE /* PatientInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoViewModel.swift; sourceTree = "<group>"; };
+		C87F4293295DE430004F37AE /* PatientMedicalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicalInfoViewModel.swift; sourceTree = "<group>"; };
+		C87F4295295DE445004F37AE /* PatientInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoModel.swift; sourceTree = "<group>"; };
+		C87F4297295DE46C004F37AE /* PatientMedicalInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicalInfoModel.swift; sourceTree = "<group>"; };
+		C87F4299295E0671004F37AE /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		C884E42D284BED52001382AC /* CancelAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAppointmentView.swift; sourceTree = "<group>"; };
 		C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityBuBody.swift; sourceTree = "<group>"; };
 		C8965131284CD70A000EAFF7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -578,6 +592,7 @@
 		00C8BF7527F32B7F00571078 /* SignUpModule */ = {
 			isa = PBXGroup;
 			children = (
+				C87F4289295DE2FD004F37AE /* Profile */,
 				0E586CDF27F5A57400944F21 /* Register */,
 				0E586CE027F5A57E00944F21 /* CreateUser */,
 			);
@@ -1292,6 +1307,43 @@
 			path = DoctorDetails;
 			sourceTree = "<group>";
 		};
+		C87F4289295DE2FD004F37AE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C87F428C295DE3BC004F37AE /* Model */,
+				C87F428B295DE3B1004F37AE /* ViewModel */,
+				C87F428A295DE3A9004F37AE /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C87F428A295DE3A9004F37AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C87F428D295DE3EC004F37AE /* PatientInfoView.swift */,
+				C87F428F295DE405004F37AE /* PatientMedicalInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C87F428B295DE3B1004F37AE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C87F4291295DE41A004F37AE /* PatientInfoViewModel.swift */,
+				C87F4293295DE430004F37AE /* PatientMedicalInfoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C87F428C295DE3BC004F37AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C87F4295295DE445004F37AE /* PatientInfoModel.swift */,
+				C87F4297295DE46C004F37AE /* PatientMedicalInfoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C884E42C284BED29001382AC /* CancelAppointment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1484,6 +1536,7 @@
 				0E9E0DA927F9F0DA00893ABF /* ImagePicker.swift */,
 				0E9E0DB127FAEFD100893ABF /* GenderView.swift */,
 				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
+				C87F4299295E0671004F37AE /* extension.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1940,6 +1993,7 @@
 				0E26EA7627FB318D00E3D9B8 /* ChoosBloodType.swift in Sources */,
 				0E586CEC27F5A72700944F21 /* SignUpView.swift in Sources */,
 				0E586D2627F5B6E100944F21 /* ViewModelSchedule.swift in Sources */,
+				C87F4292295DE41A004F37AE /* PatientInfoViewModel.swift in Sources */,
 				C8B3E16C27FC472B0040DAFD /* ModelSearchDoc.swift in Sources */,
 				0E9E0DAA27F9F0DA00893ABF /* ImagePicker.swift in Sources */,
 				00C8BF6927F31AF200571078 /* LocalizationService.swift in Sources */,
@@ -1954,6 +2008,7 @@
 				0E9E0DBA27FAF42A00893ABF /* ViewMapWithPin.swift in Sources */,
 				00D86B992803132D00ABF9C9 /* fontsExt.swift in Sources */,
 				C82C79BC284E085900BCE508 /* ModelSeniority.swift in Sources */,
+				C87F4296295DE445004F37AE /* PatientInfoModel.swift in Sources */,
 				0E68CDA62801921400327EBF /* ViewModelUpdatePersonalData.swift in Sources */,
 				C82C79C4284E0E3200BCE508 /* ViewModelSubspeciality.swift in Sources */,
 				0E586D1827F5B65900944F21 /* ViewModelMedicalState.swift in Sources */,
@@ -1998,6 +2053,8 @@
 				0E586D0227F5B1C200944F21 /* LoginView.swift in Sources */,
 				0E586D1C27F5B67900944F21 /* ModelMedical.swift in Sources */,
 				C8D93262282BD9C30089C520 /* ViewModelFees.swift in Sources */,
+				C87F428E295DE3EC004F37AE /* PatientInfoView.swift in Sources */,
+				C87F4290295DE405004F37AE /* PatientMedicalInfoView.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */,
 				C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */,
@@ -2026,6 +2083,7 @@
 				0E9E0DE227FB16A400893ABF /* ChooseOccupationView.swift in Sources */,
 				0E586CFC27F5ABCB00944F21 /* ViewModelCreateUser.swift in Sources */,
 				C8B52BCE28355BE6009A89AC /* MAddReview.swift in Sources */,
+				C87F4298295DE46C004F37AE /* PatientMedicalInfoModel.swift in Sources */,
 				0E26EA7427FB2F4200E3D9B8 /* ViewModelBloodType.swift in Sources */,
 				C8965138284CD856000EAFF7 /* doctorCellView.swift in Sources */,
 				C86375C52850D3EB000687A9 /* TabButtonView.swift in Sources */,
@@ -2068,6 +2126,7 @@
 				C814EA5E2816D10200D7730E /* ModelCreateAppointment.swift in Sources */,
 				C83968BC2860A2BF00DE266B /* TermsAndConditions.swift in Sources */,
 				0E62C55427FD941A00655D1A /* ViewModelResetPassword.swift in Sources */,
+				C87F4294295DE430004F37AE /* PatientMedicalInfoViewModel.swift in Sources */,
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* ConfirmAndCancel.swift in Sources */,
@@ -2082,6 +2141,7 @@
 				C89A6B96284F8D2500BF37C9 /* ViewAboutDoctor.swift in Sources */,
 				C82C79CD284E28C200BCE508 /* SpecialityView.swift in Sources */,
 				00C8BF3527F3100F00571078 /* SalamTakApp.swift in Sources */,
+				C87F429A295E0671004F37AE /* extension.swift in Sources */,
 				0E9E0DD327FB103400893ABF /* ModelArea.swift in Sources */,
 				C89A6B9F284F8E0F00BF37C9 /* ViewDocMainInfo.swift in Sources */,
 				C814BC3828575DEB00FBA9EA /* ShowUpdateBloodTypeList.swift in Sources */,

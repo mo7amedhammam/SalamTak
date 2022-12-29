@@ -67,7 +67,6 @@ struct PersonalDataView: View {
                                                                 .cornerRadius(4))
                                 )
                                 .cornerRadius(10)
-                                
                                 CircularButton(ButtonImage:Image(systemName: "pencil" ) , forgroundColor: Color.gray, backgroundColor: Color.white.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
                                     self.showImageSheet = true
                                     
@@ -233,7 +232,7 @@ struct PersonalDataView: View {
                                 }
                             }
                             Spacer().frame(height: 20)
-                            InputTextField(text: $patientCreatedVM.EmergencyContact, title: "Emergency Contact (Required)")
+                            InputTextField(text: $patientCreatedVM.EmergencyContact, errorMsg: "", title: "Emergency Contact (Required)")
                                 .focused($focusedInput, equals: .emergancyContact)
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .autocapitalization(.none)
@@ -284,17 +283,17 @@ struct PersonalDataView: View {
                                 }
                                 
                                 Group{
-                                    InputTextField(text: $patientCreatedVM.Address, title: "Clinic_Screen_street".localized(language))
+                                    InputTextField(text: $patientCreatedVM.Address, errorMsg: "", title: "Clinic_Screen_street".localized(language))
                                         .focused($focusedInput, equals: .streetName)
 
-                                    InputTextField(text: $patientCreatedVM.BlockNo, title: "Clinic_Screen_building".localized(language))
+                                    InputTextField(text: $patientCreatedVM.BlockNo, errorMsg: "", title: "Clinic_Screen_building".localized(language))
                                         .focused($focusedInput, equals: .buildingNumber)
 
-                                    InputTextField(text: $patientCreatedVM.FloorNo.string(), title: "Clinic_Screen_floor".localized(language))
+                                    InputTextField(text: $patientCreatedVM.FloorNo.string(), errorMsg: "", title: "Clinic_Screen_floor".localized(language))
                                         .keyboardType(.numberPad)
                                         .focused($focusedInput, equals: .floorNumber)
 
-                                    InputTextField(text: $patientCreatedVM.ApartmentNo, title: "Apartment Number".localized(language))
+                                    InputTextField(text: $patientCreatedVM.ApartmentNo, errorMsg: "", title: "Apartment Number".localized(language))
                                         .focused($focusedInput, equals: .apartmentNumber)
                                 }
                                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
