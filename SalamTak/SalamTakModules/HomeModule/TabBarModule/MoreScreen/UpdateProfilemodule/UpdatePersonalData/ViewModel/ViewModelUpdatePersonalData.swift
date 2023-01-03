@@ -81,6 +81,8 @@ class ViewModelUpdatePatientProfile: ObservableObject {
     @Published  var NationalityId: Int = 0
     @Published  var CountryId: Int = 0
     @Published  var GenderId: Int?               // 1 for male  2 for female
+    @Published  var GenderName: String?               // 1 for male  2 for female
+
     @Published  var Id: Int?
     @Published  var PatientId: Int?
     @Published  var Birthday:String = ""            //  date format "yyyy/mm/dd"

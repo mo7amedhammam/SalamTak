@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Country
-struct MedicineAllergy: Codable ,Identifiable {
+struct MedicineAllergy: Codable ,Identifiable,Hashable {
     let id: Int?
     let Name: String?
     enum CodingKeys: String, CodingKey {

@@ -22,6 +22,7 @@ class ViewModelBloodType: ObservableObject {
     @Published var message = ""
  
     init() {
+        startFetchBloodTypes()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []

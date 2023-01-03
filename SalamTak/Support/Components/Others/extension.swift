@@ -10,6 +10,7 @@ import SwiftUI
 
 extension Color {
     static let salamtackBlue = Color("blueColor")
+    static let salamtackWelcome = Color("newWelcome")
 
 //    static let myCustomColor2 = Color(uiColor: .quaternaryLabel)
 //

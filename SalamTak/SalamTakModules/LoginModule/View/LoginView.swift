@@ -42,139 +42,153 @@ struct ViewLogin: View {
         //        }
         //        .navigationBarHidden(true)
                 
-                NavigationView{
-                ZStack {
-                ScrollView(showsIndicators:false) {
-                            VStack {
-                                AppBarView(Title: "SignIn_Screen_title".localized(language),backColor: .clear)
-                                    .offset( y:hasNotch ? 0 : -20)
-                                    .frame(height:50)
-                                //                        .navigationBarItems(leading: BackButtonView())
-                                //                        .navigationBarBackButtonHidden(true)
+//                NavigationView{
+        ZStack {
+            newBackImage(backgroundcolor: .white)
 
-                                Image("newlogo")
-                                    .renderingMode(.original)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame( height: 100, alignment: .center)
-                                    .padding(.horizontal,70)
-                                    .background(Color.clear)
-                                    .foregroundColor(.black)
+//            VStack(spacing:0) {
 
-                                Spacer()
-                                Group{
-                                    InputTextField(text: $LoginVM.phoneNumber, errorMsg: LoginVM.phoneErrorMessage, title:"SignIn_Screen_phoneNumber".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
-                                        .focused($isfocused)
-                                        .padding(.horizontal,40)
-                                        .keyboardType(.asciiCapableNumberPad)
-                                        .onChange(of: LoginVM.phoneNumber, perform: editingChanged)
-//                                    if !LoginVM.phoneErrorMessage.isEmpty{
-//                                        Text(LoginVM.phoneErrorMessage.localized(language))
-//                                            .font(.system(size: 13))
-//                                            .padding(.horizontal,20)
-//                                            .foregroundColor(.red)
-//                                            .frame(maxWidth:.infinity, alignment: .leading)
-//                                    }
+                    ScrollView(showsIndicators:false) {
+                                VStack {
+                                    AppBarView(Title: "SignIn_Screen_title".localized(language),backColor: .clear)
+                //                        .offset( y:hasNotch ? 0 : -20)
+                                        .frame(height:50)
 
-                                    SecureInputView( text: $LoginVM.password, title: "SignIn_Screen_password".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
-                                        .focused($isfocused)
-                                        .padding(.horizontal,40)
-                                        .autocapitalization(.none)
-                                        .textInputAutocapitalization(.never)
-                                }
-            //                    .background(Color.clear)
-                                HStack {
-                                    Spacer()
-                                    Button("SignIn_Screen_forgetPassword".localized(language), action: {
-                                        print("password reset")
-                                        self.resetPassword.toggle()
-                                    })
-                                        .frame( height: 45)
-                                        .foregroundColor(Color("blueColor"))
-                                        .padding(.horizontal)
-                                }.padding(.horizontal)
-            //                    Spacer(minLength: 60)
-                                Spacer()
                                     
-                                VStack{
-                                    ButtonView(text: "SignIn_Button".localized(language),backgroundColor:                                .clear,forgroundColor:LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("blueColor"):Color("blueColor").opacity(0.5),fontSize: .salamtakBold(of: 18) , action: {
-                                    LoginVM.startLoginApi()
-                                })
-                                    .disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "")
-                                    .overlay(
-                                                   RoundedRectangle(cornerRadius: 25)
-                                                       .stroke(LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("blueColor"):Color("blueColor").opacity(0.5), lineWidth: 3)
-                                           )
-                                    .padding(.horizontal,80)
+                                    //                        .navigationBarItems(leading: BackButtonView())
+                                    //                        .navigationBarBackButtonHidden(true)
 
-                                HStack {
-                                    Text("SignIn_Screen_dont_haveAccount".localized(language))
-                                        .font(.system(size: 13, weight: .bold))
-                                        .foregroundColor(Color("blueColor"))
+                                    Image("newlogo")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame( height: 100, alignment: .center)
+                                        .padding(.horizontal,70)
+                                        .background(Color.clear)
+                                        .foregroundColor(.black)
 
-                                    Button("New_SignUp_Button".localized(language)) {
-                                        if self.ispresented == true{
-                                            presentationMode.wrappedValue.dismiss()
-                                        }else {
-                                            self.dontHaveAccount = true
-                                        }
+                                    Spacer()
+                                    Group{
+                                        InputTextField(text: $LoginVM.phoneNumber,MaxLength: 11, errorMsg: $LoginVM.phoneErrorMessage, title:"SignIn_Screen_phoneNumber".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                                            .keyboardType(.asciiCapableNumberPad)
+
+                                        SecureInputView( text: $LoginVM.password, errorMsg: $LoginVM.passwordErrorMessage,title: "SignIn_Screen_password".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                                            .autocapitalization(.none)
                                     }
-                                    .font(.system(size: 13, weight: .bold))
-                                    .foregroundColor(Color("darkGreen"))
+                                    .focused($isfocused)
+                                    .padding(.horizontal,40)
+                                    .textInputAutocapitalization(.never)
+                        
+                //                    .background(Color.clear)
+                                    HStack {
+                                        Spacer()
+                                        Button("SignIn_Screen_forgetPassword".localized(language), action: {
+                                            print("password reset")
+                                            self.resetPassword.toggle()
+                                        })
+                                            .frame( height: 45)
+                                            .foregroundColor(Color("blueColor"))
+                                            .padding(.horizontal)
+                                    }
+                                    .padding(.horizontal)
+                //                    Spacer(minLength: 60)
+    //                                Spacer()
+                                    VStack{
+                                        Spacer()
+                                        
+                                        BorderedButton(text: "SignIn_Button".localized(language), isActive: $LoginVM.formIsValid){
+                                            LoginVM.startLoginApi()
+                                        }
+                                        
+//                                        ButtonView(text: "SignIn_Button".localized(language),backgroundColor:                                .clear,forgroundColor:LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("blueColor"):Color("blueColor").opacity(0.5),fontSize: .salamtakBold(of: 18) , action: {
+//                                        LoginVM.startLoginApi()
+//                                    })
+//                                        .disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "")
+//                                        .overlay(
+//                                                       RoundedRectangle(cornerRadius: 25)
+//                                                           .stroke(LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("blueColor"):Color("blueColor").opacity(0.5), lineWidth: 3)
+//                                               )
+                                        .padding(.horizontal,80)
+
+                                    HStack {
+                                        Text("SignIn_Screen_dont_haveAccount".localized(language))
+                                            .font(.salamtakBold(of: 13))
+                                            .foregroundColor(.salamtackBlue)
+
+                                        Button("New_SignUp_Button".localized(language)) {
+                                            if self.ispresented == true{
+                                                presentationMode.wrappedValue.dismiss()
+                                            }else {
+                                                self.dontHaveAccount = true
+                                            }
+                                        }
+                                        .font(.salamtakBold(of: 13))
+                                        .foregroundColor(Color("darkGreen"))
+                                    }
+                                        
+                                        Spacer()
                                 }
-                                    .padding(.top,10)
+    //                                Spacer()
+            //                            .padding(.bottom,hasNotch ? 25:80)
+    //                                Spacer()
+    //                                    .frame(height:30)
+    //                            }
+    //                            .frame( height: UIScreen.main.bounds.height-20)
+
+            //                    .adaptsToKeyboard()
+
+                                // showing loading indicator
+            //                    Spacer()
+                                    SupportCall()
+                                    .frame( height: 55)
+
                             }
-                                
-        //                            .padding(.bottom,hasNotch ? 25:80)
-                                Spacer()
-                            }
-                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
+            //            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
+                                .frame( height: UIScreen.main.bounds.height-20)
+                
+                
+                
+        }
+                        .frame( height: UIScreen.main.bounds.height-20)
+                        .padding(.top)
 
-        //                    .adaptsToKeyboard()
+    //                        .overlay(content: {
+    //                                SupportCall()
+    //        //                            .padding(.bottom, hasNotch ? -1:95)
+    //                        })
+                            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                            //            .background(Color("CLVBG"))
+            //                .ignoresSafeArea()
+            //                .padding(.top, hasNotch ? 0:30)
 
-                            // showing loading indicator
-        //                    Spacer()
-                        }
-        //            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
-
-                    
-                        .overlay(content: {
-                                SupportCall()
-        //                            .padding(.bottom, hasNotch ? -1:95)
-                        })
-                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                        //            .background(Color("CLVBG"))
-        //                .ignoresSafeArea()
-        //                .padding(.top, hasNotch ? 0:30)
-
-                        .onTapGesture(perform: {
-                            hideKeyboard()
-                        })
-                        .toolbar{
-                            ToolbarItemGroup(placement: .keyboard ){
-                                Spacer()
-                                Button("Done".localized(language)){
-                                    isfocused = false
+                            .onTapGesture(perform: {
+                                hideKeyboard()
+                            })
+                            .toolbar{
+                                ToolbarItemGroup(placement: .keyboard ){
+                                    Spacer()
+                                    Button("Done".localized(language)){
+                                        isfocused = false
+                                    }
                                 }
                             }
-                        }
-                }
-                    
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true)
-                .navigationViewStyle(StackNavigationViewStyle())
-                .background(
-                    newBackImage(backgroundcolor: .white)
-                )
-                .overlay(
-                    ActivityIndicatorView(isPresented: $LoginVM.isLoading)
-                )
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
-        //        .padding()
-        //        .edgesIgnoringSafeArea(.top)
-        //        .ignoresSafeArea(.keyboard)
-                }
-                .navigationBarHidden(true)
+    //                }
+                        
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .overlay(
+                        ActivityIndicatorView(isPresented: $LoginVM.isLoading)
+                    )
+    //                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
+            //        .padding()
+            //        .edgesIgnoringSafeArea(.top)
+            //        .ignoresSafeArea(.keyboard)
+    //                }
+        }
+//        .padding(.top)
+        .navigationBarHidden(true)
+        
                 // go to verify account to resset
                 NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount),isActive: $dontHaveAccount) {
                 }

@@ -73,6 +73,8 @@ class ViewModelCreatePatientProfile: ObservableObject {
     @Published  var NationalityId: Int = 0
     @Published  var CountryId: Int = 0
     @Published  var GenderId: Int?               // 1 for male  2 for female
+    @Published  var GenderName: String?               // 1 for male  2 for female
+
     @Published  var Birthday: Date?              //  date format "yyyy/mm/dd"
     @Published  var EmergencyContact : String = ""
     @Published  var OccupationId: Int = 0

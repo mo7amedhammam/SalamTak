@@ -51,8 +51,8 @@
 
 "PhoneVerfication_Screen_codeMessage" = "الكود غير صحيح برجاء المحاولة مرة اخرى";
 "Nationality"="الجنسية";
-"PhoneVerfication_Screen_resendCode" = "اعادة ارسال الكود";
-"PhoneVerfication_Screen_sendCode_Button" = "ارسال الكود";
+"PhoneVerfication_Screen_resendCode" = " ارسال مره اخرى";
+"PhoneVerfication_Screen_sendCode_Button" = " انشاء حساب جديد";
 "CompeleteProfile_Screen_title" = "انهاء الملف الشخصي";
 "CompeleteProfile_Screen_subtitle" = "معلومات عن المريض";
 "CompeleteProfile_Screen_secondSubTitle" = "الملف الطبى";

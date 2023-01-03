@@ -10,65 +10,73 @@ import SwiftUI
 struct ChooseFoodAllergy: View {
     var language = LocalizationService.shared.language
     @StateObject var FoodAlgVM = ViewModelFoodAllergy()
-    @StateObject  var medicalCreatedVM = ViewModelCreateMedicalProfile()
     @Binding var IsPresented: Bool
-    @Binding var selectedServiceName : [String]
-    @Binding var selectedServiceId : [Int]
+    @Binding var selectedFoodAlgName : [String]
+    @Binding var selectedFoodAlgId : [Int]
     @State var isTapped : Bool? = false
-    
-    var width: CGFloat
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 40.0)
                 .foregroundColor(.white)
-                .ignoresSafeArea()
-                .opacity(0.6)
                 .shadow(radius: 15)
             
             VStack {
-                ZStack{
                     Capsule()
                         .frame(width: 50, height: 4)
                         .foregroundColor(.gray)
-                } // capsule design
-                .padding(.top, 10)
+                        .padding(.top, 10)
+                
                 VStack {
-                    Text("Food Allergies")
+                    Text("Food_Allergies".localized(language))
                         .font(.title2)
                         .bold()
                     ScrollView( showsIndicators: false) {
-                        ForEach(FoodAlgVM.publishedCountryModel){supspec in
-                            
-                            ExtractedViewFoodAllergy( supspec: supspec, selectedServiceName: $selectedServiceName, selectedServiceId: $selectedServiceId)
+                        VStack {
+                            ForEach(FoodAlgVM.publishedCountryModel,id:\.self){supspec in
+                                ExtractedViewFoodAllergy( supspec: supspec, selectedServiceName: $selectedFoodAlgName, selectedServiceId: $selectedFoodAlgId)
+                            }
                         }
                     }
                     
                     HStack {
                         ButtonView(text: "CompeleteProfile_Screen_ConfirmButton".localized(language), action: {
                             withAnimation(.easeIn(duration: 0.3)) {
-                                print(self.selectedServiceId)
+                                print(self.selectedFoodAlgName)
                                 IsPresented.toggle()
-                                
                             }
                         })
-                    }.padding(.bottom, 20)
+                    }
+                    .padding(.bottom, 20)
+                    .padding(.horizontal, 20)
+                    Spacer()
                 }
-                .frame(height: (UIScreen.main.bounds.size.height / 2) + 40)
-                Spacer()
+                .padding(.top,10)
+
+                .padding(.bottom,hasNotch ? 300 : 230)
+
+//                .frame(height: (UIScreen.main.bounds.size.height / 2) )
+//                Spacer()
             }
         }
         .onAppear(perform: {
-            FoodAlgVM.startFetchFoodAllergy()
+//            FoodAlgVM.startFetchFoodAllergy()
         })
-        .onDisappear{
-            FoodAlgVM.Id = selectedServiceId
-            FoodAlgVM.Name = selectedServiceName
-            medicalCreatedVM.PatientFoodAllergiesDto = FoodAlgVM.Id
-        }
-        .offset(y: (UIScreen.main.bounds.size.height / 2) - 120)
+//        .onDisappear{
+//            FoodAlgVM.Id = selectedServiceId
+//            FoodAlgVM.Name = selectedServiceName
+//            medicalCreatedVM.PatientFoodAllergiesDto = FoodAlgVM.Id
+//        }
+        .offset(y: (UIScreen.main.bounds.size.height / 2) - 80)
     }
 }
+
+struct ChooseFoodAllergy_Previews: PreviewProvider {
+    static var previews: some View {
+        ChooseFoodAllergy(IsPresented: .constant(true), selectedFoodAlgName: .constant([]), selectedFoodAlgId: .constant([]))
+    }
+}
+
 
 struct ExtractedViewFoodAllergy: View {
     var language = LocalizationService.shared.language

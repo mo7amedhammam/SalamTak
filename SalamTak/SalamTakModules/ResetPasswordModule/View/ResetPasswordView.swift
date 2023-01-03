@@ -67,19 +67,19 @@ struct ResetPasswordView: View {
                             })
                             
 //                            Spacer().frame(height: 10)
-                            InputTextField( text: ResetVM.ResetMethod == 1 ? $ResetVM.email:$ResetVM.phoneNumber, errorMsg: "" ,title: ResetVM.ResetMethod == 1 ? "Reset_Screen_email".localized(language) : "Reset_Screen_phone".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                            InputTextField( text: ResetVM.ResetMethod == 1 ? $ResetVM.email:$ResetVM.phoneNumber, errorMsg: .constant("") ,title: ResetVM.ResetMethod == 1 ? "Reset_Screen_email".localized(language) : "Reset_Screen_phone".localized(language),titleColor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                 .keyboardType( ResetVM.ResetMethod == 1 ? .emailAddress:.numberPad)
                                 .textInputAutocapitalization(.never)
                                 .focused($isfocused)
                                 .onChange(of: ResetVM.phoneNumber,perform: editingChanged)
                             
-                            if !ResetVM.emailErrorMessage.isEmpty || !ResetVM.phoneErrorMessage.isEmpty{
-                                Text(ResetVM.ResetMethod == 1 ? ResetVM.emailErrorMessage:ResetVM.phoneErrorMessage)
-                                    .font(.system(size: 13))
-                                    .padding(.horizontal,20)
-                                    .foregroundColor(.red)
-                                    .frame(maxWidth:.infinity, alignment: .leading)
-                            }
+//                            if !ResetVM.emailErrorMessage.isEmpty || !ResetVM.phoneErrorMessage.isEmpty{
+//                                Text(ResetVM.ResetMethod == 1 ? ResetVM.emailErrorMessage:ResetVM.phoneErrorMessage)
+//                                    .font(.system(size: 13))
+//                                    .padding(.horizontal,20)
+//                                    .foregroundColor(.red)
+//                                    .frame(maxWidth:.infinity, alignment: .leading)
+//                            }
                             
                             Text("Now,\nYou will receive a verification code.")
                                 .multilineTextAlignment(.center)

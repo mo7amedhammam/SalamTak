@@ -25,6 +25,7 @@ class ViewModelMedicineAllergy: ObservableObject {
     @Published var message = ""
     
     init() {
+        startFetchMedicineAllergy()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []

@@ -146,8 +146,6 @@ extension ViewModelUpdateMedicalProfile:TargetType{
         let header = ["Authorization":Helper.getAccessToken()]
         return header
     }
-    
-    
     func updateMedicalInfo(operation:UpdateMedicalInfoOp){
         updateMedicalInfoOperation = operation
         print(parameter)

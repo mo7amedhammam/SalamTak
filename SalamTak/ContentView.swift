@@ -4,48 +4,7 @@
 ////
 ////  Created by wecancity agency on 3/29/22.
 ////
-//
-//import SwiftUI
-//import MapKit
-//import ImageViewerRemote
-//
-//struct ContentView: View {
-//    @Environment(\.presentationMode) var presentationMode
-//    @Environment(\.scenePhase) var scenePhase
-//
-//    var body: some View {
-//        ZStack{
-//            TabBarView()
-//        }
-//
-//        .onChange(of: scenePhase, perform: { newPhase in
-//                if newPhase == .active {
-//                    print("Active")
-//                } else if newPhase == .inactive {
-//                    print("InActive")
-//                } else if newPhase == .background {
-//                    print("BackGround")
-//                }
-//        })
-//
-//        .ignoresSafeArea()
-//        .preferredColorScheme(.light)
-//    }
-//}
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView().navigationBarHidden(true)
-//
-//    }
-//}
 
-//
-//  ContentView.swift
-//  Salamtak-DR
-//
-//  Created by wecancity agency on 1/16/22.
-//
 
 import SwiftUI
 
@@ -60,6 +19,7 @@ struct ContentView: View {
     var body: some View {
 //        NavigationView {
             ZStack{
+                
                 displayedView
                     .navigationBarHidden(true)
                     .navigationBarBackButtonHidden(true)

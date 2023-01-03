@@ -7,6 +7,7 @@
 
 import Combine
 import Alamofire
+import Foundation
 
 class PatientInfoViewModel: ObservableObject {
     
@@ -18,79 +19,31 @@ class PatientInfoViewModel: ObservableObject {
     @Published var PatientProfileOP : PatientInfoProfileOp = .GetPatientProfileInfo
 
     // ------- input
-    @Published  var PatientId: Int = 0
+    @Published  var PatientId : Int = 0
     @Published  var profileImage = UIImage()
-    @Published  var FirstName : String = ""{
-        didSet{
-            if self.FirstName.isEmpty{
-                self.errorFirstName = "*"
-            } else {
-                self.errorFirstName = ""
-            }
-        }
-    }
-    @Published  var FirstNameAr: String = "" {
-        didSet{
-            if self.FirstNameAr.isEmpty{
-                self.errorFirstNameAr = "*"
-            } else {
-                self.errorFirstNameAr = ""
-            }
-        }
-    }
-    @Published  var MiddelName: String = ""{
-        didSet{
-            if self.MiddelName.isEmpty{
-                self.errorMiddelName = "*"
-            } else {
-                self.errorMiddelName = ""
-            }
-        }
-    }
-    @Published  var MiddelNameAr: String = "" {
-        didSet{
-            if self.MiddelNameAr.isEmpty{
-                self.errorMiddelNameAr = "*"
-            } else {
-                self.errorMiddelNameAr = ""
-            }
-        }
-    }
-    @Published  var FamilyName: String = "" {
-        didSet{
-            if self.FamilyName.isEmpty{
-                self.errorLastName = "*"
-            } else {
-                self.errorLastName = ""
-            }
-        }
-    }
-    @Published  var FamilyNameAr: String = "" {
-        didSet{
-            if self.FamilyNameAr.isEmpty{
-                self.errorLastNameAr = "*"
-            } else {
-                self.errorLastNameAr = ""
-            }
-        }
-    }
-    @Published  var NationalityId: Int = 0
-    @Published  var CountryId: Int = 0
-    @Published  var GenderId: Int?               // 1 for male  2 for female
-    @Published  var GenderName: String?
+    @Published  var FirstName : String = ""
+    @Published  var FirstNameAr : String = ""
+    @Published  var MiddelName : String = ""
+    @Published  var MiddelNameAr : String = ""
+    @Published  var FamilyName : String = ""
+    @Published  var FamilyNameAr : String = ""
+    @Published  var NationalityId : Int = 1111
+    @Published  var CountryId : Int = 0
+    @Published  var GenderId : Int?               // 1 for male  2 for female
+    @Published  var GenderName : String?
 
-    @Published  var Birthday: Date?              //  date format "yyyy/mm/dd"
+    @Published  var Birthday = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())              //  date format "yyyy/mm/dd"
+    @Published  var BirthdayStr = ""
     @Published  var EmergencyContact : String = ""
     @Published  var OccupationId: Int = 0
-    @Published  var CityId: Int = 0
-    @Published  var AreaId: Int = 0
+    @Published  var CityId : Int = 0
+    @Published  var AreaId : Int = 0
     @Published  var Address : String = ""
     @Published  var Latitude  = 0.0
     @Published  var Longitude = 0.0
-    @Published  var FloorNo: Int = 0
+    @Published  var FloorNo : Int = 0
     @Published  var BlockNo : String = ""
     @Published  var ApartmentNo : String = ""
-    
     
     @Published  var NationalityName: String = ""
     @Published  var countryName             : String = ""
@@ -100,30 +53,33 @@ class PatientInfoViewModel: ObservableObject {
     
     //------- validation
     @Published  var errorFirstName : String = ""
-    @Published  var errorFirstNameAr: String = ""
-    @Published  var errorMiddelName: String = ""
-    @Published  var errorMiddelNameAr: String = ""
-    @Published  var errorLastName: String = ""
-    @Published  var errorLastNameAr: String = ""
-    @Published  var errorNationalityId: Int = 0
-    @Published  var errorGenderId: Int?               // 1 for male  2 for female
-    @Published  var errorSpecialistId: Int = 0
-    @Published  var errorBirthday: Date?              //  date format "yyyy/mm/dd"
-    @Published  var errorSeniorityLevelId: Int = 0
+    @Published  var errorFirstNameAr : String = ""
+    @Published  var errorMiddelName : String = ""
+    @Published  var errorMiddelNameAr : String = ""
+    @Published  var errorLastName : String = ""
+    @Published  var errorLastNameAr : String = ""
+    @Published  var errorNationalityId : Int = 0
+    @Published  var errorGenderId : Int?               // 1 for male  2 for female
+    @Published  var errorSpecialistId : Int = 0
+    @Published  var errorBirthday : String = ""              //  date format "yyyy/mm/dd"
+    @Published  var errorSeniorityLevelId : Int = 0
     @Published  var errorWebsite : String = ""
     @Published  var errorDoctorInfo : String = ""
     @Published  var errorDoctorInfoAr : String = ""
 
     //    //------- output
-    @Published var publishedDoctorModel: PatientInfoModel?
+    @Published var formIsValid : Bool = false
+
+//    @Published var publishedDoctorModel: PatientInfoModel?
     @Published var UserUpdated = false
-    @Published var isLoading:Bool? = false
+    @Published var isLoading : Bool? = false
     @Published var isAlert = false
-    @Published var activeAlert: ActiveAlert = .NetworkError
+    @Published var activeAlert : ActiveAlert = .NetworkError
     @Published var message = ""
     
     init() {
-        DocProfileOperation(Operation: .GetPatientProfileInfo)
+        checkvalidations()
+//        execute(Operation: .GetPatientProfileInfo)
         passthroughModelSubject.sink { (completion) in
         } receiveValue: {[weak self]  (modeldata) in
 //            self?.publishedDoctorModel = modeldata.data
@@ -153,11 +109,11 @@ class PatientInfoViewModel: ObservableObject {
             self?.BlockNo = modeldata.data?.blockNo ?? ""
             self?.FloorNo = modeldata.data?.floorNo ?? 0
             self?.ApartmentNo = modeldata.data?.apartmentNo ?? ""
-            self?.Birthday =  ChangeFormate(NewFormat: "yyyy-MM-dd'T'hh:mm:ss").date(from:modeldata.data?.birthdate ?? "")
+            self?.Birthday = ChangeFormate(NewFormat: "yyyy-MM-dd'T'hh:mm:ss").date(from:modeldata.data?.birthdate  ?? "") ?? Date()
 //            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
 //                self?.date =  (self?.publishedDoctorModel?.birthday ?? "").StrToDate(format: "yyyy-MM-dd'T'hh:mm:ss")
-            DispatchQueue.global(qos: .userInitiated).async{[unowned self] in
-                Helper.setUserimage(userImage: URLs.BaseUrl+"\(self?.publishedDoctorModel?.image ?? "")")
+            DispatchQueue.global(qos: .userInitiated).async{
+                Helper.setUserimage(userImage: URLs.BaseUrl+"\(modeldata.data?.image ?? "")")
             }
 //            })
         }.store(in: &cancellables)
@@ -199,7 +155,7 @@ extension PatientInfoViewModel:TargetType{
                                                "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
                                                "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
                                                "GenderId" : GenderId ?? 1 ,
-                                               "Birthdate" : ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: Birthday ?? Date()) ,
+                                               "Birthdate" : ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: Birthday) ,
                                                "NationalityId" : NationalityId, "CountryId" : CountryId,
                                                "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
@@ -219,15 +175,21 @@ extension PatientInfoViewModel:TargetType{
         return header
     }
     
-    func DocProfileOperation(Operation:PatientInfoProfileOp){
+    func execute(Operation:PatientInfoProfileOp){
         self.PatientProfileOP = Operation
         switch Operation{
     case .GetPatientProfileInfo:
             startFetchDoctorProfile()
-    case .CreatePatientProfileInfo:
+            print(url)
+
+        case .CreatePatientProfileInfo:
             startUpdatingPatientInfo()
+            print(url)
+
         case .UpdatePatientProfileInfo:
             startUpdatingPatientInfo()
+            print(url)
+
         }
     }
     
@@ -245,7 +207,7 @@ extension PatientInfoViewModel:TargetType{
                         //case of model with error
                         message = model?.message ?? "Bad Request"
                         isAlert = true
-                        print(model)
+//                        print(model)
                         
                     }else{
                         if err == "Unauthorized"{
@@ -271,12 +233,13 @@ extension PatientInfoViewModel:TargetType{
 
     func startUpdatingPatientInfo(){
         if Helper.isConnectedToNetwork(){
+            print(parameter)
             self.isLoading = true
             BaseNetwork.multipartRequest(Target: self, image: profileImage, responseModel: BaseResponse<PatientInfoModel>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
 //                    DispatchQueue.main.async {
-                        self.passthroughModelSubject.send( model!  )
+                        self.passthroughModelSubject.send( model! )
 //                    }
                 }else{
                     if model != nil{
@@ -305,4 +268,125 @@ extension PatientInfoViewModel:TargetType{
             isAlert = true
         }
     }
+}
+
+// MARK: - Setup validations
+extension PatientInfoViewModel{
+    var validImage: AnyPublisher<Bool, Never> {
+       $profileImage
+         .map { image in
+             guard image.size.width != 0 else {
+                 return false
+             }
+                 return true
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    var validfirstEnName: AnyPublisher<Bool, Never> {
+        $FirstName
+         .map { name in
+             guard "\(name)".count > 0 else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    var validmiddleEnName: AnyPublisher<Bool, Never> {
+        $MiddelName
+         .map { name in
+             guard "\(name)".count > 0 else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    var validfamilyEnName: AnyPublisher<Bool, Never> {
+        $FamilyName
+         .map { name in
+             guard "\(name)".count > 0 else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    var validfirstArName: AnyPublisher<Bool, Never> {
+        $FirstNameAr
+         .map { name in
+             guard "\(name)".count > 0 else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    var validmiddleArName: AnyPublisher<Bool, Never> {
+        $MiddelNameAr
+         .map { name in
+             guard "\(name)".count > 0 else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    var validfamilyArName: AnyPublisher<Bool, Never> {
+        $FamilyNameAr
+         .map { name in
+             guard "\(name)".count > 0 else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    
+    var validEnName:AnyPublisher<Bool,Never>{
+        Publishers.CombineLatest3(validfirstEnName,validmiddleEnName,validfamilyEnName)
+            .map{ first, second, third in
+                return first && second && third
+            }
+            .eraseToAnyPublisher()
+    }
+    var validArName:AnyPublisher<Bool,Never>{
+        Publishers.CombineLatest3(validfirstArName,validmiddleArName,validfamilyArName)
+            .map{ first, second, third in
+                return first && second && third
+            }
+            .eraseToAnyPublisher()
+    }
+
+    var validName:AnyPublisher<Bool,Never>{
+        Publishers.CombineLatest(validEnName,validArName)
+            .map{ first, second in
+                return first && second
+            }
+            .eraseToAnyPublisher()
+    }
+
+    
+
+    
+    var isvalidForm: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest (
+        validImage,
+        validName)
+        .map { first, Second in
+            return first && Second
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func checkvalidations(){
+        isvalidForm
+          .receive(on: RunLoop.main)
+          .assign(to: \.formIsValid, on: self)
+          .store(in: &cancellables)
+    }
+   
+    
 }

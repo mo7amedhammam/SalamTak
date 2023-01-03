@@ -22,7 +22,7 @@ class ViewModelCountries: ObservableObject {
 
  
     init() {
-        
+        startFetchCountries()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []

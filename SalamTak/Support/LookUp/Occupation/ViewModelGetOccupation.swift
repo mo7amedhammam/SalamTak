@@ -22,6 +22,7 @@ class ViewModelOccupation: ObservableObject {
     @Published var message = ""
  
     init() {
+        startFetchOccupation()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedCountryModel = modeldata.data ?? []

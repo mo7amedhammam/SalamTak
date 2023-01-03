@@ -204,6 +204,7 @@
 		C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93268282C28BC0089C520 /* ReviewsVM.swift */; };
 		C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */; };
 		C8E28158282FF09D00BDF6F7 /* BottomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */; };
+		C8F5613829648EE80073ECBE /* CalendarPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F5613729648EE80073ECBE /* CalendarPopup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -429,6 +430,7 @@
 		C8D93268282C28BC0089C520 /* ReviewsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVM.swift; sourceTree = "<group>"; };
 		C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
 		C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopupView.swift; sourceTree = "<group>"; };
+		C8F5613729648EE80073ECBE /* CalendarPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPopup.swift; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTakTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTakTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB387FB17DDAFC06F94333C3 /* Pods-SalamTak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak.release.xcconfig"; path = "Target Support Files/Pods-SalamTak/Pods-SalamTak.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1537,6 +1539,7 @@
 				0E9E0DB127FAEFD100893ABF /* GenderView.swift */,
 				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
 				C87F4299295E0671004F37AE /* extension.swift */,
+				C8F5613729648EE80073ECBE /* CalendarPopup.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -2020,6 +2023,7 @@
 				C896512F284CD0C0000EAFF7 /* SpecialityBuBody.swift in Sources */,
 				0EC34CCC280D7C9100701344 /* ScheduleCellView.swift in Sources */,
 				C814BC3A28575E4400FBA9EA /* ShowNationalityList.swift in Sources */,
+				C8F5613829648EE80073ECBE /* CalendarPopup.swift in Sources */,
 				0E7B9DEC27F9AD6800688EBF /* InfoAppBarView.swift in Sources */,
 				C896514D284D105C000EAFF7 /* CityFilterList.swift in Sources */,
 				C89A6B93284F8C7600BF37C9 /* ViewDocReviews.swift in Sources */,

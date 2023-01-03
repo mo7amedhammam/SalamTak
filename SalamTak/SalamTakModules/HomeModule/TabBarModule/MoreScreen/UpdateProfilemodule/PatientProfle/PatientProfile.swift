@@ -63,12 +63,14 @@ struct PatientProfile: View {
                 Spacer().frame(height: 90)
                 TabView (selection: self.$index){
                     ZStack{
-                        UpdatePersonalDataView()
+//                        UpdatePersonalDataView()
+                        PatientInfoView(taskOP: .update)
                     }
                     .padding(15)
                     .tag(0)
                     ZStack{
-                        UpdateMedicalStateView()
+                        PatientMedicalInfoView(taskOP: .update)
+//                        UpdateMedicalStateView()
                     }
                     .padding(15)
                     .tag(1)

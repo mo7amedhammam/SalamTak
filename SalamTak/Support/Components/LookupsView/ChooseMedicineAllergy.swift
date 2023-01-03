@@ -10,70 +10,69 @@ import SwiftUI
 struct ChooseMedicineAllergy: View {
     var language = LocalizationService.shared.language
     @StateObject var MedicAlgVM = ViewModelMedicineAllergy()
-    
-    @StateObject  var medicalCreatedVM = ViewModelCreateMedicalProfile()
     @Binding var IsPresented: Bool
-    @Binding var selectedServiceName : [String]
-    @Binding var selectedServiceId : [Int]
+    @Binding var selectedMedicalAlgName : [String]
+    @Binding var selectedMedicalAlgId : [Int]
     @State var isTapped : Bool? = false
-    var width: CGFloat
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 40.0)
                 .foregroundColor(.white)
-                .ignoresSafeArea()
-                .opacity(0.6)
                 .shadow(radius: 15)
             
             VStack {
-                ZStack{
                     Capsule()
                         .frame(width: 50, height: 4)
                         .foregroundColor(.gray)
-                } // capsule design
-                .padding(.top, 10)
-                //                VStack {
+                        .padding(.top, 10)
                 VStack {
-                    Text("Food Allergies")
+                    Text("Medical_Allergies".localized(language))
                         .font(.title2)
                         .bold()
                     
                     ScrollView( showsIndicators: false) {
-                        ForEach(MedicAlgVM.publishedCountryModel){supspec in
-                            
-                            ExtractedViewMedicineAllergy( supspec: supspec, selectedServiceName: $selectedServiceName, selectedServiceId: $selectedServiceId)
+                        VStack {
+                            ForEach(MedicAlgVM.publishedCountryModel,id:\.self){supspec in
+                                ExtractedViewMedicineAllergy( supspec: supspec, selectedServiceName: $selectedMedicalAlgName, selectedServiceId: $selectedMedicalAlgId)
+                            }
                         }
                     }
                     
                     HStack {
                         ButtonView(text: "CompeleteProfile_Screen_ConfirmButton".localized(language), action: {
                             withAnimation(.easeIn(duration: 0.3)) {
-                                print(self.selectedServiceId)
+                                print(self.selectedMedicalAlgName)
                                 IsPresented.toggle()
-                                
                             }
-                            
                         })
-                        
-                        
-                    }.padding(.bottom, 20)
+                    }
+                    .padding(.bottom, 20)
+                    .padding(.horizontal,20)
+
+                    Spacer()
                 }
-                .frame(height: (UIScreen.main.bounds.size.height / 2) + 40)
-                
-                Spacer()
+                .padding(.top,10)
+
+                .padding(.bottom,hasNotch ? 300 : 230)
                 
             }
         }
         .onAppear(perform: {
-            MedicAlgVM.startFetchMedicineAllergy()
+//            MedicAlgVM.startFetchMedicineAllergy()
         })
-        .onDisappear{
-            MedicAlgVM.Id = selectedServiceId
-            MedicAlgVM.Name = selectedServiceName
-            medicalCreatedVM.PatientMedicineAllergiesDto = MedicAlgVM.Id
-        }
-        .offset(y: (UIScreen.main.bounds.size.height / 2) - 120)
+//        .onDisappear{
+//            MedicAlgVM.Id = selectedServiceId
+//            MedicAlgVM.Name = selectedServiceName
+//            medicalCreatedVM.PatientMedicineAllergiesDto = MedicAlgVM.Id
+//        }
+        .offset(y: (UIScreen.main.bounds.size.height / 2) - 80)
+        
+    }
+}
+struct ChooseMedicineAllergy_Previews: PreviewProvider {
+    static var previews: some View {
+        ChooseMedicineAllergy(IsPresented: .constant(true), selectedMedicalAlgName: .constant([]), selectedMedicalAlgId: .constant([]))
         
     }
 }

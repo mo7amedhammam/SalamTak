@@ -152,13 +152,13 @@ struct MedicalStateView: View {
                                     }
                                     Spacer().frame(height: 20)
                                     Group{
-                                        InputTextField(text: $medicalCreatedVM.OtherAllergies, errorMsg: "", title: "Other Allergies")
+                                        InputTextField(text: $medicalCreatedVM.OtherAllergies, errorMsg: .constant(""), title: "Other Allergies")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.Prescriptions, errorMsg: "", title: "Prescriptions")
+                                        InputTextField(text: $medicalCreatedVM.Prescriptions, errorMsg: .constant(""), title: "Prescriptions")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.CurrentMedication, errorMsg: "", title: "CurrentMedication")
+                                        InputTextField(text: $medicalCreatedVM.CurrentMedication, errorMsg: .constant(""), title: "CurrentMedication")
                                         
                                     }.focused($isfocused)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -170,16 +170,16 @@ struct MedicalStateView: View {
                                 VStack{
                                     Spacer().frame(height: 20)
                                     Group{
-                                        InputTextField(text: $medicalCreatedVM.PastMedication, errorMsg: "", title: "PastMedication")
+                                        InputTextField(text: $medicalCreatedVM.PastMedication, errorMsg: .constant(""), title: "PastMedication")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.ChronicDiseases, errorMsg: "", title: "ChronicDiseases")
+                                        InputTextField(text: $medicalCreatedVM.ChronicDiseases, errorMsg: .constant(""), title: "ChronicDiseases")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.Iinjuries, errorMsg: "", title: "Iinjuries")
+                                        InputTextField(text: $medicalCreatedVM.Iinjuries, errorMsg: .constant(""), title: "Iinjuries")
                                         
                                         Spacer().frame(height: 20)
-                                        InputTextField(text: $medicalCreatedVM.Surgeries, errorMsg: "", title: "Surgeries")
+                                        InputTextField(text: $medicalCreatedVM.Surgeries, errorMsg: .constant(""), title: "Surgeries")
                                         
                                     }.focused($isfocused)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -254,16 +254,16 @@ struct MedicalStateView: View {
                 .background(Color("CLVBG"))
                 .blur(radius: ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy ? 10 : 0)
                 .disabled(ShowOccupation || ShowFoodAllergy || ShowBloodType || ShowMedicineAllergy)
-                if ShowBloodType {
-                    ShowBloodTypeList( ShowBloodType: $ShowBloodType, bounds: $bounds, offset: $offset).environmentObject(BloodTypeVM)
-                        .environmentObject(medicalCreatedVM)
-                    
-                } else if ShowFoodAllergy{
-                    ShowFoodAllergyList( ShowFoodAllergy: $ShowFoodAllergy, bounds: $bounds, offset: $offset)
-                        .environmentObject(medicalCreatedVM)
-                } else if ShowMedicineAllergy{
-                    ShowMedicineAllergyList( ShowMedicineAllergy: $ShowMedicineAllergy, bounds: $bounds, offset: $offset)                            .environmentObject(medicalCreatedVM)
-                }
+//                if ShowBloodType {
+//                    ShowBloodTypeList( ShowBloodType: $ShowBloodType, bounds: $bounds, offset: $offset).environmentObject(BloodTypeVM)
+//                        .environmentObject(medicalCreatedVM)
+//                    
+//                } else if ShowFoodAllergy{
+//                    ShowFoodAllergyList( ShowFoodAllergy: $ShowFoodAllergy, bounds: $bounds, offset: $offset)
+//                        .environmentObject(medicalCreatedVM)
+//                } else if ShowMedicineAllergy{
+//                    ShowMedicineAllergyList( ShowMedicineAllergy: $ShowMedicineAllergy, bounds: $bounds, offset: $offset)                            .environmentObject(medicalCreatedVM)
+//                }
             }
             
             // showing loading indicator

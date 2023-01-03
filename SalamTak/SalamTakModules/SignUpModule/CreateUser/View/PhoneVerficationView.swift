@@ -38,120 +38,155 @@ struct PhoneVerificationView: View {
     var body: some View {
         
         ZStack {
-            ScrollView(){
-                Spacer().frame(height:120)
-                Text("PhoneVerfication_Screen_subtitle".localized(language) + " (\(RegisterUserVM.publishedUserRegisteredModel?.Code ?? 0))").font(.custom("SF UI Text", size: 16))
-                    .foregroundColor(Color("subTitle"))
+            newBackImage(backgroundcolor: .white,imageName: .image2)
+            
+            
+            VStack (spacing:0){
+                AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
+                    .frame(height:55)
+                    .navigationBarBackButtonHidden(true)
+
+                ScrollView(){
+
+                    HStack{
+                        Text("Verify Mobile Number")
+                            .font(.salamtakBold(of: 18))
+                            .foregroundColor(.salamtackWelcome)
+                        Spacer()
+                    }
                     .padding(.top, 35)
-                    .multilineTextAlignment(.center)
-                
-                ZStack {
-                    HStack (spacing: spaceBetweenBoxes){
+                    .padding(.horizontal,40)
+                    
+                    Text("PhoneVerfication_Screen_subtitle".localized(language) + " (\(RegisterUserVM.publishedUserRegisteredModel?.Code ?? 0))")
+//                        .font(.custom("SF UI Text", size: 16))
+                        .font(.salamtakRegular(of: 16))
+                        .foregroundColor(Color("subTitle"))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 1)
+
+                    
+                    ZStack {
+                        HStack (spacing: spaceBetweenBoxes){
+                            otpText(text: viewModel.otp1)
+                            otpText(text: viewModel.otp2)
+                            otpText(text: viewModel.otp3)
+                            otpText(text: viewModel.otp4)
+                        }
                         
-                        otpText(text: viewModel.otp1)
-                        otpText(text: viewModel.otp2)
-                        otpText(text: viewModel.otp3)
-                        otpText(text: viewModel.otp4)
+                        TextField("", text: $viewModel.otpField)
+                            .focused($isfocused)
+                            .autocapitalization(.none)
+                            .frame(width: isfocused ? 2 : textFieldOriginalWidth, height: textBoxHeight)
+                            .disabled(viewModel.isTextFieldDisabled)
+                            .textContentType(.oneTimeCode)
+                            .foregroundColor(.clear)
+                            .accentColor(.clear)
+                            .background(Color.clear)
+                            .keyboardType(.numberPad)
+                    }
+                    .padding(.top, 15)
+
+                    if hideIncorrectCode == false || (minutes == 0 && seconds == 0 ) {
+                        Text("PhoneVerfication_Screen_codeMessage".localized(language)).font(.custom("SF UI Text", size: 14)).fontWeight(.light)
+                            .foregroundColor(.red)
+                            .padding()
+                            .frame( alignment: .center)
+                            .multilineTextAlignment(.center)
                         
                     }
                     
-                    TextField("", text: $viewModel.otpField)
-                        .focused($isfocused)
-                        .autocapitalization(.none)
-                        .frame(width: isfocused ? 2 : textFieldOriginalWidth, height: textBoxHeight)
-                        .disabled(viewModel.isTextFieldDisabled)
-                        .textContentType(.oneTimeCode)
-                        .foregroundColor(.clear)
-                        .accentColor(.clear)
-                        .background(Color.clear)
-                        .keyboardType(.numberPad)
-                }.padding(.top, 25)
-
-                if hideIncorrectCode == false || (minutes == 0 && seconds == 0 ) {
-                    Text("PhoneVerfication_Screen_codeMessage".localized(language)).font(.custom("SF UI Text", size: 14)).fontWeight(.light)
-                        .foregroundColor(.red)
-                        .padding()
+                    
+                    Text("Code sent to +2\(CreateUserVM.phoneNumber )")
+                        .font(.salamtakBold(of: 20))
+                        .foregroundColor(.salamtackBlue)
+                        .padding(.vertical)
                         .frame( alignment: .center)
                         .multilineTextAlignment(.center)
                     
-                }
-                
-                
-                Text("Code sent to +2\(CreateUserVM.phoneNumber )").font(.custom("SF UI Text", size: 16)).fontWeight(.light)
-                    .foregroundColor(.black)
-                    .padding()
-                    .frame( alignment: .center)
-                    .multilineTextAlignment(.center)
-                
-                Text("\(minutes):\(seconds)")
-                    .font(.subheadline)
-                    .onReceive(timer) { time in
-                        updateTimer()
-                    }
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 5)
-                    .background(
-                        Capsule()
-                            .fill(Color.black)
-                            .opacity(0.2)
-                    )
-                
-                
-                Button(action: {
-                    // resend code action
-                    RegisterUserVM.startFetchUserRegisteration()
-                    hideIncorrectCode =  true
-                    self.DynamicTimer(sentTimer: RegisterUserVM.publishedUserRegisteredModel?.ReSendCounter ?? 60)
+                    Text("\(minutes):\(seconds)")
+                        .font(.subheadline)
+                        .onReceive(timer) { time in
+                            updateTimer()
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 5)
+                        .background(
+                            Capsule()
+                                .fill(Color.black)
+                                .opacity(0.2)
+                        )
                     
-                }, label: { Text("PhoneVerfication_Screen_resendCode".localized(language))
-                        .font(.title3)
-                        .foregroundColor( (minutes == 00 && seconds == 00) ? Color("darkGreen") : Color(uiColor: .lightGray))
-                    
-                }).disabled(minutes != 00 && seconds != 00)
-                
-                
-                Button(action: {
-                    // send code action
-                    let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
-                    if checkOTP(sentOTP: RegisterUserVM.publishedUserRegisteredModel?.Code ?? 1111, TypedOTP: Int(otp) ?? 0000){
-                        self.matchedOTP.toggle()
-                        // Create User
-                        CreateUserVM.startFetchUserCreation()
-                    }else{
-                        hideIncorrectCode =  false
-                        print("not Matching")
-                    }
-                    
-                }, label: {
-                    Text("PhoneVerfication_Screen_sendCode_Button".localized(language))
-                        .fontWeight(.semibold)
-                        .frame(width: 220, height: 53)
-                        .foregroundColor( .white)
-                        .background( viewModel.otp4 != "" ? Color("mainColor") :                                 Color(uiColor: .lightGray) )
-                        .cornerRadius(6.0)
-                    
-                }).padding(.top, 120)
-                    .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
-                
-                NavigationLink(destination: PersonalDataView(),isActive: $matchedOTP, label: {
-                })
-                
-                // Alert with no internet connection
-                    .alert(isPresented: $isErrorCode, content: {
-                        Alert(title: Text("Error Code"), message: nil, dismissButton: .cancel())
+                    Button(action: {
+                        // resend code action
+                        RegisterUserVM.startFetchUserRegisteration()
+                        hideIncorrectCode =  true
+                        self.DynamicTimer(sentTimer: RegisterUserVM.publishedUserRegisteredModel?.ReSendCounter ?? 60)
+                    }, label: { Text("PhoneVerfication_Screen_resendCode".localized(language))
+                            .font(.title3)
+                            .foregroundColor( (minutes == 00 && seconds == 00) ? Color("darkGreen") : Color(uiColor: .lightGray))
                     })
-                
-                
-                Spacer()
-            }  .edgesIgnoringSafeArea(.all)
-                .keyboardSpace()
-            AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
-                .navigationBarBackButtonHidden(true)
+                        .disabled(minutes != 00 && seconds != 00)
+                    
+//                    Button(action: {
+//                        // send code action
+//                        let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
+//                        if checkOTP(sentOTP: RegisterUserVM.publishedUserRegisteredModel?.Code ?? 1111, TypedOTP: Int(otp) ?? 0000){
+//                            self.matchedOTP.toggle()
+//                            // Create User
+//                            CreateUserVM.startFetchUserCreation()
+//                        }else{
+//                            hideIncorrectCode =  false
+//                        }
+//
+//                    }, label: {
+//                        Text("PhoneVerfication_Screen_sendCode_Button".localized(language))
+//                            .fontWeight(.semibold)
+//                            .frame(width: 220, height: 53)
+//                            .foregroundColor( .white)
+//                            .background( viewModel.otp4 != "" ? Color("mainColor") :                                 Color(uiColor: .lightGray) )
+//                            .cornerRadius(6.0)
+//                    })
+                    
+                    BorderedButton(text: "PhoneVerfication_Screen_sendCode_Button".localized(language),isActive: .constant(!(viewModel.otp4 == "" || (minutes == 00 && seconds == 00)))){
+                        // send code action
+                        let otp = viewModel.otp1+viewModel.otp2+viewModel.otp3+viewModel.otp4
+                        if checkOTP(sentOTP: RegisterUserVM.publishedUserRegisteredModel?.Code ?? 1111, TypedOTP: Int(otp) ?? 0000){
+                            self.matchedOTP.toggle()
+                            // Create User
+                            CreateUserVM.startFetchUserCreation()
+                        }else{
+                            hideIncorrectCode =  false
+                        }
+                    }
+                        .padding(.top, 60)
+                        .padding(.horizontal,80)
+//                        .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
+                    
+                    
+                    NavigationLink(destination: PatientInfoView(taskOP: .create).navigationBarHidden(true),isActive: $matchedOTP, label: {
+                    })
+                    
+                    // Alert with no internet connection
+                        .alert(isPresented: $isErrorCode, content: {
+                            Alert(title: Text("Error Code"), message: nil, dismissButton: .cancel())
+                        })
+                    
+                    
+                    Spacer()
+                }
+            SupportCall()
+                    .frame(height:55)
+            }
+            .frame( height: UIScreen.main.bounds.height-20)
+            
+//            .edgesIgnoringSafeArea(.all)
+//                .keyboardSpace()
 
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .ignoresSafeArea()
+//        .ignoresSafeArea()
+        .navigationBarHidden(true)
         .onTapGesture(perform: {
             hideKeyboard()
         })

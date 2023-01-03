@@ -9,37 +9,43 @@ import Foundation
 import SwiftUI
 
 struct ShowAreaList: View {
-    @EnvironmentObject var patientCreatedVM : ViewModelCreatePatientProfile
     @Binding var ShowArea:Bool
-    @Binding var bounds : CGRect
-    @Binding var offset:CGSize
+    @Binding var SelectedCityId : Int
+    @Binding var SelectedAreaName : String
+    @Binding var SelectedAreaId : Int
     
     var body: some View {
         ZStack {
             // needs to handle get country by id
-            ChooseArea(IsPresented:$ShowArea,SelectedAreaName:$patientCreatedVM.areaName, SelectedAreaId: $patientCreatedVM.AreaId,SelectedCityId: $patientCreatedVM.CityId , width: bounds.size.width )
-            
+            ChooseArea(IsPresented:$ShowArea,SelectedAreaName:$SelectedAreaName, SelectedAreaId: $SelectedAreaId,SelectedCityId: $SelectedCityId  )
         }
-        .transition(.move(edge: .bottom))
-        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-        .gesture(
-            DragGesture()
-                .onChanged { gesture in
-                    self.offset.height = gesture.translation.height
-                    
-                }
-                .onEnded { _ in
-                    if self.offset.height > bounds.size.height / 8 {
-                        withAnimation {
-                            ShowArea = false
-                        }
-                        self.offset = .zero
-                    } else {
-                        self.offset = .zero
-                    }
-                }
-            
+        .background(
+            Color.black
+                .ignoresSafeArea()
+                .opacity(0.3)
+                .blur(radius: 0.5)
+                .disabled(ShowArea)
         )
+        .transition(.move(edge: .bottom))
+//        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
+//        .gesture(
+//            DragGesture()
+//                .onChanged { gesture in
+//                    self.offset.height = gesture.translation.height
+//                    
+//                }
+//                .onEnded { _ in
+//                    if self.offset.height > bounds.size.height / 8 {
+//                        withAnimation {
+//                            ShowArea = false
+//                        }
+//                        self.offset = .zero
+//                    } else {
+//                        self.offset = .zero
+//                    }
+//                }
+//            
+//        )
         
         
     }
@@ -47,12 +53,7 @@ struct ShowAreaList: View {
 
 struct ShowAreaList_Previews: PreviewProvider {
     static var previews: some View {
-        let bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let offset = CGSize(width: 100, height: 100)
-        let environmentobject = ViewModelCreatePatientProfile()
 
-        ShowAreaList(ShowArea: .constant(true), bounds: .constant(bounds), offset: .constant(offset))
-                .environmentObject(environmentobject)
-        
+        ShowAreaList(ShowArea: .constant(true),SelectedCityId: .constant(0),SelectedAreaName: .constant(""),SelectedAreaId: .constant(0))
     }
 }

@@ -66,8 +66,14 @@ struct newBackImage: View {
         ZStack{
             Image(imageName == .image2 ? "newbackground2" : imageName == .image3 ? "newbackground3":imageName == .whatsupback ?  "whatsUpBackground":"newbackground")
             .resizable()
-            .scaledToFill()
+//            .padding(.vertical,0)
+            .frame(height: UIScreen.main.bounds.height)
+//            .padding(.top,hasNotch ? -14 : -20)
+//            .padding(.bottom,0)
+            
+//            .scaledToFill()
     }
+        .edgesIgnoringSafeArea(.top)
     .background(
         ZStack{
             if backgroundcolor == .white{

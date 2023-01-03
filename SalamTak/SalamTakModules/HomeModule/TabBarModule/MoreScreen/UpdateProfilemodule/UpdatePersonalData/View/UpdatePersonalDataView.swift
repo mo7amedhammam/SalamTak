@@ -248,14 +248,14 @@ struct UpdatePersonalDataView: View {
                                         }
                                     }
                                     Spacer().frame(height: 20)
-                                    InputTextField(text: $patientUpdatedVM.EmergencyContact, errorMsg: "", title: "Emergency Contact (Required)")
+                                    InputTextField(text: $patientUpdatedVM.EmergencyContact, errorMsg: .constant(""), title: "Emergency Contact (Required)")
                                         .focused($isfocused)
                                         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                         .autocapitalization(.none)
                                         .keyboardType(.numberPad)
                                         .textInputAutocapitalization(.never)
                                     Spacer().frame(height: 20)
-                                    GenderView(selection: $patientUpdatedVM.GenderId)
+                                    GenderView(GenderId: $patientUpdatedVM.GenderId,GenderName:$patientUpdatedVM.GenderName)
                                     Spacer().frame(height: 20)
                                     PickLocationView(longtiude: $patientUpdatedVM.Longitude, latitiude: $patientUpdatedVM.Latitude)
                                         .environmentObject(locationViewModel)
@@ -299,14 +299,14 @@ struct UpdatePersonalDataView: View {
                                         }
                                         
                                         Group{
-                                            InputTextField(text: $patientUpdatedVM.Address, errorMsg: "", title: "Clinic_Screen_street".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.Address, errorMsg: .constant(""), title: "Clinic_Screen_street".localized(language))
                                             
-                                            InputTextField(text: $patientUpdatedVM.BlockNo, errorMsg: "", title: "Clinic_Screen_building".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.BlockNo, errorMsg: .constant(""), title: "Clinic_Screen_building".localized(language))
                                             
-                                            InputTextField(text: $patientUpdatedVM.FloorNo.string(), errorMsg: "", title: "Clinic_Screen_floor".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.FloorNo.string(), errorMsg: .constant(""), title: "Clinic_Screen_floor".localized(language))
                                                 .keyboardType(.numberPad)
                                             
-                                            InputTextField(text: $patientUpdatedVM.ApartmentNo, errorMsg: "", title: "Apartment Number".localized(language))
+                                            InputTextField(text: $patientUpdatedVM.ApartmentNo, errorMsg: .constant(""), title: "Apartment Number".localized(language))
                                             
                                         }
                                         .focused($isfocused)
@@ -330,28 +330,28 @@ struct UpdatePersonalDataView: View {
                 .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 10 : 0)
                 .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
                 
-                if ShowNationality {
-                    ShowUpdateNationalityList(ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
-                        .environmentObject(patientUpdatedVM)
-                        .environmentObject(NationalityVM)
-                    
-                }
-                else if ShowCity{
-                    ShowUpdateCityList( ShowCity: $ShowCity , bounds: $bounds, offset: $offset)
-                        .environmentObject(patientUpdatedVM)
-                    
-                }
-                else if ShowArea {
-                    ShowUpdateAreaList(ShowArea:$ShowArea,bounds: $bounds, offset: $offset)
-                        .environmentObject(patientUpdatedVM)
-                    
-                    
-                }
-                else if ShowOccupation {
-                    ShowUpdateOccupationList(ShowOccupation:$ShowOccupation,bounds: $bounds, offset: $offset)
-                        .environmentObject(patientUpdatedVM)
-                        .environmentObject(OccupationVM)
-                }
+//                if ShowNationality {
+//                    ShowUpdateNationalityList(ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
+//                        .environmentObject(patientUpdatedVM)
+//                        .environmentObject(NationalityVM)
+//                    
+//                }
+//                else if ShowCity{
+//                    ShowUpdateCityList( ShowCity: $ShowCity , bounds: $bounds, offset: $offset)
+//                        .environmentObject(patientUpdatedVM)
+//                    
+//                }
+//                else if ShowArea {
+//                    ShowUpdateAreaList(ShowArea:$ShowArea,bounds: $bounds, offset: $offset)
+//                        .environmentObject(patientUpdatedVM)
+//                    
+//                    
+//                }
+//                else if ShowOccupation {
+//                    ShowUpdateOccupationList(ShowOccupation:$ShowOccupation,bounds: $bounds, offset: $offset)
+//                        .environmentObject(patientUpdatedVM)
+//                        .environmentObject(OccupationVM)
+//                }
             }
             .toolbar{
                 ToolbarItemGroup(placement: .keyboard ){

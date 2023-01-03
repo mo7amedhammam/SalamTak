@@ -60,8 +60,8 @@ while asking for the medical help";
 
 "PhoneVerfication_Screen_codeMessage" = "Time Out or Incorrect code. Please try again!";
 "Nationality"="Nationality";
-"PhoneVerfication_Screen_resendCode" = "Resend Code";
-"PhoneVerfication_Screen_sendCode_Button" = "Send Code";
+"PhoneVerfication_Screen_resendCode" = "Send Again";
+"PhoneVerfication_Screen_sendCode_Button" = "Create New Account";
 "CompeleteProfile_Screen_title" = "Complete Profile";
 "CompeleteProfile_Screen_subtitle" = "Personal Data";
 "CompeleteProfile_Screen_secondSubTitle" = "Medical State";

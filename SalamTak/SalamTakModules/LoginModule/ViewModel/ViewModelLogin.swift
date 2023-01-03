@@ -18,26 +18,14 @@ class ViewModelLogin: ObservableObject {
     let characterLimit: Int
     
     // ------- input
-    @Published  var phoneNumber: String = "" {
-        didSet{
-            let filtered = phoneNumber.filter {$0.isNumber}
-            if phoneNumber != filtered {
-                phoneNumber = filtered
-            }
-            if self.phoneNumber.count < 11 || self.phoneNumber.count > 11 {
-                self.phoneErrorMessage = "Phone Number Must be 11 number"
-            } else if self.phoneNumber.isEmpty {
-                self.phoneErrorMessage = "*"
-            } else if self.phoneNumber.count == 11 {
-                self.phoneErrorMessage = ""
-            }
-        }
-    }
+    @Published  var phoneNumber: String = ""
     @Published  var password = ""
     
+    @Published var formIsValid:Bool = false
+
     //------- output
     @Published var phoneErrorMessage = ""
-//    @Published var inlineErrorPassword = ""
+    @Published var passwordErrorMessage = ""
     @Published var publishedUserLogedInModel: LoginModel? = nil
     @Published var isLogedin = false
 
@@ -50,22 +38,23 @@ class ViewModelLogin: ObservableObject {
     @Published var destination = AnyView(TabBarView())
     init(limit: Int = 11) {
         characterLimit = limit
-
+        
+        checkvalidations()
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
-        } receiveValue: { [self](modeldata) in
-            publishedUserLogedInModel = modeldata.data
-            if publishedUserLogedInModel?.ProfileStatus == 0 {
-                destination = AnyView(PersonalDataView())
-            }else if publishedUserLogedInModel?.ProfileStatus == 1{
-                destination = AnyView(MedicalStateView())
+        } receiveValue: { [weak self](modeldata) in
+            self?.publishedUserLogedInModel = modeldata.data
+            if self?.publishedUserLogedInModel?.ProfileStatus == 0 {
+                self?.destination = AnyView(PatientInfoView(taskOP: .create).navigationBarHidden(true))
+            }else if self?.publishedUserLogedInModel?.ProfileStatus == 1{
+                self?.destination = AnyView(PatientMedicalInfoView(taskOP:.complete).navigationBarHidden(true))
             
-            }else if self.publishedUserLogedInModel?.ProfileStatus == 2{
-                Helper.setUserData(Id: publishedUserLogedInModel?.Id ?? 0, PhoneNumber: publishedUserLogedInModel?.Phone ?? "", patientName: publishedUserLogedInModel?.Name ?? "" )
-                Helper.setUserimage(userImage: URLs.BaseUrl+"\(publishedUserLogedInModel?.Image ?? "")")
-                destination = AnyView(TabBarView())
+            }else if self?.publishedUserLogedInModel?.ProfileStatus == 2{
+                Helper.setUserData(Id: self?.publishedUserLogedInModel?.Id ?? 0, PhoneNumber: self?.publishedUserLogedInModel?.Phone ?? "", patientName: modeldata.data?.Name ?? "" )
+                Helper.setUserimage(userImage: URLs.BaseUrl+"\(modeldata.data?.Image ?? "")")
+                    self?.destination = AnyView(TabBarView())
             }
-            Helper.setAccessToken(access_token: "Bearer " + "\(publishedUserLogedInModel?.Token ?? "")" )
+            Helper.setAccessToken(access_token: "Bearer " + "\(modeldata.data?.Token ?? "")" )
             
         }.store(in: &cancellables)
         
@@ -130,4 +119,62 @@ extension ViewModelLogin:TargetType    {
         }
     }
     
+}
+
+extension ViewModelLogin{
+    
+    var isPhoneValidPublisher: AnyPublisher<Bool, Never> {
+       $phoneNumber
+
+         .map { number in
+//             self.phoneNumber = String(number.prefix(self.characterLimit))
+             guard number.count > 0 else {
+                 self.phoneErrorMessage = ""
+                 return false
+             }
+             let phonePredicate = NSPredicate(format:"SELF MATCHES %@","01[0125][0-9]{8}$")
+             if phonePredicate.evaluate(with: number) && number.count >= 11{
+                 self.phoneErrorMessage = ""
+             return true
+             }else{
+                 self.phoneErrorMessage = "not_valid_Phone_number"
+                 return false
+             }
+         }
+         .eraseToAnyPublisher()
+     }
+    var isPasswordValidPublisher: AnyPublisher<Bool, Never> {
+        $password
+          .map { password in
+              guard password.count > 0 else {
+                  self.passwordErrorMessage = ""
+                  return false
+              }
+              if password.count >= 6{
+                  self.passwordErrorMessage = ""
+                  return true
+              }else{
+                  self.passwordErrorMessage = "At_Least_6_Characters"
+                  return false
+              }
+          }
+          .eraseToAnyPublisher()
+      }
+    
+    var isSignupFormValidPublisher: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest (
+        isPhoneValidPublisher,
+        isPasswordValidPublisher)
+        .map { isPhoneValid, isPasswordValid in
+            return isPhoneValid && isPasswordValid
+        }
+        .eraseToAnyPublisher()
+    }
+    func checkvalidations(){
+        isSignupFormValidPublisher
+          .receive(on: RunLoop.main)
+          .assign(to: \.formIsValid, on: self)
+          .store(in: &cancellables)
+    }
+
 }

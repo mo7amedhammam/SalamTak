@@ -11,11 +11,12 @@ import Alamofire
 extension String {
     func isValidEmail() -> Bool {
             let emailRegEx = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" + "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-            
+
             let emailValidation = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
             return emailValidation.evaluate(with: self)
         }
 }
+
 
 class ViewModelRegister: ObservableObject {
     
@@ -25,72 +26,39 @@ class ViewModelRegister: ObservableObject {
     let characterLimit: Int
     
     // ------- input
-    @Published  var fullName: String = ""{
-        didSet{
-            if self.fullName.isEmpty{
-                self.nameErrorMessage = "*"
-            } else {
-                self.nameErrorMessage = ""
-            }
-        }
-    }
-    @Published  var email: String = "" {
-        didSet{
-            if self.email.isEmpty{
-                self.emailErrorMessage = "*"
-            } else if !self.email.isValidEmail(){
-                self.emailErrorMessage = "Invalid Email"
-            } else {
-                self.emailErrorMessage = ""
-            }
-        }
-    }
-    @Published  var phoneNumber: String = "" {
-        didSet{
-//            if phoneNumber.count > limit {
-//                phoneNumber = String(phoneNumber.prefix(limit))
-//            }
-            let filtered = phoneNumber.filter {$0.isNumber}
-            if phoneNumber != filtered {
-                phoneNumber = filtered
-            }
-            if  self.phoneNumber.count > 8 && self.phoneNumber.count < 11 || self.phoneNumber.count > 11 {
-                self.phoneErrorMessage = "Phone Number Must Be 11 number"
-            } else if self.phoneNumber.isEmpty {
-                self.phoneErrorMessage = "*"
-            } else if self.phoneNumber.count == 11 {
-                self.phoneErrorMessage = ""
-            }
-        }
-    }
+    @Published  var fullName: String = ""
+    @Published  var email: String = ""
+    @Published  var phoneNumber: String = ""
+  
     @Published  var phoneNumber1: String = "+20 | "
     @Published  var password = ""
     @Published  var password1 = ""
     @Published var IsTermsAgreed = false
     @Published var termsErrorMessage = ""
 
-
-
-    
     //------- output
     @Published var nameErrorMessage = ""
     @Published var emailErrorMessage = ""
     @Published var phoneErrorMessage = ""
     @Published var isValid = false
-    @Published var inlineErrorPassword = ""
+    @Published var passwordErrorMessage = ""
+    @Published var confirmPasswordErrorMessage = ""
+
     @Published var publishedUserRegisteredModel: RegisterModel? = nil
     @Published var isRegistered = false
     @Published private var UserCreated = false
-        
+   
+    @Published var formIsValid = false
+
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
    
     init(limit: Int = 11) {
-        
         characterLimit = limit
-     validations()
+
+     checkvalidations()
         //-----------------------------------------------------------------
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
@@ -100,99 +68,20 @@ class ViewModelRegister: ObservableObject {
                 self.isRegistered = true
             }
         }.store(in: &cancellables)
-     
     }
     
-    func isValidPhone(phone: String) -> Bool {
-            let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
-            let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
-            return phoneTest.evaluate(with: phone)
-        }
+//    func isValidPhone(phone: String) -> Bool {
+//            let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
+//            let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+//            return phoneTest.evaluate(with: phone)
+//        }
 
-    func isValidEmail(email: String) -> Bool {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            return emailTest.evaluate(with: email)
-        }
+//    func isValidEmail(email: String) -> Bool {
+//            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+//            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+//            return emailTest.evaluate(with: email)
+//        }
 
-    func validations(){
- 
-        
-         var isFullNameValidPublisher: AnyPublisher<Bool,Never> {
-            $fullName
-                .debounce(for: 0.8, scheduler: RunLoop.main)
-                .removeDuplicates()
-                .map{ $0.count >= 4}
-                .eraseToAnyPublisher()
-        }
-
-         var isPhoneNumberValidPublisher: AnyPublisher<Bool,Never> {
-            $phoneNumber
-                .debounce(for: 0.8, scheduler: RunLoop.main)
-                .removeDuplicates()
-                .map{ $0.count == 11 }
-                .eraseToAnyPublisher()
-        }
-         var isPasswordEmptyPublisher: AnyPublisher<Bool,Never> {
-            $password
-                .debounce(for: 0.8, scheduler: RunLoop.main)
-                .removeDuplicates()
-                .map{ $0.isEmpty && $0.count >= 6}
-                .eraseToAnyPublisher()
-        }
-         var arePasswordsEqualPublisher: AnyPublisher<Bool,Never> {
-            Publishers.CombineLatest($password, $password1)
-                .debounce(for: 0.2, scheduler: RunLoop.main)
-                .map{ $0 == $1}
-                .eraseToAnyPublisher()
-        }
-         var isPasswordsValidPublisher: AnyPublisher<PasswordStatus,Never> {
-            Publishers.CombineLatest(isPasswordEmptyPublisher, arePasswordsEqualPublisher)
-                .map{
-                    if $0 {return PasswordStatus.empty}
-                    if !$1 {return PasswordStatus.repeatedPasswordWrong}
-                    return PasswordStatus.valid
-                }
-                .eraseToAnyPublisher()
-        }
-        
-         var isFormValidPublisher: AnyPublisher<Bool,Never> {
-            Publishers.CombineLatest3(isPasswordsValidPublisher,isFullNameValidPublisher,isPhoneNumberValidPublisher)
-                .map{ $0 == .valid && $1 && $2}
-                .eraseToAnyPublisher()
-        }
-        
-        enum PasswordStatus {
-            case notemail
-            case empty
-            case repeatedPasswordWrong
-            case valid
-        }
-        
-        isFormValidPublisher
-            .receive(on: RunLoop.main)
-            .assign(to: \.isValid, on: self)
-            .store(in: &cancellables)
-        
-        isPasswordsValidPublisher
-            .dropFirst()
-            .receive(on: RunLoop.main)
-            .map{ passwordStatus in
-                switch passwordStatus {
-                case .notemail:
-                    return "Not Valid Email"
-                case .empty:
-                    return "Password cannot be Empty"
-                case .repeatedPasswordWrong:
-                    return "Passwords do not match"
-                case .valid:
-                    return ""
-                }
-            }
-            .assign(to: \.inlineErrorPassword, on: self)
-            .store(in: &cancellables)
-
-    }
 }
 
 extension ViewModelRegister:TargetType {
@@ -254,4 +143,135 @@ extension ViewModelRegister:TargetType {
         }
     }
     
+}
+
+
+// MARK: - Setup validations
+extension ViewModelRegister{
+    var isUserNameValidPublisher: AnyPublisher<Bool, Never> {
+       $fullName
+         .map { name in
+             guard name.count > 0 else {
+                 self.nameErrorMessage = ""
+                 return false
+             }
+
+             if name.count >= 3 {
+                 self.nameErrorMessage = ""
+                 return true
+             }else{
+                 self.nameErrorMessage = "minimum_3_chars_required"
+                 return false
+             }
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    var isPhoneValidPublisher: AnyPublisher<Bool, Never> {
+       $phoneNumber
+
+         .map { number in
+//             self.phoneNumber = String(number.prefix(self.characterLimit))
+             guard number.count > 0 else {
+                 self.phoneErrorMessage = ""
+                 return false
+             }
+             let phonePredicate = NSPredicate(format:"SELF MATCHES %@","01[0125][0-9]{8}$")
+             if phonePredicate.evaluate(with: number) && number.count >= 11{
+                 self.phoneErrorMessage = ""
+             return true
+             }else{
+                 self.phoneErrorMessage = "not_valid_Phone_number"
+                 return false
+             }
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    var isUserEmailValidPublisher: AnyPublisher<Bool, Never> {
+       $email
+            .map { email in
+             guard email.count > 0 else {
+                 self.emailErrorMessage = ""
+                 return false
+             }
+
+             let emailPredicate = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
+             if emailPredicate.evaluate(with: email){
+                 self.emailErrorMessage = ""
+             return true
+             }else{
+                 self.emailErrorMessage = "not_valid_email"
+                 return false
+             }
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    var isNameAndPhoneValidPunlisher:AnyPublisher<Bool,Never>{
+        Publishers.CombineLatest3(isUserNameValidPublisher,isUserEmailValidPublisher,isPhoneValidPublisher)
+            .map{ name, email, phone in
+                return name && email && phone
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    var isPasswordValidPublisher: AnyPublisher<Bool, Never> {
+        $password
+          .map { password in
+              guard password.count > 0 else {
+                  self.passwordErrorMessage = ""
+                  return false
+              }
+              if password.count >= 6{
+                  self.passwordErrorMessage = ""
+                  return true
+              }else{
+                  self.passwordErrorMessage = "At_Least_6_Characters"
+                  return false
+              }
+          }
+          .eraseToAnyPublisher()
+      }
+    
+    var passwordMatchesPublisher: AnyPublisher<Bool, Never> {
+       Publishers.CombineLatest($password, $password1)
+         .map { password, repeated in
+             
+             guard repeated.count > 0 && password.count > 0 else {
+                 if password.count == 0 && repeated.count > 0{
+                 self.confirmPasswordErrorMessage = "password_is_empty"
+                 } else if repeated.count == 0 {
+                     self.confirmPasswordErrorMessage = ""
+                 }
+                 return false
+             }
+             if password == repeated{
+                 self.confirmPasswordErrorMessage = ""
+                 return true
+             }else{
+                 self.confirmPasswordErrorMessage = "password_not_match"
+                 return false
+             }
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    var isSignupFormValidPublisher: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest3 (
+        isNameAndPhoneValidPunlisher,
+        isPasswordValidPublisher,
+        passwordMatchesPublisher)
+        .map { isNameAndPhoneValid, isPasswordValid, passwordMatches in
+            return isNameAndPhoneValid && isPasswordValid && passwordMatches
+        }
+        .eraseToAnyPublisher()
+    }
+    func checkvalidations(){
+        isSignupFormValidPublisher
+          .receive(on: RunLoop.main)
+          .assign(to: \.formIsValid, on: self)
+          .store(in: &cancellables)
+    }
+
 }

@@ -232,14 +232,14 @@ struct PersonalDataView: View {
                                 }
                             }
                             Spacer().frame(height: 20)
-                            InputTextField(text: $patientCreatedVM.EmergencyContact, errorMsg: "", title: "Emergency Contact (Required)")
+                            InputTextField(text: $patientCreatedVM.EmergencyContact, errorMsg: .constant(""), title: "Emergency Contact (Required)")
                                 .focused($focusedInput, equals: .emergancyContact)
                                 .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 .autocapitalization(.none)
                                 .keyboardType(.numberPad)
                                 .textInputAutocapitalization(.never)
                             Spacer().frame(height: 20)
-                            GenderView(selection: $patientCreatedVM.GenderId)
+                            GenderView(GenderId: $patientCreatedVM.GenderId,GenderName: $patientCreatedVM.GenderName)
                             Spacer().frame(height: 20)
                             PickLocationView(longtiude: $patientCreatedVM.Longitude, latitiude: $patientCreatedVM.Latitude)
                                 .environmentObject(locationViewModel)
@@ -283,17 +283,17 @@ struct PersonalDataView: View {
                                 }
                                 
                                 Group{
-                                    InputTextField(text: $patientCreatedVM.Address, errorMsg: "", title: "Clinic_Screen_street".localized(language))
+                                    InputTextField(text: $patientCreatedVM.Address, errorMsg: .constant(""), title: "Clinic_Screen_street".localized(language))
                                         .focused($focusedInput, equals: .streetName)
 
-                                    InputTextField(text: $patientCreatedVM.BlockNo, errorMsg: "", title: "Clinic_Screen_building".localized(language))
+                                    InputTextField(text: $patientCreatedVM.BlockNo, errorMsg: .constant(""), title: "Clinic_Screen_building".localized(language))
                                         .focused($focusedInput, equals: .buildingNumber)
 
-                                    InputTextField(text: $patientCreatedVM.FloorNo.string(), errorMsg: "", title: "Clinic_Screen_floor".localized(language))
+                                    InputTextField(text: $patientCreatedVM.FloorNo.string(), errorMsg: .constant(""), title: "Clinic_Screen_floor".localized(language))
                                         .keyboardType(.numberPad)
                                         .focused($focusedInput, equals: .floorNumber)
 
-                                    InputTextField(text: $patientCreatedVM.ApartmentNo, errorMsg: "", title: "Apartment Number".localized(language))
+                                    InputTextField(text: $patientCreatedVM.ApartmentNo, errorMsg: .constant(""), title: "Apartment Number".localized(language))
                                         .focused($focusedInput, equals: .apartmentNumber)
                                 }
                                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
@@ -324,23 +324,23 @@ struct PersonalDataView: View {
             .ignoresSafeArea()
             .blur(radius: ShowOccupation || ShowCity || ShowNationality || ShowArea ? 5 : 0)
             .disabled(ShowOccupation || ShowCity || ShowNationality || ShowArea)
-            if ShowNationality {
-                ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
-                    .environmentObject(patientCreatedVM)
-                    .environmentObject(NationalityVM)
-            }
-            else if ShowCity{
-                ShowCityList( ShowCity: $ShowCity, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
-                
-            }
-            else if ShowArea {
-                ShowAreaList( ShowArea: $ShowArea, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
-                
-            }
-            else if ShowOccupation {
-                ShowOccupationList( ShowOccupation: $ShowOccupation, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
-                    .environmentObject(OccupationVM)
-            }
+//            if ShowNationality {
+////                ShowNationalityList( ShowNationality: $ShowNationality, bounds: $bounds, offset: $offset)
+////                    .environmentObject(patientCreatedVM)
+////                    .environmentObject(NationalityVM)
+//            }
+//            else if ShowCity{
+//                ShowCityList( ShowCity: $ShowCity, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
+//
+//            }
+//            else if ShowArea {
+//                ShowAreaList( ShowArea: $ShowArea, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
+//
+//            }
+//            else if ShowOccupation {
+//                ShowOccupationList( ShowOccupation: $ShowOccupation, bounds: $bounds, offset: $offset).environmentObject(patientCreatedVM)
+//                    .environmentObject(OccupationVM)
+//            }
             // showing loading indicator
             ActivityIndicatorView(isPresented: $patientCreatedVM.isLoading)
 

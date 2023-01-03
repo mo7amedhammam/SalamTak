@@ -11,7 +11,8 @@ import SwiftUI
 struct SecureInputView: View {
     
     @Binding var text: String
-    @State var errorMsg: String?
+    var MaxLength : Int?
+    @Binding var errorMsg: String
     @State var isSecured: Bool = true
     var title: String
     @State var placholdercolor : Color = .gray
@@ -32,8 +33,12 @@ struct SecureInputView: View {
                 if isSecured {
                     //   PasswordView(text: text, placeHolder: title)
                     SecureField("", text: $text)
+                        .textContentType(.password)
+                        .onChange(of: text , perform: {newVal in
+                            text = "\(newVal.prefix(MaxLength ?? 1000))"
+                        })
                         .autocapitalization(.none)
-                        .font(.system(size: 13))
+                        .font(.salamtakRegular(of: 14))
                         .padding(.horizontal, 12)
                         .disableAutocorrection(true)
                         .background(
@@ -44,8 +49,11 @@ struct SecureInputView: View {
                         .shadow(color: Color.gray.opacity(0.099), radius: 3)
                 } else {
                     TextField(title, text: $text)
+                        .onChange(of: text , perform: {newVal in
+                            text = "\(newVal.prefix(MaxLength ?? 1000))"
+                        })
                         .autocapitalization(.none)
-                        .font(.system(size: 13))
+                        .font(.salamtakRegular(of: 14))
                         .padding(.horizontal)
                         .disableAutocorrection(true)
                         .background(
@@ -86,9 +94,9 @@ struct SecureInputView: View {
             
             
             
-            if errorMsg != "" || errorMsg != nil{
+            if errorMsg != "" {
             HStack {
-                Text(errorMsg ?? "")
+                Text(errorMsg )
                     .font(.salamtakRegular(of: 12))
                     .foregroundColor( .red)
     //                .offset(x:5, y: text.isEmpty && false ? -10 : -40)
@@ -102,20 +110,38 @@ struct SecureInputView: View {
 }
 struct SecureInputView_Previews: PreviewProvider {
     static var previews: some View {
-        SecureInputView(text: .constant("123"), errorMsg: "weak password",title: "enter password",placholdercolor:.blue ,backgroundColor:.clear,isBorderd : true)
+        SecureInputView(text: .constant("123"), errorMsg: .constant("weak password"),title: "enter password",placholdercolor:.blue ,backgroundColor:.clear,isBorderd : true)
     }
+}
+enum inputTypes:Equatable{
+    case normalinput, DropList(icon:String)
+    
+    func icone() -> String{
+        switch self {
+        case .normalinput:
+            return ""
+        case .DropList(icon: let image):
+            return image
+        }
+    }
+    
 }
 
 struct InputTextField: View {
     @Binding var text: String
-    @State var textplacholder : String = ""
+    var MaxLength : Int?
+    @State var iconName : inputTypes = .normalinput
+    @State var iconSize : CGFloat = 15
 
-    @State var errorMsg: String
+    @State var textplacholder : String = ""
+    @Binding var errorMsg: String
     var title : String
     @State var titleColor : Color = .salamtackBlue
     @State var backgroundColor : Color = .white
     @State var isBorderd : Bool = true
+    @State var isactive : Bool = true
     @State var textSize : CGFloat = 15
+    var Action: (() -> ())?
 
     var body: some View {
         VStack(spacing:0) {
@@ -129,36 +155,84 @@ struct InputTextField: View {
                 Spacer()
             }
             }
-            ZStack (alignment:.bottomLeading){
-                TextField(textplacholder,text:$text)
-                    .font(.salamtakRegular(of:text=="" ? 12:textSize))
-//                    .font(.system(size: CGFloat(textSize)))
-                    .frame( height: 40)
-                    .padding(.horizontal)
-//                    .overlay(
-//                                   RoundedRectangle(cornerRadius: 25)
-//                                    .stroke(isBorderd == true ? Color("blueColor"):Color.clear, lineWidth:isBorderd == true ? 1.5:0)
-//                           )
-                    .autocapitalization(.none)
-                    .textInputAutocapitalization(.none)
-            }
-
-//            .font(.salamtakRegular(of: textSize))
-//            .padding(.top,15)
-//            .padding(.bottom,2)
-//            .padding(.horizontal,2)
-            .disableAutocorrection(true)
-            .background(
-                backgroundColor
-            )
-            .foregroundColor(Color("blueColor"))
-                .cornerRadius(25)
-            .shadow(color: Color.black.opacity(0.099), radius: 3)
             
+            ZStack{
+            if iconName == .normalinput{
+                HStack {
+                    TextField(textplacholder,text:$text)
+                        .onChange(of: text , perform: {newVal in
+                            text = "\(newVal.prefix(MaxLength ?? 1000))"
+                        })
+                        .font(.salamtakRegular(of:text=="" ? 12:textSize))
+                        .frame( height: 40)
+                        .padding(.horizontal)
+                        .autocapitalization(.none)
+                    .textInputAutocapitalization(.none)
+                    .disabled(!isactive)
+                    
+                    if iconName.icone() != "" {
+//                    HStack {
+                        Spacer()
+                        Image(iconName.icone())
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.salamtackBlue.opacity(0.8))
+                            .frame(width: iconSize, height: iconSize)
+                            
+//                            .font(.system(size: 5))
+//                    }
+                            .padding(language.rawValue == "en" ? .trailing:.leading)
+                    }
+                }
+            }else{
+                Button(action: {Action?()}, label: {
+                    HStack {
+                        TextField(textplacholder,text:$text)
+                            .font(.salamtakRegular(of:text=="" ? 12:textSize))
+                            .frame( height: 40)
+                            .padding(.horizontal)
+                            .autocapitalization(.none)
+                        .textInputAutocapitalization(.none)
+                        .disabled(!isactive || iconName != .normalinput )
+                        
+                        if iconName.icone() != "" {
+    //                    HStack {
+                            Spacer()
+                            Image(iconName.icone())
+                                .resizable()
+                                .renderingMode(.template)
+                                .foregroundColor(.salamtackBlue.opacity(0.8))
+                                .frame(width: iconSize, height: iconSize)
+                                
+    //                            .font(.system(size: 5))
+    //                    }
+                                .padding(language.rawValue == "en" ? .trailing:.leading)
+                        }
+                    }
+
+                })
+            }
+            }
+            .disableAutocorrection(true)
+            .foregroundColor(.salamtackBlue)
+                .cornerRadius(25)
             .overlay(
-                    RoundedRectangle(cornerRadius: 25)
-                        .stroke(isBorderd == true ? .salamtackBlue:Color.clear, lineWidth:isBorderd == true ? 1.5:0)
+                ZStack{
+                RoundedRectangle(cornerRadius: 25)
+                        .stroke(  isBorderd == true ? .salamtackBlue:Color.clear, lineWidth:isBorderd == true ? 1.5:0)
+//                    if iconName.icone() != "" {
+//                    HStack {
+//                        Spacer()
+//                        Image(iconName.icone())
+//                            .resizable()
+//                            .renderingMode(.template)
+//                            .foregroundColor(.salamtackBlue)
+//                            .font(.system(size: 5))
+//                    }
+//                    }
+                    }
                    )
+            
             if errorMsg != ""{
             HStack {
                 Text(errorMsg )
@@ -176,7 +250,7 @@ struct InputTextField: View {
 
 struct InputTextField_Previews: PreviewProvider {
     static var previews: some View {
-        InputTextField(text: .constant("mm"), errorMsg: "Error Message", title: "your name",backgroundColor: .clear,isBorderd: true)
+        InputTextField(text: .constant("mm"),iconName: .DropList(icon: "newdown"), errorMsg: .constant("Error Message"), title: "your name",backgroundColor: .clear,isBorderd: true)
     }
 }
 
@@ -216,3 +290,25 @@ struct ExpandableTxtField_Previews: PreviewProvider {
         
     }
 }
+
+
+
+//MARK: --- Char number limit ----
+struct TextFieldLimitModifer: ViewModifier {
+    @Binding var value: String
+    var length: Int
+
+    func body(content: Content) -> some View {
+        content
+            .onReceive(value.publisher.collect()) {
+                value = String($0.prefix(length))
+            }
+    }
+}
+
+extension View {
+    func limitInputLength(value: Binding<String>, length: Int) -> some View {
+        self.modifier(TextFieldLimitModifer(value: value, length: length))
+    }
+}
+

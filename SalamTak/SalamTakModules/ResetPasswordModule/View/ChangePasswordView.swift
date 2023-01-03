@@ -40,28 +40,28 @@ struct ChangePasswordView: View {
                     VStack (spacing: 10){
                         
                         if isChangingInside {
-                            SecureInputView( text: $UpdatePassVM.OldPassword, title: "ChangePass_Screen_enter_Current_pass".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                            SecureInputView( text: $UpdatePassVM.OldPassword, errorMsg: .constant(""),title: "ChangePass_Screen_enter_Current_pass".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                 .focused($isfocused)
                                 .padding(.horizontal,40)
                                 .autocapitalization(.none)
                                 .textInputAutocapitalization(.never)
 
                         }
-                            SecureInputView( text: $UpdatePassVM.password, title: "ChangePass_Screen_enter_pass".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                        SecureInputView( text: $UpdatePassVM.password, errorMsg: .constant(""), title: "ChangePass_Screen_enter_pass".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                 .focused($isfocused)
                                 .padding(.horizontal,40)
                                 .autocapitalization(.none)
                                 .textInputAutocapitalization(.never)
                             
-                            SecureInputView( text: $UpdatePassVM.password1, title: "ChangePass_Screen_confirm_pass".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
+                        SecureInputView( text: $UpdatePassVM.password1, errorMsg: $UpdatePassVM.inlineErrorPassword, title: "ChangePass_Screen_confirm_pass".localized(language),placholdercolor: Color("blueColor"),backgroundColor: .clear,isBorderd: true)
                                 .focused($isfocused)
                                 .padding(.horizontal,40)
                                 .autocapitalization(.none)
                                 .textInputAutocapitalization(.never)
                        
-                        Text(UpdatePassVM.inlineErrorPassword)
-                            .font(.salamtakBold(of: 14))
-                            .foregroundColor(.red)
+//                        Text(UpdatePassVM.inlineErrorPassword)
+//                            .font(.salamtakBold(of: 14))
+//                            .foregroundColor(.red)
                         }
 
                     Spacer()
