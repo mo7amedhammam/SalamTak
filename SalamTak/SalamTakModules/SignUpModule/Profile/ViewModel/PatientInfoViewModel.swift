@@ -8,6 +8,8 @@
 import Combine
 import Alamofire
 import Foundation
+import UIKit
+//import UIKit
 
 class PatientInfoViewModel: ObservableObject {
     
@@ -20,7 +22,8 @@ class PatientInfoViewModel: ObservableObject {
 
     // ------- input
     @Published  var PatientId : Int = 0
-    @Published  var profileImage = UIImage()
+    @Published  var profileImage : UIImage = UIImage()
+    @Published  var profileImageStr = ""
     @Published  var FirstName : String = ""
     @Published  var FirstNameAr : String = ""
     @Published  var MiddelName : String = ""
@@ -41,7 +44,7 @@ class PatientInfoViewModel: ObservableObject {
     @Published  var Address : String = ""
     @Published  var Latitude  = 0.0
     @Published  var Longitude = 0.0
-    @Published  var FloorNo : Int = 0
+    @Published  var FloorNo : String = ""
     @Published  var BlockNo : String = ""
     @Published  var ApartmentNo : String = ""
     
@@ -69,54 +72,61 @@ class PatientInfoViewModel: ObservableObject {
 
     //    //------- output
     @Published var formIsValid : Bool = false
-
 //    @Published var publishedDoctorModel: PatientInfoModel?
+    @Published var UserCreated = false
     @Published var UserUpdated = false
+    @Published var userexist = false
+
     @Published var isLoading : Bool? = false
     @Published var isAlert = false
     @Published var activeAlert : ActiveAlert = .NetworkError
     @Published var message = ""
-    
+
+    var Pamodel = BaseResponse<PatientInfoModel>()
+
     init() {
         checkvalidations()
 //        execute(Operation: .GetPatientProfileInfo)
-        passthroughModelSubject.sink { (completion) in
-        } receiveValue: {[weak self]  (modeldata) in
-//            self?.publishedDoctorModel = modeldata.data
-            print(modeldata)
-            self?.PatientId = modeldata.data?.id ?? 0
-            self?.FirstName = modeldata.data?.firstName ?? ""
-            self?.FirstNameAr = modeldata.data?.firstNameAr ?? ""
-            self?.MiddelName = modeldata.data?.middelName ?? ""
-            self?.MiddelNameAr = modeldata.data?.middelNameAr ?? ""
-            self?.FamilyName = modeldata.data?.familyName ?? ""
-            self?.FamilyNameAr = modeldata.data?.familyNameAr ?? ""
-            self?.GenderId = modeldata.data?.genderID ?? 0
-            self?.EmergencyContact = modeldata.data?.emergencyContact ?? ""
-            self?.OccupationId = modeldata.data?.occupationID ?? 0
-            self?.occupationName = modeldata.data?.occupationName ?? ""
-            self?.NationalityId = modeldata.data?.nationalityID ?? 0
-            self?.NationalityName = modeldata.data?.nationalityName ?? ""
-            self?.CountryId = modeldata.data?.countryID ?? 0
-            self?.countryName = modeldata.data?.countryName ?? ""
-            self?.CityId = modeldata.data?.cityID ?? 0
-            self?.cityName = modeldata.data?.cityName ?? ""
-            self?.AreaId = modeldata.data?.areaID ?? 0
-            self?.areaName = modeldata.data?.areaName ?? ""
-            self?.Address = modeldata.data?.address ?? ""
-            self?.Longitude = Double(modeldata.data?.longitude ?? "") ?? 0.0
-            self?.Latitude = Double(modeldata.data?.latitude ?? "") ?? 0.0
-            self?.BlockNo = modeldata.data?.blockNo ?? ""
-            self?.FloorNo = modeldata.data?.floorNo ?? 0
-            self?.ApartmentNo = modeldata.data?.apartmentNo ?? ""
-            self?.Birthday = ChangeFormate(NewFormat: "yyyy-MM-dd'T'hh:mm:ss").date(from:modeldata.data?.birthdate  ?? "") ?? Date()
-//            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-//                self?.date =  (self?.publishedDoctorModel?.birthday ?? "").StrToDate(format: "yyyy-MM-dd'T'hh:mm:ss")
-            DispatchQueue.global(qos: .userInitiated).async{
-                Helper.setUserimage(userImage: URLs.BaseUrl+"\(modeldata.data?.image ?? "")")
-            }
-//            })
-        }.store(in: &cancellables)
+        
+//        passthroughModelSubject.sink { (completion) in
+//        } receiveValue: {[weak self]  (modeldata) in
+//            if self?.PatientProfileOP == .CreatePatientProfileInfo && modeldata.success ?? false{
+////                self?.userexist = true
+//                self?.UserCreated = true
+//            }
+////            self?.publishedDoctorModel = modeldata.data
+////            DispatchQueue.main.async{
+////            print(modeldata)
+////            self?.profileImageStr = modeldata.data?.image ?? ""
+////            self?.PatientId = modeldata.data?.id ?? 0
+////            self?.FirstName = modeldata.data?.firstName ?? ""
+////            self?.FirstNameAr = modeldata.data?.firstNameAr ?? ""
+////            self?.MiddelName = modeldata.data?.middelName ?? ""
+////            self?.MiddelNameAr = modeldata.data?.middelNameAr ?? ""
+////            self?.FamilyName = modeldata.data?.familyName ?? ""
+////            self?.FamilyNameAr = modeldata.data?.familyNameAr ?? ""
+////            self?.GenderId = modeldata.data?.genderID ?? 0
+////            self?.EmergencyContact = modeldata.data?.emergencyContact ?? ""
+////            self?.OccupationId = modeldata.data?.occupationID ?? 0
+////            self?.occupationName = modeldata.data?.occupationName ?? ""
+////            self?.NationalityId = modeldata.data?.nationalityID ?? 0
+////            self?.NationalityName = modeldata.data?.nationalityName ?? ""
+////            self?.CountryId = modeldata.data?.countryID ?? 0
+////            self?.countryName = modeldata.data?.countryName ?? ""
+////            self?.CityId = modeldata.data?.cityID ?? 0
+////            self?.cityName = modeldata.data?.cityName ?? ""
+////            self?.AreaId = modeldata.data?.areaID ?? 0
+////            self?.areaName = modeldata.data?.areaName ?? ""
+////            self?.Address = modeldata.data?.address ?? ""
+////            self?.Longitude = Double(modeldata.data?.longitude ?? "") ?? 0.0
+////            self?.Latitude = Double(modeldata.data?.latitude ?? "") ?? 0.0
+////            self?.BlockNo = modeldata.data?.blockNo ?? ""
+////            self?.FloorNo = modeldata.data?.floorNo ?? 0 > 0 ? String(modeldata.data?.floorNo ?? 0 ):""
+////            self?.ApartmentNo = modeldata.data?.apartmentNo ?? ""
+////            self?.Birthday = ChangeFormate(NewFormat: "yyyy-MM-dd'T'hh:mm:ss").date(from:modeldata.data?.birthdate  ?? "") ?? Date()
+////                Helper.setUserimage(userImage: URLs.BaseUrl+"\(modeldata.data?.image ?? "")")
+////            }
+//        }.store(in: &cancellables)
     }
 }
 
@@ -155,27 +165,32 @@ extension PatientInfoViewModel:TargetType{
                                                "MiddelName" : MiddelName ,"MiddelNameAr" : MiddelNameAr,
                                                "FamilyName" : FamilyName ,"FamilyNameAr" : FamilyNameAr,
                                                "GenderId" : GenderId ?? 1 ,
-                                               "Birthdate" : ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: Birthday) ,
-                                               "NationalityId" : NationalityId, "CountryId" : CountryId,
+                                               "Birthdate" : ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss").string(from: Birthday) ,
+                                               "NationalityId" : CountryId, "CountryId" : CountryId,
                                                "EmergencyContact": EmergencyContact, "OccupationId" : OccupationId,
                                                "CityId": CityId, "AreaId" : AreaId,"Address": Address,
                                                "Latitude": String(Latitude), "Longitude": String(Longitude),
-                                               "BlockNo": BlockNo, "FloorNo": FloorNo, "ApartmentNo": ApartmentNo
+                                               "BlockNo": BlockNo, "FloorNo": Int(FloorNo) ?? 0, "ApartmentNo": ApartmentNo
                                                 ]
-            if PatientId != 0 {
-                PatientProfileOP = .UpdatePatientProfileInfo
+            if PatientId != 0 && PatientProfileOP == .UpdatePatientProfileInfo{
                 parametersarr["Id"] = PatientId
+            }
+            if profileImage.size.width > 0 && PatientProfileOP == .CreatePatientProfileInfo{
+                parametersarr["profileImage"] = profileImage
             }
         return .parameterRequest(Parameters: parametersarr, Encoding: JSONEncoding.default)
         }
     }
     
     var header: [String : String]? {
-        let header = ["Authorization":Helper.getAccessToken()]
+        let header = ["Authorization":Helper.getAccessToken(),"accept":"text/plain","Content-Type":"application/json"]
         return header
     }
     
     func execute(Operation:PatientInfoProfileOp){
+        UserCreated = false
+        UserUpdated = false
+
         self.PatientProfileOP = Operation
         switch Operation{
     case .GetPatientProfileInfo:
@@ -183,47 +198,115 @@ extension PatientInfoViewModel:TargetType{
             print(url)
 
         case .CreatePatientProfileInfo:
-            startUpdatingPatientInfo()
+            startCreatingPatientInfo()
             print(url)
 
         case .UpdatePatientProfileInfo:
             startUpdatingPatientInfo()
             print(url)
-
         }
     }
     
     func startFetchDoctorProfile(){
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<PatientInfoModel>.self) { [self] (success, model, err) in
-                if success{
-                    //case of success
-//                    DispatchQueue.main.async {
-                        self.passthroughModelSubject.send(model!)
-//                    }
-                }else{
-                    if model != nil{
-                        //case of model with error
-                        message = model?.message ?? "Bad Request"
-                        isAlert = true
-//                        print(model)
-                        
-                    }else{
-                        if err == "Unauthorized"{
-                            //case of Empty model (unauthorized)
-                            activeAlert = .unauthorized
-                            message = "Session_expired\nlogin_again".localized(language)
-                        }else{
-                            isAlert = true
-                            message = err ?? "there is an error"
-                        }
-                    }
-                    isAlert = true
+            BaseNetwork().makeRequest(Target: self, Model: BaseResponse<PatientInfoModel>.self)
+//                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    // Handle the error here
+                    print(error)
+                    self.message = error.localizedDescription
+                    self.isAlert = true
+                    self.isLoading = false
+
+                case .finished:
+                    break
                 }
-                isLoading = false
-            }
+                }, receiveValue: {[weak self]  model in
+                        // model is of type MyModel
+                        if self?.PatientProfileOP == .CreatePatientProfileInfo && model.success ?? false{
+                            self?.UserCreated = true
+                        }
+//                        DispatchQueue.main.async{
+                        print(model)
+                        self?.profileImageStr = model.data?.image ?? ""
+                        self?.PatientId = model.data?.id ?? 0
+                        self?.FirstName = model.data?.firstName ?? ""
+                        self?.FirstNameAr = model.data?.firstNameAr ?? ""
+                        self?.MiddelName = model.data?.middelName ?? ""
+                        self?.MiddelNameAr = model.data?.middelNameAr ?? ""
+                        self?.FamilyName = model.data?.familyName ?? ""
+                        self?.FamilyNameAr = model.data?.familyNameAr ?? ""
+                        self?.GenderId = model.data?.genderID ?? 0
+                        self?.EmergencyContact = model.data?.emergencyContact ?? ""
+                        self?.OccupationId = model.data?.occupationID ?? 0
+                        self?.occupationName = model.data?.occupationName ?? ""
+                        self?.NationalityId = model.data?.nationalityID ?? 0
+                        self?.NationalityName = model.data?.nationalityName ?? ""
+                        self?.CountryId = model.data?.countryID ?? 0
+                        self?.countryName = model.data?.countryName ?? ""
+                        self?.CityId = model.data?.cityID ?? 0
+                        self?.cityName = model.data?.cityName ?? ""
+                        self?.AreaId = model.data?.areaID ?? 0
+                        self?.areaName = model.data?.areaName ?? ""
+                        self?.Address = model.data?.address ?? ""
+                        self?.Longitude = Double(model.data?.longitude ?? "") ?? 0.0
+                        self?.Latitude = Double(model.data?.latitude ?? "") ?? 0.0
+                        self?.BlockNo = model.data?.blockNo ?? ""
+                        self?.FloorNo = model.data?.floorNo ?? 0 > 0 ? String(model.data?.floorNo ?? 0 ):""
+                        self?.ApartmentNo = model.data?.apartmentNo ?? ""
+                        self?.Birthday = ChangeFormate(NewFormat: "yyyy-MM-dd'T'HH:mm:ss").date(from:model.data?.birthdate  ?? "") ?? Date()
+                        self?.BirthdayStr = ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: self?.Birthday ?? Date())
+
+                            Helper.setUserimage(userImage: URLs.BaseUrl+"\(model.data?.image ?? "")")
+//                        }
+                    self?.isLoading = false
+                }
+                ).store(in: &cancellables)
+
             
+//            BaseNetwork.DoRequest(Target: self,responseModel: BaseResponse<PatientInfoModel>.self) { [self] result in
+//                switch result {
+//                case .success(let model):
+//                    // model is of type MyModel
+//                                    print(model)
+//                    self.passthroughModelSubject.send(model)
+//                case .failure(let error):
+//                    // Handle the error here
+//                                        print(error)
+//                }
+//                isLoading = false
+//            }
+            
+//            BaseNetwork.request(Target: self, responseModel: BaseResponse<PatientInfoModel>.self) { [self] (success, model, err) in
+//                if success{
+//                    //case of success
+////                    DispatchQueue.main.async {
+//                        self.passthroughModelSubject.send(model!)
+////                    }
+//                }else{
+//                    if model != nil{
+//                        //case of model with error
+//                        message = model?.message ?? "Bad Request"
+//                        isAlert = true
+////                        print(model)
+//                    }else{
+//                        if err == "Unauthorized"{
+//                            //case of Empty model (unauthorized)
+//                            activeAlert = .unauthorized
+//                            message = "Session_expired\nlogin_again".localized(language)
+//                        }else{
+//                            isAlert = true
+//                            message = err ?? "there is an error"
+//                        }
+//                    }
+//                    isAlert = true
+//                }
+//                isLoading = false
+//            }
+        
         }else{
             //case of no internet connection
             message = "Check_Your_Internet_Connection".localized(language)
@@ -231,55 +314,170 @@ extension PatientInfoViewModel:TargetType{
         }
     }
 
-    func startUpdatingPatientInfo(){
+    func startCreatingPatientInfo(){
         if Helper.isConnectedToNetwork(){
             print(parameter)
             self.isLoading = true
-            BaseNetwork.multipartRequest(Target: self, image: profileImage, responseModel: BaseResponse<PatientInfoModel>.self) { [self] (success, model, err) in
-                if success{
-                    //case of success
-//                    DispatchQueue.main.async {
-                        self.passthroughModelSubject.send( model! )
-//                    }
-                }else{
-                    if model != nil{
-                        //case of model with error
-                        message = model?.message ?? "Bad Request"
-                        isAlert = true
-                    }else{
-                        if err == "Unauthorized"{
-                            //case of Empty model (unauthorized)
-                            message = "Session_expired\nlogin_again".localized(language)
-                        }else if err == "imageError"{
-                            message = "can't get image data"
-                        }else{
-                            isAlert = true
-                            message = err ?? "there is an error"
-                        }
-                    }
-//                    isAlert = true
+            
+            
+            BaseNetwork().makeMultipartRequest(Target: self, Model: BaseResponse<PatientInfoModel>.self)
+//                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    // Handle the error here
+                    print(error)
+                    self.message = error.localizedDescription
+                    self.isAlert = true
+                    self.isLoading = false
+
+                case .finished:
+                    break
                 }
-                isLoading = false
-            }
+                }, receiveValue: {[weak self]  model in
+                        // model is of type MyModel
+                        if self?.PatientProfileOP == .CreatePatientProfileInfo && model.success ?? false{
+                            self?.UserCreated = true
+                        }else{
+                        print(model)
+                        }
+                    self?.isLoading = false
+                }
+                ).store(in: &cancellables)
+            
+            
+            
+//            BaseNetwork.multipartRequest(Target: self, image: profileImage, imageName: "profileImage", responseModel: BaseResponse<PatientInfoModel>.self) { [self] (success, model, err) in
+//                if success{
+//                    //case of success
+////                    DispatchQueue.main.async {
+//                        self.passthroughModelSubject.send( model! )
+////                    }
+//                }else{
+//                    if model != nil{
+//                        //case of model with error
+//                        message = model?.message ?? "Bad Request"
+//                        isAlert = true
+//                    }else{
+//                        if err == "Unauthorized"{
+//                            //case of Empty model (unauthorized)
+//                            message = "Session_expired\nlogin_again".localized(language)
+//                        }else if err == "imageError"{
+//                            message = "can't get image data"
+//                        }else{
+//                            isAlert = true
+//                            message = err ?? "there is an error"
+//                        }
+//                    }
+////                    isAlert = true
+//                }
+//                isLoading = false
+//            }
             
         }else{
             //case of no internet connection
             message = "Check_Your_Internet_Connection".localized(language)
             isAlert = true
+            isLoading = false
+        }
+    }
+    func startUpdatingPatientInfo(){
+        if Helper.isConnectedToNetwork(){
+            self.isLoading = true
+            BaseNetwork().makeRequest(Target: self, Model: BaseResponse<PatientInfoModel>.self)
+//                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    // Handle the error here
+                    print(error)
+                    self.message = error.localizedDescription
+                    self.isAlert = true
+                    self.isLoading = false
+
+                case .finished:
+                    break
+                }
+                }, receiveValue: {[weak self]  model in
+                        // model is of type MyModel
+                        if model.success ?? false{
+                            self?.UserUpdated = true
+                        }else {
+                        print(model)
+                        }
+                    self?.message = model.message ?? ""
+                    self?.isAlert = true
+
+                    self?.isLoading = false
+                }
+                ).store(in: &cancellables)
+            
+            
+//            BaseNetwork.request(Target: self, responseModel: BaseResponse<PatientInfoModel>.self) { [self] (success, model, err) in
+//                if success{
+//                    //case of success
+////                    DispatchQueue.main.async {
+//                        self.passthroughModelSubject.send( model! )
+////                    }
+//                }else{
+//                    if model != nil{
+//                        //case of model with error
+//                        message = model?.message ?? "Bad Request"
+//                        isAlert = true
+//                    }else{
+//                        if err == "Unauthorized"{
+//                            //case of Empty model (unauthorized)
+//                            message = "Session_expired\nlogin_again".localized(language)
+//                        }else if err == "imageError"{
+//                            message = "can't get image data"
+//                        }else{
+//                            isAlert = true
+//                            message = err ?? "there is an error"
+//                        }
+//                    }
+////                    isAlert = true
+//                }
+//                isLoading = false
+//            }
+            
+        }else{
+            //case of no internet connection
+            message = "Check_Your_Internet_Connection".localized(language)
+            isAlert = true
+            isLoading = false
         }
     }
 }
 
 // MARK: - Setup validations
 extension PatientInfoViewModel{
-    var validImage: AnyPublisher<Bool, Never> {
+    var validIProfileImage: AnyPublisher<Bool, Never> {
        $profileImage
          .map { image in
-             guard image.size.width != 0 else {
+             guard (image.size.width ) > 0 else {
                  return false
              }
-                 return true
+             return true
          }
+         .eraseToAnyPublisher()
+     }
+    var validIProfileImageStr: AnyPublisher<Bool, Never> {
+       $profileImageStr
+         .map { image in
+             guard image != "" else {
+                 return false
+             }
+             return true
+         }
+         .eraseToAnyPublisher()
+     }
+    
+    var validImage: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest(validIProfileImage,validIProfileImageStr)
+            .map{ first, second in
+                return first || second
+            }
+
          .eraseToAnyPublisher()
      }
     
@@ -376,7 +574,7 @@ extension PatientInfoViewModel{
         validImage,
         validName)
         .map { first, Second in
-            return first && Second
+            return first && Second && (self.GenderId != 0)
         }
         .eraseToAnyPublisher()
     }

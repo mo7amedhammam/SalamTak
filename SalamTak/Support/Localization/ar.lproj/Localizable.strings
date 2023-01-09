@@ -156,6 +156,7 @@
 "Dashboard_Screen_see_all" = "عرض الكل";
 "TabBar_home" = "الرئيسية";
 "TabBar_schedual" = "الحجوزات";
+"TabBar_promotions" = "الإعلانات";
 "TabBar_clinics" = "العيادات";
 "TabBar_services" = "الخدمات";
 "TabBar_more" = "اكثر";
@@ -403,3 +404,5 @@
 "New_Forget_Screen_title" = "إعادة تعيين كلمة المرور";
 "By_E-mail" = "باستخدام البريد";
 "By_Phone" = "باستخدام الهاتف";
+
+"More_Screen_Notifications" = "الإشعارات";

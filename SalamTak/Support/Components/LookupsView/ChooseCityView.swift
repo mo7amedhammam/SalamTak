@@ -84,6 +84,9 @@ struct ChooseCity : View {
             cityVM.CountryId = SelectedCountryId
             cityVM.startFetchCities() // 1
         }
+        .onTapGesture(perform: {
+            IsPresented = false
+        })
     }
 }
 

@@ -19,8 +19,8 @@ struct DatePickerTextField: UIViewRepresentable {
     }()
     
     public var placeholder: String
-    @Binding public var date: Date?
-    @ObservedObject var docvm = ViewModelCreatePatientProfile()
+    @Binding var date: Date?
+//    @ObservedObject var docvm = ViewModelCreatePatientProfile()
     
     var datef:DateFormatter{
         let df = DateFormatter()
@@ -45,14 +45,14 @@ struct DatePickerTextField: UIViewRepresentable {
         
         self.helper.dateChanged =  {
             self.date = self.datePicker.date
-            self.docvm.Birthday = self.datePicker.date
+//            self.docvm.Birthday = self.datePicker.date
 //            self.docvm.Birthday = datef.string(from: datePicker.date)
 
         }
         self.helper.doneButtonTapped =  {
             if self.date == nil {
                 self.date = self.datePicker.date
-                self.docvm.Birthday = self.datePicker.date
+//                self.docvm.Birthday = self.datePicker.date
 //                self.docvm.Birthday = datef.string(from: datePicker.date)
 
 //                self.docvm.Birthday = datef.string(from: date ?? Date())

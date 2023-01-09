@@ -122,6 +122,7 @@ final class Helper{
         userDef.removeObject(forKey:"Image"  )
         userDef.removeObject(forKey:"access_token"  )
         userDef.removeObject(forKey: "clinicId")
+        userLogedIn(value: false)
     }
     class func changeLang() {
         userDef.removeObject(forKey:"languageKey"  )

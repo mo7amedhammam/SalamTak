@@ -18,20 +18,19 @@ struct PatientInfoView: View {
     @State private var startPicking = false
     @State private var imgsource = ""
 
-    @State var ShowCountry = false
-    @State var ShowCity = false
-    @State var ShowArea = false
-    @State var ShowOccupation = false
-    @State var ShowCalendar = false
-
+//    @State var ShowCountry = false
+//    @State var ShowCity = false
+//    @State var ShowArea = false
+//    @State var ShowOccupation = false
+//    @State var ShowCalendar = false
+    @EnvironmentObject var environments:EnvironmentsVM
     @StateObject var profileVM = PatientInfoViewModel()
-//    @StateObject var locationViewModel = LocationViewModel()
-//    @StateObject var NationalityVM = ViewModelCountries()
-//    @StateObject var OccupationVM = ViewModelOccupation()
     
-    @State var startingDate = Date()
-    @State var endingDate = Date()
+//    @State var startingDate = Date()
+//    @State var endingDate = Date()
     @State var next = false
+    @Binding var index : Int // 0:profile 1:medical
+
     var body: some View {
         ZStack {
             VStack(spacing:0){
@@ -75,6 +74,7 @@ struct PatientInfoView: View {
                         )
                         .cornerRadius(10)
                         CircularButton(ButtonImage:Image(systemName: "pencil" ) , forgroundColor: Color.gray, backgroundColor: Color.white.opacity(0.8), Buttonwidth: 20, Buttonheight: 20){
+                            hideKeyboard()
                             self.showImageSheet = true
                             
                         }.padding(.bottom,-20)
@@ -112,15 +112,30 @@ struct PatientInfoView: View {
                     
                     Group{
                         InputTextField(text: $profileVM.countryName,iconName: .DropList(icon: "newdown") , textplacholder: "Select_".localized(language),errorMsg: $profileVM.errorFirstName, title: "Nationality_",isactive: false){
-                            ShowCountry = true
+                            hideKeyboard()
+                            environments.CountryId = profileVM.CountryId
+                            environments.countryName = profileVM.countryName
+                            environments.ShowCountry = true
                         }
+                        .onChange(of: environments.CountryId, perform: {newval in
+                            if newval != profileVM.CountryId{
+                                profileVM.CountryId = newval
+                                profileVM.countryName = environments.countryName
+                            }
+                        })
                         
                         InputTextField(text: $profileVM.BirthdayStr ,iconName: .DropList(icon: "newCalendaricon"),iconSize: 33 , textplacholder: "dd/mm/yyyy".localized(language),errorMsg: $profileVM.errorBirthday, title: "Date_Of_Birth",isactive: false){
-                            startingDate = (Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date())
-                            endingDate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
-
-                            ShowCalendar = true
+                            environments.startingDate = (Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date())
+                            environments.endingDate = (Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date())
+                            hideKeyboard()
+                            environments.Birthday = profileVM.Birthday
+                            environments.ShowCalendar = true
                         }
+//                        .onChange(of: environments.Birthday, perform: {newval in
+////                            if newval != profileVM.Birthday{
+////                                profileVM.Birthday = newval
+////                            }
+//                        })
                         
                         HStack {
                             Text("Gender_".localized(language))
@@ -131,16 +146,43 @@ struct PatientInfoView: View {
                         }
                         
                         InputTextField(text: $profileVM.occupationName,iconName: .DropList(icon: "newdown") , textplacholder: "Select_".localized(language),errorMsg: .constant(""), title: "Occupation_",isactive: false){
-                            ShowOccupation = true
+                            hideKeyboard()
+                            environments.OccupationId = profileVM.OccupationId
+                            environments.occupationName = profileVM.occupationName
+                            environments.ShowOccupation = true
                         }
+//                        .onChange(of: environments.OccupationId, perform: {newval in
+//                            if newval != profileVM.OccupationId{
+//                                profileVM.OccupationId = newval
+//                                profileVM.occupationName = environments.occupationName
+//                            }
+//                        })
                         
                         InputTextField(text: $profileVM.cityName,iconName: .DropList(icon: "newdown") , textplacholder: "Select_".localized(language),errorMsg: .constant(""), title: "City_",isactive: false){
-                            ShowCity = true
+                            hideKeyboard()
+                            environments.CityId = profileVM.CityId
+                            environments.cityName = profileVM.cityName
+                            environments.ShowCity = true
                         }
+//                        .onChange(of: environments.CityId, perform: {newval in
+//                            if newval != profileVM.CityId{
+//                                profileVM.CityId = newval
+//                                profileVM.cityName = environments.cityName
+//                            }
+//                        })
                         
                         InputTextField(text: $profileVM.areaName,iconName: .DropList(icon: "newdown") , textplacholder: "Select_".localized(language),errorMsg: .constant(""), title: "Area_",isactive: false){
-                            ShowArea = true
+                            hideKeyboard()
+                            environments.AreaId = profileVM.AreaId
+                            environments.areaName = profileVM.areaName
+                            environments.ShowArea = true
                         }
+//                        .onChange(of: environments.AreaId, perform: {newval in
+//                            if newval != profileVM.AreaId{
+//                                profileVM.AreaId = newval
+//                                profileVM.areaName = environments.areaName
+//                            }
+//                        })
                     }
                     .autocapitalization(.none)
                     .textInputAutocapitalization(.never)
@@ -151,7 +193,8 @@ struct PatientInfoView: View {
                         
                         InputTextField(text: $profileVM.BlockNo,errorMsg: .constant(""), title: "Building_Number".localized(language))
                         
-                        InputTextField(text: $profileVM.FloorNo.string(),errorMsg: .constant(""), title: "Floor_Number".localized(language))
+                        InputTextField(text: $profileVM.FloorNo,errorMsg: .constant(""), title: "Floor_Number".localized(language))
+                            .keyboardType(.asciiCapableNumberPad)
                         
                         InputTextField(text: $profileVM.ApartmentNo,errorMsg: .constant(""), title: "Apartment_Number".localized(language))
                         
@@ -163,14 +206,13 @@ struct PatientInfoView: View {
 
                     BorderedButton(text: "Next_".localized(language), isActive:
                                         .constant(
-                        profileVM.formIsValid
-                        && profileVM.countryName != "" && profileVM.GenderName != "" && profileVM.occupationName != "" && profileVM.cityName != "" && profileVM.areaName != "" && profileVM.Address != "" && profileVM.BlockNo != "" && profileVM.FloorNo != 0 && profileVM.ApartmentNo != "" && profileVM.EmergencyContact != "" || true
+                                            profileVM.formIsValid
+                        && profileVM.countryName != "" && profileVM.GenderName != "" && profileVM.occupationName != "" && profileVM.cityName != "" && profileVM.areaName != "" && profileVM.Address != "" && profileVM.BlockNo != "" && profileVM.FloorNo != "" && profileVM.ApartmentNo != "" && profileVM.EmergencyContact != ""
                     )){
-                        if taskOP == .create{
-                            next = true
-//                            profileVM.execute(Operation: .CreatePatientProfileInfo)
+                        if taskOP == .update{
+                            profileVM.execute(Operation: .UpdatePatientProfileInfo)
                         }else{
-                        profileVM.execute(Operation: .UpdatePatientProfileInfo)
+                            profileVM.execute(Operation: .CreatePatientProfileInfo)
                         }
                     }
                     .padding(.top)
@@ -178,94 +220,123 @@ struct PatientInfoView: View {
                     Spacer()
                 }
                 .padding(.horizontal,10)
-                .padding(.bottom,-10)
-                SupportCall()
-                    .frame(height:55)
-//                    .edgesIgnoringSafeArea(.bottom)
             }
-            .edgesIgnoringSafeArea(.bottom)
-            .navigationBarHidden(true)
-            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+            .padding(.bottom,hasNotch ? (taskOP == .update ? 0:10):50)
             .onAppear(perform: {
                 if taskOP == .update {
-                profileVM.execute(Operation: .GetPatientProfileInfo)
+                    profileVM.execute(Operation: .GetPatientProfileInfo)
+//                profileVM.PatientProfileOP = .UpdatePatientProfileInfo
+                    
+//                    environments.CountryId
+                    
                 } else {
-                    if taskOP == .create{
+    //                if taskOP == .create{
                     profileVM.PatientProfileOP = .CreatePatientProfileInfo
-                    }else{
-                    profileVM.PatientProfileOP = .UpdatePatientProfileInfo
-                    }
+    //                }else{
+    //                profileVM.PatientProfileOP = .UpdatePatientProfileInfo
+    //                }
                 }
             })
+
+            //MARK: -------- imagePicker From Camera and Library ------
+            .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
+                Button("photo Library") { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
+                Button("Camera") {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
+                Button("Cancel", role: .cancel) { }
+            } message: {Text("Select Image From")}
             
-            .onTapGesture(perform: {
-                hideKeyboard()
-            })
-            
-            .overlay(
-                ActivityIndicatorView(isPresented: $profileVM.isLoading)
-            )
-            
-            .background(
-                newBackImage(backgroundcolor: .white)
-            )
-            
+            .sheet(isPresented: $startPicking) {
+                    // Pick an image from the photo library:
+                    ImagePicker(sourceType: imgsource == "Library" ? .photoLibrary : .camera, selectedImage: self.$profileVM.profileImage)
+            }
             // Alert with no internet connection
             .alert(isPresented: $profileVM.isAlert, content: {
                 Alert(title: Text(profileVM.message.localized(language)), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                     profileVM.isAlert = false
+                    if profileVM.UserUpdated{
+                            index = 1
+                    }
                 }))
         })
         
+            if taskOP != .update{
+            SupportCall()
+                .edgesIgnoringSafeArea(.bottom)
+            }
         }
-        // go to verify account to resset
-        NavigationLink(destination: PatientMedicalInfoView(taskOP:taskOP),isActive: $next) {
-                }
+        .navigationBarHidden(true)
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
+        .disabled(environments.ShowCountry||environments.ShowCity||environments.ShowArea||environments.ShowCalendar||environments.ShowOccupation)
         
         .overlay(
             ZStack{
-            if ShowCountry {
-                ShowNationalityList( ShowNationality: $ShowCountry,SelectedNationalityName:$profileVM.countryName,SelectedNationalityId:$profileVM.CountryId)
-            } else if ShowCity{
-                ShowCityList(ShowCity: $ShowCity, SelectedCountryId: $profileVM.CountryId, SelectedCityName: $profileVM.cityName, SelectedCityId: $profileVM.CityId)
-            }else if ShowArea{
-                ShowAreaList(ShowArea: $ShowArea, SelectedCityId: $profileVM.CityId, SelectedAreaName: $profileVM.areaName , SelectedAreaId: $profileVM.AreaId)
-            }else if ShowOccupation{
-                ShowOccupationList(ShowOccupation: $ShowOccupation, SelectedOccupationName: $profileVM.occupationName, SelectedOccupationId: $profileVM.OccupationId)
-            }else if ShowCalendar{
-                CalendarPopup( selectedDate: $profileVM.Birthday, isPresented: $ShowCalendar,rangeType:.close ,startingDate:startingDate,endingDate:endingDate)
+                if taskOP == .create{
+                if environments.ShowCountry {
+                    ShowNationalityList( ShowNationality: $environments.ShowCountry,SelectedNationalityName:$environments.countryName,SelectedNationalityId:$environments.CountryId)
+                } else if environments.ShowCity{
+                    ShowCityList(ShowCity: $environments.ShowCity, SelectedCountryId: $environments.CountryId, SelectedCityName: $environments.cityName, SelectedCityId: $environments.CityId)
+                }else if environments.ShowArea{
+                    ShowAreaList(ShowArea: $environments.ShowArea, SelectedCityId: $environments.CityId, SelectedAreaName: $environments.areaName , SelectedAreaId: $environments.AreaId)
+                }else if environments.ShowOccupation{
+                    ShowOccupationList(ShowOccupation: $environments.ShowOccupation, SelectedOccupationName: $environments.occupationName, SelectedOccupationId: $environments.OccupationId)
+                }else if environments.ShowCalendar{
+                    CalendarPopup( selectedDate: $environments.Birthday, isPresented: $environments.ShowCalendar,rangeType:environments.dateRange ,startingDate:environments.startingDate,endingDate:environments.endingDate)
             }
-                
+                }
             }
-                .onChange(of: profileVM.CountryId, perform: { _ in
+                .onChange(of: environments.CountryId, perform: { newval in
+                    if newval != profileVM.CountryId{
                     profileVM.cityName = ""
                     profileVM.CityId = 0
+                    }
                 })
-                .onChange(of: profileVM.CityId, perform: { _ in
+                .onChange(of: environments.CityId, perform: { newval in
+                    if newval != profileVM.CityId{
                     profileVM.areaName = ""
                     profileVM.AreaId = 0
+                    }
                 })
+                .onChange(of: environments.Birthday, perform: {newval in
+                    if  newval != profileVM.Birthday{
+                        profileVM.Birthday = newval
+                    profileVM.BirthdayStr = ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: newval)
+                    }
+                })
+
         )
-        .onChange(of: profileVM.Birthday, perform: {newval in
-            profileVM.BirthdayStr = ChangeFormate(NewFormat: "dd/MM/yyyy").string(from: profileVM.Birthday)
+        .overlay(
+            ActivityIndicatorView(isPresented: $profileVM.isLoading)
+        )
+
+        .background(
+            newBackImage(backgroundcolor: .white)
+        )
+
+        // go to verify account to resset
+        NavigationLink(destination: PatientMedicalInfoView(taskOP:taskOP,index: $index)
+                        .environmentObject(environments)
+//                        .environmentObject(PatientMedicalInfoViewModel())
+                       ,isActive: $profileVM.UserCreated) {
+                }
+        
+        .onTapGesture(perform: {
+            hideKeyboard()
         })
-        //MARK: -------- imagePicker From Camera and Library ------
-        .confirmationDialog("Choose Image From ?", isPresented: $showImageSheet) {
-            Button("photo Library") { self.imgsource = "Library";   self.showImageSheet = false; self.startPicking = true }
-            Button("Camera") {self.imgsource = "Cam" ;    self.showImageSheet = false; self.startPicking = true}
-            Button("Cancel", role: .cancel) { }
-        } message: {Text("Select Image From")}
-        
-        .sheet(isPresented: $startPicking) {
-                // Pick an image from the photo library:
-                ImagePicker(sourceType: imgsource == "Library" ? .photoLibrary : .camera, selectedImage: self.$profileVM.profileImage)
-        }
-        
+//        .onChange(of: profileVM.UserUpdated, perform: {newval in
+//            if newval == true{
+//                index = 1
+//            }
+//        })
     }
 }
 
 struct PatientInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientInfoView(taskOP: .create)
+        PatientInfoView(taskOP: .create, index: .constant(0))
+            .environmentObject(PatientInfoViewModel())
+//            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
+
     }
 }

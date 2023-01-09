@@ -16,42 +16,48 @@ struct ContentView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.scenePhase) var scenePhase
     @State private var loggedin = true
+//    @EnvironmentObject var environments:EnvironmentsVM
+    @StateObject  var infoProfileVM = PatientInfoViewModel()
+    @StateObject  var medicalProfileVM = PatientMedicalInfoViewModel()
+
     var body: some View {
 //        NavigationView {
             ZStack{
-                
                 displayedView
                     .navigationBarHidden(true)
                     .navigationBarBackButtonHidden(true)
+//                    .environmentObject(environments)
+//                    .environmentObject(infoProfileVM)
+//                    .environmentObject(medicalProfileVM)
+
+
             }
-            .onChange(of: scenePhase, perform: { newPhase in
-                    if newPhase == .active {
-                        print("Active")
-                    } else if newPhase == .inactive {
-                        print("InActive")
-                    } else if newPhase == .background {
-                        print("BackGround")
-                    }
-            })
-            .ignoresSafeArea()
-            .navigationViewStyle(StackNavigationViewStyle())
+                .onChange(of: scenePhase, perform: { newPhase in
+                        if newPhase == .active {
+                            print("Active")
+                        } else if newPhase == .inactive {
+                            print("InActive")
+                        } else if newPhase == .background {
+                            print("BackGround")
+                        }
+                })
+//            .ignoresSafeArea()
+                .navigationViewStyle(StackNavigationViewStyle())
                 .preferredColorScheme(.light)
                 .onAppear(perform: {
                     Helper.setLanguage(currentLanguage: language.rawValue)
                     delaySegue()
-                    if Helper.userExist() {
-                        loggedin = true
-                    }else{
-                        loggedin = false
-                    }
+//                    if Helper.userExist() {
+//                        loggedin = true
+//                    }else{
+//                        loggedin = false
+//                    }
                     
                     setNavigationAppearance()
-
             })
-//        }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-    
+       
     }
     
     private func delaySegue() {
@@ -59,24 +65,24 @@ struct ContentView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             // first check in its the first time
             guard Helper.checkLanguageSet() else {
-                withAnimation{
+//                withAnimation{
                     displayedView = AnyView(newLanguagesView())
-                }
+//                }
                 return
             }
             
             guard Helper.checkOnBoard() else {
-                withAnimation{
+//                withAnimation{
                     displayedView = AnyView(OnBoardingView())
-                }
+//                }
                 return
             }
             
             // second check if user is logedin or not
             guard Helper.checkIfLogedIn() else{
-                withAnimation{
+//                withAnimation{
                     displayedView = AnyView(WelcomeScreenView())
-                }
+//                }
                 return
             }
             
@@ -114,7 +120,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().navigationBarHidden(true)
+        ContentView().navigationBarHidden(true).environmentObject(EnvironmentsVM())
     }
 }
 

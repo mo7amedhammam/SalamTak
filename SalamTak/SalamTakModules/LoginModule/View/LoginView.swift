@@ -19,45 +19,17 @@ struct ViewLogin: View {
     @Binding var ispresented: Bool
 //    @Binding var QuickLogin: Bool
     @Environment(\.presentationMode) var presentationMode
-    func editingChanged(_ value: String) {
-        LoginVM.phoneNumber = String(value.prefix(LoginVM.characterLimit))
-    }
-    
+//    @EnvironmentObject  var infoProfileVM : PatientInfoViewModel
+//    @EnvironmentObject  var medicalProfileVM : PatientMedicalInfoViewModel
+    @EnvironmentObject var environments:EnvironmentsVM
+
     var body: some View {
-        
-        
-        //        ScrollView{
-        //            ZStack {
-        //                VStack{
-        //    //                Spacer()
-        //                    Text("welcome")
-        //
-        //                    Spacer()
-        //                    TextField(text: $LoginVM.phoneNumber, prompt: Text("phone num"), label: { } )
-        //                        .modifier(DetailedInfoTitleModifier())
-        //
-        //                }
-        //                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-30, alignment: .center)
-        //            }
-        //        }
-        //        .navigationBarHidden(true)
-                
-//                NavigationView{
         ZStack {
             newBackImage(backgroundcolor: .white)
-
-//            VStack(spacing:0) {
-
                     ScrollView(showsIndicators:false) {
                                 VStack {
                                     AppBarView(Title: "SignIn_Screen_title".localized(language),backColor: .clear)
-                //                        .offset( y:hasNotch ? 0 : -20)
                                         .frame(height:50)
-
-                                    
-                                    //                        .navigationBarItems(leading: BackButtonView())
-                                    //                        .navigationBarBackButtonHidden(true)
-
                                     Image("newlogo")
                                         .renderingMode(.original)
                                         .resizable()
@@ -78,8 +50,6 @@ struct ViewLogin: View {
                                     .focused($isfocused)
                                     .padding(.horizontal,40)
                                     .textInputAutocapitalization(.never)
-                        
-                //                    .background(Color.clear)
                                     HStack {
                                         Spacer()
                                         Button("SignIn_Screen_forgetPassword".localized(language), action: {
@@ -91,23 +61,13 @@ struct ViewLogin: View {
                                             .padding(.horizontal)
                                     }
                                     .padding(.horizontal)
-                //                    Spacer(minLength: 60)
-    //                                Spacer()
                                     VStack{
                                         Spacer()
                                         
-                                        BorderedButton(text: "SignIn_Button".localized(language), isActive: $LoginVM.formIsValid){
+                                        BorderedButton(text: "SignIn_Button".localized(language),font: .salamtakBold(of: 20), isActive: $LoginVM.formIsValid){
                                             LoginVM.startLoginApi()
                                         }
                                         
-//                                        ButtonView(text: "SignIn_Button".localized(language),backgroundColor:                                .clear,forgroundColor:LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("blueColor"):Color("blueColor").opacity(0.5),fontSize: .salamtakBold(of: 18) , action: {
-//                                        LoginVM.startLoginApi()
-//                                    })
-//                                        .disabled(LoginVM.phoneNumber == "" || LoginVM.password == "" || LoginVM.phoneErrorMessage != "")
-//                                        .overlay(
-//                                                       RoundedRectangle(cornerRadius: 25)
-//                                                           .stroke(LoginVM.phoneNumber != "" && LoginVM.password != "" && LoginVM.phoneErrorMessage == "" ? Color("blueColor"):Color("blueColor").opacity(0.5), lineWidth: 3)
-//                                               )
                                         .padding(.horizontal,80)
 
                                     HStack {
@@ -128,38 +88,18 @@ struct ViewLogin: View {
                                         
                                         Spacer()
                                 }
-    //                                Spacer()
-            //                            .padding(.bottom,hasNotch ? 25:80)
-    //                                Spacer()
-    //                                    .frame(height:30)
-    //                            }
-    //                            .frame( height: UIScreen.main.bounds.height-20)
-
-            //                    .adaptsToKeyboard()
-
-                                // showing loading indicator
-            //                    Spacer()
+  
                                     SupportCall()
                                     .frame( height: 55)
 
                             }
-            //            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
                                 .frame( height: UIScreen.main.bounds.height-20)
-                
-                
                 
         }
                         .frame( height: UIScreen.main.bounds.height-20)
                         .padding(.top)
 
-    //                        .overlay(content: {
-    //                                SupportCall()
-    //        //                            .padding(.bottom, hasNotch ? -1:95)
-    //                        })
                             .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                            //            .background(Color("CLVBG"))
-            //                .ignoresSafeArea()
-            //                .padding(.top, hasNotch ? 0:30)
 
                             .onTapGesture(perform: {
                                 hideKeyboard()
@@ -172,34 +112,33 @@ struct ViewLogin: View {
                                     }
                                 }
                             }
-    //                }
-                        
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true)
                     .navigationViewStyle(StackNavigationViewStyle())
                     .overlay(
                         ActivityIndicatorView(isPresented: $LoginVM.isLoading)
                     )
-    //                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-20)
-            //        .padding()
-            //        .edgesIgnoringSafeArea(.top)
-            //        .ignoresSafeArea(.keyboard)
-    //                }
-        }
-//        .padding(.top)
-        .navigationBarHidden(true)
-        
-                // go to verify account to resset
-                NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount),isActive: $dontHaveAccount) {
-                }
 
+            // go to complete profile after login
+            NavigationLink(destination: LoginVM.destination
+                            .environmentObject(environments)
+//                            .environmentObject(infoProfileVM)
+//                            .environmentObject(medicalProfileVM)
+                            .navigationBarHidden(true) ,isActive: $LoginVM.isLogedin, label: {
+            })
+
+        }
+        .navigationBarHidden(true)
+            // go to verify account to resset
+                NavigationLink(destination: ViewSignUp(ispresented: $dontHaveAccount)
+                                .environmentObject(environments)
+//                                .environmentObject(infoProfileVM)
+//                                .environmentObject(medicalProfileVM)
+                               ,isActive: $dontHaveAccount) {
+                }
                 // go to verify account to resset
                 NavigationLink(destination: ResetPasswordView(),isActive: $resetPassword) {
                 }
-                // go to complete profile after login
-                NavigationLink(destination: LoginVM.destination.navigationBarHidden(true) ,isActive: $LoginVM.isLogedin, label: {
-                })
-
 
                 // Alert with no internet connection
                     .alert(isPresented: $LoginVM.isAlert, content: {
@@ -226,7 +165,7 @@ struct SupportCall: View {
             Spacer()
             HStack(spacing:20){
                 Text("For_Support_call".localized(language))
-                    .foregroundColor(Color("blueColor"))
+                    .foregroundColor(.salamtackBlue)
                 
                 HStack{
                     Image("new-callIcon")
@@ -242,7 +181,7 @@ struct SupportCall: View {
             .frame(width: UIScreen.main.bounds.width, height: 50, alignment: .center)
             .background(
                 RoundedCornersShape(radius: 20, corners: [.topLeft,.topRight])
-                    .fill(Color("newWelcome"))
+                    .fill(Color.salamtackWelcome)
                 //                        .padding(.top, -5)
             )
         }

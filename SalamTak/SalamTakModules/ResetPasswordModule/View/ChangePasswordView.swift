@@ -19,8 +19,7 @@ struct ChangePasswordView: View {
         ZStack {
             VStack{
                 AppBarView(Title: "ChangePass_Screen_title".localized(language),withbackButton: !isChangingInside)
-                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
+                    .frame(height:55)
                 ScrollView(showsIndicators: false) {
                 VStack {
                   
@@ -92,14 +91,20 @@ struct ChangePasswordView: View {
                         Helper.userLogedIn(value: false)
                     }
                 })
+            
+            if !isChangingInside{
+            SupportCall()
+                    .edgesIgnoringSafeArea(.bottom)
+//                    .frame(height:55)
+            }
         }
         .navigationBarHidden(true)
-        .padding(.top,hasNotch ? -20:-40)
-        .keyboardSpace()
+//        .padding(.top,hasNotch ? -20:-40)
+//        .keyboardSpace()
         .background(
             newBackImage(backgroundcolor: .white, imageName: .image2)
         )
-        .ignoresSafeArea(.keyboard)
+//        .ignoresSafeArea(.keyboard)
             .onTapGesture(perform: {
                 hideKeyboard()
             })
@@ -111,11 +116,6 @@ struct ChangePasswordView: View {
                     }
                 }
             }
-            .overlay(content: {
-                if !isChangingInside{
-                SupportCall()
-                }
-            })
 //                .sheet(isPresented: $haveAccount ,onDismiss: {
 //                    print("dismiss")
 //                }, content: {ViewLogin(ispresented: $haveAccount)})

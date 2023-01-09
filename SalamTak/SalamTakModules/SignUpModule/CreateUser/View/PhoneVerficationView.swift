@@ -10,6 +10,10 @@ import Combine
 
 struct PhoneVerificationView: View {
     var language = LocalizationService.shared.language
+//    @EnvironmentObject  var infoProfileVM : PatientInfoViewModel
+//    @EnvironmentObject  var medicalProfileVM : PatientMedicalInfoViewModel
+    @EnvironmentObject var environments:EnvironmentsVM
+
     @EnvironmentObject var RegisterUserVM : ViewModelRegister
     // for creating user after confirming OTP
     @StateObject  var CreateUserVM = ViewModelCreateUser()
@@ -39,7 +43,6 @@ struct PhoneVerificationView: View {
         
         ZStack {
             newBackImage(backgroundcolor: .white,imageName: .image2)
-            
             
             VStack (spacing:0){
                 AppBarView(Title: "PhoneVerfication_Screen_title".localized(language))
@@ -164,7 +167,9 @@ struct PhoneVerificationView: View {
 //                        .disabled(viewModel.otp4 == "" || (minutes == 00 && seconds == 00))
                     
                     
-                    NavigationLink(destination: PatientInfoView(taskOP: .create).navigationBarHidden(true),isActive: $matchedOTP, label: {
+                    NavigationLink(destination: PatientInfoView(taskOP: .create,index: .constant(0))
+                                    .environmentObject(environments)
+                                    .navigationBarHidden(true),isActive: $matchedOTP, label: {
                     })
                     
                     // Alert with no internet connection

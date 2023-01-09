@@ -19,6 +19,7 @@ struct ShowCityList: View {
             // needs to handle get country by id
             ChooseCity(IsPresented: $ShowCity , SelectedCityName: $SelectedCityName , SelectedCityId: $SelectedCityId ,SelectedCountryId: $SelectedCountryId )
         }
+        .transition(.move(edge: .bottom))
         .background(
             Color.black
                 .ignoresSafeArea()
@@ -26,7 +27,9 @@ struct ShowCityList: View {
                 .blur(radius: 0.5)
                 .disabled(ShowCity)
         )
-        .transition(.move(edge: .bottom))
+        .onTapGesture(perform: {
+            ShowCity = false
+        })
     }
 }
 

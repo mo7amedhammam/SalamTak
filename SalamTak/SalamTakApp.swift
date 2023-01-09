@@ -8,11 +8,12 @@
 import SwiftUI
 import GoogleMaps
 let APIKey = "AIzaSyAy8wLUdHfHVmzlWLNPVF96SO0GY1gP4Po"
+var language = LocalizationService.shared.language
 
 @main
 struct SalamTakApp: App {
+    @StateObject var environments = EnvironmentsVM()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
     @AppStorage("languageKey") // the key you stored language in
     var language = LocalizationService.shared.language
 
@@ -20,13 +21,12 @@ struct SalamTakApp: App {
         WindowGroup {
             NavigationView {
                 ContentView()
+                    .environmentObject(environments)
             }
             .navigationViewStyle(.stack)
         }
     }
 }
-
-
 
 class AppDelegate: NSObject, UIApplicationDelegate    {
     

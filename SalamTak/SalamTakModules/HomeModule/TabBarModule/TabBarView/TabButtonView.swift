@@ -9,19 +9,33 @@ import Foundation
 import SwiftUI
 struct TabButton: View{
     @AppStorage("language")
-
     var language = LocalizationService.shared.language
-     var title: String
+    var title: String
+    
     @Binding var selectedTab: String
+    @Binding var AppointmentsTabIndex:Int
+    @Binding var promotionIndex: Int
+    @Binding var MoreIndex: Int
+
     var body: some View {
         Button(action: {
             selectedTab = title
+            
+            if selectedTab == "TabBar_appointments" {
+                AppointmentsTabIndex = 0
+            }
+            else if selectedTab == "TabBar_promotions"{
+                promotionIndex = 0
+            }
+            else if selectedTab == "TabBar_more"{
+                MoreIndex = 0
+            }
         }, label: {
             VStack(spacing: 6){
                 Image(title)
                     .renderingMode(.template)
                     .resizable()
-                    .foregroundColor(selectedTab == title ? Color("blueColor") : Color.black.opacity(0.2))
+                    .foregroundColor(selectedTab == title ? .salamtackBlue : Color.black.opacity(0.2))
                     .frame(width: 24, height: 24)
                 
                 Text(title.localized(language))
@@ -36,6 +50,6 @@ struct TabButton: View{
 
 struct TabButton_Previews: PreviewProvider {
     static var previews: some View {
-        TabButton(title: "Home", selectedTab: .constant("Button"))        
+        TabButton(title: "Home", selectedTab: .constant("Button"),AppointmentsTabIndex: .constant(0),promotionIndex: .constant(0), MoreIndex: .constant(0))
     }
 }

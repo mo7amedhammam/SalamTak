@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
+import SwiftUI
 
 enum PatientInfoMedicalOp{
     case GetPatientMedicalInfo, CreatePatientMedicalInfo, UpdatePatientMedicalInfo
@@ -21,12 +22,17 @@ class PatientMedicalInfoViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
   
     @Published var PatientMedicalOP : PatientInfoMedicalOp = .GetPatientMedicalInfo
-
+    
     @Published  var PatientId: Int = 0
-    @Published  var Height: Int = 0
-    @Published  var Weight: Int = 0
+    @Published  var Height: String = ""
+    @Published  var Weight: String = ""
     @Published  var Pressure: String = ""              // 1 for male  2 for female
     @Published  var SugarLevel: String = ""              //  date format "yyyy/mm/dd"
+    @Published  var isnormalPressure = false
+    @Published  var normalPressure = "120"
+    @Published  var isnormalSugar = false
+    @Published  var normalSugar = "96"
+    
     @Published  var OtherAllergies : String = ""
     @Published  var BloodTypeId: Int = 0
     @Published  var BloodTypeName: String = ""
@@ -68,6 +74,7 @@ class PatientMedicalInfoViewModel: ObservableObject {
     @Published var inlineErrorPassword = ""
     @Published var publishedDoctorCreatedModel: PatientMedicalInfoModel? 
     @Published var UserCreated = false
+    @Published var UserUpdated = false
     @Published var formIsValid:Bool = false
 
     @Published var isLoading:Bool? = false
@@ -77,26 +84,33 @@ class PatientMedicalInfoViewModel: ObservableObject {
     
     init() {
         checkvalidations()
-        execute(Operation: .GetPatientMedicalInfo)
+//        execute(Operation: .GetPatientMedicalInfo)
         
         passthroughModelSubject.sink { (completion) in
             //            print(completion)
         } receiveValue: {[weak self] (modeldata) in
 //            self.publishedDoctorCreatedModel = modeldata.data
-//            if publishedDoctorCreatedModel != nil{
-//                UserCreated = true
-//            }
+            if self?.PatientMedicalOP == .CreatePatientMedicalInfo && modeldata.success ?? false{
+                self?.UserCreated = true
+                Helper.userLogedIn(value: true)
+            }
             self?.PatientId = modeldata.data?.id ?? 0
-            self?.Height = modeldata.data?.height ?? 0
-            self?.Weight = modeldata.data?.weight ?? 0
+            self?.Height =  (modeldata.data?.height ?? 0) > 0 ? String(modeldata.data?.height ?? 0):""
+            self?.Weight = (modeldata.data?.weight ?? 0) > 0 ? String(modeldata.data?.weight ?? 0):""
             self?.Pressure = modeldata.data?.pressure ?? ""
+            if modeldata.data?.pressure ?? "" == self?.normalPressure {
+                self?.isnormalPressure = true
+            }
+            if modeldata.data?.sugarLevel ?? "" == self?.normalSugar {
+                self?.isnormalSugar = true
+            }
             self?.SugarLevel = modeldata.data?.sugarLevel ?? ""
             self?.BloodTypeId = modeldata.data?.bloodTypeID ?? 0
             self?.BloodTypeName = modeldata.data?.bloodName ?? ""
-            self?.PatientMedicineAllergiesDto = modeldata.data?.patientMedicineAllergiesDto ?? [0]
-            self?.PatientMedicineAllergiesName = modeldata.data?.patientMedicineAllergiesName ?? [""]
-            self?.PatientFoodAllergiesDto = modeldata.data?.patientFoodAllergiesDto ?? [0]
-            self?.PatientFoodAllergiesName = modeldata.data?.patientFoodAllergiesName ?? [""]
+            self?.PatientMedicineAllergiesDto = modeldata.data?.patientMedicineAllergiesDto ?? []
+            self?.PatientMedicineAllergiesName = modeldata.data?.patientMedicineAllergiesName ?? []
+            self?.PatientFoodAllergiesDto = modeldata.data?.patientFoodAllergiesDto ?? []
+            self?.PatientFoodAllergiesName = modeldata.data?.patientFoodAllergiesName ?? []
             self?.OtherAllergies = modeldata.data?.otherAllergies ?? ""
             self?.Iinjuries = modeldata.data?.iinjuries ?? ""
             self?.Prescriptions = modeldata.data?.prescriptions ?? ""
@@ -137,7 +151,8 @@ extension PatientMedicalInfoViewModel:TargetType{
         case .GetPatientMedicalInfo:
             return .plainRequest
         case .CreatePatientMedicalInfo, .UpdatePatientMedicalInfo:
-        var parametersarr : [String : Any]  = ["Height" : Height, "Weight" : Weight,
+            var parametersarr : [String : Any]  = ["Height" : Int(Height ) ?? 0, "Weight" : Int(Weight ) ?? 0
+                                               ,
                           "Pressure" : Pressure, "SugarLevel" : SugarLevel,
                           "BloodTypeId" : BloodTypeId, "OtherAllergies" : OtherAllergies,
                           "Prescriptions" : Prescriptions, "CurrentMedication" : CurrentMedication,
@@ -160,6 +175,9 @@ extension PatientMedicalInfoViewModel:TargetType{
     }
     
     func execute(Operation:PatientInfoMedicalOp){
+        UserCreated = false
+        UserUpdated = false
+        
         self.PatientMedicalOP = Operation
         switch Operation{
     case .GetPatientMedicalInfo:
@@ -172,18 +190,16 @@ extension PatientMedicalInfoViewModel:TargetType{
     }
 
     func GetMedicalProfile(){
-//        if PatientId != 0{
-//            PatientMedicalOP = .UpdatePatientMedicalInfo
-//        }
-        print(parameter)
         if Helper.isConnectedToNetwork(){
+            print(url)
             self.isLoading = true
             BaseNetwork.request(Target: self, responseModel: BaseResponse<PatientMedicalInfoModel>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
-                    DispatchQueue.main.async {
+//                    DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
-                    }
+                    print(model!)
+//                    }
                 }else{
                     if model != nil{
                         //case of model with error
@@ -217,9 +233,13 @@ extension PatientMedicalInfoViewModel:TargetType{
             BaseNetwork.request(Target: self, responseModel: BaseResponse<PatientMedicalInfoModel>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
-                    DispatchQueue.main.async {
+//                    DispatchQueue.main.async {
                         self.passthroughModelSubject.send( model!  )
+                  if PatientMedicalOP == .UpdatePatientMedicalInfo {
+                    message = model?.message ?? "success"
+                    isAlert = true
                     }
+//                    }
                 }else{
                     if model != nil{
                         //case of model with error
@@ -255,7 +275,7 @@ extension PatientMedicalInfoViewModel{
     var validweight: AnyPublisher<Bool, Never> {
        $Weight
          .map { weight in
-             guard "\(weight)".count > 0 else {
+             guard String(weight ).count > 0 else {
                  return false
              }
                  return true
@@ -266,7 +286,7 @@ extension PatientMedicalInfoViewModel{
     var validheight: AnyPublisher<Bool, Never> {
        $Height
          .map { Height in
-             guard "\(Height)".count > 0 else {
+             guard String(Height ).count > 0 else {
                  return false
              }
              return true

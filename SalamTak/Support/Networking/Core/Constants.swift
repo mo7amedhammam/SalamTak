@@ -63,5 +63,8 @@ class URLs {
     var TermsAndConditionsURL =  "https://salamtakdoctor.azurewebsites.net/terms"
 
     
+    var GetNotificationsCount = BaseUrl + "/api/\(Helper.getLanguage())/PatientAppointment/GetNewNotificationCount" // get Notifications count
+    var GetNotifications = BaseUrl + "/api/\(Helper.getLanguage())/PatientAppointment/GetNotifications" // get Notifications List
+
 }
 

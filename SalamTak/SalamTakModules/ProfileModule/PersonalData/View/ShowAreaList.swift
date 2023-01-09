@@ -19,6 +19,7 @@ struct ShowAreaList: View {
             // needs to handle get country by id
             ChooseArea(IsPresented:$ShowArea,SelectedAreaName:$SelectedAreaName, SelectedAreaId: $SelectedAreaId,SelectedCityId: $SelectedCityId  )
         }
+        .transition(.move(edge: .bottom))
         .background(
             Color.black
                 .ignoresSafeArea()
@@ -26,27 +27,9 @@ struct ShowAreaList: View {
                 .blur(radius: 0.5)
                 .disabled(ShowArea)
         )
-        .transition(.move(edge: .bottom))
-//        .offset(x: 0, y: offset.height > 0 ? offset.height : 0)
-//        .gesture(
-//            DragGesture()
-//                .onChanged { gesture in
-//                    self.offset.height = gesture.translation.height
-//                    
-//                }
-//                .onEnded { _ in
-//                    if self.offset.height > bounds.size.height / 8 {
-//                        withAnimation {
-//                            ShowArea = false
-//                        }
-//                        self.offset = .zero
-//                    } else {
-//                        self.offset = .zero
-//                    }
-//                }
-//            
-//        )
-        
+        .onTapGesture(perform: {
+            ShowArea = false
+        })
         
     }
 }

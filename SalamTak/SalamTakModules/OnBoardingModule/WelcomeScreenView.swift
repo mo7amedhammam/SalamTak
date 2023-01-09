@@ -15,53 +15,16 @@ struct WelcomeScreenView: View {
     @State var isLogin  : Bool = false
     @State var isSignup : Bool = false
     
+//    @StateObject var infoProfileVM : PatientInfoViewModel
+//    @StateObject var medicalProfileVM : PatientMedicalInfoViewModel
+    @StateObject var environments = EnvironmentsVM()
+
     var body: some View {
 //        NavigationView{
         ZStack {
             newBackImage(backgroundcolor: .white)
             VStack {
-//                    VStack (alignment:.leading){
-//                        HStack {
-//
-//                            Menu {
-//                                Button {
-//
-//                                    LocalizationService.shared.language = .arabic
-//                                    Helper.setLanguage(currentLanguage: "ar")
-//                                    print(Helper.getLanguage())
-//                                    print(LocalizationService.shared.language)
-//                                    print(language)
-//                                } label: {
-//                                    Text("العربية")
-//                                    flagBy(countryCode: "EG")
-//                                }
-//
-//                                Button {
-//
-//                                    LocalizationService.shared.language = .english_us
-//                                    Helper.setLanguage(currentLanguage: "en")
-//                                    print(Helper.getLanguage())
-//                                    print(LocalizationService.shared.language)
-//                                    print(language)
-//                                } label: {
-//                                    Text("English (US)")
-//                                    flagBy(countryCode: "US")
-//                                }
-//
-//                            } label: {
-//                                Spacer()
-//                                flagBy(countryCode: language.userSymbol.uppercased())
-//                                    .resizable()
-//                                    .frame(width: 40, height: 40)
-//                            }
-//                            .padding()
-//
-//                        }
-//
-//                        //Spacer()
-//                    }
 
-//                Spacer()
                 VStack(spacing:30){
                     Image("newlogo")
                         .resizable()
@@ -69,23 +32,18 @@ struct WelcomeScreenView: View {
                         .padding(.horizontal,100)
                         .padding(.top,80)
                     
-//                    Spacer().frame(maxHeight:50)
                     Text("welcome_screen_title".localized(language))
-                        .font(.system(size: 50, weight: .bold))
-                        .foregroundColor(Color("newWelcome"))
+                        .font(.salamtakBold(of: 50))
+                        .foregroundColor(.salamtackWelcome)
                         .bold()
                         .padding(.top,30)
 
-                        
-//                    Spacer().frame(maxHeight:50)
                     Text("Welcome_Screen_subtitle".localized(language))
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(Color("blueColor"))
+                        .font(.salamtakBold(of: 18))
+                        .foregroundColor(.salamtackBlue)
                         .multilineTextAlignment(.center)
                         .padding()
-//                    Spacer()
                 }
-//                .offset( y: -80)
                 Spacer()
                 ButtonView(text: "SignIn_Button".localized(language),backgroundColor: .clear, forgroundColor:Color("blueColor"),fontSize: Font.salamtakBold(of: 22)){
                                    self.isLogin = true
@@ -116,11 +74,19 @@ struct WelcomeScreenView: View {
         }
         
             // go to complete Certs after completing first view
-        NavigationLink(destination: ViewLogin(ispresented: .constant(false)),isActive: $isLogin , label: {
+        NavigationLink(destination: ViewLogin(ispresented: .constant(false))
+//                        .environmentObject(infoProfileVM)
+//                        .environmentObject(medicalProfileVM)
+                        .environmentObject(environments)
+                       ,isActive: $isLogin , label: {
             })
 
             // go to complete Certs after completing first view
-        NavigationLink(destination: ViewSignUp(ispresented: .constant(false)),isActive: $isSignup , label: {
+        NavigationLink(destination: ViewSignUp(ispresented: .constant(false))
+//                        .environmentObject(infoProfileVM)
+//                        .environmentObject(medicalProfileVM)
+                        .environmentObject(environments)
+                       ,isActive: $isSignup , label: {
             })
     }
     

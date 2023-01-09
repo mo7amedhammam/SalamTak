@@ -18,6 +18,7 @@ struct ShowOccupationList: View {
             ChooseOccupation(IsPresented: $ShowOccupation, SelectedOccupationName: $SelectedOccupationName, SelectedOccupationId: $SelectedOccupationId)
             
         }
+        .transition(.move(edge: .bottom))
         .background(
             Color.black
                 .ignoresSafeArea()
@@ -25,7 +26,9 @@ struct ShowOccupationList: View {
                 .blur(radius: 0.5)
                 .disabled(ShowOccupation)
         )
-        .transition(.move(edge: .bottom))
+        .onTapGesture(perform: {
+            ShowOccupation = false
+        })
     }
 }
 

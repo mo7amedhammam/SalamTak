@@ -18,6 +18,7 @@ struct ShowNationalityList: View {
             ZStack {
                 ChooseNationality( IsPresented: $ShowNationality, SelectedNationalityName: $SelectedNationalityName, SelectedNationalityId: $SelectedNationalityId)
             }
+            .transition(.move(edge: .bottom))
             .background(
                 Color.black
                     .ignoresSafeArea()
@@ -25,7 +26,6 @@ struct ShowNationalityList: View {
                     .blur(radius: 0.5)
                     .disabled(ShowNationality)
             )
-            .transition(.move(edge: .bottom))
 
             .onTapGesture {
                 ShowNationality = false

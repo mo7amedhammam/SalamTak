@@ -9,16 +9,16 @@ import SwiftUI
 
 struct PatientProfile: View {
     var language = LocalizationService.shared.language
-    @State var index = 0
+    @State var index = 0 // 0:profile 1:medical
+//    @EnvironmentObject  var infoProfileVM : PatientInfoViewModel
+//    @EnvironmentObject  var medicalProfileVM : PatientMedicalInfoViewModel
+    @EnvironmentObject  var environments : EnvironmentsVM
+
     var body: some View {
         ZStack{
-            VStack{
-                    ZStack {
-                        Image("underappbar")
-                            .resizable()
-                            .frame(height: 150)
-                            .padding(.bottom, -40)
-                        
+            VStack(spacing:0){
+                AppBarView(Title:"Doctor_Profile".localized(language))
+                    .frame(height:55)
                         HStack( spacing: 20){
                             Button(action: {
                                 withAnimation{
@@ -54,46 +54,35 @@ struct PatientProfile: View {
                                                 .cornerRadius(8))
                                 .clipShape(Rectangle())
                             })
-                        }.frame( height: 80, alignment: .center)
-                            .padding()
-                            .offset(y: 25)
-                        
-                    }.offset(y: 80)
-                
-                Spacer().frame(height: 90)
+                        }
                 TabView (selection: self.$index){
                     ZStack{
-//                        UpdatePersonalDataView()
-                        PatientInfoView(taskOP: .update)
+                        PatientInfoView(taskOP: .update,index: $index)
+//                            .environmentObject(infoProfileVM)
+                            .environmentObject(environments)
                     }
-                    .padding(15)
                     .tag(0)
                     ZStack{
-                        PatientMedicalInfoView(taskOP: .update)
-//                        UpdateMedicalStateView()
+                        PatientMedicalInfoView(taskOP: .update, index: $index)
+//                        .environmentObject(medicalProfileVM)
+                        .environmentObject(environments)
+
                     }
-                    .padding(15)
                     .tag(1)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
             }
-            .edgesIgnoringSafeArea(.bottom)
-            .ignoresSafeArea()
-            .background(Color("CLVBG"))
-            
-            AppBarView(Title:"Doctor_Profile".localized(language)).ignoresSafeArea()
-
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading:  BackButtonView())
-        
+
     }
 }
 
 struct PatientProfile_Previews: PreviewProvider {
     static var previews: some View {
         PatientProfile()
+            .environmentObject(PatientInfoViewModel())
+            .environmentObject(PatientMedicalInfoViewModel())
     }
 }

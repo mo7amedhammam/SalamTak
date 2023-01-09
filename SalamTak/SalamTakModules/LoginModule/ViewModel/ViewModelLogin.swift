@@ -45,14 +45,18 @@ class ViewModelLogin: ObservableObject {
         } receiveValue: { [weak self](modeldata) in
             self?.publishedUserLogedInModel = modeldata.data
             if self?.publishedUserLogedInModel?.ProfileStatus == 0 {
-                self?.destination = AnyView(PatientInfoView(taskOP: .create).navigationBarHidden(true))
+                self?.destination = AnyView(PatientInfoView(taskOP: .create,index:.constant(0))
+                                                .navigationBarHidden(true))
             }else if self?.publishedUserLogedInModel?.ProfileStatus == 1{
-                self?.destination = AnyView(PatientMedicalInfoView(taskOP:.complete).navigationBarHidden(true))
+                self?.destination = AnyView(PatientMedicalInfoView(taskOP:.create, index: .constant(1))
+                                                .navigationBarHidden(true))
             
             }else if self?.publishedUserLogedInModel?.ProfileStatus == 2{
                 Helper.setUserData(Id: self?.publishedUserLogedInModel?.Id ?? 0, PhoneNumber: self?.publishedUserLogedInModel?.Phone ?? "", patientName: modeldata.data?.Name ?? "" )
                 Helper.setUserimage(userImage: URLs.BaseUrl+"\(modeldata.data?.Image ?? "")")
-                    self?.destination = AnyView(TabBarView())
+                self?.destination = AnyView(TabBarView()
+                                                .navigationBarHidden(true))
+                Helper.userLogedIn(value: true)
             }
             Helper.setAccessToken(access_token: "Bearer " + "\(modeldata.data?.Token ?? "")" )
             

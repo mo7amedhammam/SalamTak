@@ -166,7 +166,8 @@ while asking for the medical help";
 "Dashboard_Screen_statistics" = "Statistics";
 "Dashboard_Screen_see_all" = "See All";
 "TabBar_home" = "Home";
-"TabBar_schedual" = "Schedual";
+"TabBar_schedual" = "Appointments";
+"TabBar_promotions" = "Promotions";
 "TabBar_clinics" = "Clinics";
 "TabBar_services" = "Services";
 "TabBar_more" = "More";
@@ -410,3 +411,5 @@ Organized appointment and better time management.";
 "New_Forget_Screen_title" = "Forget Password";
 "By_E-mail" = "By E-mail";
 "By_Phone" = "By Phone";
+
+"More_Screen_Notifications" = "Notifications";
