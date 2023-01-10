@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SpecialityView: View {
     @StateObject var specialityvm = ViewModelSpecialist()
+    @EnvironmentObject var environments : EnvironmentsVM
     var language = LocalizationService.shared.language
     @State var gotocity = false
     
@@ -18,19 +19,24 @@ struct SpecialityView: View {
     @State var selectedSpecialityName  = ""
 
     var body: some View {
+//        NavigationView{
             ZStack{
+                VStack{
+                    AppBarView(Title: "Choose_Speciality".localized(language),withbackButton: true)
+                        .frame(height:70)
+                        .padding(.top,-20)
                 ScrollView( showsIndicators: false){
-                    Spacer().frame(height:120)
+//                    Spacer().frame(height:120)
                     HStack {
                         Text("SpecialitiesـSubTitle".localized(language))
-                            .font(Font.SalamtechFonts.Bold18)
+                            .foregroundColor(.salamtackBlue)
+                            .font(.salamtakBold(of: 18))
                         Spacer()
                     }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     ForEach(0..<(specialityvm.publishedSpecialistModel?.count ?? 0)  , id:\.self){ speciality in
                         Button(action: {
                             selectedSpecialityId = specialityvm.publishedSpecialistModel?[speciality].id ?? 1212113115
                             selectedSpecialityName = specialityvm.publishedSpecialistModel?[speciality].Name ?? ""
-
                             gotocity=true
                         }, label: {
                             SpecialityBuBody(speciality:specialityvm.publishedSpecialistModel?[speciality] ?? Speciality.init())
@@ -38,38 +44,46 @@ struct SpecialityView: View {
                             .background(Color.clear)
                             .cornerRadius(8)
                             .shadow(color: .black.opacity(0.099), radius: 5)
+                        
                     }
                 }.background(Color.clear)
                     .padding([.horizontal])
                     .frame(width: UIScreen.main.bounds.width)
-                    .edgesIgnoringSafeArea(.vertical)
-                    .background(Color("CLVBG"))
+//                    .edgesIgnoringSafeArea(.vertical)
+//                    .background(Color("CLVBG"))
                 
-                VStack{
-                    AppBarView(Title: "Choose_Speciality".localized(language))
-                    
-                        .navigationBarItems(leading: BackButtonView())
-                        .navigationBarBackButtonHidden(true)
+             
                     Spacer()
                 }
-                .edgesIgnoringSafeArea(.vertical)
+                .frame(width: UIScreen.main.bounds.width)
+    //            .edgesIgnoringSafeArea(.vertical)
+                .background(Color("CLVBG"))
+
+//                .edgesIgnoringSafeArea(.vertical)
                 
                 // showing loading indicator
                 ActivityIndicatorView(isPresented: $specialityvm.isLoading)
+
+
+                //        //  go to clinic info
+                NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, SelectedSpecialityName: $selectedSpecialityName, extypeid: $selectedTypeId)
+                                .environmentObject(environments)
+                                .navigationBarHidden(true),isActive: $gotocity) {
+                        }
             }
+            .navigationBarHidden(true)
             .navigationViewStyle(StackNavigationViewStyle())
             .onAppear(perform: {
                 specialityvm.startFetchSpecialist()
         })
 
-        //  go to clinic info
-        NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, SelectedSpecialityName: $selectedSpecialityName, extypeid: $selectedTypeId),isActive: $gotocity) {
-        }
+
         .alert(isPresented: $specialityvm.isAlert, content: {
             Alert(title: Text(specialityvm.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                 specialityvm.isAlert = false
             }))
         })
+//    }
     }
 }
 

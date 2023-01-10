@@ -8,7 +8,8 @@ import SwiftUI
 
 struct AreaView: View {
     @StateObject var AreasVM = ViewModelGetAreas()
-    
+    @EnvironmentObject var environments : EnvironmentsVM
+
     var language = LocalizationService.shared.language
     @Binding var selectedCityId : Int
     @Binding var selectedCityName : String
@@ -25,8 +26,12 @@ struct AreaView: View {
     var body: some View {
         ZStack{
             VStack{
+                AppBarView(Title: "Choose_Area".localized(language),withbackButton: true)
+                    .frame(height:70)
+                    .padding(.top,-20)
+
                 ScrollView( showsIndicators: false){
-                    Spacer().frame(height:120)
+//                    Spacer().frame(height:120)
                     HStack {
                         Text("Choose_your_Area".localized(language))
                             .font(Font.SalamtechFonts.Bold18)
@@ -90,29 +95,32 @@ struct AreaView: View {
             }
             
             .frame(width: UIScreen.main.bounds.width)
-            .edgesIgnoringSafeArea(.vertical)
+//            .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
             
-            VStack{
-                AppBarView(Title: "Choose_Area".localized(language))
-                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.vertical)
+//            VStack{
+//                    .navigationBarItems(leading: BackButtonView())
+//                    .navigationBarBackButtonHidden(true)
+//                Spacer()
+//            }
+//            .edgesIgnoringSafeArea(.vertical)
             // showing loading indicator
             ActivityIndicatorView(isPresented: $AreasVM.isLoading)
             
+            //  go to clinic info
+            NavigationLink(destination:ViewSearchDoc(ExTpe: $examinationTypeId, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName: $selectedCityName, AreaId: $selectedAreaId,AreaName: $selectedAreaName).environmentObject(environments)
+                            .navigationBarHidden(true),isActive: $gotoSearchdoctor) {
+            }
+            
+
+            
         }
+        .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
             AreasVM.cityId = selectedCityId
             AreasVM.startFetchAreas()
         })
-        
-        //  go to clinic info
-        NavigationLink(destination:ViewSearchDoc(ExTpe: $examinationTypeId, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName: $selectedCityName, AreaId: $selectedAreaId,AreaName: $selectedAreaName),isActive: $gotoSearchdoctor) {
-        }
         
         // Alert with no internet connection
         .alert(isPresented: $AreasVM.isAlert, content: {

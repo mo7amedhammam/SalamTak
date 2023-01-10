@@ -11,6 +11,8 @@ import Combine
 
 struct ConfirmationPopUp: View {
     @EnvironmentObject var CreateAppointment:VMCreateAppointment
+    @EnvironmentObject var environments : EnvironmentsVM
+
     @Binding var BookiDate :Date
     @Binding var BookiTime :String
     @Binding var GotoSchedual :Bool
@@ -35,6 +37,7 @@ struct ConfirmationPopUp: View {
                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 
                 Button(action: {
+                    environments.desiredTab = "TabBar_schedual"
                     CreateAppointment.isDone = false
                     GotoSchedual = true
                 }, label: {
@@ -62,5 +65,6 @@ struct ConfirmationPopUp_Previews: PreviewProvider {
     static var previews: some View {
         ConfirmationPopUp( BookiDate: .constant(Date()), BookiTime: .constant(""), GotoSchedual: .constant(false))
             .environmentObject(VMCreateAppointment())
+            .environmentObject(EnvironmentsVM())
     }
 }

@@ -16,11 +16,14 @@ struct ScheduleView: View {
     var body: some View {
         ZStack{
             VStack{
-                    ZStack {
-                        Image("underappbar")
-                            .resizable()
-                            .frame(height: 150)
-                            .padding(.bottom, -40)
+                AppBarView(Title:"Schedule".localized(language))
+                    .frame(height:50)
+
+//                    ZStack {
+//                        Image("underappbar")
+//                            .resizable()
+//                            .frame(height: 150)
+//                            .padding(.bottom, -40)
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack( spacing: 20){
                                 ForEach(medicalType.publishedModelExaminationTypeId){ type in
@@ -41,28 +44,28 @@ struct ScheduleView: View {
                                     .clipShape(Rectangle())
                                     })
                                 }
-                            }.frame( height: 80, alignment: .center)
-                                .padding()
-                                .offset(y: 25)
+                            }
+//                            .frame( height: 80, alignment: .center)
+                            .padding(.horizontal)
+//                                .offset(y: 25)
                         }
-                    }.offset(y: 80)
+//                    }
+//                    .offset(y: 80)
                 
-                Spacer().frame(height: 90)
+//                Spacer().frame(height: 90)
                     ZStack{
                         Spacer().frame(height: 40)
-
                         ScheduleCellView().environmentObject(scheduleVM)
                     }
                 }
-            .edgesIgnoringSafeArea(.bottom)
-            .ignoresSafeArea()
+//            .edgesIgnoringSafeArea(.bottom)
+//            .ignoresSafeArea()
             .background(Color("CLVBG"))
-            AppBarView(Title:"Schedule".localized(language))
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
         }
             .navigationViewStyle(StackNavigationViewStyle())
-            .ignoresSafeArea()
+//            .ignoresSafeArea()
             .disabled(scheduleVM.showcncel)
 
         .onAppear(perform: {
@@ -87,7 +90,6 @@ struct ScheduleView: View {
                     if scheduleVM.activeAlert == .success{
                         scheduleVM.showcncel = false
                     }
-
                     }))
             })
     }
@@ -96,6 +98,7 @@ struct ScheduleView: View {
 struct ScheduleView_Previews: PreviewProvider {
     static var previews: some View {
         ScheduleView()
+            .environmentObject(ViewModelGetAppointmentInfo())
     }
 }
 

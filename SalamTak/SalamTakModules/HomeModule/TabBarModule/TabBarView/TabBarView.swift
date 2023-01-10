@@ -33,9 +33,10 @@ struct TabBarView: View {
 //                ZStack{
 //
                     VStack(spacing: 0){
+                        NavigationView{
                         if selectedTab == TabBarVM.tabs[0] {
-                            ServicesView().navigationBarHidden(true)
-
+                                ServicesView()
+                                .environmentObject(environments)
                         } else if selectedTab == TabBarVM.tabs[1] {
                             ScheduleView()
                                 .environmentObject(scheduleVM)
@@ -51,6 +52,7 @@ struct TabBarView: View {
 //                                .environmentObject(infoProfileVM)
 //                                .environmentObject(medicalProfileVM)
                         }
+                        }.navigationBarHidden(true)
                         Spacer()
 //                        ZStack{
 //                        if !(environments.ShowBloodType){
@@ -106,7 +108,9 @@ struct TabBarView: View {
             }
         )
         
-        
+        .onChange(of: environments.desiredTab, perform: {newval in
+            selectedTab = newval
+        })
     }
 }
 

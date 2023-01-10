@@ -12,7 +12,7 @@ var language = LocalizationService.shared.language
 
 @main
 struct SalamTakApp: App {
-    @StateObject var environments = EnvironmentsVM()
+//    @StateObject var environments = EnvironmentsVM()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage("languageKey") // the key you stored language in
     var language = LocalizationService.shared.language
@@ -21,7 +21,7 @@ struct SalamTakApp: App {
         WindowGroup {
             NavigationView {
                 ContentView()
-                    .environmentObject(environments)
+//                    .environmentObject(environments)
             }
             .navigationViewStyle(.stack)
         }

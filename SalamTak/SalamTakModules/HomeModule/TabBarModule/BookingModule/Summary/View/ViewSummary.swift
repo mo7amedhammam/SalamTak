@@ -14,6 +14,7 @@ import ImageViewerRemote
 struct ViewSummary:View{
     var language = LocalizationService.shared.language
     @StateObject var CreateAppointment = VMCreateAppointment()
+    @EnvironmentObject var environments : EnvironmentsVM
 
     var Doctor:Doc
     @Binding var ExType :Int
@@ -30,7 +31,12 @@ struct ViewSummary:View{
     var body: some View{
         ZStack{
             VStack {
+                AppBarView(Title: "Summary".localized(language),backColor: .clear,withbackButton: !ispreviewImage)
+                    .frame(height:50)
+                    .padding(.top,-20)
+
                 ScrollView{
+//                    Spacer().frame(height:20)
                     ZStack {
                         VStack(alignment:.leading){
                             ViewTopSection(Doctor: Doctor, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
@@ -67,27 +73,31 @@ struct ViewSummary:View{
                                 .padding(.horizontal, 20)
                             Spacer()
                         }
-                        
                         .background(Color.white)
                         .cornerRadius(9)
                         .shadow(color: .black.opacity(0.1), radius: 9)
                     }
                     .padding(.horizontal,15)
+                    .padding(.top,10)
                 }
                 .padding(.bottom,130)
                 .background(Color("CLVBG"))
             }.disabled(CreateAppointment.isDone)
             
-            VStack{
-                AppBarView(Title: "Summary".localized(language))
-                    .navigationBarBackButtonHidden(true)
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.top)
+//            VStack{
+//                AppBarView(Title: "Summary".localized(language))
+//                    .frame(height:70)
+//                    .padding(.top,-20)
+//
+//                    .navigationBarBackButtonHidden(true)
+//                Spacer()
+//            }
+//            .edgesIgnoringSafeArea(.top)
 
             PopUpView(IsPresented: .constant(true), content: {
-                ConfirmButton( Doctor: Doctor).environmentObject(CreateAppointment)
-                
+                ConfirmButton( Doctor: Doctor)
+                    .environmentObject(CreateAppointment)
+//                    .environmentObject(environments)
             })
     
             // showing loading indicator
@@ -96,16 +106,18 @@ struct ViewSummary:View{
             ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
             
             //      go to clinic info
-            NavigationLink(destination:TabBarView(selectedTab:"TabBar_schedual"),isActive: $GotoSchedual) {
-            }
+//            NavigationLink(destination:
+//                            ServicesView()
+////                            TabBarView(selectedTab:"TabBar_schedual").navigationBarHidden(true)
+//                           ,isActive: $GotoSchedual) {
+//            }
             
             //      go to clinic info
-            NavigationLink(destination:WelcomeScreenView(),isActive: $goToLogin) {
+            NavigationLink(destination:WelcomeScreenView().navigationBarHidden(true),isActive: $goToLogin) {
             }
-            
         }
+        .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
-        .background(Color.red)
         .onAppear(perform: {
             CreateAppointment.DoctorId = Doctor.id ?? 0
             CreateAppointment.DoctorWorkingDayTimeId = BookingscedualId
@@ -122,13 +134,15 @@ struct ViewSummary:View{
         
         .popup(isPresented: $CreateAppointment.isDone){
             BottomPopupView{
-                ConfirmationPopUp(BookiDate: $BookiDate, BookiTime: $BookiTime, GotoSchedual: $GotoSchedual).environmentObject(CreateAppointment)
+                ConfirmationPopUp(BookiDate: $BookiDate, BookiTime: $BookiTime, GotoSchedual: $GotoSchedual)
+                    .environmentObject(CreateAppointment)
+                    .environmentObject(environments)
                 Spacer()
             }
             .shadow(color: .black.opacity(0.3), radius: 12)
             .padding()
         }
-        .navigationBarHidden(ispreviewImage)
+//        .navigationBarHidden(ispreviewImage)
 
         // Alert with message
         .alert(isPresented: $CreateAppointment.isAlert, content: {
@@ -138,7 +152,6 @@ struct ViewSummary:View{
                 }else{
                     CreateAppointment.isAlert = false
                 }
-                
             }))
         })
     }
@@ -148,6 +161,7 @@ struct ViewSummary_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             ViewSummary(Doctor: Doc.init(), ExType: .constant(5),BookingscedualId :.constant(645454545),BookiDate :.constant(Date()),BookiTime :.constant("18:33"))
+                .environmentObject(EnvironmentsVM())
         }.navigationBarHidden(true)
     }
 }

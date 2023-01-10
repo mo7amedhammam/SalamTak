@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CityView: View {
     @StateObject var CitiesVM = ViewModelGetCities()
+    @EnvironmentObject var environments : EnvironmentsVM
+
     var language = LocalizationService.shared.language
     var CountryId : Int?
     
@@ -25,11 +27,15 @@ struct CityView: View {
     var body: some View {
         ZStack{
             VStack{
+                AppBarView(Title: "Choose_City".localized(language),withbackButton: true)
+                    .frame(height:70)
+                    .padding(.top,-20)
                 ScrollView( showsIndicators: false){
-                    Spacer().frame(height:120)
+//                    Spacer().frame(height:120)
                     HStack {
                         Text("Choose_your_City".localized(language))
-                            .font(Font.SalamtechFonts.Bold18)
+                            .foregroundColor(.salamtackBlue)
+                            .font(.salamtakBold(of: 18))
                         Spacer()
                     }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                     
@@ -87,44 +93,43 @@ struct CityView: View {
                             .shadow(color: .black.opacity(0.099), radius: 5)
                     }
                     
-                }.background(Color.clear)
+                }
+                .background(Color.clear)
                     .padding([.horizontal])
-                
                 Spacer()
             }
-            
             .frame(width: UIScreen.main.bounds.width)
-            .edgesIgnoringSafeArea(.vertical)
+//            .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
-            .onAppear(perform: {
-                
-            })
             
-            VStack{
-                AppBarView(Title: "Choose_City".localized(language))
-                    .navigationBarItems(leading: BackButtonView())
-                    .navigationBarBackButtonHidden(true)
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.vertical)
+//            VStack{
+//                AppBarView(Title: "Choose_City".localized(language))
+//                    .navigationBarItems(leading: BackButtonView())
+//                    .navigationBarBackButtonHidden(true)
+//                Spacer()
+//            }
+//            .edgesIgnoringSafeArea(.vertical)
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $CitiesVM.isLoading)
+            
+            //  go to clinic info
+            NavigationLink(destination:AreaView(selectedCityId: $selectedCityId,selectedCityName: $selectedCityName, SelectedSpeciality: $SelectedSpeciality,SelectedSpecialityName:$SelectedSpecialityName , examinationTypeId: $extypeid)
+                            .environmentObject(environments)
+                            .navigationBarHidden(true)
+                           ,isActive: $gotoArea) {
+            }
+            //  go to clinic info
+            NavigationLink(destination:ViewSearchDoc(ExTpe: $extypeid, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName:$selectedCityName , AreaId: .constant(0),AreaName: .constant("All_Areas".localized(language))).environmentObject(environments)
+                            .navigationBarHidden(true),isActive: $gotoSearchdoctor) {
+            }
         }
+        .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear(perform: {
             CitiesVM.CountryId = CountryId ?? 0
             CitiesVM.startFetchCities()
         })
-        
-        
-        //  go to clinic info
-        NavigationLink(destination:AreaView(selectedCityId: $selectedCityId,selectedCityName: $selectedCityName, SelectedSpeciality: $SelectedSpeciality,SelectedSpecialityName:$SelectedSpecialityName , examinationTypeId: $extypeid)
-                       ,isActive: $gotoArea) {
-        }
-        //  go to clinic info
-        NavigationLink(destination:ViewSearchDoc(ExTpe: $extypeid, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName:$selectedCityName , AreaId: .constant(0),AreaName: .constant("All_Areas".localized(language))),isActive: $gotoSearchdoctor) {
-        }
         
         // Alert with no internet connection
         .alert(isPresented: $CitiesVM.isAlert, content: {

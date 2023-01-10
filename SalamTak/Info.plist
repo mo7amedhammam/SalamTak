@@ -4,7 +4,7 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>comgooglemaps</string>
+        <string>comgooglemaps</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

@@ -12,6 +12,7 @@ import ImageViewerRemote
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
     @StateObject var searchDoc = VMSearchDoc()
+    @EnvironmentObject var environments : EnvironmentsVM
     
     @Binding var ExTpe:Int
     @Binding var SpecialistId:Int
@@ -59,7 +60,9 @@ struct ViewSearchDoc: View {
     var body: some View {
         ZStack{
             VStack{
-                Spacer().frame(height:100)
+                AppBarView(Title: "Search_a_Doctor".localized(language),withbackButton: true)
+                    .frame(height:70)
+                    .padding(.top,-20)
                 ZStack {
                     Image("WhiteCurve")
                         .resizable()
@@ -129,15 +132,16 @@ struct ViewSearchDoc: View {
             .disabled(showFilter)
             .blur(radius: showFilter==true ? 9:0)
             .frame(width: UIScreen.main.bounds.width)
-            .edgesIgnoringSafeArea(.vertical)
+//            .edgesIgnoringSafeArea(.vertical)
             .background(Color("CLVBG"))
 
-            VStack{
-                AppBarView(Title: "Search_a_Doctor".localized(language))
-                    .navigationBarBackButtonHidden(true)
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.vertical)
+//            VStack{
+//                AppBarView(Title: "Search_a_Doctor".localized(language))
+//                    .frame(height:55)
+//                    .navigationBarBackButtonHidden(true)
+//                Spacer()
+//            }
+//            .edgesIgnoringSafeArea(.vertical)
             if showFilter == true {
                 MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, searchTxt:$searchTxt)
                     .environmentObject(searchDoc)
@@ -152,9 +156,13 @@ struct ViewSearchDoc: View {
             // showing loading indicator
             ActivityIndicatorView(isPresented: $searchDoc.isLoading)
             
+            //  go to clinic info
+            NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe).environmentObject(environments)
+                            .navigationBarBackButtonHidden(true),isActive: $gotodoctorDetails) {
+            }
         }
+        .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarHidden(ispreviewImage)
         .onAppear(perform: {
             setFirstselections()
             FeesVM.startFetchFees()
@@ -174,7 +182,6 @@ struct ViewSearchDoc: View {
             searchDoc.MedicalExaminationTypeId = newval
             getAllDoctors()
         }
-
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 if !showFilter && !ispreviewImage{
@@ -194,9 +201,6 @@ struct ViewSearchDoc: View {
         .overlay(content: {
             ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
         })
-        //  go to clinic info
-        NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe),isActive: $gotodoctorDetails) {
-        }
         // Alert with no internet connection
             .alert(isPresented: $searchDoc.isAlert, content: {
                 Alert(title: Text(searchDoc.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

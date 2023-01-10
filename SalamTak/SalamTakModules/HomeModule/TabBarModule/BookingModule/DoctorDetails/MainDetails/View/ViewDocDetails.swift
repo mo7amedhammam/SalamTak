@@ -14,6 +14,7 @@ var totalSquares = [Date]()
 
 struct ViewDocDetails:View{
     @StateObject var DocDetails = ViewModelDocDetails()
+    @EnvironmentObject var environments : EnvironmentsVM
 
     var Doctor:Doc
     @State var showQuickLogin = false
@@ -21,18 +22,13 @@ struct ViewDocDetails:View{
     @State var GotoReviews = false
     @State var GotoAddReview = false
     var language = LocalizationService.shared.language
-    
     @Binding var ExType :Int
-    
     //Calendar
     @State var ShowCalendar = false
-    
     @State var selectedSchedualId = 0
     @State var selectedTime = ""
-    
     @State var presentLogin = false
     @State var presentReservation = false
-    
     @State var ispreviewImage=false
     @State var previewImageurl=""
     
@@ -90,7 +86,21 @@ struct ViewDocDetails:View{
                     calendarPopUp(selectedDate: $DocDetails.SchedualDate, isPresented: $ShowCalendar)
                 }
             }
+        
             
+            // go to summary
+            NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $DocDetails.SchedualDate, BookiTime: $selectedTime).environmentObject(environments)
+                            .navigationBarHidden(true),isActive: $GotoSummary) {
+            }
+            
+            // go to Reviews
+            NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
+            }
+            
+            // go to addReview
+            NavigationLink(destination:ViewAddReview( Doctor: Doctor, schedule: AppointmentInfo.init()),isActive: $GotoAddReview) {
+            }
+
         }
         .edgesIgnoringSafeArea(.top)
         .toolbar {
@@ -101,7 +111,7 @@ struct ViewDocDetails:View{
             }
         }
         .navigationBarHidden(showQuickLogin||ShowCalendar||ispreviewImage)
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
         .onAppear(perform: {
             setWeekView()
         })
@@ -111,17 +121,6 @@ struct ViewDocDetails:View{
         
         .navigationViewStyle(StackNavigationViewStyle())
         
-        // go to summary
-        NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $DocDetails.SchedualDate, BookiTime: $selectedTime),isActive: $GotoSummary) {
-        }
-        
-        // go to Reviews
-        NavigationLink(destination:ReviewsView( DoctorId: Doctor.id ?? 0),isActive: $GotoReviews) {
-        }
-        
-        // go to addReview
-        NavigationLink(destination:ViewAddReview( Doctor: Doctor, schedule: AppointmentInfo.init()),isActive: $GotoAddReview) {
-        }
         
         .sheet(isPresented: $presentLogin,
                onDismiss:{

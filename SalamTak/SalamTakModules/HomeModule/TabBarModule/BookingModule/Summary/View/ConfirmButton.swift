@@ -11,6 +11,8 @@ import Combine
 
 struct ConfirmButton: View {
     @EnvironmentObject var CreateAppointment:VMCreateAppointment
+//    @EnvironmentObject var environments : EnvironmentsVM
+
     var Doctor:Doc
     var body: some View {
         HStack{
