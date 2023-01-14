@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct ShowMedicineAllergyList: View {
-
     @Binding var ShowMedicineAllergy:Bool
     @Binding var selectedMedicalAlgName : [String]
     @Binding var selectedMedicalAlgId : [Int]

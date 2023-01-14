@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
-import SwiftUI
+//import SwiftUI
 
 class VMSearchDoc: ObservableObject {
     
@@ -50,7 +50,9 @@ class VMSearchDoc: ObservableObject {
     @Published var FilterAreaName                               :String? = ""
 
     @Published var FilterGenderId                             :Int? = 0
-    @Published var FilterFees                                  :Float = 0
+    @Published var FilterMinFees                                  :String = ""
+    @Published var FilterMaxFees                                  :String = ""
+
     @Published var FilterSeniortyLevelId                     :Int? = 0
     @Published var FilterSeniortyLevelName                    :String? = ""
 
@@ -68,11 +70,9 @@ class VMSearchDoc: ObservableObject {
     
     init() {
         ModelFetchDoctors.sink { (completion) in
-            //            print(completion)
         } receiveValue: { [weak self]  (modeldata) in
             self?.noDoctors = false
             switch self?.searchDocOperation {
-                
             case .fetchDoctors:
                 self?.publishedModelSearchDoc = modeldata.data?.Items ?? []
                 if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc?.isEmpty == true {
@@ -80,7 +80,6 @@ class VMSearchDoc: ObservableObject {
                 }
 
             case .fetchMoreDoctors:
-               
                 if modeldata.data?.Items?.count ?? 0 > 3{
                     self?.publishedModelSearchDoc?.append( contentsOf: modeldata.data?.Items ?? [])
                 }
@@ -148,8 +147,11 @@ extension VMSearchDoc:TargetType{
 //            Parameters["AreaId"] = AreaId
 //        }
         
-        if FilterFees != 0{
-            Parameters["Fees"] = Int(FilterFees)
+        if FilterMinFees != ""{
+            Parameters["FeesFrom"] = Int(FilterMinFees)
+        }
+        if FilterMaxFees != ""{
+            Parameters["FeesTo"] = Int(FilterMaxFees)
         }
 //        else if Fees != 0{
 //            Parameters["Fees"] = Fees

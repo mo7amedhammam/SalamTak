@@ -11,18 +11,18 @@ import ImageViewerRemote
 
 struct ViewSearchDoc: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
-    @StateObject var searchDoc = VMSearchDoc()
+    @EnvironmentObject var searchDoc : VMSearchDoc
     @EnvironmentObject var environments : EnvironmentsVM
     
-    @Binding var ExTpe:Int
-    @Binding var SpecialistId:Int
-    @Binding var SpecialistName:String
-
-    @Binding var CityId:Int
-    @Binding var CityName:String
-
-    @Binding var AreaId:Int
-    @Binding var AreaName:String
+//    @Binding var ExTpe:Int
+//    @Binding var SpecialistId:Int
+//    @Binding var SpecialistName:String
+//
+//    @Binding var CityId:Int
+//    @Binding var CityName:String
+//
+//    @Binding var AreaId:Int
+//    @Binding var AreaName:String
 
     @State  var isSearch = false
     @State  var searchTxt = ""
@@ -34,15 +34,17 @@ struct ViewSearchDoc: View {
     @State var gotodoctorDetails = false
     @State var SelectedDoctor = Doc()
     
-    init(ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String> ) {
+    init(
+//        ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String>
+    ) {
         UITableView.appearance().showsVerticalScrollIndicator = false
-        self._ExTpe = ExTpe
-        self._SpecialistId = SpecialistId
-        self._SpecialistName = SpecialistName
-        self._CityId = CityId
-        self._CityName = CityName
-        self._AreaId = AreaId
-        self._AreaName = AreaName
+//        self._ExTpe = ExTpe
+//        self._SpecialistId = SpecialistId
+//        self._SpecialistName = SpecialistName
+//        self._CityId = CityId
+//        self._CityName = CityName
+//        self._AreaId = AreaId
+//        self._AreaName = AreaName
     }
     
     @State var FilterTag : FilterCases = .Menu
@@ -110,7 +112,8 @@ struct ViewSearchDoc: View {
                     }
                     
                     ForEach(searchDoc.publishedModelSearchDoc ?? [] , id:\.self){ Doctor in
-                        ViewDocCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor , ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl).environmentObject(searchDoc)
+                        ViewDocCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor,ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl)
+                            .environmentObject(searchDoc)
                     }
                         ZStack{}
                         .frame( maxHeight: 2)
@@ -130,10 +133,10 @@ struct ViewSearchDoc: View {
                     .edgesIgnoringSafeArea(.bottom)
             }
             .disabled(showFilter)
-            .blur(radius: showFilter==true ? 9:0)
+            .blur(radius: showFilter == true ? 9:0)
             .frame(width: UIScreen.main.bounds.width)
 //            .edgesIgnoringSafeArea(.vertical)
-            .background(Color("CLVBG"))
+//            .background(Color("CLVBG"))
 
 //            VStack{
 //                AppBarView(Title: "Search_a_Doctor".localized(language))
@@ -142,39 +145,43 @@ struct ViewSearchDoc: View {
 //                Spacer()
 //            }
 //            .edgesIgnoringSafeArea(.vertical)
-            if showFilter == true {
-                MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, searchTxt:$searchTxt)
-                    .environmentObject(searchDoc)
-                    .environmentObject(seniorityVM)
-                    .environmentObject(specialityvm)
-                    .environmentObject(SubSpecialityVM)
-                    .environmentObject(CitiesVM)
-                    .environmentObject(AreasVM)
-                    .environmentObject(FeesVM)
-            }
+//            if showFilter == true {
+//                MainDoctorFilterView( FilterTag: $FilterTag, showFilter: $showFilter, searchTxt:$searchTxt)
+//                    .environmentObject(searchDoc)
+//                    .environmentObject(seniorityVM)
+//                    .environmentObject(specialityvm)
+//                    .environmentObject(SubSpecialityVM)
+//                    .environmentObject(CitiesVM)
+//                    .environmentObject(AreasVM)
+//                    .environmentObject(FeesVM)
+//            }
             
             // showing loading indicator
             ActivityIndicatorView(isPresented: $searchDoc.isLoading)
             
             //  go to clinic info
-            NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $ExTpe).environmentObject(environments)
+            NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $searchDoc.MedicalExaminationTypeId)
+                            .environmentObject(environments)
                             .navigationBarBackButtonHidden(true),isActive: $gotodoctorDetails) {
             }
         }
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
+        .onReceive(navController.popToRoot, perform: {newval in
+            gotodoctorDetails = newval
+        })
         .onAppear(perform: {
             setFirstselections()
-            FeesVM.startFetchFees()
-            medicalType.GetExaminationTypeId()
-            index =  ExTpe
-            searchDoc.MedicalExaminationTypeId = ExTpe
-            searchDoc.SpecialistId = SpecialistId
-            searchDoc.SpecialistName = SpecialistName
-            searchDoc.CityId = CityId
-            searchDoc.CityName = CityName
-            searchDoc.AreaId = AreaId
-            searchDoc.AreaName = AreaName
+//            FeesVM.startFetchFees()
+//            medicalType.GetExaminationTypeId()
+            index =  searchDoc.MedicalExaminationTypeId
+//            searchDoc.MedicalExaminationTypeId = ExTpe
+//            searchDoc.SpecialistId = SpecialistId
+//            searchDoc.SpecialistName = SpecialistName
+//            searchDoc.CityId = CityId
+//            searchDoc.CityName = CityName
+//            searchDoc.AreaId = AreaId
+//            searchDoc.AreaName = AreaName
             getAllDoctors()
 
         })
@@ -208,16 +215,18 @@ struct ViewSearchDoc: View {
 
                     }))
             })
-        
+            .background(
+                newBackImage(backgroundcolor: .white, imageName:.image2)
+            )
     }
-    
-
 }
 
 struct ViewSearchDoc_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSearchDoc(ExTpe: .constant(2), SpecialistId: .constant(2),SpecialistName: .constant(""), CityId: .constant(2),CityName: .constant(""), AreaId: .constant(2),AreaName: .constant(""))
+            ViewSearchDoc()
+                .environmentObject(VMSearchDoc())
+                .environmentObject(EnvironmentsVM())
         }.navigationBarHidden(true)
     }
 }
@@ -226,12 +235,12 @@ struct ViewSearchDoc_Previews: PreviewProvider {
 extension ViewSearchDoc{
 
     func setFirstselections(){
-        searchDoc.FilterSpecialistId = SpecialistId
-        searchDoc.FilterSpecialistName = SpecialistName
-        searchDoc.FilterCityId = CityId
-        searchDoc.FilterCityName = CityName
-        searchDoc.FilterAreaId = AreaId
-        searchDoc.FilterAreaName = AreaName
+//        searchDoc.FilterSpecialistId = SpecialistId
+//        searchDoc.FilterSpecialistName = SpecialistName
+//        searchDoc.FilterCityId = CityId
+//        searchDoc.FilterCityName = CityName
+//        searchDoc.FilterAreaId = AreaId
+//        searchDoc.FilterAreaName = AreaName
 
     }
     

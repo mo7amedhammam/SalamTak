@@ -163,6 +163,11 @@
 		C87F4298295DE46C004F37AE /* PatientMedicalInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4297295DE46C004F37AE /* PatientMedicalInfoModel.swift */; };
 		C87F429A295E0671004F37AE /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F4299295E0671004F37AE /* extension.swift */; };
 		C884E42E284BED52001382AC /* CancelAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884E42D284BED52001382AC /* CancelAppointmentView.swift */; };
+		C886A0CD29704DE0008FF4C1 /* ChooseSubSpeciality.swift in Sources */ = {isa = PBXBuildFile; fileRef = C886A0CC29704DE0008FF4C1 /* ChooseSubSpeciality.swift */; };
+		C886A0CF29704FE6008FF4C1 /* ChooseSeniority.swift in Sources */ = {isa = PBXBuildFile; fileRef = C886A0CE29704FE6008FF4C1 /* ChooseSeniority.swift */; };
+		C886A0D3297051E3008FF4C1 /* ShowSubspecialityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C886A0D2297051E3008FF4C1 /* ShowSubspecialityList.swift */; };
+		C886A0D5297051FA008FF4C1 /* ShowSeniorityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C886A0D4297051FA008FF4C1 /* ShowSeniorityList.swift */; };
+		C886A0D7297062D2008FF4C1 /* RangeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C886A0D6297062D2008FF4C1 /* RangeSliderView.swift */; };
 		C896512F284CD0C0000EAFF7 /* SpecialityBuBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */; };
 		C8965132284CD70A000EAFF7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8965131284CD70A000EAFF7 /* RatingView.swift */; };
 		C8965135284CD7A2000EAFF7 /* seniorityBuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8965134284CD7A2000EAFF7 /* seniorityBuView.swift */; };
@@ -208,6 +213,7 @@
 		C8D93269282C28BC0089C520 /* ReviewsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D93268282C28BC0089C520 /* ReviewsVM.swift */; };
 		C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */; };
 		C8E28158282FF09D00BDF6F7 /* BottomPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */; };
+		C8E5C710296EE01D00FBB207 /* navController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E5C70F296EE01C00FBB207 /* navController.swift */; };
 		C8F5613829648EE80073ECBE /* CalendarPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F5613729648EE80073ECBE /* CalendarPopup.swift */; };
 /* End PBXBuildFile section */
 
@@ -394,6 +400,11 @@
 		C87F4297295DE46C004F37AE /* PatientMedicalInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicalInfoModel.swift; sourceTree = "<group>"; };
 		C87F4299295E0671004F37AE /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		C884E42D284BED52001382AC /* CancelAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAppointmentView.swift; sourceTree = "<group>"; };
+		C886A0CC29704DE0008FF4C1 /* ChooseSubSpeciality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubSpeciality.swift; sourceTree = "<group>"; };
+		C886A0CE29704FE6008FF4C1 /* ChooseSeniority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSeniority.swift; sourceTree = "<group>"; };
+		C886A0D2297051E3008FF4C1 /* ShowSubspecialityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSubspecialityList.swift; sourceTree = "<group>"; };
+		C886A0D4297051FA008FF4C1 /* ShowSeniorityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeniorityList.swift; sourceTree = "<group>"; };
+		C886A0D6297062D2008FF4C1 /* RangeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderView.swift; sourceTree = "<group>"; };
 		C896512E284CD0C0000EAFF7 /* SpecialityBuBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityBuBody.swift; sourceTree = "<group>"; };
 		C8965131284CD70A000EAFF7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		C8965134284CD7A2000EAFF7 /* seniorityBuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seniorityBuView.swift; sourceTree = "<group>"; };
@@ -438,6 +449,7 @@
 		C8D93268282C28BC0089C520 /* ReviewsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsVM.swift; sourceTree = "<group>"; };
 		C8D9326C282C2D9D0089C520 /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
 		C8E28157282FF09D00BDF6F7 /* BottomPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPopupView.swift; sourceTree = "<group>"; };
+		C8E5C70F296EE01C00FBB207 /* navController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navController.swift; sourceTree = "<group>"; };
 		C8F5613729648EE80073ECBE /* CalendarPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPopup.swift; sourceTree = "<group>"; };
 		CAA2FE3591EB0D09F1CEDFF0 /* Pods_SalamTakTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalamTakTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB387FB17DDAFC06F94333C3 /* Pods-SalamTak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalamTak.release.xcconfig"; path = "Target Support Files/Pods-SalamTak/Pods-SalamTak.release.xcconfig"; sourceTree = "<group>"; };
@@ -803,6 +815,8 @@
 				C814BC3B28575E5200FBA9EA /* ShowCityList.swift */,
 				C814BC3D28575E5C00FBA9EA /* ShowAreaList.swift */,
 				C814BC3F28575E6500FBA9EA /* ShowOccupationList.swift */,
+				C886A0D2297051E3008FF4C1 /* ShowSubspecialityList.swift */,
+				C886A0D4297051FA008FF4C1 /* ShowSeniorityList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1560,6 +1574,7 @@
 				0E68CD8F27FEF04400327EBF /* LanguageView.swift */,
 				C87F4299295E0671004F37AE /* extension.swift */,
 				C8F5613729648EE80073ECBE /* CalendarPopup.swift */,
+				C8E5C70F296EE01C00FBB207 /* navController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1622,6 +1637,9 @@
 				0E26EA7527FB318D00E3D9B8 /* ChoosBloodType.swift */,
 				0E62C54727FC573000655D1A /* ChooseFoodAllergy.swift */,
 				0E62C54927FC603000655D1A /* ChooseMedicineAllergy.swift */,
+				C886A0CC29704DE0008FF4C1 /* ChooseSubSpeciality.swift */,
+				C886A0CE29704FE6008FF4C1 /* ChooseSeniority.swift */,
+				C886A0D6297062D2008FF4C1 /* RangeSliderView.swift */,
 			);
 			path = LookupsView;
 			sourceTree = "<group>";
@@ -2081,8 +2099,10 @@
 				C8D93262282BD9C30089C520 /* ViewModelFees.swift in Sources */,
 				C87F428E295DE3EC004F37AE /* PatientInfoView.swift in Sources */,
 				C87F4290295DE405004F37AE /* PatientMedicalInfoView.swift in Sources */,
+				C886A0D7297062D2008FF4C1 /* RangeSliderView.swift in Sources */,
 				0E586D3427F5B7BC00944F21 /* TabBarView.swift in Sources */,
 				C826D93D280D90950072754B /* ViewModelDocDetails.swift in Sources */,
+				C886A0CD29704DE0008FF4C1 /* ChooseSubSpeciality.swift in Sources */,
 				C8D9326D282C2D9D0089C520 /* ReviewsModel.swift in Sources */,
 				C82C79C2284E0DFB00BCE508 /* ModelSubspeciality.swift in Sources */,
 				C896513E284CDBB7000EAFF7 /* SearchBarView.swift in Sources */,
@@ -2092,6 +2112,7 @@
 				C85BD53B284780B70056B046 /* BaseResponse.swift in Sources */,
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
+				C8E5C710296EE01D00FBB207 /* navController.swift in Sources */,
 				0E62C55827FD943D00655D1A /* ResetPasswordView.swift in Sources */,
 				C85BD53D28478E1B0056B046 /* BaseNetwork.swift in Sources */,
 				C8B52BCA28355BB3009A89AC /* ViewAddReview.swift in Sources */,
@@ -2135,6 +2156,7 @@
 				C8965145284CF5F9000EAFF7 /* MainFilterView.swift in Sources */,
 				C800F82F27FB585B00482151 /* ServicesView.swift in Sources */,
 				0E586D1A27F5B66800944F21 /* MedicalStateView.swift in Sources */,
+				C886A0CF29704FE6008FF4C1 /* ChooseSeniority.swift in Sources */,
 				0E586CFA27F5ABB500944F21 /* ModelCreateUser.swift in Sources */,
 				C8965153284D114D000EAFF7 /* FilterMenu.swift in Sources */,
 				0E9E0DB027FAEF6500893ABF /* DatePickerTextField.swift in Sources */,
@@ -2156,6 +2178,7 @@
 				00C8BF3727F3100F00571078 /* ContentView.swift in Sources */,
 				C82AFF34280C53FC00B1B953 /* ViewSummary.swift in Sources */,
 				0E9E0DA627F9EB0900893ABF /* ConfirmAndCancel.swift in Sources */,
+				C886A0D5297051FA008FF4C1 /* ShowSeniorityList.swift in Sources */,
 				0E33B27028059A1D00CF35E5 /* ViewModelUpdateMedicalState.swift in Sources */,
 				0E26EA6427FB2EC800E3D9B8 /* ModelFoodAllergy.swift in Sources */,
 				C814BC4628575ED400FBA9EA /* ShowBloodTypeList.swift in Sources */,
@@ -2190,6 +2213,7 @@
 				C8A37EAA296C5E2E00DA02DC /* EnvironmentsVM.swift in Sources */,
 				C82AFF36280C675C00B1B953 /* CustomSheet.swift in Sources */,
 				C8E28158282FF09D00BDF6F7 /* BottomPopupView.swift in Sources */,
+				C886A0D3297051E3008FF4C1 /* ShowSubspecialityList.swift in Sources */,
 				C800F83327FB585B00482151 /* ViewModelExaminationTypeId.swift in Sources */,
 				C860838128045318001A0C39 /* ViewDocDetails.swift in Sources */,
 				C89A6BB1284FCAE100BF37C9 /* ConfirmButton.swift in Sources */,

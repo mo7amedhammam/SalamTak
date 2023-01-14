@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Datum
-struct subspeciality: Codable, Identifiable {
+struct subspeciality: Codable, Identifiable , Hashable{
 
     let id: Int?
     let Name: String?

@@ -59,7 +59,20 @@ struct TabBarView: View {
                         HStack(spacing: 0){
                             Spacer()
                             ForEach(TabBarVM.tabs.indices ){tab in
-                                TabButton(title: TabBarVM.tabs[tab] , selectedTab: $selectedTab,AppointmentsTabIndex: $AppointmentsTabIndex,promotionIndex:$promotionTabIndex,MoreIndex:$MoreTabIndex)
+                                TabButton(title: TabBarVM.tabs[tab],selectedTab:$selectedTab){
+                                    selectedTab = TabBarVM.tabs[tab]
+//                                    environments.popToRoot.send(true)
+                                    navController.popToRoot.send(false)
+                                    if selectedTab == "TabBar_appointments" {
+                                        AppointmentsTabIndex = 0
+                                    }
+                                    else if selectedTab == "TabBar_promotions"{
+                                        promotionTabIndex = 0
+                                    }
+                                    else if selectedTab == "TabBar_more"{
+                                        MoreTabIndex = 0
+                                    }
+                                }
                                 Spacer()
                             }
                         }
@@ -104,7 +117,11 @@ struct TabBarView: View {
                 ShowOccupationList(ShowOccupation: $environments.ShowOccupation, SelectedOccupationName: $environments.occupationName, SelectedOccupationId: $environments.OccupationId)
             }else if environments.ShowCalendar{
                 CalendarPopup( selectedDate: $environments.Birthday, isPresented: $environments.ShowCalendar,rangeType:environments.dateRange ,startingDate:environments.startingDate,endingDate:environments.endingDate)
-        }
+            } else if environments.ShowSubSpeciality{
+                ShowSubspecialityList(ShowSubspeciality: $environments.ShowSubSpeciality,selectedspecialityId:$environments.SpecialityId, selectedSubspecialityName: $environments.SubSpecialityName, selectedSubspecialityId: $environments.SubSpecialityId)
+            } else if environments.ShowSeniority{
+                ShowSeniorityList(ShowSeniority: $environments.ShowSeniority, SelectedSeniorityName: $environments.SeniorityName, SelectedSeniorityId: $environments.SeniorityId)
+            }
             }
         )
         

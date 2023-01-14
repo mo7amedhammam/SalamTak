@@ -16,14 +16,14 @@ class ViewModelSpecialist: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
 //       ------- input
-    @Published var  publishedSpecialistModel :  [Speciality]?
+    @Published var  publishedSpecialistModel :  [Speciality] = []
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
  
     init() {
-        
+        startFetchSpecialist()
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedSpecialistModel = modeldata.data ?? []

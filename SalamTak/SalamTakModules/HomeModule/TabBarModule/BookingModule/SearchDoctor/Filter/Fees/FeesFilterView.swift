@@ -7,76 +7,55 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
 struct FeesFilterView:View {
-    @EnvironmentObject var FeesVM : ViewModelFees
-    @EnvironmentObject var searchDoc : VMSearchDoc
+    @StateObject var FeesVM = ViewModelFees()
+    var language = LocalizationService.shared.language
 
-    @Binding var FilterTag:FilterCases
+    @Binding var minValue: String
+    @Binding var maxValue: String
+    var range:Int?
+    @State var width:CGFloat = 0
+    @State var width1:CGFloat = 0
+    var totalwidth : CGFloat = UIScreen.main.bounds.width - 40
     
-//    @Binding var selectedFee :Float
+//    init(minValue:Binding<String>,maxValue:Binding<String>) {
+//        self._minValue = minValue
+//        self._maxValue = maxValue
+//        range = 1000
+//        self.width = CGFloat(Float(self.minValue) ?? 0)
+//        self.width1 = CGFloat(Float(self.maxValue) ?? 0)
+//    }
+    
     var body: some View{
-        VStack{
-            Text("Examination_Fee".localized(language))
-                .font(.system(size: 18))
-                .fontWeight(.bold)
-                .frame(width:UIScreen.main.bounds.width)
-                .overlay(HStack{
-                    Spacer()
-                    Button(action: {
-                        FilterTag = .Menu
-                    }, label: {
-                        Image(systemName: "x.circle.fill")
-                            .font(.title)
-                            .foregroundColor(.gray.opacity(0.6))
-                    })
+        VStack(spacing:5){
+            HStack {
+                Text("Fees_".localized(language))
+                Spacer()
+                Group{
+                    Text(minValue+" "+"EGP_".localized(language))
+                    Text("To_".localized(language))
+                    Text(maxValue+" "+"EGP_".localized(language))
                 }
-                            .padding()
-                )
-            VStack{
-                HStack{
-                    FeesFilterTextField(text:.constant("\(String(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0))")  , title: "Minimum".localized(language))
-                        .frame(width:(UIScreen.main.bounds.width - 50)/2)
-                        .disabled(true)
-                    FeesFilterTextField(text: .constant("\( String(Int( Float(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) + searchDoc.FilterFees)) )")  , title: "Maximum".localized(language))
-                        .frame(width:(UIScreen.main.bounds.width - 50)/2)
-                        .disabled(true)
-                }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                
-                CustomView(percentage: $searchDoc.FilterFees, range: Int( FeesVM.publishedMinMaxFee?.MaximumFees ?? 0) - Int(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0) )
-                
-            }.padding()
+                .font(.salamtakRegular(of: 15))
+                .foregroundColor(.salamtackWelcome)
+                Spacer()
+            }
             
-            Button(action: {
-                // add review
-                print("Confirm Title")
-                FilterTag = .Menu
-            }, label: {
-                HStack {
-                    Text("Confirm".localized(language))
-                        .fontWeight(.semibold)
-                        .font(.title3)
-                }
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding()
-                .foregroundColor(.white)
-                .background(Color("blueColor"))
-                .cornerRadius(12)
-                .padding(.horizontal, 12)
-            })
-            
-                .frame( height: 60)
-                .padding(.horizontal)
-                .padding(.bottom,10)
+            CustomView(minValue: $minValue, maxValue: $maxValue,range:range,totalwidth: totalwidth)
+            HStack{
+                Text("\(FeesVM.publishedMinMaxFee?.MinimumFees ?? 0)"+" "+"EGP_".localized(language))
+                Spacer()
+                Text("\(FeesVM.publishedMinMaxFee?.MaximumFees ?? 0)"+" "+"EGP_".localized(language))
+            }
+            .font(.salamtakRegular(of: 15))
         }
     }
 }
 
 struct FeesFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FeesFilterView( FilterTag: .constant(.Fees))
-            .environmentObject(ViewModelFees())
-            .environmentObject(VMSearchDoc())
+        FeesFilterView(minValue: .constant("200"), maxValue: .constant("330"), range: 1000)
+//            .environmentObject(VMSearchDoc())
     }
 }

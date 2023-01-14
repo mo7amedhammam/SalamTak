@@ -76,7 +76,7 @@ struct ViewDocDetails:View{
             }
             .blur(radius: ShowCalendar||showQuickLogin ? 9:0)
             .disabled(ShowCalendar)
-            .background(Color("CLVBG"))
+//            .background(Color("CLVBG"))
             if showQuickLogin == true{
                 quickLoginSheet(IsPresented: $showQuickLogin, QuickLogin: $presentLogin,QuickReservation: $presentReservation  , width: UIScreen.main.bounds.width)
             }
@@ -86,7 +86,6 @@ struct ViewDocDetails:View{
                     calendarPopUp(selectedDate: $DocDetails.SchedualDate, isPresented: $ShowCalendar)
                 }
             }
-        
             
             // go to summary
             NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $DocDetails.SchedualDate, BookiTime: $selectedTime).environmentObject(environments)
@@ -102,6 +101,12 @@ struct ViewDocDetails:View{
             }
 
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onReceive(navController.popToRoot, perform: {newval in
+            GotoSummary = newval
+            GotoReviews = newval
+            GotoAddReview = newval
+        })
         .edgesIgnoringSafeArea(.top)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -118,10 +123,7 @@ struct ViewDocDetails:View{
         .overlay(content: {
             ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
         })
-        
         .navigationViewStyle(StackNavigationViewStyle())
-        
-        
         .sheet(isPresented: $presentLogin,
                onDismiss:{
             DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
@@ -144,6 +146,9 @@ struct ViewDocDetails:View{
         ){
             ViewSignUp(ispresented: .constant(false))
         }
+        .background(
+            newBackImage(backgroundcolor: .white, imageName:.image2)
+        )
     }
 }
 
@@ -151,6 +156,7 @@ struct ViewDocDetails_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             ViewDocDetails(Doctor: Doc.init(), ExType: .constant(2))
+                .environmentObject(EnvironmentsVM())
         }.navigationBarHidden(true)
     }
 }

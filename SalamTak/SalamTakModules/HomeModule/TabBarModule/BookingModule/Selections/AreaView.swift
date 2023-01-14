@@ -8,6 +8,7 @@ import SwiftUI
 
 struct AreaView: View {
     @StateObject var AreasVM = ViewModelGetAreas()
+    @EnvironmentObject var searchDoc : VMSearchDoc
     @EnvironmentObject var environments : EnvironmentsVM
 
     var language = LocalizationService.shared.language
@@ -96,7 +97,7 @@ struct AreaView: View {
             
             .frame(width: UIScreen.main.bounds.width)
 //            .edgesIgnoringSafeArea(.vertical)
-            .background(Color("CLVBG"))
+//            .background(Color("CLVBG"))
             
 //            VStack{
 //                    .navigationBarItems(leading: BackButtonView())
@@ -108,7 +109,9 @@ struct AreaView: View {
             ActivityIndicatorView(isPresented: $AreasVM.isLoading)
             
             //  go to clinic info
-            NavigationLink(destination:ViewSearchDoc(ExTpe: $examinationTypeId, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName: $selectedCityName, AreaId: $selectedAreaId,AreaName: $selectedAreaName).environmentObject(environments)
+            NavigationLink(destination:ViewSearchDoc()
+                            .environmentObject(environments)
+                            .environmentObject(searchDoc)
                             .navigationBarHidden(true),isActive: $gotoSearchdoctor) {
             }
             
@@ -117,6 +120,9 @@ struct AreaView: View {
         }
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
+        .onReceive(navController.popToRoot, perform: {newval in
+            gotoSearchdoctor = newval
+        })
         .onAppear(perform: {
             AreasVM.cityId = selectedCityId
             AreasVM.startFetchAreas()
@@ -126,7 +132,10 @@ struct AreaView: View {
         .alert(isPresented: $AreasVM.isAlert, content: {
             Alert(title: Text(AreasVM.message), message: nil, dismissButton: .cancel())
         })
-        
+        .background(
+            newBackImage(backgroundcolor: .white, imageName:.image2)
+        )
+
     }
 }
 
@@ -134,6 +143,8 @@ struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             AreaView( selectedCityId: .constant(48455151), selectedCityName: .constant(""), SelectedSpeciality: .constant(48455151),SelectedSpecialityName:.constant(""), examinationTypeId: .constant(48455151),  selectedAreaId: 48455151)
+                .environmentObject(EnvironmentsVM())
+                .environmentObject(VMSearchDoc())
         }.navigationBarHidden(true)
     }
 }

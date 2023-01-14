@@ -19,12 +19,7 @@ struct ScheduleView: View {
                 AppBarView(Title:"Schedule".localized(language))
                     .frame(height:50)
 
-//                    ZStack {
-//                        Image("underappbar")
-//                            .resizable()
-//                            .frame(height: 150)
-//                            .padding(.bottom, -40)
-                        ScrollView(.horizontal, showsIndicators: false){
+                ScrollView(.horizontal, showsIndicators: false){
                             HStack( spacing: 20){
                                 ForEach(medicalType.publishedModelExaminationTypeId){ type in
                                     Button(action: {
@@ -60,7 +55,7 @@ struct ScheduleView: View {
                 }
 //            .edgesIgnoringSafeArea(.bottom)
 //            .ignoresSafeArea()
-            .background(Color("CLVBG"))
+//            .background(Color("CLVBG"))
             // showing loading indicator
             ActivityIndicatorView(isPresented: $scheduleVM.isLoading)
         }
@@ -92,6 +87,10 @@ struct ScheduleView: View {
                     }
                     }))
             })
+        
+            .background(
+                newBackImage(backgroundcolor: .white, imageName:.image2)
+            )
     }
 }
 

@@ -16,6 +16,8 @@ class ViewModelFees: ObservableObject {
     
     //    ------- output
     @Published var  publishedMinMaxFee: MinMaxFee? = MinMaxFee.init()
+//    @Published var  MinimumFee: Int? = 0
+//    @Published var  MaximumFee: Int? = 0
     
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
@@ -25,10 +27,11 @@ class ViewModelFees: ObservableObject {
     
     init() {
         startFetchFees()
-        
         passthroughModelSubject.sink { (completion) in
         } receiveValue: { (modeldata) in
             self.publishedMinMaxFee = modeldata.data ?? MinMaxFee.init()
+//            self.MinimumFee = modeldata.data?.MinimumFees ?? 0
+//            self.MaximumFee = modeldata.data?.MaximumFees ?? 0
         }.store(in: &cancellables)
     }
 }

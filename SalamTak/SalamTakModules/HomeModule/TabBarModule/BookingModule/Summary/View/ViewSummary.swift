@@ -81,7 +81,7 @@ struct ViewSummary:View{
                     .padding(.top,10)
                 }
                 .padding(.bottom,130)
-                .background(Color("CLVBG"))
+//                .background(Color("CLVBG"))
             }.disabled(CreateAppointment.isDone)
             
 //            VStack{
@@ -154,6 +154,11 @@ struct ViewSummary:View{
                 }
             }))
         })
+        
+        .background(
+            newBackImage(backgroundcolor: .white, imageName:.image2)
+        )
+
     }
 }
 

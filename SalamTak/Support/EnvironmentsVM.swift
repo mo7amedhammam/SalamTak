@@ -7,10 +7,16 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class EnvironmentsVM: ObservableObject {
     
     @Published var desiredTab = ""
+    
+    //navigation
+//    @Published
+//    var popToRoot = AnyPublisher<Bool, Never>{}
+    var popToRoot = PassthroughSubject<Bool, Never>()
 
 //    MARK:  -- showMap Image preview --
     @Published var isPresented = false
@@ -26,9 +32,11 @@ class EnvironmentsVM: ObservableObject {
     @Published var ShowArea = false
     @Published var ShowOccupation = false
     @Published var ShowCalendar = false
+    @Published var ShowSubSpeciality = false
+    @Published var ShowSeniority = false
     
     @Published var countryName:String = ""
-    @Published var CountryId:Int = 0
+    @Published var CountryId:Int = 1
     @Published var cityName:String = ""
     @Published var CityId:Int = 0
     @Published var areaName:String = ""
@@ -40,7 +48,12 @@ class EnvironmentsVM: ObservableObject {
     @State var startingDate = Date()
     @State var endingDate = Date()
 
-    
+    @Published var SpecialityName:String = ""
+    @Published var SpecialityId:Int = 0
+    @Published var SubSpecialityName:[String] = []
+    @Published var SubSpecialityId:[Int] = []
+    @Published var SeniorityName:String = ""
+    @Published var SeniorityId:Int = 0
 
     //Medical info
     @Published var ShowBloodType = false
@@ -52,9 +65,7 @@ class EnvironmentsVM: ObservableObject {
     @Published var selectedMedicalAlgId:[Int] = []
     @Published var selectedFoodAlgName:[String] = []
     @Published var selectedFoodAlgId:[Int] = []
-        
 }
-
 
 struct ImagePreviewer: View {
     

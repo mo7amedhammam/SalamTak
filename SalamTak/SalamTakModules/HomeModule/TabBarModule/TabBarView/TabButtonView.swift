@@ -13,23 +13,16 @@ struct TabButton: View{
     var title: String
     
     @Binding var selectedTab: String
-    @Binding var AppointmentsTabIndex:Int
-    @Binding var promotionIndex: Int
-    @Binding var MoreIndex: Int
+//    @Binding var AppointmentsTabIndex:Int
+//    @Binding var promotionIndex: Int
+//    @Binding var MoreIndex: Int
+    
+    var ButtonAction: (() -> ())?
 
     var body: some View {
         Button(action: {
-            selectedTab = title
-            
-            if selectedTab == "TabBar_appointments" {
-                AppointmentsTabIndex = 0
-            }
-            else if selectedTab == "TabBar_promotions"{
-                promotionIndex = 0
-            }
-            else if selectedTab == "TabBar_more"{
-                MoreIndex = 0
-            }
+            ButtonAction?()
+       
         }, label: {
             VStack(spacing: 6){
                 Image(title)
@@ -50,6 +43,6 @@ struct TabButton: View{
 
 struct TabButton_Previews: PreviewProvider {
     static var previews: some View {
-        TabButton(title: "Home", selectedTab: .constant("Button"),AppointmentsTabIndex: .constant(0),promotionIndex: .constant(0), MoreIndex: .constant(0))
+        TabButton(title: "Home", selectedTab: .constant("Button"))
     }
 }

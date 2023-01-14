@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CityView: View {
     @StateObject var CitiesVM = ViewModelGetCities()
+    @EnvironmentObject var searchDoc : VMSearchDoc
     @EnvironmentObject var environments : EnvironmentsVM
 
     var language = LocalizationService.shared.language
@@ -100,7 +101,7 @@ struct CityView: View {
             }
             .frame(width: UIScreen.main.bounds.width)
 //            .edgesIgnoringSafeArea(.vertical)
-            .background(Color("CLVBG"))
+//            .background(Color("CLVBG"))
             
 //            VStack{
 //                AppBarView(Title: "Choose_City".localized(language))
@@ -115,17 +116,25 @@ struct CityView: View {
             
             //  go to clinic info
             NavigationLink(destination:AreaView(selectedCityId: $selectedCityId,selectedCityName: $selectedCityName, SelectedSpeciality: $SelectedSpeciality,SelectedSpecialityName:$SelectedSpecialityName , examinationTypeId: $extypeid)
+                            .environmentObject(searchDoc)
                             .environmentObject(environments)
                             .navigationBarHidden(true)
                            ,isActive: $gotoArea) {
             }
             //  go to clinic info
-            NavigationLink(destination:ViewSearchDoc(ExTpe: $extypeid, SpecialistId: $SelectedSpeciality,SpecialistName:$SelectedSpecialityName, CityId: $selectedCityId,CityName:$selectedCityName , AreaId: .constant(0),AreaName: .constant("All_Areas".localized(language))).environmentObject(environments)
+            NavigationLink(destination:ViewSearchDoc()
+                            .environmentObject(searchDoc)
+                            .environmentObject(environments)
                             .navigationBarHidden(true),isActive: $gotoSearchdoctor) {
             }
         }
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
+        .onReceive(navController.popToRoot, perform: {newval in
+            gotoSearchdoctor = newval
+            gotoArea = newval
+        })
+
         .onAppear(perform: {
             CitiesVM.CountryId = CountryId ?? 0
             CitiesVM.startFetchCities()
@@ -135,6 +144,10 @@ struct CityView: View {
         .alert(isPresented: $CitiesVM.isAlert, content: {
             Alert(title: Text(CitiesVM.message), message: nil, dismissButton: .cancel())
         })
+        .background(
+            newBackImage(backgroundcolor: .white, imageName:.image2)
+        )
+
         
     }
     
@@ -146,6 +159,8 @@ struct CityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             CityView(SelectedSpeciality: .constant(45454545454), SelectedSpecialityName: .constant(""), extypeid: .constant(454545454))
+                .environmentObject(VMSearchDoc())
+                .environmentObject(EnvironmentsVM())
         }.navigationBarHidden(true)
     }
 }

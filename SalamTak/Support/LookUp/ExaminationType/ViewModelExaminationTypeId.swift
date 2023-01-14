@@ -26,7 +26,7 @@ class ViewModelExaminationTypeId: ObservableObject {
 
     
     init() {
-        
+        GetExaminationTypeId()
         ModelExTypeId.sink { (completion) in
         } receiveValue: { [self] (modeldata) in
             self.publishedModelExaminationTypeId = modeldata.data ?? []

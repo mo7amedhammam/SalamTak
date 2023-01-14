@@ -129,7 +129,7 @@ extension NotificationsViewModel:TargetType{
                     DispatchQueue.main.async {
                         self.isDone = true
                         self.passthroughModelSubject.send(model!)
-                        print(model)
+//                        print(model)
                     }
                 }else{
                     if model != nil{
