@@ -12,9 +12,10 @@ import ImageViewerRemote
 var selectedDate = Date()
 var totalSquares = [Date]()
 
-struct ViewDocDetails:View{
-    @StateObject var DocDetails = ViewModelDocDetails()
+struct ViewBooking:View{
+    @EnvironmentObject var DocDetails : ViewModelDocDetails
     @EnvironmentObject var environments : EnvironmentsVM
+    @Environment(\.presentationMode) var presentationMode
 
     var Doctor:Doc
     @State var showQuickLogin = false
@@ -27,6 +28,8 @@ struct ViewDocDetails:View{
     @State var ShowCalendar = false
     @State var selectedSchedualId = 0
     @State var selectedTime = ""
+    @State var BookingClinicId : Int
+    @State var BookingFees:Int = 0
     @State var presentLogin = false
     @State var presentReservation = false
     @State var ispreviewImage=false
@@ -34,23 +37,47 @@ struct ViewDocDetails:View{
     
     var body: some View{
         ZStack {
-            VStack{
-                Image("Rectangle")
+            VStack(spacing:0){
+                Image("logo")
                     .resizable()
-                    .frame(width:UIScreen.main.bounds.width, height: 200)
-                
+                    .frame(width:220, height: 150)
+                    .aspectRatio( contentMode: .fit)
+                Text("Booking_".localized(language))
+                    .foregroundColor(.salamtackWelcome)
+                    .font(.system(size: 30))
+                    .bold()
+                    .padding(.top,-30)
+
                 ScrollView {
-                    ViewDocMainInfo(Doctor: Doctor, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
-                    ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime,DoctorId:.constant(Doctor.id ?? 0), ClinicId: .constant(Doctor.ClinicId ?? 0), ExTypeId:$ExType)
+                    ViewDocMainInfo(Doctor: Doctor, operation: .Booking, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
+                    ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime,DoctorId:.constant(Doctor.id ?? 0), ClinicId: $BookingClinicId,ExTypeId:$ExType, BookingFees:$BookingFees)
                         .environmentObject(DocDetails)
-                    ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
+//                    ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
                     Spacer()
                 }
                 .frame(width: UIScreen.main.bounds.width-20)
                 .background(.clear)
-                .padding(.top,-105)
+//                .padding(.top,-105)
                 Spacer()
-                ZStack{
+                HStack{
+
+                    Button(action: {
+                        // add review
+                        self.presentationMode.wrappedValue.dismiss()
+
+                    }, label: {
+                        HStack {
+                            Text("Cancel_".localized(language))
+                                .fontWeight(.semibold)
+                                .font(.title3)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.salamtackBlue)
+                            .cornerRadius(12)
+                    })
+                        .AddBlueBorder()
+
                     Button(action: {
                         // add review
                         if Helper.userExist(){
@@ -64,15 +91,21 @@ struct ViewDocDetails:View{
                             Text("Book".localized(language))
                                 .fontWeight(.semibold)
                                 .font(.title3)
-                        }.frame(minWidth: 0, maxWidth: .infinity)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
                             .padding()
-                            .foregroundColor(.white)
-                            .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
+                            .foregroundColor(selectedTime == "" ? .salamtackBlue.opacity(0.5):.salamtackBlue)
+//                            .background(selectedTime == "" ?  Color("blueColor").opacity(0.2): Color("blueColor"))
                             .cornerRadius(12)
-                            .padding(.horizontal, 20)
-                    }) .disabled(selectedTime == "")
-                }.background(.clear
-                ).shadow(color: .gray, radius: 9)
+//                            .padding(.horizontal, 20)
+                    })
+                        .AddBlueBorder(linecolor:(selectedTime == "" ? .salamtackBlue.opacity(0.5):.salamtackBlue))
+                        .disabled(selectedTime == "")
+                }
+                .padding(.horizontal)
+//                .background(.clear
+//                )
+//                .shadow(color: .gray, radius: 9)
             }
             .blur(radius: ShowCalendar||showQuickLogin ? 9:0)
             .disabled(ShowCalendar)
@@ -88,7 +121,8 @@ struct ViewDocDetails:View{
             }
             
             // go to summary
-            NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $DocDetails.SchedualDate, BookiTime: $selectedTime).environmentObject(environments)
+            NavigationLink(destination:ViewSummary(Doctor: Doctor, ExType: $ExType, BookingscedualId: $selectedSchedualId, BookiDate: $DocDetails.SchedualDate, BookiTime: $selectedTime, BookingFees: $BookingFees)
+                            .environmentObject(environments)
                             .navigationBarHidden(true),isActive: $GotoSummary) {
             }
             
@@ -115,7 +149,8 @@ struct ViewDocDetails:View{
                 }
             }
         }
-        .navigationBarHidden(showQuickLogin||ShowCalendar||ispreviewImage)
+//        .navigationBarHidden(showQuickLogin||ShowCalendar||ispreviewImage)
+        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
         .onAppear(perform: {
             setWeekView()
@@ -155,8 +190,9 @@ struct ViewDocDetails:View{
 struct ViewDocDetails_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewDocDetails(Doctor: Doc.init(), ExType: .constant(2))
+            ViewBooking(Doctor: Doc.init(), ExType: .constant(2), BookingClinicId: 0)
                 .environmentObject(EnvironmentsVM())
+                .environmentObject(ViewModelDocDetails())
         }.navigationBarHidden(true)
     }
 }

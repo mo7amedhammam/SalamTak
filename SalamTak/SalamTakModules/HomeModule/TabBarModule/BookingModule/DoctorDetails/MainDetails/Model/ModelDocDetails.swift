@@ -7,7 +7,7 @@
 
 
 import Foundation
-import SwiftUI
+//import SwiftUI
 
 // MARK: - DataClass
 struct DocDetails: Codable{

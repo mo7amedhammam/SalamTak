@@ -20,6 +20,8 @@ struct ViewDocReviews: View {
         VStack{
             HStack{
                 Text("Reviews".localized(language))
+                    .bold()
+                    .foregroundColor(.white)
                 Spacer()
                 Button(action: {
                     GotoReviews = true
@@ -27,17 +29,20 @@ struct ViewDocReviews: View {
                     
                     HStack{
                         Text("View_all_reviews".localized(language))
-                            .foregroundColor(Color("darkGreen"))
                         Image( systemName: "chevron.forward")
-                            .foregroundColor(Color("darkGreen"))
-                            .padding(.trailing)
-                        
-                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//                            .padding(.trailing)
+                    }
+                    .foregroundColor(.salamtackBlue)
+//                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 })
                 
                 
             }
-            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+            .padding(.vertical,8)
+            .padding(.horizontal)
+            .background(Color.salamtackWelcome)
+            .cornerRadius(20)
+
             
             .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
             
@@ -79,7 +84,8 @@ struct ViewDocReviews: View {
                                         .padding(.top, 10)
                                         
                                         Spacer()
-                                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                                    }
+//                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                 }
                                 .padding()
                                 
@@ -114,7 +120,7 @@ struct ViewDocReviews: View {
                         
                     }
                 }
-                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                 .padding([.bottom,.leading],8)
             }
             
@@ -138,6 +144,8 @@ struct ViewDocReviews: View {
             //            })
             
         }
+        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

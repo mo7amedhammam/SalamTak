@@ -7,29 +7,43 @@
 
 import Foundation
 import SwiftUI
+
+enum detailOrBooking{
+    case Details,Booking
+}
+
 struct ViewAboutDoctor: View {
     var language = LocalizationService.shared.language
 
     var DoctorAbout : String
     var body: some View {
             VStack{
-                Text("About_doctor".localized(language))
-                    .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
-                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+                HStack {
+                    Text("About_doctor".localized(language))
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .bold()
+                }
+                .padding(.vertical,8)
+                .padding(.horizontal,30)
+                .background(Color.salamtackWelcome)
+                .cornerRadius(20)
                 
                 ZStack{
                     Text(DoctorAbout)
-                        .frame(width: UIScreen.main.bounds.width-30)
-                        .foregroundColor(.gray)
+//                        .frame(width: UIScreen.main.bounds.width-30)
+                        .foregroundColor(.salamtackBlue)
                         .font(Font.SalamtechFonts.Reg14)
-                        .padding()
-                        .background(Color.white)
+//                        .padding()
+//                        .background(Color.white)
                       
                 }
-                .frame(width: UIScreen.main.bounds.width-30)
-                .cornerRadius(9)
-                .shadow(color: .black.opacity(0.1), radius: 9)
+//                .frame(width: UIScreen.main.bounds.width-30)
+//                .cornerRadius(9)
+//                .shadow(color: .black.opacity(0.1), radius: 9)
             }
+            .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+
     }
 }
 

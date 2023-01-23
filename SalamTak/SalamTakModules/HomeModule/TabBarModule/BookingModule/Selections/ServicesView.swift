@@ -234,11 +234,13 @@ struct ServicesView_Previews: PreviewProvider {
 
 struct remoteAsyncImage: View {
     var imageUrl = ""
+    var foregroundColor:Color? = .salamtackWelcome
+
     var body: some View {
         AsyncImage(url: URL(string:   URLs.BaseUrl + "\(imageUrl)" )) { image in
             image.resizable()
                 .renderingMode(.template)
-                .foregroundColor(.salamtackWelcome)
+                .foregroundColor(foregroundColor)
         } placeholder: {
             Image("logo")
                 .resizable()
@@ -249,18 +251,22 @@ struct remoteAsyncImage: View {
 
 
 struct BlueBorder: ViewModifier {
+    var cornerRadius:CGFloat?
+    var lineWidth:CGFloat?
+    var lineColor:Color?
+
     func body(content: Content) -> some View {
         content
 //            .padding()
             .background(
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke( Color.salamtackBlue, lineWidth: 1.8)
+                RoundedRectangle(cornerRadius: cornerRadius ?? 15)
+                    .stroke( lineColor ?? .salamtackBlue, lineWidth: lineWidth ?? 1.8)
             )
     }
 }
 
 extension View{
-    func AddBlueBorder() -> some View {
-        modifier(BlueBorder())
+    func AddBlueBorder(cornerRadius:CGFloat = 15,linewidth:CGFloat = 1.8, linecolor:Color = .salamtackBlue) -> some View {
+        modifier(BlueBorder(cornerRadius: cornerRadius, lineWidth: linewidth,lineColor: linecolor))
     }
 }

@@ -22,9 +22,11 @@ struct SearchBar: View {
         HStack {
             
             TextField(PlaceHolder, text: $text)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
                 .padding(7)
                 .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
+//                .background(Color(.systemGray6))
                 .cornerRadius(8)
                 .padding(.horizontal, 10)
                 .onTapGesture {

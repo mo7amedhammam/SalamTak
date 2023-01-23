@@ -50,6 +50,7 @@ class URLs {
     var DoctorSearch = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/DoctorSearch"
     var DoctorDetails = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/GetDoctorDetail"
     var FilteredFees = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/FilteredFees"
+    var DoctorClinics = BaseUrl + "/api/\(Helper.getLanguage())/DoctorClinicCS/GetDoctorClinicsByCS"
 
     //Doctor Rate
     var CreateDoctorRate = BaseUrl + "/api/\(Helper.getLanguage())/DoctorRate/CreateDoctorRate"

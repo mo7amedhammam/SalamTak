@@ -123,6 +123,12 @@ final class Helper{
         userDef.removeObject(forKey:"access_token"  )
         userDef.removeObject(forKey: "clinicId")
         userLogedIn(value: false)
+        
+        if let window = UIApplication.shared.windows.first {
+              window.rootViewController = UIHostingController(rootView: WelcomeScreenView())
+              window.endEditing(true)
+              window.makeKeyAndVisible()
+          }
     }
     class func changeLang() {
         userDef.removeObject(forKey:"languageKey"  )

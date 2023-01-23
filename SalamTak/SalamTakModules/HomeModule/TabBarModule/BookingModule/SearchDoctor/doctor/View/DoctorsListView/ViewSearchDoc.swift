@@ -10,30 +10,17 @@ import SwiftUI
 import ImageViewerRemote
 
 struct ViewSearchDoc: View {
+    @StateObject var DocDetails = ViewModelDocDetails()
     @StateObject var medicalType = ViewModelExaminationTypeId()
     @EnvironmentObject var searchDoc : VMSearchDoc
     @EnvironmentObject var environments : EnvironmentsVM
-    
-//    @Binding var ExTpe:Int
-//    @Binding var SpecialistId:Int
-//    @Binding var SpecialistName:String
-//
-//    @Binding var CityId:Int
-//    @Binding var CityName:String
-//
-//    @Binding var AreaId:Int
-//    @Binding var AreaName:String
-
     @State  var isSearch = false
-    @State  var searchTxt = ""
-    
     @State var loginAgain = false
     var language = LocalizationService.shared.language
     @State var index = 1
-    
-    @State var gotodoctorDetails = false
+    @State var gotoBooking = false
     @State var SelectedDoctor = Doc()
-    
+    @State var gotoMoreDetails = false
     init(
 //        ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String>
     ) {
@@ -62,20 +49,26 @@ struct ViewSearchDoc: View {
     var body: some View {
         ZStack{
             VStack{
-                AppBarView(Title: "Search_a_Doctor".localized(language),withbackButton: true)
-                    .frame(height:70)
+//                AppBarView(Title: "".localized(language),withbackButton: true)
+                Image("logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height:90)
                     .padding(.top,-20)
-                ZStack {
-                    Image("WhiteCurve")
-                        .resizable()
-                        .frame(width: UIScreen.main.bounds.width, height: 120)
-                        .padding(.top,-20)
-                    
-                    SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchTxt, isSearch: $isSearch){
-                        getAllDoctors()
-                    }
-                    .shadow(color: .black.opacity(0.2), radius: 15)
-                }
+
+                
+//                ZStack {
+//                    Image("WhiteCurve")
+//                        .resizable()
+//                        .frame(width: UIScreen.main.bounds.width, height: 120)
+//                        .padding(.top,-20)
+//
+//                    SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchTxt, isSearch: $isSearch){
+//                        getAllDoctors()
+//                    }
+//                    .shadow(color: .black.opacity(0.2), radius: 15)
+//                }
+                
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack( spacing: 10) {
                         ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in
@@ -89,37 +82,61 @@ struct ViewSearchDoc: View {
                                         Text(type.Name ?? "")
                                             .font(Font.SalamtechFonts.Reg16)
                                             .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
-                                        
                                     }
                                     .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                                     .frame(minWidth: 100, maxWidth: 350)
                                     .frame(height: 40)
-                                        .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3)
-                                                        .cornerRadius(8))
+                                        .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3).cornerRadius(8))
                                         .clipShape(Rectangle())
                                 })
-
                             }
                         }
                     }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                        .padding(.horizontal)
+//                        .padding(.horizontal)
                 }
                 List( ){
                     if searchDoc.noDoctors == true{
                         Text("Sorry,\nNo_Doctors_Found_🤷‍♂️".localized(language))
                             .multilineTextAlignment(.center)
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+
                         .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
                     }
                     
-                    ForEach(searchDoc.publishedModelSearchDoc ?? [] , id:\.self){ Doctor in
-                        ViewDocCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor,ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl)
-                            .environmentObject(searchDoc)
+                    ForEach(searchDoc.publishedModelSearchDoc , id:\.self){ Doctor in
+//                        ViewDoctorCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor,ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl)
+//                            .environmentObject(searchDoc)
+
+                        Color.secondary
+                            .frame(height:0.7)
+//                            .padding(.vertical,-20)
+                        ViewLeftSection(Doctor: Doctor,MoreInfoAction: {
+                            SelectedDoctor = Doctor
+                            gotoMoreDetails = true
+                        },ImageAction: {
+                            ispreviewImage = true
+                            previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
+                        }){
+                            SelectedDoctor = Doctor
+                            gotoBooking = true
+                        }
+                        .environmentObject(medicalType)
+                        .padding(.horizontal,-10)
+                            .padding(.vertical,-20)
                     }
-                        ZStack{}
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+
+//                        ZStack{}
+                    Color.salamtackWelcome
                         .frame( maxHeight: 2)
                         .foregroundColor(.black)
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+
                         .onAppear(perform: {
-                            if searchDoc.publishedModelSearchDoc?.count ?? 0 > searchDoc.SkipCount{
+                            if searchDoc.publishedModelSearchDoc.count > searchDoc.SkipCount{
                             searchDoc.SkipCount += searchDoc.MaxResultCount
                             searchDoc.FetchDoctors(operation: .fetchMoreDoctors)
                             }
@@ -128,13 +145,15 @@ struct ViewSearchDoc: View {
                 }.refreshable(action: {
                     getAllDoctors()
                 })
+//                    .frame(width:UIScreen.main.bounds.width,alignment:.center)
+
                     .listStyle(.plain)
                     .padding(.vertical,0)
                     .edgesIgnoringSafeArea(.bottom)
             }
             .disabled(showFilter)
             .blur(radius: showFilter == true ? 9:0)
-            .frame(width: UIScreen.main.bounds.width)
+//            .frame(width: UIScreen.main.bounds.width)
 //            .edgesIgnoringSafeArea(.vertical)
 //            .background(Color("CLVBG"))
 
@@ -160,18 +179,25 @@ struct ViewSearchDoc: View {
             ActivityIndicatorView(isPresented: $searchDoc.isLoading)
             
             //  go to clinic info
-            NavigationLink(destination:ViewDocDetails(Doctor:SelectedDoctor, ExType: $searchDoc.MedicalExaminationTypeId)
+            NavigationLink(destination:ViewBooking(Doctor:SelectedDoctor, ExType: $searchDoc.MedicalExaminationTypeId, BookingClinicId: SelectedDoctor.ClinicId ?? 0  )
+                            .environmentObject(DocDetails)
                             .environmentObject(environments)
-                            .navigationBarBackButtonHidden(true),isActive: $gotodoctorDetails) {
+                            .navigationBarBackButtonHidden(true),isActive: $gotoBooking) {
+            }
+            //  go to clinic info
+            NavigationLink(destination:ViewMoreDetails(Doctor:SelectedDoctor, ExType: $searchDoc.MedicalExaminationTypeId)
+                            .environmentObject(DocDetails)
+                            .environmentObject(environments)
+                            .navigationBarBackButtonHidden(true),isActive: $gotoMoreDetails) {
             }
         }
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
         .onReceive(navController.popToRoot, perform: {newval in
-            gotodoctorDetails = newval
+            gotoBooking = newval
         })
         .onAppear(perform: {
-            setFirstselections()
+//            setFirstselections()
 //            FeesVM.startFetchFees()
 //            medicalType.GetExaminationTypeId()
             index =  searchDoc.MedicalExaminationTypeId
@@ -182,7 +208,7 @@ struct ViewSearchDoc: View {
 //            searchDoc.CityName = CityName
 //            searchDoc.AreaId = AreaId
 //            searchDoc.AreaName = AreaName
-            getAllDoctors()
+//            getAllDoctors()
 
         })
         .onChange(of: index){newval in
@@ -246,7 +272,7 @@ extension ViewSearchDoc{
     
     //MARK: --- Functions ----
     func getAllDoctors(){
-        searchDoc.DoctorName = searchTxt
+//        searchDoc.DoctorName = searchTxt
         searchDoc.SkipCount = 0
         searchDoc.FetchDoctors(operation: .fetchDoctors)
     }

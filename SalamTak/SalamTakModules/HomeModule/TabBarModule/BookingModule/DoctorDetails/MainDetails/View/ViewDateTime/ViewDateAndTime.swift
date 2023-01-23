@@ -26,23 +26,31 @@ struct ViewDateAndTime: View {
     @Binding var DoctorId :Int
     @Binding var ClinicId :Int
     @Binding var ExTypeId :Int
+    @Binding var BookingFees :Int
     
-    
-    init(ShowCalendar: Binding<Bool>, selectedSchedualId: Binding<Int>,selectedTime: Binding<String>,DoctorId: Binding<Int>,ClinicId: Binding<Int>,ExTypeId: Binding<Int>){
+    init(ShowCalendar: Binding<Bool>, selectedSchedualId: Binding<Int>,selectedTime: Binding<String>,DoctorId: Binding<Int>,ClinicId: Binding<Int>,ExTypeId: Binding<Int>,BookingFees: Binding<Int>){
         self._ShowCalendar = ShowCalendar
         self._selectedSchedualId = selectedSchedualId
         self._selectedTime = selectedTime
         self._DoctorId = DoctorId
         self._ClinicId = ClinicId
         self._ExTypeId = ExTypeId
-        
+        self._BookingFees = BookingFees
         setWeekView()
     }
     var body: some View {
         VStack{
-            Text("Choose_date_&_time".localized(language))
-                .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
-                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+            HStack {
+                Text("Choose_date_&_time".localized(language))
+                    .foregroundColor(.white)
+                    .font(.system(size: 20))
+                    .bold()
+//                    .frame(width: UIScreen.main.bounds.width-20, height: 35, alignment:.bottomLeading)
+//                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+            }
+            .padding(10)
+            .background(Color.salamtackWelcome)
+            .cornerRadius(20)
 
             
             //MARK: ---- Days of Week --------
@@ -54,30 +62,35 @@ struct ViewDateAndTime: View {
                         // open Calendar
                         ShowCalendar = true
                     }, label: {
-                        HStack{
+                        HStack(spacing:0){
                             Image("TabBar_schedual")
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 25, height: 25)
                             
-                                .padding(.bottom,3)
-                                .padding(.leading)
-                            Text("\(seldatenum) \(CalendarHelper().monthString(date: DocDetails.SchedualDate))  \(CalendarHelper().yearString(date: DocDetails.SchedualDate) )")
-                                .foregroundColor(Color("darkGreen"))
-                                .font(Font.SalamtechFonts.Reg18)
+                                .padding(8)
+                                .clipShape(Circle())
+                                .AddBlueBorder(cornerRadius: 25,linewidth: 1.2)
+                            Text("\(seldatenum) \(CalendarHelper().monthString(date: DocDetails.SchedualDate)) ,")
+                                .foregroundColor(.salamtackWelcome)
+                                .font(.system(size: 18))
+                                .bold()
+
+                            Text(" \(CalendarHelper().yearString(date: DocDetails.SchedualDate) )")
+                                .foregroundColor(.salamtackBlue)
+                                .font(.system(size: 18))
+                                .bold()
                             
-                            Image( systemName: "chevron.forward")
-                                .foregroundColor(Color("darkGreen"))
-                                .padding(.bottom,3)
-                            
+//                            Image( systemName: "chevron.forward")
+//                                .foregroundColor(Color("darkGreen"))
+//                                .padding(.bottom,3)
                             Spacer()
-                            
                         }
                         //                        .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
                         .frame(height:15)
                     })
                         .padding()
                     
-                    Divider().padding(.top,-10)
+//                    Divider().padding(.top,-10)
                     
                     //MARK: --- Current Week ------
                     HStack(spacing:0){
@@ -110,19 +123,20 @@ struct ViewDateAndTime: View {
                     }
                     .frame(height: 60)
                 }
-                .background(Color.white)
+//                .background(Color.white)
             }
             .frame(width: UIScreen.main.bounds.width-30)
-            .cornerRadius(9)
-            .shadow(color: .black.opacity(0.1), radius: 9)
+//            .cornerRadius(9)
+//            .shadow(color: .black.opacity(0.1), radius: 9)
             
             //MARK: ---- periods of slot --------
-            if openSlots && (DocDetails.publishedModelSearchDoc?.DoctorScheduals?.count ?? 0) > 0 {
+            if  true || openSlots && (DocDetails.publishedModelSearchDoc?.DoctorScheduals?.count ?? 0) > 0 {
                 VStack{
                     ForEach(DocDetails.publishedModelSearchDoc?.DoctorScheduals ?? [], id:\.id ){ sched in
                         Button(action: {
                             selectedSchedualId = sched.id ?? 0
                             if selectedSchedualId == sched.id ?? 0{
+                                self.BookingFees = sched.Fees ?? 0
                                 timeexpanded.toggle()
                             }else{
                                 timeexpanded = true
@@ -130,7 +144,7 @@ struct ViewDateAndTime: View {
                         }, label: {
                             HStack{
                                 HStack{
-                                    Text(ConvertStringDate(inp: sched.TimeFrom ?? "", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
+                                    Text(ConvertStringDate(inp: sched.TimeFrom ?? "12:25:20", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
                                         .foregroundColor(Color("darkGreen"))
                                         .font(Font.SalamtechFonts.Reg16)
                                     
@@ -138,7 +152,7 @@ struct ViewDateAndTime: View {
                                         .foregroundColor(.gray)
                                         .font(Font.SalamtechFonts.Reg16)
                                     
-                                    Text(ConvertStringDate(inp: sched.TimeTo ?? "", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
+                                    Text(ConvertStringDate(inp: sched.TimeTo ?? "24:20:20", FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a") )
                                         .foregroundColor(Color("darkGreen"))
                                         .font(Font.SalamtechFonts.Reg16)
                                     
@@ -176,7 +190,7 @@ struct ViewDateAndTime: View {
                     }
                 }
             }
-            ViewAboutDoctor(DoctorAbout: DocDetails.publishedModelSearchDoc?.DoctorInfo ?? "")
+//            ViewAboutDoctor(DoctorAbout: DocDetails.publishedModelSearchDoc?.DoctorInfo ?? "")
         }
         .onAppear(perform: {
             DocDetails.DoctorId = DoctorId
@@ -210,7 +224,7 @@ struct ViewDateAndTime: View {
 
 struct ViewDateAndTime_Previews: PreviewProvider {
     static var previews: some View {
-        ViewDateAndTime(ShowCalendar: .constant(false), selectedSchedualId: .constant(55), selectedTime: .constant(""), DoctorId: .constant(125), ClinicId: .constant(125), ExTypeId: .constant(3))
+        ViewDateAndTime(ShowCalendar: .constant(false), selectedSchedualId: .constant(55), selectedTime: .constant(""), DoctorId: .constant(125), ClinicId: .constant(125), ExTypeId: .constant(3),BookingFees: .constant(0))
             .environmentObject(ViewModelDocDetails())
     }
 }

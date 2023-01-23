@@ -1,44 +1,46 @@
 //
-//  ViewModelExaminationTypeId.swift
-//  SalamTech
+//  ViewModelDocClinics.swift
+//  SalamTak
 //
-//  Created by Mohamed Hammam on 02/04/2022.
-//  
+//  Created by wecancity on 23/01/2023.
+//
 
 import Foundation
 import Combine
-import SwiftUI
+import Alamofire
+//import SwiftUI
 
-class ViewModelExaminationTypeId: ObservableObject {
-    var language = LocalizationService.shared.language
-
+class ViewModelDocClinics: ObservableObject {
+    
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let ModelExTypeId = PassthroughSubject<BaseResponse<[ExaminationType]>, Error>()
-        private var cancellables: Set<AnyCancellable> = []
+    let passDocClinicsArr = PassthroughSubject<BaseResponse<[ModelDocClinics]> , Error>()
+    private var cancellables: Set<AnyCancellable> = []
     
+    // ------- input
+    @Published var DoctorId                            :Int = 0
+
     //------- output
-    @Published var publishedModelExaminationTypeId: [ExaminationType] = []
-    
+    @Published var publishedModelSearchDoc: [ModelDocClinics]?
+
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
+
     
     init() {
-        GetExaminationTypeId()
-        ModelExTypeId.sink { (completion) in
+        passDocClinicsArr.sink { (completion) in
+            //            print(completion)
         } receiveValue: { [self] (modeldata) in
-            self.publishedModelExaminationTypeId = modeldata.data ?? []
+            self.publishedModelSearchDoc = modeldata.data
         }.store(in: &cancellables)
     }
-    
 }
 
 
-
-extension ViewModelExaminationTypeId:TargetType{
+extension ViewModelDocClinics:TargetType{
     var url: String{
-        return URLs().GetMedicalExaminationType
+        return URLs().DoctorClinics
     }
     
     var method: httpMethod{
@@ -46,25 +48,27 @@ extension ViewModelExaminationTypeId:TargetType{
     }
     
     var parameter: parameterType{
-        return .plainRequest
+        let Parameters : [String:Any] = [
+//        // required
+            "DoctorId": DoctorId
+    ]
+        return .parameterRequest(Parameters: Parameters, Encoding: URLEncoding.default)
     }
     
     var header: [String : String]? {
         return [:]
     }
-
     
-    func GetExaminationTypeId() {
+    func FetchDoctorClinics() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<[ExaminationType]>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<[ModelDocClinics]>.self) { [self] (success, model, err) in
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.ModelExTypeId.send( model!  )
+                        self.passDocClinicsArr.send( model!  )
                     }
-
                 }else{
                     if model != nil{
                         //case of model with error
@@ -84,13 +88,11 @@ extension ViewModelExaminationTypeId:TargetType{
                 }
                 isLoading = false
             }
-            
         }else{
             //case of no internet connection
             activeAlert = .NetworkError
             message = "Check_Your_Internet_Connection".localized(language)
             isAlert = true
         }
-        
     }
 }

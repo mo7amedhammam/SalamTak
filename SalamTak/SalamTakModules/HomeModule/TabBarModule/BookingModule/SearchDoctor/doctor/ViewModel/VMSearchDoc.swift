@@ -17,7 +17,7 @@ class VMSearchDoc: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     @Published var searchDocOperation : searchDocType = .fetchDoctors
-    @Published var publishedModelSearchDoc: [Doc]? = []
+    @Published var publishedModelSearchDoc: [Doc] = []
 //    [Doc.init( id: 7878787878787, FeesFrom: 78787878787, DoctorName: "", SubSpecialistName: [], MedicalExamationTypeImage: [])]
     
     //MARK: --- inputs ------
@@ -27,7 +27,7 @@ class VMSearchDoc: ObservableObject {
     @Published var SpecialistName                         :String = ""
 
     @Published var MedicalExaminationTypeId           :Int = 0
-    @Published var DoctorName                           :String?
+    @Published var DoctorName                           :String = ""
     @Published var CityId                                :Int? = 0
     @Published var CityName                                :String? = ""
 
@@ -75,15 +75,15 @@ class VMSearchDoc: ObservableObject {
             switch self?.searchDocOperation {
             case .fetchDoctors:
                 self?.publishedModelSearchDoc = modeldata.data?.Items ?? []
-                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc?.isEmpty == true {
+                if self?.publishedModelSearchDoc == [] {
                     self?.noDoctors = true
                 }
 
             case .fetchMoreDoctors:
                 if modeldata.data?.Items?.count ?? 0 > 3{
-                    self?.publishedModelSearchDoc?.append( contentsOf: modeldata.data?.Items ?? [])
+                    self?.publishedModelSearchDoc.append( contentsOf: modeldata.data?.Items ?? [])
                 }
-                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc?.isEmpty == true {
+                if self?.publishedModelSearchDoc == [] || self?.publishedModelSearchDoc.isEmpty == true {
                     self?.noDoctors = true
                 }
  

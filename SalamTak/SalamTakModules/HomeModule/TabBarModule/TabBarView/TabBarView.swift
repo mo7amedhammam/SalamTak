@@ -28,10 +28,6 @@ struct TabBarView: View {
 
     var body: some View {
         ZStack{
-//        NavigationView {
-//            GeometryReader{ bounds in
-//                ZStack{
-//
                     VStack(spacing: 0){
                         NavigationView{
                         if selectedTab == TabBarVM.tabs[0] {
@@ -49,19 +45,13 @@ struct TabBarView: View {
                             MoreView(index: $MoreTabIndex,SelectedTab: $selectedTab,DesiredScroll: $DesiredAppointmentItem,showingList:$showingList)
                                 .navigationBarHidden(true)
                                 .environmentObject(environments)
-//                                .environmentObject(infoProfileVM)
-//                                .environmentObject(medicalProfileVM)
                         }
                         }.navigationBarHidden(true)
                         Spacer()
-//                        ZStack{
-//                        if !(environments.ShowBloodType){
                         HStack(spacing: 0){
                             Spacer()
                             ForEach(TabBarVM.tabs.indices ){tab in
                                 TabButton(title: TabBarVM.tabs[tab],selectedTab:$selectedTab){
-                                    selectedTab = TabBarVM.tabs[tab]
-//                                    environments.popToRoot.send(true)
                                     navController.popToRoot.send(false)
                                     if selectedTab == "TabBar_appointments" {
                                         AppointmentsTabIndex = 0
@@ -72,6 +62,8 @@ struct TabBarView: View {
                                     else if selectedTab == "TabBar_more"{
                                         MoreTabIndex = 0
                                     }
+                                    selectedTab = TabBarVM.tabs[tab]
+
                                 }
                                 Spacer()
                             }
@@ -84,8 +76,6 @@ struct TabBarView: View {
                                 .fill(Color.salamtackWelcome)
                                 .padding(.top, -5)
                         )
-//                        }
-//                    }
             }
                     .edgesIgnoringSafeArea(.bottom)
         }
@@ -134,8 +124,6 @@ struct TabBarView: View {
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarView()
-//            .environmentObject(PatientInfoViewModel())
-//            .environmentObject(PatientMedicalInfoViewModel())
     }
 }
 

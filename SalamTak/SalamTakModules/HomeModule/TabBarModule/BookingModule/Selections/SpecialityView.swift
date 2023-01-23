@@ -15,6 +15,8 @@ struct SpecialityView: View {
     @EnvironmentObject var searchDoc : VMSearchDoc
     @EnvironmentObject var environments : EnvironmentsVM
     var language = LocalizationService.shared.language
+    @State  var isSearch = false
+
     @State var gotocity = false
     @State var gotoSearchdoctor = false
     @Binding var selectedTypeId : Int
@@ -48,6 +50,11 @@ struct SpecialityView: View {
                     .cornerRadius(8)
                     .scaledToFit()
                     Group{
+                        SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchDoc.DoctorName, isSearch: $isSearch){
+//                            getAllDoctors()
+                        }
+                        .AddBlueBorder(linewidth:1.3)
+                        .padding(.horizontal)
                         HStack {
                             Text("SpecialitiesـSubTitle".localized(language))
                                 .foregroundColor(.salamtackBlue)
@@ -219,7 +226,6 @@ struct SpecialityView: View {
                         })
                             .frame(width: 150, height: 40)
                             .AddBlueBorder()
-
                     }
                 }
                 .background(Color.clear)
@@ -262,6 +268,7 @@ struct SpecialityView: View {
             environments.AreaId = searchDoc.FilterAreaId ?? 0
             environments.SeniorityId = searchDoc.FilterSeniortyLevelId ?? 0
         })
+        
         .background(
             newBackImage(backgroundcolor: .white, imageName:.image2)
         )

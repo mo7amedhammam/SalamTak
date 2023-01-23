@@ -7,7 +7,7 @@
 
 
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 import ImageViewerRemote
 //import XCTest
 
@@ -17,11 +17,14 @@ struct ViewSummary:View{
     @EnvironmentObject var environments : EnvironmentsVM
 
     var Doctor:Doc
+//    var ClinicId:Int
+
     @Binding var ExType :Int
     @Binding var BookingscedualId :Int
     @Binding var BookiDate :Date
     @Binding var BookiTime :String
-    
+    @Binding var BookingFees :Int
+
     @State var GotoSchedual = false
    
     @State var ispreviewImage = false
@@ -30,23 +33,36 @@ struct ViewSummary:View{
 
     var body: some View{
         ZStack{
+            
             VStack {
-                AppBarView(Title: "Summary".localized(language),backColor: .clear,withbackButton: !ispreviewImage)
-                    .frame(height:50)
-                    .padding(.top,-20)
+                
+                ZStack {
+                    AppBarView(Title: "".localized(language),backColor: .clear,withbackButton: !ispreviewImage)
+                        .frame(height:50)
+
+                    Image("logo")
+                        .resizable()
+                        .frame(width:220, height: 150)
+                    .aspectRatio( contentMode: .fit)
+                }
+                Text("Summary_".localized(language))
+                    .foregroundColor(.salamtackWelcome)
+                    .font(.system(size: 30))
+                    .bold()
+                    .padding(.top,-30)
+
 
                 ScrollView{
 //                    Spacer().frame(height:20)
-                    ZStack {
                         VStack(alignment:.leading){
                             ViewTopSection(Doctor: Doctor, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
                             
-                            Image("Line")
-                                .resizable()
-                                .renderingMode(.original)
-                                .tint(.black)
-                                .frame( height: 2)
-                                .foregroundColor(.black)
+//                            Image("Line")
+//                                .resizable()
+//                                .renderingMode(.original)
+//                                .tint(.black)
+//                                .frame( height: 2)
+//                                .foregroundColor(.black)
                             
                             //MARK: ----- Booking Details --------
                             BookingDetails(Doctor: Doctor, ExType: $ExType, BookiDate: $BookiDate, BookiTime: $BookiTime)
@@ -54,36 +70,64 @@ struct ViewSummary:View{
                             //MARK: ----- Patient Details ------
                             PatientDetails()
                             
-                            //MARK: ----- Booking Price ------
-                            HStack{
-                                Text("Total_Fee".localized(language))
-                                Spacer()
-                                ZStack {
-                                    Text("\(String(Doctor.FeesFrom ?? 0.0)) "+"EGP".localized(language))
-                                        .fontWeight(.semibold)
-                                        .font(.title3)
-                                }
-                                .padding(10)
-                                .foregroundColor(Color("darkGreen"))
-                                .background(Color("darkGreen").opacity(0.3))
-                                .cornerRadius(12)
-                                .border( .regularMaterial ,width: 1.1)
-                            }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                .padding(.top, 0)
-                                .padding(.horizontal, 20)
-                            Spacer()
+
+//                            .padding(.top, 0)
+//                            .padding(.horizontal, 20)
+//                            Spacer()
                         }
-                        .background(Color.white)
                         .cornerRadius(9)
-                        .shadow(color: .black.opacity(0.1), radius: 9)
-                    }
+                        //MARK: ----- Booking Price ------
+                        VStack{
+                            HStack {
+                                Text("Total_Fee".localized(language))
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                                    .bold()
+                            }
+                            .padding(.horizontal,20)
+                            .padding(.vertical ,8)
+                            .background(Color.salamtackWelcome)
+                            .cornerRadius(20)
+//                                Spacer()
+//                                ZStack {
+                                Text("\(String(BookingFees ?? 0)) "+"EGP".localized(language))
+                                .foregroundColor(.salamtackBlue)
+                                .font(.system(size: 25))
+                                .fontWeight(.bold)
+
+//                                }
+//                                .padding(10)
+//                                .foregroundColor(Color("darkGreen"))
+//                                .background(Color("darkGreen").opacity(0.3))
+//                                .cornerRadius(12)
+//                                .border( .regularMaterial ,width: 1.1)
+                        }
                     .padding(.horizontal,15)
                     .padding(.top,10)
+                    
+                    Button(action: {
+                        CreateAppointment.CreatePatientAppointment()
+                    }, label: {
+                        Text("Finish_".localized(language))
+                            .padding(.vertical,10)
+                            .padding(.horizontal,30)
+                            .font(.headline)
+                            .foregroundColor(.salamtackBlue)
+                    })
+                        .buttonStyle(.plain)
+                        .AddBlueBorder(linewidth:1.2)
                 }
-                .padding(.bottom,130)
-//                .background(Color("CLVBG"))
+//                .padding(.bottom,130)
             }.disabled(CreateAppointment.isDone)
-            
+                .edgesIgnoringSafeArea(.top)
+
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarLeading) {
+//                        if self.CreateAppointment.isDone == false && !ispreviewImage{
+//                            BackButtonView()
+//                        }
+//                    }
+//                }
 //            VStack{
 //                AppBarView(Title: "Summary".localized(language))
 //                    .frame(height:70)
@@ -94,11 +138,11 @@ struct ViewSummary:View{
 //            }
 //            .edgesIgnoringSafeArea(.top)
 
-            PopUpView(IsPresented: .constant(true), content: {
-                ConfirmButton( Doctor: Doctor)
-                    .environmentObject(CreateAppointment)
-//                    .environmentObject(environments)
-            })
+//            PopUpView(IsPresented: .constant(true), content: {
+//                ConfirmButton( Doctor: Doctor)
+//                    .environmentObject(CreateAppointment)
+////                    .environmentObject(environments)
+//            })
     
             // showing loading indicator
             ActivityIndicatorView(isPresented: $CreateAppointment.isLoading)
@@ -124,22 +168,18 @@ struct ViewSummary:View{
             CreateAppointment.AppointmentDate = "\(ChangeFormate(NewFormat: "yyyy-MM-dd").string(from: BookiDate))T\(BookiTime)"
             CreateAppointment.Fees = Doctor.FeesFrom  ?? 00
         })
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                if self.CreateAppointment.isDone == false && !ispreviewImage{
-                    BackButtonView()
-                }
-            }
-        }
+
         
         .popup(isPresented: $CreateAppointment.isDone){
             BottomPopupView{
                 ConfirmationPopUp(BookiDate: $BookiDate, BookiTime: $BookiTime, GotoSchedual: $GotoSchedual)
+                    .frame(width: UIScreen.main.bounds.width - 40, height: 400, alignment: .center)
+
                     .environmentObject(CreateAppointment)
                     .environmentObject(environments)
                 Spacer()
             }
-            .shadow(color: .black.opacity(0.3), radius: 12)
+            .shadow(color: .black.opacity(0.7), radius: 3)
             .padding()
         }
 //        .navigationBarHidden(ispreviewImage)
@@ -165,7 +205,7 @@ struct ViewSummary:View{
 struct ViewSummary_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            ViewSummary(Doctor: Doc.init(), ExType: .constant(5),BookingscedualId :.constant(645454545),BookiDate :.constant(Date()),BookiTime :.constant("18:33"))
+            ViewSummary(Doctor: Doc.init(), ExType: .constant(5),BookingscedualId :.constant(645454545),BookiDate :.constant(Date()),BookiTime :.constant("18:33"), BookingFees: .constant(0))
                 .environmentObject(EnvironmentsVM())
         }.navigationBarHidden(true)
     }

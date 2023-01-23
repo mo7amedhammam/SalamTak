@@ -15,27 +15,37 @@ struct BookingDetails: View {
     @Binding var BookiTime :String
     
     var body: some View {
-        VStack(spacing:5){
-            HStack {
-                Text("Booking_details".localized(language))
-                Spacer()
-            }.padding(.leading)
-                .padding(.vertical,10)
-                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+        VStack(){
+//            HStack {
+//                Text("Booking_details".localized(language))
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 20))
+//                    .bold()
+////                Spacer()
+//            }
+////            .padding(.leading)
+//                .padding(.vertical,8)
+//                .padding(.horizontal,30)
+//                .background(Color.salamtackWelcome)
+//                .cornerRadius(20)
+//                .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             
             HStack(){
                 Image("TabBar_schedual")
                     .resizable()
                     .foregroundColor(Color("darkGreen"))
                     .frame(width: 25, height: 25)
-                    .padding(.leading)
+                    .padding(8)
+                    .clipShape(Circle())
+                    .AddBlueBorder(cornerRadius: 25,linewidth: 1.2)
                 VStack(alignment:.leading){
                     Text("Booking_Date_&_Time_:".localized(language))
-                        .foregroundColor(Color("darkGreen"))
-                        .font(Font.SalamtechFonts.Reg14)
-                    
+                        .foregroundColor(.salamtackWelcome)
+                        .font(.system(size: 15))
+                        .bold()
+
                     Text(ChangeFormate(NewFormat: "dd MMM. yyyy").string(from: BookiDate) + " ( \( ConvertStringDate(inp: BookiTime, FormatFrom: "HH:mm:ss", FormatTo: "hh:mm a")) )" )
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.black.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
                     
                 }
@@ -50,14 +60,17 @@ struct BookingDetails: View {
                     .foregroundColor(Color("darkGreen"))
                     .frame(width: 25, height: 25)
                     .aspectRatio( contentMode: .fit)
-                    .padding(.leading)
-                
+                    .padding(8)
+                    .clipShape(Circle())
+                    .AddBlueBorder(cornerRadius: 25,linewidth: 1.2)
+
                 VStack(alignment:.leading){
                     Text("\(getEx(id: ExType).name?.localized(language) ?? "") " + "Appointment".localized(language) + ":")
-                        .foregroundColor(Color("darkGreen"))
-                        .font(Font.SalamtechFonts.Reg14)
+                        .foregroundColor(.salamtackWelcome)
+                        .font(.system(size: 15))
+                        .bold()
                     Text(getEx(id: ExType).Comment?.localized(language) ?? "")
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.black.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
                     
                 }
@@ -72,15 +85,18 @@ struct BookingDetails: View {
             HStack{
                 Image("doc4")
                     .resizable()
-                    .frame(width: 20, height: 20)
-                    .padding(.leading)
-                
+                    .frame(width: 25, height: 25)
+                    .padding(8)
+                    .clipShape(Circle())
+                    .AddBlueBorder(cornerRadius: 25,linewidth: 1.2)
+
                 VStack(alignment:.leading){
                     Text("Waiting_Time:".localized(language))
-                        .foregroundColor(Color("darkGreen"))
-                        .font(Font.SalamtechFonts.Reg14)
+                        .foregroundColor(.salamtackWelcome)
+                        .font(.system(size: 15))
+                        .bold()
                     Text("\(Doctor.WaitingTime ?? 15) " + "Minutes".localized(language))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.black.opacity(0.7))
                         .font(Font.SalamtechFonts.Reg14)
                     
                 }

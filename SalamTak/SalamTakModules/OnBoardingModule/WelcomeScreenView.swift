@@ -20,7 +20,7 @@ struct WelcomeScreenView: View {
     @StateObject var environments = EnvironmentsVM()
 
     var body: some View {
-//        NavigationView{
+        NavigationView{
         ZStack {
             newBackImage(backgroundcolor: .white)
             VStack {
@@ -68,10 +68,11 @@ struct WelcomeScreenView: View {
                                .padding(.bottom,hasNotch ? 80:90)
             }
     //        .edgesIgnoringSafeArea(.top)
-    //        }
+            
             .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        }
+     
+        
         
             // go to complete Certs after completing first view
         NavigationLink(destination: ViewLogin(ispresented: .constant(false))
@@ -89,7 +90,8 @@ struct WelcomeScreenView: View {
                        ,isActive: $isSignup , label: {
             })
     }
-    
+    }
+    }
 }
 //private extension WelcomeScreenView {
 //    func flagBy(countryCode: String) -> Image {

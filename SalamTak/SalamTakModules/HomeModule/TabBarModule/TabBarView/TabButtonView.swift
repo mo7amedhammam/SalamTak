@@ -33,7 +33,6 @@ struct TabButton: View{
                 
                 Text(title.localized(language))
                     .font(Font.SalamtechFonts.Reg16)
-
                     .font(.caption)
                     .foregroundColor(Color.black.opacity(selectedTab == title ? 0.6 : 0.2))
             }
