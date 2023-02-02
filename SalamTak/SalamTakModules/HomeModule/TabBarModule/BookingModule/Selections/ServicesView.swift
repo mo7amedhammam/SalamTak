@@ -7,13 +7,16 @@
 
 import SwiftUI
 
+
 struct ServicesView: View {
     @StateObject var medicalType = ViewModelExaminationTypeId()
+    @StateObject var OtherMedicalServices = ViewModelOtherMedicalServices()
     @StateObject var searchDoc = VMSearchDoc()
     @EnvironmentObject var environments : EnvironmentsVM
     var language = LocalizationService.shared.language
     var vGridLayout = [ GridItem(.adaptive(minimum: 90), spacing: 20) ]
     @State var gotoSpec = false
+    @State var gotoOtherMedical = false
     @State var selectedTypeId = 0
     
     var body: some View {
@@ -118,28 +121,25 @@ struct ServicesView: View {
                         .frame(height:33)
                         
                         LazyVGrid(columns: vGridLayout){
-                            ForEach((medicalType.publishedModelExaminationTypeId).dropLast((medicalType.publishedModelExaminationTypeId).count % 3), id:\.self) { exType in
+                            ForEach((OtherMedicalServices.medicalServises).dropLast((OtherMedicalServices.medicalServises).count % 3), id:\.self) { exType in
                                 ZStack {
                                     Button(action: {
-//                                        selectedTypeId = exType.id ?? 11212121212121
-//                                        gotoSpec=true
+                                        gotoOtherMedical=true
+                                        OtherMedicalServices.medicalServiseId = exType.id ?? 0
                                     }, label: {
                                         VStack(spacing:0){
-                                            remoteAsyncImage(imageUrl: exType.image ?? "")
-                                                .frame(width: 60, height: 60)
-                                                .padding()
-                                                .AddBlueBorder()
+                                            Image(exType.image ?? "")
+//                                            remoteAsyncImage(imageUrl: exType.image ?? "")
+                                                .resizable()
+                                                .frame(width: 100, height: 100)
+//                                                .AddBlueBorder()
                                             
-                                            Text(exType.Name?.firstWord ?? "")
-                                            //                                                    .padding(.vertical,10)
+                                            Text("\(exType.Name?.localized(language) ?? "")".firstWord ?? "")
                                                 .foregroundColor(.salamtackBlue)
                                                 .font(.salamtakBold(of: 18))
                                         }
                                     })
                                         .frame(width: (UIScreen.main.bounds.width/3)-20, height: 120)
-                                    //                                            .background(Color.white)
-                                    //                                            .cornerRadius(8)
-                                    //                                            .shadow(color: .black.opacity(0.099), radius: 5)
                                         .disabled(exType.Inactive ?? false)
                                 }.overlay(content: {
                                     if  (exType.Inactive ?? false){
@@ -152,20 +152,22 @@ struct ServicesView: View {
                         
                         
                         HStack {
-                            ForEach((medicalType.publishedModelExaminationTypeId).suffix((medicalType.publishedModelExaminationTypeId).count % 3), id:\.self) { exType in
+                            ForEach((OtherMedicalServices.medicalServises).suffix((OtherMedicalServices.medicalServises).count % 3), id:\.self) { exType in
                                 ZStack {
                                     Button(action: {
 //                                        selectedTypeId = exType.id ?? 11212121212121
-//                                        gotoSpec=true
+                                        gotoOtherMedical=true
+                                        OtherMedicalServices.medicalServiseId = exType.id ?? 0
                                     }, label: {
                                         VStack(spacing:0){
-                                            remoteAsyncImage(imageUrl: exType.image ?? "")
-                                                .frame(width: 60, height: 60)
-                                                .padding()
-                                                .AddBlueBorder()
+//                                            remoteAsyncImage(imageUrl: exType.image ?? "")
+                                            Image(exType.image ?? "")
+                                                .resizable()
+                                                .frame(width: 100, height: 100)
+//                                                .AddBlueBorder()
                                             
-                                            Text(exType.Name?.firstWord ?? "")
-                                            //                                                    .padding(.vertical,10)
+                                            Text("\(exType.Name?.localized(language) ?? "")".firstWord ?? "")
+                                                .multilineTextAlignment(.center)
                                                 .foregroundColor(.salamtackBlue)
                                                 .font(.salamtakBold(of: 18))
                                         }
@@ -194,9 +196,21 @@ struct ServicesView: View {
                             .environmentObject(environments)
                             .navigationBarHidden(true),isActive: $gotoSpec) {
             }
+            
+            //  go to clinic info
+            NavigationLink(destination:OtherMedicalServicesFilter()
+                            .environmentObject(OtherMedicalServices)
+                            .environmentObject(environments)
+                            .navigationBarHidden(true),isActive: $gotoOtherMedical) {
+            }
                             .onReceive(navController.popToRoot, perform: {newval in
                                 gotoSpec = newval
+                                gotoOtherMedical = newval
                             })
+            
+                        
+            
+            
         }
         .frame(width: UIScreen.main.bounds.width)
         .edgesIgnoringSafeArea(.top)

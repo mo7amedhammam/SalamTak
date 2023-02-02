@@ -408,3 +408,9 @@
 "By_Phone" = "باستخدام الهاتف";
 
 "More_Screen_Notifications" = "الإشعارات";
+
+"Hospitals_" = "مستشفيات";
+"Polyclinic_" = "عيادات";
+"Pharmacies_" = "صيدليات";
+"Labs_" = "معامل";
+"Scan_" = "مراكز آشعه";

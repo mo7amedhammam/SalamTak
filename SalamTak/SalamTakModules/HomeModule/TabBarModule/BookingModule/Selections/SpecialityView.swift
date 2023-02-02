@@ -317,7 +317,6 @@ struct SpecialityView_Previews: PreviewProvider {
 struct genderModel:Hashable{
     var GenderName : String = ""
     var GenderId : Int = 0
-    //    let GenderName : String = ""
     
     init(name:String,id:Int){
         self.GenderName = name

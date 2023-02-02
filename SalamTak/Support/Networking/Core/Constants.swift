@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class URLs {
-    
 //     static let BaseUrl = "https://salamtakapitest.azurewebsites.net"
     static let BaseUrl = "https://salamtechapi.azurewebsites.net"
 
@@ -45,7 +44,8 @@ class URLs {
     var GetDuration = BaseUrl + "/api/\(Helper.getLanguage())/LookUp/GetDurationMedicalExamination"
     var Getservices = BaseUrl + "/api/\(Helper.getLanguage())/Services/GetServices"
     var GetMedicalExaminationType = BaseUrl + "/api/\(Helper.getLanguage())/LookUp/GetMedicalExaminationType"
-    
+    var GetHealthEntity = BaseUrl + "/api/\(Helper.getLanguage())/HealthEntity/GetHealthEntity"
+
     //search Doctor
     var DoctorSearch = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/DoctorSearch"
     var DoctorDetails = BaseUrl + "/api/\(Helper.getLanguage())/DoctorSearch/GetDoctorDetail"
