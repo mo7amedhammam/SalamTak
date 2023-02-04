@@ -124,8 +124,9 @@ struct ServicesView: View {
                             ForEach((OtherMedicalServices.medicalServises).dropLast((OtherMedicalServices.medicalServises).count % 3), id:\.self) { exType in
                                 ZStack {
                                     Button(action: {
-                                        gotoOtherMedical=true
+                                        OtherMedicalServices.medicalServiseName = exType.Name ?? ""
                                         OtherMedicalServices.medicalServiseId = exType.id ?? 0
+                                        gotoOtherMedical=true
                                     }, label: {
                                         VStack(spacing:0){
                                             Image(exType.image ?? "")
@@ -156,8 +157,11 @@ struct ServicesView: View {
                                 ZStack {
                                     Button(action: {
 //                                        selectedTypeId = exType.id ?? 11212121212121
-                                        gotoOtherMedical=true
+                                        OtherMedicalServices.medicalServiseName = exType.Name ?? ""
                                         OtherMedicalServices.medicalServiseId = exType.id ?? 0
+
+                                        gotoOtherMedical=true
+
                                     }, label: {
                                         VStack(spacing:0){
 //                                            remoteAsyncImage(imageUrl: exType.image ?? "")
@@ -191,14 +195,14 @@ struct ServicesView: View {
             ActivityIndicatorView(isPresented: $medicalType.isLoading)
             
             //  go to clinic info
-            NavigationLink(destination:SpecialityView( selectedTypeId: $selectedTypeId)
+            NavigationLink(destination:SpecialityView(isPresented: .constant(false))
                             .environmentObject(searchDoc)
                             .environmentObject(environments)
                             .navigationBarHidden(true),isActive: $gotoSpec) {
             }
             
             //  go to clinic info
-            NavigationLink(destination:OtherMedicalServicesFilter()
+            NavigationLink(destination:OtherMedicalServicesFilter( isPresented: .constant(false))
                             .environmentObject(OtherMedicalServices)
                             .environmentObject(environments)
                             .navigationBarHidden(true),isActive: $gotoOtherMedical) {

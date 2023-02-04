@@ -35,7 +35,7 @@ struct ViewSearchDoc: View {
     }
     
     @State var FilterTag : FilterCases = .Menu
-    @State var showFilter = false
+    @State var ShowFilter = false
     @StateObject var seniorityVM = ViewModelSeniority()
     @StateObject var specialityvm = ViewModelSpecialist()
     @StateObject var SubSpecialityVM = ViewModelSubspeciality()
@@ -56,44 +56,45 @@ struct ViewSearchDoc: View {
                     .frame(height:90)
                     .padding(.top,-20)
 
-                
-//                ZStack {
-//                    Image("WhiteCurve")
-//                        .resizable()
-//                        .frame(width: UIScreen.main.bounds.width, height: 120)
-//                        .padding(.top,-20)
-//
-//                    SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchTxt, isSearch: $isSearch){
-//                        getAllDoctors()
-//                    }
-//                    .shadow(color: .black.opacity(0.2), radius: 15)
+//                ScrollView(.horizontal, showsIndicators: false) {
+//                    HStack( spacing: 10) {
+//                        ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in
+//                            if type.id==0{ }else{
+//                                Button(action: {
+//                                    withAnimation(.default) {
+//                                        self.index = type.id ?? 1
+//                                    }
+//                                }, label: {
+//                                    HStack(alignment: .center){
+//                                        Text(type.Name ?? "")
+//                                            .font(Font.SalamtechFonts.Reg16)
+//                                            .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
+//                                    }
+//                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+//                                    .frame(minWidth: 100, maxWidth: 350)
+//                                    .frame(height: 40)
+//                                        .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3).cornerRadius(8))
+//                                        .clipShape(Rectangle())
+//                                })
+//                            }
+//                        }
+//                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
+////                        .padding(.horizontal)
 //                }
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack( spacing: 10) {
-                        ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in
-                            if type.id==0{ }else{
-                                Button(action: {
-                                    withAnimation(.default) {
-                                        self.index = type.id ?? 1
-                                    }
-                                }, label: {
-                                    HStack(alignment: .center){
-                                        Text(type.Name ?? "")
-                                            .font(Font.SalamtechFonts.Reg16)
-                                            .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
-                                    }
-                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-                                    .frame(minWidth: 100, maxWidth: 350)
-                                    .frame(height: 40)
-                                        .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3).cornerRadius(8))
-                                        .clipShape(Rectangle())
-                                })
-                            }
-                        }
-                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                        .padding(.horizontal)
+                HStack(){
+                    Button(action: {
+                        ShowFilter.toggle()
+                    }, label: {
+                        Text("Filter_".localized(language))
+                            .foregroundColor(.white)
+                    })
+                        .frame(width: 120, height: 40, alignment: .center)
+                        .background(Color.salamtackBlue)
+                        .cornerRadius(8)
+                    Spacer()
                 }
+                .padding(.horizontal)
+                
                 List( ){
                     if searchDoc.noDoctors == true{
                         Text("Sorry,\nNo_Doctors_Found_🤷‍♂️".localized(language))
@@ -148,11 +149,12 @@ struct ViewSearchDoc: View {
 //                    .frame(width:UIScreen.main.bounds.width,alignment:.center)
 
                     .listStyle(.plain)
+//                    .padding(.top,-20)
                     .padding(.vertical,0)
                     .edgesIgnoringSafeArea(.bottom)
             }
-            .disabled(showFilter)
-            .blur(radius: showFilter == true ? 9:0)
+//            .disabled(showFilter)
+//            .blur(radius: showFilter == true ? 9:0)
 //            .frame(width: UIScreen.main.bounds.width)
 //            .edgesIgnoringSafeArea(.vertical)
 //            .background(Color("CLVBG"))
@@ -215,25 +217,31 @@ struct ViewSearchDoc: View {
             searchDoc.MedicalExaminationTypeId = newval
             getAllDoctors()
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                if !showFilter && !ispreviewImage{
-                    BackButtonView()
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if  !ispreviewImage{
-                FilterButtonView(imagename: "filter"){
-                    showFilter.toggle()
-                }
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                if !showFilter && !ispreviewImage{
+//                    BackButtonView()
+//                }
+//            }
+//        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                if  !ispreviewImage{
+//                FilterButtonView(imagename: "filter"){
+//                    showFilter.toggle()
+//                }
+//                }
+//            }
+//        }
         .overlay(content: {
             ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
         })
+        .sheet(isPresented: $ShowFilter){
+            SpecialityView(isPresented:$ShowFilter)
+                .environmentObject(environments)
+                .environmentObject(searchDoc)
+        }
+        
         // Alert with no internet connection
             .alert(isPresented: $searchDoc.isAlert, content: {
                 Alert(title: Text(searchDoc.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {

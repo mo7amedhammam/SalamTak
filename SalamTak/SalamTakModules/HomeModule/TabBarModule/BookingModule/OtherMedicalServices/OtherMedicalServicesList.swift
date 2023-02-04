@@ -13,13 +13,15 @@ struct OtherMedicalServicesList: View {
 //    @StateObject var medicalType = ViewModelExaminationTypeId()
     @EnvironmentObject var OtherMedicalServices : ViewModelOtherMedicalServices
     @EnvironmentObject var environments : EnvironmentsVM
-    @State  var isSearch = false
+    @State  var ShowFilter = false
     @State var loginAgain = false
     var language = LocalizationService.shared.language
-    @State var index = 1
-    @State var gotoBooking = false
-    @State var SelectedDoctor = Doc()
-    @State var gotoMoreDetails = false
+//    @State var index = 1
+//    @State var gotoBooking = false
+//    @State var SelectedDoctor = Doc()
+//    @State var gotoMoreDetails = false
+//    var SubTitle = "Labs"
+    @State var showCallOptions = false
     init(
 //        ExTpe: Binding<Int>,SpecialistId: Binding<Int>,SpecialistName: Binding<String> ,CityId: Binding<Int>,CityName: Binding<String>,AreaId: Binding<Int>,AreaName: Binding<String>
     ) {
@@ -33,8 +35,8 @@ struct OtherMedicalServicesList: View {
 //        self._AreaName = AreaName
     }
     
-    @State var FilterTag : FilterCases = .Menu
-    @State var showFilter = false
+//    @State var FilterTag : FilterCases = .Menu
+//    @State var showFilter = false
 //    @StateObject var seniorityVM = ViewModelSeniority()
 //    @StateObject var specialityvm = ViewModelSpecialist()
 //    @StateObject var SubSpecialityVM = ViewModelSubspeciality()
@@ -48,83 +50,69 @@ struct OtherMedicalServicesList: View {
     var body: some View {
         ZStack{
             VStack{
-//                AppBarView(Title: "".localized(language),withbackButton: true)
                 Image("logo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height:90)
                     .padding(.top,-20)
-
                 
-//                ZStack {
-//                    Image("WhiteCurve")
-//                        .resizable()
-//                        .frame(width: UIScreen.main.bounds.width, height: 120)
-//                        .padding(.top,-20)
-//
-//                    SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchTxt, isSearch: $isSearch){
-//                        getAllDoctors()
-//                    }
-//                    .shadow(color: .black.opacity(0.2), radius: 15)
-//                }
-                
-//                ScrollView(.horizontal, showsIndicators: false) {
-//                    HStack( spacing: 10) {
-//                        ForEach(medicalType.publishedModelExaminationTypeId, id:\.self){ type in
-//                            if type.id==0{ }else{
-//                                Button(action: {
-//                                    withAnimation(.default) {
-//                                        self.index = type.id ?? 1
-//                                    }
-//                                }, label: {
-//                                    HStack(alignment: .center){
-//                                        Text(type.Name ?? "")
-//                                            .font(Font.SalamtechFonts.Reg16)
-//                                            .foregroundColor(self.index == type.id ? Color("blueColor") : Color("lightGray"))
-//                                    }
-//                                    .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-//                                    .frame(minWidth: 100, maxWidth: 350)
-//                                    .frame(height: 40)
-//                                        .background( Color(self.index == type.id ? "tabText" : "lightGray").opacity(self.index == type.id ? 1 : 0.3).cornerRadius(8))
-//                                        .clipShape(Rectangle())
-//                                })
-//                            }
-//                        }
-//                    }.environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
-////                        .padding(.horizontal)
-//                }
+                HStack(){
+                    Button(action: {
+                        ShowFilter.toggle()
+                    }, label: {
+                        Text("Filter_".localized(language))
+                            .foregroundColor(.white)
+                    })
+                        .frame(width: 120, height: 40, alignment: .center)
+                        .background(Color.salamtackBlue)
+                        .cornerRadius(8)
+                    Spacer()
+                }
+                .padding(.horizontal)
                 List( ){
                     if OtherMedicalServices.noData == true{
-                        Text("Sorry,\nNo_Doctors_Found_🤷‍♂️".localized(language))
-                            .multilineTextAlignment(.center)
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
+                        HStack {
+                            Spacer()
+                            Text("Sorry,\nNo_Doctors_Found_🤷‍♂️".localized(language))
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
 
-                        .frame(width:UIScreen.main.bounds.width-40,alignment:.center)
+                    }else{
+                    HStack {
+                        Spacer()
+                        Text(OtherMedicalServices.medicalServiseName.localized(language))
+                            .fontWeight(.heavy)
+                            .foregroundColor(.salamtackBlue)
+                        Spacer()
                     }
-                    
+                    .frame(height:30)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+                    }
                     ForEach(OtherMedicalServices.publishedOtherMedicalServicesArr , id:\.self){ medService in
-//                        ViewDoctorCell(Doctor: Doctor,gotodoctorDetails:$gotodoctorDetails,SelectedDoctor:$SelectedDoctor,ispreviewImage:$ispreviewImage, previewImageurl:$previewImageurl)
-//                            .environmentObject(searchDoc)
 
                         Color.secondary
                             .frame(height:0.7)
-//                            .padding(.vertical,-20)
-//                        ViewLeftSection(Doctor: Doctor,MoreInfoAction: {
-//                            SelectedDoctor = Doctor
-//                            gotoMoreDetails = true
-//                        },ImageAction: {
-//                            ispreviewImage = true
-//                            previewImageurl = URLs.BaseUrl + "\(Doctor.Image ?? "")"
-//                        }){
-//                            SelectedDoctor = Doctor
-//                            gotoBooking = true
-//                        }
-//                        .environmentObject(medicalType)
-//                        .padding(.horizontal,-10)
-//                            .padding(.vertical,-20)
+                            .padding(.vertical,-20)
                         
-                        Text(medService.name ?? "")
+                        OtherMedicalServicesCell(MedicalService: medService,ButtonAction: {
+                            showCallOptions = true
+                        })
+                            .padding(.horizontal,-10)
+                            .padding(.top,-40)
+
+                            .confirmationDialog("Select_Number".localized(language), isPresented: $showCallOptions, titleVisibility: .visible) {
+                                ForEach(medService.healthEntityPhoneDtos ?? [],id:\.self){phone in
+                                    Button(phone) {
+                                        Helper.MakePhoneCall(PhoneNumber: phone)
+                                    }
+                                }
+                            }
+
+                        
                     }
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -151,10 +139,11 @@ struct OtherMedicalServicesList: View {
 
                     .listStyle(.plain)
                     .padding(.vertical,0)
+                
                     .edgesIgnoringSafeArea(.bottom)
             }
-            .disabled(showFilter)
-            .blur(radius: showFilter == true ? 9:0)
+//            .disabled(showFilter)
+//            .blur(radius: showFilter == true ? 9:0)
 //            .frame(width: UIScreen.main.bounds.width)
 //            .edgesIgnoringSafeArea(.vertical)
 //            .background(Color("CLVBG"))
@@ -199,6 +188,7 @@ struct OtherMedicalServicesList: View {
 //            gotoBooking = newval
 //        })
         .onAppear(perform: {
+            OtherMedicalServices.GetOtherMedicalServices()
 //            setFirstselections()
 //            FeesVM.startFetchFees()
 //            medicalType.GetExaminationTypeId()
@@ -217,25 +207,31 @@ struct OtherMedicalServicesList: View {
 //            searchDoc.MedicalExaminationTypeId = newval
 //            getAllDoctors()
 //        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                if !showFilter && !ispreviewImage{
-                    BackButtonView()
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if  !ispreviewImage{
-                FilterButtonView(imagename: "filter"){
-                    showFilter.toggle()
-                }
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                if !showFilter && !ispreviewImage{
+//                    BackButtonView()
+//                }
+//            }
+//        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                if  !ispreviewImage{
+//                FilterButtonView(imagename: "filter"){
+//                    showFilter.toggle()
+//                }
+//                }
+//            }
+//        }
         .overlay(content: {
             ImageViewerRemote(imageURL: $previewImageurl , viewerShown: $ispreviewImage, disableCache: true, closeButtonTopRight: true)
         })
+        
+        .sheet(isPresented: $ShowFilter){
+            OtherMedicalServicesFilter(isPresented:$ShowFilter)
+                .environmentObject(environments)
+                .environmentObject(OtherMedicalServices)
+        }
         .alert(isPresented: $OtherMedicalServices.isAlert, content: {
             Alert(title: Text(OtherMedicalServices.message), message: nil, dismissButton: Alert.Button.default(Text("OK".localized(language)), action: {
                 OtherMedicalServices.isAlert = false
@@ -251,7 +247,7 @@ struct OtherMedicalServicesList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
             OtherMedicalServicesList()
-                .environmentObject(VMSearchDoc())
+                .environmentObject(ViewModelOtherMedicalServices())
                 .environmentObject(EnvironmentsVM())
         }.navigationBarHidden(true)
     }

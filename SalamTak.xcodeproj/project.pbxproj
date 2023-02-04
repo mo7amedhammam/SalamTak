@@ -159,6 +159,7 @@
 		C861B7ED2967246000DCC122 /* NotificationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861B7EC2967246000DCC122 /* NotificationsList.swift */; };
 		C861C12C2805C38400211018 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861C12B2805C38400211018 /* CalendarHelper.swift */; };
 		C86375C52850D3EB000687A9 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86375C42850D3EB000687A9 /* TabButtonView.swift */; };
+		C8712BC0298E984B00431F49 /* OtherMedicalServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8712BBF298E984B00431F49 /* OtherMedicalServicesCell.swift */; };
 		C87B9A10280194B9002DAF4E /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B9A0F280194B9002DAF4E /* AreaView.swift */; };
 		C87F428E295DE3EC004F37AE /* PatientInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F428D295DE3EC004F37AE /* PatientInfoView.swift */; };
 		C87F4290295DE405004F37AE /* PatientMedicalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87F428F295DE405004F37AE /* PatientMedicalInfoView.swift */; };
@@ -405,6 +406,7 @@
 		C861B7EC2967246000DCC122 /* NotificationsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsList.swift; sourceTree = "<group>"; };
 		C861C12B2805C38400211018 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		C86375C42850D3EB000687A9 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
+		C8712BBF298E984B00431F49 /* OtherMedicalServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMedicalServicesCell.swift; sourceTree = "<group>"; };
 		C87B9A0F280194B9002DAF4E /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		C87F428D295DE3EC004F37AE /* PatientInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoView.swift; sourceTree = "<group>"; };
 		C87F428F295DE405004F37AE /* PatientMedicalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMedicalInfoView.swift; sourceTree = "<group>"; };
@@ -1194,6 +1196,7 @@
 				C814A0C0298AE4FF0009D74F /* OtherMedicalServicesFilter.swift */,
 				C814A0C2298AF1B20009D74F /* OtherMedicalServicesButton.swift */,
 				C886AE85298C04DA00649AAB /* OtherMedicalServicesList.swift */,
+				C8712BBF298E984B00431F49 /* OtherMedicalServicesCell.swift */,
 			);
 			path = OtherMedicalServices;
 			sourceTree = "<group>";
@@ -2160,6 +2163,7 @@
 				0E62C54A27FC603000655D1A /* ChooseMedicineAllergy.swift in Sources */,
 				C800F83527FB585B00482151 /* ModelExaminationTypeId.swift in Sources */,
 				C85BD53B284780B70056B046 /* BaseResponse.swift in Sources */,
+				C8712BC0298E984B00431F49 /* OtherMedicalServicesCell.swift in Sources */,
 				0E9E0DBE27FAF93500893ABF /* ChooseNationalityView.swift in Sources */,
 				0E9E0DAC27F9F28200893ABF /* InfoTextFieldView.swift in Sources */,
 				C8E5C710296EE01D00FBB207 /* navController.swift in Sources */,

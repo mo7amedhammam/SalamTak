@@ -16,10 +16,11 @@ struct SpecialityView: View {
     @EnvironmentObject var environments : EnvironmentsVM
     var language = LocalizationService.shared.language
     @State  var isSearch = false
+    @Binding var isPresented:Bool
 
     @State var gotocity = false
     @State var gotoSearchdoctor = false
-    @Binding var selectedTypeId : Int
+//    @Binding var selectedTypeId : Int
     @State var selectedSpecialityId  = 0
     @State var selectedSpecialityName  = ""
     
@@ -35,7 +36,7 @@ struct SpecialityView: View {
     var body: some View {
         ZStack{
             VStack{
-                AppBarView(Title: "Choose_Speciality".localized(language),withbackButton: true)
+                AppBarView(Title: "Choose_Speciality".localized(language),withbackButton: isPresented==true ?  false:true)
                     .frame(height:70)
                     .padding(.top,-20)
                 ScrollView( showsIndicators: false){
@@ -174,7 +175,6 @@ struct SpecialityView: View {
                         HStack(){
                             Text("Gender_".localized(language))
                             ForEach(gender,id:\.self){gender in
-                                
                                 Button(action: {
                                     searchDoc.GenderId = gender.GenderId
                                 }){
@@ -206,11 +206,14 @@ struct SpecialityView: View {
                         .font(.salamtakRegular(of: 15))
                         .foregroundColor(.salamtackBlue)
                         
-                        
                         Button(action: {
                             //search
                             searchDoc.FetchDoctors(operation: .fetchDoctors)
+                            if isPresented{
+                                isPresented.toggle()
+                            }else{
                             gotoSearchdoctor = true
+                            }
                         }, label: {
                             HStack{
                                 Text("Search_".localized(language))
@@ -239,11 +242,11 @@ struct SpecialityView: View {
             ActivityIndicatorView(isPresented: $specialityvm.isLoading)
             
             //        //  go to clinic info
-            NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, SelectedSpecialityName: $selectedSpecialityName, extypeid: $selectedTypeId)
-                            .environmentObject(searchDoc)
-                            .environmentObject(environments)
-                            .navigationBarHidden(true),isActive: $gotocity) {
-            }
+//            NavigationLink(destination:CityView(CountryId:1, SelectedSpeciality:$selectedSpecialityId, SelectedSpecialityName: $selectedSpecialityName, extypeid: $selectedTypeId)
+//                            .environmentObject(searchDoc)
+//                            .environmentObject(environments)
+//                            .navigationBarHidden(true),isActive: $gotocity) {
+//            }
             
             //  go to clinic info
             NavigationLink(destination:ViewSearchDoc()
@@ -298,15 +301,13 @@ struct SpecialityView: View {
             searchDoc.FilterSeniortyLevelId = newval
             searchDoc.FilterSeniortyLevelName = environments.SeniorityName
         })
-
-        
     }
 }
 
 struct SpecialityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            SpecialityView (selectedTypeId: .constant(54545454), selectedSpecialityId: 1212115)
+            SpecialityView ( isPresented: .constant(false), selectedSpecialityId: 1212115)
                 .environmentObject(EnvironmentsVM())
                 .environmentObject(VMSearchDoc())
         }.navigationBarHidden(true).previewInterfaceOrientation(.portrait)

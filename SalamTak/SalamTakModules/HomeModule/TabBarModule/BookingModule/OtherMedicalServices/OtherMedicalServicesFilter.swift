@@ -18,6 +18,8 @@ struct OtherMedicalServicesFilter: View {
     
 //    @State  var isSearch = false
     @State var gotoMedicaServicesList = false
+    @Binding var isPresented : Bool
+
 //    @State var gotoSearchdoctor = false
 //    
 //    @Binding var selectedTypeId : Int
@@ -87,6 +89,9 @@ struct OtherMedicalServicesFilter: View {
                                     LazyHStack(alignment:.top, spacing:8) {
                                         ForEach(0..<(OtherMedicalServices.medicalServises.count), id:\.self){ speciality in
                                             Button(action: {
+                                                
+                                                OtherMedicalServices.medicalServiseName = OtherMedicalServices.medicalServises[speciality].Name ?? ""
+
                                                 OtherMedicalServices.medicalServiseId = OtherMedicalServices.medicalServises[speciality].id ?? 1212113115
 //                                                environments.SpecialityId = OtherMedicalServices.medicalServises[speciality].id ?? 1212113115
 //                                                searchDoc.SpecialistName = specialityvm.publishedSpecialistModel[speciality].Name ?? ""
@@ -165,7 +170,11 @@ struct OtherMedicalServicesFilter: View {
                         Button(action: {
                             //search
                             OtherMedicalServices.GetOtherMedicalServices()
-                            gotoMedicaServicesList = true
+                            if isPresented {
+                                isPresented.toggle()
+                            }else{
+                                gotoMedicaServicesList = true
+                            }
                         }, label: {
                             HStack{
                                 Text("Search_".localized(language))
@@ -256,7 +265,7 @@ struct OtherMedicalServicesFilter: View {
 struct OtherMedicalServicesFilter_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            OtherMedicalServicesFilter()
+            OtherMedicalServicesFilter( isPresented: .constant(false))
                 .environmentObject(EnvironmentsVM())
                 .environmentObject( ViewModelOtherMedicalServices())
         }

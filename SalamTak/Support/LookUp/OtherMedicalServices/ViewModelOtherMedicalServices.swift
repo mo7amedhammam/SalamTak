@@ -19,6 +19,8 @@ class ViewModelOtherMedicalServices: ObservableObject {
     
     //------- inputs
     @Published var medicalServiseId: Int = 0
+    @Published var medicalServiseName: String = ""
+
     @Published var CityId: Int = 0
     @Published var CityName: String = ""
 
