@@ -72,8 +72,10 @@ extension ViewModelDocDetails:TargetType{
     func FetchDoctorDetails() {
         if Helper.isConnectedToNetwork(){
             self.isLoading = true
-
+print(url)
+            print(parameter)
             BaseNetwork.request(Target: self, responseModel: BaseResponse<DocDetails>.self) { [self] (success, model, err) in
+               print(model)
                 if success{
                     //case of success
                     DispatchQueue.main.async {

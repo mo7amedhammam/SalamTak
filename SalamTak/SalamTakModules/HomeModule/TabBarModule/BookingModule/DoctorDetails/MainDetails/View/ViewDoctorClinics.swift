@@ -11,7 +11,7 @@ struct ViewDoctorClinics: View {
     var language = LocalizationService.shared.language
     var Doctor:Doc
     @Binding var gotoBooking : Bool
-    @Binding var BookingClinicId : Int
+    @Binding var BookingClinicId : Int?
     @EnvironmentObject var DocClinics : ViewModelDocClinics
 
     var body: some View {
@@ -29,6 +29,7 @@ struct ViewDoctorClinics: View {
             .cornerRadius(20)
             
 
+            ForEach(DocClinics.publishedModelSearchDoc,id:\.self){clinic in
             VStack {
                 HStack(alignment:.top){
                         Image("doc2")
@@ -48,10 +49,7 @@ struct ViewDoctorClinics: View {
                                 .font(Font.SalamtechFonts.Reg14)
                             //                Spacer()
                             
-                            
-                            
                             HStack(alignment:.top){
-                            
                                 VStack(spacing:3){
                                 HStack(){
                                 Image("FilterFees")
@@ -79,8 +77,6 @@ struct ViewDoctorClinics: View {
                                     .padding(8)
                                     .clipShape(Circle())
                                     .AddBlueBorder(cornerRadius: 25,linewidth: 1.2)
-
-                                    
                                 HStack(){
                                     Text("Waiting_Time:".localized(language))
                                         .foregroundColor(.salamtackWelcome)
@@ -91,12 +87,11 @@ struct ViewDoctorClinics: View {
                                         .font(.system(size: 11))
                                 }
                                 Spacer()
-
                             }
                         }
                                 
                                 Button(action: {
-                                    BookingClinicId = 000000
+                                    BookingClinicId = clinic.id ?? 0
                                     gotoBooking = true
                                 }, label: {
                                     HStack{
@@ -114,11 +109,7 @@ struct ViewDoctorClinics: View {
                                     .padding(.horizontal,8)
                                     .background(Color("blueColor"))
                                     .cornerRadius(12)
-
-                                
                         }
-                   
-                        
                         }
     //                    .padding(.leading)
     //                        .padding()
@@ -133,6 +124,8 @@ struct ViewDoctorClinics: View {
                 
 //                    .background(Color.white)
             }
+                
+            }
 //            .frame(width: UIScreen.main.bounds.width-30, height:55)
 //            .cornerRadius(9)
 //            .shadow(color: .black.opacity(0.1), radius: 9)
@@ -146,10 +139,10 @@ struct ViewDoctorClinics: View {
         }
         .environment(\.layoutDirection, language.rawValue == "en" ? .leftToRight : .rightToLeft)
             
-        .onAppear(perform: {
-            DocClinics.DoctorId = Doctor.id ?? 0
-            DocClinics.FetchDoctorClinics()
-        })
+//        .onAppear(perform: {
+//            DocClinics.DoctorId = Doctor.id ?? 0
+//            DocClinics.FetchDoctorClinics()
+//        })
     }
 }
 

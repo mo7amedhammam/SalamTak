@@ -9,8 +9,17 @@ import Foundation
 //import Alamofire
 
 // MARK: - ModelDocClinics
-struct ModelDocClinics: Codable {
-    let clinicID: Int?
+struct ModelDocClinics: Codable , Identifiable, Hashable{
+    static func == (lhs: ModelDocClinics, rhs: ModelDocClinics) -> Bool {
+        lhs.id == rhs.id && lhs.name == rhs.name
+            }
+
+            func hash(into hasher: inout Hasher) {
+                hasher.combine(id)
+                hasher.combine(name)
+            }
+    
+    let id: Int?
     let name, logo, address, areaName: String?
     let cityName: String?
     let fixedFee: Int?
@@ -22,7 +31,7 @@ struct ModelDocClinics: Codable {
     let schedule: [Schedule]?
 
     enum CodingKeys: String, CodingKey {
-        case clinicID = "ClinicId"
+        case id = "ClinicId"
         case name = "Name"
         case logo = "Logo"
         case address = "Address"

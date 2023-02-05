@@ -12,7 +12,11 @@ struct OtherMedicalServicesFilter: View {
 //    @StateObject var specialityvm = ViewModelSpecialist()
 //    @StateObject var FeesVM = ViewModelFees()
 //    @EnvironmentObject var searchDoc : VMSearchDoc
-    
+    @EnvironmentObject var AdsVM : ViewModelSlidingAds
+    @State private var currentStep = 0
+    @State var VideoLink = "https://www.youtube.com/watch?v=tYBZ8AVH0Q0"
+    @State private var isActive: Bool = false
+
     @EnvironmentObject var environments : EnvironmentsVM
     var language = LocalizationService.shared.language
     
@@ -51,16 +55,103 @@ struct OtherMedicalServicesFilter: View {
                 
                 
                 ScrollView( showsIndicators: false){
-                    AsyncImage(url: URL(string:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR05Cf6YGBs9SAvvEwW22wHVjeLTm9HmVJEWd0KjyiSySHuLDQCH5VVc0wvxtHCJvVOKSY&usqp=CAU" )){image in
-                        image.resizable()
-                    } placeholder: {
-                        Image("logo")
-                            .resizable()
+                    //MARK: -- Ads --
+                    if AdsVM.publishedAdsModel.count > 0{
+                        TabView(selection: $currentStep) {
+                            ForEach(0..<AdsVM.publishedAdsModel.count, id:\.self){ ad in
+                                ZStack{
+                                    if AdsVM.publishedAdsModel[ad].isVideo ?? false{
+                                        LinkView(link: "\(AdsVM.publishedAdsModel[ad].videoLink ?? "")")
+                                            .disabled(true)
+                                            .onAppear(perform: {
+                                                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                                                    VideoLink = "\(AdsVM.publishedAdsModel[ad].videoLink ?? "")"
+                                                })
+                                            })
+                                        //                                        YoutubeVideoView(youtubeVideoID:AdsVM.publishedAdsModel[ad].Link?.youtubeID ?? "")
+                                    }else{
+                                        AsyncImage(url: URL(string: "\(URLs.BaseUrl)\(AdsVM.publishedAdsModel[ad].videoLink ?? "")")) { image in
+                                            image.resizable()
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                    }
+                                }
+                                .frame(width: UIScreen.main.bounds.width-40, height: 150)
+                                .cornerRadius(12)
+                                .overlay(
+                                    HStack{
+                                        Button(action: {
+                                            currentStep = currentStep < AdsVM.publishedAdsModel.count-1 ? currentStep + 1 : 0
+                                        }, label: {
+                                            Image("newleft")
+                                                .resizable()
+                                                .frame(width:15, height:20)
+                                                .scaledToFit()
+                                        })
+                                        Spacer()
+                                        Button(action: {
+                                            if AdsVM.publishedAdsModel[ad].isVideo ?? false {
+                                                //                                                VideoLink = "\(AdsVM.publishedAdsModel[ad].videoLink ?? "")"
+//                                                isTimerRunning = false
+                                                isActive.toggle()
+                                                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                                                    VideoLink = "\(AdsVM.publishedAdsModel[ad].videoLink ?? "")"
+                                                })
+                                            }else{
+                                                //preview image
+                                            }
+                                        }, label: {
+                                            ZStack{
+                                                if AdsVM.publishedAdsModel[ad].isVideo ?? false{
+                                                    Image("newyoutubelogo")
+                                                        .resizable()
+                                                        .frame(width:65, height:55)
+                                                }
+                                            }.frame(width: 200, height: 150, alignment: .center)
+                                        })
+                                        Spacer()
+                                        Button(action: {
+                                            currentStep = currentStep < AdsVM.publishedAdsModel.count-1 ? currentStep + 1 : 0
+                                        }, label: {
+                                            Image("newright")
+                                                .resizable()
+                                                .frame(width:15, height:20)
+                                                .scaledToFit()
+                                        })
+                                    }
+                                        .frame( height:120)
+                                        .padding(.horizontal,10)
+                                )
+                                .padding(.horizontal)
+                                .padding(.top,-20)
+                                .tag(ad)
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+//                        .padding(.top,-30)
+                        .frame( height: 170)
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//                        .onReceive(timer, perform: { _ in
+//                            if isTimerRunning{
+//                                DispatchQueue.main.async(execute: {
+//                                    print("selection is",currentStep)
+//                                    currentStep = currentStep < AdsVM.publishedAdsModel.count-1 ? currentStep + 1 : 0
+//                                })
+//                            }
+//                        })
+                        
+                        .onAppear {
+                            Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { timer in
+//                                    currentStep = currentStep < (ad.getAdImagesDtos?.count ?? 0)-1 ? currentStep + 1 : 0
+                                
+                                currentStep = (currentStep + 1) % (AdsVM.publishedAdsModel.count )
+                            }
+                        }
+                    }else{
+                        //No ads
                     }
-                    .foregroundColor(.black)
-                    .frame( height: 115)
-                    .cornerRadius(8)
-                    .scaledToFit()
                     Group{
 //                        SearchBar(PlaceHolder:"Search_a_doctor...".localized(language),text: $searchDoc.DoctorName, isSearch: $isSearch){
 //                        }
@@ -208,9 +299,17 @@ struct OtherMedicalServicesFilter: View {
             NavigationLink(destination:OtherMedicalServicesList()
                             .environmentObject(OtherMedicalServices)
                             .environmentObject(environments)
+                            .environmentObject(AdsVM)
                             .navigationBarHidden(true),isActive: $gotoMedicaServicesList) {
             }
         }
+        .sheet(isPresented: $isActive, content: {
+            LinkView(link: VideoLink)
+                .frame(height:200)
+                .onDisappear(perform: {
+//                    isTimerRunning.toggle()
+                })
+        })
         .edgesIgnoringSafeArea(.top)
         .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
@@ -225,7 +324,8 @@ struct OtherMedicalServicesFilter: View {
             environments.SpecialityId = OtherMedicalServices.medicalServiseId
             environments.CityId = OtherMedicalServices.CityId
             environments.AreaId = OtherMedicalServices.AreaId
-//            environments.SeniorityId = searchDoc.FilterSeniortyLevelId ?? 0
+            AdsVM.PageID = 2
+            AdsVM.GetDashboardAds()
         })
         
         .background(

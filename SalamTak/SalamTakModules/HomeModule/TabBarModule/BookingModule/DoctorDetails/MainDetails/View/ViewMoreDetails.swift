@@ -25,7 +25,7 @@ struct ViewMoreDetails:View{
     @Binding var ExType :Int
     //Calendar
     @State var ShowCalendar = false
-    @State var BookingClinicId = 0
+    @State var BookingClinicId:Int? = 0 // take care of this line
     @State var BookingFees:Int = 0
 
     @State var presentLogin = false
@@ -95,7 +95,7 @@ struct ViewMoreDetails:View{
             
             // go to summary
             NavigationLink(destination:
-                            ViewBooking(Doctor: Doctor, ExType: $ExType, BookingClinicId: BookingClinicId)
+                            ViewBooking(Doctor: Doctor, ExType: $ExType, BookingClinicId: BookingClinicId ?? (Doctor.ClinicId ?? 0))
                             .environmentObject(environments)
                             .environmentObject(DocDetails)
                             .navigationBarHidden(true),isActive: $GotoBooking) {

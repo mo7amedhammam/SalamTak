@@ -140,6 +140,7 @@ struct ViewLeftSection: View {
                             }
                             .font(Font.system(size: 18))
                             })
+                                .buttonStyle(.plain)
                             
                             
                             Spacer().frame(height:50)

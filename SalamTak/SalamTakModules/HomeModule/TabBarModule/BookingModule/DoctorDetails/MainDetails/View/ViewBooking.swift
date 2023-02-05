@@ -28,7 +28,7 @@ struct ViewBooking:View{
     @State var ShowCalendar = false
     @State var selectedSchedualId = 0
     @State var selectedTime = ""
-    @State var BookingClinicId : Int
+    var BookingClinicId : Int
     @State var BookingFees:Int = 0
     @State var presentLogin = false
     @State var presentReservation = false
@@ -50,7 +50,7 @@ struct ViewBooking:View{
 
                 ScrollView {
                     ViewDocMainInfo(Doctor: Doctor, operation: .Booking, ispreviewImage: $ispreviewImage, previewImageurl: $previewImageurl)
-                    ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime,DoctorId:.constant(Doctor.id ?? 0), ClinicId: $BookingClinicId,ExTypeId:$ExType, BookingFees:$BookingFees)
+                    ViewDateAndTime(ShowCalendar: $ShowCalendar, selectedSchedualId: $selectedSchedualId , selectedTime:$selectedTime,DoctorId:.constant(Doctor.id ?? 0), ClinicId: BookingClinicId,ExTypeId:$ExType, BookingFees:$BookingFees)
                         .environmentObject(DocDetails)
 //                    ViewDocReviews( Doctor: Doctor, GotoReviews: $GotoReviews, GotoAddReview: $GotoAddReview)
                     Spacer()

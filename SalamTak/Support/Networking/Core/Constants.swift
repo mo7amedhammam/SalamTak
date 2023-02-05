@@ -67,5 +67,9 @@ class URLs {
     var GetNotificationsCount = BaseUrl + "/api/\(Helper.getLanguage())/PatientAppointment/GetNewNotificationCount" // get Notifications count
     var GetNotifications = BaseUrl + "/api/\(Helper.getLanguage())/PatientAppointment/GetNotifications" // get Notifications List
 
+//MARK: --- promotions -----
+    var GetPromotions = BaseUrl + "/api/\(Helper.getLanguage())/Ads/GetWhatsAppAds"
+    var GetSlidingAds = BaseUrl + "/api/\(Helper.getLanguage())/Ads/GetVidoesAds"
+
 }
 

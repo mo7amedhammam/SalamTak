@@ -17,6 +17,8 @@ struct TabBarView: View {
     @StateObject var scheduleVM = ViewModelGetAppointmentInfo()
     @StateObject  var infoProfileVM = PatientInfoViewModel()
     @StateObject  var medicalProfileVM = PatientMedicalInfoViewModel()
+    @StateObject var AdsVM = ViewModelSlidingAds()
+
     @StateObject var environments = EnvironmentsVM()
 
     @State var MoreTabIndex = 0
@@ -32,14 +34,16 @@ struct TabBarView: View {
                         NavigationView{
                         if selectedTab == TabBarVM.tabs[0] {
                                 ServicesView()
+                                .environmentObject(AdsVM)
                                 .environmentObject(environments)
                         } else if selectedTab == TabBarVM.tabs[1] {
                             ScheduleView()
                                 .environmentObject(scheduleVM)
                                 .navigationBarHidden(true)
                         } else if selectedTab == TabBarVM.tabs[2] {
-                            ScheduleView()
-                                .environmentObject(scheduleVM)
+//                            ScheduleView()
+//                                .environmentObject(scheduleVM)
+                            ViewPromotions()
                                 .navigationBarHidden(true)
                         } else if selectedTab == TabBarVM.tabs[3] {
                             MoreView(index: $MoreTabIndex,SelectedTab: $selectedTab,DesiredScroll: $DesiredAppointmentItem,showingList:$showingList)

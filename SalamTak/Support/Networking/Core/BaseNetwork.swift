@@ -9,6 +9,10 @@ import Foundation
 import Alamofire
 import Combine
 
+enum ActiveAlert {
+    case NetworkError, serverError, success, GovernmentID, PlateNumber, LicenseNumber, unauthorized
+}
+
 func buildparameter(paramaters:parameterType)->([String:Any],ParameterEncoding){
     switch paramaters{
     case .plainRequest:

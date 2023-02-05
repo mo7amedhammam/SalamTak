@@ -24,16 +24,16 @@ struct ViewDateAndTime: View {
     @Binding var selectedTime :String
     
     @Binding var DoctorId :Int
-    @Binding var ClinicId :Int
+    var ClinicId :Int
     @Binding var ExTypeId :Int
     @Binding var BookingFees :Int
     
-    init(ShowCalendar: Binding<Bool>, selectedSchedualId: Binding<Int>,selectedTime: Binding<String>,DoctorId: Binding<Int>,ClinicId: Binding<Int>,ExTypeId: Binding<Int>,BookingFees: Binding<Int>){
+    init(ShowCalendar: Binding<Bool>, selectedSchedualId: Binding<Int>,selectedTime: Binding<String>,DoctorId: Binding<Int>,ClinicId:Int,ExTypeId: Binding<Int>,BookingFees: Binding<Int>){
         self._ShowCalendar = ShowCalendar
         self._selectedSchedualId = selectedSchedualId
         self._selectedTime = selectedTime
         self._DoctorId = DoctorId
-        self._ClinicId = ClinicId
+        self.ClinicId = ClinicId
         self._ExTypeId = ExTypeId
         self._BookingFees = BookingFees
         setWeekView()
@@ -194,7 +194,8 @@ struct ViewDateAndTime: View {
         }
         .onAppear(perform: {
             DocDetails.DoctorId = DoctorId
-            DocDetails.ClinicId = ClinicId
+            DocDetails.ClinicId = ClinicId ?? 0
+//            DocDetails.ClinicId = selectedSchedualId ?? 0
             DocDetails.MedicalExaminationTypeId = ExTypeId
             DocDetails.FetchDoctorDetails()
         })
@@ -218,13 +219,12 @@ struct ViewDateAndTime: View {
                     DocDetails.isAlert = false
                     }))
             })
-
     }
 }
 
 struct ViewDateAndTime_Previews: PreviewProvider {
     static var previews: some View {
-        ViewDateAndTime(ShowCalendar: .constant(false), selectedSchedualId: .constant(55), selectedTime: .constant(""), DoctorId: .constant(125), ClinicId: .constant(125), ExTypeId: .constant(3),BookingFees: .constant(0))
+        ViewDateAndTime(ShowCalendar: .constant(false), selectedSchedualId: .constant(55), selectedTime: .constant(""), DoctorId: .constant(125), ClinicId: 0, ExTypeId: .constant(3),BookingFees: .constant(0))
             .environmentObject(ViewModelDocDetails())
     }
 }

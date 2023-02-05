@@ -1,46 +1,55 @@
 //
-//  ViewModelDocClinics.swift
+//  ViewModelPromotions.swift
 //  SalamTak
 //
-//  Created by wecancity on 23/01/2023.
+//  Created by wecancity on 05/02/2023.
 //
 
-import Foundation
 import Combine
 import Alamofire
-//import SwiftUI
-
-class ViewModelDocClinics: ObservableObject {
+class ViewModelPromotions: ObservableObject {
     
     let passthroughSubject = PassthroughSubject<String, Error>()
-    let passDocClinicsArr = PassthroughSubject<BaseResponse<[ModelDocClinics]> , Error>()
+    let passthroughModelSubject_Ads = PassthroughSubject<BaseResponse<[ModelPromotions]>, Error>()
+
     private var cancellables: Set<AnyCancellable> = []
     
-    // ------- input
-    @Published var DoctorId                            :Int = 0
+//    // ------- input
+    @Published  var PageID: Int = 1
+    @Published  var DoctorApp: Bool = false
 
-    //------- output
-    @Published var publishedModelSearchDoc: [ModelDocClinics] = []
+//    //------- output
+    @Published var publishedAdsModel: [ModelPromotions] = []
+    @Published var noData = false
 
+    @Published var isDone = false
     @Published var isLoading:Bool? = false
     @Published var isAlert = false
     @Published var activeAlert: ActiveAlert = .NetworkError
     @Published var message = ""
-
-    
+ 
     init() {
-        passDocClinicsArr.sink { (completion) in
-            //            print(completion)
-        } receiveValue: { [self] (modeldata) in
-            self.publishedModelSearchDoc = modeldata.data ?? []
+        GetPromotions()
+        passthroughModelSubject_Ads.sink { (completion) in
+        } receiveValue: {[weak self] (modeldata) in
+            self?.publishedAdsModel = modeldata.data ?? []
+//            print(modeldata)
         }.store(in: &cancellables)
     }
+    
 }
 
 
-extension ViewModelDocClinics:TargetType{
+extension ViewModelPromotions:TargetType{
     var url: String{
-        return URLs().DoctorClinics
+        let url = URLs().GetPromotions
+        let queryItems = [
+                          URLQueryItem(name:"DoctorApp",value:"\(DoctorApp)")
+        ]
+        var urlComponents = URLComponents(string: url)
+        urlComponents?.queryItems = queryItems
+        let convertedUrl = urlComponents?.url
+        return convertedUrl?.absoluteString ?? ""
     }
     
     var method: httpMethod{
@@ -48,29 +57,30 @@ extension ViewModelDocClinics:TargetType{
     }
     
     var parameter: parameterType{
-        let Parameters : [String:Any] = [
-//        // required
-            "userId": DoctorId
-    ]
-        return .parameterRequest(Parameters: Parameters, Encoding: URLEncoding.default)
+        return .plainRequest
     }
     
     var header: [String : String]? {
-        return [:]
+    let header = ["Authorization":Helper.getAccessToken()]
+        return header
     }
+
     
-    func FetchDoctorClinics() {
-        print(url)
-        print(parameter)
+    func GetPromotions() {
         if Helper.isConnectedToNetwork(){
+            print(url)
+            print(method)
+            print(parameter)
             self.isLoading = true
 
-            BaseNetwork.request(Target: self, responseModel: BaseResponse<[ModelDocClinics]>.self) { [self] (success, model, err) in
+            BaseNetwork.request(Target: self, responseModel: BaseResponse<[ModelPromotions]>.self) { [self] (success, model, err) in
                 print(model)
+
                 if success{
                     //case of success
                     DispatchQueue.main.async {
-                        self.passDocClinicsArr.send( model!  )
+                        self.noData = false
+                        self.passthroughModelSubject_Ads.send( model!  )
                     }
                 }else{
                     if model != nil{
@@ -91,11 +101,13 @@ extension ViewModelDocClinics:TargetType{
                 }
                 isLoading = false
             }
+            
         }else{
             //case of no internet connection
             activeAlert = .NetworkError
             message = "Check_Your_Internet_Connection".localized(language)
             isAlert = true
         }
+        
     }
 }
